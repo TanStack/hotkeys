@@ -17,11 +17,11 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
@@ -37,11 +37,11 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -59,11 +59,11 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -86,25 +86,25 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "f572ed21040e702ff7740050a780e365904cfdcabd0fa3badc7dabacfa2051b9",
+      "fingerprint": "2b23348c916f1bad2a33f7e31e01d3a363c2fdeb930252af7036c8441fed8138",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "972ce216cf65039d177c263b963df1ec847f108785e002a0f5c9d6c85716e75f",
+        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
-        "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
+        "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -134,11 +134,11 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -153,11 +153,11 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
@@ -173,11 +173,11 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
@@ -210,11 +210,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/react-hotkeys/skills/react-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/react-hotkeys/skills/react-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -229,11 +229,11 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
@@ -250,11 +250,11 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
@@ -271,15 +271,15 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "c34ea4856acbd18167e23d87ff794691b4b286994bdedfcae84c3c6a4e3e774f",
+      "fingerprint": "8fd5d649038045d0d2688b902ab2a9e5399dff5920216871cdaedebf233c1bea",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -309,7 +309,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "972ce216cf65039d177c263b963df1ec847f108785e002a0f5c9d6c85716e75f",
+        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -344,7 +344,7 @@
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
         "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
-        "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
+        "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
@@ -411,11 +411,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md, packages/react-hotkeys/skills/react-hotkeys/SKILL.md, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md, packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -646,11 +646,11 @@
       "snapshot": {
         "docs/reference/classes/HotkeyManager.md": "ea54e5cba956465094e33aa634210f025dc8cd16ce32f1eaa1a188cf50df4f91"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: docs/reference/classes/HotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
@@ -658,11 +658,11 @@
       "snapshot": {
         "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: docs/reference/functions/getHotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -736,11 +736,11 @@
       "snapshot": {
         "examples/preact/kitchen-sink/src/index.tsx": "073d7fff5ac116db47986d4bc6da281dce502679f16a92694b3db4a8738372d1"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/preact/kitchen-sink/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/preact/kitchen-sink/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
@@ -1252,11 +1252,11 @@
       "snapshot": {
         "docs/reference/functions/toHotkeyRegistrationView.md": "8fc3faea720b69b37b3b3da8432d6bff1f7d62c935f7730db85a6f224e34e074"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
@@ -1264,11 +1264,11 @@
       "snapshot": {
         "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "7e66475fabd9b52b3a5a4cbf74be26450119d28031105ef9d8c109cc0d40ece5"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
@@ -1276,11 +1276,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyChordOptions.md": "bda51733077001fb874bb3a7bdc6157efcc35cb9953efc8fc6caf639bde34df5"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
@@ -1288,11 +1288,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyChordRegistration.md": "5dfefdc0a50fa1f3152bd840d5dbd69955540d0b3fb47cfd3666beffe21956c6"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
@@ -1300,11 +1300,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyChordRegistrationView.md": "02ac6ef9a67d8e02c812ac671d0b88cf6770346a6e3dcb7774d9ed034e7c8d1e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
@@ -1312,11 +1312,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyOptions.md": "ca0e99b9a9f164fc1350dbd4e62b004b0266c3f6c202ec29c40542e8f98792d2"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
@@ -1324,11 +1324,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyRegistrationHandle.md": "2974d6dce977d3f29ce44c06922d7c6d4ec38ae577d149c20f40f279d44118ac"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
@@ -1336,11 +1336,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyScopesState.md": "cf2e27863cbf1d7cde01cd5c6cee393c87b86c3fe1ee88b6f5faeb414cb18dbf"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyScopesState.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeyScopesState.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
@@ -1348,11 +1348,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeySequenceOptions.md": "c7e1ba43f23e358570b2f71ad83e66a65f184ef8b9e7742f1807ba26ded59ee1"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
@@ -1360,11 +1360,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeySequenceRegistration.md": "834806e9fcba20663a14eb1fd4952f834e91b231d1bb749023f20f3659c94995"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
@@ -1372,11 +1372,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e451453e3ca46393b91bc0e22fa2c7ec80820d4e96443c8cdac73a1a3110da8c"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
@@ -1384,11 +1384,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyOptionsFor.md": "81fa9a1359b144b781fab3cd54f0534858e790f50ca30a26397f08cd38227de6"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
@@ -1396,11 +1396,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRegistration.md": "fabdb7ea7b17dcffe2ad60e532136608fbae233a58c4889960a42531d3cccf38"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
@@ -1408,11 +1408,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRegistrationView.md": "9d4cd7bfa7e8cedd81ee3fe8592a9a1351e89007516cec32f8ad98ac5e6f9e0c"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1433,11 +1433,11 @@
       "snapshot": {
         "packages/hotkeys/tests/hotkey-manager.test.ts": "0142d4a49a85477fec386f31ce4fc4b69816dc175336aa2e9778d1ebec8a27dc"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -2005,11 +2005,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "4d98e243f8c72bd21973842904b66cb06a34c36a99d60e7bc42f4b69af8d1680"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2627,11 +2627,11 @@
       "snapshot": {
         "docs/devtools.md": "9e817838e2064225920014cf650f07e3916012acd1e0cbc6b96c28759cff471e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/devtools.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/devtools.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/installation.md": {
@@ -2788,11 +2788,11 @@
       "snapshot": {
         "packages/react-hotkeys/src/useKeyHold.ts": "4c9860d5c3e7bc35a56b83012731a892ad3df9a2538ac7ea31533471ef2b0a55"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/react-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/react-hotkeys/tsdown.config.ts": {
@@ -3309,11 +3309,11 @@
       "snapshot": {
         "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "6fc3dd5499f2b2e310a59f4e07e37fbe0bc269b726f52404d377e909a01e7d39"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/preact-hotkeys-devtools/src/index.ts": {
@@ -3344,11 +3344,11 @@
       "snapshot": {
         "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "64223ead3e2f31f85ed2355891f81ed55616a3b30dffc8edc33d875c123b23f1"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/react-hotkeys-devtools/src/index.ts": {
@@ -3509,11 +3509,11 @@
       "snapshot": {
         "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "c54b90d63f720299e6690872dc3f3966b8d9aad67302b5993093f4b9b24aaa87"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
@@ -3723,11 +3723,11 @@
       "snapshot": {
         "docs/framework/vue/reference/functions/useKeyHold.md": "b8b660372150b459a8689c7702394bb029b50469564ea2dd48d2919301eed74e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/vue/reference/functions/useKeyHold.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/vue/reference/functions/useKeyHold.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
@@ -3806,11 +3806,11 @@
       "snapshot": {
         "packages/vue-hotkeys/src/useKeyHold.ts": "da096cf91adb7c35bf10229c15a34bb6ea85f53c0a427d569ded111afb6bda8e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/vue-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/vue-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
@@ -3867,11 +3867,11 @@
       "snapshot": {
         "docs/framework/lit/guides/held-key-state-helpers.md": "b8597d849a2bbf0b42fbab350b750310a0126d1adf877319005c827e0665254c"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/lit/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/lit/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
@@ -4111,11 +4111,11 @@
       "snapshot": {
         "packages/lit-hotkeys/src/controllers/key-hold.ts": "e70321d6d9b54d45b71c634268d87db882af5d28ffd4c95989b2f9e7940019e9"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/lit-hotkeys/src/controllers/key-hold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/lit-hotkeys/src/controllers/key-hold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
@@ -4171,11 +4171,11 @@
       "snapshot": {
         "docs/reference/classes/HotkeyRecorder.md": "c7c696684c56ee3b719af0f91d4fb73d8e549af55ebb32d09aa031407a1853cd"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyRecorder.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/classes/HotkeyRecorder.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
@@ -4261,27 +4261,27 @@
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "a989ef042f9e52cff28e6cc19ca177e431d8e129ba8fa04229400952d554f1dc",
+      "fingerprint": "311a67c110395ea051c0d482216d85105faccf2d195cb7231c2bb417235a03d9",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "345e397d9ada22211be995662971a119b4f0e622fb27d74c93c0b1a8ce8bc2a4"
+        "packages/hotkeys/src/_match.ts": "77734fb2d2a177bdb69ebf469bd03910886c722e34192765116637268a5dbc1f"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/src/_match.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/src/_match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "4cdb6dfb759da8b9330708248cb23d8319fde3d2a818d0dc736f613f1ca53382",
+      "fingerprint": "8155a0877388833a66c1175f936d82fdcd1a6e2264247f9ad246d697710d36ad",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "952e05ef507d48691a311c64b1ed0e9c8dbc838cbb6282703e491cfc3e458795"
+        "packages/hotkeys/tests/match.test.ts": "d12835d3c9115163609737e3b288b561e4de140f8a7f4cfa7093fd6581aeb322"
       },
-      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
-      "outcome": "no-change",
-      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
+        "Changed: packages/hotkeys/tests/match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -5026,11 +5026,11 @@
       "snapshot": {
         "docs/reference/classes/KeyStateTracker.md": "c1d59abbd63be5777f69109b243df6f51ba0d70211ff29389b7a8d4f5634e7cd"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/classes/KeyStateTracker.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/classes/KeyStateTracker.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
@@ -5048,11 +5048,11 @@
       "snapshot": {
         "docs/reference/functions/getKeyStateTracker.md": "3aa5234eabed1a1881f65a04e5a40ad83161d945cd50efc5aa8d85bdfe7cab90"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/functions/getKeyStateTracker.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/functions/getKeyStateTracker.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
@@ -5060,11 +5060,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "b611d1d52fa0d1aa51903bdd90fb467e896f35b07673f61afd1c1592b7024282"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRecorderOptions.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/HotkeyChordRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
@@ -5072,11 +5072,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "a676727175e9013307c6b2acb6b8417163b313c31255e58130b3b51b0b767421"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRecorderValidationContext.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/HotkeyChordRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeyRecorderState.md": {
@@ -5084,11 +5084,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeyRecorderState.md": "947608649130e7ebcd3ff76e3637ac1092740b8748a0fc5e97ee21da7b728819"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyRecorderState.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/HotkeyRecorderState.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
@@ -5096,11 +5096,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "a74af40b63c4575f63204ae9980d7f7f43010c400dcbf4e8630b2dafb67c34ae"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRecorderOptions.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/HotkeySequenceRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
@@ -5108,11 +5108,11 @@
       "snapshot": {
         "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "c44d62f99d07eb486ede47e36c5c328718061e07c56ac9c10bcc1bd9d6e83371"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
@@ -5120,11 +5120,11 @@
       "snapshot": {
         "docs/reference/interfaces/KeyStateTrackerState.md": "5554f5e50d96ab1eddeacf6a251d249333314b216d595c9ecdf587246ab3499e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/KeyStateTrackerState.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/reference/interfaces/KeyStateTrackerState.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
@@ -5132,11 +5132,11 @@
       "snapshot": {
         "docs/reference/interfaces/RecorderOptions.md": "dd067b3296fd4ae1f2e81dd8f74303c275346fbe2714c17cc645128442efcd45"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/RecorderOptions.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/RecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/RecorderRejection.md": {
@@ -5144,11 +5144,11 @@
       "snapshot": {
         "docs/reference/interfaces/RecorderRejection.md": "71e92cdf3b6597f41121ee11dc751a2d2414329ce8406a25475d7ab3401b8eda"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/interfaces/RecorderRejection.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/interfaces/RecorderRejection.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
@@ -5166,11 +5166,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "fb4d68984a5cdb72ec5eed5643b6e7bdc948c46bef02f2a6466ff2c96b28ecf8"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRecorderCommitKeys.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/type-aliases/HotkeyRecorderCommitKeys.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
@@ -5178,11 +5178,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRecorderOptions.md": "614891d1ec710f30bf7139d675164b3436ff46c8932e594ab7f84f49a980b427"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRecorderOptions.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/type-aliases/HotkeyRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
@@ -5190,11 +5190,11 @@
       "snapshot": {
         "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "06ef56017994415b3d9d63974986aa124c7020eea8028956d70bb6e8f8484baf"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRecorderValidationContext.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/type-aliases/HotkeyRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/type-aliases/RecorderKeyMode.md": {
@@ -5268,11 +5268,11 @@
       "snapshot": {
         "packages/angular-hotkeys/src/injectKeyHold.ts": "a675494b213391097b2f3196a43cee0d114f67cbe6847bdbf8ef6c955792a171"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/angular-hotkeys/src/injectKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/angular-hotkeys/src/injectKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/angular-hotkeys/tsconfig.docs.json": {
@@ -5372,11 +5372,11 @@
       "snapshot": {
         "packages/hotkeys/src/key-state-tracker.ts": "e4fb4ada0c037c0c7d477e800d4a31c717f8ee182e200e94ebb706ce126e575c"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/src/key-state-tracker.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys/src/key-state-tracker.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys/src/validate.ts": {
@@ -5520,11 +5520,11 @@
       "snapshot": {
         "packages/octane-hotkeys/src/useKeyHold.ts": "dae167d98e94bbed2e736396f004463ae43a5043ef79c6528bb54be07dfaefcc"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/octane-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/octane-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/octane-hotkeys/tsconfig.docs.json": {
@@ -5630,11 +5630,11 @@
       "snapshot": {
         "packages/preact-hotkeys/src/useKeyHold.ts": "590a5eb94475b6adb7b53655d24fad4c046de1920da002c23a362a6a1f88d259"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/preact-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/preact-hotkeys/tsconfig.docs.json": {
@@ -5751,11 +5751,11 @@
       "snapshot": {
         "packages/solid-hotkeys/src/createKeyHold.ts": "84ad717c7eb92e6a53221bd733ca8d4a4f3cb0e9b26a02fce4ae98394157c5f0"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/solid-hotkeys/src/createKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/solid-hotkeys/src/createKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/solid-hotkeys/src/defaultOptions.ts": {
@@ -5852,14 +5852,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/normalizeKeyName.md": {
-      "fingerprint": "ecbca381e243a1d933412f41dcae148e4d97d23fda713923e41cee82be97e85e",
+      "fingerprint": "9e41c9237b59ecc9a3965c14792ca55bb1c17c48a980e47269cbeeaf6f8e9d09",
       "snapshot": {
-        "docs/reference/functions/normalizeKeyName.md": "5e071a98cda64857a2d2d78abcea38a1a06d9ddd478753b8c992f928f1ccac6c"
+        "docs/reference/functions/normalizeKeyName.md": "708947dd9f0a28f6a9837db780c257e413017d0eb3e9097800367ee99c3cb19c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/normalizeKeyName.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/validateHotkey.md": {
       "fingerprint": "65bb31016249a39dc43d7bc1365d6e4c798c234a3dbdc893a1f44474988d50a4",
@@ -6004,15 +6006,15 @@
       ]
     },
     "source:packages/hotkeys/src/constants.ts": {
-      "fingerprint": "d0dd243fe5d95b222dcda9e1bb77a96b8525f7b6be45559a8d167aaac4c0446a",
+      "fingerprint": "720f098cbe6afad6aacb36721899f18d456d2841ebb7703b06d7f7906e011aa4",
       "snapshot": {
-        "packages/hotkeys/src/constants.ts": "3c0606eba9381d47bad82d9afde2fedc0846aeae1708f284ebb21f94a81525a3"
+        "packages/hotkeys/src/constants.ts": "2339445948dce5cf1dc28363128f6dc4ddf1963ec64df362578e7e4a035c772e"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Changed: packages/hotkeys/src/constants.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/key-tables.test.ts": {
@@ -6028,16 +6030,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "4b6cabf6d19af958482f572c110311817c6b21cfc0bbdcfd293ab780b6840b94",
+      "fingerprint": "45e9f23c66fc5bd1a7dfad50ada5f0d6e81ed40788d38fff2d4003f325eac866",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "0966bcc4027bd0b98aa22c26dc5e623a6913e6b8c6766643e173f9f4f648ea10"
+        "docs/framework/alpine/guides/formatting-display.md": "db01e938fc3f98ec91e9790fafd16f7e01c9190da16dbb5b821dbeef523a5f5c"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "docs/framework/alpine/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/alpine/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
@@ -6045,24 +6046,23 @@
       "snapshot": {
         "docs/framework/alpine/guides/held-key-state-helpers.md": "ceeef2ad32ec186171f76dfabac5108dd1926808c56c9fb02738710167fae15a"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/alpine/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
+      "fingerprint": "a40b86b2cdfed01cecf90762c06dfab49df0812ed336db1f93620a0b2a321c70",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "746cdac75527e92b39bc652afb180de5422b0efa3fbfc35c49a32122cd174cc7"
+        "docs/framework/angular/guides/formatting-display.md": "8989d9320980c051ac36bbc7e6ed00a47b246d5d7f5ce5ef30a907f622d99668"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/angular/guides/formatting-display.md"
+        "Changed: docs/framework/angular/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -6070,24 +6070,23 @@
       "snapshot": {
         "docs/framework/angular/guides/held-key-state-helpers.md": "4b970774132cfde022b78455650152dbbebd64f35bd561f26a784567cd816a26"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/angular/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/angular/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "a473c75f2347650effa25812eb2803abd1da34ce66a58bc6f955b18ea73960c7",
+      "fingerprint": "aea2191aac2482016a244c290768cfb1599bc4e4ed7331c54ee89d33ba6b0eb3",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "f7503ded6f8f60049fc88aec16bb7f67c8cc51c526bfe399eb0768f334787c1e"
+        "docs/framework/ember/guides/formatting-display.md": "45ff674dff5d02d8c7631353d7252b16fecd1ff555a1d6cd5c48bd88c35cf1db"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/ember/guides/formatting-display.md"
+        "Changed: docs/framework/ember/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6095,37 +6094,35 @@
       "snapshot": {
         "docs/framework/ember/guides/held-key-state-helpers.md": "9884abe3daba8d165a63e7257f43094ac255d1eff98c6aad4283b65ebcca2fba"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/ember/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/ember/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "35114ce931f7a988432a70a5b078ce45c2381803622969dc318e122f394653ff",
+      "fingerprint": "2f4eb898db10d45229c28b2677ab46095377044b5a5573265177324a46ab97a7",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "273283a11ff61848d6911dd7a8aaffbb0d85b85da953b20dbfa981a65df65dc9"
+        "docs/framework/lit/guides/formatting-display.md": "2de3b5bfe1ab9e5d78d92fa7c3509d1781f916c206d50fa65a25cddc83585e83"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "docs/framework/lit/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/lit/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "193cfc8f6f7482193669be977a0ae2507683e8e938c1a91b094b65ca0b38915a",
+      "fingerprint": "2923ba93a1dfd797fc0f5d92f5a0ea535dc75688be1e4fc417e5232f1d7dfc0c",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "462fdcb1df3671cf153efa35258ce37fa73f5a114a4f515422e2cce06cda2524"
+        "docs/framework/octane/guides/formatting-display.md": "cd2a0761f6ac1f6fb46bb7f314aaa514ebafc34747757ce0cb32056867c3a0b0"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/guides/formatting-display.md"
+        "Changed: docs/framework/octane/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6133,24 +6130,23 @@
       "snapshot": {
         "docs/framework/octane/guides/held-key-state-helpers.md": "a130944ce9d76242ebce62fa91770374776374313e4de1dfc067c0a732f3266e"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/octane/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/octane/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "09cc4dacabdfe3544fccfb84974ed98d5cd4819e710e669e7418b10c17cca3e9",
+      "fingerprint": "1e64bca6ca90285789bbc760bd929feca1e84dc9d6b7674a4589d7aaaf7a3bd1",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "080467724eb65b1d978a7f1a284af4872a896458867136307d23d5aa04187210"
+        "docs/framework/preact/guides/formatting-display.md": "ead8d4dc82ee61d05f286ba84222a2996e0f42a42a9fb81a14f6114b2e0e3aa7"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/guides/formatting-display.md"
+        "Changed: docs/framework/preact/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6158,24 +6154,23 @@
       "snapshot": {
         "docs/framework/preact/guides/held-key-state-helpers.md": "5e1552e76221d4f3dffba7d28057eec1d17fa72f54a347a6090a84429964cbfa"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/preact/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/preact/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "a1b881293a756031fff3c4605caefb31bb5d5860593a036f290e165ad8dd9ec6",
+      "fingerprint": "6d8dafae6b1c4c1201ab4d237fa00921db9fd81e9ee23910159b26188e33c245",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "340e003d3b28b60f8c0ab93a7e1ddf5060bdf87c39b50d9744084434eff31b9e"
+        "docs/framework/react/guides/formatting-display.md": "087a39cba187c92d20e2de4c9bbf93d27d68a33e73fdb2508b89017afc786491"
       },
-      "head": "562e3d20b3f440f927f655d694c87585b8c0258b",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "React guide step 2 now notes Server Components pass platform to formatForDisplay. The React skill already covers passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "Changed: docs/framework/react/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6183,24 +6178,23 @@
       "snapshot": {
         "docs/framework/react/guides/held-key-state-helpers.md": "63682e1373555100dc3353dee34fad1903613b39f0ed27667d5492f154a1d8b0"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/react/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/react/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
+      "fingerprint": "18fd170b38aa19c208fcdede2683ccecedcfc9b27c32afb31febb34ced684603",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "ae68da32e33e6023300d5fb3afb2b072e3e8e69b14bc4022bf4bde2e060ebd14"
+        "docs/framework/solid/guides/formatting-display.md": "076d14af6f39122fe87d9cbba72a271ae38874b9740727e3e3c7f55d3eba59e7"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/solid/guides/formatting-display.md"
+        "Changed: docs/framework/solid/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6208,24 +6202,23 @@
       "snapshot": {
         "docs/framework/solid/guides/held-key-state-helpers.md": "5b29856dfbcd2181a45eb18e3a38e62922ebec50f3ed2dc45e42809429e67295"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/solid/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/solid/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "ade6e58a5c2bd393ccb903c8538dfd0a3335a27e69ca9cc10350cd634f645ca0",
+      "fingerprint": "1a38c99f6ae5e19cb8c1edd10e3d3a572918930db81178f08e0df620232568b8",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "2a63f0cf59e2684b22f96da57f6c39e70b9f8e25f96f0490f0b6c70288cef9e2"
+        "docs/framework/svelte/guides/formatting-display.md": "35af6d3925af4026f5078788165b80566de32584041ef54812cd712a0a1bede6"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/svelte/guides/formatting-display.md"
+        "Changed: docs/framework/svelte/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6233,24 +6226,23 @@
       "snapshot": {
         "docs/framework/svelte/guides/held-key-state-helpers.md": "1930124622955ace2aead94fd1b79a1b625fa4ed2898fdb7116e451b29ca1ac8"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/svelte/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "b08fd6c1584acb2b43693891d098f950f585ac197484f5fb78a0881cc20bc3a8",
+      "fingerprint": "120489f2479ae50dcf8946ff09cbe1b75c0b7b7ed84dcf35a5acae6adc72eec4",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "4a43c52da5a6947d750ba179382efcba2ddca22a5f80f45eb6b8b54a484db50a"
+        "docs/framework/vue/guides/formatting-display.md": "abd9d3e5fc657ec40231f14e5f46a9a90f3b34e023edef446710198edb361a7a"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/vue/guides/formatting-display.md"
+        "Changed: docs/framework/vue/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -6258,25 +6250,23 @@
       "snapshot": {
         "docs/framework/vue/guides/held-key-state-helpers.md": "d47841a0448151610cac311fea0f14a0e0e3bbbcfddccab72ea49efd8c49075f"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/vue/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/vue/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
-      "fingerprint": "d12ea2fcaa1e2430091866faf45f63e2d5f854413c3bd4ab3bce5c6350509185",
+      "fingerprint": "3710d38d03e659e7c597471fb54a2cb065656b0b94f94d22484e96636668cd08",
       "snapshot": {
-        "docs/reference/functions/formatForDisplay.md": "163470312ee9900576d32dd2ee2d867592389c6b94958650b9c5bcaa131f1113"
+        "docs/reference/functions/formatForDisplay.md": "2a7eee0cbb9613f7547086dc6e19c32b550b822888fd9a6eaf56c1ba86662f9e"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/reference/functions/formatForDisplay.md"
+        "Changed: docs/reference/functions/formatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/reference/functions/formatKeyForDisplay.md": {
@@ -6292,17 +6282,15 @@
       ]
     },
     "source:docs/reference/interfaces/FormatDisplayOptions.md": {
-      "fingerprint": "9fb34673c416536c79b004ca912842468fa630cfe303b9d3429a8f7559f6b019",
+      "fingerprint": "54b23bd4afb67599998f9505e8269562f06a076c24e1947aa12c2992e2aa382d",
       "snapshot": {
-        "docs/reference/interfaces/FormatDisplayOptions.md": "a072fb3f1e10493555e5c5986620bfc2da37c547516997aa3b51024abcd86cb1"
+        "docs/reference/interfaces/FormatDisplayOptions.md": "015d1b2b9ce5aa8aea1ece399c30e0d03c13748e521e115e5c9d3938a90a488c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/reference/interfaces/FormatDisplayOptions.md"
+        "Changed: docs/reference/interfaces/FormatDisplayOptions.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/reference/type-aliases/DisplayHotkey.md": {
@@ -6473,11 +6461,11 @@
       "snapshot": {
         "examples/react/useHeldKeys/src/index.tsx": "ea837c5476aed5dea380e6989b436b3751d7ce6cd7c4b9e47bfb404936958589"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHeldKeys/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHeldKeys/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/solid/createHeldKeys/src/index.tsx": {
@@ -6566,29 +6554,27 @@
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
-      "fingerprint": "1131aa5cd210c54a346d89cca114d67c1a9d1c50be4e9748da7f5de10d7533d1",
+      "fingerprint": "fa148ba4ad55c48aa71232a2a0c9f2974569ba06783645ccb1645114216cb311",
       "snapshot": {
-        "packages/hotkeys/src/format.ts": "9897596cc39380b15ffd955f6a73e83d7c8bf369e267695b9206c495b0ab4c6b"
+        "packages/hotkeys/src/format.ts": "e272edfea3b629b2cdc6bc7c1c1257a6c897100cb8a7e233087de92862e3e03e"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/format.ts"
+        "Changed: packages/hotkeys/src/format.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "45cb06720009c6f2a0a672684f8236de11e841cc586e6688f00826e782b0db40",
+      "fingerprint": "1df4eb9255c37e7cd8969198bb6643581e5625cc7e5d0e3309a046e9bad8eff3",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "b0a12d4314a06621618236fcfa7b127a3d38a8847788b0ebd009bdd05991260e"
+        "packages/hotkeys/tests/format.test.ts": "4ebeb1250ec16ba70faf2c2a43c26f16f3312634f0fcadca8ccb736c685c4d52"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/format.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/format.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
@@ -6604,27 +6590,27 @@
       ]
     },
     "source:packages/hotkeys/tests/parse.test.ts": {
-      "fingerprint": "3797e829ba273902edca9ad53b17064bb839537636d49367aa8043f2f3e55a35",
+      "fingerprint": "ad851e434cb871de7a3078adf8e76f59549ad9b99c8d0625dde68ab19ef55160",
       "snapshot": {
-        "packages/hotkeys/tests/parse.test.ts": "2571d361fccb12be116f5df775b1b3f6721e2e91a82623f9a37d8bf956f5a216"
+        "packages/hotkeys/tests/parse.test.ts": "1bac07398cbad9cea40bee095da08a98e9843fe0a982e3523e7fa9d39daf9745"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/parse.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/parse.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "5974088e2edf7bb81966df965739b82af77d09d3fde8a31227bd4d9985fc442a",
+      "fingerprint": "063fa45066bc1ae2536b9b38c8a294a672b30068413f0cb307835c254966df1a",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "ea3528af7ebf6fd7f1d3e4f3f1cd303802b0bd74f45b43cb1531fcc4391ef77a"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "11cec14ed29ad370e07c7fce34f43f4694fcdf297117065315b393a957c6cbd9"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/typed-behavior.test.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/hotkeys/tests/typed-behavior.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
@@ -6958,51 +6944,51 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "d3d649437fc0e741b681d4b91abeef045a0a94085d61c9df4c4907613ed365b0",
+      "fingerprint": "9900d5135178efa87e8eeca8fb5b4790f03907b24ec3d54879bd2fdf0a57cdab",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "971f45560c0b2f9a02e40903d60a7a34a432463829b8904d21927ca39fdf455a"
+        "docs/reference/functions/areHotkeysEqual.md": "55835d04f40ba1e97f6d955faee8c2f87b0228d834e1bcad7b54c190c4be490c"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/areHotkeysEqual.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/functions/areHotkeysEqual.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "96fac003d8a65adfb96890edc3521cefe89195cdf16c4afc5411ca23a75d7ed2",
+      "fingerprint": "6c8cbc7edc149cfa45981ce042cf0524de497241ca26b93a0d84231249041b43",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "7a266d13860afd874747928c12c54d94961e8567ea6e14fa3c7dd5f2b7f7efa0"
+        "docs/reference/functions/createHotkeyChordHandler.md": "22abde7b690d6ec8bd894efed99d48fcf9b0c2793df177e595f9e6d9b8323c72"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "f4de475006f58bee7a9b523f2612c71a0e9015cf4a717d679ee8f3ed02a66c4c",
+      "fingerprint": "081cca92747866afbd1a1d1d73493a6b1a0100e1f7b2535c5a80da4c7359964a",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "bc92050efd308e635951006fa2e3fd0c02bc351d759bd131978635acfe1949a5"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "4b22d071f5db70649a4f898d8bd7434d42286b70f41feecd6732f4c766a3c385"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "c6c1dc9a20e558f11b5371bfa0e6e8ed99a81aa454fe13182fd63388ad11dfd3",
+      "fingerprint": "ee5a0ff9c7ef90deb2e1085fd3ad9abcffca53dd1973515479b636ffa9ab89e5",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "f28a4c5f70373599a924586119bbd4b90e836a44f307d78cdfc6d327c35e8f99"
+        "docs/reference/functions/createSequenceMatcher.md": "337501fa9f94adca4b68eeef5e6c04d7b92e03d1d53ed39f9febd5d49c673219"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createSequenceMatcher.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/functions/createSequenceMatcher.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
@@ -7016,27 +7002,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "2c3e3546ede8f7011c9b90c82156c52944b15ac95d7116b657ab3a8e2e08e24e",
+      "fingerprint": "d7b017f03e571b825369a5dd8d0b4b95125a1e00af8a99e12f917761a2326a50",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "a8b2eef0236d70524c2e28c36ef342b9fd9db1444743d0b7270191337dd0caed"
+        "docs/reference/functions/matchesKeyboardEvent.md": "e47afe7f3d59fd381b6dbdd222355ea28d4262d3b2b4f229ca38c4b2312ef402"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "bf20e64b80cb0db84b04059785b8c94bcbf0e7aa5fd2468ca906edd55998458a",
+      "fingerprint": "681417d129b9c28a3dbdd7288ed2493c03cfa3bf1a5517d77c28ab0dfd4e2087",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "4cf52196d0add91ff755ff0f3d8199384631a471c2569a937ac97ccebcd37959"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "a9cd010b7e86cfd9e8efc0cf656e7eb5a52c569c41b4f492d0baf992eaa4516c"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
@@ -7050,27 +7036,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "ebd15f76019b13baf85f6c91ed2bf4376100e73d30a6682f5a9b69eddd658d26",
+      "fingerprint": "485525a05a62db9ff94e36a93ccbb47628c095bffd396897e0210ff187b0607c",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "7f3e74332d33e27aaa7c7fed1e69807cfb43259bd3d110e35f22be658d86e76e"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ab8a1e0cbee608ee9f90c3b1f1355efb29b6d66596e2a34554ac2c09f19b289f"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "7a25f36ae669d2eb5a267066aae0b923757a20fdf1c754d3e16b8f2b0d4c31db",
+      "fingerprint": "51f1f44468a18c3c2c8e3b6666b73ed96fafd5ef5c31182bbcc7bb6dd73d28e0",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "21f9f18cbfe799998f30d692c10c54f82ba8518d5507acc10176cfc97146eee2"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "67364a84d195ec77382381b5d9fda3aefcf95a020562d9f3964cd244bc8ae619"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
@@ -7339,11 +7325,11 @@
       "snapshot": {
         "packages/hotkeys/tests/capture.test.ts": "69793fc6d43b3ce2a8ac8eb04eb7453a447f622b314bc3db8a8ed2bf4416e86a"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/capture.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys/tests/capture.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
@@ -7351,11 +7337,11 @@
       "snapshot": {
         "packages/hotkeys/tests/key-state-tracker.test.ts": "ea786dd64af862d38a1c58997221f5e85255cc8d41347fcf65b6ea8752c4c6f1"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
@@ -7363,11 +7349,11 @@
       "snapshot": {
         "docs/framework/alpine/guides/custom-hotkey-recording.md": "b6c99b53738dc9ac946a8931fcd80f8d0b11a6cbb71facaf32d0075b9b648db9"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7538,11 +7524,11 @@
       "snapshot": {
         "docs/framework/ember/guides/custom-hotkey-recording.md": "3fcfbf03c1c10bdccf5a5f523a6b903d082f9367baed0d676188f743c9e9d6ee"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7570,11 +7556,11 @@
       "snapshot": {
         "docs/framework/lit/guides/custom-hotkey-recording.md": "f0804db0e0e9bd986cf70024289f0a6328b40768a71cfbac805261b72707c6d4"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -7940,31 +7926,27 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForDisplay.md": {
-      "fingerprint": "1aaf0410ab8b103012f2620eba6fbc27946f159d4135349f3dbdcfde978a31e9",
+      "fingerprint": "12c248057c6974c9543c827221a712c0336f8f28d4e8773b3d5289f6d248b511",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "0262c3c88403166d945952ba12505b5a476f03cbb43e2db52b52f70c76093a59"
+        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "63c611509c6020bba3cb774b4f7dcb347f91740b94b8ad240630b4a7eac8c937"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/angular/reference/functions/injectFormatForDisplay.md"
+        "Changed: docs/framework/angular/reference/functions/injectFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "9cfe6ecae0d04e32325e81483463006ce733552631387bd1b24dac40649815dc",
+      "fingerprint": "600b6efd9998a02c052b00b8562e1a64ee1d2c88e35588b8e87a5203614b452a",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "25085f989afee3703c4622b68725c4da6686de02aae5a6ad7a2891267989c28d"
+        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "514b910410443a054bb9fde3ee8242773782bc4259f47d0236c10c73093a47b3"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/ember/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
@@ -7978,87 +7960,75 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "17205fdbc6cfbe0e8dd60361578e0ef2504908ecd5eed79809231b190c609b43",
+      "fingerprint": "3e310853930dacfe07df1b2e5a78a835e5e17bba52473a69a29d34cc53171be1",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "f643bc58a415d91a23c059038243be28c6512334982d1d2237fe160818cdc70e"
+        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "aaca45fab2fe4543758d5b0d713d8deff2608de748dda84f735918a1f3dd0f79"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/octane/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/octane/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/preact/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "b9ba246ddf84117262187f0e082cf7c98dd150d8cfa23e922ab8347520759a0c",
+      "fingerprint": "2b3e111f4c4ff16a3600e72e020795c2dac955d9c70d753c299a81c0a3464b51",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "3777eb830445eb016a61e00010aa0847d56cb4a9682d8f6e6ba163c5133bf5d1"
+        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "b73238eabc62c87b162ebc4b6954bfd250affdb9a0f160fc3be559e80c2644ba"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/preact/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/preact/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/react/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "07f4e6f24ec540f602dd0e10d91a9bd8c69184e0387d075ca4fd77c88459cf6b",
+      "fingerprint": "f09e5154bf86b02fb60dc3a193a6cdb93e854991959d8a28d017c5ffa8bdb420",
       "snapshot": {
-        "docs/framework/react/reference/functions/useFormatForDisplay.md": "3def7bb3bededb51ee9594209c726fb3d77948343278ae742f0a845d28a98593"
+        "docs/framework/react/reference/functions/useFormatForDisplay.md": "4d7d7a8c70094f81a51d4ce85db9115679c8b11e3657f5de5b86f3079d58ed8c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/react/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/react/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/solid/reference/functions/createFormatForDisplay.md": {
-      "fingerprint": "088fb2c14f48712812ae1a1980f70cc740f21b3866dbde6a0677294652188bdc",
+      "fingerprint": "dfc774b9e2667e64a14bb7e54efbc38d8ad02cb17e85654c512b528fb3f6d7da",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "11bc6f80ba2554921015807639ca07cdcef17f37b24cf4b3244b72d883e0803c"
+        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "cb085b3e073e508ba29db981b15bd1522303938c1acc698f0e49272b25cd6ba1"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/solid/reference/functions/createFormatForDisplay.md"
+        "Changed: docs/framework/solid/reference/functions/createFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForDisplay.md": {
-      "fingerprint": "6c771d770936eafa07b9fab78b5958f6958ee25c01dc2f0d2f06c354d1dcd955",
+      "fingerprint": "1b4b588bb4ce375c97804c0ceec7d5367c711d71eaa196901b82c6c223e4d1d1",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "165e7bfc7228b319ebf8977519742d8c59f4130833c3eccb13536ce7d77eeac6"
+        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "b240d46903c79b4a66740cbdc9faf9490a0dd1b3f337a44dc7168b18e3eefd1c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md"
+        "Changed: docs/framework/svelte/reference/functions/getFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/vue/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "d95b69bc4eefbe1257d755352d7f2a0a9e74bb669e12bf7652c1d0f977a6a05f",
+      "fingerprint": "de61d715c51819ef17bea950512989b8d450c1004bb75b745bc46a5d3d207249",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "6477555b1105b379ff8c8aee0fb57d73ab85424cc6637621c72f64af1ac67455"
+        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "470ffd145d9b578d57d55c80a10210cf49fab231b435d73fb205560a0e377c7a"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "6305b77f2426b5485111fb39a1f1c460ac0636cf",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Autofix regenerated a Vue reference page with different line wrapping only.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/vue/reference/functions/useFormatForDisplay.md at 6305b77f2426b5485111fb39a1f1c460ac0636cf"
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
@@ -11786,11 +11756,11 @@
       "snapshot": {
         "docs/framework/angular/guides/custom-hotkey-recording.md": "6bebd1b8c45dc10354ae6804735e93849def40c6623c0da3462d867ace1ad0c4"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11828,11 +11798,11 @@
       "snapshot": {
         "docs/framework/octane/guides/custom-hotkey-recording.md": "5f4dd42c819715acdec2922f14064653c0e4fbde5d25d688b9541cb47fb931b2"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11870,11 +11840,11 @@
       "snapshot": {
         "docs/framework/preact/guides/custom-hotkey-recording.md": "aa6e938c5163607790479faa5f6e77b7e36069f007198f74d3a2d14f6ccf8981"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
@@ -11882,11 +11852,11 @@
       "snapshot": {
         "docs/framework/solid/guides/custom-hotkey-recording.md": "f2d4d759d928bbf0a2a8b93947378a93b9c5e9650e929d0c0e0331bbc7b5511d"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
@@ -11894,11 +11864,11 @@
       "snapshot": {
         "docs/framework/svelte/guides/custom-hotkey-recording.md": "2dd5c396d236d9d159019373fbb5575e6870b78312cad36e4295fed9ee3e44a2"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11966,11 +11936,11 @@
       "snapshot": {
         "docs/framework/vue/guides/custom-hotkey-recording.md": "806db078dceb5e30ddbff2223abb0fd13751a21369a9bf6429b0d2dbd808f675"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -12038,11 +12008,11 @@
       "snapshot": {
         "docs/reference/type-aliases/RecorderRejectionReason.md": "7b8cbe4aad577f5803d195482377abcb07e4a3b5bdc7504b5356f3492930895f"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/type-aliases/RecorderRejectionReason.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/type-aliases/RecorderRejectionReason.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:examples/ember/useHotkeys/app/templates/application.gts": {
@@ -12158,11 +12128,11 @@
       "snapshot": {
         "packages/hotkeys/src/_recorder-chord.ts": "8c2edbf43a277b575a0acfaf2505a40638c4f08481985e0724094b50218c9ebf"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/src/_recorder-chord.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/src/_recorder-chord.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
@@ -12182,11 +12152,11 @@
       "snapshot": {
         "packages/hotkeys/tests/native-activation.test.ts": "4cad26affbafe075c268cc536f328ef9d7f2a09cf2f2cf9060542f039a255fd2"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/native-activation.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys/tests/native-activation.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectAppHotkeyList.md": {
@@ -12764,11 +12734,11 @@
       "snapshot": {
         "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "8f02d863c904fb0b73d1ae52cf30ab6f126552fb81f7a8e4637a65dfe5365715"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/svelte/reference/functions/getIsKeyHeld.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: docs/framework/svelte/reference/functions/getIsKeyHeld.md at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": {
@@ -14790,11 +14760,11 @@
       "snapshot": {
         "examples/react/kitchen-sink/src/index.tsx": "d110c5da82d086eb6c38d3dbdd834f62c664b1385e6ca350c1d665f2dc712ec3"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/kitchen-sink/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/kitchen-sink/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/editor.tsx": {
@@ -14955,11 +14925,11 @@
       "snapshot": {
         "examples/react/useHotkey-sequences/src/index.tsx": "2654efd56a688bac8edc3eeea630406be4ee8f74a87f8b68e784c65cb69fba70"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHotkey-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHotkey-sequences/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useHotkey-sequences/vite.config.ts": {
@@ -15006,11 +14976,11 @@
       "snapshot": {
         "examples/react/useHotkey/src/index.tsx": "8ed615e4429ff64538f989620abf043bc152b30b789db8b19c2c1a1d2fe51f5a"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHotkey/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHotkey/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useHotkey/vite.config.ts": {
@@ -15057,11 +15027,11 @@
       "snapshot": {
         "examples/react/useHotkeyRecorder-sequences/src/index.tsx": "b4c3dc52044df96fd3d520f6b31f89734e741b02d8167107fa61c74730b8c837"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHotkeyRecorder-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHotkeyRecorder-sequences/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useHotkeyRecorder-sequences/vite.config.ts": {
@@ -15108,11 +15078,11 @@
       "snapshot": {
         "examples/react/useHotkeyRecorder/src/index.tsx": "6836992b13484d80b7f35e8f90322cfb52a90092334d63f73ca6ef6a1635cfa8"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHotkeyRecorder/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHotkeyRecorder/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useHotkeyRecorder/vite.config.ts": {
@@ -15159,11 +15129,11 @@
       "snapshot": {
         "examples/react/useHotkeys-sequences/src/index.tsx": "489d5d17fdc8627449566829a8c4e00acd15ab4edf5eac91d0db219ae66ceb15"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useHotkeys-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useHotkeys-sequences/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useHotkeys-sequences/vite.config.ts": {
@@ -15249,11 +15219,11 @@
       "snapshot": {
         "examples/react/useKeyhold/src/index.tsx": "47f11a0c627436bba469c6ad1ed12d4ca7047de356564058064ee1b9338627d3"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: examples/react/useKeyhold/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: examples/react/useKeyhold/src/index.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:examples/react/useKeyhold/vite.config.ts": {
@@ -16749,11 +16719,11 @@
       "snapshot": {
         "packages/alpine-hotkeys/src/createKeyHold.ts": "7bda86195f8ccf538a1fabdbf194e798e0af7073748287c41e775541e0148f4d"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/src/createKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/alpine-hotkeys/src/createKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/alpine-hotkeys/tsconfig.json": {
@@ -16794,11 +16764,11 @@
       "snapshot": {
         "packages/ember-hotkeys/src/useKeyHold.ts": "a22803fde8cab6b406ec560055ae6bee857cc65018849bdba22987ee18f73e8d"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/ember-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/ember-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/ember-hotkeys/tests/test-helper.ts": {
@@ -16884,11 +16854,11 @@
       "snapshot": {
         "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "c3cffba3a041a41e77b1ecdf42c0e17efaf39916fbe029b46734eed4e2b81e12"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/src/components/HotkeyList.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys-devtools/src/components/HotkeyList.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/Shell.tsx": {
@@ -17009,11 +16979,11 @@
       "snapshot": {
         "packages/lit-hotkeys/tests/hotkey.spec.ts": "9111160159463c64a679306c4f7863372498893fd49327482dfb8e5daa6b5c01"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/hotkey.spec.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/lit-hotkeys/tests/hotkey.spec.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/lit-hotkeys/tests/reactive-options.test.ts": {
@@ -17021,11 +16991,11 @@
       "snapshot": {
         "packages/lit-hotkeys/tests/reactive-options.test.ts": "20bc91f956640a9c67cb6740494a0ed982ae344b0c529592be624ad75dfbb833"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/reactive-options.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/lit-hotkeys/tests/reactive-options.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/lit-hotkeys/tsconfig.json": {
@@ -17685,11 +17655,11 @@
       "snapshot": {
         "e2e/browser/held-keys-and-recorder.spec.ts": "d584fd1926d17a21c0b4bc256ed301ea31eb439b04ca9babe6713d6adb38ab15"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: e2e/browser/held-keys-and-recorder.spec.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: e2e/browser/held-keys-and-recorder.spec.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys/tests/recorder-tab.test.ts": {
@@ -18593,15 +18563,15 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "0479353fd02c9a2f6ad89459352b2df1771944d8772f5c355995c303fcf9f4b0",
+      "fingerprint": "9a53c17e6beddeb56a4e1c97aa3245ab8eaf3b832fb088f7bf8044647290bf14",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "94fc077eb915367df502e2a1e0fb7b29e5a2ac330a40f658ddb6e1d852853ec4"
+        "e2e/layouts/more-layouts.spec.ts": "b7aa78114b1ac2e197a7466bcfa9f725cb0bbb4e099adff5f13c14d48782a649"
       },
-      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
-      "outcome": "no-change",
-      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: e2e/layouts/more-layouts.spec.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
+        "Changed: e2e/layouts/more-layouts.spec.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
@@ -18717,11 +18687,11 @@
       "snapshot": {
         "packages/hotkeys-devtools/tests/shell.test.tsx": "d90cc33af00d68d175463a1210eaf759da508652e8b2fed5eda8cabb83447e27"
       },
-      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
@@ -18785,15 +18755,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "2995f939bfb1b350e9e0bc274cfdede012289e2232f891fb1dae126747ea6866",
+      "fingerprint": "24d105085c64b79d10bcb509d03ed457fcf05ef07091e1f2a5e20c0672cecc59",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "7ed6f9bff331db7d8f74ec1ab82c3a9e76676ef26584172cdd1b1f02d4befe3c"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "40383f7371369b6b13797927a184f669fd04be2014721b9e41851215328f4d25"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
@@ -18801,11 +18771,11 @@
       "snapshot": {
         "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "7dfdd7e33c74b37ec82d828a9ae023cf42ece446e7057e876a830137aae41e5c"
       },
-      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
-      "outcome": "no-change",
-      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
+        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/fixtures.ts": {
@@ -18813,11 +18783,11 @@
       "snapshot": {
         "packages/hotkeys/tests/invariants/fixtures.ts": "c765d3e35a6f2816f10b2af7cb6b63a3a262a7dfb8a8dc381d251a46b31abf31"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/fixtures.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/invariants/fixtures.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
@@ -18825,11 +18795,11 @@
       "snapshot": {
         "packages/hotkeys/tests/invariants/matching.test.ts": "90c60147cff2ce994256af526f568d854ffe6c5eeed31100732e8fe5bfbe7d40"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
@@ -18849,11 +18819,11 @@
       "snapshot": {
         "packages/hotkeys/tests/invariants/recorder-match.test.ts": "5138b7eea360554ba6bd1733773b32b157757b857f33b6eb1a22168eb8c590a5"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {
@@ -18921,11 +18891,11 @@
       "snapshot": {
         "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "f75108c00038279561a92b8df8b4a8a564711910fc0932b864e3ad48630261b6"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
@@ -18933,11 +18903,11 @@
       "snapshot": {
         "packages/react-hotkeys-devtools/tests/integration.test.tsx": "d5902efced7bab293c596b05d2cb7035a8af6a1feea6000860499d8b9aa838b8"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
@@ -19185,11 +19155,11 @@
       "snapshot": {
         "packages/alpine-hotkeys/tests/conformance.test.ts": "26dfe59d04c4cebeb2396c3ef29ac114b229afaf6b6c5bbf8d178cd926437168"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/angular-hotkeys/tests/conformance.test.ts": {
@@ -19197,11 +19167,11 @@
       "snapshot": {
         "packages/angular-hotkeys/tests/conformance.test.ts": "39d8b8ab2b35e1958064c12f72e94ddcbd4b54d3ca27395398b84cddb2b40e34"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
@@ -19209,11 +19179,11 @@
       "snapshot": {
         "packages/ember-hotkeys/tests/integration/conformance.test.gts": "91ab3fc8c1754d2c24751fb45c8a5334766a7614ec2e05bef6904e86d6b58f33"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/lit-hotkeys/tests/conformance.test.ts": {
@@ -19221,11 +19191,11 @@
       "snapshot": {
         "packages/lit-hotkeys/tests/conformance.test.ts": "43aee0cd7c9d3fd636ce8a0a4ce982390d5e01ec8b2bb240421c23c659ffb234"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.test.ts": {
@@ -19233,11 +19203,11 @@
       "snapshot": {
         "packages/octane-hotkeys/tests/conformance.test.ts": "122dc9b3ee6e72b30e03b6981fcd6d3aad9b8b6e38cb1c7e76133f74c80ec9f1"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.tsrx": {
@@ -19257,11 +19227,11 @@
       "snapshot": {
         "packages/preact-hotkeys/tests/conformance.test.tsx": "839f1574eb893317ebaf3cae82cc0aaa7d541ca88c30cfde9c4533f51eba5322"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/react-hotkeys/tests/conformance.test.tsx": {
@@ -19269,11 +19239,11 @@
       "snapshot": {
         "packages/react-hotkeys/tests/conformance.test.tsx": "09afac5a0f06e91c79f092589bb0d6445f4f46bddca85d800f18184f37fefca5"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/solid-hotkeys/tests/conformance.test.tsx": {
@@ -19281,11 +19251,11 @@
       "snapshot": {
         "packages/solid-hotkeys/tests/conformance.test.tsx": "12fe5b25aef1416a2d4fc60c8d770e22aa5566bd24aea6434b719e6d1fbe95e2"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance.test.ts": {
@@ -19293,11 +19263,11 @@
       "snapshot": {
         "packages/svelte-hotkeys/tests/conformance.test.ts": "87e4cd0914335811fdaa71c34c4c41cc330b4778b075b85606be35339e4c57a9"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance/Format.svelte": {
@@ -19437,11 +19407,11 @@
       "snapshot": {
         "packages/vue-hotkeys/tests/conformance.test.ts": "bb9d919826bd6ef72cb7dab5122236467b7eb7d9e4e0cbd49573578929aea430"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:test-utils/src/conformance/cases/held-keys.ts": {
@@ -19449,11 +19419,11 @@
       "snapshot": {
         "test-utils/src/conformance/cases/held-keys.ts": "b0e402fef39d1119e888f0633c7ec6f986aa52ffc8b629e3be5b43e32b120571"
       },
-      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "head": "e7cc01367db32b74b489084bb35e173126664d39",
       "outcome": "updated",
       "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: test-utils/src/conformance/cases/held-keys.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+        "Changed: test-utils/src/conformance/cases/held-keys.ts at e7cc01367db32b74b489084bb35e173126664d39"
       ]
     },
     "source:test-utils/src/conformance/cases/hotkeys.ts": {

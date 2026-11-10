@@ -13,7 +13,7 @@ function matchesKeyboardEvent(
 ): boolean;
 ```
 
-Defined in: [match.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L56)
+Defined in: [match.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L57)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -21,7 +21,8 @@ Physical bindings such as `Mod+[KeyS]` match `event.code` exactly.
 Logical bindings use `event.key`, with a fallback to `code`
 for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
 characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
-Letter keys are matched case-insensitively.
+Letter keys are matched case-insensitively. Turkish `ı` is its own letter:
+an `ı` binding never fires on the `i` key, but `I` fires on the `ı` key.
 
 Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
 character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,

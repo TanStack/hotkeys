@@ -235,12 +235,16 @@ export function isSingleLetterKey(key: string): boolean {
  * become uppercase, and the space character becomes `Space`. Other names are
  * returned as written, because key names are case-sensitive.
  *
+ * Turkish dotless `ı` stays `ı`. Its uppercase is ASCII `I`, the uppercase of
+ * `i`, so uppercasing it would merge two different letters.
+ *
  * @param key - The key name to normalize
  * @returns The canonical key name
  *
  * @example
  * ```ts
  * normalizeKeyName('a') // 'A'
+ * normalizeKeyName('ı') // 'ı' (Turkish dotless i)
  * normalizeKeyName(' ') // 'Space'
  * normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
  * ```
@@ -250,6 +254,7 @@ export function normalizeKeyName(key: string): string {
   // (browser extensions synthesizing key events, accessibility tools, certain OS/browser combinations).
   if (!key) return ''
   if (isSingleLetterKey(key)) {
+    if (key === 'ı') return key
     const upper = key.toUpperCase()
     // Some Unicode letters (e.g., 'ß') uppercase to multi-character sequences
     // ('SS'). Avoid changing the string length so the rest of the matching
