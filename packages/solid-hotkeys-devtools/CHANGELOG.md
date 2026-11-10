@@ -1,5 +1,12 @@
 # @tanstack/solid-hotkeys-devtools
 
+## 0.13.5
+
+### Patch Changes
+
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys-devtools@1.9.3
+
 ## 0.13.4
 
 ### Patch Changes

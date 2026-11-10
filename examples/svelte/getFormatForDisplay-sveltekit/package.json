@@ -15,7 +15,7 @@
     "test:types": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@tanstack/svelte-hotkeys": "0.21.3",
+    "@tanstack/svelte-hotkeys": "0.22.0",
     "svelte": "^5.57.3"
   },
   "devDependencies": {

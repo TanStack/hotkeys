@@ -1,5 +1,16 @@
 # @tanstack/octane-hotkeys
 
+## 0.12.0
+
+### Minor Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Every key-hold helper now matches keys the way core `isKeyHeld` does: letters match in any case, and other key names are case-sensitive. React, Preact, Solid, Svelte, Angular, Vue, and Lit used to match every name in any case, so `'escape'` was held while Escape was down; now it isn't, so write `'Escape'`. Alpine, Octane, and Ember used to match letters exactly, so `'a'` wasn't held after Shift+A; now it is.
+
+### Patch Changes
+
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys@0.27.0
+
 ## 0.11.3
 
 ### Patch Changes

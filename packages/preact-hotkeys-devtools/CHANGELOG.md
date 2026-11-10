@@ -1,5 +1,13 @@
 # @tanstack/preact-hotkeys-devtools
 
+## 0.13.5
+
+### Patch Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The devtools panel no longer remounts when the component that renders it re-renders, so it keeps its search text, selected hotkey and list width. It still remounts when `theme` or `devtoolsOpen` changes.
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys-devtools@1.9.3
+
 ## 0.13.4
 
 ### Patch Changes
