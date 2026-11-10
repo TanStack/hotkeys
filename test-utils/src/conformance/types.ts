@@ -56,7 +56,7 @@ export interface ConformanceRunner {
 
 /**
  * Areas an adapter may not have. A harness lists the ones it lacks with the
- * reason, and the suite skips their cases.
+ * reason, and the suite leaves their cases out.
  */
 export type ConformanceFeature =
   /**

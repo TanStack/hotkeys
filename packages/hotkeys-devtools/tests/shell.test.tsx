@@ -559,7 +559,6 @@ describe('registration rows', () => {
     expect(text(row().querySelector('.triggerCount'))).toBe('x2')
   })
 
-  // BUG-110 draft: issues/bugs/BUG-110-devtools-rows-remount-on-every-update.md
   it('BUG-110: pulses the row each time it fires', () => {
     vi.useFakeTimers()
     const callback = vi.fn()

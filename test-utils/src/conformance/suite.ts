@@ -36,7 +36,7 @@ interface SubscribableStore {
 
 export interface ConformanceCase {
   title: string
-  /** Features the case needs. It is skipped when the harness lacks one. */
+  /** Features the case needs. It is left out when the harness lacks one. */
   requires?: Array<ConformanceFeature>
   /** A bug every adapter shares. Adapter-only bugs go in `knownBugs`. */
   bug?: string
@@ -148,13 +148,26 @@ export function runConformanceSuite(
     })
 
     for (const group of groups) {
+      // Cases for an area the adapter doesn't have aren't registered, so a
+      // skipped case always means a known bug
+      const cases = group.cases.filter((test) => supports(harness, group, test))
+      if (!cases.length) continue
       runner.describe(group.name, () => {
-        for (const test of group.cases) {
+        for (const test of cases) {
           register(runner, harness, group, test, context)
         }
       })
     }
   })
+}
+
+function supports(
+  harness: ConformanceHarness,
+  group: ConformanceGroup,
+  test: ConformanceCase,
+) {
+  const requires = [...(group.requires ?? []), ...(test.requires ?? [])]
+  return !requires.some((feature) => harness.unsupported?.[feature])
 }
 
 function register(
@@ -165,13 +178,6 @@ function register(
   context: CaseContext,
 ) {
   const body = () => test.run(context)
-  const requires = [...(group.requires ?? []), ...(test.requires ?? [])]
-  const missing = requires.find((feature) => harness.unsupported?.[feature])
-  if (missing) {
-    const reason = harness.unsupported![missing]!
-    runner.skip(`${test.title} (no ${missing}: ${reason})`, body)
-    return
-  }
   const bug = test.bug ?? harness.knownBugs?.[caseKey(group, test)]
   if (bug) {
     const name = `${bug}: ${test.title}`

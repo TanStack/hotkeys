@@ -17711,15 +17711,15 @@
       ]
     },
     "source:test-utils/README.md": {
-      "fingerprint": "445cf754541e4d288573fac5a3de322da578b3c5981bba48af24cb0127d009cb",
+      "fingerprint": "adfbc395a21ead1c75ac009a5e976bf17ec329ec4caf9e3227ff11c2b4fed673",
       "snapshot": {
-        "test-utils/README.md": "6b01e0fb534a0419502adccca4d129ca5afb26c1197220752fdab0d2b4384e65"
+        "test-utils/README.md": "b3922474d5faed4f4c621cf14f61a3d4f86f6e9b3076a6c0999316e5750b9216"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: test-utils/README.md at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: test-utils/README.md at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:test-utils/src/alt-graph.ts": {
@@ -18683,15 +18683,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "91b2abb6444c80c3527b0d3c969ded4d9d87e2842e5ab0ed791da62530709a91",
+      "fingerprint": "9f377b569bb9f7421b31fb1ec082d096e19f23150cc8bd2c22d62a237460b1a4",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "d90cc33af00d68d175463a1210eaf759da508652e8b2fed5eda8cabb83447e27"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "0dcf0b12bc45b02ff46457464bc7dc73324f0de85b7303cd07053001f80ab87d"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "outcome": "no-change",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
@@ -18887,27 +18887,27 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "605a5ced7772c5076ce5bd9f176f8269ca92fc8c137345b8ba171d19f03ee1e0",
+      "fingerprint": "86facbce6ced1b71107000096ede881c2619e1e8ed4f93bf0268bae2b74d6809",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "f75108c00038279561a92b8df8b4a8a564711910fc0932b864e3ad48630261b6"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "abaf636b53200b721137b09b69343d869a5bb67c99fae5c2fb78220ad3dd8926"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "outcome": "no-change",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "30f02a52467317d2b6efa97dc9d8cb4e0b468ac2b3addcd5ee545ea52dd791a2",
+      "fingerprint": "7486ccf7987a3144721ba05f21c44822f5e5c7c4c8bc45c73667aa950e250b02",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "d5902efced7bab293c596b05d2cb7035a8af6a1feea6000860499d8b9aa838b8"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "9af5d871c8c32d1621662c7c4f3e3f3dc34d2ffc53213ec33231ab580505a9f9"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "outcome": "no-change",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
@@ -19511,27 +19511,27 @@
       ]
     },
     "source:test-utils/src/conformance/suite.ts": {
-      "fingerprint": "d4af5fc385f0105d65db716d8b60bc746a176cd0cdb973ea5fdcb02ab2217af6",
+      "fingerprint": "eead616f8376c6737423541552a4425f762fcb03cb2c551bc18b17ec2dfbeb87",
       "snapshot": {
-        "test-utils/src/conformance/suite.ts": "2771ed8fa69b38ee80f44136f368f4dd83f61d4269fa36cb4dc5d1a8137f59bc"
+        "test-utils/src/conformance/suite.ts": "74d5da14e9b124aebbf2d4cf9744c752fabc725e9c4b8237859a0e7cac9cc1a8"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: test-utils/src/conformance/suite.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: test-utils/src/conformance/suite.ts at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:test-utils/src/conformance/types.ts": {
-      "fingerprint": "72b712b069ca0b064605639103cfd3b80ea15758709bb9de37cdd90389e1a2b4",
+      "fingerprint": "0dd3832355512cee207994c82fec196eecd96d20f02eb0c7c67ff3d083f0836a",
       "snapshot": {
-        "test-utils/src/conformance/types.ts": "cabf6b706510f6010a8c4c4f9862f2dc1df81ee667ee49e33819a3e44d8ef895"
+        "test-utils/src/conformance/types.ts": "df69884a9cada52db1fee903bdd85d27142ac30422d1469535d8cb571845ef5e"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
       "evidence": [
-        "Changed: test-utils/src/conformance/types.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: test-utils/src/conformance/types.ts at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
       ]
     },
     "source:test-utils/src/conformance/vitest.ts": {

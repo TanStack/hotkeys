@@ -72,7 +72,6 @@ it('shows a useHotkey registration in the panel until the component unmounts', a
   expect(host.querySelector('input')).toBe(panelInput)
 })
 
-// BUG-112 draft: issues/bugs/BUG-112-standalone-panel-remounts-on-parent-render.md
 it('BUG-112: keeps panel state when the parent re-renders', async () => {
   let rerender!: () => void
   function Parent() {
