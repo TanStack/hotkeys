@@ -14,9 +14,9 @@
     "octane": "0.16.7"
   },
   "devDependencies": {
-    "@tsrx/oxc": "0.23.0",
+    "@tsrx/oxc": "0.24.0",
     "@tsrx/typescript-plugin": "^0.6.3",
     "typescript": "6.0.3",
-    "vite": "^8.3.6"
+    "vite": "^8.3.7"
   }
 }

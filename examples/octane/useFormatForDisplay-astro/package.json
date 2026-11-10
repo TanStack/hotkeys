@@ -13,12 +13,12 @@
     "@astrojs/node": "^11.1.11",
     "@octanejs/astro": "0.0.46",
     "@tanstack/octane-hotkeys": "workspace:*",
-    "astro": "^7.4.7",
+    "astro": "^7.4.8",
     "octane": "0.16.7"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@tsrx/oxc": "0.23.0",
+    "@tsrx/oxc": "0.24.0",
     "@tsrx/typescript-plugin": "^0.6.3",
     "typescript": "6.0.3"
   }

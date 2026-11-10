@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@astrojs/node": "^11.1.11",
-    "@astrojs/react": "^7.1.4",
+    "@astrojs/react": "^7.1.5",
     "@tanstack/react-hotkeys": "^0.23.1",
-    "astro": "^7.4.7",
+    "astro": "^7.4.8",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

@@ -14,7 +14,7 @@
     "@astrojs/node": "^11.1.11",
     "@astrojs/svelte": "^9.1.2",
     "@tanstack/svelte-hotkeys": "0.22.1",
-    "astro": "^7.4.7",
+    "astro": "^7.4.8",
     "svelte": "^5.57.3"
   },
   "devDependencies": {

@@ -52,8 +52,8 @@ overrides:
   '@emnapi/core': ^1.11.3
   '@emnapi/runtime': ^1.11.3
   # Ember's transforms require Babel 7; these tools also allow Babel 8.
-  '@nullvoxpopuli/ember-build-tooling-utils>@babel/core': '^7.29.7'
-  '@nullvoxpopuli/ember-vite>@babel/core': '^7.29.7'
+  '@nullvoxpopuli/ember-build-tooling-utils>@babel/core': '^7.29.13'
+  '@nullvoxpopuli/ember-vite>@babel/core': '^7.29.13'
   '@tanstack/alpine-hotkeys': 'workspace:*'
   '@tanstack/angular-hotkeys': 'workspace:*'
   '@tanstack/angular-hotkeys-devtools': 'workspace:*'
