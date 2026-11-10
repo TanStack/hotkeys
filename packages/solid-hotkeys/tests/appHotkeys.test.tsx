@@ -13,7 +13,7 @@ import {
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { createHotkeys } from '../src/createHotkeys'
-import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
+import type { AppHotkeys, CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 import type { JSX } from 'solid-js'
 
 const appHotkeys = defineAppHotkeys({
@@ -221,5 +221,33 @@ describe('app hotkeys and the provider platform', () => {
 
     setPlatform('windows')
     expect(list()[0]!.isCustom).toBe(true)
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", () => {
+    const nestedHotkeys = defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } })
+    const [nested, setNested] = createSignal<AppHotkeys>()
+    const lists: Record<string, ReturnType<typeof createAppHotkeyList>> = {}
+    function List(props: { name: string }) {
+      lists[props.name] = createAppHotkeyList()
+      return null
+    }
+    render(() => (
+      <HotkeysProvider appHotkeys={appHotkeys}>
+        <List name="root" />
+        <HotkeysProvider appHotkeys={nested()}>
+          <List name="nested" />
+        </HotkeysProvider>
+      </HotkeysProvider>
+    ))
+    const ids = (name: string) =>
+      lists[name]!().map((item) => item.appHotkey.id)
+    const rootIds = Object.keys(appHotkeys)
+    // Until its own declarations arrive, it shares its parent's store.
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, rootIds])
+
+    setNested(nestedHotkeys)
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, ['file.open']])
   })
 })

@@ -189,7 +189,9 @@ test.describe('native overlays', () => {
     expect(await hk.firedNames()).toEqual([])
   })
 
-  test('a hotkey on a shadow root dialog still receives Escape', async ({
+  // The host is outside the dialog, like an element around a dialog in the
+  // document.
+  test('a hotkey on the host of a shadow root dialog leaves Escape to the dialog', async ({
     page,
     harness,
   }) => {
@@ -201,10 +203,16 @@ test.describe('native overlays', () => {
       root.innerHTML = '<dialog><button>OK</button></dialog>'
       root.querySelector('dialog')!.showModal()
     })
-    // The host stands for the dialog that it keeps in its shadow root.
     await hk.register('host', 'Escape', { target: '#host' })
     await page.keyboard.press('Escape')
-    expect(await hk.firedNames()).toEqual(['host'])
+    expect(
+      await page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
   })
 
   test('an open popover in a shadow root closes on Escape while focus is inside it', async ({

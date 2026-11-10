@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "969f473c2dfd73acc954ccd90e408d371fee6e03fd1811574003e39d8886e963",
+      "fingerprint": "0eeaa17c6c6da8fc1ce1b61e0b193b585dccde2703a6ecbd6da1298ce60bc024",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "d003ad628461ce582cab7550a6a99489fcb60bd47304fcbad1f75887a69150d2",
+        "docs/guides/sensible-defaults.md": "ea5b66d87fd3bfb275ac6a2eaa923ebc1eccf36e1c99832097d9856829de5d4f",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: docs/guides/sensible-defaults.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -279,7 +279,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "4f2acd019d6aa0976f76caefc447cda887f725a5e34ba04aa511b6cfebfd1c0d",
+      "fingerprint": "650fccb59a68015b9602d8162888143b1cd7ed18242ea5e8a8a703f31f7da88a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -309,7 +309,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
-        "docs/guides/sensible-defaults.md": "d003ad628461ce582cab7550a6a99489fcb60bd47304fcbad1f75887a69150d2",
+        "docs/guides/sensible-defaults.md": "ea5b66d87fd3bfb275ac6a2eaa923ebc1eccf36e1c99832097d9856829de5d4f",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -411,11 +411,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: docs/framework/lit/quick-start.md, docs/framework/vue/quick-start.md, docs/guides/sensible-defaults.md, packages/octane-hotkeys/src/HotkeysProvider.ts, packages/preact-hotkeys/src/HotkeysProvider.tsx, packages/react-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/appHotkeys.ts, packages/svelte-hotkeys/src/HotkeysCtx.ts, packages/svelte-hotkeys/src/HotkeysProvider.svelte, packages/svelte-hotkeys/src/createHotkeys.svelte.ts, packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts, packages/vue-hotkeys/src/HotkeysProviderContext.ts, packages/vue-hotkeys/src/useAppHotkeys.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: docs/guides/sensible-defaults.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1031,16 +1031,15 @@
       ]
     },
     "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "0d3138f2d073c23965df6367ffcd9e57a2a5a2e84f08f2c59649751a8232686d",
+      "fingerprint": "4c1abc32f2adb13d3018cf1a3396a84364a7d9266edbaded7f8701c72c4b777c",
       "snapshot": {
-        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "54b79a25b05175de81e1e9f99697168137d77665cced17fe7816d2d1078c8d5c"
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "bbc37ff02ec3a51a7ac22761f92386a3cc6e4d641a090ed1b72d105ac56e4ecc"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/react-hotkeys/tests/appHotkeys.test.tsx"
+        "Changed: packages/react-hotkeys/tests/appHotkeys.test.tsx at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyHint.test.tsx": {
@@ -1212,15 +1211,15 @@
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "9e0d2414265d87a2cdd16d7da58b771265c6231d799d720dab22bdb28eafb3c4",
+      "fingerprint": "992746497de9564f95eba1d66d5a69338d2474b6ee008f99bc5c1b1ef871c79d",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "640b770eeb2b484013a37ad17a6d799d70d7db36ce823746c278c877fcc69bc1"
+        "docs/framework/solid/guides/hotkeys.md": "d40a0c86007721d7cd6e512003fe91ca7edf598a7b365fbed34ac704abb60213"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: docs/framework/solid/guides/hotkeys.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
@@ -2604,15 +2603,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "1f8ee6acc7d42b1c515ad9533b025b2c15cb93c6894d27741eba05b0183b437c",
+      "fingerprint": "aadc96f049ad84a6c51a5ed59329a4ca9e5c7c76b4378467efb96dc7015fd80e",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "dd8a61f118a36b9b2856e597aa553e0899010cccfcef8cf138e066b5361ff309"
+        "packages/hotkeys/src/_event-target.ts": "156ee03183b5d322a87005dd974045576e62a1f6e0e98527b1db8f707ea01641"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: packages/hotkeys/src/_event-target.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/hotkeys/src/_event-target.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:docs/config.json": {
@@ -7204,16 +7203,15 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "33c51ebb93acb7c1adacedf97080382355dd4c5d51e1965fb10092f4cc570a0b",
+      "fingerprint": "95216ea686e41aa8099a2834935c153ee78633cb8397684925ac510e64ff138d",
       "snapshot": {
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "dc904010562ddb781eef040ca7a043e2d5282b5c915f14e7d64514c1691c40ff"
+        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "4381ba21dbe8b401f2bee01f159f927947aba5cc6b8af81920e0fdb1241b4f41"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx"
+        "Changed: packages/solid-hotkeys/tests/appHotkeys.test.tsx at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:packages/solid-hotkeys/tests/unset-values.test.tsx": {
@@ -7252,15 +7250,15 @@
       "evidence": ["packages/svelte-hotkeys/tests/UnsetOptionsHarness.svelte"]
     },
     "source:packages/svelte-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "7743e349d5fce4b7c438a439774df62cbfcac654418f8002da939419624f694e",
+      "fingerprint": "d089527586eccad13befbad6e2adfab1334dfdd0952eea691fefed773d2b1139",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "2e11e1fe0ce5c3b6a87a7259ed9ed984313988389dfd91627a9e3864924b36fe"
+        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "1ff30cd97bc5344c22bc1aedab4e6a8bc8923ea79370b6b65d4eb715251e11e8"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/tests/appHotkeys.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/svelte-hotkeys/tests/appHotkeys.test.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:packages/svelte-hotkeys/tests/unset-values-harness.svelte.ts": {
@@ -7286,16 +7284,15 @@
       "evidence": ["packages/svelte-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/vue-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "faa0f329f1a9365b6e9d2b7c1db0211fed3571fc1715a9784c3b146e1413be79",
+      "fingerprint": "94a5c012ca92a15b3c6bb17187badc2ca6d6679eee033be22493c730fb4fbe08",
       "snapshot": {
-        "packages/vue-hotkeys/tests/appHotkeys.test.ts": "8b59636b32c289a66d890ed573e61d60c7009c8f286a1f1a7b83c3a8710c43a0"
+        "packages/vue-hotkeys/tests/appHotkeys.test.ts": "91949c2751ad0cd8ed9c9c93c30c475ffeb404767cad31402c1b339783929f89"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/vue-hotkeys/tests/appHotkeys.test.ts"
+        "Changed: packages/vue-hotkeys/tests/appHotkeys.test.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:packages/vue-hotkeys/tests/unset-values.test.ts": {
@@ -11633,15 +11630,15 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "61e6aaa4a08570c236f35cd13e22fafd55ec3401e1a4940a0fe727af22bed366",
+      "fingerprint": "f9fac0fe2d7b41e5f3166525a2712341040c9a99639dee995fe81016ec0ada71",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "ac3fab4ee9241a9264d05dc9c7f961f9d2357da7a9c6d96d7615a701aaae5ba0"
+        "e2e/browser/native-overlays.spec.ts": "8274c83fd90d608ddc796b3b8b7dacb9dd2b9e3d04265c51ca4adcd417675f75"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: e2e/browser/native-overlays.spec.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: e2e/browser/native-overlays.spec.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:docs/reference/functions/hasNonModifierKey.md": {
@@ -17477,15 +17474,15 @@
       ]
     },
     "source:packages/svelte-hotkeys/src/internal.svelte.ts": {
-      "fingerprint": "db1993e086cd6ed47fc16da6d8767a7abee1bdcd9f2c2567b4e8e224156e49e4",
+      "fingerprint": "1bf06a85c2aafc75918f741f3a689aa1609ba7ffc7aebb248cb21e46f9e5188e",
       "snapshot": {
-        "packages/svelte-hotkeys/src/internal.svelte.ts": "78151c7c97f3dce24788b95419e6a6993795b13db8a0cec9c5fee6d8e08ba8c0"
+        "packages/svelte-hotkeys/src/internal.svelte.ts": "453df4bd892243d3d26300363efa3ddac772842db10dc14eab7881d9a8e67196"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/src/internal.svelte.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/svelte-hotkeys/src/internal.svelte.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
       ]
     },
     "source:packages/svelte-hotkeys/tests/ScopesHarness.svelte": {

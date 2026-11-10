@@ -307,7 +307,7 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. When modal dialogs stack, only the top one counts: a hotkey targeted inside it receives Escape, and hotkeys in the dialogs underneath skip it. TanStack Hotkeys finds these elements in the document. Inside a shadow root, where component libraries such as Material Web keep their `<dialog>`, it finds the ones that hold focus, and a hotkey targeted at the component itself still receives Escape.
+A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. When modal dialogs stack, only the top one counts: a hotkey targeted inside it receives Escape, and hotkeys in the dialogs underneath skip it. TanStack Hotkeys finds these elements in the document. Inside a shadow root, where component libraries such as Material Web keep their `<dialog>`, it finds the ones that hold focus.
 
 For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
 

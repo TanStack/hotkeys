@@ -393,11 +393,7 @@ export function closesNativeLayer(
     layerCache.set(event, layers)
   }
   return layers.some(
-    (layer) =>
-      isDocumentLevel(target) ||
-      // A component's host stands for the layer in its shadow root.
-      (!isInside(target, layer) &&
-        (layer.getRootNode() as Partial<ShadowRoot>).host !== target),
+    (layer) => isDocumentLevel(target) || !isInside(target, layer),
   )
 }
 

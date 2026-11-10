@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
-import { act, renderHook } from '@testing-library/react'
+import { act, render, renderHook } from '@testing-library/react'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -522,5 +522,34 @@ describe('app hotkeys and the provider platform', () => {
     rerender()
 
     expect(saveItem(result.current.value).isCustom).toBe(true)
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", () => {
+    const nestedHotkeys = defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } })
+    const ids: Record<string, Array<string>> = {}
+    function List({ name }: { name: string }) {
+      ids[name] = useAppHotkeyList().map((item) => item.appHotkey.id)
+      return null
+    }
+    function App({ nested }: { nested?: AppHotkeys }) {
+      return (
+        <HotkeysProvider appHotkeys={appHotkeys}>
+          <List name="root" />
+          <HotkeysProvider appHotkeys={nested}>
+            <List name="nested" />
+          </HotkeysProvider>
+        </HotkeysProvider>
+      )
+    }
+    const view = render(<App />)
+    const rootIds = Object.keys(appHotkeys)
+    // Until its own declarations arrive, it shares its parent's store.
+    expect(ids).toEqual({ root: rootIds, nested: rootIds })
+
+    view.rerender(<App nested={nestedHotkeys} />)
+    expect(ids).toEqual({ root: rootIds, nested: ['file.open'] })
+    view.unmount()
   })
 })

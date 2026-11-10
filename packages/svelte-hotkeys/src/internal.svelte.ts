@@ -73,21 +73,22 @@ export function syncAppHotkeysStore(
     platform?: HotkeyPlatform
   },
 ): void {
+  // Derived, so an effect runs again only when its own value changes, not for
+  // every option the getters read.
+  const store = $derived(getStore())
+  const appHotkeys = $derived(getOptions().appHotkeys)
+  const customHotkeys = $derived(getOptions().customHotkeys)
+  const platform = $derived(getOptions().platform)
   // Publish the store so devtools can list declared hotkeys.
-  $effect(() => {
-    const store = getStore()
-    return store ? publishAppHotkeysStore(store) : undefined
-  })
+  $effect(() => (store ? publishAppHotkeysStore(store) : undefined))
   // Keep declarations current (for example after hot module replacement).
   $effect(() => {
-    const { appHotkeys } = getOptions()
-    if (appHotkeys) getStore()?.setAppHotkeys(appHotkeys)
+    if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   })
   // Apply the platform and saved custom hotkeys whose value changes, such as
   // data that loads after the first render.
   $effect(() => {
-    const { customHotkeys, platform } = getOptions()
-    getStore()?.setOptions({ customHotkeys, platform })
+    store?.setOptions({ customHotkeys, platform })
   })
 }
 

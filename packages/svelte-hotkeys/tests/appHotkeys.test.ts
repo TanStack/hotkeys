@@ -192,6 +192,37 @@ describe('a nested provider whose app hotkeys arrive late', () => {
         'Mod+E',
         ['G', 'H'],
       ])
+      // The nested provider's own store, published for the devtools
+      const published = HotkeyManager.getInstance().appHotkeys.state
+      expect(Object.keys(published?.appHotkeys ?? {})).toEqual(['file.open'])
+    } finally {
+      unmount(component)
+    }
+  })
+})
+
+describe('publishing the store for the devtools', () => {
+  it('publishes once, not again when another provider prop changes', () => {
+    let setSaved!: (next: CustomHotkeys | null) => void
+    const component = mount(PropHarness, {
+      target: document.body,
+      props: {
+        appHotkeys,
+        ready: () => {},
+        setSaved: (set) => (setSaved = set),
+      },
+    })
+    flushSync()
+    try {
+      const published = vi.fn()
+      const subscription =
+        HotkeyManager.getInstance().appHotkeys.subscribe(published)
+      setSaved({ 'doc.save': 'Mod+E' })
+      flushSync()
+      subscription.unsubscribe()
+
+      expect(registrations().map((r) => r.hotkey)).toContain('Mod+E')
+      expect(published).not.toHaveBeenCalled()
     } finally {
       unmount(component)
     }
