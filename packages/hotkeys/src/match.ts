@@ -35,7 +35,9 @@ export interface KeyboardEventMatch {
  * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
  * Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
  * In these cases, `event.code` is used to determine the physical key. An
- * `'Unidentified'` key also falls back to `code`, except on letter keys.
+ * `'Unidentified'` key also falls back to `code`, except on letter and numpad
+ * keys: a numpad key's meaning depends on NumLock, so only `[Numpad5]`-style
+ * physical bindings match it.
  *
  * @param event - The KeyboardEvent to check
  * @param chord - The chord string or parsed chord to match against

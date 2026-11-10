@@ -10,8 +10,6 @@ import {
   PLATFORMS,
   altGraphTypedCharacter,
   failureLog,
-  isBug085,
-  isBug087,
   makeEvent,
   realisticEvents,
 } from './fixtures'
@@ -71,9 +69,6 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
       const log = failureLog()
       let recorded = 0
       for (const { label, init } of events) {
-        // Known bugs, covered by the skipped tests below
-        if (isBug085(init, platform, recordBy) || isBug087(init, recordBy))
-          continue
         const result = record(init, platform, recordBy)
         if (result.kind !== 'recorded') continue
         recorded++
@@ -103,8 +98,6 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
       const log = failureLog()
       const manager = HotkeyManager.getInstance()
       for (const { label, init } of events) {
-        if (isBug085(init, platform, recordBy) || isBug087(init, recordBy))
-          continue
         const result = record(init, platform, recordBy)
         if (result.kind !== 'recorded') continue
         const hotkey = result.hotkey as HotkeyChord
@@ -126,7 +119,7 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
     })
   })
 
-  it('records every press that is not a recorder control key or a whitespace character', () => {
+  it('records every press that is not a recorder control key, a whitespace character, or AltGr that typed nothing new', () => {
     const log = failureLog()
     for (const { label, init } of events) {
       if (recorderControlKey(init)) continue
@@ -142,6 +135,16 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
         continue
       }
       if (result.kind === 'none' && unidentified) continue
+      // Outside Windows, AltGr that typed nothing new fires no hotkey
+      if (
+        result.kind === 'rejected' &&
+        result.rejection.reason === 'alt-graph' &&
+        platform === 'linux' &&
+        init.altGraph &&
+        !altGraphTypedCharacter(init.key)
+      ) {
+        continue
+      }
       log.add(`${label}: ${JSON.stringify(result)}`)
     }
     expect(log.report()).toEqual([])
@@ -199,20 +202,34 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
     return log.report()
   }
 
-  // issues/bugs/BUG-085-linux-altgr-recording-never-fires.md
-  it.skip('BUG-085: an AltGr press that types nothing new records a chord that matches it', () => {
+  it('BUG-085: rejects an AltGr press that types nothing new when recording by key', () => {
     const cases = events.filter(
       ({ init }) => init.altGraph && !altGraphTypedCharacter(init.key),
     )
     if (platform === 'mac') expect(cases).toEqual([])
     else expect(cases.length).toBeGreaterThan(0)
     expect(checkRecorded(cases, 'key')).toEqual([])
+    // Windows treats these presses as Control+Alt, and records that
+    if (platform !== 'linux') return
+    const log = failureLog()
+    for (const { label, init } of cases) {
+      const result = record(init, platform, 'key')
+      if (result.kind !== 'rejected' || result.rejection.reason !== 'alt-graph')
+        log.add(`${label}: ${JSON.stringify(result)}`)
+    }
+    expect(log.report()).toEqual([])
   })
 
-  // issues/bugs/BUG-087-recorder-stores-modifier-position-codes.md
-  it.skip('BUG-087: a key on a modifier position records a chord that matches it', () => {
-    const cases = events.filter(({ init }) => isBug087(init, 'code'))
+  it('BUG-087: ignores a key on a modifier position when recording by code', () => {
+    const cases = events.filter(({ init }) =>
+      /^(Control|Shift|Alt|Meta)(Left|Right)$/.test(init.code ?? ''),
+    )
     expect(cases.length).toBeGreaterThan(0)
-    expect(checkRecorded(cases, 'code')).toEqual([])
+    const log = failureLog()
+    for (const { label, init } of cases) {
+      const result = record(init, platform, 'code')
+      if (result.kind !== 'none') log.add(`${label}: ${JSON.stringify(result)}`)
+    }
+    expect(log.report()).toEqual([])
   })
 })

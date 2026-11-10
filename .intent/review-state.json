@@ -67,16 +67,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "18a63d8e7dcfbad57fe96e7a14fe7392c51846cf45711d02832205e1572ea1b3",
+      "fingerprint": "882b44ccad93d81247107544131b2703fb8abe24b4f9735432cf124844de4879",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eb9ce1fcc41cabb329153e0beb8722e45e611c48720c2819551f6966f6909301",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
+        "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "62d4f4bd79de46fc4900d4f8202c7b16c672060ab66aaead9e7fcd8ea1958c59",
@@ -86,25 +86,25 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "0b28ed636ff7c92b16f52826f917222e315991914dbb328866d21ade4179f611",
+      "fingerprint": "2b23348c916f1bad2a33f7e31e01d3a363c2fdeb930252af7036c8441fed8138",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "f61af1945deca11aff31a38419ccab190f4c4c092142acb0117d2bab807ff621",
+        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "c35d5d1dadac9d5d44afe4fe9d6f0031281d9a567f32d933896af29109099099",
-        "packages/hotkeys/src/match.ts": "1b22c1eaa08186acfacea0429e4c829fa7e828de0791f86548dcf364fdd20d91",
+        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
+        "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -279,7 +279,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "acabffdeb0bf568b17a1d3a66c5fd693392c3f3a7bc0ce5a89e3086a4c880780",
+      "fingerprint": "8fd5d649038045d0d2688b902ab2a9e5399dff5920216871cdaedebf233c1bea",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -298,7 +298,7 @@
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eb9ce1fcc41cabb329153e0beb8722e45e611c48720c2819551f6966f6909301",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
@@ -309,7 +309,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "f61af1945deca11aff31a38419ccab190f4c4c092142acb0117d2bab807ff621",
+        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -342,9 +342,9 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-manager.ts": "c35d5d1dadac9d5d44afe4fe9d6f0031281d9a567f32d933896af29109099099",
-        "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
-        "packages/hotkeys/src/match.ts": "1b22c1eaa08186acfacea0429e4c829fa7e828de0791f86548dcf364fdd20d91",
+        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
+        "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
+        "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
@@ -411,11 +411,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md, packages/react-hotkeys/skills/react-hotkeys/SKILL.md, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md, packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -642,27 +642,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "e92612fe93b08804b32a4d3fc8bc3b37561e860b64c7848f86503d5d23d69586",
+      "fingerprint": "03d46acd7cf3491ebaa5b5fe13276fe6e783ddadf36e398b291afe7b4ebfe1ad",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "5894591047efcea0fc1ddacf480daaee149128ee2ea55d9ecbf250a409627bd0"
+        "docs/reference/classes/HotkeyManager.md": "ea54e5cba956465094e33aa634210f025dc8cd16ce32f1eaa1a188cf50df4f91"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/reference/classes/HotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "51af5cab1bed71900a5cfd8c7dd7cc82ab34ff9bca59e88476907704e5f3d605",
+      "fingerprint": "9fe065495ee0dd19d1f0ba49d570ea9e6b5353642ea7fc9cab1988116e99d51d",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "f91571833aa07328de0fdf177e7b859a1d49dafc87dfc5478438e1d8a224a752"
+        "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/reference/functions/getHotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1429,15 +1429,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "0c165c206a20214d60d1373575095280df1f7bec0e41572ddb0a9eb610ac43da",
+      "fingerprint": "b2501dbb38728fdb500f75b6ef2030c41b302ca8d1555e7dc17ef1bf112ac906",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "e51e6feea1d3a77d953614dbd78497f70220697a68baa802e4913b5694de9ed1"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "0142d4a49a85477fec386f31ce4fc4b69816dc175336aa2e9778d1ebec8a27dc"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -4167,16 +4167,15 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "91faa299e4d750d0901c5a878bc6eeb30671453474dcb8bc93fc4a1582e98713",
+      "fingerprint": "ed822cd686de7d4911c52e43bb7b44de5b21eb63f2f8d5020a7da25939566395",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "01d9cea807ac18b158fca8be2a79b55a580da69a6941656cc38203eb83e9448e"
+        "docs/reference/classes/HotkeyRecorder.md": "c7c696684c56ee3b719af0f91d4fb73d8e549af55ebb32d09aa031407a1853cd"
       },
-      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
-      "outcome": "no-change",
-      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "docs/reference/classes/HotkeyRecorder.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/reference/classes/HotkeyRecorder.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
@@ -4262,27 +4261,27 @@
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "0c00753988e7e758edf6d364874c09f9fc273d84680e564d272e8dae8f04294e",
+      "fingerprint": "311a67c110395ea051c0d482216d85105faccf2d195cb7231c2bb417235a03d9",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "f746e219662415158099ea441c949d81f1955c2ea6f5dce277ef9f27e49e54d2"
+        "packages/hotkeys/src/_match.ts": "77734fb2d2a177bdb69ebf469bd03910886c722e34192765116637268a5dbc1f"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/src/_match.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: packages/hotkeys/src/_match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "e198b30d4881018191e869a97e39cd89cca632a6cc2ab4ef6bb88c5112ec2e5b",
+      "fingerprint": "8155a0877388833a66c1175f936d82fdcd1a6e2264247f9ad246d697710d36ad",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "e8cda248f3256d776cfc2ff7e2902d5af624b78d1875c87d44081892252cd393"
+        "packages/hotkeys/tests/match.test.ts": "d12835d3c9115163609737e3b288b561e4de140f8a7f4cfa7093fd6581aeb322"
       },
-      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
-      "outcome": "no-change",
-      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
+        "Changed: packages/hotkeys/tests/match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -5057,60 +5056,64 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "2ac67bdc38e62da1c55709443224fb231ee81395e9043cac4657762706e6ca48",
+      "fingerprint": "2da54abf6ed64dbc2fc89f39415f162e89933e1453815046bde18f7e2df649e3",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "06e19f8a86fda7dc9c4486b09d34d37979116ab5972f97239562ba5249807caf"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "b611d1d52fa0d1aa51903bdd90fb467e896f35b07673f61afd1c1592b7024282"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "no-change",
-      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/reference/interfaces/HotkeyChordRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
-      "fingerprint": "5553c470e946c2e08aa2c2fb85c112af029bd0973f40e723f81459a079f18d3b",
+      "fingerprint": "e64f305b0658406add098a7cb6cc699b9490210c97fea75e966bd47fe4ec7620",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "3ceb5e99ae4424bfbc11693a8f43c23c5c48d65af6d0ffd622914bbce46c0b6f"
+        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "a676727175e9013307c6b2acb6b8417163b313c31255e58130b3b51b0b767421"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyChordRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyRecorderState.md": {
-      "fingerprint": "5a8602c9447cfa6afa80aaf4e264494dbf1c5513dea03fe41ab4afbf57d512a8",
+      "fingerprint": "d984e3419cec90e67e2c06594dde4e47b3da36746fc3a8b5e2fc4c3cd4e4232a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderState.md": "fce57e1f7eba7388337d92556551e6eaadb327639ee1dd883a36d51c40a6085e"
+        "docs/reference/interfaces/HotkeyRecorderState.md": "947608649130e7ebcd3ff76e3637ac1092740b8748a0fc5e97ee21da7b728819"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyRecorderState.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "f1961d234417efb2e45235d5bff9d8dc81f768c6f5950fd9c819ee459ac2e672",
+      "fingerprint": "35f916bcbe25712ce4f6dadf3337ea31687f6dc7f23ebfe97e1e8e9b5170dcfd",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "e17ee87055adb109ea2488840c7acab349e92fec10b8f84fa29f4d819f6e76bc"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "a74af40b63c4575f63204ae9980d7f7f43010c400dcbf4e8630b2dafb67c34ae"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "no-change",
-      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/reference/interfaces/HotkeySequenceRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
-      "fingerprint": "a8c7716a2198d830c84af1cdfa2c430bd02ef5c52b00fef3e903dd3b9c1d769d",
+      "fingerprint": "47c74888441e74bc29193c2f9837d80306cca3ea2f7534da15d2b045c878f718",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "b33f279631a8e9317e179141f8c6fc1079018ad20a45c676c82f7d607da528c5"
+        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "c44d62f99d07eb486ede47e36c5c328718061e07c56ac9c10bcc1bd9d6e83371"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
       "fingerprint": "2f7f2627a76e706f783dea240bb7178be195cc117e065330257252f410b35ffd",
@@ -5125,24 +5128,28 @@
       ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
-      "fingerprint": "69b0aa1282ef472f123f848d148e8b4c8d6131f362457e49bff27de5445d7334",
+      "fingerprint": "1ae4e5e154bfde4f4ca76bd1484e4377f1f4062c16f31361c7ab9d5378b66479",
       "snapshot": {
-        "docs/reference/interfaces/RecorderOptions.md": "22c59443a1e948525d7789ce716141b161825ce4eefe86c9c1d6e6a14570fa06"
+        "docs/reference/interfaces/RecorderOptions.md": "dd067b3296fd4ae1f2e81dd8f74303c275346fbe2714c17cc645128442efcd45"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/RecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/interfaces/RecorderRejection.md": {
-      "fingerprint": "947b51f78d15d7f2df609241666a55a79eff4898bec4f04603a39a2db399b630",
+      "fingerprint": "c08b2775769cd3bc648827daa946ec041881936997196aaad35f0ccd6f83c0ee",
       "snapshot": {
-        "docs/reference/interfaces/RecorderRejection.md": "940a5c3b18cf765a3fdb08457493300297ed152728a393df5aedf554d3d13b46"
+        "docs/reference/interfaces/RecorderRejection.md": "71e92cdf3b6597f41121ee11dc751a2d2414329ce8406a25475d7ab3401b8eda"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/RecorderRejection.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
       "fingerprint": "8c4c227c801c466b23924853e9d0c7145c1f67c578c546a72680a99dfbe34a25",
@@ -5155,37 +5162,40 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
-      "fingerprint": "5ddc71784395aa3498c0fb5ff730052e70efcf9d88fdcf71c0553fcdcbd13b96",
+      "fingerprint": "b30bfac9d77cddb832c645c984e45bd7c122c2707d402964b0c5acc44b0e1187",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "6d258d8669f5798fbe2ea86b03e116906665feca1450dad40976f804fcec43c7"
+        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "fb4d68984a5cdb72ec5eed5643b6e7bdc948c46bef02f2a6466ff2c96b28ecf8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRecorderCommitKeys.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "4fbcf2cd23bfe321234b63eaa19dfb598e34f78c50b7114e4a4a560d4f619e85",
+      "fingerprint": "facbbae2ccdc6e24ff19ea5d11842f3cb36522f67dafc22eeceb35a90a2963d6",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "2b8112f84f9f676f6aa95a348e944f8c1a209d7c4144e1a4d5f64e36dee66899"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "614891d1ec710f30bf7139d675164b3436ff46c8932e594ab7f84f49a980b427"
       },
-      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
-      "outcome": "no-change",
-      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/reference/type-aliases/HotkeyRecorderOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
-      "fingerprint": "8d4a2b2926f03d394a2ade486d45f156928c0c6a3e4090c2804a4c5489587c60",
+      "fingerprint": "07ca519dc29c76a8b1859dd34f0bbc0eafc7fcf2242a0bafe79eeab5996f3f19",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "e3772a508e14199fc50ad7ad09aa6bd4503afcc5fc18aace9dda02c21eb42232"
+        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "06ef56017994415b3d9d63974986aa124c7020eea8028956d70bb6e8f8484baf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRecorderValidationContext.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:docs/reference/type-aliases/RecorderKeyMode.md": {
       "fingerprint": "760421f888e5b508ff1bc38770d203523755368f0a94f48b73e77d2deb030c11",
@@ -6934,51 +6944,51 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "f44afb3c7be6968b6c837f905032d91a8d391d571caff344c3811826dba69003",
+      "fingerprint": "9900d5135178efa87e8eeca8fb5b4790f03907b24ec3d54879bd2fdf0a57cdab",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "fae9aaa654a8afe4ef8a10510b4903c040a0017ccaa886f09556b637795fc953"
+        "docs/reference/functions/areHotkeysEqual.md": "55835d04f40ba1e97f6d955faee8c2f87b0228d834e1bcad7b54c190c4be490c"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/areHotkeysEqual.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/functions/areHotkeysEqual.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "c2a16851cec413d70b2029e9ec53fec9eba0f06b892ddfe52f167c8c5ab60e19",
+      "fingerprint": "6c8cbc7edc149cfa45981ce042cf0524de497241ca26b93a0d84231249041b43",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "82689175baa71d8e8f8ddd183da71dd0476b31e5e0aaae8e49aea95bcaedc9ec"
+        "docs/reference/functions/createHotkeyChordHandler.md": "22abde7b690d6ec8bd894efed99d48fcf9b0c2793df177e595f9e6d9b8323c72"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "a5cc0ee9432dbacdc137ce36b2e8e2a5e88e030c79304089c9acfc4225b33973",
+      "fingerprint": "081cca92747866afbd1a1d1d73493a6b1a0100e1f7b2535c5a80da4c7359964a",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "96072968b4a5fb135b67f15bdd23cabeba2d15c3aa2f6837ed7b7e133664b25d"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "4b22d071f5db70649a4f898d8bd7434d42286b70f41feecd6732f4c766a3c385"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "a9e095dce75fe1b9aba756d6cdcac92033cca980a95a6eec2f62fc1976b13b95",
+      "fingerprint": "ee5a0ff9c7ef90deb2e1085fd3ad9abcffca53dd1973515479b636ffa9ab89e5",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "818d8bddb52f13c2c4c215a93f26e1ad8085fcafe08b754f5d393fcd29cab615"
+        "docs/reference/functions/createSequenceMatcher.md": "337501fa9f94adca4b68eeef5e6c04d7b92e03d1d53ed39f9febd5d49c673219"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/createSequenceMatcher.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/functions/createSequenceMatcher.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
@@ -6992,27 +7002,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "a976cf7b913a1f74d8f212cd258512deb6fe0eb48d3d04eb327a9148e7fcb847",
+      "fingerprint": "d7b017f03e571b825369a5dd8d0b4b95125a1e00af8a99e12f917761a2326a50",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "b5e099ff32b6317965259c17b15848656c028f8a8842106818a48701176c7168"
+        "docs/reference/functions/matchesKeyboardEvent.md": "e47afe7f3d59fd381b6dbdd222355ea28d4262d3b2b4f229ca38c4b2312ef402"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "55d186c50d0262c996307836ccdfb7e050553ad636c2049ce9c82016953ae1fd",
+      "fingerprint": "681417d129b9c28a3dbdd7288ed2493c03cfa3bf1a5517d77c28ab0dfd4e2087",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "0c6b97067431af7150514b332ebe0a7ac707b0d5142e81e14044729ed1e4c1c8"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "a9cd010b7e86cfd9e8efc0cf656e7eb5a52c569c41b4f492d0baf992eaa4516c"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
@@ -7026,27 +7036,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "4bfd7440b9fc5cbfee001ffdbebc782dd90a4ad3f21531f1d77d750d6f6005a2",
+      "fingerprint": "485525a05a62db9ff94e36a93ccbb47628c095bffd396897e0210ff187b0607c",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "381d3925616d8951741a644956623b7ccff3a7d378ec467dfe958c229b01802b"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ab8a1e0cbee608ee9f90c3b1f1355efb29b6d66596e2a34554ac2c09f19b289f"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "5528d4a088f9ae56eb4abff2465a665f97ced1ee98bf7fc1d470edf0ce55fb5d",
+      "fingerprint": "51f1f44468a18c3c2c8e3b6666b73ed96fafd5ef5c31182bbcc7bb6dd73d28e0",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "6271c4454280260c1d987be0299af41071e344f8fc0d1a150f61db90e92c1311"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "67364a84d195ec77382381b5d9fda3aefcf95a020562d9f3964cd244bc8ae619"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
@@ -7335,15 +7345,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "60128dda21bb8eed8994af35ab9615dd96cd5849f852ef8fa30bf90b4b9ab209",
+      "fingerprint": "7e5fdf47c13dff968e99a6a55dafbc0f1e22f5c5558da4cd84ca4e9d7311f95a",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "8ec3451cf6bf601f320b7366949cca28f49abbf8ccb07e332aff76bfd5f6014b"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "b6c99b53738dc9ac946a8931fcd80f8d0b11a6cbb71facaf32d0075b9b648db9"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7510,15 +7520,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "e65f02564b5864a604aa96655d7ad5c28f4b3f5f2e2cddd36dc893d63daa4335",
+      "fingerprint": "80fbc0013029e85d15ca9426fb50d19098362e4750b09dc058e9a52eb04731b8",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "b55a59becb520db6e334983a193d9cb6f32de748478dc803d3784348804f98e4"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "3fcfbf03c1c10bdccf5a5f523a6b903d082f9367baed0d676188f743c9e9d6ee"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7542,15 +7552,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f7d983a81ffcdfc4869656b308c3688fb5dd37f1f885a7f4b4df3fac36f57b4c",
+      "fingerprint": "26693746813a5109463827f3646acb1e8012676418ba5b50dca7c207776431be",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "6988c0cdbcd062eba546661e2b09914bc1a081963e50a93603f8d972bf504734"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "f0804db0e0e9bd986cf70024289f0a6328b40768a71cfbac805261b72707c6d4"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11742,15 +11752,15 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "abe61899b74ddf18103475457e350bd1ac0ac7277d17bbec1a2102acc6314818",
+      "fingerprint": "b2be40a3f184a0dab0f12fa1742c83f1a72a1ac12272f6aa8ce2cd03f5b57758",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "5d4c4c5dfe3dde906817dbb225c49b8e518bd2e6b53dd04a52c7379ae33efb16"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "6bebd1b8c45dc10354ae6804735e93849def40c6623c0da3462d867ace1ad0c4"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11784,15 +11794,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "3c68e562911e3b5db9b9ee558698bbb831ab57523d2120c7b492a06d0f0134a4",
+      "fingerprint": "988499fae3b10c094b1dcb41c92bda3d94832fe1a79e99ba04ee2a331b244fee",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "7dfc6fb5f5c589d860006fcb6702c4c9950b2a679ff876912b5622dba3717ae5"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "5f4dd42c819715acdec2922f14064653c0e4fbde5d25d688b9541cb47fb931b2"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11826,39 +11836,39 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "75836cc71fc452e03b5b268a3e9af46bbfc46e9cc5a6f6f9d3bd126f08d088ad",
+      "fingerprint": "2041da9f2dc73e0b07eeedfaceea9446d0dd94d2ad439954c56ccda5b5019893",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "e4060aa298240436ba139a10405cde795689998533d2cb73b5242bc6d92947c2"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "aa6e938c5163607790479faa5f6e77b7e36069f007198f74d3a2d14f6ccf8981"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "d08a301a68dafa2166f60ea9af4a518d7739d072aa58a72d01ae59bc3444bc92",
+      "fingerprint": "6f5469d3303714fa14aa0d2d0624bbc2d46feaef688219938a01f337e84fa833",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "e0f19ced4c60033e296f27d0239bed679bf7c6a3965b6897daecb607e1b8f0ac"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "f2d4d759d928bbf0a2a8b93947378a93b9c5e9650e929d0c0e0331bbc7b5511d"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "56e98036e3315a4d415b26ede04703054ccc1329437627a6b4c532812a294d5d",
+      "fingerprint": "2ae052e2e9ab17921fc07ca4420d3256a7e682a9cd06f82063a2bd14be702b07",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "32357f45672db0b353c211d69a2d965de79b912956e38c985c4afca210d7bcfe"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "2dd5c396d236d9d159019373fbb5575e6870b78312cad36e4295fed9ee3e44a2"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11922,15 +11932,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "57f9db7fcd0094245d20692c81d4b2becea4dc5833da7c9c4dd9bfe1fc12d785",
+      "fingerprint": "d69ce3c4e0c9bfb15f2417f04251087bc5ebdafd810df0beed00831e58d76611",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "0ca276074fa3d595147c370ef6e04c42ad144afb130ef8be8f8306858aec5ac9"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "806db078dceb5e30ddbff2223abb0fd13751a21369a9bf6429b0d2dbd808f675"
       },
-      "head": "e832942ad99362718e3cdbafb05157eea118c638",
-      "outcome": "no-change",
-      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -11994,14 +12004,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/RecorderRejectionReason.md": {
-      "fingerprint": "d895160e02a9ae1b1d54214c98084ae38c2d7125481f3698fb5ef6641ec4b773",
+      "fingerprint": "2a9fa508e1ecd5989673e9a5c6bbd4597bb82cdeee18a2c4377f039192e5aa0b",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderRejectionReason.md": "8e9a68026de28ce6730985a2289319a8bcc78db7f3f864ec00c45084689cf46d"
+        "docs/reference/type-aliases/RecorderRejectionReason.md": "7b8cbe4aad577f5803d195482377abcb07e4a3b5bdc7504b5356f3492930895f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/RecorderRejectionReason.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+      ]
     },
     "source:examples/ember/useHotkeys/app/templates/application.gts": {
       "fingerprint": "7156260fea88a71249b547ba561c37188162f1bbb4442b8c45fee1c5ad70cb53",
@@ -12112,16 +12124,15 @@
       ]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "843f64ccb87ce5f7eefe744ea8477a50af5f9a795e9f6c4f62f84fa66dee1410",
+      "fingerprint": "3d174269d10a50efa75461f6bfeebfa866889aa624d3bde38cde9948dc8c8efc",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "0111cb366df96b64a36fe124e63fae85358c1e23ef65606146dab24bd9581b38"
+        "packages/hotkeys/src/_recorder-chord.ts": "8c2edbf43a277b575a0acfaf2505a40638c4f08481985e0724094b50218c9ebf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "packages/hotkeys/src/_recorder-chord.ts",
-        "git diff origin/main"
+        "Changed: packages/hotkeys/src/_recorder-chord.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
@@ -18552,15 +18563,15 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "e2c3d3404402a69a0c519da0a97e392c4e63a9549c21ee367ffba6c23bf07660",
+      "fingerprint": "9a53c17e6beddeb56a4e1c97aa3245ab8eaf3b832fb088f7bf8044647290bf14",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "c9eace61a2fc56c86510be3a25bba887a139207700bc43e9f7515f00b6edec17"
+        "e2e/layouts/more-layouts.spec.ts": "b7aa78114b1ac2e197a7466bcfa9f725cb0bbb4e099adff5f13c14d48782a649"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
-      "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: e2e/layouts/more-layouts.spec.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: e2e/layouts/more-layouts.spec.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
@@ -18672,15 +18683,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "849460d68df7d988100aec3179e36827b8182bb226eae7a2405658c900365d69",
+      "fingerprint": "91b2abb6444c80c3527b0d3c969ded4d9d87e2842e5ab0ed791da62530709a91",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "231531a940c1cb2819962633cbcb71278811e9b7f3c24ac953421831b2e33f7a"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "d90cc33af00d68d175463a1210eaf759da508652e8b2fed5eda8cabb83447e27"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
       "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
@@ -18744,39 +18755,39 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "a3c3c87f9324ab9a85f262b775041e70d8ab5b6596d980d068e3db3d686eb587",
+      "fingerprint": "24d105085c64b79d10bcb509d03ed457fcf05ef07091e1f2a5e20c0672cecc59",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "85dc47e699038051fb5bcb0d9d4eaa889e17d14463c64eb1b080263caed91647"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "40383f7371369b6b13797927a184f669fd04be2014721b9e41851215328f4d25"
       },
-      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
-      "outcome": "no-change",
-      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
-      "fingerprint": "4a966923f79868ccf4201ec867cf467bb3fc9113bd464ee8cd7b01804c150231",
+      "fingerprint": "30631b65172be55b9e20ee5715d647c2bfe6c78cdcce17c5e0615ee217548e1d",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "e4f5917a52ab75f225df277935a5d4a2b67d71589f1cce513862828cd17664b6"
+        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "7dfdd7e33c74b37ec82d828a9ae023cf42ece446e7057e876a830137aae41e5c"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/fixtures.ts": {
-      "fingerprint": "260aebe206b1251f0f9af62d3bb7e78f408b240f54ee0203394f0f7faba5fd5f",
+      "fingerprint": "5dc2977c0258efe9e9050637a797e9df7f085e9fb9daecb33b98176c4d1aec0f",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/fixtures.ts": "f9b6221acc6982ac0fc189e08b5b91939a36ae538ce2b4beaef0051e167a3827"
+        "packages/hotkeys/tests/invariants/fixtures.ts": "c765d3e35a6f2816f10b2af7cb6b63a3a262a7dfb8a8dc381d251a46b31abf31"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/fixtures.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/invariants/fixtures.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
@@ -18804,15 +18815,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/recorder-match.test.ts": {
-      "fingerprint": "d4ffa0d36ab83e160369db39a40c2d0a9513342c7c58cf89da3e79837fd04cea",
+      "fingerprint": "7951cd9bf51b5faa1cbadd94fa0100c0798978a79297ed0bedb58cb9e8042b22",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "d69c9c3a3dcb08b208605d5343f5b48e2fdc63ca4ffac52f6614cb24462b48d8"
+        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "5138b7eea360554ba6bd1733773b32b157757b857f33b6eb1a22168eb8c590a5"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
       ]
     },
     "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {

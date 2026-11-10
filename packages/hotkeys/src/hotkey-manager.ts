@@ -1230,6 +1230,7 @@ export class HotkeyManager {
   ): void {
     // Releases clear latches even when focus or enabled state now prevents callbacks.
     if (eventType === 'keyup') {
+      let cleared = false
       for (const registration of registrations) {
         if (
           registration.hasFired &&
@@ -1237,8 +1238,12 @@ export class HotkeyManager {
         ) {
           registration.hasFired = false
           registration.activeMatch = undefined
+          cleared = true
         }
       }
+      // Firing notifies, so subscribers such as devtools see the latch set.
+      // Notify on release too, so they see it cleared.
+      if (cleared) this.#notify()
     }
     // A new press cancels a keyup chord's press in progress, so its release
     // doesn't fire, even when the new press continues a sequence.
