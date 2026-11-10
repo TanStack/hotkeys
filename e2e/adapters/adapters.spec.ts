@@ -1,7 +1,7 @@
 import { adapterApps, test as base, expect } from './apps'
 
 for (const app of adapterApps) {
-  // Skips the tests a known adapter bug breaks, named with the bug's ID
+  // Skips the tests a known adapter bug breaks, named with the bug's issue
   const test = (title: string, body: Parameters<typeof base>[2]) => {
     const bug = app.knownBugs?.[title]
     if (bug) base.skip(`${bug}: ${title}`, body)

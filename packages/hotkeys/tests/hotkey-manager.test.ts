@@ -404,7 +404,7 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(2)
     })
 
-    // BUG-111: devtools showed hasFired: true until an unrelated change
+    // The devtools used to show hasFired: true until an unrelated change
     it('notifies subscribers once when a release clears the latch', () => {
       const manager = HotkeyManager.getInstance()
       manager.register('K', () => {}, { requireReset: true })

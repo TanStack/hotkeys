@@ -37,7 +37,7 @@ React also runs everything under `StrictMode` (`?strict`), which mounts, unmount
 
 The apps use the adapters' built `dist` output, as an app would. Run `pnpm test:e2e:adapters` from the repository root: it builds the packages and the apps, then runs the tests. Run `pnpm --filter @tanstack/hotkeys-e2e test:e2e:adapters` to skip the build. Playwright serves each app's `dist` folder from `http://adapters.test/<adapter>/`, so no server starts.
 
-To add an adapter, add an app that follows the contract in `adapters/shared/fixture.ts`, and add it to `adapterApps` in `adapters/apps.ts`. A test that fails because of a suspected adapter bug goes in that app's `knownBugs`, which skips it under the bug's ID.
+To add an adapter, add an app that follows the contract in `adapters/shared/fixture.ts`, and add it to `adapterApps` in `adapters/apps.ts`. A test that fails because of a suspected adapter bug goes in that app's `knownBugs` with its GitHub issue number, which skips it under that number.
 
 ## Server rendering
 
@@ -69,7 +69,7 @@ To add a layout case, add an entry to a `describeLayouts` call: the physical key
 
 - For a layout with two groups, such as Russian with US, put the layout under test first (`'ru,us'`). xdotool resets the active group on every press.
 - Pass `numLock: true` to `describeLayouts` to run its cases with NumLock on.
-- Mark a case that shows a suspected library bug with `bug: 'BUG-NNN'`. It's skipped and its name starts with the ID.
+- Mark a case that shows a suspected library bug with `bug: '#123'`, the GitHub issue that tracks it. It's skipped and its name starts with the issue number.
 
 ### Not covered
 

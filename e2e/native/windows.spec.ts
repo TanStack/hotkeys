@@ -1,8 +1,8 @@
 // Real Windows key input through SendInput, under US, German and Polish
 // (Programmers) layouts. Windows treats AltGr as Control+Alt and lets Left
 // Control + Left Alt type AltGr characters, so these cases check what browsers
-// report for both (FEAT-060 L-08 and L-09) and that matching follows
-// docs/guides/sensible-defaults.md. The report lists each event shape.
+// report for both and that matching follows docs/guides/sensible-defaults.md.
+// The report lists each event shape.
 import { expect, useNativeInput } from '../support/native'
 import { windowsKeyboard } from '../support/native-windows'
 import type { NativePress } from '../support/native'

@@ -50,7 +50,7 @@ A harness implements `ConformanceHarness`:
 - `mountHotkeys`, `mountHeldKeys`, `mountRegistrations` and the optional `mountRecorder`, `mountHint` and `mountFormat` render a view and wait for it to settle. Their handles read values and apply updates.
 - `act` runs a change, such as a key event, and waits for the adapter to settle. `setup` and `cleanup` run around each case.
 - `unsupported` lists features the adapter doesn't have, with the reason. The suite leaves those cases out, so a skipped case always means a known bug.
-- `knownBugs` maps a case key (`'group > title'`) to a bug ID. The case is skipped and named after the bug.
+- `knownBugs` maps a case key (`'group > title'`) to the GitHub issue for the bug, such as `'#123'`. The case is skipped and its name starts with the issue number.
 
 Cases take the runner's `describe`, `it` and `expect`, so QUnit can run them too: Ember passes `createExpect()`, a small `expect` that throws on failure.
 

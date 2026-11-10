@@ -1429,15 +1429,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "b2501dbb38728fdb500f75b6ef2030c41b302ca8d1555e7dc17ef1bf112ac906",
+      "fingerprint": "22bfdfc5877106adc9731c45d8acb95ace3897103abb5a64e5364891d309d6ab",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "0142d4a49a85477fec386f31ce4fc4b69816dc175336aa2e9778d1ebec8a27dc"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "15cb90bbb03d6ffc3abd779856c8d277f89b5146d928dd945176db500d17ac3b"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "outcome": "no-change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -4273,15 +4273,15 @@
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "8155a0877388833a66c1175f936d82fdcd1a6e2264247f9ad246d697710d36ad",
+      "fingerprint": "24a33f79d49b29db89b7e86aee62ae9085e1a60b1dc9d8787631261d6461e341",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "d12835d3c9115163609737e3b288b561e4de140f8a7f4cfa7093fd6581aeb322"
+        "packages/hotkeys/tests/match.test.ts": "ab1cc619c65ef88ac5380d743f42b15fc136a7e7bb8c2647868491ac0f511e6c"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "outcome": "no-change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: packages/hotkeys/tests/match.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -6566,15 +6566,15 @@
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "1df4eb9255c37e7cd8969198bb6643581e5625cc7e5d0e3309a046e9bad8eff3",
+      "fingerprint": "7ecb682ba92207b213a2031590779b891714fc2e2a79569a156681931e85eb90",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "4ebeb1250ec16ba70faf2c2a43c26f16f3312634f0fcadca8ccb736c685c4d52"
+        "packages/hotkeys/tests/format.test.ts": "c3b0b4ac19d16a4d63e083fc2e4a1e7740a02fbc63a3d5fb9593838e81bfd42d"
       },
-      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/format.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
+        "Changed: packages/hotkeys/tests/format.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
@@ -6590,15 +6590,15 @@
       ]
     },
     "source:packages/hotkeys/tests/parse.test.ts": {
-      "fingerprint": "ad851e434cb871de7a3078adf8e76f59549ad9b99c8d0625dde68ab19ef55160",
+      "fingerprint": "19a165fcf58297faef37cad9d5e1640afa8767c689df8b2a62c0c00577044cc9",
       "snapshot": {
-        "packages/hotkeys/tests/parse.test.ts": "1bac07398cbad9cea40bee095da08a98e9843fe0a982e3523e7fa9d39daf9745"
+        "packages/hotkeys/tests/parse.test.ts": "ec5040b75e1a41aa5e73d93032828f84b98b4889e010aada3193b8a96e81c1ed"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/parse.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: packages/hotkeys/tests/parse.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
@@ -8432,15 +8432,15 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "d09cd13f58211c2e42cea29d1a2b5254ffd2ceeebc7df2bddf2db72743d360dc",
+      "fingerprint": "066ae8c2799d506a8b134ac98a118d629627643e7f22c487ee6092806eb0c194",
       "snapshot": {
-        "e2e/README.md": "f8890985669c0f6a06954a8f3e241c67308434b43979b134f76d6646ddf68458"
+        "e2e/README.md": "3e2aad8108218934098f960df3a48408eab6e36a75d83b7e2d67a682edd92164"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/README.md at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+        "Changed: e2e/README.md at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/playwright.ssr.config.ts": {
@@ -17711,15 +17711,15 @@
       ]
     },
     "source:test-utils/README.md": {
-      "fingerprint": "adfbc395a21ead1c75ac009a5e976bf17ec329ec4caf9e3227ff11c2b4fed673",
+      "fingerprint": "c4fb03f25e66afbbd43fff45bbb8b0a7791fcd2b377dde8793cfde4cc529a8f2",
       "snapshot": {
-        "test-utils/README.md": "b3922474d5faed4f4c621cf14f61a3d4f86f6e9b3076a6c0999316e5750b9216"
+        "test-utils/README.md": "ad5590376339d06132b3d4f0e90e67d7313c6b2da3f230f3b9fd81e6638e1357"
       },
-      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: test-utils/README.md at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
+        "Changed: test-utils/README.md at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:test-utils/src/alt-graph.ts": {
@@ -18023,27 +18023,27 @@
       ]
     },
     "source:e2e/adapters/adapters.spec.ts": {
-      "fingerprint": "1cb9ce4f7870b9519088683c7fbf595f6434038b16b31f26886417c741c559b5",
+      "fingerprint": "fd2592d3c39c58cdfec2a3a3ca9085200414045cd8ca3f22f440e5284dfef679",
       "snapshot": {
-        "e2e/adapters/adapters.spec.ts": "5176c2729406a49ac4b81c43dbf8165b98c4af2a8747f48234a68d78db95efad"
+        "e2e/adapters/adapters.spec.ts": "a3c46265d7aa85ed6120111a40de1db609f281500b1193032018b820b91d4b7b"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/adapters/adapters.spec.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/adapters/adapters.spec.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/adapters/apps.ts": {
-      "fingerprint": "396b84ceabeba5986907c6edc5f3e1afa2bf1f9a063683b1262ac370d8d61260",
+      "fingerprint": "adafd06c5380836f0837f4e424c15cccabb615aac05198e290f84dd2d8d52240",
       "snapshot": {
-        "e2e/adapters/apps.ts": "386dfd6c5cdea42ed445c0a62aecf081dd4676cd68c80ce8976330acb0d685bc"
+        "e2e/adapters/apps.ts": "4ddd98bb54e7b6181be4c1f1e0d282bf35a30330473b7e96869317a1d7812e64"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/adapters/apps.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/adapters/apps.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/adapters/apps/alpine/index.html": {
@@ -18551,27 +18551,27 @@
       ]
     },
     "source:e2e/layouts/key-repeat.spec.ts": {
-      "fingerprint": "65b67e9ccc6d3dfb13fc66d6a9ef167061cf4e5459faaa1939eb8874599067c7",
+      "fingerprint": "ecd3facd5be14105d332e8fbd45aa1654a520a2f2c6c8c1a14075373c1907c0d",
       "snapshot": {
-        "e2e/layouts/key-repeat.spec.ts": "139540f256ce1ad56a91cbd59eec0f2e6faac445df0f6799b0b396bb6c3d12dc"
+        "e2e/layouts/key-repeat.spec.ts": "71621d77f8d5cf68ade4b81cb6870df8d2a5823257cb993be35c8433886a6441"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/layouts/key-repeat.spec.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/layouts/key-repeat.spec.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "9a53c17e6beddeb56a4e1c97aa3245ab8eaf3b832fb088f7bf8044647290bf14",
+      "fingerprint": "08e4bd68b51bd5bbcf75ce1200f0ce161af640e1438498cb151d440eaad0f280",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "b7aa78114b1ac2e197a7466bcfa9f725cb0bbb4e099adff5f13c14d48782a649"
+        "e2e/layouts/more-layouts.spec.ts": "c9ce1e603ea5aff90edef047320b5605d52ebd4abe1135c88c76d3d7990945c7"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "outcome": "no-change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/layouts/more-layouts.spec.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: e2e/layouts/more-layouts.spec.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
@@ -18611,15 +18611,15 @@
       ]
     },
     "source:e2e/support/layout-cases.ts": {
-      "fingerprint": "2f518f46117b0986b47e9d399c3e4d79f483a32703b3cc319ffa2b97583132bd",
+      "fingerprint": "a5dbed2b36a182fe4353e47b89b9366a7670667c83e582ff7963ae6a0c3dc31e",
       "snapshot": {
-        "e2e/support/layout-cases.ts": "843957287cc04ab41d1785a4a1749ce4676ff5a8a924757ce24596809610b5b0"
+        "e2e/support/layout-cases.ts": "09ef8e1bded2bbc91c23707fd09bd47781623b6222fccfe7b671dd4ed9e49618"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/support/layout-cases.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/support/layout-cases.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/support/page.ts": {
@@ -18683,15 +18683,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "9f377b569bb9f7421b31fb1ec082d096e19f23150cc8bd2c22d62a237460b1a4",
+      "fingerprint": "f815a26b2d0fbafffc127e646d6283961307ef82e33a0a3790a52d298eacd8f2",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "0dcf0b12bc45b02ff46457464bc7dc73324f0de85b7303cd07053001f80ab87d"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "f1f7939afb9f972c43976d04979a2d0d6d97dc5e9f220886efff76bf285a7e86"
       },
-      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
@@ -18755,15 +18755,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "24d105085c64b79d10bcb509d03ed457fcf05ef07091e1f2a5e20c0672cecc59",
+      "fingerprint": "ec240c36eff430976123724e84db5d953ca9bdad58d819ffb3f475017cc400cd",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "40383f7371369b6b13797927a184f669fd04be2014721b9e41851215328f4d25"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "a3d9778d1e9c65642c396055df2274f888b97d958639827fba6fbeb51511e445"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "outcome": "no-change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
@@ -18815,15 +18815,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/recorder-match.test.ts": {
-      "fingerprint": "7951cd9bf51b5faa1cbadd94fa0100c0798978a79297ed0bedb58cb9e8042b22",
+      "fingerprint": "4d4c4a1262ee22f00b6ab969af3dbacdf8dfd6c3cc1626e3729b65426e1daf3e",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "5138b7eea360554ba6bd1733773b32b157757b857f33b6eb1a22168eb8c590a5"
+        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "b7f0caa6604c945955ec8ef9e931c50df8a3006784fa802ff02f2a2774b86404"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "outcome": "no-change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {
@@ -18887,27 +18887,27 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "86facbce6ced1b71107000096ede881c2619e1e8ed4f93bf0268bae2b74d6809",
+      "fingerprint": "2d4c5e20a659e870d203525997e00d7aa6f1e6e696e96756af693f1f924da606",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "abaf636b53200b721137b09b69343d869a5bb67c99fae5c2fb78220ad3dd8926"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "1eae6b300095984ebff0f045b19b01e8ce6dd1c291545a29322e51518cb07681"
       },
-      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "7486ccf7987a3144721ba05f21c44822f5e5c7c4c8bc45c73667aa950e250b02",
+      "fingerprint": "31350e8f8297633bea6e840a56186256510a602401a774a8203f106d9ab47313",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "9af5d871c8c32d1621662c7c4f3e3f3dc34d2ffc53213ec33231ab580505a9f9"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "0988daaa580ebb4659ad3fddef9481d55628a630a010d61e391f93a7eac554e7"
       },
-      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
@@ -19055,15 +19055,15 @@
       ]
     },
     "source:e2e/native/windows.spec.ts": {
-      "fingerprint": "777f427cb80543228156d45a615d5031c59a7140df2f28c6c310940d1889bc44",
+      "fingerprint": "dea2427e7233af2686a8c54e28f424683f9d508b759a357c486948975d7ab031",
       "snapshot": {
-        "e2e/native/windows.spec.ts": "9d8f7edf9f09033f53ec2841a91f30b6fe5c0d5d6183c5e78d180cd5135f9443"
+        "e2e/native/windows.spec.ts": "28d85d6f072c5d7a40d0f76759c68f29fd3246ae923db7207e87c8a8e253fe8d"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: e2e/native/windows.spec.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+        "Changed: e2e/native/windows.spec.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:e2e/native/windows/SendInput.cs": {
@@ -19523,15 +19523,15 @@
       ]
     },
     "source:test-utils/src/conformance/types.ts": {
-      "fingerprint": "0dd3832355512cee207994c82fec196eecd96d20f02eb0c7c67ff3d083f0836a",
+      "fingerprint": "273f28909896e0d4de55e1a40733847b4838e5bda4059c6153506178d2ec4f0e",
       "snapshot": {
-        "test-utils/src/conformance/types.ts": "df69884a9cada52db1fee903bdd85d27142ac30422d1469535d8cb571845ef5e"
+        "test-utils/src/conformance/types.ts": "230439456d184c25cb12a47ed0d54f1029638f3c136d97ad9d931adfc662c53c"
       },
-      "head": "b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f",
+      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
       "outcome": "no-change",
-      "reason": "Conformance suite leaves out cases for APIs an adapter lacks instead of skipping them; stale comments removed. No guidance change",
+      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
       "evidence": [
-        "Changed: test-utils/src/conformance/types.ts at b9529b54cb20ac73df7e3b6cc18c642bccb8cb2f"
+        "Changed: test-utils/src/conformance/types.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
       ]
     },
     "source:test-utils/src/conformance/vitest.ts": {

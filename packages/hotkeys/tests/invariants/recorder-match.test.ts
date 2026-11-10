@@ -202,7 +202,7 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
     return log.report()
   }
 
-  it('BUG-085: rejects an AltGr press that types nothing new when recording by key', () => {
+  it('rejects an AltGr press that types nothing new when recording by key', () => {
     const cases = events.filter(
       ({ init }) => init.altGraph && !altGraphTypedCharacter(init.key),
     )
@@ -220,7 +220,7 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
     expect(log.report()).toEqual([])
   })
 
-  it('BUG-087: ignores a key on a modifier position when recording by code', () => {
+  it('ignores a key on a modifier position when recording by code', () => {
     const cases = events.filter(({ init }) =>
       /^(Control|Shift|Alt|Meta)(Left|Right)$/.test(init.code ?? ''),
     )

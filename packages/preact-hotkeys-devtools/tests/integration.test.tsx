@@ -24,7 +24,7 @@ function Save() {
   return null
 }
 
-/** Owns the toggle, so hiding Save doesn't re-render the panel (see BUG-112). */
+/** Owns the toggle, so hiding Save doesn't re-render the panel. */
 function SaveToggle() {
   const [show, setShow] = useState(true)
   showSave = setShow
@@ -72,7 +72,7 @@ it('shows a useHotkey registration in the panel until the component unmounts', a
   expect(host.querySelector('input')).toBe(panelInput)
 })
 
-it('BUG-112: keeps panel state when the parent re-renders', async () => {
+it('keeps panel state when the parent re-renders', async () => {
   let rerender!: () => void
   function Parent() {
     const [, setCount] = useState(0)

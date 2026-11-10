@@ -2,9 +2,9 @@
 //
 // requireReset and sequences tell a held key from a new press by
 // event.repeat. Mozilla bug 1594003 reports that Firefox on X11 can send
-// repeat: false on auto-repeats (see BUG-070). These tests check what each
-// browser reports here, and that a held key fires a requireReset hotkey once
-// and doesn't advance a sequence.
+// repeat: false on auto-repeats. These tests check what each browser reports
+// here, and that a held key fires a requireReset hotkey once and doesn't
+// advance a sequence.
 import { expect, test } from '../support/fixtures'
 import { waitForKeyboardInput } from '../support/layout-fixtures'
 import {

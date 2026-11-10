@@ -559,7 +559,7 @@ describe('registration rows', () => {
     expect(text(row().querySelector('.triggerCount'))).toBe('x2')
   })
 
-  it('BUG-110: pulses the row each time it fires', () => {
+  it('pulses the row each time it fires', () => {
     vi.useFakeTimers()
     const callback = vi.fn()
     HotkeyManager.getInstance().register('K', callback, options)
@@ -781,7 +781,7 @@ describe('chord details', () => {
     expect(detailRows(ui).hasFired).toBe('true')
   })
 
-  it('BUG-111: clears the requireReset latch when the key is released', () => {
+  it('clears the requireReset latch when the key is released', () => {
     HotkeyManager.getInstance().register('K', () => {}, {
       ...options,
       requireReset: true,

@@ -15,7 +15,7 @@ export interface AdapterApp {
   query?: string
   /**
    * Tests skipped for this app because of a suspected adapter bug, by test
-   * title, each with the bug draft's ID, such as `{ 'a sequence…': 'BUG-105' }`.
+   * title, each with its GitHub issue, such as `{ 'a sequence…': '#123' }`.
    */
   knownBugs?: Record<string, string>
 }

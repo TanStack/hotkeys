@@ -1000,7 +1000,7 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
-  // BUG-124: on Turkish Q, the I position types ı and the US ' position types i
+  // On Turkish Q, the I position types ı and the US ' position types i
   describe('Turkish dotless ı and dotted İ', () => {
     const dotless = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
       createKeyboardEvent('ı', { code: 'KeyI', ...options })
@@ -1398,7 +1398,7 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(codeless, 'A')).toBe(false)
     })
 
-    // Firefox reports numpad 5 with NumLock off as key Unidentified (BUG-123)
+    // Firefox reports numpad 5 with NumLock off as key Unidentified
     it('does not match an Unidentified numpad key by its digit or operator', () => {
       const numpad5 = createKeyboardEvent('Unidentified', { code: 'Numpad5' })
       expect(matchesKeyboardEvent(numpad5, '5', 'linux')).toBe(false)

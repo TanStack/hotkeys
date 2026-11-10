@@ -296,7 +296,7 @@ describe('normalizeKeyName', () => {
     expect(normalizeKeyName('plus')).toBe('plus')
   })
 
-  // BUG-124: toUpperCase turns ı into ASCII I, the uppercase of i
+  // toUpperCase turns ı into ASCII I, the uppercase of i
   it('keeps the Turkish dotless ı and the dotted İ apart from I', () => {
     expect(normalizeKeyName('ı')).toBe('ı')
     expect(normalizeKeyName('i')).toBe('I')

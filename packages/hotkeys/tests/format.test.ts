@@ -352,7 +352,7 @@ describe('physical display labels', () => {
     expect(formatForDisplay('[NumpadMemoryAdd]')).toBe('Numpad Memory Add')
   })
 
-  // BUG-125: these keys have no US key, so they showed their code names
+  // These keys have no US key, so they used to show their code names
   it.each([
     ['IntlBackslash', '\\'],
     ['IntlRo', '\\'],
@@ -416,7 +416,7 @@ describe('physical display labels', () => {
   })
 })
 
-// BUG-124: Turkish ı and i are different letters, so they get different labels
+// Turkish ı and i are different letters, so they get different labels
 describe('Turkish ı labels', () => {
   it('labels ı as ı, not I', () => {
     expect(formatForDisplay(hk('ı'), { platform: 'linux' })).toBe('ı')

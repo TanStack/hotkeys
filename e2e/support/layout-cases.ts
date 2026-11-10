@@ -21,8 +21,8 @@ export interface LayoutCase {
    */
   layoutLabel?: string
   /**
-   * A suspected library bug this case shows, such as `'BUG-124'`. The case is
-   * skipped and its name starts with the ID. Name the draft in a comment.
+   * The GitHub issue for a suspected library bug this case shows, such as
+   * `'#123'`. The case is skipped and its name starts with the issue number.
    */
   bug?: string
 }

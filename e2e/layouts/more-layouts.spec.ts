@@ -47,7 +47,7 @@ describeLayouts('Turkish', {
         parsed: 'Shift+I',
         recorded: 'Shift+[KeyI]',
       },
-      // BUG-124: a binding for "ı" never fires on the key that types "i".
+      // A binding for "ı" never fires on the key that types "i".
       {
         keys: 'Quote',
         matches: ['I', '[Quote]'],
@@ -510,9 +510,8 @@ describeLayouts('NumLock off', {
 // "Unidentified". Neither should fire the digit.
 const numpad = useLayout('us', NUMPAD_BINDINGS, NUMPAD_REGISTERED)
 numpad.describe('Numpad 5 with NumLock off on us', () => {
-  // BUG-123: Firefox's "Unidentified" used to fall back to the position and
-  // fire 5.
-  numpad('BUG-123: Numpad5 fires no digit', async ({ keyboard }) => {
+  // Firefox's "Unidentified" used to fall back to the position and fire 5.
+  numpad('Numpad5 fires no digit', async ({ keyboard }) => {
     const { keydown, fired } = await keyboard.press('Numpad5')
     expect(keydown.code).toBe('Numpad5')
     expect(keydown.matches).not.toContain('5')
@@ -525,9 +524,9 @@ numpad.describe('Numpad 5 with NumLock off on us', () => {
 // get the keycap legends the UI Events code spec gives.
 const intl = useLayout('gb', [])
 intl.describe('Labels for the extra ISO and JIS keys', () => {
-  // BUG-125: the label was the code name, such as "IntlBackslash".
+  // The label used to be the code name, such as "IntlBackslash".
   intl(
-    'BUG-125: IntlBackslash, IntlRo and IntlYen get readable labels',
+    'IntlBackslash, IntlRo and IntlYen get readable labels',
     async ({ keyboard, page }) => {
       expect(keyboard, 'harness loaded').toBeDefined()
       for (const [binding, expected] of [

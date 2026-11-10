@@ -198,7 +198,7 @@ export interface FormatHandle {
 export interface ConformanceHarness {
   name: string
   unsupported?: Partial<Record<ConformanceFeature, string>>
-  /** Case titles mapped to the bug draft they fail for, such as `'BUG-065'`. */
+  /** Case keys mapped to the GitHub issue they fail for, such as `'#123'`. */
   knownBugs?: Record<string, string>
   /** Runs a change, such as a key event, and waits for the adapter to settle. */
   act: (change: () => unknown) => MaybePromise<void>

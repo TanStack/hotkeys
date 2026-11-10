@@ -376,7 +376,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     keydown({ key: 'ß', code: 'Minus', target: document })
     expect(onRecord).toHaveBeenLastCalledWith('ß')
   })
-  // BUG-124: Turkish ı and i are different letters
+  // Turkish ı and i are different letters
   it('records Turkish ı and i as different keys in key mode', () => {
     const onRecord = vi.fn(),
       r = recorder({ recordBy: 'key', onRecord, platform: 'windows' })
@@ -455,7 +455,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(onRecord).not.toHaveBeenCalled()
     expect(r.store.state.isRecording).toBe(true)
   })
-  // BUG-085: AltGr+Home on Linux fires no hotkey, so `Home` can't be recorded
+  // AltGr+Home on Linux fires no hotkey, so `Home` can't be recorded
   it('rejects AltGr that typed nothing new in key mode, and records AltGr characters', () => {
     const onRecord = vi.fn(),
       onReject = vi.fn(),
@@ -477,7 +477,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     keydown({ key: '@', code: 'KeyQ', altGraph: true, target: document })
     expect(onRecord).toHaveBeenLastCalledWith('@')
   })
-  // BUG-087: with Control and CapsLock swapped, the CapsLock key reports ControlLeft
+  // With Control and CapsLock swapped, the CapsLock key reports ControlLeft
   it('ignores a key on a modifier position in code mode', () => {
     const onRecord = vi.fn(),
       onReject = vi.fn(),
