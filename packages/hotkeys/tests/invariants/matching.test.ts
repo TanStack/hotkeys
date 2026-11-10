@@ -339,8 +339,7 @@ describe.each(PLATFORMS)('matching on %s', (platform) => {
     expect(log.report()).toEqual([])
   })
 
-  // issues/bugs/BUG-086-keyup-chord-fires-without-its-press.md
-  it.skip('BUG-086: a keyup hotkey fires only for the release of a press it saw', () => {
+  it('a keyup hotkey fires only for the release of a press it saw', () => {
     const log = failureLog()
     for (const { label, init, chord } of firstPairs) {
       // A release whose press happened elsewhere, such as before focus moved here

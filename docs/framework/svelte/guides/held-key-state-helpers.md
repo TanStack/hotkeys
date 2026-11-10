@@ -50,6 +50,8 @@ To label each held key the way hotkeys are labeled, pass it to `formatForDisplay
 </div>
 ```
 
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
+
 ## Tell left and right modifiers apart
 
 `getHeldKeyCodesMap().codes` maps each held key to the physical key that's down, from `event.code`:

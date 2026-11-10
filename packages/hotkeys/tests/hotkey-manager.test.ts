@@ -2062,6 +2062,72 @@ describe('HotkeyManager edge cases', () => {
       expect(end).toHaveBeenCalledOnce()
     })
 
+    it('does not fire on a release whose press it never saw', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+S', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      keyup({ key: 's', code: 'KeyS', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire when the key was pressed before its modifier', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+A', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      keydown({ key: 'a', code: 'KeyA', target: document })
+      keydown({
+        key: 'Control',
+        code: 'ControlLeft',
+        ctrlKey: true,
+        target: document,
+      })
+      keyup({ key: 'a', code: 'KeyA', ctrlKey: true, target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire on a release while it stays disabled', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Escape', callback, {
+        eventType: 'keyup',
+        enabled: false,
+      })
+      keydown({ key: 'Escape', code: 'Escape', target: document })
+      keyup({ key: 'Escape', code: 'Escape', target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it("still prevents a disabled chord's press and release with preventDefault: 'always'", () => {
+      HotkeyManager.getInstance().register('Escape', vi.fn(), {
+        eventType: 'keyup',
+        enabled: false,
+        preventDefault: 'always',
+      })
+      const down = keydown({ key: 'Escape', code: 'Escape', target: document })
+      const up = keyup({ key: 'Escape', code: 'Escape', target: document })
+      expect(down.defaultPrevented).toBe(true)
+      expect(up.defaultPrevented).toBe(true)
+    })
+
+    it("lets a live keydown hotkey keep a disabled keyup chord's 'always' from preventing its press", () => {
+      const onKeydown = vi.fn()
+      HotkeyManager.getInstance().register('Escape', vi.fn(), {
+        eventType: 'keyup',
+        enabled: false,
+        preventDefault: 'always',
+      })
+      HotkeyManager.getInstance().register('Escape', onKeydown, {
+        preventDefault: false,
+      })
+      const down = keydown({ key: 'Escape', code: 'Escape', target: document })
+      expect(onKeydown).toHaveBeenCalledTimes(1)
+      expect(down.defaultPrevented).toBe(false)
+    })
+
     it('does not fire on the release of a press another key cancelled', () => {
       const callback = vi.fn()
       HotkeyManager.getInstance().register('Escape', callback, {

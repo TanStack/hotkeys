@@ -59,6 +59,8 @@ class FileItem extends LitElement {
 
 To track a key that changes, pass a getter, such as `new KeyHoldController(this, () => this.key)`. The controller reads it again on each update.
 
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
+
 ## Tell left and right modifiers apart
 
 `HeldKeyCodesController` maps each held key to the physical key that's down, from `event.code`:

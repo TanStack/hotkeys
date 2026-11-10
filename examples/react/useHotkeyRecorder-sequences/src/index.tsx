@@ -13,7 +13,6 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import type { Hotkey, HotkeySequence } from '@tanstack/react-hotkeys'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 interface Shortcut {

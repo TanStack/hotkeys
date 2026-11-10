@@ -67,6 +67,8 @@ function widget() {
         child.addEventListener(eventType, consumed)
         const bubble = vi.fn()
         register(bubble, { eventType })
+        // A keyup hotkey fires only for the release of a press it saw.
+        if (eventType === 'keyup') press(child)
         press(child, eventType)
         expect(consumed).toHaveBeenCalledOnce()
         expect(bubble).not.toHaveBeenCalled()
@@ -76,6 +78,7 @@ function widget() {
           eventType,
           conflictBehavior: 'allow',
         })
+        if (eventType === 'keyup') press(child)
         const event = press(child, eventType)
         expect(capture).toHaveBeenCalledOnce()
         expect(consumed).toHaveBeenCalledOnce()

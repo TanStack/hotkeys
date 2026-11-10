@@ -72,10 +72,6 @@ const harness: ConformanceHarness = {
       'createHotkeysScope owns registrations but has no hotkey scope; use core activateScope',
     format: 'there is no format helper; use core formatForDisplay',
   },
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > folds the case of a letter like core isKeyHeld': 'BUG-067',
-  },
   act: settle,
   async cleanup() {
     for (const dispose of disposers) dispose()

@@ -142,11 +142,6 @@ function HintView({ spec }: { spec: HintSpec }) {
 
 const harness: ConformanceHarness = {
   name: 'Preact',
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > matches named keys case-sensitively like core isKeyHeld':
-      'BUG-067',
-  },
   act: (change) => act(() => void change()),
   cleanup,
 

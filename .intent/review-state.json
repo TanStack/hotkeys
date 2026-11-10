@@ -3,11 +3,11 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "bbcf48c10aef7ad583b8e54b52273dccbf1ff3820c0ee9a8cf9be3e294178379",
+      "fingerprint": "8517f362333e894e25467cc9fe5ad7435d02a83bd5643a27331e7942e9e72228",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
         "packages/alpine-hotkeys/src/createHotkey.ts": "08e400a0a96bcb87e4cb16a45f4c60471aa74110195ec8d66dc83283d2913531",
@@ -17,20 +17,19 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Changed: packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "9b57702b3468b0a54eafb286e0af439f43db5e3a79d8d429bbd0ce67ae51a903",
+      "fingerprint": "6ba0dfa26a637873bac1e2fd31d0edc2db5ab1c04a50bd5ab2573760486d3fe8",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "7418b6ea2d0281a448d8ecdb6d8afb4bcfce933317cf20fc4aaeea0d3ed75731",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
@@ -38,19 +37,19 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca"
       },
-      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
-      "outcome": "no-change",
-      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
+        "Changed: packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "b4c0c84cdaaa61e5fa6ed092683a343e4a15d08be4dd67709d971939f32fcada",
+      "fingerprint": "58e648d9847d8aa3836f443690926821e29dd3d02c551bf1dd49fa19ed1df615",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "6c9497f8565c916f25506582867677979871c0679ab5635a5c4fb92644144087",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -60,12 +59,11 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
       "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "Changed: packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -96,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "c2a4d29147934f12ee7b36f77ab20f162752c86e980eeea8255c6ec5d3684709",
+      "fingerprint": "f572ed21040e702ff7740050a780e365904cfdcabd0fa3badc7dabacfa2051b9",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "5862cf272972e2d00517ccc93d417150baf7a232861731458e727d09d0192b6b",
+        "docs/guides/sensible-defaults.md": "972ce216cf65039d177c263b963df1ec847f108785e002a0f5c9d6c85716e75f",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "79bfaf12d2d47b454018419fa18e24796b780ad3ab56d974cf57d3672fd4694d",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
+        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
         "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -117,57 +115,57 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/src/match.ts at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "d7098450b6294cd4577a9b18ca350e6d718e58f8d57154160c4a39193c1b9cf3",
+      "fingerprint": "37f6d7ce6c3fac3d64269325899d91958ffe3b5444335375b9b66212b2703276",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/lit-hotkeys/src/controllers/hotkey.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "fcd5e61546f71b0cf1c3ebe3230fde6446cf83d49d39bfe7d71c4f53b2720890",
+      "fingerprint": "60df690bbb657503f06509f8af98b459b3d88c66ed48aae1d57ba77f8b4cd70d",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "11f9befb38cefc78b4843ae5ce77c5d30f77983ce76c5ce29f2250f654990c14",
+      "fingerprint": "24b5328be2b1b5d7b3ca580ed3a733817ea0f33795283517eae68db2311d6378",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
@@ -175,19 +173,19 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "85ec9a6335582a4dc195c48524d38ec66e4124682f6102dbf3c1651cce0c9516",
+      "fingerprint": "15e267b924a52efc1f6c74c8e5172a5ffb1f5fc059018592a88fd7b79a14ddc8",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -212,38 +210,38 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/react-hotkeys/skills/react-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "0b4503e60db6f3fb4075adaa725e10fbe98c2d33c78a779cb38c93a449b6dae6",
+      "fingerprint": "3e4d7ee87eade873c16fa52454598ce8124e67585af2b6ae7cb5c53e7547cbe4",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7a4da3465b0282831047aca27567a1e1251e185e22bd009bb1b0c34b4fdc58fe",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "44fe2f7db6f0d102e2d5125ce15190d898af1352b728e254e84d75aff55602e9",
+      "fingerprint": "adaf63d19f44f8ce74242c2cf5649c569ed132bc46a6ae02332e24d943e0751e",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
@@ -252,20 +250,19 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
+        "Changed: packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "3c989b2b3cac71a7e1c9a434a03bc59714fcfc4f14043595272e8540427c6313",
+      "fingerprint": "6be2543ed6d4c3f50005d8e3b92058e63806fff8655f4bba63943ab2b98220c1",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -274,15 +271,15 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "5291d39ed7e23cd25aa8d450253cf34844c1a937796ff722159bf72f38c09294",
+      "fingerprint": "c34ea4856acbd18167e23d87ff794691b4b286994bdedfcae84c3c6a4e3e774f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -312,8 +309,8 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "5862cf272972e2d00517ccc93d417150baf7a232861731458e727d09d0192b6b",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
+        "docs/guides/sensible-defaults.md": "972ce216cf65039d177c263b963df1ec847f108785e002a0f5c9d6c85716e75f",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
         "packages/alpine-hotkeys/src/createHotkey.ts": "08e400a0a96bcb87e4cb16a45f4c60471aa74110195ec8d66dc83283d2913531",
@@ -322,14 +319,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "7418b6ea2d0281a448d8ecdb6d8afb4bcfce933317cf20fc4aaeea0d3ed75731",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "6c9497f8565c916f25506582867677979871c0679ab5635a5c4fb92644144087",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -342,32 +339,32 @@
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-manager.ts": "79bfaf12d2d47b454018419fa18e24796b780ad3ab56d974cf57d3672fd4694d",
+        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
         "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
         "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "69d7f274ae7261ebf6386711606511cf4d1199a60e6ed207d11293ce858c9142",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -391,13 +388,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7a4da3465b0282831047aca27567a1e1251e185e22bd009bb1b0c34b4fdc58fe",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
@@ -405,7 +402,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -414,11 +411,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
       "outcome": "updated",
-      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/src/match.ts at 3393aa308027f7b6b66e0599db868c9f7502f338"
+        "Changed: docs/guides/sensible-defaults.md, packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md, packages/hotkeys/skills/hotkeys-core/references/testing.md, packages/hotkeys/src/hotkey-manager.ts, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md, packages/react-hotkeys/skills/react-hotkeys/SKILL.md, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md, packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -645,27 +642,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "2f9e4ba093b8b424f8c2a0e2786799403ec04592d5d76b384ce19ad2ef801fcd",
+      "fingerprint": "03d46acd7cf3491ebaa5b5fe13276fe6e783ddadf36e398b291afe7b4ebfe1ad",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "69c54fe201dfcbe1fabd504ba25459e84239163c8fc924810897e93c1aaafa0a"
+        "docs/reference/classes/HotkeyManager.md": "ea54e5cba956465094e33aa634210f025dc8cd16ce32f1eaa1a188cf50df4f91"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/classes/HotkeyManager.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "54ef256bd8e12c8f627e19d83be2ef4322d3e6ad60fed66e4ee1e924e5e0d133",
+      "fingerprint": "9fe065495ee0dd19d1f0ba49d570ea9e6b5353642ea7fc9cab1988116e99d51d",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "dc0f9a4df86b9f1b907493daa506f4ecdf11723c7f617fa2010c16be6fce5256"
+        "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/reference/functions/getHotkeyManager.md at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1405,15 +1402,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "2bc159558628e9016505ea5c40f04a6d7fbe1749e5b0c315bdd76aeafdbc55bf",
+      "fingerprint": "b2501dbb38728fdb500f75b6ef2030c41b302ca8d1555e7dc17ef1bf112ac906",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "0870f7ddeec949db21ab7e3c3a1ae54b13482b13eec6f5c887386c4674739f07"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "0142d4a49a85477fec386f31ce4fc4b69816dc175336aa2e9778d1ebec8a27dc"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -18686,15 +18683,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "a99f6fe4595c51288f64bada953edb71532097023f1069a959177ab74b7c21ae",
+      "fingerprint": "91b2abb6444c80c3527b0d3c969ded4d9d87e2842e5ab0ed791da62530709a91",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "1093dd6b68a3827207938d0b1da7811b87ab4624b93384dc30d6e4fc8e58c9a9"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "d90cc33af00d68d175463a1210eaf759da508652e8b2fed5eda8cabb83447e27"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
-      "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "head": "231abba14de0e55d8c09fcf57d2ca7de7605e3cf",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #259's sensible-defaults and testing guidance unchanged by the merge",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 231abba14de0e55d8c09fcf57d2ca7de7605e3cf"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {

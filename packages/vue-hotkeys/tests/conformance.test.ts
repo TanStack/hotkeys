@@ -117,11 +117,6 @@ const harness: ConformanceHarness = {
     'callback-identity':
       'useHotkey keeps its first callback; callbacks read refs instead',
   },
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > matches named keys case-sensitively like core isKeyHeld':
-      'BUG-067',
-  },
   act: settle,
   async cleanup() {
     for (const remove of [...mounted]) await remove()
