@@ -1,5 +1,13 @@
 # @tanstack/react-hotkeys
 
+## 0.24.1
+
+### Patch Changes
+
+- [#262](https://github.com/TanStack/hotkeys/pull/262) [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a) - Lit controllers no longer register hotkeys or subscribe to stores during server rendering when `@lit-labs/ssr`'s global DOM shim is loaded. Before, with the `connectedCallback: true` render option, every server render left its hotkey registrations behind, and reading held keys threw. The core key state tracker now sets up no listeners where a `document` exists without a `window`.
+- Updated dependencies [[`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a), [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a)]:
+  - @tanstack/hotkeys@0.27.1
+
 ## 0.24.0
 
 ### Minor Changes
