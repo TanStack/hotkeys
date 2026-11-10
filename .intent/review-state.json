@@ -732,16 +732,15 @@
       "evidence": ["examples/octane/kitchen-sink/src/main.tsrx"]
     },
     "source:examples/preact/kitchen-sink/src/index.tsx": {
-      "fingerprint": "d912cb2db353142612938c3b6f33e3745c787c330b829c6b3328945fd66797cd",
+      "fingerprint": "b7a3fb6aca940ebd6860bc7fcd7024b4975628c2276abaf237996ba0880d3d79",
       "snapshot": {
-        "examples/preact/kitchen-sink/src/index.tsx": "fc3b2587fb4e833fcd6c65044e3ac570ab732963f02d14e6837f0cea2ab1ffda"
+        "examples/preact/kitchen-sink/src/index.tsx": "073d7fff5ac116db47986d4bc6da281dce502679f16a92694b3db4a8738372d1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/preact/kitchen-sink/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/preact/kitchen-sink/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
@@ -1249,144 +1248,172 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "b9fa357f78d458615d84a552dc58c16bde5e516f3f0837db9078183c6b135ff5",
+      "fingerprint": "f18c344554c0751d5dbc52dac6d782b33c47c6b4118c5407a1824fe9e626a5d2",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "2a24817f3c6e122715781bc877915b8f9a0bc9701390633340af575598018fa8"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "8fc3faea720b69b37b3b3da8432d6bff1f7d62c935f7730db85a6f224e34e074"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "97a2dec6542d836f96f2bf108e4bda728dc7f83dd89d1e8d9ab684aee571e154",
+      "fingerprint": "471b5ff35ceed15ab2379096fd8a86d5d98a52e6407a14d2594e11db6afbe551",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9fb0f01696e9068da7b36aad9cb0a4485128ef8023a56c559ab73a639285746a"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "7e66475fabd9b52b3a5a4cbf74be26450119d28031105ef9d8c109cc0d40ece5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "de71b6b334cb469e3dd2093cbe87c50b9b15faf85dd09f039dca64f71b1c9ee7",
+      "fingerprint": "a93e244b16a2d5653a0c2532776df0396b5b3b0883673374ce692439e417c1f1",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "6f0a5827599dad1aac6050ad14a12bbe27ee1d6357527e61c589dcd30f7cc76a"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "bda51733077001fb874bb3a7bdc6157efcc35cb9953efc8fc6caf639bde34df5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "00a23dfc95b8bffd244504efa39dd735a14a3fdfe083364ddaac6a53e734cd08",
+      "fingerprint": "f5c8f1e86568f496cb0d56bd0e4f416307f5a98ad265c9bde163d9bdf915c4e2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "48e6155d9612d955467a046593a876336ec618479be49b51390ad900cecc574b"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "5dfefdc0a50fa1f3152bd840d5dbd69955540d0b3fb47cfd3666beffe21956c6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "2835d7ace469d26e978c8b51181d720ef20aedc6b9f2ad170fdee0d39d5e592e",
+      "fingerprint": "69afb14255202032c4318bf535598d747ea67f5e84c90f5579d056d11c87b083",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "4c569d44310a6f745abd6d5b1edae3748517b3818a69d3616c5b6c9948b47283"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "02ac6ef9a67d8e02c812ac671d0b88cf6770346a6e3dcb7774d9ed034e7c8d1e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "a5c2b8c1ad0297a536794b94311ef83f069f1f6c449d3d77437e755a41146f13",
+      "fingerprint": "ac8a0e3c3b94afc3d999ac075a07143628ced2cc38d7cc1fc0aae08666cb7b9b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "4f9790d218cd27c1bbb52716bd4b604b91681ec23d166164f1b2161dad75686e"
+        "docs/reference/interfaces/HotkeyOptions.md": "ca0e99b9a9f164fc1350dbd4e62b004b0266c3f6c202ec29c40542e8f98792d2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "f1f304f98a07cfc3a607cf0c3eef5945300bbfbfc533c57d3c691245a678867e",
+      "fingerprint": "cef7f0fc8a97f26582675affb8c805e62696189fd5cadb48e9521a2d0e6fff45",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "a099aee79ed5cec6fcddf98668f1348cd8c22e681f27ddd7d8e0cef0e5626542"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "2974d6dce977d3f29ce44c06922d7c6d4ec38ae577d149c20f40f279d44118ac"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "8f27f9089951e074b8bc1d8bdc227bcf6edf3f2e0a8df1a17ba7deb01bd0e31a",
+      "fingerprint": "4392a43c4cab032182540dc5e1a3b1553987794042739eb019d790f7770b7f6a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "deb97a27b6d409735940ef629767a7a74970cb44c15a32cab2919e7a0a5f11f2"
+        "docs/reference/interfaces/HotkeyScopesState.md": "cf2e27863cbf1d7cde01cd5c6cee393c87b86c3fe1ee88b6f5faeb414cb18dbf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyScopesState.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "bc588b9ea0b5d9917e0ef1c63de5e10831069611c63d3549bc678d3bdf65cd32",
+      "fingerprint": "2102b6154ae898935715013e20a433c4049ceff82516211bf9d30a06b43b9ed9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "a166c94a6a441ae48f13afc0b55ad0ae081f3a35ac3839e5efc0d02ffaf50ceb"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "c7e1ba43f23e358570b2f71ad83e66a65f184ef8b9e7742f1807ba26ded59ee1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "fc2c8cb37e69a10803430a6a3983b91007ed48c8605a54f0efcd3079720d1b54",
+      "fingerprint": "5f1ba7c9bc1675698db03894bfde4a99f6759d04396cb5b2ad600559e255c0c9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "7b3775c680bbeda3c7d24f469135fa577831033f14141657c146495c7a0c3f68"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "834806e9fcba20663a14eb1fd4952f834e91b231d1bb749023f20f3659c94995"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "d21d2b885e465da97634400f1aa99fa80caa66e0f395b5039d2ee815a6ecc694",
+      "fingerprint": "eb195a1a1d206db6fa6838e58c71d0dbe3b6994b675adb6be11154a9101b2edd",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "703a67e4fe7a343d2719b595c2a42104e62abef5a80c35d458a4c5230f71d404"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e451453e3ca46393b91bc0e22fa2c7ec80820d4e96443c8cdac73a1a3110da8c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "3e7d43da18044347fa4fb66327da529ad5144b30d28cc043ac400b540c7604e6",
+      "fingerprint": "fed7cc376123babc00eeb74086a70611d865b68525e8c6658708f5794799f9d6",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "30412fb5912133ce1117c1aca657d6b6892c4e0c80a915e2f562fdaa9a2ba0d1"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "81fa9a1359b144b781fab3cd54f0534858e790f50ca30a26397f08cd38227de6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "b0c7921148741652467bba42717ade2a8f7fcda2bbb4205b894f767ca3af0156",
+      "fingerprint": "4bfc63b1579b86de8aeb6a21cf4022af452708fc6c7bd91ca8f511170d74ebb7",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "90bddd7921f394b777d0f352396115ad68dc04b69d58fe7e15c9a2e9229ae4f0"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "fabdb7ea7b17dcffe2ad60e532136608fbae233a58c4889960a42531d3cccf38"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "9bcb41f0e56b9f5e6b833fb5e52ec6549b54e17722abccbeabce14c7428133ae",
+      "fingerprint": "609c8c98e275e1dca1ae0fdf14053505e427e32fd1e5c5b333e9faf63b74a807",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "8d8b1ed0b39ac6ad6962763b9b03aae8d625289940ad6303ef89ea74bc14c36d"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "9d4cd7bfa7e8cedd81ee3fe8592a9a1351e89007516cec32f8ad98ac5e6f9e0c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "2a5725926ea2e1eb8075092d690af0dad7bf153a997c27f15dfb8269773c3d70",
@@ -1974,14 +2001,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "40961681c73293171164dc485d358407dcb044de15c6f32a0f5c51e82f2968d7",
+      "fingerprint": "0f22797bccd54fc0b1d69f2414a6e6705714403977304c3e4b7767cd77a412ad",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "5440406635d858289cc189b752cc4ead1f35aa5d3bc1cda97fc08e135586199c"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "4d98e243f8c72bd21973842904b66cb06a34c36a99d60e7bc42f4b69af8d1680"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -2594,15 +2623,15 @@
       "evidence": ["docs/config.json"]
     },
     "source:docs/devtools.md": {
-      "fingerprint": "0d96d99c22bf4ab92be7d2a0db8af69c80cd3d1c7212491ecc532d1749e7553c",
+      "fingerprint": "f23246ab0c1af1ae9b82ea5e36d4666dac80ec702289a7c3142796bacada787b",
       "snapshot": {
-        "docs/devtools.md": "e9970ffe470f99a5e8b80966adc1bcf540534fa8551609753ceff2241b43146c"
+        "docs/devtools.md": "9e817838e2064225920014cf650f07e3916012acd1e0cbc6b96c28759cff471e"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: docs/devtools.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/installation.md": {
@@ -2755,15 +2784,15 @@
       ]
     },
     "source:packages/react-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "4c970fb9c6a105c017b45649a05a7c57675553931f34f7df08980d5972e7769f",
+      "fingerprint": "625d909ed08f6f525a66c4196e0a0bc17a96ef3d967aafd5b6ac6c43cd24110e",
       "snapshot": {
-        "packages/react-hotkeys/src/useKeyHold.ts": "e76910741ccf99ff32883c4a9ec6ea7ca4c7107c77a76f81d3572e59efd47479"
+        "packages/react-hotkeys/src/useKeyHold.ts": "4c9860d5c3e7bc35a56b83012731a892ad3df9a2538ac7ea31533471ef2b0a55"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: packages/react-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/react-hotkeys/tsdown.config.ts": {
@@ -3276,16 +3305,15 @@
       "evidence": ["packages/hotkeys-devtools/src/types.ts"]
     },
     "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
-      "fingerprint": "2c1972e7133c52d2f1247b9e3f4e70f720560739ffc2f770950b3586bcb564f3",
+      "fingerprint": "b928b04ccf3892531121045d196dc73ebe89d60f11f665d7bd9179d3d68b94b3",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "98cd2a3bcdb5d82c9ea851d9190acdd9e653e53a5af18cc77f0ae9758649af6e"
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "6fc3dd5499f2b2e310a59f4e07e37fbe0bc269b726f52404d377e909a01e7d39"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "Changed: packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/preact-hotkeys-devtools/src/index.ts": {
@@ -3312,16 +3340,15 @@
       ]
     },
     "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
-      "fingerprint": "f16f8829a583fafa8cee89a9eca6197c5cf1b649efae1c9e50474a7e46fea639",
+      "fingerprint": "c13a5343390a279bc43c3b2dfecd7c727245e2b6c3897f79cf3cdcc2bfeb5658",
       "snapshot": {
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "17c8cf0b9d03f40eab0bcbe26d5a2411a959407479439e06c32176e0efbf4ae9"
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "64223ead3e2f31f85ed2355891f81ed55616a3b30dffc8edc33d875c123b23f1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "Changed: packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/react-hotkeys-devtools/src/index.ts": {
@@ -3478,14 +3505,16 @@
       ]
     },
     "source:packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": {
-      "fingerprint": "6b3c933a7237a4ffcf8b00a4b2977e4c5e2154af3f33f60b4dedefadb6c9d8e5",
+      "fingerprint": "6d3f521f363b23ca97dbb064e360a2c6c4b67a79aaf7431771623078b4263519",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "49f2376bc4b2193d54dc4f622ae9e0e7f0032775a89f39edd802f2f802e80bb5"
+        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "c54b90d63f720299e6690872dc3f3966b8d9aad67302b5993093f4b9b24aaa87"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "no-change",
-      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
       "fingerprint": "86cd9041e2274f724820d69a0c44727a878166505e770ecab7d5594487827862",
@@ -3690,14 +3719,16 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
-      "fingerprint": "a66a88ab6bc2a99e83fb048f598aef26be52375792ca397225159ea258e00de9",
+      "fingerprint": "2424528711461290efa466cdd68cf9353a2d4adf4329b27d85445861b759b768",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useKeyHold.md": "c316054e8a99cf175ce8a35cf552298e270f74f11aea8685ba219cdbaeff79fd"
+        "docs/framework/vue/reference/functions/useKeyHold.md": "b8b660372150b459a8689c7702394bb029b50469564ea2dd48d2919301eed74e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/functions/useKeyHold.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "ce00fcce44d464eb1290d54905a7c104ee50cd85b521b5608b090a36ac8956c3",
@@ -3771,16 +3802,15 @@
       ]
     },
     "source:packages/vue-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "97a669ba10e6d540f507049f6626842e9a6037c42cf935e2cfa64c47c74b4380",
+      "fingerprint": "1afa5502e5359a0ec90381b4f8c5944f288ee45e286d506fc05a85cd578e464e",
       "snapshot": {
-        "packages/vue-hotkeys/src/useKeyHold.ts": "456540bbfd7e53c5e083909dcc90c6def57087fdcc06a18a5fd0b666a6d5bac3"
+        "packages/vue-hotkeys/src/useKeyHold.ts": "da096cf91adb7c35bf10229c15a34bb6ea85f53c0a427d569ded111afb6bda8e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/vue-hotkeys/src/useKeyHold.ts",
-        "git diff origin/main"
+        "Changed: packages/vue-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
@@ -3833,15 +3863,15 @@
       ]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
-      "fingerprint": "2b4dd8b60e3a8fe1b65ddc953232a795d684b5340cd4c053b497e08a21dc038b",
+      "fingerprint": "280489e84cb925c5b570e32df04f8a221a0edca5ba02a2f2b56a174a47c9cecf",
       "snapshot": {
-        "docs/framework/lit/guides/held-key-state-helpers.md": "c5d21bc202b34ca0e357f318a894b00999a5efc118b42ed3a4f9845f0229e171"
+        "docs/framework/lit/guides/held-key-state-helpers.md": "b8597d849a2bbf0b42fbab350b750310a0126d1adf877319005c827e0665254c"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/lit/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
@@ -4077,16 +4107,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
-      "fingerprint": "e166db621ccab212dbb73bc3ccbd84ac8c1667876363b8bc5795b104573464b9",
+      "fingerprint": "9570311f6e6b7e54b2c643200b30f9ce1c75e8ddf01dd32e4b71afa52f45dd5e",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/key-hold.ts": "06480d1b8391fd5457aca88f986168af5dd20d19223f2f97ab45d801ba6ea07d"
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "e70321d6d9b54d45b71c634268d87db882af5d28ffd4c95989b2f9e7940019e9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/lit-hotkeys/src/controllers/key-hold.ts",
-        "git diff origin/main"
+        "Changed: packages/lit-hotkeys/src/controllers/key-hold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
@@ -4993,14 +5022,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "6670895bfe71b01411240ec06cc16ce2fd56b909d82249eca5b1a217630fe4f9",
+      "fingerprint": "ce2ea1981ea78149b9ec8de8257ad9a5665717ae08c3c263696a6aa6dce5c2af",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "5db89a51051608fa6e511962016e7fc5c80ecbd039f7f0e4cd9a4e8082edb708"
+        "docs/reference/classes/KeyStateTracker.md": "c1d59abbd63be5777f69109b243df6f51ba0d70211ff29389b7a8d4f5634e7cd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/classes/KeyStateTracker.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
       "fingerprint": "4b7c3cc31cefbf1f7b3f7ba68f338dd7120a43e14074a0693c94d4ca8546e8c3",
@@ -5013,14 +5044,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "307bb9f1e85914e9afa569880ce926a952d1e16c0adee2324cdc225c6d6beaad",
+      "fingerprint": "03d1cd4690abe616990e628ebb7c33521c9d6cd472218117d472f667346317c9",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "6ccd16f6390e065b8eccf361a7b58852ecd82a809bf2789bd65b90d959360406"
+        "docs/reference/functions/getKeyStateTracker.md": "3aa5234eabed1a1881f65a04e5a40ad83161d945cd50efc5aa8d85bdfe7cab90"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/functions/getKeyStateTracker.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
       "fingerprint": "2da54abf6ed64dbc2fc89f39415f162e89933e1453815046bde18f7e2df649e3",
@@ -5083,14 +5116,16 @@
       ]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
-      "fingerprint": "7c171100e7f40ae4f30930c006319c451aa6bef5cfba764b5dc2bf6eaf715786",
+      "fingerprint": "2f7f2627a76e706f783dea240bb7178be195cc117e065330257252f410b35ffd",
       "snapshot": {
-        "docs/reference/interfaces/KeyStateTrackerState.md": "d47f93b3c10f4213408dc9a05fa990ba4c088af1a17e8a8588fdacabb7a6d8cc"
+        "docs/reference/interfaces/KeyStateTrackerState.md": "5554f5e50d96ab1eddeacf6a251d249333314b216d595c9ecdf587246ab3499e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/reference/interfaces/KeyStateTrackerState.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
       "fingerprint": "1ae4e5e154bfde4f4ca76bd1484e4377f1f4062c16f31361c7ab9d5378b66479",
@@ -5229,16 +5264,15 @@
       ]
     },
     "source:packages/angular-hotkeys/src/injectKeyHold.ts": {
-      "fingerprint": "5abfd0a6ca84ad53df50bcaf4dc5c00ef86302390d9c4be3a91c963ff668d4e7",
+      "fingerprint": "90c12e53593ec89d5e52c9b7e460324fc0efa2a502a9bd86de5dde701c293ca0",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectKeyHold.ts": "382c856b7db930dc287413b7448c996f50c5dd58a40a6c86d03e09f58417ea44"
+        "packages/angular-hotkeys/src/injectKeyHold.ts": "a675494b213391097b2f3196a43cee0d114f67cbe6847bdbf8ef6c955792a171"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/angular-hotkeys/src/injectKeyHold.ts",
-        "git diff origin/main"
+        "Changed: packages/angular-hotkeys/src/injectKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/angular-hotkeys/tsconfig.docs.json": {
@@ -5334,14 +5368,16 @@
       "evidence": ["packages/hotkeys/src/adapter.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
+      "fingerprint": "e75e7ef25b982bf96ae4e978e6f9ff27d663e0a886cb52b52750a8992e61c103",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "a2ffd7f015f7661cc8e3672641ceddea687b54736b47c8d7cea0a66fb6706222"
+        "packages/hotkeys/src/key-state-tracker.ts": "e4fb4ada0c037c0c7d477e800d4a31c717f8ee182e200e94ebb706ce126e575c"
       },
-      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
-      "outcome": "no-change",
-      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: packages/hotkeys/src/key-state-tracker.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:packages/hotkeys/src/validate.ts": {
       "fingerprint": "6af8ee5b18c34f71a878d1577552881156c8d451086015a977ee4cc8cb0dd88d",
@@ -5480,15 +5516,15 @@
       ]
     },
     "source:packages/octane-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "380fd3dc18467de8ec7b9536e3264570c1e3a9ebb2f0f08a602a1ff2cace63bd",
+      "fingerprint": "b457249a7e65f85db910bb376ca63a42da1576ef5c944e65a0813c95259396eb",
       "snapshot": {
-        "packages/octane-hotkeys/src/useKeyHold.ts": "bdbe902ce9bf7ba9440cbcb361a2348fb5d48fc65d6edee8578b6ee4b6c252f4"
+        "packages/octane-hotkeys/src/useKeyHold.ts": "dae167d98e94bbed2e736396f004463ae43a5043ef79c6528bb54be07dfaefcc"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: packages/octane-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/octane-hotkeys/tsconfig.docs.json": {
@@ -5590,15 +5626,15 @@
       ]
     },
     "source:packages/preact-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "3cc0de3bb22a3238fe53233d5293401fd7d9bdd48fa6acec91eb70fc76a4edca",
+      "fingerprint": "4f6cb04a792a46046ce27a587fc6e9c5b4fcc7e5cc3bc1e737c03af3c7321543",
       "snapshot": {
-        "packages/preact-hotkeys/src/useKeyHold.ts": "74c85ee75fa8cd5a97f69b32b718c13be82c725d839e041bc7a83c8df5b061c3"
+        "packages/preact-hotkeys/src/useKeyHold.ts": "590a5eb94475b6adb7b53655d24fad4c046de1920da002c23a362a6a1f88d259"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: packages/preact-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/preact-hotkeys/tsconfig.docs.json": {
@@ -5711,16 +5747,15 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createKeyHold.ts": {
-      "fingerprint": "d962a568c144f8d62b296051a8e9f5a1284e8fae0e850282da0ae9036580b20e",
+      "fingerprint": "7f75ab3ac77f8f66c50a4e1c646874fea37fb84f6101150a79093e26779014dc",
       "snapshot": {
-        "packages/solid-hotkeys/src/createKeyHold.ts": "cacd495d4e541b5dd6e02ff9f983795008e4a5eb265537377636221a168debb9"
+        "packages/solid-hotkeys/src/createKeyHold.ts": "84ad717c7eb92e6a53221bd733ca8d4a4f3cb0e9b26a02fce4ae98394157c5f0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/solid-hotkeys/src/createKeyHold.ts",
-        "git diff origin/main"
+        "Changed: packages/solid-hotkeys/src/createKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/solid-hotkeys/src/defaultOptions.ts": {
@@ -6006,14 +6041,16 @@
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "276247497a61456184ea3d777b9967aefe841854b30e0a9e185a74685c6ff273",
+      "fingerprint": "3795162375058ea78f60ffe4522a103725986efbe592f32810c9a367b0a06a13",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "3b31febeeba1ed07dff51b0cd7ac108d135be3f0f52b694efdea8ec721cd0e8c"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "ceeef2ad32ec186171f76dfabac5108dd1926808c56c9fb02738710167fae15a"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/framework/alpine/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
       "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
@@ -6029,15 +6066,15 @@
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
-      "fingerprint": "1e4d1fb31501da964c5f40fc725058754af0c22802f08eaf9eb7abbd052a8a99",
+      "fingerprint": "0b6d2403f9c19941948e89adecb45911ca5c42eac88e40afeecc47193b8d090d",
       "snapshot": {
-        "docs/framework/angular/guides/held-key-state-helpers.md": "1fb609defaf57da29b82bf8f66b6196c3bad4a522dd6755ccc27893bc6a8719f"
+        "docs/framework/angular/guides/held-key-state-helpers.md": "4b970774132cfde022b78455650152dbbebd64f35bd561f26a784567cd816a26"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/angular/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
@@ -6054,15 +6091,15 @@
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
-      "fingerprint": "1361fccbe4aeb7c4980a7423dbd08c9110f1ddf6503af0094fd40fecd7293daf",
+      "fingerprint": "23b9f642d0e72d9db53c8d13b7a1b50d67da5403a0ffaff11ca2f0c713d55f58",
       "snapshot": {
-        "docs/framework/ember/guides/held-key-state-helpers.md": "17cf9d6e6075661c70f3fe7969064f868e5ca56113145d2fa2db629bae2b1f35"
+        "docs/framework/ember/guides/held-key-state-helpers.md": "9884abe3daba8d165a63e7257f43094ac255d1eff98c6aad4283b65ebcca2fba"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/ember/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
@@ -6092,15 +6129,15 @@
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
-      "fingerprint": "588b2feb0d439ff8a3222761b7a763804c1e75fd532c548e4329dcd0550b65f0",
+      "fingerprint": "c74d921e456d212496f263d2a5d0758bb9f93b4f855fe0cdd9e0119638efe897",
       "snapshot": {
-        "docs/framework/octane/guides/held-key-state-helpers.md": "4f95c063a8bca02be0d40f97ac4814b4c643ba19f9589451aafe2b435329b444"
+        "docs/framework/octane/guides/held-key-state-helpers.md": "a130944ce9d76242ebce62fa91770374776374313e4de1dfc067c0a732f3266e"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/octane/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
@@ -6117,15 +6154,15 @@
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
-      "fingerprint": "67250b4a593c01f60b2db7e287d39218fbccbe6210015fc6a2898a16364cc20e",
+      "fingerprint": "ad99a394301183a0a9a33ac560b50fba67eeda875c7d19d0f86215e899047428",
       "snapshot": {
-        "docs/framework/preact/guides/held-key-state-helpers.md": "3e5a072950b5026f5e062cb57e054a1fa96d24408920dbc4a69d3a153d7d7a53"
+        "docs/framework/preact/guides/held-key-state-helpers.md": "5e1552e76221d4f3dffba7d28057eec1d17fa72f54a347a6090a84429964cbfa"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/preact/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
@@ -6142,14 +6179,16 @@
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
-      "fingerprint": "7199d5d535b36b2a90b2fc1ab33a60e8784180d854731ab9b1c292c8663e348c",
+      "fingerprint": "f5650b06f4d81a4f77d218ba2109280a30504ee29ad94a4a6778e008debac10c",
       "snapshot": {
-        "docs/framework/react/guides/held-key-state-helpers.md": "d7c05465bf82640e4bed3230f009e3ba1e06237f321536a827425cc4c2732bb0"
+        "docs/framework/react/guides/held-key-state-helpers.md": "63682e1373555100dc3353dee34fad1903613b39f0ed27667d5492f154a1d8b0"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
-      "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
-      "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/framework/react/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
       "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
@@ -6165,15 +6204,15 @@
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
-      "fingerprint": "c2a22771ade6594e827a104263fd2a73403de0f29acfc0872144a7b7442e11b7",
+      "fingerprint": "40d934cf1630ce19d150f1201d4337aaafaf0f41c238b21ccc21cea4076fa744",
       "snapshot": {
-        "docs/framework/solid/guides/held-key-state-helpers.md": "b0581adf0c7a57bd0bf137fcc7ba3c31be95a07247585213d4ac05e0d40da4bf"
+        "docs/framework/solid/guides/held-key-state-helpers.md": "5b29856dfbcd2181a45eb18e3a38e62922ebec50f3ed2dc45e42809429e67295"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/solid/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
@@ -6190,15 +6229,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
-      "fingerprint": "feefedfc816e009daa8cd8b0eff6cd9a2294e9c0d58314f5893a290b33a52a6f",
+      "fingerprint": "5ad2d8d08545cd60248b9e3ff237e691d465138d5a05c4d593c794cd44086753",
       "snapshot": {
-        "docs/framework/svelte/guides/held-key-state-helpers.md": "4c0f79c78f9c8b181e1c6cdad9cd61004c46210488d759d48eb20c7a1bca0bcb"
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "1930124622955ace2aead94fd1b79a1b625fa4ed2898fdb7116e451b29ca1ac8"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/svelte/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
@@ -6215,15 +6254,15 @@
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
-      "fingerprint": "3f5b55abad3370c1ffc5b77c15485b3436052dac6b3b7323e78a5fa1849c4186",
+      "fingerprint": "b00969ddd80db5229e2fdc6a4e06f57388956218e4c3d2eb07602da4fa991dd8",
       "snapshot": {
-        "docs/framework/vue/guides/held-key-state-helpers.md": "e7132d83eabff5c8d14edc74ea78d1a7350bc696deded2fb46df68b277cdea7f"
+        "docs/framework/vue/guides/held-key-state-helpers.md": "d47841a0448151610cac311fea0f14a0e0e3bbbcfddccab72ea49efd8c49075f"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: docs/framework/vue/guides/held-key-state-helpers.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
@@ -6430,16 +6469,15 @@
       ]
     },
     "source:examples/react/useHeldKeys/src/index.tsx": {
-      "fingerprint": "992c10670e38a38c4fbb2ccf6caf2f0b9f299532cbc5ecd1ef92a78e27cdbc8b",
+      "fingerprint": "b136216384d329268f66e267dec6d50d96bf1668b44c5d6f4bd2ba166efa4cc1",
       "snapshot": {
-        "examples/react/useHeldKeys/src/index.tsx": "9b9fb1bbe82b6228ef634557fbc65acdac8213127159faa90c1264a5ffe3d7c9"
+        "examples/react/useHeldKeys/src/index.tsx": "ea837c5476aed5dea380e6989b436b3751d7ce6cd7c4b9e47bfb404936958589"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHeldKeys/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHeldKeys/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/solid/createHeldKeys/src/index.tsx": {
@@ -7297,27 +7335,27 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
-      "fingerprint": "a050eae4eafa6eb491b890f2d36f370e6cc454ddb5a10ff44f4dad2ae96fb4ab",
+      "fingerprint": "dcc9532b7f4a8a0187941d747280281b050ae24e03a31023c4ba496cbc47b48b",
       "snapshot": {
-        "packages/hotkeys/tests/capture.test.ts": "4481ad90392efec34d98df07fed5958fbae2afc806cc2ba25f92b472a3802963"
+        "packages/hotkeys/tests/capture.test.ts": "69793fc6d43b3ce2a8ac8eb04eb7453a447f622b314bc3db8a8ed2bf4416e86a"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/capture.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/capture.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "4f18338f43ab0df69f0f7e29e61e6a2c32eabf4ee1abb47df530062741de244e",
+      "fingerprint": "64a264ee244249789c4fc7d9644b715dde9fcca7bd123ba5aad15316e6ee5918",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "f139016bc4e213e073635ad011d6b8b65118b0aef6e23822c50f341597c89a20"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "ea786dd64af862d38a1c58997221f5e85255cc8d41347fcf65b6ea8752c4c6f1"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
@@ -12140,15 +12178,15 @@
       ]
     },
     "source:packages/hotkeys/tests/native-activation.test.ts": {
-      "fingerprint": "5976360c233d330eed422df0d06e354a8091c2b885776c31390d5a70a6d09833",
+      "fingerprint": "31390b01774512595bc67770b90e80e5bfda8d32e1b6921a40f45f4020884649",
       "snapshot": {
-        "packages/hotkeys/tests/native-activation.test.ts": "ebd08d095ddb936e798fbcf4cc6acb0de2584a89d1a70ee56cca681b79e83da9"
+        "packages/hotkeys/tests/native-activation.test.ts": "4cad26affbafe075c268cc536f328ef9d7f2a09cf2f2cf9060542f039a255fd2"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/native-activation.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/native-activation.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectAppHotkeyList.md": {
@@ -12722,14 +12760,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/getIsKeyHeld.md": {
-      "fingerprint": "1971f6ed35524c9b9203bf572b019c6ad5762662d00df256d9975e1668526c01",
+      "fingerprint": "8e4a05cedf09b60f68cf24f0f8148ceec7b7a14b15705c113b8794aa65191a1e",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "4b238cedac1400f7f0967f9199bcc805179e7aee81599d96cc017f40dc85f8c1"
+        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "8f02d863c904fb0b73d1ae52cf30ab6f126552fb81f7a8e4637a65dfe5365715"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/getIsKeyHeld.md at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": {
       "fingerprint": "4ddb2765b3b000fd3da60346cb4487329ecc74a25eb4b9ad2e0590927eb682df",
@@ -14746,16 +14786,15 @@
       ]
     },
     "source:examples/react/kitchen-sink/src/index.tsx": {
-      "fingerprint": "1173d058bbdb2f04525c92b8cae984d43a8d08f2785bfcb0774cce926868d4d1",
+      "fingerprint": "bd46baf90132bbe9df5e1e9ffdf0a2c47d9dcbf716d514cfede6b128cb90de27",
       "snapshot": {
-        "examples/react/kitchen-sink/src/index.tsx": "452a122c7c4204f28a1972e2266c9c8855dff574c09cfe042337d4fd246c34d4"
+        "examples/react/kitchen-sink/src/index.tsx": "d110c5da82d086eb6c38d3dbdd834f62c664b1385e6ca350c1d665f2dc712ec3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/kitchen-sink/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/kitchen-sink/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/editor.tsx": {
@@ -14912,16 +14951,15 @@
       ]
     },
     "source:examples/react/useHotkey-sequences/src/index.tsx": {
-      "fingerprint": "3c4603386d06a065a0ac2686c377440b7ddc72dd52950308fa1eac15493daac9",
+      "fingerprint": "10b7fb5617f395e4ea749bd33aed995ecaf202f1b2645d6838b6bab0800878ad",
       "snapshot": {
-        "examples/react/useHotkey-sequences/src/index.tsx": "ee9a7d39f1a666d75ea35921bfc9510fefcee7bd4ed09bbd634660fe6d3072d7"
+        "examples/react/useHotkey-sequences/src/index.tsx": "2654efd56a688bac8edc3eeea630406be4ee8f74a87f8b68e784c65cb69fba70"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHotkey-sequences/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHotkey-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useHotkey-sequences/vite.config.ts": {
@@ -14964,16 +15002,15 @@
       ]
     },
     "source:examples/react/useHotkey/src/index.tsx": {
-      "fingerprint": "8015479fb3d308a53ef56815fa677ca7dba85e4fe9928389ecc42fab95f39211",
+      "fingerprint": "bb54f437114f2797764c8308f0d1acc7dc375322225aaf360e781f847ab90625",
       "snapshot": {
-        "examples/react/useHotkey/src/index.tsx": "f43d90efa98263d9b0aa3e0f65494e7f7ba67d3f1aab05d3f46ea777c12ba9e6"
+        "examples/react/useHotkey/src/index.tsx": "8ed615e4429ff64538f989620abf043bc152b30b789db8b19c2c1a1d2fe51f5a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHotkey/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHotkey/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useHotkey/vite.config.ts": {
@@ -15016,16 +15053,15 @@
       ]
     },
     "source:examples/react/useHotkeyRecorder-sequences/src/index.tsx": {
-      "fingerprint": "a7694060efe2b6761d8e52b7398f0d5c94d9a1e56b78a51d6ecc3a578b691675",
+      "fingerprint": "2d324988c9d9e8a7f9dce513236492224b5fef8876098ea66e4109dad06574c4",
       "snapshot": {
-        "examples/react/useHotkeyRecorder-sequences/src/index.tsx": "e1f9e6262c19db077b86f9e93c6b1574e65638234daa09682174df96ca1bb1d8"
+        "examples/react/useHotkeyRecorder-sequences/src/index.tsx": "b4c3dc52044df96fd3d520f6b31f89734e741b02d8167107fa61c74730b8c837"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHotkeyRecorder-sequences/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHotkeyRecorder-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useHotkeyRecorder-sequences/vite.config.ts": {
@@ -15068,16 +15104,15 @@
       ]
     },
     "source:examples/react/useHotkeyRecorder/src/index.tsx": {
-      "fingerprint": "d6521ffe876365f7642e73d3c861f683e8627cd087269b5d34a7a82afb5df0e4",
+      "fingerprint": "17d2bc4b4ff80f663311feaafd3cad8b6e43650af24b38d8d3dd9a740117076e",
       "snapshot": {
-        "examples/react/useHotkeyRecorder/src/index.tsx": "2e60a1b1599d79884b6bee17fd0fc07ed4f11ad7e64201f3338667cc99e1d8c0"
+        "examples/react/useHotkeyRecorder/src/index.tsx": "6836992b13484d80b7f35e8f90322cfb52a90092334d63f73ca6ef6a1635cfa8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHotkeyRecorder/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHotkeyRecorder/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useHotkeyRecorder/vite.config.ts": {
@@ -15120,16 +15155,15 @@
       ]
     },
     "source:examples/react/useHotkeys-sequences/src/index.tsx": {
-      "fingerprint": "afcc230073e821a66cb450cd88f3ddedb27426173cc7360a916d5931022af5ff",
+      "fingerprint": "cadbcb8acd4b2cbe6652f002af186b8e9309667e2d34e2e5cca5155926cd620b",
       "snapshot": {
-        "examples/react/useHotkeys-sequences/src/index.tsx": "355267622654d12deca287555d536b4f361527953252f7fad3fba000484b474d"
+        "examples/react/useHotkeys-sequences/src/index.tsx": "489d5d17fdc8627449566829a8c4e00acd15ab4edf5eac91d0db219ae66ceb15"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useHotkeys-sequences/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useHotkeys-sequences/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useHotkeys-sequences/vite.config.ts": {
@@ -15211,16 +15245,15 @@
       ]
     },
     "source:examples/react/useKeyhold/src/index.tsx": {
-      "fingerprint": "98bf0b0fb312a4a39a96beaf993fd00b86824636dd901c5c70bb0aee64beb699",
+      "fingerprint": "43ddf0b34aa211a5785caba5d9f3902668fb4365c463ae4fa3f4581ad24a5623",
       "snapshot": {
-        "examples/react/useKeyhold/src/index.tsx": "cb31ffc9862bd672ed9cd68113696b56f7cac2edb4cda4eb81f9413682f332ff"
+        "examples/react/useKeyhold/src/index.tsx": "47f11a0c627436bba469c6ad1ed12d4ca7047de356564058064ee1b9338627d3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "examples/react/useKeyhold/src/index.tsx",
-        "lint and build pass"
+        "Changed: examples/react/useKeyhold/src/index.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:examples/react/useKeyhold/vite.config.ts": {
@@ -16712,16 +16745,15 @@
       ]
     },
     "source:packages/alpine-hotkeys/src/createKeyHold.ts": {
-      "fingerprint": "fdeeb102236de891fcf46979e65ba1d299231c2bc58c653c6f001cac699a369d",
+      "fingerprint": "e8a4c4ec3f27495ee0d1135a9baba292b0fbdcee4e60e3030d1f133ae7721d3e",
       "snapshot": {
-        "packages/alpine-hotkeys/src/createKeyHold.ts": "6e3edbf9a860dbb0747e120b2838f06e902fa12fad1df0903ed39c88b0a2e979"
+        "packages/alpine-hotkeys/src/createKeyHold.ts": "7bda86195f8ccf538a1fabdbf194e798e0af7073748287c41e775541e0148f4d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/alpine-hotkeys/src/createKeyHold.ts",
-        "git diff origin/main"
+        "Changed: packages/alpine-hotkeys/src/createKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/alpine-hotkeys/tsconfig.json": {
@@ -16758,16 +16790,15 @@
       ]
     },
     "source:packages/ember-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "21d26255cf5ac3eaa39014138f9864699d4945c4461294676e01a02036b246e3",
+      "fingerprint": "6cf59375662099fdcd87aba58ccc8e2803f97480f3da92acd7e42cca0e29a6d8",
       "snapshot": {
-        "packages/ember-hotkeys/src/useKeyHold.ts": "7d7d6f3c9dd4b2d15967a326bf8a9dfffc9b397e03df167c8d05db342c111b27"
+        "packages/ember-hotkeys/src/useKeyHold.ts": "a22803fde8cab6b406ec560055ae6bee857cc65018849bdba22987ee18f73e8d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/ember-hotkeys/src/useKeyHold.ts",
-        "git diff origin/main"
+        "Changed: packages/ember-hotkeys/src/useKeyHold.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/ember-hotkeys/tests/test-helper.ts": {
@@ -16849,16 +16880,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/src/components/HotkeyList.tsx": {
-      "fingerprint": "76b437af2d7919c7e5903107d92ed238450988576850a4b0860d363c756004d3",
+      "fingerprint": "bf580396485e152b2f642a4cba1c735e1fcb90ba230b40b459a5297eb38e0813",
       "snapshot": {
-        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "31947286ecaca0f0d99aef1b8a5f5bcd29ebe866b9b93a93ffd3ad0b579fc119"
+        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "c3cffba3a041a41e77b1ecdf42c0e17efaf39916fbe029b46734eed4e2b81e12"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/hotkeys-devtools/src/components/HotkeyList.tsx",
-        "git diff origin/main"
+        "Changed: packages/hotkeys-devtools/src/components/HotkeyList.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/Shell.tsx": {
@@ -16975,29 +17005,27 @@
       ]
     },
     "source:packages/lit-hotkeys/tests/hotkey.spec.ts": {
-      "fingerprint": "5ca09d1193eb70be8eabbc9f168c21e3af0a52ebb8c20a9b4b50cffbbe864497",
+      "fingerprint": "d6455b3fe0662a67feb53206ea0d65d85be190f518eac3fad24cffefd612270a",
       "snapshot": {
-        "packages/lit-hotkeys/tests/hotkey.spec.ts": "0a7d91a472ed9f767777906b0c4891239ff5ce3fd00e122a641fefa10fac1f01"
+        "packages/lit-hotkeys/tests/hotkey.spec.ts": "9111160159463c64a679306c4f7863372498893fd49327482dfb8e5daa6b5c01"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/lit-hotkeys/tests/hotkey.spec.ts",
-        "test:lib passes"
+        "Changed: packages/lit-hotkeys/tests/hotkey.spec.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/lit-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "21b096e5ba0197bd41294b941c46e74d1a7a1856e5024c1e5be61e901067ade3",
+      "fingerprint": "c6a4c607563e35b74dae988f0528719a4b0658043ef0556e5cf1f98a4708d66c",
       "snapshot": {
-        "packages/lit-hotkeys/tests/reactive-options.test.ts": "8cc11f33d3343cd1df1583eabdcc7253883b8db8d508e68e0ba3b24f42fc93e0"
+        "packages/lit-hotkeys/tests/reactive-options.test.ts": "20bc91f956640a9c67cb6740494a0ed982ae344b0c529592be624ad75dfbb833"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "packages/lit-hotkeys/tests/reactive-options.test.ts",
-        "test:lib passes"
+        "Changed: packages/lit-hotkeys/tests/reactive-options.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/lit-hotkeys/tsconfig.json": {
@@ -17653,14 +17681,16 @@
       "evidence": ["e2e/support/fixtures.ts"]
     },
     "source:e2e/browser/held-keys-and-recorder.spec.ts": {
-      "fingerprint": "1fd0fb7644286581bdd917acf2a21e758516709a4825a2c20ca905b73f72845c",
+      "fingerprint": "896558d884354ea966ed56db8dc99fd132cbe3b6fd29e187de77f541b682b4a6",
       "snapshot": {
-        "e2e/browser/held-keys-and-recorder.spec.ts": "5e158e8e7051c60bb5c86e1a4ae8a39a96820478243128ef52129dce7064b073"
+        "e2e/browser/held-keys-and-recorder.spec.ts": "d584fd1926d17a21c0b4bc256ed301ea31eb439b04ca9babe6713d6adb38ab15"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "out-of-scope",
-      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
-      "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "evidence": [
+        "Changed: e2e/browser/held-keys-and-recorder.spec.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
+      ]
     },
     "source:packages/hotkeys/tests/recorder-tab.test.ts": {
       "fingerprint": "f61dcf3376cd34ee6868fb4e96a4dbd5abf05c974af3ebdd1b76b30eb2c80484",
@@ -18791,15 +18821,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "d826771d4228d9e35eca399a9b5ad885f15166c3161069d0349eee0f9480f921",
+      "fingerprint": "d1fb221fed3c2520ae865c9029a2f4b3a37bad609b2fdfc4ff157cae8830e2ac",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "1584c2c66b771348f5d56855b25a9ce3351dc4b7b01d5e3b753ef5c551726842"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "90c60147cff2ce994256af526f568d854ffe6c5eeed31100732e8fe5bfbe7d40"
       },
-      "head": "5568c96e8da84bf0dab21508c42fc0e5523d5dc1",
-      "outcome": "no-change",
-      "reason": "Test timeout only; no guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 5568c96e8da84bf0dab21508c42fc0e5523d5dc1"
+        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
@@ -18887,27 +18917,27 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "4ee1c17a561f53d6d673e607c2cc7932194fa18ff8aa6712ad31216279d00364",
+      "fingerprint": "605a5ced7772c5076ce5bd9f176f8269ca92fc8c137345b8ba171d19f03ee1e0",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "510b5da3f9b7d7b371e5424232fe43e4ef39efee478cc7cb70da4c0aec0554fc"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "f75108c00038279561a92b8df8b4a8a564711910fc0932b864e3ad48630261b6"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
-      "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "86da49f2c33a31fc4110e155e41c50287299558583b6c78e7624b0fa7826811e",
+      "fingerprint": "30f02a52467317d2b6efa97dc9d8cb4e0b468ac2b3addcd5ee545ea52dd791a2",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "234894e600ab778ea8e8563f039d6868565073e45ae10a4793e46f48a3a49555"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "d5902efced7bab293c596b05d2cb7035a8af6a1feea6000860499d8b9aa838b8"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
-      "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
@@ -19151,63 +19181,63 @@
       ]
     },
     "source:packages/alpine-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "d517d6498fe53f07db2707384084a5a1e522ae177f974880912e12d1072b0826",
+      "fingerprint": "227e71dfd76e28b1304de6dd3ea86f5421fabc6f0805b6e1e184638b573646cf",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/conformance.test.ts": "b132063506da2f05567bfcdd249175c8274d8afa94bb3ebd381a48da79cd2445"
+        "packages/alpine-hotkeys/tests/conformance.test.ts": "26dfe59d04c4cebeb2396c3ef29ac114b229afaf6b6c5bbf8d178cd926437168"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/angular-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "120c4da2dcb238d0671871c1b681177161bc967bd3914b14feac360efdc3eb7a",
+      "fingerprint": "090be906508be3c67278491913b0d3c1393559c01a9109189d4986b081f212fc",
       "snapshot": {
-        "packages/angular-hotkeys/tests/conformance.test.ts": "b9d97cc76bc28a7d0c5342c3e0dfba5b6c6cd4e63a91b82ee5afe548238d51cc"
+        "packages/angular-hotkeys/tests/conformance.test.ts": "39d8b8ab2b35e1958064c12f72e94ddcbd4b54d3ca27395398b84cddb2b40e34"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
-      "fingerprint": "857eafdbf3e3652434dc1b3ac16e3ecd91cd0158a4f94220c2dceaed3b93a1a3",
+      "fingerprint": "9305901b8460052f36944b6ce54179157f54bff93d51e14a427c759ddd67db8b",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "9041dc306bad1c195aa16f920f1d7d6b46ceb8e867220682583b785bc0e193cb"
+        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "91ab3fc8c1754d2c24751fb45c8a5334766a7614ec2e05bef6904e86d6b58f33"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/lit-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "a97109042e2d1c32ab191907fe81c582d38aba8c2cd80a7cb3bbc51f415c8ed5",
+      "fingerprint": "b025eed2243b946dd92fe15d42cdd7c6fdd140abea41bd591d00a0a7e42e2f96",
       "snapshot": {
-        "packages/lit-hotkeys/tests/conformance.test.ts": "2001a66ef339e237962f5258099f37ab2f3c86b9dff7439253cad9c6ed5323e4"
+        "packages/lit-hotkeys/tests/conformance.test.ts": "43aee0cd7c9d3fd636ce8a0a4ce982390d5e01ec8b2bb240421c23c659ffb234"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "23f63f4c1618af8c82ad2b8f7cfc0463a22f3dafa962a6afe1b9d7c10829a120",
+      "fingerprint": "271cdb4260b9a3e4c36b8386be35d8d324aba234ff06176a43f78d1f8b9d8b46",
       "snapshot": {
-        "packages/octane-hotkeys/tests/conformance.test.ts": "22731fe00db0ae8be1b8892ad1f048ff585e2453b8e2711400a81f2275b21d6a"
+        "packages/octane-hotkeys/tests/conformance.test.ts": "122dc9b3ee6e72b30e03b6981fcd6d3aad9b8b6e38cb1c7e76133f74c80ec9f1"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.tsrx": {
@@ -19223,51 +19253,51 @@
       ]
     },
     "source:packages/preact-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "f363aa5963bc0e767d418cc9a7d131e99e6e209d476a16ee32d4dedf6ebcb2aa",
+      "fingerprint": "c3b2c8701ff05561e886fdd635edc0ad69ed7b49c39804f315c0ac1ba5fcea7b",
       "snapshot": {
-        "packages/preact-hotkeys/tests/conformance.test.tsx": "01852cc1ab76829a9eefd145bec6c14fe335d9df9a51f003a5034200760f54c0"
+        "packages/preact-hotkeys/tests/conformance.test.tsx": "839f1574eb893317ebaf3cae82cc0aaa7d541ca88c30cfde9c4533f51eba5322"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/react-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "28de33e80cb8a9ca999ed68a9acd2847340715c58f7cd0fc48ee3d11e27438dd",
+      "fingerprint": "7c3160c807ff6d2cd3145ec564308b0656754407d017ebfa185ab040834c5176",
       "snapshot": {
-        "packages/react-hotkeys/tests/conformance.test.tsx": "e7958d63873a503579807412a9516b6ad34061b2e58d728616a1f9d2ba199262"
+        "packages/react-hotkeys/tests/conformance.test.tsx": "09afac5a0f06e91c79f092589bb0d6445f4f46bddca85d800f18184f37fefca5"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/solid-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "d0d3048b7e04412207f52eaa84bfa0238767d0a3ea8c3faaccece757cea14652",
+      "fingerprint": "18d37a6da0afd55228595bb3337d56185d98807acba9e185514d4ad906a0063a",
       "snapshot": {
-        "packages/solid-hotkeys/tests/conformance.test.tsx": "1a5c9bd11158d0c97ab7b2d63592a7474ef7bb1f64df16c6723923cc1130def3"
+        "packages/solid-hotkeys/tests/conformance.test.tsx": "12fe5b25aef1416a2d4fc60c8d770e22aa5566bd24aea6434b719e6d1fbe95e2"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "c212146146903c40ca6bd155e324935c20fdabd641d68064f8f19d6b31ffe2c1",
+      "fingerprint": "80ac32fa2d8132883144edcc6401120bf1e3b16102580a8e7b951942c29f2c2b",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/conformance.test.ts": "2f981da66b53d867dfb76b38e3884a8f5a168b9ef15d9ebb06bc64fe458ddcc2"
+        "packages/svelte-hotkeys/tests/conformance.test.ts": "87e4cd0914335811fdaa71c34c4c41cc330b4778b075b85606be35339e4c57a9"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance/Format.svelte": {
@@ -19403,27 +19433,27 @@
       ]
     },
     "source:packages/vue-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "b6832bb2afd9bc14c4f0a77956781750e05e257d4b0957a152ffb2043e81a423",
+      "fingerprint": "090d41717774ff4e46e9e858f6434ad4b9b3c32428bffe7ef08e8048e6bfc4ed",
       "snapshot": {
-        "packages/vue-hotkeys/tests/conformance.test.ts": "28885990612fbdc01b769c60ad7a0462ed78c2c23423a4646f946b0f73810333"
+        "packages/vue-hotkeys/tests/conformance.test.ts": "bb9d919826bd6ef72cb7dab5122236467b7eb7d9e4e0cbd49573578929aea430"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:test-utils/src/conformance/cases/held-keys.ts": {
-      "fingerprint": "4a9c0997ac34ba624ca8f79aa752a9297d5f27e516dc4c9d6d9dc34995afeb59",
+      "fingerprint": "1e32abafbd1b4d9e2382a621f325e522fbc0000cb7c5a9266017cc7d2163337c",
       "snapshot": {
-        "test-utils/src/conformance/cases/held-keys.ts": "ffebd825fee82ca7f97b920947405e6c3d283d567829c8fb1fab3cd0850568f4"
+        "test-utils/src/conformance/cases/held-keys.ts": "b0e402fef39d1119e888f0633c7ec6f986aa52ffc8b629e3be5b43e32b120571"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4",
+      "outcome": "updated",
+      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
       "evidence": [
-        "Changed: test-utils/src/conformance/cases/held-keys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: test-utils/src/conformance/cases/held-keys.ts at f2cc0afac0ed86dd0a68fc5823660c55cdb8eab4"
       ]
     },
     "source:test-utils/src/conformance/cases/hotkeys.ts": {
