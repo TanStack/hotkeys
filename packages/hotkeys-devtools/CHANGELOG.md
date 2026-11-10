@@ -1,5 +1,13 @@
 # @tanstack/hotkeys-devtools
 
+## 1.9.3
+
+### Patch Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Rows in the devtools hotkey list now keep their place when registrations change, so a row flashes when its hotkey fires.
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys@0.27.0
+
 ## 1.9.2
 
 ### Patch Changes

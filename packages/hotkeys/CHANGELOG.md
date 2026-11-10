@@ -1,5 +1,27 @@
 # @tanstack/hotkeys
 
+## 0.27.0
+
+### Minor Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The held-key tracker no longer forgets held keys when a modifier is tapped. Before, releasing Shift, Control, Alt, or Meta cleared every held non-modifier key, so holding W and tapping Shift dropped W from `getHeldKeys()` and every adapter's held-key helpers. Now only releasing Command on macOS clears them, because macOS swallows the keyup of a key pressed with Command, such as S after Cmd+S.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - A chord hotkey with `eventType: 'keyup'` now fires only for the release of a press that matched it. Before, any matching keyup fired it: a release whose press happened before the page had focus, or pressing A, then Control, then releasing A for a `Control+A` keyup hotkey. A hotkey that a callback enables during its own keydown, such as to end a mode, still fires on that release. Keyup sequences are unchanged.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Turkish dotless `ı` is now its own key instead of turning into `I`. A hotkey for `ı` no longer fires on the key that types `i`, and `recordBy: 'key'` records `ı`, which displays as `ı`. `I` still fires on the key that types `ı`, as in native Windows apps. macOS Option+Shift+B, which also types `ı`, now fires `Alt+Shift+B` only, not `Alt+Shift+I`.
+
+### Patch Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - `formatForDisplay` now labels the extra ISO and JIS keys with their keycap legends when no layout map is passed: `[IntlBackslash]` and `[IntlRo]` show `\` and `[IntlYen]` shows `¥`, instead of their code names. A layout map entry still wins.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The recorder with `recordBy: 'key'` now rejects an AltGr press that types nothing new, such as AltGr+Home on Linux, with `reason: 'alt-graph'`. Before, it recorded `Home`, which that press never fires. AltGr presses that type a character, such as `@`, still record that character.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The recorder with `recordBy: 'code'` now ignores a key on a modifier position, as it ignores modifier keys. Before, with Control and Caps Lock swapped, pressing Caps Lock recorded `[ControlLeft]`, a hotkey that registers nothing.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Releasing a `requireReset` hotkey now notifies `manager.registrations` subscribers that `hasFired` is `false` again. Before, the devtools kept showing `hasFired: true` after the key was released.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - A numpad key that the browser reports as `Unidentified` no longer fires its digit or operator. In Firefox, numpad 5 with NumLock off fired a `5` hotkey; now only `[Numpad5]` matches, as in Chromium.
+
 ## 0.26.0
 
 ### Minor Changes
