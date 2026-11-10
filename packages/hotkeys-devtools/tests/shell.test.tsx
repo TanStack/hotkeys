@@ -560,7 +560,7 @@ describe('registration rows', () => {
   })
 
   // BUG-110 draft: issues/bugs/BUG-110-devtools-rows-remount-on-every-update.md
-  it.skip('BUG-110: pulses the row each time it fires', () => {
+  it('BUG-110: pulses the row each time it fires', () => {
     vi.useFakeTimers()
     const callback = vi.fn()
     HotkeyManager.getInstance().register('K', callback, options)
@@ -579,6 +579,50 @@ describe('registration rows', () => {
     press('keydown', 'k', 'KeyK')
     press('keyup', 'k', 'KeyK')
     expect(text(row().querySelector('.triggerCount'))).toBe('x2')
+  })
+
+  it('restarts the pulse when the row fires again mid-pulse', () => {
+    vi.useFakeTimers()
+    HotkeyManager.getInstance().register('K', () => {}, options)
+    const ui = mountPanel()
+    const pulsing = () => rows(ui)[0]!.classList.contains('hotkeyRowTriggered')
+
+    press('keydown', 'k', 'KeyK')
+    press('keyup', 'k', 'KeyK')
+    vi.advanceTimersByTime(400)
+    press('keydown', 'k', 'KeyK')
+    press('keyup', 'k', 'KeyK')
+    vi.advanceTimersByTime(400)
+    expect(pulsing()).toBe(true)
+    vi.advanceTimersByTime(200)
+    expect(pulsing()).toBe(false)
+  })
+
+  it('keeps row nodes, selection and scroll across registration updates', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register('K', () => {}, options)
+    const save = manager.register('Mod+S', () => {}, options)
+    manager.register('Escape', () => {}, { ...options, scope: 'dialog' })
+    const ui = mountPanel()
+    const [k, s, escape] = rows(ui)
+    click(s!)
+    const list = ui.querySelector('.hotkeyList')!
+    list.scrollTop = 40
+
+    press('keydown', 'k', 'KeyK')
+    press('keyup', 'k', 'KeyK')
+    save.setOptions({ enabled: false })
+    const added = manager.register('Mod+B', () => {}, options)
+
+    expect(rows(ui).slice(0, 2)).toEqual([k, s])
+    expect(rows(ui)).toContain(escape)
+    expect(s!.classList.contains('hotkeyRowSelected')).toBe(true)
+    expect(detailRows(ui).enabled).toBe('false')
+    expect(ui.querySelector('.hotkeyList')).toBe(list)
+    expect(list.scrollTop).toBe(40)
+
+    added.unregister()
+    expect(rows(ui)).toEqual([k, s, escape])
   })
 
   it('updates the enabled badge when options change', () => {
