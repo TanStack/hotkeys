@@ -9,7 +9,7 @@ title: useAppHotkeyList
 function useAppHotkeyList(): ComputedRef<AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[]>;
 ```
 
-Defined in: [useAppHotkeys.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L50)
+Defined in: [useAppHotkeys.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L55)
 
 Lists every app hotkey with its live status, in declaration order, for
 cheat sheets and settings screens. App hotkeys whose components have not

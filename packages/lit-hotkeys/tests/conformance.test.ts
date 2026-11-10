@@ -16,6 +16,7 @@ import type { IndividualKey, RegisterableHotkey } from '@tanstack/hotkeys'
 import type {
   ConformanceHarness,
   ConformanceHotkey,
+  ConformanceProvider,
   HotkeysSpec,
 } from '@tanstack/hotkeys-test-utils/conformance'
 import type { TemplateResult } from 'lit'
@@ -139,11 +140,15 @@ const harness: ConformanceHarness = {
     let spec: HotkeysSpec = initial
     const element = document.createElement('div')
     element.tabIndex = 0
-    const app = initial.provider?.appHotkeys
-      ? provideAppHotkeys(initial.provider.appHotkeys, {
-          customHotkeys: initial.provider.customHotkeys ?? undefined,
-        })
-      : undefined
+    // Lit has no provider: the app calls `provideAppHotkeys`, which can be
+    // after its controllers connect.
+    const provide = (provider: ConformanceProvider | undefined) =>
+      provider?.appHotkeys
+        ? provideAppHotkeys(provider.appHotkeys, {
+            customHotkeys: provider.customHotkeys ?? undefined,
+          })
+        : undefined
+    let app = provide(initial.provider)
     // One host per callback, so changing an entry updates its controller.
     const hosts = new Map<
       string,
@@ -190,6 +195,8 @@ const harness: ConformanceHarness = {
             app.store.setOptions({
               customHotkeys: next.provider.customHotkeys ?? undefined,
             })
+          } else {
+            app = provide(next.provider)
           }
           sync()
         }),

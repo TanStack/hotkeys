@@ -362,10 +362,19 @@ export function closesNativeLayer(
   if (!layers) {
     const doc = getTargetDocument(target)
     const focused = getDeepActiveElement(doc)
+    // A document search doesn't reach into shadow roots, where component
+    // libraries keep their dialogs. The event's path does, for the layers
+    // that hold focus.
+    const path = event.composedPath().filter(isElement)
     const query = (selector: string): Array<Element> => {
       // Browsers without popovers reject the selector.
       try {
-        return [...doc.querySelectorAll(selector)]
+        const found = [...doc.querySelectorAll(selector)]
+        return found.concat(
+          path.filter(
+            (element) => element.matches(selector) && !found.includes(element),
+          ),
+        )
       } catch {
         return []
       }
@@ -384,7 +393,11 @@ export function closesNativeLayer(
     layerCache.set(event, layers)
   }
   return layers.some(
-    (layer) => isDocumentLevel(target) || !isInside(target, layer),
+    (layer) =>
+      isDocumentLevel(target) ||
+      // A component's host stands for the layer in its shadow root.
+      (!isInside(target, layer) &&
+        (layer.getRootNode() as Partial<ShadowRoot>).host !== target),
   )
 }
 

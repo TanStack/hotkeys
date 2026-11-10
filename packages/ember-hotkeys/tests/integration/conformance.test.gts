@@ -206,12 +206,17 @@ const harness: ConformanceHarness = {
   },
 
   async mountHotkeys(initial) {
-    const app = initial.provider?.appHotkeys
-      ? provideAppHotkeys(initial.provider.appHotkeys, {
-          customHotkeys: initial.provider.customHotkeys ?? undefined,
-        })
-      : undefined
-    if (app) disposers.add(app.dispose)
+    // Ember has no provider: the app calls `provideAppHotkeys`, which can be
+    // after its hotkeys are created.
+    const provide = (provider: ConformanceProvider | undefined) => {
+      if (!provider?.appHotkeys) return undefined
+      const provided = provideAppHotkeys(provider.appHotkeys, {
+        customHotkeys: provider.customHotkeys ?? undefined,
+      })
+      disposers.add(provided.dispose)
+      return provided
+    }
+    let app = provide(initial.provider)
     const model = new HotkeysModel(initial)
     const hide = await show(HotkeysView, model)
     return {
@@ -219,6 +224,8 @@ const harness: ConformanceHarness = {
         model.spec = { ...model.spec, ...next }
         if (next.provider && app) {
           app.store.setOptions({ customHotkeys: next.provider.customHotkeys ?? undefined })
+        } else {
+          app = provide(next.provider)
         }
       }),
       element: () => document.querySelector<HTMLElement>('[data-conformance-target]')!,

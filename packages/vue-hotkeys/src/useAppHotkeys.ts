@@ -13,13 +13,18 @@ import type { ComputedRef } from 'vue'
 
 function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()
-  if (!source.store) {
+  const initial = source.store
+  if (!initial) {
     throw new Error(
       `[hotkeys] ${name} requires a HotkeysProvider with app hotkeys`,
     )
   }
   return {
-    store: source.store as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    // The nearest provider's store, which changes if a nested provider gets
+    // its app hotkeys later.
+    store: () =>
+      (source.store ??
+        initial) as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
     state: source.state,
   }
 }
@@ -38,7 +43,7 @@ export function useAppHotkeys(): ComputedRef<RegisteredAppHotkeys> {
   const { store, state } = useRequiredStore('useAppHotkeys')
   return computed(() => {
     void state.value
-    return store.appHotkeys
+    return store().appHotkeys
   })
 }
 
@@ -54,7 +59,7 @@ export function useAppHotkeyList(): ComputedRef<
   const registrations = useHotkeyRegistrations()
   return computed(() => {
     void state.value
-    return store.getList(registrations.value)
+    return store().getList(registrations.value)
   })
 }
 
@@ -91,11 +96,11 @@ export function useCustomHotkeys(): UseCustomHotkeysResult {
   return {
     customHotkeys: computed(() => {
       void state.value
-      return store.customHotkeys
+      return store().customHotkeys
     }),
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    setCustomHotkey: (id, hotkey) => store().setCustomHotkey(id, hotkey),
+    resetCustomHotkey: (id) => store().resetCustomHotkey(id),
+    resetCustomHotkeys: () => store().resetCustomHotkeys(),
+    findConflicts: (id, hotkey) => store().findConflicts(id, hotkey),
   }
 }

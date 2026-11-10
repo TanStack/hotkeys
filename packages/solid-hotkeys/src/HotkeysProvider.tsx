@@ -10,7 +10,7 @@ import {
   createEffect,
   createMemo,
   onCleanup,
-  onMount,
+  untrack,
   useContext,
 } from 'solid-js'
 import type {
@@ -59,8 +59,9 @@ const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   children: JSX.Element
   /**
-   * Every app hotkey, from `defineAppHotkeys`. Read when the provider is
-   * created; listed by `createAppHotkeyList` whether or not they are registered.
+   * Every app hotkey, from `defineAppHotkeys`. Listed by `createAppHotkeyList`
+   * whether or not they are registered. It can start as `undefined` and arrive
+   * later, such as from a lazy import.
    */
   appHotkeys?: AppHotkeys
   /**
@@ -109,25 +110,37 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   props,
 ) => {
   const parent = useContext(HotkeysContext)
-  const store = props.appHotkeys
-    ? createAppHotkeysStore(props.appHotkeys, {
-        customHotkeys: props.customHotkeys,
-        onCustomHotkeysChange: (custom) =>
-          props.onCustomHotkeysChange?.(custom),
-        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
-        platform:
-          props.defaultOptions?.platform ?? parent?.defaultOptions.platform,
-      })
-    : null
+  // Created when app hotkeys first arrive. That can be after the provider is
+  // created, such as when a lazy import loads the declarations.
+  const store = createMemo<AppHotkeysStore | null>(
+    (created) =>
+      created ??
+      (props.appHotkeys
+        ? untrack(() =>
+            createAppHotkeysStore(props.appHotkeys!, {
+              customHotkeys: props.customHotkeys,
+              onCustomHotkeysChange: (custom) =>
+                props.onCustomHotkeysChange?.(custom),
+              // App hotkeys compare hotkeys, such as for conflicts, on this
+              // platform.
+              platform:
+                props.defaultOptions?.platform ??
+                parent?.defaultOptions.platform,
+            }),
+          )
+        : null),
+    null,
+  )
 
   // Keep declarations current (for example after hot module replacement).
   createEffect(() => {
-    if (props.appHotkeys) store?.setAppHotkeys(props.appHotkeys)
+    if (props.appHotkeys) store()?.setAppHotkeys(props.appHotkeys)
   })
 
   // Publish the store so devtools can list declared hotkeys.
-  onMount(() => {
-    if (store) onCleanup(publishAppHotkeysStore(store))
+  createEffect(() => {
+    const created = store()
+    if (created) onCleanup(publishAppHotkeysStore(created))
   })
 
   const active = () => (parent?.enabled ?? true) && props.enabled !== false
@@ -140,13 +153,11 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   )
   // Apply the platform and saved custom hotkeys whose value changes, such as
   // data that loads after the first render. One call applies both together.
-  if (store) {
-    createEffect(() => {
-      const customHotkeys = props.customHotkeys
-      const platform = defaultOptions().platform
-      store.setOptions({ customHotkeys, platform })
-    })
-  }
+  createEffect(() => {
+    const customHotkeys = props.customHotkeys
+    const platform = defaultOptions().platform
+    store()?.setOptions({ customHotkeys, platform })
+  })
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = createMemo(() =>
@@ -165,7 +176,9 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   })
 
   const contextValue: HotkeysContextValue = {
-    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
+    get appHotkeysStore() {
+      return store() ?? parent?.appHotkeysStore ?? null
+    },
     get defaultOptions() {
       return defaultOptions()
     },

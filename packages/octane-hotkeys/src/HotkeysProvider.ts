@@ -63,8 +63,9 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
   /**
-   * Every app hotkey, from `defineAppHotkeys`. Read when the provider first
-   * renders; listed by `useAppHotkeyList` whether or not they are registered.
+   * Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
+   * whether or not they are registered. It can start as `undefined` and arrive
+   * later, such as from a lazy import.
    */
   appHotkeys?: AppHotkeys
   /**

@@ -1,6 +1,5 @@
-import { shallowRef } from 'vue'
+import { shallowRef, watch } from 'vue'
 import { useHotkeysContext } from './HotkeysProviderContext'
-import { useStoreSelector } from './useStoreSelector'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Ref } from 'vue'
 
@@ -12,16 +11,37 @@ export function useDefaultHotkeysOptionsSource() {
 
 /**
  * The provider's app hotkeys store and a ref that tracks its state, so
- * watchers re-run when app hotkeys or custom hotkeys change.
+ * watchers re-run when app hotkeys or custom hotkeys change. `store` is a
+ * getter: a provider creates its store when its app hotkeys arrive, which can
+ * be after this is called.
  */
 export function useAppHotkeysStoreSource(): {
-  store: AppHotkeysStore | null
+  readonly store: AppHotkeysStore | null
   state: Readonly<Ref<AppHotkeysState | null>>
 } {
-  const store = useHotkeysContext()?.appHotkeysStore ?? null
-  // Without a provider there is nothing to track.
-  const state = store
-    ? useStoreSelector(store.store, (value) => value)
-    : shallowRef(null)
-  return { store, state }
+  const context = useHotkeysContext()
+  const state = shallowRef(context?.appHotkeysStore?.store.get() ?? null)
+  // Without a provider there is nothing to track. Vue never disposes
+  // component scopes on the server, so nothing subscribes there.
+  if (context && typeof document !== 'undefined') {
+    // Subscribes to the current store, and again if a store arrives later.
+    watch(
+      () => context.appHotkeysStore,
+      (store, _, onCleanup) => {
+        state.value = store?.store.get() ?? null
+        if (!store) return
+        const { unsubscribe } = store.store.subscribe((value) => {
+          state.value = value
+        })
+        onCleanup(unsubscribe)
+      },
+      { immediate: true, flush: 'sync' },
+    )
+  }
+  return {
+    get store() {
+      return context?.appHotkeysStore ?? null
+    },
+    state,
+  }
 }

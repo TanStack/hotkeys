@@ -4,7 +4,7 @@ export * from '@tanstack/hotkeys'
 // provider
 export * from './HotkeysProvider'
 
-// React-specific exports
+// Preact-specific exports
 export * from './useHotkey'
 export * from './useHotkeys'
 export * from './useHotkeyRecorder'

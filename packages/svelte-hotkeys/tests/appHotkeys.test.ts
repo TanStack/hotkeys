@@ -3,6 +3,7 @@ import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import Harness from './AppHotkeysHarness.svelte'
 import PropHarness from './CustomHotkeysPropHarness.svelte'
+import LateNestedHarness from './LateNestedAppHotkeysHarness.svelte'
 import type { CustomHotkeys } from '@tanstack/hotkeys'
 import type { ChildApi } from './AppHotkeysChild.svelte'
 
@@ -157,6 +158,40 @@ describe('app hotkeys and the provider platform', () => {
       setPlatform('windows')
       flushSync()
       expect(api.list.current[0]!.isCustom).toBe(true)
+    } finally {
+      unmount(component)
+    }
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", () => {
+    let api!: ChildApi
+    let setNested!: (next: ReturnType<typeof defineAppHotkeys>) => void
+    const component = mount(LateNestedHarness, {
+      target: document.body,
+      props: {
+        appHotkeys,
+        customHotkeys: { 'doc.save': 'Mod+E' },
+        ready: (value: ChildApi) => (api = value),
+        setNested: (set) => (setNested = set),
+      },
+    })
+    flushSync()
+    try {
+      setNested(defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } }))
+      flushSync()
+
+      expect(api.list.current.map((item) => item.appHotkey.id)).toEqual([
+        'doc.save',
+        'palette.open',
+        'nav.home',
+      ])
+      expect(api.custom.current).toEqual({ 'doc.save': 'Mod+E' })
+      expect(registrations().map((r) => r.hotkey)).toEqual([
+        'Mod+E',
+        ['G', 'H'],
+      ])
     } finally {
       unmount(component)
     }

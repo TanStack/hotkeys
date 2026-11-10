@@ -9,7 +9,7 @@ title: getHotkeysContext
 function getHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:151](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L151)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L169)
 
 ## Returns
 

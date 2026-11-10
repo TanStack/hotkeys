@@ -134,6 +134,105 @@ test.describe('native overlays', () => {
     expect(await hk.firedNames()).toEqual([])
   })
 
+  // Component libraries such as Material Web keep their `<dialog>` in a shadow
+  // root, where a document search doesn't find it.
+  test('a modal dialog in a shadow root closes on Escape instead of running a global hotkey', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<dialog><button>OK</button></dialog>'
+      root.querySelector('dialog')!.showModal()
+    })
+    const open = () =>
+      page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      )
+    await page.keyboard.press('Escape')
+    expect(await open()).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['escape'])
+  })
+
+  test('a shadow root dialog with slotted content closes on Escape', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<div id="host"><button id="slotted">OK</button></div>',
+    )
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<dialog><slot></slot></dialog>'
+      root.querySelector('dialog')!.showModal()
+      document.getElementById('slotted')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+  })
+
+  test('a hotkey on a shadow root dialog still receives Escape', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<dialog><button>OK</button></dialog>'
+      root.querySelector('dialog')!.showModal()
+    })
+    // The host stands for the dialog that it keeps in its shadow root.
+    await hk.register('host', 'Escape', { target: '#host' })
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['host'])
+  })
+
+  test('an open popover in a shadow root closes on Escape while focus is inside it', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<div popover><button>Item</button></div>'
+      root.querySelector<HTMLElement>('[popover]')!.showPopover()
+      root.querySelector('button')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(() =>
+        document
+          .getElementById('host')!
+          .shadowRoot!.querySelector('[popover]')!
+          .matches(':popover-open'),
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+  })
+
   test('a manual popover leaves Escape to the hotkey', async ({
     page,
     harness,

@@ -128,12 +128,17 @@ const harness: ConformanceHarness = {
     }
     const element = document.body.appendChild(document.createElement('div'))
     element.tabIndex = 0
-    const app = initial.provider?.appHotkeys
-      ? provideAppHotkeys(initial.provider.appHotkeys, {
-          customHotkeys: initial.provider.customHotkeys ?? undefined,
-        })
-      : undefined
-    if (app) disposers.add(app.dispose)
+    // Alpine has no provider: the app calls `provideAppHotkeys`, which can be
+    // after its hotkeys are created.
+    const provide = (provider: ConformanceProvider | undefined) => {
+      if (!provider?.appHotkeys) return undefined
+      const provided = provideAppHotkeys(provider.appHotkeys, {
+        customHotkeys: provider.customHotkeys ?? undefined,
+      })
+      disposers.add(provided.dispose)
+      return provided
+    }
+    let app = provide(initial.provider)
     const defaults = () => defaultsFor(current().provider)
 
     const owned: Array<{ unmount: () => Promise<void> }> = []
@@ -186,6 +191,8 @@ const harness: ConformanceHarness = {
             app.store.setOptions({
               customHotkeys: next.provider.customHotkeys ?? undefined,
             })
+          } else {
+            app = provide(next.provider)
           }
           if (spec.form === 'single') syncSingles()
           version.value++

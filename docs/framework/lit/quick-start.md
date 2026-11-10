@@ -182,7 +182,7 @@ A controller adds itself to the element you pass, so a class field is enough. It
 
 When a group of hotkeys turns on and off together, put them in a scope instead. See [Add scopes](#add-scopes-optional).
 
-During server rendering, controllers register nothing and subscribe to nothing, even with `@lit-labs/ssr`'s `connectedCallback: true` option. Read-side controllers report the current state, so the server HTML matches the first client render.
+During server rendering, controllers register nothing and subscribe to nothing, even with `@lit-labs/ssr`'s `connectedCallback: true` option and its global DOM shim. Read-side controllers report the current state, so the server HTML matches the first client render.
 
 ## Element hotkeys
 

@@ -12,13 +12,18 @@ import type {
 
 function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()
-  if (!source.store) {
+  const initial = source.store
+  if (!initial) {
     throw new Error(
       `[hotkeys] ${name} requires a HotkeysProvider with an appHotkeys prop`,
     )
   }
   return {
-    store: source.store as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    // The nearest provider's store, which changes if a nested provider gets
+    // its app hotkeys later.
+    store: () =>
+      (source.store ??
+        initial) as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
     state: source.state,
   }
 }
@@ -37,7 +42,7 @@ export function useAppHotkeys(): () => RegisteredAppHotkeys {
   const { store, state } = useRequiredStore('useAppHotkeys')
   return createMemo(() => {
     state()
-    return store.appHotkeys
+    return store().appHotkeys
   })
 }
 
@@ -53,7 +58,7 @@ export function createAppHotkeyList(): () => Array<
   const registrations = createHotkeyRegistrations()
   return createMemo(() => {
     state()
-    return store.getList(registrations())
+    return store().getList(registrations())
   })
 }
 
@@ -90,11 +95,11 @@ export function useCustomHotkeys(): UseCustomHotkeysResult {
   return {
     customHotkeys: createMemo(() => {
       state()
-      return store.customHotkeys
+      return store().customHotkeys
     }),
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    setCustomHotkey: (id, hotkey) => store().setCustomHotkey(id, hotkey),
+    resetCustomHotkey: (id) => store().resetCustomHotkey(id),
+    resetCustomHotkeys: () => store().resetCustomHotkeys(),
+    findConflicts: (id, hotkey) => store().findConflicts(id, hotkey),
   }
 }

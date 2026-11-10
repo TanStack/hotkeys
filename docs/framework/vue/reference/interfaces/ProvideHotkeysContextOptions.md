@@ -19,10 +19,11 @@ optional appHotkeys?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L79)
+Defined in: [HotkeysProviderContext.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L80)
 
-Every app hotkey, from `defineAppHotkeys`. Read when the context is
-provided; later changes update the declarations.
+Every app hotkey, from `defineAppHotkeys`. It can start as `undefined` and
+arrive later, such as from a lazy import. Later changes update the
+declarations.
 
 ***
 
@@ -35,7 +36,7 @@ optional customHotkeys?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L86)
+Defined in: [HotkeysProviderContext.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L87)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -90,7 +91,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L88)
+Defined in: [HotkeysProviderContext.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L89)
 
 Called with the custom hotkeys after every change, ready to save.
 

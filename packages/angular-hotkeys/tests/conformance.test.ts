@@ -160,6 +160,8 @@ const harness: ConformanceHarness = {
   unsupported: {
     'callback-identity':
       'injectHotkey keeps its first callback; callbacks read signals instead',
+    'late-app-hotkeys':
+      'provideHotkeys reads appHotkeys once, when its injector is created',
   },
   act: tick,
   setup() {

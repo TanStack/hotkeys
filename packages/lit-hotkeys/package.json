@@ -50,6 +50,7 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
+    "@lit-labs/ssr": "^4.1.0",
     "@tanstack/hotkeys-test-utils": "workspace:*",
     "lit": "^3.3.3"
   },

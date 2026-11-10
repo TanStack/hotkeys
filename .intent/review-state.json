@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "2b23348c916f1bad2a33f7e31e01d3a363c2fdeb930252af7036c8441fed8138",
+      "fingerprint": "969f473c2dfd73acc954ccd90e408d371fee6e03fd1811574003e39d8886e963",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
+        "docs/guides/sensible-defaults.md": "d003ad628461ce582cab7550a6a99489fcb60bd47304fcbad1f75887a69150d2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,18 +115,18 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: docs/guides/sensible-defaults.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "37f6d7ce6c3fac3d64269325899d91958ffe3b5444335375b9b66212b2703276",
+      "fingerprint": "891b27ce1c32211ca6b0dffea08f77bad6c33c8ebef00301c290babec01d2d45",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
-        "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
+        "docs/framework/lit/quick-start.md": "fe581ec66861b302d135c95df3abbd1adbc1f2e620c33b3cb1d40a440b1e3b41",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
@@ -134,60 +134,60 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/framework/lit/quick-start.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "60df690bbb657503f06509f8af98b459b3d88c66ed48aae1d57ba77f8b4cd70d",
+      "fingerprint": "c4262518934e3e36a9a7b7d0f76478493eaf54a75339bd485178828f18df02c3",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "2c60b7c75379c6ac33dfb2b16a87ae9caa3f2849ed16b9e582ea89a40d50e3a4",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/octane-hotkeys/src/HotkeysProvider.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "24b5328be2b1b5d7b3ca580ed3a733817ea0f33795283517eae68db2311d6378",
+      "fingerprint": "458cb1fb31c2eb135c4a8907f98312ce43b4e71bfe87a7a545d1da7c218d0e75",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a37d06d6388f3010b7eae433e9d1bf52bd33ab83567d073dceccb2b2b016ceb4",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "69d7f274ae7261ebf6386711606511cf4d1199a60e6ed207d11293ce858c9142",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/preact-hotkeys/src/HotkeysProvider.tsx at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "15e267b924a52efc1f6c74c8e5172a5ffb1f5fc059018592a88fd7b79a14ddc8",
+      "fingerprint": "9148eefc09fb9d2494132c1d506cc47c89dd840eb44de4a25d4a8a1a1a67f21c",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "75ae0ce7b98e9b82528140cc4b3a1ace5a83abb51f4a52038844b067ca0a34d1",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "4710a397281112eb096d9951d6e5967a49effd892861b9e46861efe18985041c",
         "packages/react-hotkeys/src/useHotkeys.ts": "06bbbedad17301004fe047e00c2469034d471872a49dbe448d507355d350741d",
@@ -210,76 +210,76 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/react-hotkeys/skills/react-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/react-hotkeys/src/HotkeysProvider.tsx at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "3e4d7ee87eade873c16fa52454598ce8124e67585af2b6ae7cb5c53e7547cbe4",
+      "fingerprint": "a9d18a7b745ca4092775e5162ded60bbcd94a589b0114f908915e8f40bcdea1c",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
-        "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "131f6566cb8e71e03fa01166469062c78b347a7b8e86da2a72be9178242993c2",
+        "packages/solid-hotkeys/src/appHotkeys.ts": "05bdf8254cf91547f5998fb07cd4691d211dba9eb5c96eb493fc5be41b46873f",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/solid-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/appHotkeys.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "adaf63d19f44f8ce74242c2cf5649c569ed132bc46a6ae02332e24d943e0751e",
+      "fingerprint": "60f54c6f9c8767eb2493fc934584878524cdaa48048d6ed874e2e1513416db93",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "803646a2ec5e54457e20e2290c2a76a976bd846f9db787747b78128a6d6a0649",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "3acc9fa620080397ab733579ebf0d460631986715d75d010f87a7cad0a1a2e9b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5f299f6aa72496848599e958258c54fcafd7fa39b9f2d987e5c91af7e44ecf85"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/svelte-hotkeys/src/HotkeysCtx.ts, packages/svelte-hotkeys/src/HotkeysProvider.svelte, packages/svelte-hotkeys/src/createHotkeys.svelte.ts, packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "6be2543ed6d4c3f50005d8e3b92058e63806fff8655f4bba63943ab2b98220c1",
+      "fingerprint": "66154b0fed63e40e7c11983b37e7a659b7c190c5c3e3449fd7080c8a46309633",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
+        "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
-        "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "11a5c4630563ba2ce595625a4daa692fe4fc114f734cb0db8b32a8ac18041b41",
+        "packages/vue-hotkeys/src/useAppHotkeys.ts": "77665c7344dc99f60dc88c3c386d60079c3ab325536db93596339395de3725ee",
         "packages/vue-hotkeys/src/useHotkey.ts": "277615d2ed72f6b69c58bb4b6bc397ae2fbef04475914eb7f07b5d23b373b7b5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: skill guidance from #257/#258 was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/framework/vue/quick-start.md, packages/vue-hotkeys/src/HotkeysProviderContext.ts, packages/vue-hotkeys/src/useAppHotkeys.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8fd5d649038045d0d2688b902ab2a9e5399dff5920216871cdaedebf233c1bea",
+      "fingerprint": "4f2acd019d6aa0976f76caefc447cda887f725a5e34ba04aa511b6cfebfd1c0d",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -291,7 +291,7 @@
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
-        "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
+        "docs/framework/lit/quick-start.md": "fe581ec66861b302d135c95df3abbd1adbc1f2e620c33b3cb1d40a440b1e3b41",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
@@ -308,8 +308,8 @@
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "411ba0e216e8d6978436c71e8d2b581323dfbf66dee4e5202167864190bdd043",
+        "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
+        "docs/guides/sensible-defaults.md": "d003ad628461ce582cab7550a6a99489fcb60bd47304fcbad1f75887a69150d2",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -353,20 +353,20 @@
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "2c60b7c75379c6ac33dfb2b16a87ae9caa3f2849ed16b9e582ea89a40d50e3a4",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a37d06d6388f3010b7eae433e9d1bf52bd33ab83567d073dceccb2b2b016ceb4",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "69d7f274ae7261ebf6386711606511cf4d1199a60e6ed207d11293ce858c9142",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "75ae0ce7b98e9b82528140cc4b3a1ace5a83abb51f4a52038844b067ca0a34d1",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "4710a397281112eb096d9951d6e5967a49effd892861b9e46861efe18985041c",
         "packages/react-hotkeys/src/useHotkeys.ts": "06bbbedad17301004fe047e00c2469034d471872a49dbe448d507355d350741d",
@@ -390,32 +390,32 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
-        "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "131f6566cb8e71e03fa01166469062c78b347a7b8e86da2a72be9178242993c2",
+        "packages/solid-hotkeys/src/appHotkeys.ts": "05bdf8254cf91547f5998fb07cd4691d211dba9eb5c96eb493fc5be41b46873f",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "803646a2ec5e54457e20e2290c2a76a976bd846f9db787747b78128a6d6a0649",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "3acc9fa620080397ab733579ebf0d460631986715d75d010f87a7cad0a1a2e9b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5f299f6aa72496848599e958258c54fcafd7fa39b9f2d987e5c91af7e44ecf85",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
-        "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "11a5c4630563ba2ce595625a4daa692fe4fc114f734cb0db8b32a8ac18041b41",
+        "packages/vue-hotkeys/src/useAppHotkeys.ts": "77665c7344dc99f60dc88c3c386d60079c3ab325536db93596339395de3725ee",
         "packages/vue-hotkeys/src/useHotkey.ts": "277615d2ed72f6b69c58bb4b6bc397ae2fbef04475914eb7f07b5d23b373b7b5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: #259's guidance was reviewed there; #260's guidance unchanged by the merge",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts, packages/hotkeys/src/match.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
+        "Changed: docs/framework/lit/quick-start.md, docs/framework/vue/quick-start.md, docs/guides/sensible-defaults.md, packages/octane-hotkeys/src/HotkeysProvider.ts, packages/preact-hotkeys/src/HotkeysProvider.tsx, packages/react-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/appHotkeys.ts, packages/svelte-hotkeys/src/HotkeysCtx.ts, packages/svelte-hotkeys/src/HotkeysProvider.svelte, packages/svelte-hotkeys/src/createHotkeys.svelte.ts, packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts, packages/vue-hotkeys/src/HotkeysProviderContext.ts, packages/vue-hotkeys/src/useAppHotkeys.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -602,24 +602,28 @@
       "evidence": ["docs/framework/svelte/guides/hotkey-hints.md"]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyHint.md": {
-      "fingerprint": "45f47c8edace03ef188a9ed47cca97a053cba19d2d2f71ae2726e3f93355789d",
+      "fingerprint": "8dd567b1c0a40d646f6bcb34c6960e74aed1c3c176ad6968031292a5a7a9b936",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeyHint.md": "7c8c58e98c24cec86d0e317eb74641be8827decf629d7d8d37ab3af06d45053c"
+        "docs/framework/svelte/reference/functions/getHotkeyHint.md": "f60dbce06eaf2375e970ca34524d1b5131dea103e8b029638259aeed0bad48ff"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/getHotkeyHint.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": {
-      "fingerprint": "df6e73730c8dd8ec73e207dfeac923d3f17a609bb96e01b6b741ed8e6336d7ef",
+      "fingerprint": "5be6307c4da2fe05b809f9dc31244be24f2e79fae38a195dc4ffdfc8bb9e90d3",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": "23729e0a7d328a07fa17f3d89efd4985534dbd9787987822e0c399b8a7748e26"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": "4fb73e69ccace46aa31bc274a1fab44570b5dac78e0a2182f3ada019a1e40dc6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/guides/hotkey-hints.md": {
       "fingerprint": "ca3be1ebd38e02212edb9c18440c490758762ad7e8b14c1cbf8b5cc1799de933",
@@ -1079,16 +1083,15 @@
       ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
-      "fingerprint": "57bf466fa887fba64be3d1aa9e93acee44fb521d8b056776c8434ccd69a31173",
+      "fingerprint": "53a849c1bd4c50c1080ec29b8d5163c63d40bb27f337a5649e19c12ed61b28a6",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "6d3e87c19c7e5a869f726fd84a5780635e0541e171e137c41c7d0c8159cf4b0b"
+        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "39eb6db8f74c4eadf939cf3b3e9d24ef9a35bd871ca1b53bb882ffd74f6bdd93"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts",
-        "git diff origin/main"
+        "Changed: packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": {
@@ -1209,16 +1212,15 @@
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "6c25b1324d2e7640afe7f73c96cbc3abc1578e444b28dc4ec0bf7fc2712b9686",
+      "fingerprint": "9e0d2414265d87a2cdd16d7da58b771265c6231d799d720dab22bdb28eafb3c4",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "1567cb148cde0095a59cf329c8182f0bd00f585e221af0b9f1419676cabe197e"
+        "docs/framework/solid/guides/hotkeys.md": "640b770eeb2b484013a37ad17a6d799d70d7db36ce823746c278c877fcc69bc1"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
-      "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "docs/framework/solid/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/solid/guides/hotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
@@ -2142,14 +2144,16 @@
       ]
     },
     "source:packages/preact-hotkeys/src/index.ts": {
-      "fingerprint": "99f73f291a3d285017b11bb6d52c200233161e2f384c687129604cfa35559bef",
+      "fingerprint": "0474cfd783bd46661984228fc1437cef8774735ddd2d19d16240c6f23101ed75",
       "snapshot": {
-        "packages/preact-hotkeys/src/index.ts": "d017dca1203e37e8b864dba424caf4058d3166d426126dab2fedc9a752a8cb2a"
+        "packages/preact-hotkeys/src/index.ts": "e6c7430901a70e959242b5cb8235adcef72c0c2be26227c4fccdd9afae6d1df7"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/preact-hotkeys/src/index.ts"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: packages/preact-hotkeys/src/index.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyScopesState.ts": {
       "fingerprint": "c26dfeef79e6e32ecaa6930a7aae937a3c08ff3e785d5f68b884c88f5fd01bed",
@@ -2600,16 +2604,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "bc609cc141cde60d2d5f29217dd0fddbff0cb819b4b61b6eb156762e849b86b4",
+      "fingerprint": "1f8ee6acc7d42b1c515ad9533b025b2c15cb93c6894d27741eba05b0183b437c",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "766f1afe2652625fc23a7537ef1d0695fc343b605e0d9c87fdb457db9aa1e682"
+        "packages/hotkeys/src/_event-target.ts": "dd8a61f118a36b9b2856e597aa553e0899010cccfcef8cf138e066b5361ff309"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/src/_event-target.ts",
-        "git diff origin/main"
+        "Changed: packages/hotkeys/src/_event-target.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/config.json": {
@@ -2809,16 +2812,15 @@
       ]
     },
     "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "1738f966f97091952d9bebe6e901e072694c099ec3ea2215559057c0ec206b00",
+      "fingerprint": "e3663c450fffccde4c563d77144c8d434c32785e20fb313de8c98f78f560ae76",
       "snapshot": {
-        "docs/framework/react/reference/functions/HotkeysProvider.md": "7fa7c52be4527bfbd014f2010c9484ae5b8157739a9987c28bfb851545d10034"
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "8570f93965ee72ae552cf212ec6a3a72ffa6681cc9dec2292a198b6341718436"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/reference/functions/HotkeysProvider.md"
+        "Changed: docs/framework/react/reference/functions/HotkeysProvider.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/react/reference/functions/useAppHotkeyList.md": {
@@ -2852,16 +2854,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "bdeceb2134e0ee775a1922f7eabbbe0373c6dccb9770869d5f94ee2ae83b4ea1",
+      "fingerprint": "b7754542fced3cc047c8dbfa20cd75de1a7d193dacf39fe46040cf1c52597d93",
       "snapshot": {
-        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "1036f61a765f7cdaa710dfb47dd9d00aa8f4a37c3393c9178d421878a9661bf9"
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "54ddf9c28c88067dc16c0b4d60917ef93092c492b272ff79f86d7abf33b63521"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md"
+        "Changed: docs/framework/react/reference/functions/useDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/react/reference/functions/useHeldKeyCodes.md": {
@@ -2928,16 +2929,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "6b4a80e7bf33426db358d334b7aa7772a079184e5f88941f01a9fad61c758206",
+      "fingerprint": "d4a1dff1787d7d1e33dd94fdb500e8632950250a31eb41cda0dc772f7856fc09",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeysContext.md": "276c2fc3e80245db8fd9792a0ab36d2d0b57386ce5a1d8922804fb04f0b07486"
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "be88373b4ab685d31b57a08ee1166d95f913e53dc9f3258ea41f23e7670529c5"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/reference/functions/useHotkeysContext.md"
+        "Changed: docs/framework/react/reference/functions/useHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/react/reference/functions/useKeyHold.md": {
@@ -2964,16 +2964,15 @@
       ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "2834c13552c83b22b00296bb108b977a3d0151bf4f11456c3be318901c7b9aa6",
+      "fingerprint": "fdc705c5829e30a41e588855a7e1a706e5adf1cf010b7abd3d91efbec414f130",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "1095fd8c1d632b9649c8ec146baedede962043d184597467565f4edae0a79ee6"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "0a42e6a8e62981acbc943377d3c6f3032a4a9e320b2e28e4950b215a22e25307"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md"
+        "Changed: docs/framework/react/reference/interfaces/HotkeysProviderProps.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
@@ -3683,39 +3682,39 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/provideHotkeysContext.md": {
-      "fingerprint": "bf589154356ddb7e1bc58a7aec75be5bbdf0c0e10dae6aefab1d231136b53c0c",
+      "fingerprint": "6ed5317646d137ff6ae008275afe2a846c406224c8f08648a56f667d7e73f7f8",
       "snapshot": {
-        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "eb935e886e2b74738621708263033331ebb4ff831546e347433a85fad42850a4"
+        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "bcf4861e549041ff14df65c2cfd65c7f05b33686884692200d1c7ea76b750c82"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/functions/provideHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "50c244cbc262e9ff5124c9c8f1f414684227ca9976ea90b37a9b521bc751b9e1",
+      "fingerprint": "8e6ace902599c94c0e4f9f33e047d667a600cb865e8f9ceb98ca52d3e5ef5f6b",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "3a163185f9b4626510d8a7331c7a3ec836d3231b60167011cb0a4a2a308530e8"
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "9bf072e4c7780e63a60a46de8fb867363757bffa582fdbeb3388e91ad61d5c42"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md"
+        "Changed: docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "cbab2efc1626e4de05db80593280ce517049f91ed1574e867e04652317184ee0",
+      "fingerprint": "deda92c4e33c1490ca9978b6baf1c9c24f5013fbd361ab48ef00fcecc28e6400",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeysContext.md": "b1c9aef644ae7febdc4c6543d239f598338624d63ac1d95eb3dd6985e343f9b4"
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "4eef03c6f0b5c12964bc62e196320cb145de328e00b80a50bb4be2f115decf53"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/vue/reference/functions/useHotkeysContext.md"
+        "Changed: docs/framework/vue/reference/functions/useHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
@@ -3744,26 +3743,27 @@
       ]
     },
     "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
-      "fingerprint": "77ae62b52740e9f24e721471e4da31682850f3380ad1fa3cde7d2785b0075a3b",
+      "fingerprint": "a6d4f669c33e9198118f7980912e03e6553c49ca5113b6814ebfb6c309dc2f1c",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "a79b6c27bb05f4377def297f29ce196b14a7d267c779e5be130e8fa6320051cd"
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "7d1545de1d82a44cb5effc0c059cd09da7a78cfd0d2884715ea1596e668b5d89"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:packages/vue-hotkeys/src/defaultOptions.ts": {
-      "fingerprint": "e69c8ac056a108680713b82cabae915cafb44b513914fb8c9daafdd68af367f5",
+      "fingerprint": "b609d1113fcc3a215853bbf6ecb205c8c984965d044d6f24ea05afd207d6326b",
       "snapshot": {
-        "packages/vue-hotkeys/src/defaultOptions.ts": "ba5174cc94325ca9b0196aa690571b5b2db34264aa5e0a8b706628feef95ca9a"
+        "packages/vue-hotkeys/src/defaultOptions.ts": "ebf07f346e649b86ece28c8a47053fdb24e989ada89163d29daa6a380bc5ea18"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/vue-hotkeys/src/defaultOptions.ts",
-        "git diff origin/main"
+        "Changed: packages/vue-hotkeys/src/defaultOptions.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/vue-hotkeys/src/useHeldKeyCodes.ts": {
@@ -4027,24 +4027,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeys.md": {
-      "fingerprint": "61d06b6dbe61be4cf947c311afa88e50337837661f7023bb28243d25ffc09433",
+      "fingerprint": "b814f3e1e6a7b5ce0daf8ca46963f43f14b58cb35983edd48423b5013813f953",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeys.md": "cbd785fb17344cee8d483a501922dee646ec0a198b7a14d1274915dc91f1d1cc"
+        "docs/framework/svelte/reference/functions/createHotkeys.md": "dff23bdb2e208cb57009e6e7f43db3fed66d6f7d510f8fd26dc247bee591fafd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/createHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeysAttachment.md": {
-      "fingerprint": "33feb1d240d18dbe6c78ce1ee5e8564300c053bbbb5eda5fd855ba6967770620",
+      "fingerprint": "3641b6cec2b26c20210008ce4bf9e66712d4e179a2f29847612433fc35364cea",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "979feb73cbdf6005acfb5f735262949a42d9107d9e9114f43d2eec075455b387"
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "32e59c12c46f2b63e925c4f6f36d8e76fe691c61ce38485d3c68b98ee25014d9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/createHotkeysAttachment.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": {
       "fingerprint": "607e33a5730efaccfe3e6c4d678a2c16b720ee697c67387a396f784cae9772da",
@@ -4067,14 +4071,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:packages/lit-hotkeys/src/controllers/_server.ts": {
-      "fingerprint": "47838c855c1ee6d29192e63b6267d3bbd11d2ed54a4445de05f2835dd882924d",
+      "fingerprint": "0b7750533ae337fd08b2159e4e4c18384ef8e8ca8c92f340ea5ecb2842182bbe",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/_server.ts": "2a1f485aad87f2ce0a48700f977f56cdd93ca042bf45e981defa524ff33ae759"
+        "packages/lit-hotkeys/src/controllers/_server.ts": "e5e18efaf89c5691dae33f05f7a8cda94a02ba65854e6817b39b83c863c2b541"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/_server.ts"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: packages/lit-hotkeys/src/controllers/_server.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:packages/lit-hotkeys/src/controllers/held-key-codes.ts": {
       "fingerprint": "bdb78c5816f0ae846917626d6de3c0644399027ae5574ccba2b23d0c9af2bfaf",
@@ -4419,42 +4425,39 @@
       "evidence": ["docs/framework/octane/guides/app-hotkeys.md"]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "0f832dcf2717dbb31a891c26f12504a5668d66d102786d17768e961b4208ff6f",
+      "fingerprint": "eeebdbfc168210338d76ee1e34f84c2f54b294a3f38833d0347c162e6ad12eed",
       "snapshot": {
-        "docs/framework/octane/reference/functions/HotkeysProvider.md": "c2b26d5f810d356ff0e5f3e00658e3c83fe64f7e9a713a878fd8ca4de49c4044"
+        "docs/framework/octane/reference/functions/HotkeysProvider.md": "338a40508436cfcb9f3423feceacb8dac70e0a14391fda9104b65d54e587bb7d"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/reference/functions/HotkeysProvider.md"
+        "Changed: docs/framework/octane/reference/functions/HotkeysProvider.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "431f740040d4fed3da74263c91fc99508c4c88552e1e173b21fe8dcca0fa7017",
+      "fingerprint": "e8db633fed03afdc970d21b391bf6fde779ce640c42fc72a231a9a355911ee55",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "365a3966ccb230ffcad7296a3903c86a71b999d8c5ae8a03aba5b1331e61c449"
+        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "6b9a4055fd01de7dd2c74337455504f0c32397930ae25001ad4cacb4d05a5005"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md"
+        "Changed: docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "655212114b564a5392a026fb8b22cc6bab8ae94cbbb0af41369aadbbaf85de1d",
+      "fingerprint": "e419b1c9955d2cf45fac580790eb9f9ef77ae62e9ea72b539e4b5a397800b8ae",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkeysContext.md": "e68a7a0f368e735660ab6666d99f28a3daed951705ae44ac0c7d27100f98d043"
+        "docs/framework/octane/reference/functions/useHotkeysContext.md": "6fe5a9be71cc7ac892b83ee737a5e9acb8ae0ced9a9352db86af5e2dfc9a6972"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/reference/functions/useHotkeysContext.md"
+        "Changed: docs/framework/octane/reference/functions/useHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": {
@@ -4471,16 +4474,15 @@
       ]
     },
     "source:docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "c939f0202b054866f278f2638e953f7be9a885388bcd5ccba95f22c4c8b09742",
+      "fingerprint": "7291fc7de9c8849de967b8611189dd71d99de7165ed8e5781fae221cacaed446",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "470a9ed9dd6ebe1e9b833ee0d46261be742f74e46e81f8d08adf8eb2365a7cde"
+        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "3ced7757d9ec82bd93ebeadd6f60c6f83a815ffe651b27f3f023c8cd0dbd42a6"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md"
+        "Changed: docs/framework/octane/reference/interfaces/HotkeysProviderProps.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": {
@@ -4507,29 +4509,27 @@
       "evidence": ["docs/framework/preact/guides/app-hotkeys.md"]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "748e4b90d029fbdec4e4472894f87b9b804d1d0bc9c127c2bd8b209ea0a84710",
+      "fingerprint": "f15c6a640ddd66b548c28d6e2fcd6e9a31f1db14655a053c3de2e7b6c5c4341a",
       "snapshot": {
-        "docs/framework/preact/reference/functions/HotkeysProvider.md": "a598aa3bb28d5ab3097d582d397330c8ac3146b14d8e35999060d95da04973d3"
+        "docs/framework/preact/reference/functions/HotkeysProvider.md": "79caea5d4066ba22f6c627d3e05f1e2cf7bb38d4636e28d282b01c54112d67ad"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/reference/functions/HotkeysProvider.md"
+        "Changed: docs/framework/preact/reference/functions/HotkeysProvider.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "516c31e8dad6aff59092993152a448302cc2a15f885889e47988b5839b049015",
+      "fingerprint": "7a66f75d943758c9a1ce44666cca0aed36a31dbb0a7dac862b42bb9946c046ea",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "f28f843068da83e66d9d42a8ec615e64d7a78c888e18b6f56f623b323687303b"
+        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "5a66bfc5163682071ea9c529d88dabac0a856723a8ef55b2a4c3ed89968619fe"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md"
+        "Changed: docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/preact/reference/functions/useHeldKeys.md": {
@@ -4543,16 +4543,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "d36f530c99a131eefce1d6541279166f2835a526c45716da9f264cac53c1e5a1",
+      "fingerprint": "6f44a43c9f24083bff130c0c3e227680908ae78a4009cf4197a01788ad49d8bf",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeysContext.md": "0a02ab149929572a1566a82a5f276d112cd188ac10804bcc7df402e6b00aa71a"
+        "docs/framework/preact/reference/functions/useHotkeysContext.md": "0b784836e69d2a5421e27459886c2d156183aae24936af43f64e69865816c329"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/reference/functions/useHotkeysContext.md"
+        "Changed: docs/framework/preact/reference/functions/useHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/preact/reference/functions/useKeyHold.md": {
@@ -4579,16 +4578,15 @@
       ]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "84abb8cf501c86762838139b28e7ed2c1743f14cfa44ca4cf8aa38e80d464fd3",
+      "fingerprint": "51cea409925498036b38abf69e8c108a0297c44da64f84ec8def30427f57739d",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "3fb9c9e415febb7bee0941d04fc47603e6594bf5083e24629f9203540202973a"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "6ea986af4697187efcbf808e6dd38faf19a7b3c0fccb13ee5c17aae281e3265c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md"
+        "Changed: docs/framework/preact/reference/interfaces/HotkeysProviderProps.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
@@ -4632,29 +4630,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "d671264203c7526e84834c175b800aa48053b346f326a0b4ad4bd2cd7d9fc6d1",
+      "fingerprint": "42a70c388194ca91eed8f571786a2a3e94ae1fbfe17da0ddb2b247d06e8742df",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "376478b69f9db5537e7373584123821bc14d41e0d7202f5e2bdca06b724e33b8"
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "71869be0c5ad0aa72c20c01013ff9e9f14a8cdad25b7659226d3329ba30f77fe"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md"
+        "Changed: docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/solid/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "317e7ca474bf2436e1a6fd1012110188f3b70855405cdfdf7a15df23f3a01a70",
+      "fingerprint": "8c0684575f6ac8947239f68ec046311af13b892e078b1d24854bb67af86fe20b",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useHotkeysContext.md": "b82e6ad20a5ac7aaf698e22092aeee901f37b3df32b92f601e66cbdf03d3b116"
+        "docs/framework/solid/reference/functions/useHotkeysContext.md": "199e3c735072fec4ce1369017101fc6530749a1cad6cf893937f955744be80b4"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/solid/reference/functions/useHotkeysContext.md"
+        "Changed: docs/framework/solid/reference/functions/useHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": {
@@ -4671,24 +4667,28 @@
       ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "6f8f566a106a33ce366cc722bd9e265eebf2798ea8850806eb2bc68eb089378c",
+      "fingerprint": "b68d640b1cfb240a257a63ebfa8aaef174ef489c173d3d12df8a6e187f512d00",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "c5f28979c8f7d8ae47c1febffabd53c462d7d121be418c2aecd3e647e3779350"
+        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "a85008cf30cabde504f71df2dda141c137bef5b68db15e4cdd51ebb8b3d24e2b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/interfaces/HotkeysProviderProps.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/solid/reference/variables/HotkeysProvider.md": {
-      "fingerprint": "ba74959c28a77a906f607a6e2f39c47763dc5db0094b1b3a810b86209fe20a23",
+      "fingerprint": "893775936dea3a3764178d123c2db553e2463daf44c81d0741d42e81314feb95",
       "snapshot": {
-        "docs/framework/solid/reference/variables/HotkeysProvider.md": "bd30fb278afd639badb5a4dad1b9fb33959d313ebc9205d0822d293ca82092ff"
+        "docs/framework/solid/reference/variables/HotkeysProvider.md": "1b846835a2ffa7cfc8d2e59d4b064bceb61d6e65b4d388ee9f31264194443fb3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/variables/HotkeysProvider.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/guides/app-hotkeys.md": {
       "fingerprint": "2691574da2fc28de405e8986792918ca1620e900c34f2d5153c5dabbed93269a",
@@ -4701,85 +4701,88 @@
       "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
-      "fingerprint": "6a620af1a7e7f0342daa1e2e1083ede51a1295e38fdd742751631836715d35b4",
+      "fingerprint": "29818e4c0292fdbdad6935fa738f8be959c85b8b928ef8035ff4dd55c2a88960",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "2dc30f690be9cbf68d4b52d636d1a2d2a129a75571c663f313880891d74b1b43"
+        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "5990d778249949c52e0f91e2052fc17544f3a9fc10ec6df4a38c4a524cb469e3"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md"
+        "Changed: docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeysContext.md": {
-      "fingerprint": "45769ae417c3c01a283a5aa71db2e248abdef8c011ed69027e3376ba32609163",
+      "fingerprint": "c41aa9d072786b74b6903c9c4a37b9db533a51d322a0ba18e879ac8004bab903",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "f537dcc1fd9f824ba67703cec038625689a930f57f35074e04e88b6eeb037ca0"
+        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "41335e8f2687ed6f275261a84b11c88e95b90c974a718bfee50819cec2beaac2"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/svelte/reference/functions/getHotkeysContext.md"
+        "Changed: docs/framework/svelte/reference/functions/getHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/svelte/reference/functions/setHotkeysContext.md": {
-      "fingerprint": "1c9134681041b37635e94a0c1657a7eb4c409e0b986d92ec7adf54df46c58033",
+      "fingerprint": "041b2a8cda7939b323ccbf02dc7e1560afff7b2b90ab302c62e780b7e9bf8d00",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "71dc249106fa239b3e89a8c2c4ab42d69b2cd068dea477c1abc81611c5ad45dd"
+        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "6a3e10d6978efae5fcbf33733205779d5486ed83ec52d9033e26e58775b1e39d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/setHotkeysContext.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": {
-      "fingerprint": "d5cfba82ce6728b5c3f2a30ab7b6276cc9ba320ee5c4d42c6fa1841d26ca6910",
+      "fingerprint": "66d10ccf2a6cea352c0d6d70c52cdab7a86d0d48663315b81782b3b67bfbb55a",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "24ca504e9d9eed95d8f059fb3ff3fa8e7355253df484846d307bc2f43ebf7e7f"
+        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "1226a562e48e3384a5c1a39c20223652c29ba078d65d967a6efb298df441ebf4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "28fc83c12214948128b80b552cc28ae54fcf5e54da12b33497360d6dcc5b5608",
+      "fingerprint": "7e20d76bfb3b38969be843bfe13e1818d3a1360b4eba40c23e2240539aa88fd6",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "5d6e26e715362d3c77f8dd647895682f4bef0e63c4aa24ac4d5c785a52d86974"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "1be3668855fce59509e5b1a6c0167bb7a368df7929e78bacb45e76a369cce727"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md"
+        "Changed: docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "a5c9b0fb2ce331bc3a9b86e7f867542348c0bb710389dfcf699f9f1100a0ec1c",
+      "fingerprint": "c45c09dcc18b5e0b2f1c3069a42bfc2c70cdff7e39ed8d317f37f5e5346c1c31",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "5757274af6076be4fd30dd22ad6219b433f279afbe7ffd773eae85f0576bc5f6"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "2501adcc21e3871d16eb98b16ad24e38dd21f6e0f624ed262298bbb2a042b86e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": {
-      "fingerprint": "ecdf4b00a577299d1561f2916eed39bbab379fd8c346126fc870653b72dbb160",
+      "fingerprint": "585e5c7169bfb041b0811fb58affc17297dd4cf149b983373a19d9506fbcf0da",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "e656ba2ecd3415974c7859113799ec330f1889c260ceb76cb7e2e308e54623ce"
+        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "8f893e358f28a5969949699ac53f054f8220fca3f522197d53fd0cd4030ad653"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/guides/app-hotkeys.md": {
       "fingerprint": "8ba221531ec8d204c5b6fb702940eda68add4d0efbf04247a6a29e804213ccb1",
@@ -5022,15 +5025,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "ce2ea1981ea78149b9ec8de8257ad9a5665717ae08c3c263696a6aa6dce5c2af",
+      "fingerprint": "7665e266588c2d8dd0845a8bcdf38b816952624d704f24a82677cc242598bf2e",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "c1d59abbd63be5777f69109b243df6f51ba0d70211ff29389b7a8d4f5634e7cd"
+        "docs/reference/classes/KeyStateTracker.md": "52ed41f03fd53320c9aa75a41d530168ebb994305087d963a1053bbdc64aa282"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/reference/classes/KeyStateTracker.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/reference/classes/KeyStateTracker.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
@@ -5044,15 +5047,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "03d1cd4690abe616990e628ebb7c33521c9d6cd472218117d472f667346317c9",
+      "fingerprint": "d0282381a037b33140f02e4c01442d99d08e912a6a73160ebe4e4f18e8c03f4a",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "3aa5234eabed1a1881f65a04e5a40ad83161d945cd50efc5aa8d85bdfe7cab90"
+        "docs/reference/functions/getKeyStateTracker.md": "825877a845cbd42172656bfb7cddff1e8e4487369e77270db47fd8fcd452d6e3"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/reference/functions/getKeyStateTracker.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/reference/functions/getKeyStateTracker.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
@@ -5368,15 +5371,15 @@
       "evidence": ["packages/hotkeys/src/adapter.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "e75e7ef25b982bf96ae4e978e6f9ff27d663e0a886cb52b52750a8992e61c103",
+      "fingerprint": "de5e21df7de4fa55546f890b84d1528cb9862266ad0a86a689493d3f75e8bb64",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "e4fb4ada0c037c0c7d477e800d4a31c717f8ee182e200e94ebb706ce126e575c"
+        "packages/hotkeys/src/key-state-tracker.ts": "a3bd9b091f537276b6c5d49b4d1f4589f9500c0abf0f60984e789a8ea407ee20"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/hotkeys/src/key-state-tracker.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/hotkeys/src/key-state-tracker.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/hotkeys/src/validate.ts": {
@@ -5759,16 +5762,15 @@
       ]
     },
     "source:packages/solid-hotkeys/src/defaultOptions.ts": {
-      "fingerprint": "df04d8f250f89ed69b6de844960f3126b74bc1e4c06b18cba29d60e37db1558a",
+      "fingerprint": "2c4fed26086956d7f6339d4e1c9a877539abde2bc2b6b72e27bf7d89911bbb84",
       "snapshot": {
-        "packages/solid-hotkeys/src/defaultOptions.ts": "510fcdf5a8ada4ccd655b2ab8b6b79944c7b2ef7711fa8ff3c5bce83c08868ad"
+        "packages/solid-hotkeys/src/defaultOptions.ts": "306f69213cec423a5bda8b929613935020a079e1fb932cfac003673bd45df210"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/solid-hotkeys/src/defaultOptions.ts",
-        "git diff origin/main"
+        "Changed: packages/solid-hotkeys/src/defaultOptions.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/solid-hotkeys/tsconfig.docs.json": {
@@ -6042,15 +6044,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "3795162375058ea78f60ffe4522a103725986efbe592f32810c9a367b0a06a13",
+      "fingerprint": "b0a1886b3d5a2d5f62d85ae911cbb579631769ceb1e090bcea805b2771cbffae",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "ceeef2ad32ec186171f76dfabac5108dd1926808c56c9fb02738710167fae15a"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "3e97165c13b2b7661b7b2748a0baeb63a4734c71727fdb9bbc3b2abb9accf34f"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/framework/alpine/guides/held-key-state-helpers.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
@@ -6138,15 +6140,15 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "1e64bca6ca90285789bbc760bd929feca1e84dc9d6b7674a4589d7aaaf7a3bd1",
+      "fingerprint": "656ae8269760df0dfe3041bc833bfa2722479ba1379cf53ca870bf8ced08af79",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "ead8d4dc82ee61d05f286ba84222a2996e0f42a42a9fb81a14f6114b2e0e3aa7"
+        "docs/framework/preact/guides/formatting-display.md": "68bc29244d698e7cb5bf3ae2b47dc44a83b383fffecc6eed6722aca711b58715"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/framework/preact/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/framework/preact/guides/formatting-display.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6222,15 +6224,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
-      "fingerprint": "5ad2d8d08545cd60248b9e3ff237e691d465138d5a05c4d593c794cd44086753",
+      "fingerprint": "754d064293289b9bd132bc6444ea18dd0374833143279944c8fcb856d09c046f",
       "snapshot": {
-        "docs/framework/svelte/guides/held-key-state-helpers.md": "1930124622955ace2aead94fd1b79a1b625fa4ed2898fdb7116e451b29ca1ac8"
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "99fcc4215f724eebae3e9b47ee332d9bcccb4d8489482a19a1e75b0101b77d10"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/held-key-state-helpers.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: docs/framework/svelte/guides/held-key-state-helpers.md at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
@@ -7250,16 +7252,15 @@
       "evidence": ["packages/svelte-hotkeys/tests/UnsetOptionsHarness.svelte"]
     },
     "source:packages/svelte-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "942fafdbd9bc07140dfb98f9954c3b99a10307e69ff2354e2e2f94be289ff9b4",
+      "fingerprint": "7743e349d5fce4b7c438a439774df62cbfcac654418f8002da939419624f694e",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "7ca095abd2d3c070e1c7522cc88eabd3fc3da169bba5975148911376ab48119c"
+        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "2e11e1fe0ce5c3b6a87a7259ed9ed984313988389dfd91627a9e3864924b36fe"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/svelte-hotkeys/tests/appHotkeys.test.ts"
+        "Changed: packages/svelte-hotkeys/tests/appHotkeys.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/svelte-hotkeys/tests/unset-values-harness.svelte.ts": {
@@ -11632,14 +11633,16 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "0a5cd032250b76fb1f551771eaa6418758b17041edf22891b55192d685639f62",
+      "fingerprint": "61e6aaa4a08570c236f35cd13e22fafd55ec3401e1a4940a0fe727af22bed366",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "68b0ee21236b625db473d418205c159a109fa1af9f7e7058279b57896161f6a6"
+        "e2e/browser/native-overlays.spec.ts": "ac3fab4ee9241a9264d05dc9c7f961f9d2357da7a9c6d96d7615a701aaae5ba0"
       },
-      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
-      "outcome": "out-of-scope",
-      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
-      "evidence": ["e2e/browser/native-overlays.spec.ts"]
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: e2e/browser/native-overlays.spec.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/reference/functions/hasNonModifierKey.md": {
       "fingerprint": "dc9d66b56992b6b4fc8f1534c276b501d81d773a7ee9c3ab4fa1bfe3e3c49fef",
@@ -11872,64 +11875,76 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
-      "fingerprint": "8fe5e73db20916113f27570e3ddd2015cf4df4fd61e9285f8b2baeb5ad09831c",
+      "fingerprint": "3134e23c12bdcab504efd8514bae5aeadd91bd80268de9c81ef19ce396b0ce92",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getAppHotkeyList.md": "39894db9166771b44c9f1a1c56bb32a0dc9ec0921869e77945b750519cef755e"
+        "docs/framework/svelte/reference/functions/getAppHotkeyList.md": "a725e1ddd8611980088b85e519bec8eac392761d049e65f6f2a8c02e02f02391"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/getAppHotkeyList.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeys.md": {
-      "fingerprint": "654bef955bb423aab60b3c8cfcc5c89ed2d7d24115ec091704c4ec6fb6b00488",
+      "fingerprint": "e6fb4e53e667bbb9961808130bed0e1146d88498de21595855aee9a1bf0d837f",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getAppHotkeys.md": "94f422ceae7f2fdbe8f29600d90ec7debc9ef7619f5910d027841bf8e388e002"
+        "docs/framework/svelte/reference/functions/getAppHotkeys.md": "fa3cba6403177202911663c4dc9efa3c9348a7a5270b97892d553eb8570eee41"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/getAppHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getCustomHotkeys.md": {
-      "fingerprint": "9af15d244fed52bd02403c279320d3f81626b79962f1a44f31591c9992d25ee0",
+      "fingerprint": "6bfbf221e1c1d3494b496b310e29ef63c0e0dd1f78f78d30d9af46dd49047368",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getCustomHotkeys.md": "51a7d715513f473a087899fcedce08634011b5a6f2d9060f7a16eb556431d256"
+        "docs/framework/svelte/reference/functions/getCustomHotkeys.md": "3ca6e9f79448566d9bf53729440749556e2532f4fe2fc447dc9ca8e5c0ff2576"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/functions/getCustomHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": {
-      "fingerprint": "05cb001091dad304574cd0f0e02f68c1547e9aaf0fe6feae53504595f9de7a96",
+      "fingerprint": "e2c2f9b6066b524e70dcab2bc37ac4abb4d799530b5220e33eb2a1ba17418a3c",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": "f61c6657f63d99a3bd231953fab66fc4937e5e03eadfe593e3705e9cca5470b3"
+        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": "7edbc7dbc2354840b80f2c3e11fe0724f2282d038274d4020d05ae743428a4b9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": {
-      "fingerprint": "fa1316f090dba91d648067a6aba1ac9bd4933ceaf9a40af1c4bd1076c7f73d4a",
+      "fingerprint": "83e49242930b613fab3b2050e869ba5e380477bbd95a376bfe590a2c7018f507",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": "ad30e447844fd349a9cafaa7ed5fdde2b3492761649ececbf8f62d53c039f76b"
+        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": "4f80af0b140c9f25a66b1effe68b2df6c94f76bbca26566ad0ae9930c209471e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": {
-      "fingerprint": "f61f22732dde56a164b6c959f3053c9703224657b29d59bfeda5e6a85aebf7fd",
+      "fingerprint": "bfb0a4f65492804bc70bc1e173b97b3219ec8d5b0e4da2e56b67dc30bf16c6ff",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": "ea7988bc33ba3a7fba056821920593eb2885519dc6bf93e1918c0a9bbfdca8a7"
+        "docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": "d099be2be277320649750ac49949aeb3852f567b50f223e3bb1f58df25b0dbae"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
       "fingerprint": "d69ce3c4e0c9bfb15f2417f04251087bc5ebdafd810df0beed00831e58d76611",
@@ -11944,44 +11959,52 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
-      "fingerprint": "2e51583d1f90b4ed381a770b6b3515033f90004b9c6e500e51002328626fc70a",
+      "fingerprint": "737434c89f6caa6e18954d8a39425af3fd6d72a27e34c7596f9ce226bb6f44f0",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useAppHotkeyList.md": "9558a954231e6a39370f798e8ca6cc91da38fbbd5ab3527f78e3faf0ed757570"
+        "docs/framework/vue/reference/functions/useAppHotkeyList.md": "899347c77559a6f0948accbe493195bf821f54e1496e7c8e6cfb2394beec793a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/functions/useAppHotkeyList.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeys.md": {
-      "fingerprint": "d6579ad1c5d00728feb4c7bbf0a9367886441bf815f87d185a08d7f08f73e633",
+      "fingerprint": "2ceb54692460eb2fe16e3dc282b266fbf368e6b509add0634bb9f8c2577d61cf",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useAppHotkeys.md": "c444978724662681c07de4668d9e82b7b05fb7cce3f42de8246b823daa86eacb"
+        "docs/framework/vue/reference/functions/useAppHotkeys.md": "e327d7ad7b0715c7e2b9252e2ed5d5c61347596421adf3be09ee9b5d11f4320b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/functions/useAppHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useCustomHotkeys.md": {
-      "fingerprint": "4d6a63673c8eb9d1023f7cd2b0b1506bd42841496d084b8e7ecb29efe569da0a",
+      "fingerprint": "23b9e30ad3ab048612e71eaf4af47a2d36f7ddffe83c685caacc73f27b163ab6",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useCustomHotkeys.md": "46249541c6a533c7e41075cc90fcd489e3888e2856b80e1df88a5e3ccb0a3b4c"
+        "docs/framework/vue/reference/functions/useCustomHotkeys.md": "712d945a700cbf71d8eef6dd0613b93c88a4ee2b3bf41db9215956de41ed5fb5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/functions/useCustomHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/vue/reference/interfaces/UseCustomHotkeysResult.md": {
-      "fingerprint": "2cdbf3bc5a391348988a51130457fbcf3db8f3c240a211d3a3c3dc699b0bb4b8",
+      "fingerprint": "eac978d1e8534281a4a8ffc1ad3ebe45d53826459ce71149e323272de6904f3c",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/UseCustomHotkeysResult.md": "756590b4bb0dc5ecf486b0d6826a16c8bba15a1627fcf3ff9de49afee4c842a5"
+        "docs/framework/vue/reference/interfaces/UseCustomHotkeysResult.md": "09d723b2b42767349f114abcbe8af55244012657fc13ad3e9294503c75ec675f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/vue/reference/interfaces/UseCustomHotkeysResult.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyIssue.md": {
       "fingerprint": "561109c7be5f9b25272a7a9e582a128b87303120cfa2ea03bda4c8831be3ee03",
@@ -12580,14 +12603,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/createAppHotkeyList.md": {
-      "fingerprint": "7c7a38140b5586b652825cd9ffca0a3bee8a4a15dd9dbf5f586baeb42bfa173b",
+      "fingerprint": "070bc0565829d197ab61735cd98c81844147d2ca691bce4b5727e2ec984517fc",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createAppHotkeyList.md": "19b6e4dbc4704f81faa2dc155f231e76d8f4835a5b2c950c517b1391775b34c3"
+        "docs/framework/solid/reference/functions/createAppHotkeyList.md": "ef02389fc7af92ffed043502a208d9c9e7800659f8e9e66a51d2031bfbc86c2b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/functions/createAppHotkeyList.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyRegistrations.md": {
       "fingerprint": "a222561120bdc42978f7dde5fa62a73e97223d15d8e6e60988135490eeac3184",
@@ -12600,34 +12625,40 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/useAppHotkeys.md": {
-      "fingerprint": "a9f47f1ddfba1ccdd3748e87aa48dd4a8d19b60e1572c711ea883cf9ff43d0db",
+      "fingerprint": "77e780b90ea3ff2bcd007aca92b5d01e24fdc595fa4a99552a092bc40586c986",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useAppHotkeys.md": "58552615b48fc2e72a87277efffe37e4c6f0392b0d6ac55ff1919d6d375a1a34"
+        "docs/framework/solid/reference/functions/useAppHotkeys.md": "b451c5e86b1676936cd4c3e7981e4d629ea78c26d6e2cfc6b8437601de23cb27"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/functions/useAppHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/solid/reference/functions/useCustomHotkeys.md": {
-      "fingerprint": "c0fb80ba1a15e089949fdf60226487b6ac0a28dddbd4f56689503fb36d6e776f",
+      "fingerprint": "5e235334b8bccd580593b0ef24710c337106a857d51a1abfca098b6a529f95ee",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useCustomHotkeys.md": "78a133dfcd66705120dd18f340c74c8e87247ed3383ddbcd3dc22edbe80744c6"
+        "docs/framework/solid/reference/functions/useCustomHotkeys.md": "6148ca75836b11630b90b98830a115dbe74c3ae6827aa1a2955b7057a3ab82bc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/functions/useCustomHotkeys.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/solid/reference/interfaces/UseCustomHotkeysResult.md": {
-      "fingerprint": "23a8798d93f5b446f761d6c5abd150c652349854376d4e849fb1f1360cb44129",
+      "fingerprint": "14297f46396687e1a71e0776b40c93de5e46075b66783a7c4b21e9149cae5aec",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/UseCustomHotkeysResult.md": "0040471c2a4370ac92c9655932cfb7b7e1752ffcc58c82cd8343cf991ce66434"
+        "docs/framework/solid/reference/interfaces/UseCustomHotkeysResult.md": "dbf44e2f863f5a82812b2daf80c96f65c244c577b9853ed287356c4cf4c487ad"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: docs/framework/solid/reference/interfaces/UseCustomHotkeysResult.md at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
     },
     "source:docs/framework/solid/reference/type-aliases/CreateAppHotkeyOptions.md": {
       "fingerprint": "2016f7ad358419c705ee1dfb3d969245f7de2cef8268dea9a0006574aa36e2b1",
@@ -17446,16 +17477,15 @@
       ]
     },
     "source:packages/svelte-hotkeys/src/internal.svelte.ts": {
-      "fingerprint": "8a9070cc4f8a189ee34989b9b475d4ebc1a118307abdb346ac325ca6dc4472c6",
+      "fingerprint": "db1993e086cd6ed47fc16da6d8767a7abee1bdcd9f2c2567b4e8e224156e49e4",
       "snapshot": {
-        "packages/svelte-hotkeys/src/internal.svelte.ts": "b67bb378b2e61bc6c5810054da1217977a4ea9e99d753672bfb1784418cfdf7a"
+        "packages/svelte-hotkeys/src/internal.svelte.ts": "78151c7c97f3dce24788b95419e6a6993795b13db8a0cec9c5fee6d8e08ba8c0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "packages/svelte-hotkeys/src/internal.svelte.ts",
-        "git diff origin/main"
+        "Changed: packages/svelte-hotkeys/src/internal.svelte.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/svelte-hotkeys/tests/ScopesHarness.svelte": {
@@ -19151,51 +19181,51 @@
       ]
     },
     "source:packages/alpine-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "227e71dfd76e28b1304de6dd3ea86f5421fabc6f0805b6e1e184638b573646cf",
+      "fingerprint": "3f0734b0168f58537f87799124086e44f6edece7d04a07266ce0b25228e7e8b4",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/conformance.test.ts": "26dfe59d04c4cebeb2396c3ef29ac114b229afaf6b6c5bbf8d178cd926437168"
+        "packages/alpine-hotkeys/tests/conformance.test.ts": "f61ff38974d750502ac4ef4b5ce233040b5e96e7873e01a60b3829fb1899e06b"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/angular-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "090be906508be3c67278491913b0d3c1393559c01a9109189d4986b081f212fc",
+      "fingerprint": "a4c1286bf15b0b7e753bd26310973f8392a30ff06985c6053d4ba3a8c9f9ea68",
       "snapshot": {
-        "packages/angular-hotkeys/tests/conformance.test.ts": "39d8b8ab2b35e1958064c12f72e94ddcbd4b54d3ca27395398b84cddb2b40e34"
+        "packages/angular-hotkeys/tests/conformance.test.ts": "763654c9575015a9d7dc5cc26097da83ad2f44aa903eae575e4b57d7ec7a2dde"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
-      "fingerprint": "9305901b8460052f36944b6ce54179157f54bff93d51e14a427c759ddd67db8b",
+      "fingerprint": "1b9bd21e1c7d82057fc6759666022832aa39317eabc5fee5a399551842ff27ae",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "91ab3fc8c1754d2c24751fb45c8a5334766a7614ec2e05bef6904e86d6b58f33"
+        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "c1f5594df615ec68d6ce8d42e57e6954a35d15a1921c7c91bd353987cdbd30de"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/lit-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "b025eed2243b946dd92fe15d42cdd7c6fdd140abea41bd591d00a0a7e42e2f96",
+      "fingerprint": "caee5d6f36a71d19390c8735c3919f3743ef72b79002483aab9a12728753c394",
       "snapshot": {
-        "packages/lit-hotkeys/tests/conformance.test.ts": "43aee0cd7c9d3fd636ce8a0a4ce982390d5e01ec8b2bb240421c23c659ffb234"
+        "packages/lit-hotkeys/tests/conformance.test.ts": "df624a9b7e247f809cd99fe4cc032ca69cd6330078d87204458544af80151113"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.test.ts": {
@@ -19439,15 +19469,15 @@
       ]
     },
     "source:test-utils/src/conformance/cases/provider.ts": {
-      "fingerprint": "d35da2772f1c4b0813c45d8c7d56ef1deb44dff2808c45cf72c9002373bb8f03",
+      "fingerprint": "837069b77e8b4ac555e6137e5963c2ea6687e598594dffb2e67ac2846b49d524",
       "snapshot": {
-        "test-utils/src/conformance/cases/provider.ts": "786212f17f06ab10d02bb940c6b2e76528e6f7f59b5423bfd2b6ce42e66e1f16"
+        "test-utils/src/conformance/cases/provider.ts": "96e774cd054329a402146394054eedb5d23aa890625fd08370d96fce45c576aa"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: test-utils/src/conformance/cases/provider.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: test-utils/src/conformance/cases/provider.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:test-utils/src/conformance/cases/recorder-hint-format.ts": {
@@ -19523,15 +19553,15 @@
       ]
     },
     "source:test-utils/src/conformance/types.ts": {
-      "fingerprint": "273f28909896e0d4de55e1a40733847b4838e5bda4059c6153506178d2ec4f0e",
+      "fingerprint": "3b37816b1c4900aae1d42b247cc6c7dc5e0516c63d488c0f57ec5b2bdae79a96",
       "snapshot": {
-        "test-utils/src/conformance/types.ts": "230439456d184c25cb12a47ed0d54f1029638f3c136d97ad9d931adfc662c53c"
+        "test-utils/src/conformance/types.ts": "c852889119cbeeb5a7561eba56e3a7a7ab42cf89ca55764ba6f175da61dfba5d"
       },
-      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
       "outcome": "no-change",
-      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
       "evidence": [
-        "Changed: test-utils/src/conformance/types.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
+        "Changed: test-utils/src/conformance/types.ts at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     },
     "source:test-utils/src/conformance/vitest.ts": {
@@ -19556,6 +19586,42 @@
       "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
       "evidence": [
         "Changed: test-utils/tests/conformance-expect.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/hotkeys/tests/key-state-tracker-ssr.test.ts": {
+      "fingerprint": "13fc762e5ffc142db29e86c72c6a56d8415fd44f562bbb173476c4fde8eecb5d",
+      "snapshot": {
+        "packages/hotkeys/tests/key-state-tracker-ssr.test.ts": "85027c11479bdab3bacdf83f6484f9f0a187f309bf54878426daaff7ff9b630c"
+      },
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/key-state-tracker-ssr.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
+    },
+    "source:packages/lit-hotkeys/tests/ssr-dom-shim.test.ts": {
+      "fingerprint": "c8b7e6129c4b5b728cec8fa2d143cfcf5f6734f849819efd5f8d7016cc080c11",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/ssr-dom-shim.test.ts": "6ee3b62bb3ae45cb47d4a091d140b85d01cfff9e7dcd86af8caeed84ea500f08"
+      },
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: packages/lit-hotkeys/tests/ssr-dom-shim.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/LateNestedAppHotkeysHarness.svelte": {
+      "fingerprint": "bb0b962d342520e86ebfb4c357d6f90576ac68cadf074a5c125c721487c9a772",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/LateNestedAppHotkeysHarness.svelte": "08bd9890d397fb64b4228dce1e5549758004917a0adae6c8e7a33ba0fab3a1cd"
+      },
+      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "outcome": "no-change",
+      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/LateNestedAppHotkeysHarness.svelte at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
     }
   }
