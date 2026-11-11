@@ -42,7 +42,7 @@ A logical binding such as `Mod+S` or `?` matches `event.key`, the character the 
 `event.key` is not always useful, so the matcher falls back to the key's conventional position when the character cannot identify the shortcut:
 
 - **Non-Latin layouts.** On a Russian layout, the S position types `ы`. `Mod+S` still matches there, so shortcuts work without switching layouts.
-- **macOS Option.** Option changes the character, so Option+S types `ß`. `Alt+S` still matches.
+- **macOS Option.** Option changes the character, so Option+S types `ß`. `Alt+S` still matches. It follows the letter printed on the key: on a French AZERTY Mac, `Alt+A` fires on the key labeled A, which sits in the US Q position. The matcher reads that letter from `event.keyCode`, and falls back to the key's position when `keyCode` names no letter.
 - **Dead keys and the digit row.** A dead key reports `Dead`, and AZERTY's digit row types `&` and `é` for `1` and `2`. The key's position resolves the shortcut, so `Mod+1` works on AZERTY.
 - **Symbols typed with Shift.** Shift+1 types `!` on a US layout, and `Shift+1` still matches.
 
@@ -56,6 +56,8 @@ Otherwise, the character the key reports wins, wherever the key sits:
 When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
 
 A symbol that needs Shift on some layouts, such as `/` on German QWERTZ (Shift+7), matches when typed on its own. With Command held, macOS browsers report the unshifted character instead (`7`), so `Mod+/` can't match there. Register the per-layout combination as well, such as `Mod+Shift+7`.
+
+The same report affects US keyboards. Cmd+Shift+/ arrives as `/` with Shift held, not as `?`. Shift is then a modifier of its own, so `Mod+/` does not fire for it, and `Mod+?` cannot match. Write the Shift the user presses: `Mod+Shift+/` for Cmd+?, and `Mod+Shift+=` next to `Mod+=` for zooming in with Cmd++. These bindings also fire on Windows and Linux, where the browser reports `?` and `+`. The digit row is the exception: Cmd+Shift+1 still fires `Mod+1`, because a French AZERTY Mac, which types digits with Shift, sends the same event.
 
 Letters match without regard to case: `S` and `s` are the same binding.
 

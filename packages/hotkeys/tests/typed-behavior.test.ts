@@ -368,7 +368,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     }).toMatchInlineSnapshot(`
       {
         "events": "50e68c5a2f3fbac9",
-        "matching": "a6d66b90e189076a",
+        "matching": "0e090d64ea3f3869",
       }
     `)
   })

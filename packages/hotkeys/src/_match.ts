@@ -38,12 +38,27 @@ export function matchKeyboardEvent(
     return normalized.code === parsed.code ? matched('code', 3) : noMatch
   }
 
+  // With Command held, macOS reports the unshifted character for many keys:
+  // Cmd+Shift+/ arrives as `/`. Shift was then a modifier of its own, not how
+  // the character was typed, so `Mod+/` stays quiet. The position's US
+  // character is the only evidence, so other layouts keep the implicit Shift.
+  // So do the digit row and the numpad: French types digits with Shift, and
+  // sends the event a US keyboard sends for Cmd+Shift+1.
+  const shiftTypedNothing =
+    platform === 'mac' &&
+    normalized.meta &&
+    normalized.shift &&
+    !normalized.alt &&
+    !/^(Digit|Numpad)/.test(normalized.code) &&
+    codeToLogicalKey(normalized.code) === normalized.key
+
   const direct = keysEqual(normalized.key, parsed.key)
   const implicitShift =
     direct &&
     isPrintableKey(normalized.key) &&
     !/^\p{Letter}$/u.test(normalized.key) &&
-    !parsed.shift
+    !parsed.shift &&
+    !shiftTypedNothing
 
   if (direct && modifiersMatch(normalized, parsed, implicitShift)) {
     return matched('key', implicitShift ? 2 : 3)
@@ -63,13 +78,28 @@ export function matchKeyboardEvent(
     return matched('key', 2)
   }
 
-  if (!positionStandsIn(normalized, platform)) return noMatch
+  // macOS Option changes what a key types: French Option+A types `æ` on the
+  // US Q position, so neither `key` nor `code` names the A keycap. The legacy
+  // `keyCode` does, because browsers derive it from the letter the key types
+  // without Option. It is read only here, after `key` failed to match.
+  const optionLetter =
+    platform === 'mac' &&
+    normalized.alt &&
+    !isAsciiLetter(normalized.key) &&
+    event.keyCode > 64 &&
+    event.keyCode < 91
+      ? String.fromCharCode(event.keyCode)
+      : undefined
+
+  if (optionLetter === undefined && !positionStandsIn(normalized, platform)) {
+    return noMatch
+  }
 
   // With AltGraph held, only a direct key match counts. Never fall back to
   // the physical key, which would turn AltGr+M (`µ`) into `M`.
   if (normalized.altGraph) return noMatch
   if (!modifiersMatch(normalized, parsed, false)) return noMatch
-  const fallbackKey = codeToLogicalKey(normalized.code)
+  const fallbackKey = optionLetter ?? codeToLogicalKey(normalized.code)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)
     ? matched('fallback', 1)
     : noMatch
@@ -99,6 +129,8 @@ export function matchKeyboardEvent(
  *   numpad 5 with NumLock off this way.
  * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
+ * - ASCII symbols typed with macOS Option on a letter position, such as `~`
+ *   for US Cmd+Option+N, where Command cancels the dead key
  * - Latin letters typed with Alt, such as macOS Option+A typing `å`
  * - Latin letters on punctuation keys with Control or Command, so German
  *   Cmd+ü still fires `Mod+[` (German types `[` with Option)
@@ -124,9 +156,11 @@ function positionStandsIn(
   if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) return true
   if (isAsciiLetter(key)) return false
-  if (/^[!-~]$/.test(key)) return shift
-  if (!isLatinLetter(key)) return true
   const letterKey = code.startsWith('Key')
+  if (/^[!-~]$/.test(key)) {
+    return shift || (alt && platform === 'mac' && letterKey)
+  }
+  if (!isLatinLetter(key)) return true
   if (alt && !(letterKey && ctrl && platform === 'windows')) return true
   return (ctrl || meta) && !letterKey
 }
