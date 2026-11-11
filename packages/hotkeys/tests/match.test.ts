@@ -970,8 +970,9 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
-  // Event shapes are from Apple's layout tables. `keyCode` is the value
-  // Chromium, WebKit, and Firefox derive from the layout's unmodified letter.
+  // Event shapes are from Apple's layout tables. `keyCode` follows the browser
+  // sources: the layout's unmodified letter, unless Option typed a character
+  // that Chromium and WebKit give a key code of its own, such as `~`.
   describe('macOS Option follows the letter on the keycap', () => {
     type Modifiers = Parameters<typeof createKeyboardEvent>[1]
     const option = (
@@ -1043,6 +1044,40 @@ describe('matchesKeyboardEvent', () => {
       expect(fires(option('¡', 'Digit1', 49), 'Alt+1')).toBe(true)
     })
 
+    it.each([
+      ['below A', 64],
+      ['above Z', 91],
+      ['a numpad digit', 97],
+      ['a function key', 112],
+    ] as const)('ignores a keyCode that is %s', (_, keyCode) => {
+      const event = option('æ', 'KeyQ', keyCode)
+      expect(fires(event, 'Alt+Q')).toBe(true)
+      expect(fires(event, 'Alt+A')).toBe(false)
+      expect(fires(event, 'Alt+@' as HotkeyChord)).toBe(false)
+    })
+
+    it('replaces only a character, never a named or unidentified key', () => {
+      // No browser is known to send these with a letter keyCode
+      for (const [key, code] of [
+        ['End', 'Numpad1'],
+        ['Enter', 'Enter'],
+        ['Unidentified', 'KeyQ'],
+        ['', 'KeyQ'],
+      ] as const) {
+        const event = option(key, code, 65)
+        expect(fires(event, 'Alt+A'), key).toBe(false)
+        expect(fires(event, 'Alt+Q'), key).toBe(false)
+      }
+      expect(fires(option('End', 'Numpad1', 65), 'Alt+End')).toBe(true)
+    })
+
+    it('falls back for an ASCII symbol only on a letter position', () => {
+      // `~` typed with Option on the US `;` position names no shortcut there
+      const event = option('~', 'Semicolon', 192)
+      expect(fires(event, 'Alt+;')).toBe(false)
+      expect(fires(event, 'Alt+~' as HotkeyChord)).toBe(true)
+    })
+
     it('never replaces an ASCII letter the key typed', () => {
       const event = option('q', 'KeyQ', 65)
       expect(fires(event, 'Alt+Q')).toBe(true)
@@ -1055,7 +1090,7 @@ describe('matchesKeyboardEvent', () => {
       expect(fires(event, 'Alt+[KeyA]')).toBe(false)
     })
 
-    it('reads keyCode only with Option held', () => {
+    it('takes the letter from keyCode only with Option held', () => {
       // Russian Cmd+ф, with a keyCode that disagrees with the position
       const event = createKeyboardEvent('ф', {
         metaKey: true,
@@ -1182,6 +1217,12 @@ describe('matchesKeyboardEvent', () => {
       expect(
         matchesKeyboardEvent(cmdShift('/', 'NumpadDivide'), 'Mod+/', 'mac'),
       ).toBe(true)
+    })
+
+    it('leaves a press with Option held alone', () => {
+      // The character then comes from the Option layer
+      const event = cmdShift('/', 'Slash', { altKey: true })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+/', 'mac')).toBe(true)
     })
 
     it('applies only with Command held', () => {
@@ -1715,6 +1756,18 @@ describe('matchesKeyboardEvent', () => {
       const event = createKeyboardEvent('Control', { ctrlKey: true })
       expect(matchesKeyboardEvent(event, 'Control+A')).toBe(false)
     })
+  })
+})
+
+describe('areHotkeysEqual', () => {
+  it('returns false without parsing steps it does not need to compare', () => {
+    // A bracketed token in the key field cannot be parsed
+    const unparsable = { key: '[KeyS]' } as never
+    expect(areHotkeysEqual(['G', 'G'], unparsable, 'mac')).toBe(false)
+    expect(areHotkeysEqual(['G', unparsable], ['X', 'G'], 'mac')).toBe(false)
+    expect(() =>
+      areHotkeysEqual(['G', unparsable], ['G', 'G'], 'mac'),
+    ).toThrow()
   })
 })
 

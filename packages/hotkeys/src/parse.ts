@@ -1,11 +1,11 @@
 import {
   assertLogicalKey,
+  chordHasKey,
   modifierAlias,
-  normalizeKeyboardEvent,
   physicalCodeOf,
   splitChordParts,
-} from './_keyboard-event'
-import { chordHasKey } from './_registration'
+} from './_chord'
+import { normalizeKeyboardEvent } from './_keyboard-event'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import { detectPlatform, resolveModifier } from './platform'
 import type {
@@ -220,7 +220,8 @@ export function parseHotkey(
  *   Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
  *   then the key (e.g. `Mod+Shift+E`, `Mod+S`).
  * - Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
- * - Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
+ * - Resolves modifier aliases and uppercases single letters (e.g. `ctrl` → `Control`,
+ *   `a` → `A`). Other key names are case-sensitive and stay as written.
  *
  * @param hotkey - The hotkey to normalize
  * @param platform - The target platform for resolving `Mod` (defaults to auto-detection)
@@ -261,8 +262,9 @@ export function normalizeHotkey(
 /**
  * Checks if a string is a recognized modifier token (including aliases).
  *
- * For a `KeyboardEvent`, use `isModifier(normalizeKeyName(event.key))` so DOM
- * spellings like `OS` / `Win` match the same alias table.
+ * For a `KeyboardEvent`, use `isModifierKey(normalizeKeyName(event.key))`:
+ * `event.key` can be missing on events that autofill and extensions send. DOM
+ * spellings like `OS` and `Win` are in the same alias table. `AltGraph` is not.
  *
  * @param key - Key name or alias (e.g. from a hotkey string or `event.key`)
  * @returns True if the string is a recognized modifier

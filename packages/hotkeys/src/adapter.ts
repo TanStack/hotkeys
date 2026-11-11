@@ -11,13 +11,11 @@ import {
   parseHotkey,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
-// Stateless once loaded, so a copy per entry is fine.
+// Stateless once loaded, apart from a collator created on first use, so a
+// copy per entry is fine.
+import { chordHasKey } from './_chord'
 import { canWarn } from './_dev'
-import {
-  chordHasKey,
-  defaultHotkeyOptions,
-  definedOptions,
-} from './_registration'
+import { defaultHotkeyOptions, definedOptions } from './_registration'
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'

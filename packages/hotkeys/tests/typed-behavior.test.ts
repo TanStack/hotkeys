@@ -15,6 +15,15 @@ import {
 import { normalizeKeyboardEvent } from '../src/_keyboard-event'
 import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
+import {
+  EDITING_KEY_NAMES,
+  FUNCTION_KEY_NAMES,
+  LETTER_KEY_NAMES,
+  NAVIGATION_KEY_NAMES,
+  NUMBER_KEY_NAMES,
+  PUNCTUATION_KEY_NAMES,
+  TYPED_KEYS,
+} from './typed-keys'
 import type { FormatDisplayOptions, HotkeyChord } from '../src'
 
 // Fingerprints of how the library treats every valid typed hotkey and a wide
@@ -22,31 +31,13 @@ import type { FormatDisplayOptions, HotkeyChord } from '../src'
 // changed for typed code: find out why before updating it.
 
 const PLATFORMS = ['mac', 'windows', 'linux'] as const
-const LETTERS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
-const DIGITS = [...'0123456789']
-const FUNCTION_KEYS = Array.from({ length: 24 }, (_, i) => `F${i + 1}`)
-const NAVIGATION = [
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  'PageUp',
-  'PageDown',
-]
-const EDITING = ['Enter', 'Escape', 'Space', 'Tab', 'Backspace', 'Delete']
-const PUNCTUATION = [...'/[]\\=-,.;`\'+?!@#$%^&*()_{}|:"<>~']
-const LOGICAL_KEYS = [
-  ...LETTERS,
-  ...DIGITS,
-  ...FUNCTION_KEYS,
-  ...NAVIGATION,
-  ...EDITING,
-  ...PUNCTUATION,
-  ...SHARED_NAMED_KEYS,
-  ...LOGICAL_ONLY_NAMED_KEYS,
-]
+const LETTERS: Array<string> = LETTER_KEY_NAMES
+const DIGITS: Array<string> = NUMBER_KEY_NAMES
+const FUNCTION_KEYS: Array<string> = FUNCTION_KEY_NAMES
+const NAVIGATION: Array<string> = NAVIGATION_KEY_NAMES
+const EDITING: Array<string> = EDITING_KEY_NAMES
+const PUNCTUATION: Array<string> = PUNCTUATION_KEY_NAMES
+const LOGICAL_KEYS = TYPED_KEYS
 const PHYSICAL_CODES = [
   ...LETTERS.map((letter) => `Key${letter}`),
   ...DIGITS.map((digit) => `Digit${digit}`),
@@ -222,6 +213,34 @@ const EVENTS: Array<KeyboardEventInit> = [
     modifierAltGraph: true,
   })),
 ]
+// macOS Option changes what a key types, and the legacy keyCode still names
+// the letter on the keycap. Each keyCode comes with keys and positions that
+// disagree with it, and with codes that name no letter.
+const KEY_CODE_EVENTS: Array<KeyboardEventInit> = [
+  ...LETTERS.map((letter, index) => ({
+    keyCode: letter.charCodeAt(0),
+    codes: [`Key${LETTERS[(index + 3) % 26]}`, 'Semicolon', 'Digit1'],
+  })),
+  // Key codes that name no letter: either side of A to Z, a numpad digit,
+  // lowercase `z`, a digit, a symbol, and composition
+  ...[64, 91, 97, 122].map((keyCode) => ({ keyCode, codes: ['KeyN'] })),
+  { keyCode: 49, codes: ['Digit1', 'KeyN'] },
+  { keyCode: 192, codes: ['KeyN', 'Backquote', 'Semicolon'] },
+  { keyCode: 229, codes: ['KeyN'] },
+].flatMap(({ keyCode, codes }) =>
+  ['æ', '@', '~', 'Dead', 'Unidentified', 'q', '1'].flatMap((key) =>
+    codes.flatMap((code) =>
+      Array.from({ length: 8 }, (_, i) => ({
+        key,
+        code,
+        keyCode,
+        altKey: !!(i & 1),
+        shiftKey: !!(i & 2),
+        metaKey: !!(i & 4),
+      })),
+    ),
+  ),
+)
 const CHARACTER_EVENTS: Array<KeyboardEventInit> = []
 for (let point = 0x20; point <= 0x2fff; point++) {
   const key = String.fromCodePoint(point)
@@ -341,6 +360,22 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     const candidates = (init: KeyboardEventInit) => [
       ...(chordsByKey.get(normalizeKeyName(init.key!)) ?? []),
       ...(chordsByKey.get(init.code ?? '') ?? []),
+      // The keycap letter that keyCode names, and the US letter, digit, or
+      // symbol of the position
+      ...(init.keyCode
+        ? [
+            ...(chordsByKey.get(
+              String.fromCharCode(init.keyCode).toUpperCase(),
+            ) ?? []),
+            ...(chordsByKey.get(init.code?.replace(/^(Key|Digit)/, '') ?? '') ??
+              []),
+            ...(chordsByKey.get(
+              Object.keys(PUNCTUATION_CODES).find(
+                (key) => PUNCTUATION_CODES[key] === init.code,
+              ) ?? '',
+            ) ?? []),
+          ]
+        : []),
       ...sample,
     ]
     expect({
@@ -365,9 +400,18 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
             record(matchesKeyboardEvent(event, chord, 'windows'))
         }
       }),
+      keyCodeMatching: fingerprint((record) => {
+        for (const init of KEY_CODE_EVENTS) {
+          const event = new KeyboardEvent('keydown', init)
+          for (const platform of PLATFORMS)
+            for (const chord of candidates(init))
+              record(matchesKeyboardEvent(event, chord, platform))
+        }
+      }),
     }).toMatchInlineSnapshot(`
       {
         "events": "50e68c5a2f3fbac9",
+        "keyCodeMatching": "034c28ecee30fcef",
         "matching": "0e090d64ea3f3869",
       }
     `)

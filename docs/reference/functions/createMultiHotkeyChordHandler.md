@@ -9,7 +9,7 @@ title: createMultiHotkeyChordHandler
 function createMultiHotkeyChordHandler(handlers, options?): (event) => void;
 ```
 
-Defined in: [match.ts:154](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L154)
+Defined in: [match.ts:149](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L149)
 
 Creates a handler that matches several chords.
 

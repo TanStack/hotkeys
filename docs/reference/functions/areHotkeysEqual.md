@@ -13,7 +13,7 @@ function areHotkeysEqual(
 ): boolean;
 ```
 
-Defined in: [match.ts:199](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L199)
+Defined in: [match.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L194)
 
 Compares normalized hotkey identity, including all four modifiers.
 Sequences are equal when every step is equal; a one-step sequence equals its chord.

@@ -43,7 +43,6 @@ title: "@tanstack/hotkeys"
 - [HotkeySequenceRecorderValidationContext](interfaces/HotkeySequenceRecorderValidationContext.md)
 - [HotkeySequenceRegistration](interfaces/HotkeySequenceRegistration.md)
 - [HotkeySequenceRegistrationView](interfaces/HotkeySequenceRegistrationView.md)
-- [KeyboardEventMatch](interfaces/KeyboardEventMatch.md)
 - [KeyStateTrackerState](interfaces/KeyStateTrackerState.md)
 - [NormalizedKeyboardEvent](interfaces/NormalizedKeyboardEvent.md)
 - [ParsedModifiers](interfaces/ParsedModifiers.md)
@@ -115,23 +114,16 @@ title: "@tanstack/hotkeys"
 
 ## Variables
 
-- [ALL\_KEYS](variables/ALL_KEYS.md)
 - [DEFAULT\_SEQUENCE\_TIMEOUT](variables/DEFAULT_SEQUENCE_TIMEOUT.md)
-- [EDITING\_KEYS](variables/EDITING_KEYS.md)
-- [FUNCTION\_KEYS](variables/FUNCTION_KEYS.md)
 - [KEY\_DISPLAY\_SYMBOLS](variables/KEY_DISPLAY_SYMBOLS.md)
-- [LETTER\_KEYS](variables/LETTER_KEYS.md)
 - [LINUX\_MODIFIER\_LABELS](variables/LINUX_MODIFIER_LABELS.md)
 - [MAC\_MODIFIER\_LABELS](variables/MAC_MODIFIER_LABELS.md)
 - [MAC\_MODIFIER\_SYMBOLS](variables/MAC_MODIFIER_SYMBOLS.md)
 - [MODIFIER\_ALIASES](variables/MODIFIER_ALIASES.md)
 - [MODIFIER\_KEYS](variables/MODIFIER_KEYS.md)
 - [MODIFIER\_ORDER](variables/MODIFIER_ORDER.md)
-- [NAVIGATION\_KEYS](variables/NAVIGATION_KEYS.md)
-- [NUMBER\_KEYS](variables/NUMBER_KEYS.md)
 - [PUNCTUATION\_CODE\_MAP](variables/PUNCTUATION_CODE_MAP.md)
 - [PUNCTUATION\_KEY\_DISPLAY\_LABELS](variables/PUNCTUATION_KEY_DISPLAY_LABELS.md)
-- [PUNCTUATION\_KEYS](variables/PUNCTUATION_KEYS.md)
 - [WINDOWS\_MODIFIER\_LABELS](variables/WINDOWS_MODIFIER_LABELS.md)
 
 ## Functions

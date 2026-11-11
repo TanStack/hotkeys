@@ -1,10 +1,10 @@
 import {
   assertLogicalKey,
-  codeToLogicalKey,
   modifierAlias,
   physicalCodeOf,
   splitChordParts,
-} from './_keyboard-event'
+} from './_chord'
+import { codeToLogicalKey } from './_keyboard-event'
 import { warnServerPlatform } from './_server'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import {

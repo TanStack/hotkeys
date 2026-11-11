@@ -9,12 +9,13 @@ title: isModifierKey
 function isModifierKey(key): boolean;
 ```
 
-Defined in: [parse.ts:270](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L270)
+Defined in: [parse.ts:272](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L272)
 
 Checks if a string is a recognized modifier token (including aliases).
 
-For a `KeyboardEvent`, use `isModifier(normalizeKeyName(event.key))` so DOM
-spellings like `OS` / `Win` match the same alias table.
+For a `KeyboardEvent`, use `isModifierKey(normalizeKeyName(event.key))`:
+`event.key` can be missing on events that autofill and extensions send. DOM
+spellings like `OS` and `Win` are in the same alias table. `AltGraph` is not.
 
 ## Parameters
 

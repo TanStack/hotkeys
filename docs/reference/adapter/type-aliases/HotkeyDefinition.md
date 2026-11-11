@@ -24,7 +24,7 @@ type HotkeyDefinition =
 };
 ```
 
-Defined in: [adapter.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L51)
+Defined in: [adapter.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L49)
 
 A hotkey and its callback, with optional per-binding options. Chords accept
 `requireReset`; sequences accept `timeout`.

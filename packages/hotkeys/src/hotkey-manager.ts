@@ -1,3 +1,4 @@
+import { chordHasKey, isKeyNameShape, parsedStepsEqual } from './_chord'
 import { canWarn } from './_dev'
 import {
   closesNativeLayer,
@@ -6,17 +7,13 @@ import {
   shouldIgnoreInputEvent,
   targetHasFocus,
 } from './_event-target'
-import {
-  isKeyNameShape,
-  keysEqual,
-  normalizeKeyboardEvent,
-} from './_keyboard-event'
+import { isSequenceStep } from './_keyboard-event'
+import { keysEqual } from './_keys'
 import { managerRef } from './_manager-ref'
-import { matchKeyboardEvent, parsedChordsEqual } from './_match'
+import { matchKeyboardEvent } from './_match'
 import { isRecordingEvent } from './_recording-guard'
 import {
   GLOBAL_SCOPE,
-  chordHasKey,
   defaultHotkeyOptions,
   definedOptions,
   getDefaultIgnoreInputs,
@@ -28,13 +25,9 @@ import { TargetListeners } from './_target-listeners'
 import { normalizeKeyName } from './constants'
 import { formatHotkey } from './format'
 import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
-import {
-  isHotkeySequence,
-  isModifierKey,
-  parseHotkey,
-  simplifyHotkey,
-} from './parse'
+import { isHotkeySequence, parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
+import type { KeyboardEventMatch } from './_match'
 import type { Store } from './_store'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type {
@@ -52,7 +45,6 @@ import type {
   RegisterableHotkeySequence,
 } from './hotkey.types'
 import type { CanonicalModifier } from './key.types'
-import type { KeyboardEventMatch } from './match'
 
 export type { ConflictBehavior }
 
@@ -459,14 +451,18 @@ function ignoresInputs(registration: HotkeyRegistration): boolean {
     : ignoreInputs
 }
 
-function sameResolvedSteps(
-  left: ReadonlyArray<ParsedHotkeyChord>,
-  right: ReadonlyArray<ParsedHotkeyChord>,
+/** Whether the registration leaves the key to a focused control inside `target`. */
+function ignoredInInput(
+  registration: HotkeyRegistration,
+  event: KeyboardEvent,
+  target: Target,
 ): boolean {
-  return (
-    left.length === right.length &&
-    left.every((step, index) => parsedChordsEqual(step, right[index]!))
-  )
+  return ignoresInputs(registration) && shouldIgnoreInputEvent(event, target)
+}
+
+/** The longest pause a sequence allows between two steps, in milliseconds. */
+function sequenceTimeout(registration: HotkeySequenceRegistration): number {
+  return registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
 }
 
 function formatForMessage(hotkey: Hotkey): string {
@@ -805,8 +801,7 @@ export class HotkeyManager {
         registration.options.eventType !== eventType ||
         this.#skips(registration, event) ||
         !path.includes(registration.target) ||
-        (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, registration.target))
+        ignoredInInput(registration, event, registration.target)
       ) {
         continue
       }
@@ -1093,8 +1088,8 @@ export class HotkeyManager {
         ) {
           return
         }
-        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-        const remaining = registration.lastKeyTime + timeout - Date.now()
+        const remaining =
+          registration.lastKeyTime + sequenceTimeout(registration) - Date.now()
         if (remaining >= 0) {
           this.#scheduleSequenceReset(id, remaining + 1)
           return
@@ -1302,7 +1297,7 @@ export class HotkeyManager {
       }
       if (
         (firesOn !== eventType && !press) ||
-        (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
+        ignoredInInput(registration, event, target)
       ) {
         continue
       }
@@ -1428,13 +1423,7 @@ export class HotkeyManager {
     event: KeyboardEvent,
     eventType: 'keydown' | 'keyup',
   ): boolean {
-    if (
-      isRecordingEvent(event) ||
-      normalizeKeyboardEvent(event).isComposing ||
-      isModifierKey(normalizeKeyName(event.key))
-    ) {
-      return false
-    }
+    if (isRecordingEvent(event) || !isSequenceStep(event)) return false
     const path = event.composedPath()
     const now = Date.now()
     for (const registration of this.registrations.state.values()) {
@@ -1444,8 +1433,7 @@ export class HotkeyManager {
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
         this.#skips(registration, event) ||
-        now - registration.lastKeyTime >
-          (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
+        now - registration.lastKeyTime > sequenceTimeout(registration)
       ) {
         continue
       }
@@ -1456,9 +1444,7 @@ export class HotkeyManager {
       )
       if (
         reached &&
-        !(
-          ignoresInputs(registration) && shouldIgnoreInputEvent(event, target)
-        ) &&
+        !ignoredInInput(registration, event, target) &&
         matchKeyboardEvent(
           event,
           registration.parsedSequence[registration.currentIndex]!,
@@ -1492,16 +1478,8 @@ export class HotkeyManager {
       if (changed) this.#notify()
       return
     }
-    if (
-      (event.type === 'keydown' && event.repeat) ||
-      normalizeKeyboardEvent(event).isComposing
-    ) {
-      return
-    }
-    // Skip modifier-only events so pressing e.g. Shift before Shift+C does not reset the sequence.
-    if (isModifierKey(normalizeKeyName(event.key))) {
-      return
-    }
+    // Pressing Shift before Shift+C, for example, does not reset the sequence.
+    if (!isSequenceStep(event)) return
 
     const now = Date.now()
     let changed = false
@@ -1512,20 +1490,17 @@ export class HotkeyManager {
     for (const registration of registrations) {
       if (
         !this.#isLive(registration) ||
-        (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, target)) ||
+        ignoredInInput(registration, event, target) ||
         registration.options.eventType !== eventType ||
         this.#skips(registration, event)
       ) {
         continue
       }
 
-      const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-
       // Check if sequence has timed out
       if (
         registration.currentIndex > 0 &&
-        now - registration.lastKeyTime > timeout
+        now - registration.lastKeyTime > sequenceTimeout(registration)
       ) {
         registration.currentIndex = 0
         changed = true
@@ -1582,8 +1557,10 @@ export class HotkeyManager {
     for (const registration of registrations) {
       if (!candidates.has(registration.id)) continue
       if (registration.currentIndex > 0) {
-        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-        this.#scheduleSequenceReset(registration.id, timeout + 1)
+        this.#scheduleSequenceReset(
+          registration.id,
+          sequenceTimeout(registration) + 1,
+        )
       } else {
         this.#clearSequenceReset(registration.id)
       }
@@ -1674,7 +1651,7 @@ export class HotkeyManager {
         registration.target === candidate.target &&
         registration.options.scope === candidate.options.scope &&
         registration.options.eventType === candidate.options.eventType &&
-        sameResolvedSteps(resolvedSteps(registration), steps)
+        parsedStepsEqual(resolvedSteps(registration), steps)
       ) {
         return registration
       }

@@ -1,5 +1,4 @@
 import { canWarn } from './_dev'
-import { isModifierCode, modifierAlias } from './_keyboard-event'
 import type { ConflictBehavior, ParsedHotkeyChord } from './hotkey.types'
 
 /** The scope of hotkeys that do not name one. It is always active unless an exclusive scope is active. */
@@ -49,17 +48,6 @@ export function withDefaults<T extends object>(
   options: T | undefined,
 ): T {
   return { ...options, ...definedOptions<T>(defaults, options) }
-}
-
-/**
- * Whether a parsed chord has a key that isn't a modifier. A chord without one
- * registers nothing: an empty key would match key-less events, and a
- * modifier-only chord isn't supported.
- */
-export function chordHasKey(chord: ParsedHotkeyChord): boolean {
-  return chord.code !== undefined
-    ? !!chord.code && !isModifierCode(chord.code)
-    : !!chord.key && !modifierAlias(chord.key)
 }
 
 /**

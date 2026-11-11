@@ -9,7 +9,7 @@ title: AdapterHotkeyOptions
 type AdapterHotkeyOptions<TTarget> = WithTarget<HotkeyOptions, TTarget>;
 ```
 
-Defined in: [adapter.ts:219](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L219)
+Defined in: [adapter.ts:217](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L217)
 
 Options shared by chords and sequences, with a framework target.
 

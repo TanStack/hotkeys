@@ -11,7 +11,7 @@ type HotkeyRecorderOptions =
   | HotkeySequenceRecorderOptions;
 ```
 
-Defined in: [hotkey-recorder.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L166)
+Defined in: [hotkey-recorder.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L167)
 
 Options for HotkeyRecorder. `maxSteps` (default 1) selects between recording
 a single chord and recording a sequence.

@@ -9,7 +9,7 @@ title: normalizeKeyName
 function normalizeKeyName(key): string;
 ```
 
-Defined in: [constants.ts:252](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L252)
+Defined in: [constants.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L137)
 
 Normalizes a key name from a `KeyboardEvent` or a hotkey: single letters
 become uppercase, and the space character becomes `Space`. Other names are

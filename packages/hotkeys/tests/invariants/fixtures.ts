@@ -1,6 +1,6 @@
 import { keyEvent } from '@tanstack/hotkeys-test-utils'
 import { SHARED_NAMED_KEYS } from '../../src/_named-keys'
-import { ALL_KEYS } from '../../src/constants'
+import { TYPED_KEYS } from '../typed-keys'
 
 // Chords and keyboard events shared by the invariant suites. The events model
 // what browsers report, so a failure points at the library, not the fixture.
@@ -33,8 +33,8 @@ const PREFIXES: Array<string> = [
   'Win+',
 ]
 
-/** Every key in the key tables: letters, digits, F-keys, navigation, editing, punctuation and named keys. */
-const TABLE_KEYS: Array<string> = [...ALL_KEYS]
+/** Every typed key: letters, digits, F-keys, navigation, editing, punctuation and named keys. */
+const TABLE_KEYS: ReadonlyArray<string> = TYPED_KEYS
 
 /** Keys outside the tables that browsers report and the recorder stores. */
 const EXTRA_KEYS = ['é', 'ß', 'ф', '€', 'µ', 'ą', 'Dead']

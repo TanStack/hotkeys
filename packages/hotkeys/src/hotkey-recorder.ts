@@ -1,5 +1,6 @@
+import { splitChordParts } from './_chord'
 import { isTypingEvent } from './_event-target'
-import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
+import { isModifierPress, normalizeKeyboardEvent } from './_keyboard-event'
 import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
 import {
   beginRecording,
@@ -8,7 +9,7 @@ import {
 } from './_recording-guard'
 import { createStore } from './_store'
 import { findHotkeyConflicts } from './conflicts'
-import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
+import { parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { Store } from './_store'
 import type { HotkeyConflict, HotkeyConflictOptions } from './conflicts'
@@ -384,7 +385,7 @@ export class HotkeyRecorder {
         return
       }
 
-      if (isModifierKey(event.key) || event.key === 'AltGraph') return
+      if (isModifierPress(event)) return
       const rejection = chordRejection(event, { ...options, platform })
       if (rejection) {
         options.onReject?.(rejection)

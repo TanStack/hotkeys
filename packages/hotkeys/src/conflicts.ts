@@ -1,6 +1,6 @@
+import { parsedChordsEqual } from './_chord'
 import { getTargetDocument } from './_event-target'
 import { managerRef } from './_manager-ref'
-import { parsedChordsEqual } from './_match'
 import { toHotkeyRegistrationView } from './hotkey-manager'
 import { matchesKeyboardEvent } from './match'
 import { isHotkeySequence, parseHotkey } from './parse'
