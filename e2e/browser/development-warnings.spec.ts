@@ -14,6 +14,7 @@ import type { Page } from '@playwright/test'
 const WARNINGS = [
   "[hotkeys] 'Mod+K' is already registered",
   "[hotkeys] Unknown key 'escape' in 'escape' (names are case-sensitive)",
+  '[hotkeys] Invalid hotkey "Ctl+J" was not registered',
   "[hotkeys] Exclusive scope 'dialog' is already active",
   "[hotkeys] Invalid hotkey 'Ctl+K': unknown-modifier 'Ctl'",
   "[hotkeys] Hotkey 'Control+escape' may never fire: unknown-key 'escape'",
@@ -36,6 +37,7 @@ async function libraryLogs(page: Page, bundlePath: string) {
     manager.register('Mod+K', () => {})
     manager.register('Mod+K', () => {})
     manager.register('escape' as never, () => {})
+    manager.register('Ctl+J' as never, () => {})
     manager.activateScope('dialog', { exclusive: true })
     manager.activateScope('dialog', { exclusive: true })
     checkHotkey('Ctl+K')
@@ -67,6 +69,7 @@ test.describe('development warnings', () => {
     const bundle = readFileSync(PRODUCTION_BUNDLE_PATH, 'utf8')
     for (const text of [
       'names are case-sensitive',
+      'was not registered',
       'Exclusive scope',
       'may never fire',
       'Server-rendered label',

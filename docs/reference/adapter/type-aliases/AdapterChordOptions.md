@@ -9,7 +9,7 @@ title: AdapterChordOptions
 type AdapterChordOptions<TTarget> = WithTarget<HotkeyChordOptions, TTarget>;
 ```
 
-Defined in: [adapter.ts:206](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L206)
+Defined in: [adapter.ts:222](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L222)
 
 Options for a chord such as `'Mod+S'`, with a framework target.
 

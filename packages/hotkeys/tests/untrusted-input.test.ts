@@ -149,6 +149,7 @@ describe('hotkeys without a usable key', () => {
   }
 
   it.each(UNUSABLE)('register nothing for %s', (_, hotkey) => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
     const callback = vi.fn()
     for (const eventType of ['keydown', 'keyup'] as const) {
       const handle = getHotkeyManager().register(hotkey as never, callback, {
@@ -159,6 +160,28 @@ describe('hotkeys without a usable key', () => {
     expect(getHotkeyManager().registrations.state.size).toBe(0)
     pressAll()
     expect(callback).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    ['Ctl+K', '"Ctl+K"'],
+    ['ctrl+k ctrl+c', '"ctrl+k ctrl+c"'],
+    ['Shift', '"Shift"'],
+    [['G', 'Ctl+K'], '["G","Ctl+K"]'],
+    [{ code: 'MetaLeft' }, '{"code":"MetaLeft"}'],
+    [{ key: '' }, '{"key":""}'],
+  ])('warn in development that %j was not registered', (hotkey, text) => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    getHotkeyManager().register(hotkey as never, () => {})
+    expect(warn.mock.calls).toEqual([
+      [`[hotkeys] Invalid hotkey ${text} was not registered`],
+    ])
+  })
+
+  // These mean "no hotkey", as an unbound custom hotkey does
+  it.each([[''], [null], [undefined], [[]]])('stay silent for %j', (hotkey) => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    getHotkeyManager().register(hotkey as never, () => {})
+    expect(warn).not.toHaveBeenCalled()
   })
 
   it('an unknown modifier leaves the chord without a key', () => {

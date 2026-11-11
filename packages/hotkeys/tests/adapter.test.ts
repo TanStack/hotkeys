@@ -104,6 +104,46 @@ describe('adapter bindings', () => {
   })
 })
 
+describe('adapter bindings with an invalid hotkey', () => {
+  afterEach(() => vi.restoreAllMocks())
+
+  it('warn once in development, however often the adapter updates', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const bindings = createHotkeyBindings()
+    const definitions = [
+      { hotkey: 'Ctl+K' as never, callback: vi.fn() },
+      { hotkey: ['G', 'Shift'] as never, callback: vi.fn() },
+      { hotkey: 'Mod+S' as const, callback: vi.fn() },
+    ]
+    bindings.update(definitions)
+    bindings.update(definitions)
+    expect(warn.mock.calls).toEqual([
+      ['[hotkeys] Invalid hotkey "Ctl+K" was not registered'],
+      ['[hotkeys] Invalid hotkey ["G","Shift"] was not registered'],
+    ])
+    expect(getHotkeyManager().registrations.state.size).toBe(1)
+    bindings.destroy()
+  })
+
+  it('stay silent for no hotkey and for a target that is not ready', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const bindings = createHotkeyBindings()
+    bindings.update([
+      { hotkey: '' as never, callback: vi.fn() },
+      { hotkey: null, callback: vi.fn() },
+      { hotkey: undefined, callback: vi.fn() },
+      { hotkey: [] as never, callback: vi.fn() },
+      {
+        hotkey: 'Ctl+K' as never,
+        callback: vi.fn(),
+        options: { target: null },
+      },
+    ])
+    expect(warn).not.toHaveBeenCalled()
+    bindings.destroy()
+  })
+})
+
 describe('createAppHotkeysStore', () => {
   it('creates a store for app hotkeys from defineAppHotkeys', async () => {
     const { createAppHotkeysStore } = await import('../src/adapter')
@@ -141,6 +181,7 @@ describe('adapter entry', () => {
       ),
     ].map((match) => match[1])
     expect(relative.sort()).toEqual([
+      './_dev',
       './_registration',
       './_registration',
       './_server',

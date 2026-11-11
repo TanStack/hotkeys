@@ -29,7 +29,7 @@ type AdapterHotkeyDefinition<TTarget> =
 };
 ```
 
-Defined in: [adapter.ts:253](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L253)
+Defined in: [adapter.ts:269](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L269)
 
 One hotkey and its callback for adapter APIs such as `useHotkeys`. Chords
 accept `requireReset`; sequences accept `timeout`; hotkeys of unknown kind
