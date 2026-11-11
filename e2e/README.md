@@ -14,7 +14,9 @@ Run the commands from the repository root or from `e2e/`. Install browsers once 
 
 ## Browser behavior
 
-These tests cover how the library behaves in a real page: matching, `preventDefault`, typing in inputs, targets, sequences, scopes, held keys, and the recorder.
+These tests cover how the library behaves in a real page: matching, `preventDefault`, typing in inputs, targets, sequences, scopes, held keys, the recorder, and development warnings.
+
+Before the tests run, `support/bundle.ts` bundles the library source and the page harness with esbuild. The `harness` fixture loads a development bundle: `process.env.NODE_ENV` is replaced with `'development'` and the page has no `process` global, as in an app served by a dev server. `development-warnings.spec.ts` also loads a minified production bundle and one with `process.env.NODE_ENV` left in, as on a page with no bundler.
 
 Playwright's keyboard sends key events straight to the browser and uses a built-in US layout. It does not go through the operating system, so it cannot test other keyboard layouts, AltGr, or dead keys. Those belong in the keyboard layout suite.
 

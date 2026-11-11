@@ -1,3 +1,4 @@
+import { canWarn } from './_dev'
 import {
   isKeyNameShape,
   isModifierCode,
@@ -142,7 +143,9 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
 
 /**
  * Validates a hotkey and logs errors and warnings to the console.
- * Useful for development-time feedback. Logs nothing in production builds.
+ * Useful for development-time feedback. Logs nothing in production builds, or
+ * where `process.env.NODE_ENV` can't be read, such as a page with no bundler.
+ * Use `validateHotkey` there.
  *
  * @param hotkey - The hotkey string to validate
  * @returns True if the hotkey is valid (may still have warnings)
@@ -161,7 +164,8 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
 export function checkHotkey(hotkey: ValidatableHotkey): boolean {
   const result = validateHotkey(hotkey)
 
-  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
+  // Dev-only guard: see `canWarn`
+  if (canWarn && process.env.NODE_ENV !== 'production') {
     if (result.errors.length > 0) {
       console.error(
         `[hotkeys] Invalid hotkey '${String(hotkey)}': ${describeIssues(result.errors)}`,

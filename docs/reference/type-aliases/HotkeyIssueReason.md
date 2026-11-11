@@ -15,7 +15,7 @@ type HotkeyIssueReason =
   | "unknown-key";
 ```
 
-Defined in: [validate.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L192)
+Defined in: [validate.ts:196](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L196)
 
 Why a hotkey is invalid or may never fire:
 

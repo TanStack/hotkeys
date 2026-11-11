@@ -429,7 +429,9 @@ Registering a hotkey that is already registered on the same target logs a consol
 
 Set `conflictBehavior` to `'replace'` to replace the existing registration, `'error'` to throw, or `'allow'` to silence the warning.
 
-TanStack Hotkeys logs warnings only in development. Production builds, where bundlers set `process.env.NODE_ENV` to `'production'`, skip them and drop the warning code.
+TanStack Hotkeys logs warnings only in development, and it reads `process.env.NODE_ENV` to tell. A bundler's development build logs them. A production build, where the bundler sets `process.env.NODE_ENV` to `'production'`, skips them and drops the warning code.
+
+A page that loads the library's files as published, with no bundler, has no `process` global. The library can't read `process.env.NODE_ENV` there, so it logs no warnings. There, check a hotkey with `validateHotkey`, which returns its problems, or `assertValidHotkey`, which throws for an invalid one. To find duplicates, set `conflictBehavior` to `'error'`, which throws in every build.
 
 ## Recording captures what the user pressed
 
