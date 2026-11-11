@@ -1,3 +1,4 @@
+import { canWarn } from './_dev'
 import { isModifierCode, modifierAlias } from './_keyboard-event'
 import type { ConflictBehavior, ParsedHotkeyChord } from './hotkey.types'
 
@@ -93,10 +94,8 @@ export function handleConflict(
   }
 
   if (conflictBehavior === 'warn') {
-    if (
-      typeof process !== 'undefined' &&
-      process.env.NODE_ENV !== 'production'
-    ) {
+    // Dev-only guard: see `canWarn`
+    if (canWarn && process.env.NODE_ENV !== 'production') {
       console.warn(`[hotkeys] '${keyDisplay}' is already registered`)
     }
     return

@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "0eeaa17c6c6da8fc1ce1b61e0b193b585dccde2703a6ecbd6da1298ce60bc024",
+      "fingerprint": "0e6368f2ac722fb0c974694322ef225079a91a892b7ca5f70bd8824433598fb4",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "ea5b66d87fd3bfb275ac6a2eaa923ebc1eccf36e1c99832097d9856829de5d4f",
+        "docs/guides/sensible-defaults.md": "4b3b40eee22f00776212409b668437fb8653ecfd188cd521fc83b8f9a3df45ba",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
+        "packages/hotkeys/src/hotkey-manager.ts": "e0676f60a3e926c4d5e025273799bffc52710985c5fd4a9c20deeb10b13276ee",
         "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,12 +115,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
-      "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
-      ]
+      "reason": "The development warnings the guidance mentions now reach the browser console in bundled apps. No API, option, default or documented behavior the skills teach changed; the guide gained two paragraphs on when warnings print.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "891b27ce1c32211ca6b0dffea08f77bad6c33c8ebef00301c290babec01d2d45",
@@ -279,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "650fccb59a68015b9602d8162888143b1cd7ed18242ea5e8a8a703f31f7da88a",
+      "fingerprint": "b76291d51e36763c6e331fdd5ab4cb404c6c74e6aff3491fa08db96f66342183",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -309,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
-        "docs/guides/sensible-defaults.md": "ea5b66d87fd3bfb275ac6a2eaa923ebc1eccf36e1c99832097d9856829de5d4f",
+        "docs/guides/sensible-defaults.md": "4b3b40eee22f00776212409b668437fb8653ecfd188cd521fc83b8f9a3df45ba",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -342,7 +340,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-manager.ts": "6f7a3cc915d69340e7bd511f742729c1600fd3801e7b5a64a39fb25be5c1a900",
+        "packages/hotkeys/src/hotkey-manager.ts": "e0676f60a3e926c4d5e025273799bffc52710985c5fd4a9c20deeb10b13276ee",
         "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
         "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
@@ -411,12 +409,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
-      "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
-      ]
+      "reason": "The development warnings the guidance mentions now reach the browser console in bundled apps. No API, option, default or documented behavior the skills teach changed; the guide gained two paragraphs on when warnings print.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -646,28 +642,24 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "03d46acd7cf3491ebaa5b5fe13276fe6e783ddadf36e398b291afe7b4ebfe1ad",
+      "fingerprint": "09e3e52cce538b8a716fc8352d95b37ba8a8e61a087ee9b458c25e15fd6da323",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "ea54e5cba956465094e33aa634210f025dc8cd16ce32f1eaa1a188cf50df4f91"
+        "docs/reference/classes/HotkeyManager.md": "995f532657070accfeb29655a345bd7cb1aa10fe6f4062e123e03c0b2504fe8b"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "9fe065495ee0dd19d1f0ba49d570ea9e6b5353642ea7fc9cab1988116e99d51d",
+      "fingerprint": "ce650a21733d69ffbf3ed2351bb4fbf9fcd8a45972c68ca258af3ea72edb3d9a",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
+        "docs/reference/functions/getHotkeyManager.md": "6a203df979cdd65b332c6e13b6e91299956df6a65589d27937fecd83be8067c7"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
@@ -1249,172 +1241,146 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "f18c344554c0751d5dbc52dac6d782b33c47c6b4118c5407a1824fe9e626a5d2",
+      "fingerprint": "29e90f773662f64737430d27871ea58a30bbaaace73cc0b45ac4e8275f9412ed",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "8fc3faea720b69b37b3b3da8432d6bff1f7d62c935f7730db85a6f224e34e074"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "41f8a85c1543faa6ba9d589bf9cead86592193ed81f8428abacbf41d29d323b6"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "471b5ff35ceed15ab2379096fd8a86d5d98a52e6407a14d2594e11db6afbe551",
+      "fingerprint": "af63b7cbb313a6f263d9233ea4dcbd9c7a39dc93fb332bbdcfa593535c427467",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "7e66475fabd9b52b3a5a4cbf74be26450119d28031105ef9d8c109cc0d40ece5"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "8089f301985e5c7a9f0fb638dab3c846a201b238c72e6f5132f455065a038186"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "a93e244b16a2d5653a0c2532776df0396b5b3b0883673374ce692439e417c1f1",
+      "fingerprint": "668080a3fcaea8f1b6af3b58abb098e6059b8c9e42cd3465ed8f4806cbd87b11",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "bda51733077001fb874bb3a7bdc6157efcc35cb9953efc8fc6caf639bde34df5"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "1aba92fb21fdc59e6dd8e6554e5f4024cb5f270b83aa0e8a8d82113dbf60a539"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "f5c8f1e86568f496cb0d56bd0e4f416307f5a98ad265c9bde163d9bdf915c4e2",
+      "fingerprint": "d3ff83b7d2a3c4ac15d2b1635e36439af6448186ab1e165320ce3aec7122f0ad",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "5dfefdc0a50fa1f3152bd840d5dbd69955540d0b3fb47cfd3666beffe21956c6"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "e8681bdc53889261dd377953219e04d92fdbc1e0de3680cb0fbfca1ab596ceb5"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "69afb14255202032c4318bf535598d747ea67f5e84c90f5579d056d11c87b083",
+      "fingerprint": "987ffaf567826218c8164cae3cbb5b3e6db9a3f86c4c6473416b991a56a6c3c4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "02ac6ef9a67d8e02c812ac671d0b88cf6770346a6e3dcb7774d9ed034e7c8d1e"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "24201f06602512ab6987537afba81298ea62b326623bd05c2756e52287ff3814"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "ac8a0e3c3b94afc3d999ac075a07143628ced2cc38d7cc1fc0aae08666cb7b9b",
+      "fingerprint": "e89b7279d6cfa7d9e8be9844bf648126f790314735291b2708fe4e7028660be7",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "ca0e99b9a9f164fc1350dbd4e62b004b0266c3f6c202ec29c40542e8f98792d2"
+        "docs/reference/interfaces/HotkeyOptions.md": "36426eb359b6d4f1355f64e666e8ec0f3da1a1e86b1a991528e66912fdbe58b5"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "cef7f0fc8a97f26582675affb8c805e62696189fd5cadb48e9521a2d0e6fff45",
+      "fingerprint": "05fc1f1b3a9db89c5bc9668eaf12c12cb3368a5b89a0f6ebeff2883bd8a3d55a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "2974d6dce977d3f29ce44c06922d7c6d4ec38ae577d149c20f40f279d44118ac"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "07c4f05ee1a51d26f4cb22af91506410c30971f9bb03f0b462e13691f5f46227"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "4392a43c4cab032182540dc5e1a3b1553987794042739eb019d790f7770b7f6a",
+      "fingerprint": "49c2fc9e286ca8f969121a1dc7a8fd88df21a4fbbfbe9b591e79d06914a28e23",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "cf2e27863cbf1d7cde01cd5c6cee393c87b86c3fe1ee88b6f5faeb414cb18dbf"
+        "docs/reference/interfaces/HotkeyScopesState.md": "0085bf536d56281ac89fbac50cbcaae98ada0002557383b36551523bfeb27718"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyScopesState.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "2102b6154ae898935715013e20a433c4049ceff82516211bf9d30a06b43b9ed9",
+      "fingerprint": "8094fd11d9e1ad48e565aacfa91f72692a7a845db8972fedacdd46afd39cad04",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "c7e1ba43f23e358570b2f71ad83e66a65f184ef8b9e7742f1807ba26ded59ee1"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "f21a6d1377fd6df94a4204a734de5f78888b8e7221f30d49d38984132140bec1"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "5f1ba7c9bc1675698db03894bfde4a99f6759d04396cb5b2ad600559e255c0c9",
+      "fingerprint": "5e9ddbac90d1dd5da124f62ac23e7cd82189ebf8c2a728bcb494d3e4dca2fa5e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "834806e9fcba20663a14eb1fd4952f834e91b231d1bb749023f20f3659c94995"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "a80dee986d3f33067f7dce72cdaeb28602d49e89937d861a807d22eccac8e0a3"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "eb195a1a1d206db6fa6838e58c71d0dbe3b6994b675adb6be11154a9101b2edd",
+      "fingerprint": "64a953f0dfa7d32b074d3cd5a025c385e126b00f9c1d61ca8589f0a89bee8902",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e451453e3ca46393b91bc0e22fa2c7ec80820d4e96443c8cdac73a1a3110da8c"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "61913f31c0ad16671df173d01b7a8870f5e576dc7fd88695518d1ab99f6b5cef"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "fed7cc376123babc00eeb74086a70611d865b68525e8c6658708f5794799f9d6",
+      "fingerprint": "ec7841c5fb926709642d13de13cfc9f2eec483a833b97eac5d4e24b8d4f600ac",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "81fa9a1359b144b781fab3cd54f0534858e790f50ca30a26397f08cd38227de6"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "55282bd168a844dc38911f975277c3286d3871853f44ae78c08918b917e1dc4e"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "4bfc63b1579b86de8aeb6a21cf4022af452708fc6c7bd91ca8f511170d74ebb7",
+      "fingerprint": "7adfbb9aa38ab08a1b8c9374eb0843d6e773fb6cd75aeec30b7a7ffd36369621",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "fabdb7ea7b17dcffe2ad60e532136608fbae233a58c4889960a42531d3cccf38"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "1e92f2dce7c750547cd045623ef1159f626c7fa52e68af0e648cfd9a5723a82b"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "609c8c98e275e1dca1ae0fdf14053505e427e32fd1e5c5b333e9faf63b74a807",
+      "fingerprint": "a2367f930fb4dcd17697006fd31acbc19d11124145e30d5386e1335f04a7d9c9",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "9d4cd7bfa7e8cedd81ee3fe8592a9a1351e89007516cec32f8ad98ac5e6f9e0c"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "577e7452815c34b9d2be169baaf2bb4a047e06f08deb761067cdd03a3d23f2c0"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "2a5725926ea2e1eb8075092d690af0dad7bf153a997c27f15dfb8269773c3d70",
@@ -2002,16 +1968,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "0f22797bccd54fc0b1d69f2414a6e6705714403977304c3e4b7767cd77a412ad",
+      "fingerprint": "f087f746763a1ed1ffb404954e5e380efd0cef6d3fd8682f60baf16f9f146713",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "4d98e243f8c72bd21973842904b66cb06a34c36a99d60e7bc42f4b69af8d1680"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "a429941e499f84bd50f282e4271584a636515ff442a8128ce008fc6332617fae"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -2593,14 +2557,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/Target.md": {
-      "fingerprint": "bb1de0ef43dbbe991ab07beb64b145f6e1ca24f403077cf0acda982581b4c23c",
+      "fingerprint": "635be7a158cab54a8472126f72bc374cdebde88693347e7c4259c44bd098338a",
       "snapshot": {
-        "docs/reference/type-aliases/Target.md": "5f53ed3d992392c9a018381fc19fbcd37c134b3368eb6fd0db0ba259b4cf3a56"
+        "docs/reference/type-aliases/Target.md": "1429ca0f55ac8d05aabe9380eb3af7b10472e38a8779085ae380a8d3cbeae31e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
       "fingerprint": "aadc96f049ad84a6c51a5ed59329a4ca9e5c7c76b4378467efb96dc7015fd80e",
@@ -5036,14 +5000,14 @@
       ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
-      "fingerprint": "4b7c3cc31cefbf1f7b3f7ba68f338dd7120a43e14074a0693c94d4ca8546e8c3",
+      "fingerprint": "b795c46d9627a330afd586eb39f0252d32ca063ec5ca61602cb3354248efe1d4",
       "snapshot": {
-        "docs/reference/functions/checkHotkey.md": "ddd5fbdfb265290d27ff24795bb3adf50609925cb35da74ccf4056a1c0ad113b"
+        "docs/reference/functions/checkHotkey.md": "646a8bedd62898cfde58f3a57a2ed2cb70626b68df35714d9ee96dce4dcdf6b3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/functions/checkHotkey.md"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
       "fingerprint": "d0282381a037b33140f02e4c01442d99d08e912a6a73160ebe4e4f18e8c03f4a",
@@ -5154,14 +5118,14 @@
       ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
-      "fingerprint": "8c4c227c801c466b23924853e9d0c7145c1f67c578c546a72680a99dfbe34a25",
+      "fingerprint": "bf50351d2f5a5f1183873562205bcbdb5fb0f0ff818dcb82e0ff12a7dde09943",
       "snapshot": {
-        "docs/reference/interfaces/ValidationResult.md": "f93bafdb79c3dedd7365b7e718ec8ad41bc6656d8e1a8d417e67a93b8d39fb8f"
+        "docs/reference/interfaces/ValidationResult.md": "9d72730dff1c7716f6da6086fe247fa96cff8e1f6f4dc118bc2e2bb0d3565c3d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/ValidationResult.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
       "fingerprint": "b30bfac9d77cddb832c645c984e45bd7c122c2707d402964b0c5acc44b0e1187",
@@ -5338,13 +5302,13 @@
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "5858bf2f8d2a265788e3469e3980ab3433e23d7ea1d9bbf7000fe8df17a43213",
+      "fingerprint": "b3199fcbfef3e53f30fb14fbd3b4bdc34a783056305e55e31d9313667da0a6f4",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "0437ff82c4d74bcb2d8b186ffda16cf1cc8c2b6b097b80568114d1771f8c872e"
+        "packages/hotkeys/src/_registration.ts": "851a40f3bf6c68c0b5d540394a1d06434b05f3b7c28d7395d0b94b64dcb267ae"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
-      "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Internal development-only console guard. It changes where warnings print, not an API or behavior the skills describe.",
       "evidence": ["packages/hotkeys/src/_registration.ts"]
     },
     "source:packages/hotkeys/src/_store.ts": {
@@ -5382,13 +5346,13 @@
       ]
     },
     "source:packages/hotkeys/src/validate.ts": {
-      "fingerprint": "6af8ee5b18c34f71a878d1577552881156c8d451086015a977ee4cc8cb0dd88d",
+      "fingerprint": "72c9d013f0f23160c2355fa5e8d3b10ae94c8edda590fb8ebe9883e8ee513e19",
       "snapshot": {
-        "packages/hotkeys/src/validate.ts": "1626039d647242cadcc42dce145a65b84a2b3bd7ed401bc123fcfbb4c90c8ecb"
+        "packages/hotkeys/src/validate.ts": "22475e05a0b7c6395154fc30fba9cb3e694c0b50856f8db131cba0110b6de088"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
-      "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Internal development-only console guard. It changes where warnings print, not an API or behavior the skills describe.",
       "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
@@ -5404,13 +5368,13 @@
       ]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "c4c0748b7b25d7f99f7c703f76cbbc461993d913e05f154247fcefa0d842a7be",
+      "fingerprint": "e494585f1f1f3582b3274921ceb01060412f7b644f895919024306271375d20f",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "0ec33b0c66d2610f2e831ce1e8cbdb31bcec7d28fdab909d4b6cb19183ed6a44"
+        "packages/hotkeys/tests/production-logs.test.ts": "e4ebfbf298bb4157def519e065796d760219ac40f450fd1128a10ac4f0dfccc8"
       },
-      "head": "8c85422ddf819f20fbf80c2760953d99909bfea3",
-      "outcome": "no-change",
-      "reason": "Adds a test that a non-exclusive scope activates when process is undefined. No API or guidance change.",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
       "evidence": ["packages/hotkeys/tests/production-logs.test.ts"]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
@@ -5831,14 +5795,14 @@
       ]
     },
     "source:docs/reference/functions/assertValidHotkey.md": {
-      "fingerprint": "808c58045246f88357957a0c37ed6eacff540c7f39791622081fa665ff6191f5",
+      "fingerprint": "6bba59302cab1aff80e5160f74a8a77765665dc0e51957e5647b5ed4ec1c7c6f",
       "snapshot": {
-        "docs/reference/functions/assertValidHotkey.md": "92d92335a7f1332b7724eddf603114250ca81a089fe7b07e33fe63f3abd51633"
+        "docs/reference/functions/assertValidHotkey.md": "c18c4b0be90d8b3d59f78381da35329ed8f2108a902f014e23e5752b673109f8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/functions/assertValidHotkey.md"]
     },
     "source:docs/reference/functions/isSingleLetterKey.md": {
       "fingerprint": "53c0a05eefcde7b80736c8cb82ad0250a4377f4eb914ad7fb5f9fc3a314ea551",
@@ -5863,24 +5827,24 @@
       ]
     },
     "source:docs/reference/functions/validateHotkey.md": {
-      "fingerprint": "65bb31016249a39dc43d7bc1365d6e4c798c234a3dbdc893a1f44474988d50a4",
+      "fingerprint": "4c3f8e2b64f54c1c791f2ff7ce93bfdd6b6ea3bc85ce3fdcca7b4110c1970878",
       "snapshot": {
-        "docs/reference/functions/validateHotkey.md": "01907e68b0ce64124a41d2d08f633ec5be9c2952cb7de916b9f86fec7aef7b6c"
+        "docs/reference/functions/validateHotkey.md": "294690f786b724cd911b7aaa0238a452e73f94d3c7c563f511be45aea319f24b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/functions/validateHotkey.md"]
     },
     "source:docs/reference/type-aliases/ValidatableHotkey.md": {
-      "fingerprint": "d4265fdf2035cca341fa0ac7ac6f0182793ee914472b1acc446a20996d3c6f6d",
+      "fingerprint": "c556e5dcffda71e04e5da9823b0f8eacea6e48498dae486e8b7a5d6e809e3263",
       "snapshot": {
-        "docs/reference/type-aliases/ValidatableHotkey.md": "25601710bcf9b009f418287967088b86c35ea7348e7ebe8c8110eda6d7f3b56b"
+        "docs/reference/type-aliases/ValidatableHotkey.md": "5300c33458a3315188ea104415016bca80a397b84c74fd17df7d3ebf81b0dd9f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/ValidatableHotkey.md"]
     },
     "source:docs/reference/variables/ALL_KEYS.md": {
       "fingerprint": "dc186e683cc6278665f0901143f134d0f4454adc964b1fb5a78bb6876cb3a869",
@@ -6923,24 +6887,24 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/definedOptions.md": {
-      "fingerprint": "43a8abfc4e579b84c8e2d2c23a051171c756a7ab267250dd5e850bc62d074655",
+      "fingerprint": "c3cc7e3073e25be0d868b6ccf1b1ec5f1431a0f14a1bab53ca22fc8fdbe2e2ab",
       "snapshot": {
-        "docs/reference/adapter/functions/definedOptions.md": "d251d88194b8973151328226470717e163b8614c412e54f380b4c77cc5740a61"
+        "docs/reference/adapter/functions/definedOptions.md": "9a84119abcaead0fc6a5d0ee8d43c0c886b01dcc9afd89871cc7cb32c3e87a4f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/adapter/functions/definedOptions.md"]
     },
     "source:docs/reference/adapter/functions/withDefaults.md": {
-      "fingerprint": "9c2704b532fcdbc7799425eb20fa52857ab2cbf6bcf9c61a8b669f89e775bafd",
+      "fingerprint": "8ce3b6cf319dda8ff11ddf212b588171911ff828bea090e8d0a25c0ae7a3ee4b",
       "snapshot": {
-        "docs/reference/adapter/functions/withDefaults.md": "579c016891395324d0bc7e286b509cced8462dcd5f7ae60f70b9fa2c32de9431"
+        "docs/reference/adapter/functions/withDefaults.md": "9c521ae31ffd82190d0ee4ffb21ac44c32b86e154874277107558d606d4906f4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/adapter/functions/withDefaults.md"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
       "fingerprint": "9900d5135178efa87e8eeca8fb5b4790f03907b24ec3d54879bd2fdf0a57cdab",
@@ -8131,13 +8095,13 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/platform.test.gts"]
     },
     "source:packages/hotkeys/src/_server.ts": {
-      "fingerprint": "0cb5ac4b1cbb1a9facc1ac4809d4fd0e3b9e6085efe409c5e15ff79bbfe8e5e4",
+      "fingerprint": "52df25ddc5209085265668cfdd170107cba4ac5f0e598f349e5fb614bb1cbce9",
       "snapshot": {
-        "packages/hotkeys/src/_server.ts": "dd432aa439f148e6043b89a489973c551a5f85f2cb71ef533faa4a013eeeee2f"
+        "packages/hotkeys/src/_server.ts": "37e06c62b7f8959e65ef19e0bcf7c0770419fbed17d2a54f10c020906c048e92"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
-      "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Internal development-only console guard. It changes where warnings print, not an API or behavior the skills describe.",
       "evidence": ["packages/hotkeys/src/_server.ts"]
     },
     "source:packages/hotkeys/src/platform.ts": {
@@ -8426,16 +8390,14 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "066ae8c2799d506a8b134ac98a118d629627643e7f22c487ee6092806eb0c194",
+      "fingerprint": "f7308362d4c2dcb06c96658008d21e9ba276ea6e04a5241e1bfe25b203cf72dc",
       "snapshot": {
-        "e2e/README.md": "3e2aad8108218934098f960df3a48408eab6e36a75d83b7e2d67a682edd92164"
+        "e2e/README.md": "ffad339ff541ed86742a1218d4e8e1c5babd34904a556224f92fe25fbb5ac4a4"
       },
-      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
-      "outcome": "no-change",
-      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
-      "evidence": [
-        "Changed: e2e/README.md at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
-      ]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "evidence": ["e2e/README.md"]
     },
     "source:e2e/playwright.ssr.config.ts": {
       "fingerprint": "8c34f92dda39a8b81205fa9089794964e8adf061907fdd30ba8725cf30e1deca",
@@ -12000,24 +11962,24 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyIssue.md": {
-      "fingerprint": "561109c7be5f9b25272a7a9e582a128b87303120cfa2ea03bda4c8831be3ee03",
+      "fingerprint": "26f18238c2185c32c79cd15086e6a821497a0016391201019c4896e30a2eb9b7",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyIssue.md": "1ef98a33ccffce93433a0397877ebf419331a1beb705b9dc3fcbe159077b10ca"
+        "docs/reference/interfaces/HotkeyIssue.md": "116ac97835e367b5507eb425d9b612b6b0e53fef5623d0760102a484e71c37bc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/interfaces/HotkeyIssue.md"]
     },
     "source:docs/reference/type-aliases/HotkeyIssueReason.md": {
-      "fingerprint": "50b7ad8a29e0eb8e0e44e80fa9476eb980eb01e8ea118bc2b51647b43c25ec62",
+      "fingerprint": "23befd173662d0ea4d8582127a4def1cc03f02707b77f366998147e482cc9818",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyIssueReason.md": "0e6822d563f71096da2f610d8d23706bc8b87d9533a1aab40e782509dd0f7881"
+        "docs/reference/type-aliases/HotkeyIssueReason.md": "34b522bbb7cf3bdc7c3cbc450c1b719f16b8c1a2f2aa4789b919cfae1ee75a65"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyIssueReason.md"]
     },
     "source:docs/reference/type-aliases/RecorderRejectionReason.md": {
       "fingerprint": "2a9fa508e1ecd5989673e9a5c6bbd4597bb82cdeee18a2c4377f039192e5aa0b",
@@ -19660,6 +19622,36 @@
       "outcome": "out-of-scope",
       "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
       "evidence": [".github/workflows/zizmor.yml"]
+    },
+    "source:e2e/browser/development-warnings.spec.ts": {
+      "fingerprint": "b7736dba22c4c463594db6f1fff9322f984844a21d2cd1869b4ef9143e68ddd6",
+      "snapshot": {
+        "e2e/browser/development-warnings.spec.ts": "55ed462575e3f9fe92990f611b0b8cf33a380cdb11657531479f0873243ddddd"
+      },
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "evidence": ["e2e/browser/development-warnings.spec.ts"]
+    },
+    "source:e2e/support/bundle.ts": {
+      "fingerprint": "1e0198e2900f4331f86549d2fc82d6eaa0a2527406f59585e260821f0dbbef09",
+      "snapshot": {
+        "e2e/support/bundle.ts": "aaedae895c6b55e79c1fac7be835dcc8f218fbba35355f8e89c259284bd3b954"
+      },
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "evidence": ["e2e/support/bundle.ts"]
+    },
+    "source:packages/hotkeys/src/_dev.ts": {
+      "fingerprint": "e168521142bcdb1f82c19adf5b4cab457e7f99dd96cf8a6c499edb9fb2ad0bd7",
+      "snapshot": {
+        "packages/hotkeys/src/_dev.ts": "242bdbd2bbac431f0f36278ea704512d651c8bcff9733c15206cd5bad5f42390"
+      },
+      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "outcome": "out-of-scope",
+      "reason": "Internal development-only console guard. It changes where warnings print, not an API or behavior the skills describe.",
+      "evidence": ["packages/hotkeys/src/_dev.ts"]
     }
   }
 }

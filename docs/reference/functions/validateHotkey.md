@@ -9,7 +9,7 @@ title: validateHotkey
 function validateHotkey(hotkey): ValidationResult;
 ```
 
-Defined in: [validate.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L39)
+Defined in: [validate.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L40)
 
 Validates a hotkey and returns any warnings or errors.
 Each issue has a `reason` code, so apps can write their own messages.

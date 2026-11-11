@@ -1,3 +1,4 @@
+import { canWarn } from './_dev'
 import {
   closesNativeLayer,
   getTargetDocument,
@@ -655,8 +656,9 @@ export class HotkeyManager {
     if (scope === GLOBAL_SCOPE) return () => {}
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
+    // Dev-only guard: see `canWarn`
     if (
-      typeof process !== 'undefined' &&
+      canWarn &&
       process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
@@ -937,10 +939,8 @@ export class HotkeyManager {
     // modifiers aren't supported.
     if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
-    if (
-      typeof process !== 'undefined' &&
-      process.env.NODE_ENV !== 'production'
-    ) {
+    // Dev-only guard: see `canWarn`
+    if (canWarn && process.env.NODE_ENV !== 'production') {
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
