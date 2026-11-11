@@ -11,6 +11,8 @@ import {
   parseHotkey,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+// Stateless once loaded, so a copy per entry is fine.
+import { canWarn } from './_dev'
 import {
   chordHasKey,
   defaultHotkeyOptions,
@@ -88,6 +90,9 @@ export function createHotkeyBindings(
     }
   >()
 
+  // Invalid hotkeys already warned about, in development only
+  let warned: Set<string> | undefined
+
   return {
     /**
      * Registers new definitions, updates existing ones in place, and removes
@@ -135,6 +140,17 @@ export function createHotkeyBindings(
         // 'Shift', or 'Ctl+K', registers nothing.
         const parsed = parseHotkey(definition.hotkey, options.platform)
         if (!(Array.isArray(parsed) ? parsed : [parsed]).every(chordHasKey)) {
+          // Dev-only guard: see `canWarn`. Hooks call `update` on every
+          // render, so each hotkey warns once.
+          if (canWarn && process.env.NODE_ENV !== 'production') {
+            const text = JSON.stringify(definition.hotkey)
+            if (!(warned ??= new Set()).has(text)) {
+              warned.add(text)
+              console.warn(
+                `[hotkeys] Invalid hotkey ${text} was not registered`,
+              )
+            }
+          }
           return
         }
         const hotkey = normalizeHotkey(parsed, options.platform)

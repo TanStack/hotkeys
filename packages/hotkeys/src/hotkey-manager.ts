@@ -937,7 +937,19 @@ export class HotkeyManager {
     // A step without a usable key registers nothing: an empty key would match
     // key-less events, such as autofill's, and modifier-only steps and unknown
     // modifiers aren't supported.
-    if (!steps.every(chordHasKey)) return inactiveHandle(callback)
+    if (!steps.every(chordHasKey)) {
+      // Dev-only guard: see `canWarn`. An empty string means "no hotkey".
+      if (
+        canWarn &&
+        process.env.NODE_ENV !== 'production' &&
+        (hotkey as unknown) !== ''
+      ) {
+        console.warn(
+          `[hotkeys] Invalid hotkey ${JSON.stringify(hotkey)} was not registered`,
+        )
+      }
+      return inactiveHandle(callback)
+    }
 
     // Dev-only guard: see `canWarn`
     if (canWarn && process.env.NODE_ENV !== 'production') {

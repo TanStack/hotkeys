@@ -14,6 +14,8 @@ const scenarios: Record<string, (library: Library) => void> = {
     checkHotkey('Control+someweirdkey'),
   'registering an unknown key': ({ getHotkeyManager }) =>
     getHotkeyManager().register('Control+escape' as never, () => {}),
+  'registering an invalid hotkey': ({ getHotkeyManager }) =>
+    getHotkeyManager().register('Ctl+K' as never, () => {}),
   'repeated exclusive scope': ({ getHotkeyManager }) => {
     const manager = getHotkeyManager()
     manager.activateScope('dialog', { exclusive: true })

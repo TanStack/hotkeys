@@ -89,7 +89,7 @@ The exception is Shift that is needed to type a symbol. On a US layout, `?` is t
 
 The iOS on-screen keyboard can report Return as Shift+Enter while auto-capitalization is on, such as at the start of a sentence. If an `Enter` hotkey must fire there, such as in an editor that registers it with `ignoreInputs: false`, register `Shift+Enter` for the same action too.
 
-Every hotkey needs a key that isn't a modifier. TypeScript rejects modifier-only hotkey strings such as `Shift+Alt+Mod` or `[ShiftLeft]`, and strings with an unknown modifier such as `Ctl+K`. A hotkey that does either anyway, such as one from plain JavaScript, saved data, or a chord object like `{ key: 'Shift' }`, registers nothing. To act while keys are held, use the held-key APIs instead.
+Every hotkey needs a key that isn't a modifier. TypeScript rejects modifier-only hotkey strings such as `Shift+Alt+Mod` or `[ShiftLeft]`, and strings with an unknown modifier such as `Ctl+K`. A hotkey that does either anyway, such as one from plain JavaScript, saved data, or a chord object like `{ key: 'Shift' }`, registers nothing and logs a console warning in development. To act while keys are held, use the held-key APIs instead.
 
 Two kinds of key events never match ordinary shortcuts:
 

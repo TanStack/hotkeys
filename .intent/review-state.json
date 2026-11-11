@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "0e6368f2ac722fb0c974694322ef225079a91a892b7ca5f70bd8824433598fb4",
+      "fingerprint": "b59e0c420971bcd1fe5d9a1314100943b15a2e1c9af6f8cb28351b5707caa2d7",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "4b3b40eee22f00776212409b668437fb8653ecfd188cd521fc83b8f9a3df45ba",
+        "docs/guides/sensible-defaults.md": "a88d0de54b82986e8b6fe193ea8c40f320b3fcbc8ba4cf65bb26b0ddd54b2da7",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "e0676f60a3e926c4d5e025273799bffc52710985c5fd4a9c20deeb10b13276ee",
+        "packages/hotkeys/src/hotkey-manager.ts": "cec8ac3347ddc7d53f7bbf66cc0dac76e7c7b7b62bc3cf0d34577e42fbbc30b2",
         "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,10 +115,14 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "no-change",
-      "reason": "The development warnings the guidance mentions now reach the browser console in bundled apps. No API, option, default or documented behavior the skills teach changed; the guide gained two paragraphs on when warnings print.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "An invalid hotkey still registers nothing, as the guidance says. It now also logs a generic console warning in development. No API, option, default or documented usage the skills teach changed; the guide gained one clause on the warning.",
+      "evidence": [
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/hotkeys/src/adapter.ts",
+        "docs/guides/sensible-defaults.md"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "891b27ce1c32211ca6b0dffea08f77bad6c33c8ebef00301c290babec01d2d45",
@@ -277,7 +281,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "b76291d51e36763c6e331fdd5ab4cb404c6c74e6aff3491fa08db96f66342183",
+      "fingerprint": "3364b0515dad06d5ed89f76cabb33d2e8d55c821601876c7d77da1ecda839995",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -307,7 +311,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
-        "docs/guides/sensible-defaults.md": "4b3b40eee22f00776212409b668437fb8653ecfd188cd521fc83b8f9a3df45ba",
+        "docs/guides/sensible-defaults.md": "a88d0de54b82986e8b6fe193ea8c40f320b3fcbc8ba4cf65bb26b0ddd54b2da7",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -340,7 +344,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-manager.ts": "e0676f60a3e926c4d5e025273799bffc52710985c5fd4a9c20deeb10b13276ee",
+        "packages/hotkeys/src/hotkey-manager.ts": "cec8ac3347ddc7d53f7bbf66cc0dac76e7c7b7b62bc3cf0d34577e42fbbc30b2",
         "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
         "packages/hotkeys/src/match.ts": "37eab0c59459f1ef60cd6234ee446e71895b42c9931a00057988ab49b68092c3",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
@@ -409,10 +413,14 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "no-change",
-      "reason": "The development warnings the guidance mentions now reach the browser console in bundled apps. No API, option, default or documented behavior the skills teach changed; the guide gained two paragraphs on when warnings print.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "An invalid hotkey still registers nothing, as the guidance says. It now also logs a generic console warning in development. No API, option, default or documented usage the skills teach changed; the guide gained one clause on the warning.",
+      "evidence": [
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/hotkeys/src/adapter.ts",
+        "docs/guides/sensible-defaults.md"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -642,23 +650,23 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "09e3e52cce538b8a716fc8352d95b37ba8a8e61a087ee9b458c25e15fd6da323",
+      "fingerprint": "0e37e81ec2a1ba1fa7cc158767f7f177384fd00bff1b574fccf4f531d84ef39c",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "995f532657070accfeb29655a345bd7cb1aa10fe6f4062e123e03c0b2504fe8b"
+        "docs/reference/classes/HotkeyManager.md": "279a3a43a49a7675a1bf948b5a8891d6bbea28ce5a556d4f8951b1068a4b9461"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "ce650a21733d69ffbf3ed2351bb4fbf9fcd8a45972c68ca258af3ea72edb3d9a",
+      "fingerprint": "fd8883e116218c487b9a1ddd7393f102db47e4c1885535ba1c74d64f6f30bcb4",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "6a203df979cdd65b332c6e13b6e91299956df6a65589d27937fecd83be8067c7"
+        "docs/reference/functions/getHotkeyManager.md": "b896851c197a8461701ae0612278e03d266a9ded06c68da36c248d0e34a954f5"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference page: source line numbers moved, and checkHotkey gained one sentence on where it logs.",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -4768,14 +4776,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "d3dd03417d2483d6925385f6e83ab55f879bc46e89faf80a12bb43d780ffe114",
+      "fingerprint": "a968a552555199fd065ebaaaf03190795376a8fbf89ba095691df0ef7996fce9",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "e5f4e25336eee6133c686285cd8522d615a9c416d33395a87f44f2fb8da277d0"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "abdc078e578c0d6500f8439e4cb815176c3f7fa435706bbccce86818c2672fc6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md"
+      ]
     },
     "source:docs/reference/adapter/functions/createAppHotkeysStore.md": {
       "fingerprint": "fe1670dffd380eacb39d399d97ad237bd886272ce20cfca940486ca2278cb2f2",
@@ -4788,14 +4798,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/createHotkeyBindings.md": {
-      "fingerprint": "a0ec2e3d8ac27d0b0f25ebde832fc075c9059b1019627dd8a0e9dbedab95a682",
+      "fingerprint": "33eacafbd8c353f28606798d03eba3883dae43998fb4919a16f686549610742f",
       "snapshot": {
-        "docs/reference/adapter/functions/createHotkeyBindings.md": "cdad82fb55df0c770ca9656caa89b6bcbc720e29f65acd815f64b165918ac1a8"
+        "docs/reference/adapter/functions/createHotkeyBindings.md": "7e907979e2cdf0dc7c0a4f3602e10955aa5fc0d79ccbc4e33180d9a7376820cc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": ["docs/reference/adapter/functions/createHotkeyBindings.md"]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
       "fingerprint": "6b5872833c48587e8d7ab79141fc1c858bcad3d02930483765e71e3409ffccc0",
@@ -4808,44 +4818,52 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "508fc182c9dc24cc55ac2ce0dfbed788373998e4fff9129d864facac4eac2fdc",
+      "fingerprint": "e35f213d6d9eb581d6051e45177bc0fbd0890f857e6e98fcf726307220950084",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "cb727170c355be728d15a92c1823cb4b6414636b319f43b5a3c02990f8005063"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "fb2e714c059707c67a208e28b0685ce82036f710564b4f5339b9e40c0bc0c3ec"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md"
+      ]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "5c1fee2151010ba10bafb488661ef02b34f97e770f42bcd1ba757a1c0a0c0791",
+      "fingerprint": "653c5de189a54e8aa96b0c33bae6c71d7e8b5e8564517d769b2ed25c6d6d8b53",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "9be13ce1289e3cd5ad77bb64aa622f33a19117b475f589cae0b5574fceac966b"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "f12763ac5751d5bd710b8e6cefb3d15e103d455b0e2e57e88e92801cf039a73c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md"
+      ]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "5a0a81a4a19a647bac40e724a4d289d577077f24aea4b6208a5ea9a71b8c41c6",
+      "fingerprint": "8684a410de5c90ab3d39beb9b2f7a6d022fff87cdaf9dff36ea77d123a28b25f",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "d42f8b18d2dab9477522923b80f483800db07d68b3dfdfb2adc683a4f5c1569b"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "6cf0a0bbb65120dd3f8e6eaf6fe542207ab806d57c1e82477469e1f2390aade0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md"
+      ]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "e3e508f2d70ffe324e4f26300b05d9ec41c53c1c9dea97cf9acfd81572babd07",
+      "fingerprint": "4e4a4c587abde3d45890ed7303dc471e17384a7047e7cd16ed54bb2306192881",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "7a0dae7d3877b389ceedd9a40632e0e47bb34bbd3c9ac2712dccff1a9a7e7a8e"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "b57d85acaf3904d2fccc5f4bc7d564c5f4bb29f73770f9ee96ccba5906b93b9d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md"
+      ]
     },
     "source:docs/reference/adapter/index.md": {
       "fingerprint": "94d984a02efb251cc8f7376f26506c665d8e2fa82f155f4e9a6bc1f55cb4bef5",
@@ -4858,114 +4876,130 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "da941c1389738dd02f723044c346137b2e4e12412e64eea6f0a148e59b6f0a3d",
+      "fingerprint": "a21d5f2ff2e774823d31106912e514ad18813daf0039a10d0128b69c25d7fe00",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "11f905a559950f1a378cf9de435e95af84e59f34a5b12d2dd14af8fdfb47adbe"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "326ef8b09a89d223b368be88e670c97c485eb83940cb345909baee5801f8fdc1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md"
+      ]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "a42ac484992dc18a7157a0e2c58c339627ed4ab90de87968733f929e90942dc4",
+      "fingerprint": "f3520bf93541203e67157c2ca32df4e94d8348bfb95232d3cbefc35faab54f5d",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "e2f24a1e15e953252b3ceea04b10e9bdb35ecc91e0f98fd73e6faa1e6ddf3513"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "e9c84d435c7481126abaa4bd90c0b880761c7ae792a21a48fd62cfeb5450afc1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
-      "fingerprint": "f0a57803a3e374398fc24df406ed6c61f1d020ce7d1bae26da2b0e94d0261198",
+      "fingerprint": "f56b14a96a3b4098232f8bb608106f77d4c4b8f38140c9e20a12179a62afd5c6",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "e6075a3d2f191de203ea9743cc70c1cb2039ab5fbd8ba62b38b17eab987b8f37"
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "d71cfd101192fe3bee1b4f6c0b18cc005294df52ba0646bb5f9fbcc5d9ebdaee"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterChordOptions.md": {
-      "fingerprint": "2538cb4f371271bf4bd2b67e59ec0ab0fe1c4b8ebf8d8c0ed4fafc73c95e6b08",
+      "fingerprint": "d3951e19fc240bf7f334f8451fe45a33faeb15280f9ea4d1aac5b37e556b258f",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "b1cd8ba66eaf82096e2d846a8e0bee584649c2e5a93396d920b9baf004cbcade"
+        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "7ac8b4a4b777ba47659d44e127d9032f886646a2641b59448dd25d8a2a4c45d0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": ["docs/reference/adapter/type-aliases/AdapterChordOptions.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterCommonOptions.md": {
-      "fingerprint": "65c316bf6e865c1097a5376b5c25b8c9dfb979d89bbb57060d4962dec99c6af5",
+      "fingerprint": "55ae5d8df68c0a04b39bfa9806f15bd7af134a2df2a61fca70e534925d8de88b",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "beb2e865ec3e4ed7799d4a0e761e5cdc30345d38dfca1a8103b529b02b488f12"
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "c774549c517d33644b6d857eb13059aa7fa12a74e4d9d0f180ab394445b1c105"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": {
-      "fingerprint": "3b0ef87f699eccab61fd5bcc84d6705cff36896a4b9b659c2b8831afb79fce69",
+      "fingerprint": "94f9426d8cc028c9fff40a0b189b369a4327422ac3ef21fc3f1d9012f48d9c72",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "2dcd22c417fe98e86119c25eee777204c8bbf03b533752153f7808e4e2135f2f"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "38cefdc35c0866f582d1ab4c27e28ef9caa44df40e0d84655b7d3a656e3d1b1c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": {
-      "fingerprint": "0caa8daa2f64d518765443b4fffe83ed9f003027e7e9c2f48b992f7d00bcd9db",
+      "fingerprint": "71adb4342fe0ea0ef817c67aa92e3dbd59d3ebdad5af8e7b1c300f537f3ddf67",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "02ae12be4826f779ef5523210b3f5c85dbdd50ca3c37f07efc19fccf3f5890f1"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "0393a5de6b0eb71de04659d821d8cbd2902414cd563069564ab2bb39aead3047"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterOptionsFor.md": {
-      "fingerprint": "1325fb813d14116c7a5f9d6c75934ff73c2cce7f4a4e00757680396b5caed603",
+      "fingerprint": "dae048a05fa56acab11c16920c6b6cb5e94e5237b440c5d5a0a82ccf49299de6",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "0bf0e1630cfe79ca5161920a4044925b1f21341099073e41bdd32b0c5c740223"
+        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "8d0a75712ae39865e9d7051805fb74dc7d8415715ebc7097dc7ef9c01b1b90f5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": ["docs/reference/adapter/type-aliases/AdapterOptionsFor.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": {
-      "fingerprint": "80b00eaaae1d06427a0a7a0e506e6c6a2b6c00a83f1c7ba6f03d5ef45cbacd3a",
+      "fingerprint": "02aeef5b44f4b4877044514a88a32198d0f242edaa81b067d142ff1cccd05103",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "f0f458a533496c56938378695adb55e0fef3d824379c97033f1e2b28f2ffdcf9"
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "0907550f488fb03724ef883984d836c1fa54d1b68d256f5a1d63b2d5beb4e88f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": {
-      "fingerprint": "af7067010862aff42dd3102391c5800a9a2febf4476a451e7e36f604a3724a6b",
+      "fingerprint": "9e643b26385a8d60b919003e0bcd3afee5085d6eb2f7ca2a69a1d7b20c576fc5",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "aa6db6995769f22671adf0047aacc0b8b6f9d5c94624076b5c2d65aa22c08dd5"
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "13daac7e7d516ad1f520c0004e69ce68879265b1628c61fb2d1d3a312a8860a2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md"
+      ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyDefinition.md": {
-      "fingerprint": "26f25fee65399c33a4730248d65fbfe8e94b011bd995422d40ca76372fc3a92e",
+      "fingerprint": "d25cb7ecda1dd221252108adeb8b3c546522230ffbed7536338cb0c33f044910",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "0e1ac61e88ddf1958539c4804bc53f3c2cdcd075d0dffe651fed0ffd01d1e799"
+        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "8443f3d3b121aa8c0f50e82ba1d64655f21f869e3ca2be66eb5f9f7d3450c9af"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": ["docs/reference/adapter/type-aliases/HotkeyDefinition.md"]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
       "fingerprint": "3624856550fe95f6e316a3fb511aed54d086b78ccae519f8cb2b8f19e267c755",
@@ -4978,14 +5012,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
-      "fingerprint": "b2f08053f6cb10421a3e453d8446a1a4844b2fb732981d229bec2a17edbae763",
+      "fingerprint": "742152d4a02bc3ed6f5634cec13f722d799d4bebfca536d2099df043a834080e",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/WithTarget.md": "f92bbf39bb526078f3608d27cb2714ca8a8beccfbcf917f25c43c301649b605c"
+        "docs/reference/adapter/type-aliases/WithTarget.md": "b7d86a06896ae6f73bb6dfc17847577aab18bc311b44669b611d88cc4283f0e2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": ["docs/reference/adapter/type-aliases/WithTarget.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
       "fingerprint": "7665e266588c2d8dd0845a8bcdf38b816952624d704f24a82677cc242598bf2e",
@@ -5324,13 +5358,13 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "a9b25e076d8140da239817b2447c4addd220b26f5d7e3db3cc9d81eff461861b",
+      "fingerprint": "7ec9d97bbe859be32f45ac5f3e9c4b88174527447513c6ecd863a89a50eddc56",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "fc3e06608248921c49102a6528eac17a62f547c4ca0f6dba5287c333aa0d2b18"
+        "packages/hotkeys/src/adapter.ts": "c85718172a9cd591f9409edeac2ceb7dae4c8a03432358cedc874c8588b6c9a5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Library source: the adapter logs one development warning for an invalid hotkey it skips. Registration behavior and the adapter API are unchanged.",
       "evidence": ["packages/hotkeys/src/adapter.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
@@ -5356,25 +5390,23 @@
       "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
-      "fingerprint": "ea946782fe269e1a7f2fe166685353f23a14225ce98b71513c076bc348bc8003",
+      "fingerprint": "bb9385959e703711b594f2874ee5b16fcfd6541d451268876f5a71eda7cbb6e2",
       "snapshot": {
-        "packages/hotkeys/tests/adapter.test.ts": "eb64775afc3795683ab5e82303fc611add0355502b41bc94748e48853a9589ad"
+        "packages/hotkeys/tests/adapter.test.ts": "200e1ddcb81246c55f156007377af69e506636332b0d188658096fd37f5b07c0"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/adapter.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the development warning on an invalid hotkey; it carries no guidance for library users.",
+      "evidence": ["packages/hotkeys/tests/adapter.test.ts"]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "e494585f1f1f3582b3274921ceb01060412f7b644f895919024306271375d20f",
+      "fingerprint": "4607bf044656b6822e7445c504eefa505a9a6ce6368e4daa273194fc5bf7d9c8",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "e4ebfbf298bb4157def519e065796d760219ac40f450fd1128a10ac4f0dfccc8"
+        "packages/hotkeys/tests/production-logs.test.ts": "73ba223875ac92f8443f686967613890441509fcc09dd0780e325e2718ec49da"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "out-of-scope",
-      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "reason": "Test code for the development warning on an invalid hotkey; it carries no guidance for library users.",
       "evidence": ["packages/hotkeys/tests/production-logs.test.ts"]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
@@ -6589,16 +6621,14 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "6fd91b8b080b00a6dd8910a338e5b694af7b91f0485260fa7f80e81bb2514d50",
+      "fingerprint": "e346e409a113b60880a4fc3f9d4da4e98cda8952ee6b828ee0e1bff4f919b35d",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "605fb07e97be581e3c1e459e58fa2d52d892e3d4770bf8dc55c8125c21f5a23f"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "9d9fb2559b01e0d3a601b79bde21ecff86b2125ad3917d817fcc7685a2f6541e"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/untrusted-input.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the development warning on an invalid hotkey; it carries no guidance for library users.",
+      "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
@@ -7992,14 +8022,16 @@
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
-      "fingerprint": "716312779f3abfaf6b254e343f34453dc38fbd7b57754d939e857608fe177a19",
+      "fingerprint": "4300c03c3000b57a6469fd63bd790a03606e3b034b14719dca899e3729c8dcd0",
       "snapshot": {
-        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "7a6910cc7590a59a9e8d480661b7327fcf9b8382b828ff16634b5629102958a1"
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "6874f5b465997915a0aead4513c282ad57d89e1956b4011f8446e59e55c664f2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc reference page: source line numbers moved, with no content change.",
+      "evidence": [
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md"
+      ]
     },
     "source:docs/reference/functions/detectPlatform.md": {
       "fingerprint": "50e5480c7ebb159db9ef8163e4adb22517ab4f5e7687e7bf9ca98c82d1636ed8",
@@ -19624,13 +19656,13 @@
       "evidence": [".github/workflows/zizmor.yml"]
     },
     "source:e2e/browser/development-warnings.spec.ts": {
-      "fingerprint": "b7736dba22c4c463594db6f1fff9322f984844a21d2cd1869b4ef9143e68ddd6",
+      "fingerprint": "ec0f2d8400d1442640cc6696ba1aefc2d4e496e088e07f4fff0b4460466ac7fb",
       "snapshot": {
-        "e2e/browser/development-warnings.spec.ts": "55ed462575e3f9fe92990f611b0b8cf33a380cdb11657531479f0873243ddddd"
+        "e2e/browser/development-warnings.spec.ts": "ff51c3def2e4fa689137c12c92f572d7f3e8c12fd33a97b65e00590011870a5c"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "e7a81da213130ea692d134a98da8fed80e60a96f",
       "outcome": "out-of-scope",
-      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "reason": "Test code for the development warning on an invalid hotkey; it carries no guidance for library users.",
       "evidence": ["e2e/browser/development-warnings.spec.ts"]
     },
     "source:e2e/support/bundle.ts": {
