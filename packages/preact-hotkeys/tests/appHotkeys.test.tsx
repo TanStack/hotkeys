@@ -410,7 +410,7 @@ describe('useHotkeyRecorder', () => {
     )
     act(() => result.current.startRecording())
     press('s', { metaKey: true, code: 'KeyS' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     expect(result.current.recordedHotkey).toBe('Mod+S')
   })
 
@@ -423,7 +423,10 @@ describe('useHotkeyRecorder', () => {
     press('g', { code: 'KeyG' })
     expect(result.current.steps).toEqual(['G'])
     press('h', { code: 'KeyH' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
     expect(result.current.isRecording).toBe(false)
   })
 
@@ -462,6 +465,22 @@ describe('app hotkeys and the provider platform', () => {
       result.current.custom
         .findConflicts('palette.open', 'Meta+F')
         .map((appHotkey) => appHotkey.id),
+    ).toEqual(['doc.find'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 'f',
+        code: 'KeyF',
+        metaKey: true,
+      }),
+    }
+    expect(
+      result.current.custom.findConflicts('palette.open', 'Meta+[KeyF]'),
+    ).toEqual([])
+    expect(
+      result.current.custom
+        .findConflicts('palette.open', 'Meta+[KeyF]', recordedWith)
+        .map((a) => a.id),
     ).toEqual(['doc.find'])
 
     platform = 'windows'

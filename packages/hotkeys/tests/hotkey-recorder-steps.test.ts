@@ -71,7 +71,8 @@ describe.each(['key', 'code', undefined] as const)(
       document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
       expect(onRecord).toHaveBeenCalledTimes(1)
       expect(onRecord).toHaveBeenCalledWith(
-        recordBy === 'key' ? ['G', 'G'] : ['[KeyG]', '[KeyG]'],
+        recordBy !== 'code' ? ['G', 'G'] : ['[KeyG]', '[KeyG]'],
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
       const [recorded] = onRecord.mock.calls[0] ?? []
@@ -91,7 +92,8 @@ describe.each(['key', 'code', undefined] as const)(
       button.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
 
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? 'G' : '[KeyG]',
+        recordBy !== 'code' ? 'G' : '[KeyG]',
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
     })
@@ -151,7 +153,7 @@ describe.each(['key', 'code', undefined] as const)(
 
       document.dispatchEvent(createKeyboardEvent('keydown', 'Backspace'))
       expect(r.store.state.steps).toEqual(
-        recordBy === 'key' ? ['A'] : ['[KeyA]'],
+        recordBy !== 'code' ? ['A'] : ['[KeyA]'],
       )
       expect(onRecord).not.toHaveBeenCalled()
     })
@@ -189,7 +191,7 @@ describe.each(['key', 'code', undefined] as const)(
       const [idleRecorded] = onRecord.mock.calls[0] ?? []
       expect(idleRecorded).toBeDefined()
       // A one-step recording commits as a chord string.
-      expect(idleRecorded).toEqual(recordBy === 'key' ? 'G' : '[KeyG]')
+      expect(idleRecorded).toEqual(recordBy !== 'code' ? 'G' : '[KeyG]')
     })
 
     it('stop does not call onRecord or onCancel', () => {
@@ -218,7 +220,8 @@ describe.each(['key', 'code', undefined] as const)(
       expect(r.store.state.steps.length).toBe(2)
       r.commit()
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? ['A', 'Enter'] : ['[KeyA]', '[Enter]'],
+        recordBy !== 'code' ? ['A', 'Enter'] : ['[KeyA]', '[Enter]'],
+        expect.anything(),
       )
     })
 
@@ -230,7 +233,8 @@ describe.each(['key', 'code', undefined] as const)(
       expect(onRecord).not.toHaveBeenCalled()
       document.dispatchEvent(createKeyboardEvent('keydown', 's'))
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? ['G', 'S'] : ['[KeyG]', '[KeyS]'],
+        recordBy !== 'code' ? ['G', 'S'] : ['[KeyG]', '[KeyS]'],
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
     })
@@ -244,7 +248,8 @@ describe.each(['key', 'code', undefined] as const)(
       )
       document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? 'Mod+S' : 'Mod+[KeyS]',
+        recordBy !== 'code' ? 'Mod+S' : 'Mod+[KeyS]',
+        expect.anything(),
       )
     })
 
@@ -370,10 +375,10 @@ describe('HotkeyRecorder with maxSteps: rejection and conflicts', () => {
     expect(onReject).toHaveBeenCalledWith(
       expect.objectContaining({ reason: 'validation' }),
     )
-    expect(r.store.state.steps).toEqual(['[KeyG]'])
+    expect(r.store.state.steps).toEqual(['G'])
     tap('g', 'KeyG')
     r.commit()
-    expect(onRecord).toHaveBeenCalledWith(['[KeyG]', '[KeyG]'])
+    expect(onRecord).toHaveBeenCalledWith(['G', 'G'], expect.anything())
     r.start()
     tap('x', 'KeyX')
     tap('Backspace', 'Backspace')
@@ -408,7 +413,7 @@ describe('HotkeyRecorder with maxSteps: rejection and conflicts', () => {
         ],
       }),
     )
-    expect(r.store.state.steps).toEqual(['[KeyG]'])
+    expect(r.store.state.steps).toEqual(['G'])
     tap('g', 'KeyG')
     expect(callback).not.toHaveBeenCalled()
     expect(onRecord).not.toHaveBeenCalled()

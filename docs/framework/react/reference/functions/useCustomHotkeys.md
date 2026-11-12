@@ -9,7 +9,7 @@ title: useCustomHotkeys
 function useCustomHotkeys(): UseCustomHotkeysResult;
 ```
 
-Defined in: [useAppHotkeys.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useAppHotkeys.ts#L110)
+Defined in: [useAppHotkeys.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useAppHotkeys.ts#L119)
 
 Reads and changes the user's custom hotkeys. Changes apply to every
 registered app hotkey immediately and are passed to the provider's
@@ -25,8 +25,9 @@ registered app hotkey immediately and are passed to the provider's
 const { setCustomHotkey, findConflicts } = useCustomHotkeys()
 const recorder = useHotkeyRecorder({
   maxSteps: Infinity,
-  validate: (hotkey) =>
-    findConflicts('doc.save', hotkey).length === 0 || 'Already in use',
-  onRecord: (hotkey) => setCustomHotkey('doc.save', hotkey),
+  validate: (hotkey, context) =>
+    findConflicts('doc.save', hotkey, context).length === 0 ||
+    'Already in use',
+  onRecord: (hotkey, context) => setCustomHotkey('doc.save', hotkey, context),
 })
 ```

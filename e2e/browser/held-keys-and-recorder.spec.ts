@@ -49,7 +49,7 @@ test.describe('held keys', () => {
 })
 
 test.describe('recorder', () => {
-  test('records a chord by physical key and the result fires', async ({
+  test('records a chord by name and the result fires', async ({
     page,
     harness,
   }) => {
@@ -57,11 +57,32 @@ test.describe('recorder', () => {
     await hk.call('startRecorder')
     await page.keyboard.press(`${hk.mod}+Shift+k`)
     const { recorded, isRecording } = await hk.call('recorderState')
-    expect(recorded).toBe('Mod+Shift+[KeyK]')
+    expect(recorded).toBe('Mod+Shift+K')
     expect(isRecording).toBe(false)
-    await hk.register('recorded', recorded as 'Mod+Shift+[KeyK]')
+    await hk.register('recorded', recorded as 'Mod+Shift+K')
     await page.keyboard.press(`${hk.mod}+Shift+k`)
     expect(await hk.firedNames()).toEqual(['recorded'])
+  })
+
+  test('records Shift with a symbol by physical key and the result fires', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.call('startRecorder')
+    await page.keyboard.press('Shift+Slash')
+    const { recorded } = await hk.call('recorderState')
+    expect(recorded).toBe('Shift+[Slash]')
+    await hk.register('recorded', recorded as 'Shift+[Slash]')
+    await page.keyboard.press('Shift+Slash')
+    expect(await hk.firedNames()).toEqual(['recorded'])
+  })
+
+  test('records the physical key in code mode', async ({ page, harness }) => {
+    const hk = await harness()
+    await hk.call('startRecorder', { recordBy: 'code' })
+    await page.keyboard.press(`${hk.mod}+Shift+k`)
+    expect((await hk.call('recorderState')).recorded).toBe('Mod+Shift+[KeyK]')
   })
 
   test('records the typed character in key mode', async ({ page, harness }) => {
@@ -76,15 +97,9 @@ test.describe('recorder', () => {
     await hk.call('startRecorder', { maxSteps: Infinity })
     await page.keyboard.press('g')
     await page.keyboard.press(`${hk.mod}+k`)
-    expect((await hk.call('recorderState')).steps).toEqual([
-      '[KeyG]',
-      'Mod+[KeyK]',
-    ])
+    expect((await hk.call('recorderState')).steps).toEqual(['G', 'Mod+K'])
     await page.keyboard.press('Enter')
-    expect((await hk.call('recorderState')).recorded).toEqual([
-      '[KeyG]',
-      'Mod+[KeyK]',
-    ])
+    expect((await hk.call('recorderState')).recorded).toEqual(['G', 'Mod+K'])
   })
 
   test('Escape cancels and Backspace clears', async ({ page, harness }) => {
@@ -151,7 +166,7 @@ test.describe('recorder', () => {
     await hk.call('startRecorder', { recordTab: true })
     await page.keyboard.press('Tab')
     await expect(page.locator('#start')).toBeFocused()
-    expect((await hk.call('recorderState')).recorded).toBe('[Tab]')
+    expect((await hk.call('recorderState')).recorded).toBe('Tab')
   })
 
   test('keys pressed while recording do not fire hotkeys', async ({

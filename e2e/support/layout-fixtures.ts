@@ -19,7 +19,7 @@ export interface LayoutKeyboard {
   /** Presses real keys while a recorder runs and returns its result. */
   record: (
     combo: string,
-    options?: { recordBy?: 'code' | 'key' },
+    options?: { recordBy?: 'auto' | 'code' | 'key' },
   ) => Promise<unknown>
 }
 

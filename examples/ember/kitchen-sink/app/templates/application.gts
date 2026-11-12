@@ -547,7 +547,7 @@ class Recording extends Component<{
   Args: { log: (message: string) => void }
 }> {
   @tracked hotkey: Hotkey = this.initial
-  @tracked mode: RecorderKeyMode = 'code'
+  @tracked mode: RecorderKeyMode = 'auto'
   @tracked problem: string = ''
   @tracked sequence: Hotkey = ['[KeyX]', '[KeyY]']
   @tracked sequenceProblem: string = ''
@@ -668,7 +668,8 @@ class Recording extends Component<{
           }}
           {{on 'input' this.updateMode}}
         >
-          <option value='code'>Physical code (default)</option>
+          <option value='auto'>By name, or position where needed (default)</option>
+          <option value='code'>Physical code</option>
           <option value='key'>Logical character</option>
         </select>
       </label>

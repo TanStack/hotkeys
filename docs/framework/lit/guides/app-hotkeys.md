@@ -129,11 +129,11 @@ class ShortcutRow extends LitElement {
 
   private recorder = new HotkeyRecorderController(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = this.app.findConflicts(this.hotkeyId, hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = this.app.findConflicts(this.hotkeyId, hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => this.app.setCustomHotkey(this.hotkeyId, hotkey),
+    onRecord: (hotkey, context) => this.app.setCustomHotkey(this.hotkeyId, hotkey, context),
     onClear: () => this.app.setCustomHotkey(this.hotkeyId, null),
   }))
 
@@ -149,11 +149,13 @@ class ShortcutRow extends LitElement {
 }
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `customHotkeys` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

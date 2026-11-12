@@ -52,7 +52,7 @@ describe('Tab while recording', () => {
     const onCancel = vi.fn()
     const r = recorder({ maxSteps: Infinity, onRecord, onCancel })
     keydown({ key: 'g', code: 'KeyG', target: document })
-    expect(r.store.state.steps).toEqual(['[KeyG]'])
+    expect(r.store.state.steps).toEqual(['G'])
     tab()
     expect(onRecord).not.toHaveBeenCalled()
     expect(onCancel).toHaveBeenCalledOnce()
@@ -63,17 +63,17 @@ describe('Tab while recording', () => {
     const onRecord = vi.fn()
     recorder({ onRecord })
     expect(tab({ ctrlKey: true }).defaultPrevented).toBe(true)
-    expect(onRecord).toHaveBeenCalledWith('Control+[Tab]')
+    expect(onRecord).toHaveBeenCalledWith('Control+Tab', expect.anything())
   })
 
   it.each([
-    ['Alt', { altKey: true }, 'Alt+[Tab]'],
-    ['Meta', { metaKey: true }, 'Mod+[Tab]'],
+    ['Alt', { altKey: true }, 'Alt+Tab'],
+    ['Meta', { metaKey: true }, 'Mod+Tab'],
   ] as const)('records Tab with %s', (_, flags, expected) => {
     const onRecord = vi.fn()
     recorder({ onRecord })
     expect(tab(flags).defaultPrevented).toBe(true)
-    expect(onRecord).toHaveBeenCalledWith(expected)
+    expect(onRecord).toHaveBeenCalledWith(expected, expect.anything())
   })
 
   it('records Windows AltGr+Tab instead of cancelling', () => {
@@ -90,7 +90,7 @@ describe('Tab while recording', () => {
       target: document,
     })
     expect(onCancel).not.toHaveBeenCalled()
-    expect(onRecord).toHaveBeenCalledWith('Mod+Alt+[Tab]')
+    expect(onRecord).toHaveBeenCalledWith('Mod+Alt+Tab', expect.anything())
   })
 
   it('cancels on a repeated Tab without preventing it', () => {
@@ -103,12 +103,13 @@ describe('Tab while recording', () => {
   it.each([
     ['code', '[Tab]'],
     ['key', 'Tab'],
+    ['auto', 'Tab'],
   ] as const)('records Tab by %s with recordTab', (recordBy, expected) => {
     const onRecord = vi.fn()
     const onCancel = vi.fn()
     recorder({ recordTab: true, recordBy, onRecord, onCancel })
     expect(tab().defaultPrevented).toBe(true)
-    expect(onRecord).toHaveBeenCalledWith(expected)
+    expect(onRecord).toHaveBeenCalledWith(expected, expect.anything())
     expect(onCancel).not.toHaveBeenCalled()
   })
 
@@ -117,7 +118,7 @@ describe('Tab while recording', () => {
     const r = recorder({ onRecord })
     r.setOptions({ recordTab: true })
     tab()
-    expect(onRecord).toHaveBeenCalledWith('[Tab]')
+    expect(onRecord).toHaveBeenCalledWith('Tab', expect.anything())
   })
 
   it('does not fire a registered Tab hotkey on the press that cancels', () => {

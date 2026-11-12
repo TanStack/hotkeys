@@ -55,7 +55,7 @@ Augment `Register` in the adapter module you import from, such as `declare modul
 - **Ids are a storage contract.** Saved data is keyed by id, and unknown ids are silently dropped, so renaming an id discards users' customizations.
 - **`setCustomHotkey` returns conflicts and changes nothing when there are any.** Check the result before reporting success, or reject the key press earlier by calling `findConflicts` in the recorder's `validate`.
 - **Declare scopes on app hotkeys that share keys.** An app hotkey without a scope, or in `'global'`, conflicts with every other app hotkey on the same keys, so rebinding is rejected.
-- **Conflict checks treat physical and logical bindings as different.** A recorded `Mod+[KeyP]` doesn't conflict with a declared `Mod+P`, although Command+P runs both. Declaring rebindable defaults in the recorder's form, such as `Mod+[KeyP]`, makes them comparable.
+- **Conflict checks need the recorder's `context`.** Two hotkeys can be written differently and fire for the same key press, such as a recorded `Shift+[Slash]` and a declared `?`. `findConflicts(id, hotkey, context)` and `setCustomHotkey(id, hotkey, context)` check with the key press when they get the `context` that `validate` and `onRecord` receive. Without it, they only compare how the hotkeys are written.
 - **A cheat sheet dialog usually gets an exclusive scope.** Register the hotkey that opened it inside the dialog too, so the same keys close it.
 
 When building the "press a new shortcut" control, read [recording](references/recording.md).

@@ -348,7 +348,7 @@ class Recording extends DemoElement {
   private initial: Hotkey = 'Alt+[KeyR]'
   @state() private binding: Hotkey = this.initial
   @state() private sequence: Hotkey = ['[KeyX]', '[KeyY]']
-  @state() private mode: RecorderKeyMode = 'code'
+  @state() private mode: RecorderKeyMode = 'auto'
   @state() private problem = ''
   @state() private idle = false
   @state() private enter = true
@@ -435,6 +435,9 @@ class Recording extends DemoElement {
             this.seq.setOptions({ recordBy: this.mode })
           }}
         >
+          <option value="auto">
+            By name, or position where needed (default)
+          </option>
           <option value="code">Physical code</option>
           <option value="key">Logical key</option>
         </select></label

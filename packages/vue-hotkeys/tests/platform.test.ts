@@ -123,7 +123,7 @@ describe('provider platform', () => {
     )
     recorder.startRecording()
     press(mod)
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     wrapper.unmount()
   })
 })

@@ -476,7 +476,7 @@ function Recording() {
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = createSignal<Hotkey>(initial)
-  const [mode, setMode] = createSignal<RecorderKeyMode>('code')
+  const [mode, setMode] = createSignal<RecorderKeyMode>('auto')
   const [problem, setProblem] = createSignal('')
   const [sequence, setSequence] = createSignal<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = createSignal('')
@@ -559,7 +559,10 @@ function Recording() {
           disabled={recorder.isRecording() || sequenceRecorder.isRecording()}
           onChange={(e) => setMode(e.currentTarget.value as RecorderKeyMode)}
         >
-          <option value="code">Physical code (default)</option>
+          <option value="auto">
+            By name, or position where needed (default)
+          </option>
+          <option value="code">Physical code</option>
           <option value="key">Logical character</option>
         </select>
       </label>

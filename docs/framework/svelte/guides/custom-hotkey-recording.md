@@ -17,7 +17,7 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
   import { createHotkeyRecorder, formatForDisplay } from '@tanstack/svelte-hotkeys'
 
   const recorder = createHotkeyRecorder({
-    onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+[KeyS]'
+    onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
 </script>
 
@@ -35,7 +35,9 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 </div>
 ```
 
-The recorder records the key's position by default, so Option+S on macOS records `Alt+[KeyS]`, even though it types `ß`. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `formatForDisplay`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) explains these defaults. Set `recordBy: 'key'` to record the character instead.
+The recorder writes the hotkey the way you would write it by hand, so Control+S records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `formatForDisplay`.
+
+Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types.
 
 `createHotkeyRecorder` returns the recorder's state and controls. State members are reactive getters, so read them from the recorder object instead of destructuring them once:
 
@@ -59,7 +61,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 
   const recorder = createHotkeyRecorder({
     maxSteps: Infinity,
-    onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+[KeyS]' or ['[KeyG]', '[KeyG]']
+    onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
   })
 </script>
 
@@ -81,7 +83,7 @@ Options can also be a getter, such as `createHotkeyRecorder(() => ({ maxSteps: I
 | Key | What it does |
 | --- | --- |
 | A modifier alone, such as Shift | Waits for a key to go with it |
-| A key, with or without modifiers | Records a chord, such as `Mod+[KeyS]` or `[F1]` |
+| A key, with or without modifiers | Records a chord, such as `Mod+S` or `F1` |
 | Enter | Commits a sequence recording. With `maxSteps: 1` or `commitKeys: 'none'`, records Enter like any other key. |
 | Escape | Cancels the recording and calls `onCancel` |
 | Tab or Shift+Tab, without Control, Alt, or Meta | Cancels the recording and calls `onCancel`, and the browser moves focus as usual. In a text field, moves focus without cancelling. With `recordTab: true`, records Tab like any other key. |
@@ -108,7 +110,7 @@ createHotkeyRecorder({
 })
 ```
 
-The second argument has the `event` that recorded the chord and `parsedChord`, with `Mod` resolved. With `maxSteps: Infinity`, a recording can be a chord or a sequence, so check `kind` first. A sequence's context has `events` and `parsedSequence`, with one entry per step:
+The second argument has the `event` that recorded the chord and `parsedChord`, with `Mod` resolved. `onRecord` receives the same second argument. With `maxSteps: Infinity`, a recording can be a chord or a sequence, so check `kind` first. A sequence's context has `events` and `parsedSequence`, with one entry per step:
 
 ```ts
 createHotkeyRecorder({
@@ -150,9 +152,11 @@ detectConflicts: {
 }
 ```
 
+Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a registered `?` are the same press. The check also tests each registered hotkey against the key presses that made the recording, so it finds these.
+
 A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
 
-`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code, or `'alt-graph'` for an AltGr press it can't record. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
+`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code and no name to record instead, or `'alt-graph'` for an AltGr press it can't record. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
 
 To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
@@ -218,13 +222,13 @@ For a few hotkeys in one component, `$state` is enough:
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `onRecord` | Required | Called with the recorded hotkey when a recording commits |
+| `onRecord` | Required | Called with the recorded hotkey when a recording commits, and with the same context as `validate` |
 | `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, or you call `cancelRecording()` |
 | `onClear` | None | Called when the user presses Backspace or Delete with nothing recorded |
 | `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |
 | `idleTimeoutMs` | None | With `maxSteps: Infinity`, commits after this many milliseconds without a new step. The timer starts after the first chord. |
-| `recordBy` | `'code'` | Records the key's position (`'code'`) or the character it types (`'key'`) |
+| `recordBy` | `'auto'` | Records the key by name where it has one and by position otherwise (`'auto'`), always by position (`'code'`), or always by the character it types (`'key'`) |
 | `ignoreInputs` | `true` | Lets typing in text fields pass through while recording |
 | `recordTab` | `false` | Records Tab and Shift+Tab instead of letting them cancel and move focus |
 | `validate` | None | Accepts or rejects a recording. See [Reject hotkeys you don't want](#reject-hotkeys-you-dont-want). |

@@ -7,6 +7,7 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   Hotkey,
+  RecordedKeyPresses,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
@@ -71,13 +72,15 @@ export class AppHotkeysController implements ReactiveController {
 
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   public setCustomHotkey(
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
-    return requireStore().setCustomHotkey(id, hotkey)
+    return requireStore().setCustomHotkey(id, hotkey, recordedWith)
   }
 
   /** Restores the default hotkey for an app hotkey. */
@@ -90,12 +93,17 @@ export class AppHotkeysController implements ReactiveController {
     requireStore().resetCustomHotkeys()
   }
 
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
   public findConflicts(
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
-    return requireStore().findConflicts(id, hotkey)
+    return requireStore().findConflicts(id, hotkey, recordedWith)
   }
 
   public hostConnected(): void {

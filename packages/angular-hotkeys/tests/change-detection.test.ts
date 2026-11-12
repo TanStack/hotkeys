@@ -165,7 +165,7 @@ describe('change detection in zoneless apps', () => {
     fixture.componentInstance.recorder.startRecording()
     type('j', 'KeyJ')
     await fixture.whenStable()
-    expect(fixture.nativeElement.textContent).toBe('[KeyJ]')
+    expect(fixture.nativeElement.textContent).toBe('J')
   })
 
   it('runs no change detection for keys that match no hotkey', async () => {

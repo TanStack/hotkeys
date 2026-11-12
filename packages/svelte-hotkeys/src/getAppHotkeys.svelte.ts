@@ -7,6 +7,7 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   Hotkey,
+  RecordedKeyPresses,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 
@@ -83,20 +84,27 @@ export interface SvelteCustomHotkeys {
   readonly current: CustomHotkeys
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   setCustomHotkey: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
   /** Restores the default hotkey for an app hotkey. */
   resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
   /** Restores every default hotkey. */
   resetCustomHotkeys: () => void
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
   findConflicts: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
 }
 
@@ -112,9 +120,11 @@ export function getCustomHotkeys(): SvelteCustomHotkeys {
       subscribe()
       return store().customHotkeys
     },
-    setCustomHotkey: (id, hotkey) => store().setCustomHotkey(id, hotkey),
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      store().setCustomHotkey(id, hotkey, recordedWith),
     resetCustomHotkey: (id) => store().resetCustomHotkey(id),
     resetCustomHotkeys: () => store().resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store().findConflicts(id, hotkey),
+    findConflicts: (id, hotkey, recordedWith) =>
+      store().findConflicts(id, hotkey, recordedWith),
   }
 }

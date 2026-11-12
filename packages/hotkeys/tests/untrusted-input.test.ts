@@ -89,8 +89,14 @@ describe('recording whitespace', () => {
   })
 
   it('records the plus key and the space bar', () => {
-    expect(record('+').onRecord).toHaveBeenCalledWith('Alt++')
-    expect(record(' ').onRecord).toHaveBeenCalledWith('Alt+Space')
+    expect(record('+').onRecord).toHaveBeenCalledWith(
+      'Alt++',
+      expect.anything(),
+    )
+    expect(record(' ').onRecord).toHaveBeenCalledWith(
+      'Alt+Space',
+      expect.anything(),
+    )
   })
 })
 

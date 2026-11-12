@@ -32,7 +32,7 @@ type RecordResult =
 function record(
   init: EventCase['init'],
   platform: Platform,
-  recordBy: 'code' | 'key',
+  recordBy: 'auto' | 'code' | 'key',
 ): RecordResult {
   let result: RecordResult = { kind: 'none' }
   const recorder = new HotkeyRecorder({
@@ -64,60 +64,63 @@ function recorderControlKey(init: EventCase['init']): boolean {
 describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
   const events = realisticEvents(platform)
 
-  describe.each(['code', 'key'] as const)('recordBy: %s', (recordBy) => {
-    it('match the key press they were recorded from', () => {
-      const log = failureLog()
-      let recorded = 0
-      for (const { label, init } of events) {
-        const result = record(init, platform, recordBy)
-        if (result.kind !== 'recorded') continue
-        recorded++
-        const hotkey = result.hotkey as HotkeyChord
-        if (typeof hotkey !== 'string') {
-          log.add(`${label}: recorded a sequence ${JSON.stringify(hotkey)}`)
-          continue
+  describe.each(['auto', 'code', 'key'] as const)(
+    'recordBy: %s',
+    (recordBy) => {
+      it('match the key press they were recorded from', () => {
+        const log = failureLog()
+        let recorded = 0
+        for (const { label, init } of events) {
+          const result = record(init, platform, recordBy)
+          if (result.kind !== 'recorded') continue
+          recorded++
+          const hotkey = result.hotkey as HotkeyChord
+          if (typeof hotkey !== 'string') {
+            log.add(`${label}: recorded a sequence ${JSON.stringify(hotkey)}`)
+            continue
+          }
+          if (!validateHotkey(hotkey).valid) {
+            log.add(`${label}: recorded invalid ${hotkey}`)
+          }
+          if (normalizeHotkey(hotkey, platform) !== hotkey) {
+            log.add(`${label}: recorded ${hotkey}, which is not in normal form`)
+          }
+          if (
+            !matchesKeyboardEvent(makeEvent('keydown', init), hotkey, platform)
+          ) {
+            log.add(`${label}: recorded ${hotkey}, which doesn't match it`)
+          }
         }
-        if (!validateHotkey(hotkey).valid) {
-          log.add(`${label}: recorded invalid ${hotkey}`)
-        }
-        if (normalizeHotkey(hotkey, platform) !== hotkey) {
-          log.add(`${label}: recorded ${hotkey}, which is not in normal form`)
-        }
-        if (
-          !matchesKeyboardEvent(makeEvent('keydown', init), hotkey, platform)
-        ) {
-          log.add(`${label}: recorded ${hotkey}, which doesn't match it`)
-        }
-      }
-      expect(log.report()).toEqual([])
-      // Most presses record; a broken fixture would record nothing
-      expect(recorded).toBeGreaterThan(events.length / 2)
-    })
+        expect(log.report()).toEqual([])
+        // Most presses record; a broken fixture would record nothing
+        expect(recorded).toBeGreaterThan(events.length / 2)
+      })
 
-    it('fire a hotkey registered with the recorded chord', () => {
-      const log = failureLog()
-      const manager = HotkeyManager.getInstance()
-      for (const { label, init } of events) {
-        const result = record(init, platform, recordBy)
-        if (result.kind !== 'recorded') continue
-        const hotkey = result.hotkey as HotkeyChord
-        const callback = vi.fn()
-        const handle = manager.register(hotkey, callback, {
-          platform,
-          ignoreInputs: false,
-          conflictBehavior: 'allow',
-        })
-        document.dispatchEvent(makeEvent('keydown', init))
-        handle.unregister()
-        if (callback.mock.calls.length !== 1) {
-          log.add(
-            `${label}: ${hotkey} fired ${callback.mock.calls.length} times`,
-          )
+      it('fire a hotkey registered with the recorded chord', () => {
+        const log = failureLog()
+        const manager = HotkeyManager.getInstance()
+        for (const { label, init } of events) {
+          const result = record(init, platform, recordBy)
+          if (result.kind !== 'recorded') continue
+          const hotkey = result.hotkey as HotkeyChord
+          const callback = vi.fn()
+          const handle = manager.register(hotkey, callback, {
+            platform,
+            ignoreInputs: false,
+            conflictBehavior: 'allow',
+          })
+          document.dispatchEvent(makeEvent('keydown', init))
+          handle.unregister()
+          if (callback.mock.calls.length !== 1) {
+            log.add(
+              `${label}: ${hotkey} fired ${callback.mock.calls.length} times`,
+            )
+          }
         }
-      }
-      expect(log.report()).toEqual([])
-    })
-  })
+        expect(log.report()).toEqual([])
+      })
+    },
+  )
 
   it('records every press that is not a recorder control key, a whitespace character, or AltGr that typed nothing new', () => {
     const log = failureLog()
@@ -175,7 +178,7 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
   /** Checks that a recorded chord is valid, matches its press and fires. */
   function checkRecorded(
     cases: Array<EventCase>,
-    recordBy: 'code' | 'key',
+    recordBy: 'auto' | 'code' | 'key',
   ): Array<string> {
     const log = failureLog()
     for (const { label, init } of cases) {

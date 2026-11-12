@@ -61,11 +61,11 @@ export function ShortcutRow(props: { id: AppHotkeyId }) {
     useCustomHotkeys()
   const recorder = createHotkeyRecorder({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = findConflicts(props.id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = findConflicts(props.id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => setCustomHotkey(props.id, hotkey),
+    onRecord: (hotkey, context) => setCustomHotkey(props.id, hotkey, context),
     onClear: () => setCustomHotkey(props.id, null),
   })
 

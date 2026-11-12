@@ -98,6 +98,16 @@ module('App hotkeys', (hooks) => {
       await key('s', { ctrlKey: true })
       assert.dom('#count').hasText('1')
 
+      // A recorded position conflicts through the key press that recorded it
+      const recordedWith = {
+        event: new KeyboardEvent('keydown', { key: 's', code: 'KeyS', ctrlKey: true }),
+      }
+      assert.deepEqual(instance.custom.findConflicts('palette.open', 'Control+[KeyS]'), [])
+      assert.deepEqual(
+        instance.custom.setCustomHotkey('palette.open', 'Control+[KeyS]', recordedWith).map((a) => a.id),
+        ['doc.save'],
+      )
+
       instance.custom.setCustomHotkey('doc.save', ['G', 'S'])
       instance.custom.setCustomHotkey('palette.open', 'Control+K')
       await settled()

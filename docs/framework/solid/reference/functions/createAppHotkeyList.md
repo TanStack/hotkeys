@@ -9,7 +9,7 @@ title: createAppHotkeyList
 function createAppHotkeyList(): () => AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[];
 ```
 
-Defined in: [appHotkeys.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L54)
+Defined in: [appHotkeys.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L55)
 
 Lists every app hotkey with its live status, in declaration order, for
 cheat sheets and settings screens. App hotkeys whose components have not

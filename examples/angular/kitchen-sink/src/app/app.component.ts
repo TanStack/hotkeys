@@ -325,6 +325,9 @@ export class Sequences {
         [disabled]="recorder.isRecording() || seq.isRecording()"
         (change)="setMode(modeInput.value)"
       >
+        <option value="auto">
+          By name, or position where needed (default)
+        </option>
         <option value="code">Physical code</option>
         <option value="key">Logical key</option>
       </select></label
@@ -388,7 +391,7 @@ export class Recording {
   readonly initial: Hotkey = 'Alt+[KeyR]'
   readonly hotkey = signal<Hotkey>(this.initial)
   readonly sequence = signal<Hotkey>(['[KeyX]', '[KeyY]'])
-  readonly mode = signal<RecorderKeyMode>('code')
+  readonly mode = signal<RecorderKeyMode>('auto')
   readonly problem = signal('')
   readonly idle = signal(false)
   readonly enter = signal(true)
@@ -397,7 +400,7 @@ export class Recording {
   label = (hotkey: Hotkey) =>
     formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   setMode(value: string) {
-    this.mode.set(value === 'key' ? 'key' : 'code')
+    this.mode.set(value === 'key' || value === 'code' ? value : 'auto')
   }
   readonly recorder = injectHotkeyRecorder(() => ({
     recordBy: this.mode(),

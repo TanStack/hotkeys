@@ -119,8 +119,8 @@ describe('provider platform', () => {
   })
 
   it.each([
-    ['mac', 'Mod+[KeyS]'],
-    ['windows', 'Meta+[KeyS]'],
+    ['mac', 'Mod+S'],
+    ['windows', 'Meta+S'],
   ] as const)('gives recorders the platform: %s', (platform, recorded) => {
     setup({ platform })
     const onRecord = vi.fn()
@@ -130,6 +130,6 @@ describe('provider platform', () => {
     TestBed.tick()
     recorder.startRecording()
     press('metaKey')
-    expect(onRecord).toHaveBeenCalledWith(recorded)
+    expect(onRecord).toHaveBeenCalledWith(recorded, expect.anything())
   })
 })

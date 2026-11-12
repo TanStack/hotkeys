@@ -162,7 +162,7 @@ describe('Alpine lifecycle', () => {
     recorder.startRecording()
     expect(recorder.isRecording).toBe(true)
     key('k', 'keydown', { ctrlKey: true })
-    expect(onRecord).toHaveBeenCalledWith('Control+K')
+    expect(onRecord).toHaveBeenCalledWith('Control+K', expect.anything())
     expect(recorder.isRecording).toBe(false)
     const sequence = createHotkeyRecorder(hotkeys, {
       maxSteps: Infinity,
@@ -270,7 +270,7 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
   const recorder = createHotkeyRecorder(hotkeys, { onRecord })
   recorder.startRecording()
   key('k', 'keydown', { code: 'KeyK' })
-  expect(onRecord).toHaveBeenCalledWith('K')
+  expect(onRecord).toHaveBeenCalledWith('K', expect.anything())
   const sequence = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
     onRecord,
@@ -280,5 +280,5 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
   key('g', 'keydown', { code: 'KeyG' })
   key('g', 'keyup', { code: 'KeyG' })
   key('Enter', 'keydown', { code: 'Enter' })
-  expect(onRecord).toHaveBeenLastCalledWith('G')
+  expect(onRecord).toHaveBeenLastCalledWith('G', expect.anything())
 })

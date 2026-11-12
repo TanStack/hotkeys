@@ -20,17 +20,31 @@ import type {
   ParsedHotkeyChord,
 } from './hotkey.types'
 
-/** Event property used to record a binding. Physical codes are the default. */
-export type RecorderKeyMode = 'code' | 'key'
+/**
+ * How the recorder writes the pressed key:
+ *
+ * - `'auto'` (default): by name when the press has one, such as `Mod+S` or
+ *   `Shift+Enter`, and by physical code otherwise, such as `Alt+[Digit1]` for
+ *   macOS Option+1. The result reads like a hotkey written by hand, so it
+ *   compares equal to one, and its label follows the user's keyboard layout.
+ *   Recorded by code: Shift or macOS Option with anything but a letter, dead
+ *   keys and the numpad.
+ * - `'code'`: always by physical code, such as `Mod+[KeyS]`. The hotkey names
+ *   a position on the keyboard, whatever that key types.
+ * - `'key'`: always by the character or key name the press produced, such as
+ *   `ß` for macOS Option+S.
+ */
+export type RecorderKeyMode = 'auto' | 'code' | 'key'
 
 /**
  * Why the recorder rejected a key press or a recording:
  *
- * - `'alt-graph'`: AltGr was held. Recording by code can't record AltGr
- *   presses; record by key to accept the characters AltGr types. Recording by
- *   key rejects AltGr that typed nothing new, such as AltGr+Home on Linux,
- *   because no hotkey matches that press.
- * - `'missing-code'`: the event has no usable physical key code.
+ * - `'alt-graph'`: AltGr was held. Only `recordBy: 'key'` records AltGr
+ *   presses, as the characters AltGr types. It still rejects AltGr that typed
+ *   nothing new, such as AltGr+Home on Linux, because no hotkey matches that
+ *   press.
+ * - `'missing-code'`: the event has no usable physical key code, and
+ *   `recordBy: 'auto'` found no name to record it by.
  * - `'whitespace'`: the key is a whitespace character, which a hotkey can't
  *   hold.
  * - `'validation'`: your `validate` callback rejected the recording.
@@ -53,7 +67,7 @@ export interface RecorderRejection {
 }
 
 export interface RecorderOptions {
-  /** Physical code recording is the default. Choose key to record logical characters. */
+  /** How the pressed key is written. Default: `'auto'`. */
   recordBy?: RecorderKeyMode
   /** Platform used for Mod and AltGraph handling. Defaults to platform detection. */
   platform?: 'mac' | 'windows' | 'linux'
@@ -136,8 +150,14 @@ export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
     hotkey: HotkeyChord,
     context: HotkeyChordRecorderValidationContext,
   ) => boolean | string
-  /** Callback when a chord is successfully recorded */
-  onRecord: (hotkey: HotkeyChord) => void
+  /**
+   * Callback when a chord is successfully recorded. `context` is the one
+   * `validate` received, with the key press that recorded the chord.
+   */
+  onRecord: (
+    hotkey: HotkeyChord,
+    context: HotkeyChordRecorderValidationContext,
+  ) => void
 }
 
 /**
@@ -152,8 +172,11 @@ export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions
     hotkey: Hotkey,
     context: HotkeyRecorderValidationContext,
   ) => boolean | string
-  /** Callback when a hotkey is successfully recorded */
-  onRecord: (hotkey: Hotkey) => void
+  /**
+   * Callback when a hotkey is successfully recorded. `context` is the one
+   * `validate` received, with the key press that recorded each step.
+   */
+  onRecord: (hotkey: Hotkey, context: HotkeyRecorderValidationContext) => void
   /** Whether plain Enter commits the recorded steps. Default: 'enter' */
   commitKeys?: HotkeyRecorderCommitKeys
   /** Commit automatically after this many milliseconds without a new step. Disabled when unset or 0. */
@@ -175,7 +198,7 @@ type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
     hotkey: Hotkey,
     context: HotkeyRecorderValidationContext,
   ) => boolean | string
-  onRecord: (hotkey: Hotkey) => void
+  onRecord: (hotkey: Hotkey, context: HotkeyRecorderValidationContext) => void
   commitKeys?: HotkeyRecorderCommitKeys
   idleTimeoutMs?: number
 }
@@ -386,7 +409,7 @@ export class HotkeyRecorder {
       }
 
       if (isModifierPress(event)) return
-      const rejection = chordRejection(event, { ...options, platform })
+      const rejection = chordRejection(event, platform, options.recordBy)
       if (rejection) {
         options.onReject?.(rejection)
         return
@@ -480,7 +503,7 @@ export class HotkeyRecorder {
     }
 
     this.#finish(hotkey)
-    options.onRecord(hotkey)
+    options.onRecord(hotkey, context)
   }
 
   /** Stops listening and stores the final state. */

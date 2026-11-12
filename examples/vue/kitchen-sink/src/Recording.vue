@@ -27,7 +27,7 @@ const log = inject<(message: string) => void>('log')!
 const initial: Hotkey = 'Alt+[KeyR]'
 const hotkey = ref<Hotkey>(initial),
   sequence = ref<Hotkey>(['[KeyX]', '[KeyY]'])
-const mode = ref<RecorderKeyMode>('code'),
+const mode = ref<RecorderKeyMode>('auto'),
   problem = ref(''),
   idle = ref(false),
   enter = ref(true)
@@ -101,6 +101,9 @@ function resetShortcut() {
         v-model="mode"
         :disabled="recorder.isRecording.value || seq.isRecording.value"
       >
+        <option value="auto">
+          By name, or position where needed (default)
+        </option>
         <option value="code">Physical code</option>
         <option value="key">Logical key</option>
       </select></label

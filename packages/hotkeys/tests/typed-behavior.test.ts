@@ -422,14 +422,14 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       for (const init of [...EVENTS, ...CHARACTER_EVENTS]) {
         const event = new KeyboardEvent('keydown', init)
         for (const platform of PLATFORMS)
-          for (const mode of ['key', 'code'] as const)
+          for (const mode of ['key', 'code', 'auto'] as const)
             record(attempt(() => hotkeyChordFromKeydown(event, platform, mode)))
       }
     })
 
     const recorders = fingerprint((record) => {
       for (const platform of ['mac', 'windows'] as const)
-        for (const recordBy of ['key', 'code'] as const) {
+        for (const recordBy of ['key', 'code', 'auto'] as const) {
           const log: Array<unknown> = []
           const recorder = new HotkeyRecorder({
             platform,
@@ -489,8 +489,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
         "fired": "8a5a2d58a181e823",
-        "recorded": "300df415264064a5",
-        "recorders": "b873cd2d34b3dd08",
+        "recorded": "1f447a1ae37dc615",
+        "recorders": "0311d9d9231d7914",
       }
     `)
   })

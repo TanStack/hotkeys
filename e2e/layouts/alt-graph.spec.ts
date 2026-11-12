@@ -48,7 +48,8 @@ const ALT_GR_LAYOUT_CASES: Array<LayoutCase> = [
     keys: 'Home',
     matches: ['Home', '[Home]'],
     parsed: 'Home',
-    recorded: '[Home]',
+    recorded: 'Home',
+    recordedByCode: '[Home]',
   },
   // AltGr with a key it does not change fires nothing on Linux.
   {
@@ -56,23 +57,37 @@ const ALT_GR_LAYOUT_CASES: Array<LayoutCase> = [
     matches: [],
     parsed: 'Home',
     recorded: { reject: 'alt-graph' },
+    recordedByCode: { reject: 'alt-graph' },
   },
-  { keys: 'AltGr+End', matches: [], parsed: 'End' },
+  {
+    keys: 'AltGr+End',
+    matches: [],
+    parsed: 'End',
+    recorded: { reject: 'alt-graph' },
+  },
   // Linux layouts type a no-break space (U+00A0): character entry.
   {
     keys: 'AltGr+Space',
     matches: [],
     parsed: '\u00a0',
     recorded: { reject: 'alt-graph' },
+    recordedByCode: { reject: 'alt-graph' },
   },
   // Left Control + left Alt is Control+Alt, not AltGr.
   {
     keys: 'Control+Alt+Home',
     matches: ['Control+Alt+Home', 'Control+Alt+[Home]'],
     parsed: 'Mod+Alt+Home',
-    recorded: 'Mod+Alt+[Home]',
+    recorded: 'Mod+Alt+Home',
+    recordedByCode: 'Mod+Alt+[Home]',
   },
-  { keys: 'KeyF', matches: ['F', '[KeyF]'], parsed: 'F', recorded: '[KeyF]' },
+  {
+    keys: 'KeyF',
+    matches: ['F', '[KeyF]'],
+    parsed: 'F',
+    recorded: 'F',
+    recordedByCode: '[KeyF]',
+  },
 ]
 
 // AltGr typing a character: only the character matches.
@@ -81,8 +96,14 @@ const AT_SIGN: LayoutCase = {
   matches: ['@'],
   parsed: '@',
   recorded: { reject: 'alt-graph' },
+  recordedByCode: { reject: 'alt-graph' },
 }
-const EURO: LayoutCase = { keys: 'AltGr+KeyE', matches: ['€'], parsed: '€' }
+const EURO: LayoutCase = {
+  keys: 'AltGr+KeyE',
+  matches: ['€'],
+  parsed: '€',
+  recorded: { reject: 'alt-graph' },
+}
 
 const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
   'tanstack(winno)': [
@@ -95,9 +116,20 @@ const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
       matches: [],
       parsed: 'F',
       recorded: { reject: 'alt-graph' },
+      recordedByCode: { reject: 'alt-graph' },
     },
-    { keys: 'AltGr+Shift+KeyF', matches: [], parsed: 'Shift+F' },
-    { keys: 'AltGr+KeyK', matches: [], parsed: 'K' },
+    {
+      keys: 'AltGr+Shift+KeyF',
+      matches: [],
+      parsed: 'Shift+F',
+      recorded: { reject: 'alt-graph' },
+    },
+    {
+      keys: 'AltGr+KeyK',
+      matches: [],
+      parsed: 'K',
+      recorded: { reject: 'alt-graph' },
+    },
   ],
   // Linux Norwegian: AltGr+F types "đ".
   no: [
@@ -109,6 +141,7 @@ const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
       matches: [],
       parsed: 'Đ',
       recorded: { reject: 'alt-graph' },
+      recordedByCode: { reject: 'alt-graph' },
     },
   ],
   // Polish: AltGr types letters with diacritics.
@@ -119,26 +152,47 @@ const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
       matches: ['ą'],
       parsed: 'Ą',
       recorded: { reject: 'alt-graph' },
+      recordedByCode: { reject: 'alt-graph' },
     },
-    { keys: 'KeyA', matches: ['A'], parsed: 'A', recorded: '[KeyA]' },
+    {
+      keys: 'KeyA',
+      matches: ['A'],
+      parsed: 'A',
+      recorded: 'A',
+      recordedByCode: '[KeyA]',
+    },
   ],
   // US has no AltGr: right Alt is Alt.
   // Avoids Alt+F and Alt+Home, which browsers keep for their menu and home page.
   us: [
-    { keys: 'KeyF', matches: ['F', '[KeyF]'], parsed: 'F', recorded: '[KeyF]' },
+    {
+      keys: 'KeyF',
+      matches: ['F', '[KeyF]'],
+      parsed: 'F',
+      recorded: 'F',
+      recordedByCode: '[KeyF]',
+    },
     {
       keys: 'AltGr+KeyK',
       matches: ['Alt+K'],
       parsed: 'Alt+K',
-      recorded: 'Alt+[KeyK]',
+      recorded: 'Alt+K',
+      recordedByCode: 'Alt+[KeyK]',
     },
     {
       keys: 'AltGr+End',
       matches: ['Alt+End'],
       parsed: 'Alt+End',
-      recorded: 'Alt+[End]',
+      recorded: 'Alt+End',
+      recordedByCode: 'Alt+[End]',
     },
-    { keys: 'Digit2', matches: ['2'], parsed: '2', recorded: '[Digit2]' },
+    {
+      keys: 'Digit2',
+      matches: ['2'],
+      parsed: '2',
+      recorded: '2',
+      recordedByCode: '[Digit2]',
+    },
   ],
 }
 

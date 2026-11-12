@@ -222,6 +222,23 @@ it('registers app hotkeys, lists status, and follows custom hotkeys', () => {
   key('s', 'keydown', { ctrlKey: true })
   expect(value('#app-count')).toBe('1')
 
+  // A recorded position conflicts through the key press that recorded it
+  const recordedWith = {
+    event: new KeyboardEvent('keydown', {
+      key: 's',
+      code: 'KeyS',
+      ctrlKey: true,
+    }),
+  }
+  expect(
+    appCapture.custom!.findConflicts('palette.open', 'Control+[KeyS]'),
+  ).toEqual([])
+  expect(
+    appCapture
+      .custom!.setCustomHotkey('palette.open', 'Control+[KeyS]', recordedWith)
+      .map((a) => a.id),
+  ).toEqual(['doc.save'])
+
   flushSync(() => {
     appCapture.custom!.setCustomHotkey('doc.save', ['G', 'S'])
     appCapture.custom!.setCustomHotkey('palette.open', 'Control+K')

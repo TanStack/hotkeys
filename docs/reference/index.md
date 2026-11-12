@@ -47,6 +47,7 @@ title: "@tanstack/hotkeys"
 - [NormalizedKeyboardEvent](interfaces/NormalizedKeyboardEvent.md)
 - [ParsedModifiers](interfaces/ParsedModifiers.md)
 - [RawModifiers](interfaces/RawModifiers.md)
+- [RecordedKeyPresses](interfaces/RecordedKeyPresses.md)
 - [RecorderOptions](interfaces/RecorderOptions.md)
 - [RecorderRejection](interfaces/RecorderRejection.md)
 - [Register](interfaces/Register.md)

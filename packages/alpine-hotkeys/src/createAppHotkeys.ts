@@ -35,11 +35,11 @@ export function createCustomHotkeys(scope: HotkeysScope): AlpineCustomHotkeys {
     get value() {
       return requireStore(scope).customHotkeys
     },
-    setCustomHotkey: (id, hotkey) =>
-      requireStore(scope).setCustomHotkey(id, hotkey),
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      requireStore(scope).setCustomHotkey(id, hotkey, recordedWith),
     resetCustomHotkey: (id) => requireStore(scope).resetCustomHotkey(id),
     resetCustomHotkeys: () => requireStore(scope).resetCustomHotkeys(),
-    findConflicts: (id, hotkey) =>
-      requireStore(scope).findConflicts(id, hotkey),
+    findConflicts: (id, hotkey, recordedWith) =>
+      requireStore(scope).findConflicts(id, hotkey, recordedWith),
   }
 }

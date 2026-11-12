@@ -141,7 +141,7 @@ describe('zone.js views', () => {
       fixture.componentInstance.recorder.startRecording()
       type('j', 'KeyJ')
       await fixture.whenStable()
-      expect(fixture.nativeElement.textContent.trim()).toBe('0 [KeyJ]')
+      expect(fixture.nativeElement.textContent.trim()).toBe('0 J')
     })
   }
 })

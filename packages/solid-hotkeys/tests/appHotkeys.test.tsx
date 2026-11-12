@@ -189,7 +189,10 @@ describe('createHotkeyRecorder', () => {
     press('g', { code: 'KeyG' })
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
     expect(recorder.recordedHotkey()).toEqual(['G', 'H'])
   })
 })
@@ -217,6 +220,20 @@ describe('app hotkeys and the provider platform', () => {
     expect(list()[0]!.isCustom).toBe(false)
     expect(
       custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+    ).toEqual(['doc.save'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        metaKey: true,
+      }),
+    }
+    expect(custom.findConflicts('palette.open', 'Meta+[KeyS]')).toEqual([])
+    expect(
+      custom
+        .findConflicts('palette.open', 'Meta+[KeyS]', recordedWith)
+        .map((a) => a.id),
     ).toEqual(['doc.save'])
 
     setPlatform('windows')

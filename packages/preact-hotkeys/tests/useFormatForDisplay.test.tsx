@@ -153,6 +153,6 @@ describe('provider platform', () => {
     render(withPlatform(platform, <Recorder />))
     act(() => recorder!.startRecording())
     press('s', { code: 'KeyS', ...init })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
   })
 })

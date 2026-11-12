@@ -32,9 +32,9 @@ it('reads current policy and callbacks during a hotkey recording session', () =>
   press('a', 'KeyA')
   expect(rejected).toHaveBeenCalledOnce()
   expect(recorder.store.state.isRecording).toBe(true)
-  options = { onRecord: current }
+  options = { recordBy: 'code', onRecord: current }
   press('ß', 'KeyS')
-  expect(current).toHaveBeenCalledWith('[KeyS]')
+  expect(current).toHaveBeenCalledWith('[KeyS]', expect.anything())
   expect(stale).not.toHaveBeenCalled()
 })
 
@@ -55,7 +55,7 @@ it('reads current sequence commit policy and idle callbacks without losing steps
   press('g', 'KeyG')
   options = { ...options, onRecord: current }
   vi.advanceTimersByTime(100)
-  expect(current).toHaveBeenCalledWith('G')
+  expect(current).toHaveBeenCalledWith('G', expect.anything())
   expect(stale).not.toHaveBeenCalled()
   recorder.start()
   press('g', 'KeyG')
@@ -75,7 +75,7 @@ it('merges explicit setOptions overrides over a live options source', () => {
   recorder.setOptions({ recordBy: 'code' })
   recorder.start()
   press('ß', 'KeyS')
-  expect(callback).toHaveBeenCalledWith('[KeyS]')
+  expect(callback).toHaveBeenCalledWith('[KeyS]', expect.anything())
 })
 
 it('passes chord or sequence validation context by recorded length', () => {
@@ -92,20 +92,20 @@ it('passes chord or sequence validation context by recorded length', () => {
   recorder.start()
   press('g', 'KeyG')
   press('h', 'KeyH')
-  expect(validate).toHaveBeenLastCalledWith(['[KeyG]', '[KeyH]'], {
+  expect(validate).toHaveBeenLastCalledWith(['G', 'H'], {
     kind: 'sequence',
     events: [expect.any(KeyboardEvent), expect.any(KeyboardEvent)],
     parsedSequence: [
-      expect.objectContaining({ code: 'KeyG' }),
-      expect.objectContaining({ code: 'KeyH' }),
+      expect.objectContaining({ key: 'G' }),
+      expect.objectContaining({ key: 'H' }),
     ],
   })
   recorder.start()
   press('g', 'KeyG')
   recorder.commit()
-  expect(validate).toHaveBeenLastCalledWith('[KeyG]', {
+  expect(validate).toHaveBeenLastCalledWith('G', {
     kind: 'chord',
     event: expect.any(KeyboardEvent),
-    parsedChord: expect.objectContaining({ code: 'KeyG' }),
+    parsedChord: expect.objectContaining({ key: 'G' }),
   })
 })

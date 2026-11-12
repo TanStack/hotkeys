@@ -8,6 +8,7 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   Hotkey,
+  RecordedKeyPresses,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 
@@ -74,20 +75,27 @@ export interface UseCustomHotkeysResult {
   customHotkeys: CustomHotkeys
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   setCustomHotkey: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
   /** Restores the default hotkey for an app hotkey. */
   resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
   /** Restores every default hotkey. */
   resetCustomHotkeys: () => void
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
   findConflicts: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
 }
 
@@ -101,9 +109,10 @@ export interface UseCustomHotkeysResult {
  * const { setCustomHotkey, findConflicts } = useCustomHotkeys()
  * const recorder = useHotkeyRecorder({
  *   maxSteps: Infinity,
- *   validate: (hotkey) =>
- *     findConflicts('doc.save', hotkey).length === 0 || 'Already in use',
- *   onRecord: (hotkey) => setCustomHotkey('doc.save', hotkey),
+ *   validate: (hotkey, context) =>
+ *     findConflicts('doc.save', hotkey, context).length === 0 ||
+ *     'Already in use',
+ *   onRecord: (hotkey, context) => setCustomHotkey('doc.save', hotkey, context),
  * })
  * ```
  */
@@ -111,9 +120,11 @@ export function useCustomHotkeys(): UseCustomHotkeysResult {
   const store = useRequiredStore('useCustomHotkeys')
   return {
     customHotkeys: store.customHotkeys,
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      store.setCustomHotkey(id, hotkey, recordedWith),
     resetCustomHotkey: (id) => store.resetCustomHotkey(id),
     resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    findConflicts: (id, hotkey, recordedWith) =>
+      store.findConflicts(id, hotkey, recordedWith),
   }
 }

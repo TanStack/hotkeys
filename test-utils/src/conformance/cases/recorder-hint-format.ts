@@ -12,13 +12,13 @@ defineGroup({
       async run({ harness, expect, press }) {
         const onRecord = spy<[Hotkey]>()
         const recorder = await harness.mountRecorder!({
-          options: { onRecord, recordBy: 'key' },
+          options: { onRecord },
         })
         expect(recorder.state().isRecording).toBe(false)
         await recorder.start()
         expect(recorder.state().isRecording).toBe(true)
         await press(mod('s'))
-        expect(onRecord.calls).toEqual([['Mod+S']])
+        expect(onRecord.calls.map(([hotkey]) => hotkey)).toEqual(['Mod+S'])
         expect(recorder.state()).toMatchObject({
           isRecording: false,
           recordedHotkey: 'Mod+S',
@@ -72,7 +72,7 @@ defineGroup({
       async run({ harness, expect, press }) {
         const onRecord = spy<[Hotkey]>()
         const recorder = await harness.mountRecorder!({
-          options: { onRecord, maxSteps: Infinity, recordBy: 'key' },
+          options: { onRecord, maxSteps: Infinity },
         })
         await recorder.start()
         await press({ key: 'g', code: 'KeyG' })
@@ -81,7 +81,7 @@ defineGroup({
         expect(recorder.state().steps).toEqual(['G', 'H'])
         expect(onRecord.calls).toHaveLength(0)
         await press({ key: 'Enter', code: 'Enter' })
-        expect(onRecord.calls).toEqual([[['G', 'H']]])
+        expect(onRecord.calls.map(([hotkey]) => hotkey)).toEqual([['G', 'H']])
         expect(recorder.state()).toMatchObject({
           isRecording: false,
           recordedHotkey: ['G', 'H'],
@@ -93,12 +93,12 @@ defineGroup({
       async run({ harness, expect, press }) {
         const onRecord = spy<[Hotkey]>()
         const recorder = await harness.mountRecorder!({
-          options: { onRecord, maxSteps: Infinity, recordBy: 'key' },
+          options: { onRecord, maxSteps: Infinity },
         })
         await recorder.start()
         await press({ key: 'g', code: 'KeyG' })
         await recorder.commit()
-        expect(onRecord.calls).toEqual([['G']])
+        expect(onRecord.calls.map(([hotkey]) => hotkey)).toEqual(['G'])
         expect(recorder.state().isRecording).toBe(false)
       },
     },
@@ -111,7 +111,7 @@ defineGroup({
           hotkeys: [{ hotkey: 'Mod+K', callback }],
         })
         const recorder = await harness.mountRecorder!({
-          options: { onRecord: () => {}, recordBy: 'key' },
+          options: { onRecord: () => {} },
         })
         await recorder.start()
         await press(mod('k'))
@@ -127,7 +127,7 @@ defineGroup({
       async run({ harness, expect, press }) {
         const onRecord = spy()
         const recorder = await harness.mountRecorder!({
-          options: { onRecord, recordBy: 'key' },
+          options: { onRecord },
         })
         await recorder.start()
         await recorder.unmount()
@@ -141,12 +141,12 @@ defineGroup({
       async run({ harness, expect, press }) {
         const onRecord = spy<[Hotkey]>()
         const recorder = await harness.mountRecorder!({
-          options: { onRecord, recordBy: 'key' },
+          options: { onRecord },
           provider: { platform: 'mac' },
         })
         await recorder.start()
         await press({ key: 's', code: 'KeyS', metaKey: true })
-        expect(onRecord.calls).toEqual([['Mod+S']])
+        expect(onRecord.calls.map(([hotkey]) => hotkey)).toEqual(['Mod+S'])
       },
     },
   ],

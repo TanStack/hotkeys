@@ -101,7 +101,7 @@ describe('provider platform', () => {
     const { unmount } = renderIn(platform, () => <Recorder />)
     recorder.startRecording()
     press(mod)
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     unmount()
   })
 })

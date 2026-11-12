@@ -9,7 +9,7 @@ title: MaybeGetter
 type MaybeGetter<T> = T | (() => T);
 ```
 
-Defined in: [types.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L101)
+Defined in: [types.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L109)
 
 A value or a getter evaluated within an Alpine effect or reactive read.
 

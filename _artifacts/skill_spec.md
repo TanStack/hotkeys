@@ -79,10 +79,10 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 
 ## Tensions
 
-| Tension                                         | Skills                     | Agent implication                                                                            |
-| ----------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------- |
-| Component lifetime versus one catalog           | hotkeys-core ↔ app-hotkeys | Agents move callbacks into a central registry, or build cheat sheets from live registrations |
-| Logical declarations versus physical recordings | app-hotkeys                | A rebinding to Command+P passes conflict checks and then runs two actions                    |
+| Tension                                          | Skills                     | Agent implication                                                                               |
+| ------------------------------------------------ | -------------------------- | ----------------------------------------------------------------------------------------------- |
+| Component lifetime versus one catalog            | hotkeys-core ↔ app-hotkeys | Agents move callbacks into a central registry, or build cheat sheets from live registrations    |
+| Hotkeys written differently that one press fires | app-hotkeys                | Without the recorder's context, a rebinding to Shift+/ passes `findConflicts` and overrides `?` |
 
 ## Cross-References
 
@@ -185,3 +185,9 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Source sync:** `injectHotkeyRecorder` now reads the provider's `hotkeyRecorder` defaults on each options sync instead of copying them at injection, so signal-driven defaults reach the recorder. `injectDefaultHotkeysOptions()` still returns the defaults at injection time; its JSDoc now says so and points to `injectHotkeysContext().defaultOptions` for tracked reads. Changing its return type to a signal was left as an API decision.
 - **Changes:** `angular-hotkeys` gained one pitfall: a scoped `provideHotkeys` in `Route.providers` outlives navigation, because by default the router keeps route injectors. The pitfall and the guide name `withAutoCleanupInjectors()` as an alternative, with its Angular 22.2 floor and its `shouldDestroyInjector` requirement. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
 - **Checks:** `packages/angular-hotkeys/tests/reactive-options.test.ts` covers a signal-driven provider recorder default. A scratch router test on `@angular/router` 22.2.5 (not committed, because the package has no router dependency) showed the route scope suspending another page's hotkey after navigation, and `withAutoCleanupInjectors()` ending it. `intent validate` passes. Not run: fresh-consumer sessions.
+
+### Source sync — 2026-11-11 — recorded hotkeys and conflict checks
+
+- **Source:** branch `fix/recorder-logical-conflicts` from `94358d54`. The recorder's default is now `recordBy: 'auto'`: it writes a press by name where it has one (`Mod+S`) and by position otherwise (Shift with a symbol, macOS Option with a digit or symbol, dead keys, the numpad). `AppHotkeysStore.findConflicts` and `setCustomHotkey`, and every adapter's wrappers, take the recorder's `context` and then also check with the key press that made the recording. `onRecord` receives that context as its second argument.
+- **Changes:** `app-hotkeys` replaces the pitfall "conflict checks treat physical and logical bindings as different" with "conflict checks need the recorder's `context`", and its recording reference describes the new default. Every framework skill's settings row passes `context` to `findConflicts`. The tension above and its `domain_map.yaml` entry now describe hotkeys written differently that one key press fires. The React `shortcut-settings` task no longer says conflicts can't be compared, and its solution passes `context`. `skill_tree.yaml` is unchanged. The runtime probes listed under batch 1 predate this change: the recorder no longer records `Mod+[KeyS]` for Control+S, and app hotkey checks match `Mod+[KeyP]` against `Mod+P` when they get the key press.
+- **Checks:** `packages/hotkeys/tests/recorder-auto.test.ts` covers the default, the context, and the conflict checks; each adapter's app hotkey test covers the pass-through. `intent validate` passes. Not run: fresh-consumer sessions.
