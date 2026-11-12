@@ -1,5 +1,58 @@
 # @tanstack/solid-hotkeys
 
+## 0.24.0
+
+### Minor Changes
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - App hotkey conflict checks can now use the key press that recorded a hotkey. `findConflicts(id, hotkey, context)` and `setCustomHotkey(id, hotkey, context)` take the `context` that a recorder passes to `validate`, on `AppHotkeysStore` and in every adapter.
+
+  Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press, and so are a recorded `Mod+[KeyS]` and a declared `Mod+S`. Without the key press, the check compares how the hotkeys are written and misses these. Pass the context in a shortcut settings screen:
+
+  ```ts
+  validate: (hotkey, context) =>
+    findConflicts(id, hotkey, context).length === 0 || 'Already in use',
+  ```
+
+  The recorder's `onRecord` callback now receives the same context as its second argument. If a test asserts the exact arguments of your `onRecord` callback, add the second argument to the assertion.
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Labels of physical bindings now follow the user's keyboard layout where the browser reports it. `[KeyQ]` displayed as `Q`, the key's US character. It now displays as `A` on a French AZERTY keyboard in Chromium browsers. Firefox and Safari report no layout, so labels keep their US form there.
+
+  - Each adapter's label primitive, such as `useFormatForDisplay`, loads the layout after the first label mounts and uses it. Server-rendered labels hydrate with the US form and update when the layout arrives. `formatForDisplay` called directly is unchanged: it uses only a `layoutMap` you pass.
+  - A new layout primitive in every adapter, such as `useKeyboardLayout`, returns the layout for labels you draw yourself.
+  - `loadKeyboardLayout()` loads the layout with `navigator.keyboard.getLayoutMap()` and reads it again when the window regains focus. `getKeyboardLayoutStore()` holds the result. Use them without an adapter.
+  - To never ask the browser for the layout, set `keyboardLayout: false` in the provider's default options, or in the scope's options in Alpine and Ember.
+  - Devtools show the loaded layout, and mark the keys it relabels.
+
+  Matching and recording never use the layout. Providers don't import the loader, so an app that registers hotkeys and never formats a label or reads the layout doesn't bundle it. Alpine scopes carry every primitive, the layout one included.
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Each adapter's label primitive is now the way to format every label, and the plain `formatForDisplay` export of each adapter is deprecated. The primitive fills in the provider's platform and, in Chromium browsers, the user's keyboard layout, so it is no longer only for server-rendered apps.
+
+  - In components, replace `formatForDisplay(hotkey)` with the function from the label primitive, such as `const formatForDisplay = useFormatForDisplay()`. The primitive is `useFormatForDisplay` in React, Preact, Octane, Vue and Ember, `createFormatForDisplay` in Solid, `getFormatForDisplay` in Svelte, and `injectFormatForDisplay` in Angular.
+  - Lit and Alpine get a label primitive. In Lit, `new FormatForDisplayController(host, options?)` has a `format` function. In Alpine, a scope's `createFormatForDisplay()` returns the function, and `createHotkeysScope` takes a default `platform` for labels, hotkeys and recorders, as the other adapters' providers do.
+  - The deprecated export is still the core function and still works. Outside a component, such as in a test or a plain module, keep calling it and pass `platform` yourself.
+  - The guides, skills and examples of every framework now use the label primitive.
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - Breaking: the hotkey recorder now records a key by name where it has one. Control+S on Windows, or Command+S on macOS, records `Mod+S`, where it recorded `Mod+[KeyS]`. The new default is `recordBy: 'auto'`. Set `recordBy: 'code'` to keep recording every key by position. Saved hotkeys in the old form keep working.
+
+  Recording by name fixes three problems with recorded hotkeys:
+
+  - **Labels follow the keyboard layout.** On Windows with a French AZERTY keyboard, Control and the key labeled A recorded `Mod+[KeyQ]`, which displayed as Ctrl+Q. It now records `Mod+A`.
+  - **A recorded hotkey equals the same hotkey written by hand.** A recorded `Mod+[KeyS]` and a declared `Mod+S` both fired for Control+S on Windows, but compared as different hotkeys. Conflict checks missed the pair, and no duplicate warning was logged.
+  - **Recording a hotkey's own default no longer marks it as custom**, where the recorder writes the press the way the default is written.
+
+  A press with no name that means the same thing on every platform still records by position:
+
+  - Shift with a digit or a symbol, such as `Shift+[Slash]`. Windows reports `?` for Control+Shift+/ and macOS reports `/` for Command+Shift+/, so a recorded `?` would not fire on a Mac.
+  - macOS Option with a digit or a symbol, such as `Alt+[Digit1]`. Option with a letter records the letter on the keycap, such as `Alt+S`.
+  - Dead keys and the numpad.
+
+  A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it matches: on Windows with a Russian layout, Control+ы records `Mod+S`. A key press with no physical code is now recorded by what it typed. It was rejected with `'missing-code'`.
+
+### Patch Changes
+
+- Updated dependencies [[`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044), [`94358d5`](https://github.com/TanStack/hotkeys/commit/94358d54fd72a38952b6fb68560b48043a3f8277), [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f), [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044)]:
+  - @tanstack/hotkeys@0.29.0
+
 ## 0.23.0
 
 ### Minor Changes
