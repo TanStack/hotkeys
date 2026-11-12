@@ -1,5 +1,19 @@
 # @tanstack/ember-hotkeys
 
+## 0.12.0
+
+### Minor Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Breaking: these exports are removed from the core package and from every adapter, which re-exports the core. The library never read them.
+
+  - The `KeyboardEventMatch` type. It described the matcher's internal result, and no public function returned it.
+  - The key Sets `LETTER_KEYS`, `NUMBER_KEYS`, `FUNCTION_KEYS`, `NAVIGATION_KEYS`, `EDITING_KEYS`, `PUNCTUATION_KEYS`, and `ALL_KEYS`. The key types, such as `LetterKey` and `FunctionKey`, are unchanged. If you listed keys from one of these Sets, keep your own list.
+
+### Patch Changes
+
+- Updated dependencies [[`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`e7b1af6`](https://github.com/TanStack/hotkeys/commit/e7b1af6c1210dd93623200378d2aaf8e357dd9a6), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`f8a1f08`](https://github.com/TanStack/hotkeys/commit/f8a1f08596e7712addb6d514c7771fa61b78ca7e)]:
+  - @tanstack/hotkeys@0.28.0
+
 ## 0.11.1
 
 ### Patch Changes
