@@ -20558,123 +20558,123 @@
       ]
     },
     "source:docs/framework/alpine/reference/variables/formatForDisplay.md": {
-      "fingerprint": "e616aa1c448e7542eabc2d15288af0da06ec13e3b366975e9029e9ae0187ea5c",
+      "fingerprint": "22c2a80ea7bab2912d2d2512301e9a7b4931b2412ce5fad69f3376f8f15a7490",
       "snapshot": {
-        "docs/framework/alpine/reference/variables/formatForDisplay.md": "0a9962f56c70ac8f87a5849be1dea19b0471928a7fb8f915b95b6554cb42990f"
+        "docs/framework/alpine/reference/variables/formatForDisplay.md": "ad2ce19ddc58a61962206f4f8064465c053b19685edc3a34053e81256a58c55d"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/variables/formatForDisplay.md": {
-      "fingerprint": "a8aeae3eb063787a6b107bb8c5224af07a68943e0f6f9d2112b0e4a75bf67892",
+      "fingerprint": "3df5a93ef16fc063b48029e9aaad1d35905947cde39ea8e6c28daef183b9d116",
       "snapshot": {
-        "docs/framework/angular/reference/variables/formatForDisplay.md": "2aab0143094249e1aef11efaccf7b17ac7071cc5558d73fa5ce2f3084a295420"
+        "docs/framework/angular/reference/variables/formatForDisplay.md": "fb721a3937fb0a5414b6cbb65c0c7b188bbeebb9c26fd8be84b0154a206ec358"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/variables/formatForDisplay.md": {
-      "fingerprint": "d165d26d1f3203ddd0ef7a1ed6e83243b71954b0427f85949486bbaad752dd59",
+      "fingerprint": "6bee505d57893313479dc10458e62ccd31b0749db217e860c4c2edc71f63d481",
       "snapshot": {
-        "docs/framework/ember/reference/variables/formatForDisplay.md": "6f835f914396a6fdc1bbb2647fdf46fa023a8e8d0f0854c70e2755741633d053"
+        "docs/framework/ember/reference/variables/formatForDisplay.md": "bb84ad440437e13fd2dfb041907024ed15af9c5d8902b7ab60ae0f94d4692fa0"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/FormatForDisplayController.md": {
-      "fingerprint": "993032aefc9af63022f661c8873101e912f9a35d322d90b448e69ea40014dfd0",
+      "fingerprint": "1b8af178dcf541365c22cf6b68e575f65d9b6a47e7527b68916fd0d4735e6b6b",
       "snapshot": {
-        "docs/framework/lit/reference/classes/FormatForDisplayController.md": "94af7b5fc01aaeec0b5c330562eac6217d1a65f73fb1064e9bd52c99ac1fc236"
+        "docs/framework/lit/reference/classes/FormatForDisplayController.md": "8881c6df5b6db3f571c15f833166e2b9e44c77a1b809db5c9c9da57a51756022"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/interfaces/FormatForDisplayControllerOptions.md": {
-      "fingerprint": "4d69a8e77b783eb845adc55db1cde784f5ff6dc3457f2f34eeec85a0539e8d9b",
+      "fingerprint": "a2e946c007dfce30fdd944040dfacea6301b4ee3dcafd02decff2d05a02f9761",
       "snapshot": {
-        "docs/framework/lit/reference/interfaces/FormatForDisplayControllerOptions.md": "2afddac09df3e03682972d88456b38e9eb3efba661f11fd21674c857cb7cc120"
+        "docs/framework/lit/reference/interfaces/FormatForDisplayControllerOptions.md": "3fb5bef658b2f4a619c372bb2d0cfc8cbcc2240809f2a28276d58bc9601437d3"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/variables/formatForDisplay.md": {
-      "fingerprint": "131e81c75b0b59943d71c089497bcbd4f507e8ce501fecd5d4ee305c3a459e95",
+      "fingerprint": "93398c4b3ce5a021d3dfbdd0dd0e60e114015bcb642db771c0800e29061ce879",
       "snapshot": {
-        "docs/framework/lit/reference/variables/formatForDisplay.md": "7338507a5ede47df173be28e79165548e17b048a270e3cae462c3ffd12818719"
+        "docs/framework/lit/reference/variables/formatForDisplay.md": "ab8eca0bd687e94fce3cf39b98cd9eb8680c1d0a9c24720322408f79c5f1f53c"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/variables/formatForDisplay.md": {
-      "fingerprint": "44217e632f05d22b538fe8027915e035341dc65cb31e612607999370ead53765",
+      "fingerprint": "39e0dfc2e40fc074a492fb4e25271bc6dd667cbdbd49c06c53bbf4d6e090765d",
       "snapshot": {
-        "docs/framework/octane/reference/variables/formatForDisplay.md": "bb4b720f52eefc58794145e689ce168dcac86451827edbc4547ebca03a64a814"
+        "docs/framework/octane/reference/variables/formatForDisplay.md": "4a9c31a0cf4ee4179aac408d98a4d2494cf4c0532d76100b9c8004fb9b946a4a"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/variables/formatForDisplay.md": {
-      "fingerprint": "51a740f192e95c002781b1c4dd457f43442730906be49181ecd65321875d2c66",
+      "fingerprint": "13b516f97c79201006314e2f2b61c786b907cfba7a7f780086438cea7e16cee3",
       "snapshot": {
-        "docs/framework/preact/reference/variables/formatForDisplay.md": "bb4b720f52eefc58794145e689ce168dcac86451827edbc4547ebca03a64a814"
+        "docs/framework/preact/reference/variables/formatForDisplay.md": "edc2264df95705574dcedc16db48232a4f542ea2a7b464f78b6b35630951f882"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/variables/formatForDisplay.md": {
-      "fingerprint": "57e639da11f332c0ca8765396ad36bc97de0befd22879832f0ad86c8236dc259",
+      "fingerprint": "8e5780b7a0a54cf2a7eaa41f5d31ed2b6caa628b0572dd03eff93502aa1312a6",
       "snapshot": {
-        "docs/framework/react/reference/variables/formatForDisplay.md": "bb4b720f52eefc58794145e689ce168dcac86451827edbc4547ebca03a64a814"
+        "docs/framework/react/reference/variables/formatForDisplay.md": "bf731332d340d4f3d0cff5ccd5a63e7a1d6e49713c6c17579b20baf15b60505a"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/variables/formatForDisplay.md": {
-      "fingerprint": "ce1154a83b8926b2e5d538170535bd06a9f11c5c3f3354d6f344bcfb5fcf6cf1",
+      "fingerprint": "38272994d7b83a1344b9e8a29071988c9ca73786ce3e6e1622be486d2bcc95ed",
       "snapshot": {
-        "docs/framework/solid/reference/variables/formatForDisplay.md": "35efea176d0229684e2aa0ba2ca96859f5d4d8da489b7be08820ad42c818b035"
+        "docs/framework/solid/reference/variables/formatForDisplay.md": "9e7acc207bccf71000882897f4d262fb558fd6d6762c6aaebd2a2be2287a0893"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/variables/formatForDisplay.md": {
-      "fingerprint": "c7db4a52122c08c3a098fe44c4016b653f547b937d5b1ccaf4c9a247b7ef1ed7",
+      "fingerprint": "62288dc1e2652041fc5103ceb44d1cb63146127f837652465103838d9e8376fd",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/formatForDisplay.md": "2c76d1af06b91a7ba316a301ffa1ce2c7974cc337f86a90f87abc5f9b5aca43a"
+        "docs/framework/svelte/reference/variables/formatForDisplay.md": "341fe06ae1870e9cb6729a238b98ac70d92a3e58569a2f19e9042e8b8abdf126"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/variables/formatForDisplay.md": {
-      "fingerprint": "d1182025ba0ad9cc6f975d5b3df51b89ed24a48351bdade7fe5875d6afa1157c",
+      "fingerprint": "a09a9e82652ac6196525a1d476b69709eadb1c319253e0a56c6f8bdd8b1b01b4",
       "snapshot": {
-        "docs/framework/vue/reference/variables/formatForDisplay.md": "bb4b720f52eefc58794145e689ce168dcac86451827edbc4547ebca03a64a814"
+        "docs/framework/vue/reference/variables/formatForDisplay.md": "21184e6e02c6093afce44a31a090822b0c112a06b2d146f80618baecba5e62ba"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "e743f36e8849b858bbc5370182b0642f137f230d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:examples/angular/injectHotkey/src/app/app.component.ts": {
