@@ -9,7 +9,7 @@ title: useAppHotkeys
 function useAppHotkeys(): () => RegisteredAppHotkeys;
 ```
 
-Defined in: [appHotkeys.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L41)
+Defined in: [appHotkeys.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L42)
 
 Returns an accessor for the effective app hotkeys from `HotkeysProvider`,
 typed by `Register`: each declaration with the user's custom hotkey applied.

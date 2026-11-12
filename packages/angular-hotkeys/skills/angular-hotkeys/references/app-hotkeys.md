@@ -69,11 +69,12 @@ export class ShortcutRowComponent {
 
   readonly recorder = injectHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.custom.findConflicts(this.id(), hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.custom.findConflicts(this.id(), hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.id(), hotkey),
+    onRecord: (hotkey, context) =>
+      this.custom.setCustomHotkey(this.id(), hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.id(), null),
   }))
 }

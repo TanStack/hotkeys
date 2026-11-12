@@ -313,7 +313,7 @@ class Recording {
 
   formatForDisplay = formatForDisplay
   hotkey: Hotkey = this.initial
-  mode: RecorderKeyMode = 'code'
+  mode: RecorderKeyMode = 'auto'
   problem = ''
   sequence: Hotkey = ['[KeyX]', '[KeyY]']
   sequenceProblem = ''

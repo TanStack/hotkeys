@@ -26,7 +26,7 @@
   const initial: Hotkey = 'Alt+[KeyR]'
   let hotkey = $state<Hotkey>(initial),
     sequence = $state<Hotkey>(['[KeyX]', '[KeyY]'])
-  let mode = $state<RecorderKeyMode>('code'),
+  let mode = $state<RecorderKeyMode>('auto'),
     problem = $state(''),
     idle = $state(false),
     enter = $state(true)
@@ -98,6 +98,7 @@
     >Record by <select
       bind:value={mode}
       disabled={recorder.isRecording || seq.isRecording}
+      ><option value="auto">By name, or position where needed (default)</option
       ><option value="code">Physical code</option><option value="key"
         >Logical key</option
       ></select

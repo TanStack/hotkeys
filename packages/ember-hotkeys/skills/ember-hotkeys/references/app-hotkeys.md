@@ -45,11 +45,11 @@ export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }
   custom = useCustomHotkeys(this)
   recorder = useHotkeyRecorder(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.custom.findConflicts(this.args.id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.custom.findConflicts(this.args.id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.args.id, hotkey),
+    onRecord: (hotkey, context) => this.custom.setCustomHotkey(this.args.id, hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.args.id, null),
   }))
 

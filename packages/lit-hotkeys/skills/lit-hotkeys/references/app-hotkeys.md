@@ -49,11 +49,12 @@ export class ShortcutRow extends LitElement {
   private app = new AppHotkeysController(this)
   private recorder = new HotkeyRecorderController(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.app.findConflicts(this.hotkeyId, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.app.findConflicts(this.hotkeyId, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.app.setCustomHotkey(this.hotkeyId, hotkey),
+    onRecord: (hotkey, context) =>
+      this.app.setCustomHotkey(this.hotkeyId, hotkey, context),
     onClear: () => this.app.setCustomHotkey(this.hotkeyId, null),
   }))
 

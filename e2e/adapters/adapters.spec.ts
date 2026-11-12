@@ -94,7 +94,7 @@ for (const app of adapterApps) {
       await expect(page.locator('#recording')).toHaveText('yes')
       await page.keyboard.press(`${mod}+Shift+k`)
       await expect(page.locator('#recording')).toHaveText('no')
-      expect(await fixture.recorded()).toBe('Mod+Shift+[KeyK]')
+      expect(await fixture.recorded()).toBe('Mod+Shift+K')
       // The recorded press doesn't reach the K hotkey
       expect(await fixture.takeLog()).toEqual([])
     })

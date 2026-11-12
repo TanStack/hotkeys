@@ -158,11 +158,11 @@ describe('<KeepAlive>', () => {
     await nextTick()
     recorder.startRecording()
     press('k')
-    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+    expect(recorder.recordedHotkey.value).toBe('K')
 
     await show('b')
     await show('a')
-    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+    expect(recorder.recordedHotkey.value).toBe('K')
   })
 
   it('starts recording from an onActivated hook in a cached page', async () => {

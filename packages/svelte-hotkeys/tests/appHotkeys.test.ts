@@ -154,6 +154,22 @@ describe('app hotkeys and the provider platform', () => {
       expect(
         api.custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
       ).toEqual(['doc.save'])
+      // A recorded position conflicts through the key press that recorded it
+      const recordedWith = {
+        event: new KeyboardEvent('keydown', {
+          key: 's',
+          code: 'KeyS',
+          metaKey: true,
+        }),
+      }
+      expect(api.custom.findConflicts('palette.open', 'Meta+[KeyS]')).toEqual(
+        [],
+      )
+      expect(
+        api.custom
+          .findConflicts('palette.open', 'Meta+[KeyS]', recordedWith)
+          .map((a) => a.id),
+      ).toEqual(['doc.save'])
 
       setPlatform('windows')
       flushSync()

@@ -54,11 +54,11 @@ export function useCustomHotkeys(owner: object): EmberCustomHotkeys {
     get value() {
       return requireStore(store).customHotkeys
     },
-    setCustomHotkey: (id, hotkey) =>
-      requireStore(store).setCustomHotkey(id, hotkey),
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      requireStore(store).setCustomHotkey(id, hotkey, recordedWith),
     resetCustomHotkey: (id) => requireStore(store).resetCustomHotkey(id),
     resetCustomHotkeys: () => requireStore(store).resetCustomHotkeys(),
-    findConflicts: (id, hotkey) =>
-      requireStore(store).findConflicts(id, hotkey),
+    findConflicts: (id, hotkey, recordedWith) =>
+      requireStore(store).findConflicts(id, hotkey, recordedWith),
   }
 }

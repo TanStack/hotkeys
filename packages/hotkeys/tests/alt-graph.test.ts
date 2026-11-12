@@ -175,7 +175,7 @@ describe.each(windowsShapes)('AltGr held (%s)', (_, platform, flags) => {
       recorder({ onRecord, platform, recordBy })
       const event = altGr(key, code)
       document.dispatchEvent(event)
-      expect(onRecord).toHaveBeenCalledWith(expected)
+      expect(onRecord).toHaveBeenCalledWith(expected, expect.anything())
       expect(matches(event, expected)).toBe(true)
     },
   )

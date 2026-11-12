@@ -8,6 +8,7 @@ import type {
   HotkeyRegistrationView,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  RecordedKeyPresses,
   RegisteredAppHotkeys,
   Target,
 } from '@tanstack/hotkeys'
@@ -68,20 +69,27 @@ export interface EmberCustomHotkeys {
   readonly value: CustomHotkeys
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   setCustomHotkey: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
   /** Restores the default hotkey for an app hotkey. */
   resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
   /** Restores every default hotkey. */
   resetCustomHotkeys: () => void
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
   findConflicts: (
     id: keyof RegisteredAppHotkeys & string,
     hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
   ) => Array<AppHotkey>
 }
 

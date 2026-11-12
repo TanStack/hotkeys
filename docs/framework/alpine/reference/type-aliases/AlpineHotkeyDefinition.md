@@ -9,6 +9,6 @@ title: AlpineHotkeyDefinition
 type AlpineHotkeyDefinition = AdapterHotkeyDefinition<AlpineHotkeyTarget>;
 ```
 
-Defined in: [types.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L40)
+Defined in: [types.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L41)
 
 One hotkey for `createHotkeys`: a chord, a sequence, or an app hotkey.

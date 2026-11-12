@@ -281,7 +281,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Rewriting recorded physical bindings
-        mechanism: Replacing [KeyS] with S changes a position binding into a character binding.
+        mechanism: The recorder writes a position only where the character can't name the press, such as Shift+[Slash]. Replacing it with a character changes which key presses fire it.
         wrong_pattern: "onRecord: (h) => save(String(h).replace(/\\[Key(\\w)\\]/, '$1'))"
         correct_pattern: 'onRecord: (h) => setCustomHotkey(id, h)'
         source: docs/guides/sensible-defaults.md#recording-captures-what-the-user-pressed
@@ -712,11 +712,11 @@ tensions:
       - app-hotkeys
     description: Hotkeys belong in the components that own their actions, while cheat sheets and settings need every shortcut up front.
     implication: Agents either move callbacks into a central registry or build cheat sheets from live registrations; declarations hold no callbacks, and components still register them.
-  - name: Logical declarations versus physical recordings
+  - name: Hotkeys written differently that one key press fires
     skills:
       - app-hotkeys
-    description: Declarations are usually logical (Mod+P) while the recorder records positions (Mod+[KeyP]), and conflict checks compare them as different hotkeys.
-    implication: A rebinding to Command+P passes conflict checks and then runs two actions.
+    description: The recorder writes most presses by name (Mod+P), but Shift with a symbol and a few other presses by position (Shift+[Slash]), and a declared ? fires for the same press. Conflict checks compare how hotkeys are written unless they get the key press.
+    implication: Without the recorder's context, a rebinding to Shift+/ passes findConflicts and then overrides the action on ?. Pass the context from validate or onRecord.
 cross_references:
   - from: react-hotkeys
     to: hotkeys-core

@@ -62,11 +62,11 @@ A settings row records with `createHotkeyRecorder` and saves through `getCustomH
 
   const recorder = createHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = custom.findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = custom.findConflicts(id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => custom.setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => custom.setCustomHotkey(id, hotkey, context),
     onClear: () => custom.setCustomHotkey(id, null),
   }))
 </script>

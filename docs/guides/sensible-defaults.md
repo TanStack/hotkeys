@@ -24,7 +24,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Keys another listener prevented | Hotkeys still fire | `ignoreDefaultPrevented` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
-| Recording | Records key positions; Escape, Tab, and Shift+Tab cancel | `recordBy`, `recordTab`, recorder options |
+| Recording | Records a key by name, or by position where it has no portable name; Escape, Tab, and Shift+Tab cancel | `recordBy`, `recordTab`, recorder options |
 | Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | `formatForDisplay` options |
 
 ## `Mod` follows the platform
@@ -61,7 +61,7 @@ The same report affects US keyboards. Cmd+Shift+/ arrives as `/` with Shift held
 
 Letters match without regard to case: `S` and `s` are the same binding.
 
-Turkish dotless `ı` and dotted `İ` are letters of their own, not other cases of `I` and `i`. A binding for `ı` fires only on the key that types `ı`, and a binding for `İ` only on the key that types `İ`. `I` fires on the key that types `i`, and also on the key that types `ı`, as in native Windows apps, where that key is the I key. An `ı` binding takes priority there. With `recordBy: 'key'`, the recorder records `ı`, and labels show `ı`.
+Turkish dotless `ı` and dotted `İ` are letters of their own, not other cases of `I` and `i`. A binding for `ı` fires only on the key that types `ı`, and a binding for `İ` only on the key that types `İ`. `I` fires on the key that types `i`, and also on the key that types `ı`, as in native Windows apps, where that key is the I key. An `ı` binding takes priority there. The recorder records `ı` for the key that types it, and labels show `ı`.
 
 ### Match a key's position instead
 
@@ -81,7 +81,7 @@ On a layout where the `KeyQ` position types `a`, `A` follows the character and `
 - In a chord's callback, `context.parsedChord.code` is set only for physical bindings. The same goes for each step in a sequence's `context.parsedSequence`. Check `code !== undefined` before reading it.
 - `formatForDisplay` labels physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets.
 
-The [hotkey recorder](#recording-captures-what-the-user-pressed) records positions by default, so recorded hotkeys are physical bindings.
+The [hotkey recorder](#recording-captures-what-the-user-pressed) records a physical binding for a press that has no portable name, such as Shift+/. Set `recordBy: 'code'` to record one for every key.
 
 ## Modifiers must match exactly
 
@@ -437,7 +437,20 @@ A page that loads the library's files as published, with no bundler, has no `pro
 
 ## Recording captures what the user pressed
 
-The hotkey recorder records physical key positions by default (`recordBy: 'code'`). A modifier can change which character a key types (Option+S types `ß`, and Shift+1 types `!`), but its position does not change. Recording the position saves the key the user pressed, regardless of what it typed. Set `recordBy: 'key'` to record characters instead.
+The hotkey recorder writes a hotkey the way you would write it by hand (`recordBy: 'auto'`). Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S`. On a French AZERTY keyboard, the same modifier with the key labeled A records `Mod+A`, so the label shows the keycap, and the hotkey equals a `Mod+A` in your code.
+
+Some presses have no name that means the same thing everywhere. The recorder records those by position, in brackets:
+
+- **Shift with a digit or a symbol.** Shift+/ records `Shift+[Slash]`, and Shift+1 records `Shift+[Digit1]`. For Control+Shift+/, Windows reports `?`, and for Command+Shift+/, macOS reports `/`, so a recorded `?` would not fire on a Mac. Shift with a letter or a named key records it by name, such as `Shift+A` and `Shift+Enter`.
+- **Option on macOS with a digit or a symbol.** Option+1 types `¡` and records `Alt+[Digit1]`. Option with a letter records the letter on the keycap: Option+S records `Alt+S`, not `ß`. Option with a named key records it by name, such as `Alt+Enter`.
+- **Dead keys**, which type nothing until the next key. Option with a letter that starts an accent is the exception: Option+E on a US Mac records `Alt+E`.
+- **The numpad**, where one key types `1` or End depending on NumLock.
+
+A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it [matches](#keys-match-the-character-the-user-types). On Windows with a Russian layout, Control+ы records `Mod+S`, and Control+х records `Mod+[`.
+
+Set `recordBy: 'code'` to record every key by position, such as for game controls. Set `recordBy: 'key'` to record the character every press types, which records `Alt+ß` for Option+S and `Shift+?` for Shift+/.
+
+A recorded hotkey and one written by hand can differ and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press. The recorder's `detectConflicts` option checks with the key presses that made the recording. For app hotkeys, pass the recorder's `context` to `findConflicts`, which does the same.
 
 While recording:
 
@@ -447,7 +460,7 @@ While recording:
 - **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.
 - **Typing in inputs passes through**, so other fields on the page keep working. Escape still cancels.
-- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt. Character recordings (`recordBy: 'key'`) accept the characters AltGr types, but on Linux they reject AltGr with a key it does not change, because that press fires no hotkey.
+- **AltGr is rejected** unless you set `recordBy: 'key'`, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt. Character recordings (`recordBy: 'key'`) accept the characters AltGr types, but on Linux they reject AltGr with a key it does not change, because that press fires no hotkey.
 
 ## Held keys reset when the window loses focus
 

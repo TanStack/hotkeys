@@ -61,9 +61,11 @@ export function useCustomHotkeys(slot?: symbol): UseCustomHotkeysResult {
   const store = useRequiredStore('useCustomHotkeys', slot)
   return {
     customHotkeys: store.customHotkeys,
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      store.setCustomHotkey(id, hotkey, recordedWith),
     resetCustomHotkey: (id) => store.resetCustomHotkey(id),
     resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    findConflicts: (id, hotkey, recordedWith) =>
+      store.findConflicts(id, hotkey, recordedWith),
   }
 }

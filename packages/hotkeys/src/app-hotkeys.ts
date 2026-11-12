@@ -2,7 +2,7 @@ import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
 import { GLOBAL_SCOPE } from './_registration'
 import { createStore } from './_store'
 import { getHotkeyManager } from './hotkey-manager'
-import { areHotkeysEqual } from './match'
+import { areHotkeysEqual, matchesKeyboardEvent } from './match'
 import { isHotkeySequence, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
 import { validateHotkey } from './validate'
@@ -332,17 +332,43 @@ function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   return left === GLOBAL_SCOPE || right === GLOBAL_SCOPE || left === right
 }
 
-/** Whether two hotkeys collide: equal chords, or one sequence starts with the other. */
+/**
+ * The key presses that recorded a hotkey. A recorder passes them to `validate`
+ * and `onRecord` as its context, which can be passed on as is.
+ */
+export interface RecordedKeyPresses {
+  /** The key press that recorded a chord. */
+  event?: KeyboardEvent
+  /** The key press that recorded each step of a sequence. */
+  events?: ReadonlyArray<KeyboardEvent>
+}
+
+/**
+ * Whether two hotkeys collide: at every step they share, the chords are equal
+ * or the key press that recorded the left one fires both. One sequence that
+ * starts with the other collides too.
+ */
 function hotkeysOverlap(
   left: Hotkey,
   right: Hotkey,
   platform: Platform,
+  events?: ReadonlyArray<KeyboardEvent>,
 ): boolean {
   const a = isHotkeySequence(left) ? left : [left]
   const b = isHotkeySequence(right) ? right : [right]
   const length = Math.min(a.length, b.length)
   for (let i = 0; i < length; i++) {
-    if (!areHotkeysEqual(a[i]!, b[i]!, platform)) return false
+    const event = events?.[i]
+    if (
+      !areHotkeysEqual(a[i]!, b[i]!, platform) &&
+      !(
+        event &&
+        matchesKeyboardEvent(event, a[i]!, platform) &&
+        matchesKeyboardEvent(event, b[i]!, platform)
+      )
+    ) {
+      return false
+    }
   }
   return true
 }
@@ -515,35 +541,58 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
    * Other app hotkeys that would collide if `id` used `hotkey`. App hotkeys
    * collide when their scopes match or either is `'global'`, and their
    * hotkeys are equal or one sequence starts with the other.
+   *
+   * Pass the recorder's `context` for a recorded hotkey. Two hotkeys written
+   * differently can fire for one key press, such as a recorded `Shift+[Slash]`
+   * and a declared `?` on a US keyboard. Only the key press shows that.
+   *
+   * @example
+   * ```ts
+   * const recorder = new HotkeyRecorder({
+   *   validate: (hotkey, context) =>
+   *     store.findConflicts('doc.save', hotkey, context).length === 0 ||
+   *     'Already in use',
+   *   onRecord: (hotkey, context) =>
+   *     store.setCustomHotkey('doc.save', hotkey, context),
+   * })
+   * ```
    */
-  findConflicts(id: keyof T & string, hotkey: Hotkey): Array<AppHotkey> {
+  findConflicts(
+    id: keyof T & string,
+    hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
+  ): Array<AppHotkey> {
     const self = this.get(id)
     if (!self) return []
     const candidate = simplifyHotkey(hotkey)
+    const events =
+      recordedWith?.events ?? (recordedWith?.event && [recordedWith.event])
     return Object.values(this.store.state.appHotkeys).filter(
       (other) =>
         other.id !== id &&
         other.hotkey !== null &&
         scopesOverlap(self, other) &&
-        hotkeysOverlap(candidate, other.hotkey, this.#platform),
+        hotkeysOverlap(candidate, other.hotkey, this.#platform, events),
     )
   }
 
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it. A hotkey
-   * equal to the default removes the customization.
+   * equal to the default removes the customization. Pass the recorder's
+   * `context` for a recorded hotkey, as for `findConflicts`.
    *
    * @returns Conflicting app hotkeys. When any exist, nothing changes.
    */
   setCustomHotkey(
     id: keyof T & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
     const appHotkey = this.get(id)
     if (!appHotkey) return []
     const next = hotkey === null ? null : simplifyHotkey(hotkey)
     if (next !== null) {
-      const conflicts = this.findConflicts(id, next)
+      const conflicts = this.findConflicts(id, next, recordedWith)
       if (conflicts.length > 0) return conflicts
     }
     const { [id]: _previous, ...rest } = this.store.state

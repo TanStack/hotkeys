@@ -56,7 +56,7 @@ function Shortcuts() {
     message: string
     tone: 'error' | 'info'
   } | null>(null)
-  const [mode, setMode] = useState<RecorderKeyMode>('code')
+  const [mode, setMode] = useState<RecorderKeyMode>('auto')
   const [idle, setIdle] = useState(false)
 
   const nameOf = (id: AppHotkeyId) =>
@@ -75,7 +75,7 @@ function Shortcuts() {
     recordBy: mode,
     ignoreInputs: false,
     idleTimeoutMs: idle ? 1500 : undefined,
-    validate: (hotkey: Hotkey) => {
+    validate: (hotkey: Hotkey, context) => {
       if (!editing) return true
       if (
         !isHotkeySequence(hotkey) &&
@@ -83,7 +83,7 @@ function Shortcuts() {
       ) {
         return 'Include a modifier, or record a sequence of two or more chords.'
       }
-      const conflicts = findConflicts(editing, hotkey)
+      const conflicts = findConflicts(editing, hotkey, context)
       return (
         conflicts.length === 0 ||
         `Conflicts with ${conflicts.map((c) => c.meta?.name ?? c.id).join(', ')}.`
@@ -91,9 +91,9 @@ function Shortcuts() {
     },
     onReject: (rejection) =>
       setNotice({ message: rejectionText(rejection), tone: 'error' }),
-    onRecord: (hotkey) => {
+    onRecord: (hotkey, context) => {
       if (!editing) return
-      setCustomHotkey(editing, hotkey)
+      setCustomHotkey(editing, hotkey, context)
       finish(editing, formatHotkey(hotkey))
     },
     onClear: () => {
@@ -134,7 +134,10 @@ function Shortcuts() {
             disabled={recorder.isRecording}
             onChange={(e) => setMode(e.target.value as RecorderKeyMode)}
           >
-            <option value="code">Physical code (default)</option>
+            <option value="auto">
+              By name, or position where needed (default)
+            </option>
+            <option value="code">Physical code</option>
             <option value="key">Logical character</option>
           </select>
         </label>{' '}

@@ -22,7 +22,7 @@ Checks the `@tanstack/hotkeys#app-hotkeys` skill with `@tanstack/react-hotkeys#r
 | `hotkey-value.tsx`: registers `appHotkeys['doc.save'].hotkey`                     | The new shortcut doesn't save                             |
 | `full-list-storage.tsx`: saves every effective hotkey                             | Saved data holds unchanged shortcuts                      |
 
-Conflicts aren't graded: conflict checks don't yet compare a recorded physical binding, such as `Mod+[KeyP]`, with a declared logical one, such as `Mod+P`.
+Conflicts aren't graded.
 
 The expected solution skips the `Register` augmentation, because a module augmentation here would change app hotkey types for the package's other tests.
 

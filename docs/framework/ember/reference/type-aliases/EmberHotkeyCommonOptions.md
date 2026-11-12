@@ -9,6 +9,6 @@ title: EmberHotkeyCommonOptions
 type EmberHotkeyCommonOptions = AdapterCommonOptions<EmberHotkeyTarget>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L34)
+Defined in: [packages/ember-hotkeys/src/types.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L35)
 
 Options for every kind; each applies to the kinds that support it.

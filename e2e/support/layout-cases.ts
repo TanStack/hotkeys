@@ -9,15 +9,17 @@ export interface LayoutCase {
   matches: Array<string>
   /** `normalizeHotkey(parseKeyboardEvent(event))` on Linux. */
   parsed: string
-  /** What the recorder (physical mode) produces, if checked. */
+  /** What the recorder produces by default (`recordBy: 'auto'`), if checked. */
   recorded?: string | { reject: string }
+  /** What the recorder produces with `recordBy: 'code'`, if checked. */
+  recordedByCode?: string | { reject: string }
   /** What the recorder produces with `recordBy: 'key'`, if checked. */
   recordedByKey?: string | { reject: string }
-  /** `formatForDisplay(recorded)` on Linux, without a layout map. */
+  /** `formatForDisplay(recordedByCode)` on Linux, without a layout map. */
   label?: string
   /**
-   * `formatForDisplay(recorded)` with Chromium's `getLayoutMap()`. Firefox has
-   * no layout map, so it's checked on Chromium only.
+   * `formatForDisplay(recordedByCode)` with Chromium's `getLayoutMap()`.
+   * Firefox has no layout map, so it's checked on Chromium only.
    */
   layoutLabel?: string
   /**
@@ -71,6 +73,12 @@ export function describeLayouts(
               expected.recorded,
             )
           }
+          if (expected.recordedByCode !== undefined) {
+            expect(
+              await keyboard.record(expected.keys, { recordBy: 'code' }),
+              `recordBy: 'code' (${event})`,
+            ).toEqual(expected.recordedByCode)
+          }
           if (expected.recordedByKey !== undefined) {
             expect(
               await keyboard.record(expected.keys, { recordBy: 'key' }),
@@ -81,10 +89,10 @@ export function describeLayouts(
             expected.label !== undefined ||
             expected.layoutLabel !== undefined
           ) {
-            if (typeof expected.recorded !== 'string') {
-              throw new Error('Labels need a recorded binding')
+            if (typeof expected.recordedByCode !== 'string') {
+              throw new Error('Labels need a binding recorded by code')
             }
-            const binding = expected.recorded
+            const binding = expected.recordedByCode
             const { label, layoutLabel } = await page.evaluate(
               (b) => window.harness.formatLabels(b),
               binding,

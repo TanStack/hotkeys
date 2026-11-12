@@ -95,6 +95,6 @@ module('Scope platform', (hooks) => {
     instance.platform = 'windows'
     instance.recorder.startRecording()
     await press('metaKey')
-    assert.deepEqual(records, ['Mod+[KeyS]', 'Meta+[KeyS]'])
+    assert.deepEqual(records, ['Mod+S', 'Meta+S'])
   })
 })

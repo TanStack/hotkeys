@@ -9,15 +9,17 @@ title: RecorderRejectionReason
 type RecorderRejectionReason = "alt-graph" | "missing-code" | "whitespace" | "validation" | "conflict";
 ```
 
-Defined in: [hotkey-recorder.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L39)
+Defined in: [hotkey-recorder.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L54)
 
 Why the recorder rejected a key press or a recording:
 
-- `'alt-graph'`: AltGr was held. Recording by code can't record AltGr
-  presses; record by key to accept the characters AltGr types. Recording by
-  key rejects AltGr that typed nothing new, such as AltGr+Home on Linux,
-  because no hotkey matches that press.
-- `'missing-code'`: the event has no usable physical key code.
+- `'alt-graph'`: AltGr was held. Only `recordBy: 'key'` records AltGr
+  presses, as the characters AltGr types. It still rejects AltGr that typed
+  nothing new, such as AltGr+Home on Linux, because no hotkey matches that
+  press.
+- `'missing-code'`: the event has no usable physical key code. Recording by
+  code always needs one. `recordBy: 'auto'` records what the press typed
+  instead, and rejects only a press that typed nothing it can record.
 - `'whitespace'`: the key is a whitespace character, which a hotkey can't
   hold.
 - `'validation'`: your `validate` callback rejected the recording.

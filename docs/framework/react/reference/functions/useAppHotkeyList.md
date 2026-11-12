@@ -9,7 +9,7 @@ title: useAppHotkeyList
 function useAppHotkeyList(): AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[];
 ```
 
-Defined in: [useAppHotkeys.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useAppHotkeys.ts#L63)
+Defined in: [useAppHotkeys.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useAppHotkeys.ts#L64)
 
 Lists every app hotkey with its live status, in declaration order, for
 cheat sheets and settings screens. App hotkeys whose components have not

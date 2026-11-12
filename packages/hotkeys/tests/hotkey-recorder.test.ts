@@ -113,7 +113,8 @@ describe.each(['key', 'code', undefined] as const)(
         )
 
         expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-          recordBy === 'key' ? 'Control+S' : 'Control+[KeyS]',
+          recordBy !== 'code' ? 'Control+S' : 'Control+[KeyS]',
+          expect.anything(),
         )
         expect(recorder.store.state.isRecording).toBe(false)
 
@@ -155,7 +156,8 @@ describe.each(['key', 'code', undefined] as const)(
           button.dispatchEvent(createKeyboardEvent('keydown', key))
 
           expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-            recordBy === 'key' ? name : `[${name}]`,
+            recordBy !== 'code' ? name : `[${name}]`,
+            expect.anything(),
           )
         },
       )
@@ -172,7 +174,8 @@ describe.each(['key', 'code', undefined] as const)(
         item.dispatchEvent(createKeyboardEvent('keydown', 'ArrowDown'))
 
         expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-          recordBy === 'key' ? 'ArrowDown' : '[ArrowDown]',
+          recordBy !== 'code' ? 'ArrowDown' : '[ArrowDown]',
+          expect.anything(),
         )
       })
 
@@ -195,7 +198,8 @@ describe.each(['key', 'code', undefined] as const)(
         )
 
         expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-          recordBy === 'key' ? 'Control+S' : 'Control+[KeyS]',
+          recordBy !== 'code' ? 'Control+S' : 'Control+[KeyS]',
+          expect.anything(),
         )
         expect(recorder.store.state.isRecording).toBe(false)
 
@@ -284,7 +288,7 @@ describe.each([1, Infinity])(
       keydown({ key: 's', code: 'KeyS', composed: true, target: input })
       if (multi) recorder.commit()
       // One step records as a chord string with either maxSteps.
-      expect(onRecord).toHaveBeenCalledExactlyOnceWith('[KeyS]')
+      expect(onRecord).toHaveBeenCalledExactlyOnceWith('S', expect.anything())
     })
 
     it.each(['Ę', '@'])(
@@ -337,11 +341,12 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     ["'", 'KeyQ', {}, '[KeyQ]'],
     ['+', 'NumpadAdd', {}, '[NumpadAdd]'],
   ] as const)(
-    'records and replays %s without layout conversion',
+    'records and replays %s by code without layout conversion',
     (key, code, flags, expected) => {
       let binding: HotkeyChord | undefined
       const r = recorder({
         platform: 'mac',
+        recordBy: 'code',
         onRecord: (value) => {
           binding = value
         },
@@ -369,12 +374,12 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
       shiftKey: true,
       target: document,
     })
-    expect(onRecord).toHaveBeenCalledWith('Shift+A')
+    expect(onRecord).toHaveBeenCalledWith('Shift+A', expect.anything())
     expect(matchesKeyboardEvent(event, onRecord.mock.calls[0]![0])).toBe(true)
     keyup({ key: 'A', code: 'KeyQ', target: document })
     r.start()
     keydown({ key: 'ß', code: 'Minus', target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('ß')
+    expect(onRecord).toHaveBeenLastCalledWith('ß', expect.anything())
   })
   // Turkish ı and i are different letters
   it('records Turkish ı and i as different keys in key mode', () => {
@@ -382,21 +387,21 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
       r = recorder({ recordBy: 'key', onRecord, platform: 'windows' })
     r.start()
     const dotless = keydown({ key: 'ı', code: 'KeyI', target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('ı')
+    expect(onRecord).toHaveBeenLastCalledWith('ı', expect.anything())
     keyup({ key: 'ı', code: 'KeyI', target: document })
     expect(matchesKeyboardEvent(dotless, 'ı' as HotkeyChord, 'windows')).toBe(
       true,
     )
     r.start()
     const dotted = keydown({ key: 'i', code: 'Quote', target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('I')
+    expect(onRecord).toHaveBeenLastCalledWith('I', expect.anything())
     keyup({ key: 'i', code: 'Quote', target: document })
     expect(matchesKeyboardEvent(dotted, 'ı' as HotkeyChord, 'windows')).toBe(
       false,
     )
     r.start()
     keydown({ key: 'ı', code: 'KeyI', ctrlKey: true, target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('Mod+ı')
+    expect(onRecord).toHaveBeenLastCalledWith('Mod+ı', expect.anything())
   })
   // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
   it('records an Unidentified key by code, and skips it in key mode', () => {
@@ -410,7 +415,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
       target: document,
     }
     keydown(unidentified)
-    expect(onRecord).toHaveBeenCalledWith('Mod+[Backquote]')
+    expect(onRecord).toHaveBeenCalledWith('Mod+[Backquote]', expect.anything())
 
     const onKeyRecord = vi.fn(),
       keyMode = recorder({
@@ -423,14 +428,15 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(onKeyRecord).not.toHaveBeenCalled()
     expect(keyMode.store.state.isRecording).toBe(true)
     keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
-    expect(onKeyRecord).toHaveBeenCalledWith('Mod+K')
+    expect(onKeyRecord).toHaveBeenCalledWith('Mod+K', expect.anything())
   })
   it('rejects missing codes and AltGraph while ignoring IME', () => {
     const onRecord = vi.fn(),
       onReject = vi.fn(),
       r = recorder({ onRecord, onReject, platform: 'windows' })
     r.start()
-    keydown({ key: 's', code: '', target: document })
+    // A dead key has no name, so without a code nothing can be recorded
+    keydown({ key: 'Dead', code: '', target: document })
     expect(onReject).toHaveBeenLastCalledWith(
       expect.objectContaining({ reason: 'missing-code' }),
     )
@@ -470,15 +476,15 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
 
     // The same key without AltGr records
     keydown({ key: 'Home', code: 'Home', target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('Home')
+    expect(onRecord).toHaveBeenLastCalledWith('Home', expect.anything())
 
     keyup({ key: 'Home', code: 'Home', target: document })
     r.start()
     keydown({ key: '@', code: 'KeyQ', altGraph: true, target: document })
-    expect(onRecord).toHaveBeenLastCalledWith('@')
+    expect(onRecord).toHaveBeenLastCalledWith('@', expect.anything())
   })
   // With Control and CapsLock swapped, the CapsLock key reports ControlLeft
-  it('ignores a key on a modifier position in code mode', () => {
+  it('ignores a key on a modifier position unless recording by key', () => {
     const onRecord = vi.fn(),
       onReject = vi.fn(),
       r = recorder({ onRecord, onReject, platform: 'linux' })
@@ -494,7 +500,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(onReject).not.toHaveBeenCalled()
     expect(r.store.state.isRecording).toBe(true)
     keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
-    expect(onRecord).toHaveBeenCalledWith('Mod+[KeyK]')
+    expect(onRecord).toHaveBeenCalledWith('Mod+K', expect.anything())
 
     // Key mode records the key the press typed
     const onKeyRecord = vi.fn(),
@@ -505,7 +511,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
       })
     keyMode.start()
     keydown({ key: 'CapsLock', code: 'ControlLeft', target: document })
-    expect(onKeyRecord).toHaveBeenCalledWith('CapsLock')
+    expect(onKeyRecord).toHaveBeenCalledWith('CapsLock', expect.anything())
   })
   it('suppresses recording keydowns, repeats and releases then allows normal use', () => {
     const down = vi.fn(),
@@ -562,7 +568,7 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     keydown({ key: 's', code: 'KeyS', target: document })
     expect(onReject).toHaveBeenCalledWith({
       reason: 'validation',
-      hotkey: '[KeyS]',
+      hotkey: 'S',
     })
   })
   it('detects physical/logical conflicts from source events and stays active', () => {

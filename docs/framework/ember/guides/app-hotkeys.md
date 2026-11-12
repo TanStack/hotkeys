@@ -145,11 +145,11 @@ export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }
   custom = useCustomHotkeys(this)
   recorder = useHotkeyRecorder(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = this.custom.findConflicts(this.args.id, hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = this.custom.findConflicts(this.args.id, hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.args.id, hotkey),
+    onRecord: (hotkey, context) => this.custom.setCustomHotkey(this.args.id, hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.args.id, null),
   }))
 
@@ -170,11 +170,13 @@ export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }
 }
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `value` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

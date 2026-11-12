@@ -148,6 +148,6 @@ describe('provider platform', () => {
     )
     act(() => result.current.startRecording())
     press('s', { code: 'KeyS', ...init })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
   })
 })
