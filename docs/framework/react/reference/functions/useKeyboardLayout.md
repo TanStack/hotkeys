@@ -9,7 +9,7 @@ title: useKeyboardLayout
 function useKeyboardLayout(): KeyboardLayoutMap | null;
 ```
 
-Defined in: useKeyboardLayout.ts:39
+Defined in: [useKeyboardLayout.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useKeyboardLayout.ts#L39)
 
 The browser's keyboard layout, or `null` until it loads and in browsers
 that don't report one. The layout maps each physical code to the character

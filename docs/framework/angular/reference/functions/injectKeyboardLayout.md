@@ -9,7 +9,7 @@ title: injectKeyboardLayout
 function injectKeyboardLayout(): Signal<KeyboardLayoutMap | null>;
 ```
 
-Defined in: injectKeyboardLayout.ts:46
+Defined in: [injectKeyboardLayout.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectKeyboardLayout.ts#L46)
 
 Angular inject-based API that returns a signal of the browser's keyboard
 layout, or `null` until it loads and in browsers that don't report one. The

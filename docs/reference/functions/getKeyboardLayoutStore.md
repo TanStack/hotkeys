@@ -9,7 +9,7 @@ title: getKeyboardLayoutStore
 function getKeyboardLayoutStore(): Store<KeyboardLayoutMap | null>;
 ```
 
-Defined in: keyboard-layout.ts:27
+Defined in: [keyboard-layout.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/keyboard-layout.ts#L27)
 
 The store that holds the browser's keyboard layout once `loadKeyboardLayout`
 has loaded it. Framework adapters read it to label physical bindings, so

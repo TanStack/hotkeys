@@ -9,7 +9,7 @@ title: loadKeyboardLayout
 function loadKeyboardLayout(): () => void;
 ```
 
-Defined in: keyboard-layout.ts:96
+Defined in: [keyboard-layout.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/keyboard-layout.ts#L96)
 
 Loads the browser's keyboard layout into `getKeyboardLayoutStore()`, with
 `navigator.keyboard.getLayoutMap()`. Only Chromium browsers have it, so the

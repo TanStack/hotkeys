@@ -9,7 +9,7 @@ title: KeyboardLayoutMap
 type KeyboardLayoutMap = ReadonlyMap<string, string>;
 ```
 
-Defined in: keyboard-layout.ts:8
+Defined in: [keyboard-layout.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/keyboard-layout.ts#L8)
 
 A keyboard layout: each physical code mapped to the character it types
 without modifiers, such as `KeyY` to `z` on a German layout.

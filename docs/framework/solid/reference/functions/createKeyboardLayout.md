@@ -9,7 +9,7 @@ title: createKeyboardLayout
 function createKeyboardLayout(): () => KeyboardLayoutMap | null;
 ```
 
-Defined in: createKeyboardLayout.ts:32
+Defined in: [createKeyboardLayout.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createKeyboardLayout.ts#L32)
 
 SolidJS primitive that returns a signal of the browser's keyboard layout,
 or `null` until it loads and in browsers that don't report one. The layout
