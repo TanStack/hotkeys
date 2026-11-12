@@ -79,15 +79,18 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * useHotkey('Escape', () => close(), { enabled: isOpen })
  * ```
  */
-export function useHotkey<T extends AppHotkey>(
-  hotkey: MaybeRefOrGetter<T | null | undefined>,
-  callback: HotkeyCallback,
-  options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
-): void
+// The plain-hotkey overload comes first. While TypeScript tries an overload it
+// fixes the return type of a getter such as `() => 'Mod+S'`, and the app-hotkey
+// overload would fix it to `string`, which no later overload accepts.
 export function useHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeRefOrGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeRefOrGetter<UseHotkeyOptionsFor<T>>,
+): void
+export function useHotkey<T extends AppHotkey>(
+  hotkey: MaybeRefOrGetter<T | null | undefined>,
+  callback: HotkeyCallback,
+  options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
 ): void
 export function useHotkey(
   hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey | null | undefined>,

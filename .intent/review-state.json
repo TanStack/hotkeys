@@ -67,14 +67,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "4e01d343078997496656e24928aee4ad4b6081745349d5e28c58d91598a39548",
+      "fingerprint": "171b31b30a746c1372d3b9d90f6bef4510c256016f28080eff645b8b9ecd15ff",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "eb9ce1fcc41cabb329153e0beb8722e45e611c48720c2819551f6966f6909301",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
-        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
+        "packages/hotkeys/src/app-hotkeys.ts": "046559e2e5e5d09754d7d0a5969ce84d55ce47cce3aaeb39905e654c375cdc15",
         "packages/hotkeys/src/conflicts.ts": "b554f5a1220ce5928a2d54860267c0ab798f551e2809c08ed1b088287b7e7fcc",
         "packages/hotkeys/src/hotkey-recorder.ts": "d900e31a0b4c424edb39bfc56a57abc462a0e957cb8ad126922835b24742b4f6",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -86,13 +86,12 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "f8a1f08596e7712addb6d514c7771fa61b78ca7e",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "conflicts.ts and hotkey-recorder.ts changed only where they import shared helpers. The recorder treated AltGraph as a modifier press before and still does, and conflict detection is unchanged. Nothing the skill teaches about app hotkeys, recording or conflicts changed.",
+      "reason": "defineAppHotkeys keeps the same accepted declarations and returned types; only the internal parameter type changed so TypeScript 5.7 and later check it quickly. The skill describes no type-check cost.",
       "evidence": [
-        "packages/hotkeys/src/conflicts.ts",
-        "packages/hotkeys/src/hotkey-recorder.ts",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
+        "packages/hotkeys/src/app-hotkeys.ts",
+        "packages/hotkeys/tests/app-hotkeys.test.ts type tests pass unchanged"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
@@ -262,28 +261,30 @@
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "66154b0fed63e40e7c11983b37e7a659b7c190c5c3e3449fd7080c8a46309633",
+      "fingerprint": "97c82a1ee46876d0d3554a6a006af90848c46b969a7d910855ad2591e9fe105b",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
-        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "883b775c12bc47753915159da54aab2b38e42c675ad46658761cb3f27f00be86",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "11a5c4630563ba2ce595625a4daa692fe4fc114f734cb0db8b32a8ac18041b41",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "77665c7344dc99f60dc88c3c386d60079c3ab325536db93596339395de3725ee",
-        "packages/vue-hotkeys/src/useHotkey.ts": "277615d2ed72f6b69c58bb4b6bc397ae2fbef04475914eb7f07b5d23b373b7b5",
+        "packages/vue-hotkeys/src/useHotkey.ts": "deb789082e4ce55195297375d6814477218bf1bf12f56f8edc00619117654527",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "HotkeysProvider gets a written-out component type that Vue 3.3 accepts, and the useHotkey overloads swap so a getter that returns one string literal type-checks. Props, events, options and run-time behavior are unchanged, and the skill names no return types for the state composables.",
       "evidence": [
-        "Changed: docs/framework/vue/quick-start.md, packages/vue-hotkeys/src/HotkeysProviderContext.ts, packages/vue-hotkeys/src/useAppHotkeys.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx",
+        "packages/vue-hotkeys/src/useHotkey.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md lines 57-73"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "35f1341dda7432f3a861a3c91cefdb7f36e2834b4bb8fe36f9b4d1100604e855",
+      "fingerprint": "17e31e80cc45474cc071231fe1682862205c96e42e693f2d8c9248b2cd97fcde",
       "snapshot": {
         "_artifacts/domain_map.yaml": "1e81ad567bd5f5ec50225e4a952f46268d1661ddefb7380d6f2a76331bbf1798",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -344,7 +345,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "ea682908f347e0a66708adc63ce87bc7cc3f2d6ea3d43a1aa60e511035e78e46",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
+        "packages/hotkeys/src/app-hotkeys.ts": "046559e2e5e5d09754d7d0a5969ce84d55ce47cce3aaeb39905e654c375cdc15",
         "packages/hotkeys/src/conflicts.ts": "b554f5a1220ce5928a2d54860267c0ab798f551e2809c08ed1b088287b7e7fcc",
         "packages/hotkeys/src/hotkey-manager.ts": "6271bb7ff84a1c726c6d8fa83fb0af11a3de8151137be49588c8817e5c2e47bf",
         "packages/hotkeys/src/hotkey-recorder.ts": "d900e31a0b4c424edb39bfc56a57abc462a0e957cb8ad126922835b24742b4f6",
@@ -408,20 +409,21 @@
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5f299f6aa72496848599e958258c54fcafd7fa39b9f2d987e5c91af7e44ecf85",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
-        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "883b775c12bc47753915159da54aab2b38e42c675ad46658761cb3f27f00be86",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "11a5c4630563ba2ce595625a4daa692fe4fc114f734cb0db8b32a8ac18041b41",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "77665c7344dc99f60dc88c3c386d60079c3ab325536db93596339395de3725ee",
-        "packages/vue-hotkeys/src/useHotkey.ts": "277615d2ed72f6b69c58bb4b6bc397ae2fbef04475914eb7f07b5d23b373b7b5",
+        "packages/vue-hotkeys/src/useHotkey.ts": "deb789082e4ce55195297375d6814477218bf1bf12f56f8edc00619117654527",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "f8a1f08596e7712addb6d514c7771fa61b78ca7e",
-      "outcome": "updated",
-      "reason": "Added a failure mode to the core domain for binding a shifted symbol with Mod on macOS, matching the pitfall added to the hotkeys-core skill. No skill, task or scope decision changed otherwise: the removed exports (seven key Sets and the KeyboardEventMatch type) appear in no skill or planning record.",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "no-change",
+      "reason": "Type fixes for the Vue provider, the Vue state composables and defineAppHotkeys, and a useKeyHold fix for Vue 3.3. No skill, task or scope decision changes.",
       "evidence": [
         "_artifacts/domain_map.yaml",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/_match.ts"
+        "packages/hotkeys/src/app-hotkeys.ts",
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx",
+        "packages/vue-hotkeys/src/useHotkey.ts"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1238,17 +1240,14 @@
       ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "41b1eb7c12d139be2641cc78beedae9738ca4f86a5694b7aedf4c297aedb0814",
+      "fingerprint": "6d5fbffee5286a0fd72241cd5e2363c8975386224941da83f7466bbe1b59b410",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "388394b68d4460045e9d6dc0c184e7120662511f8f403597d9c4652e00edebcc"
+        "docs/framework/vue/guides/hotkeys.md": "827c2ab8e9c671e2dd8c7af46a738075eaf8ac32f2ff693c07be21da512f16bb"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
-      "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
-      "evidence": [
-        "docs/framework/vue/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "no-change",
+      "reason": "Adds one sentence on typing a ref that holds a hotkey as ref<Hotkey>. The Vue skill passes hotkeys as literals, props and getters, so its guidance is unchanged.",
+      "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
       "fingerprint": "623f4fa59bb6222e32f4924bdc88e6844df7fdfe77f3833d01d50cb91914b4d6",
@@ -1948,13 +1947,13 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "cffb8c8fc3ede6d3ef0087db7b0604f4c4d6e7210d5c3ff5fc68108834339aed",
+      "fingerprint": "6aad8d327bb70d6c2c2c544252f15bba80dd521f1d54ba39ca90e6da44b38ab3",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeyScopesState.md": "9a4581f3a5326e60a88808c0673568e9912bf2dea615996e92120d6f02c81a59"
+        "docs/framework/vue/reference/functions/useHotkeyScopesState.md": "15d6dc01df6c9d6794e47f39be2af912489a68aff3d9233a48d5f973ea12f417"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/index.md": {
@@ -2277,14 +2276,17 @@
       "evidence": ["packages/vue-hotkeys/src/index.ts"]
     },
     "source:packages/vue-hotkeys/src/useHotkeyScopesState.ts": {
-      "fingerprint": "aec0a83a7be9f04adf31f3e06373585b6e535dd8775d10b13b9038c7d6ede10e",
+      "fingerprint": "be014509719d9813df8ac10a76c954c68707d4e8a961c538b3459035d82ada0e",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "7f21c6f5d2f0d96b6f62924e9beae28ca14ecff12d7001cf383e635e01f11733"
+        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "56b4dd5b92261254aa61a42459b51ef8dea23f813838dac6cee83e2cafd1e728"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
-      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+      "reason": "The state composables now declare read-only refs, and useKeyHold notifies only when the answer for its own key changes. The skill describes each as returning a ref and names no type, so its guidance holds.",
+      "evidence": [
+        "packages/vue-hotkeys/src/useHotkeyScopesState.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md lines 69-73"
+      ]
     },
     "source:packages/vue-hotkeys/tests/scopes.test.ts": {
       "fingerprint": "b702de5cbff30318bdd43788ee3a035385bd3d18e3ca5387fc2b13537be5341f",
@@ -2300,99 +2302,84 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "9cb85572879468ebd5c0cc9269fd243038108b1bb7a44424127befd2b12284d4",
+      "fingerprint": "3e811876d2d14a754eede6fcf9c8b5738252520016c16ff17067f5bbadb85bd4",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "38e5263f142171dacc14d604d55be762390e1b31bab45cfab551a85e5461ac68"
+        "docs/reference/classes/AppHotkeysStore.md": "a8c02dd1817962c235cdeef2fe32cecd70c47ec8e3e426a4365673a9f4f58fc5"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/classes/AppHotkeysStore.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
-      "fingerprint": "04058d3c01f24a944b74d1bc91b542819d9a144eb0c318f2cedbb708240855bb",
+      "fingerprint": "8b59441ca9ab4b5949840b60b5a7f9619f96ea823201994910cbfb385c0b3345",
       "snapshot": {
-        "docs/reference/functions/defineAppHotkeys.md": "438d7a0c7cc5cbf5bfc0638a60de2d22b349c73a817f5559a56f606a7155c90d"
+        "docs/reference/functions/defineAppHotkeys.md": "4119e98a57ba1c0d5c696621f4469d0ad798110dbabf80c4ec69a54ea26e13e4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "99da330d6fc902869cb94cdf78c0c21059579f94d0417e6a298d86bac2c263b5",
+      "fingerprint": "bffd17dceb3f1331bfa91bd947b81816d70d9edf2890d19845ee252864275d02",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "5d46d4ba73652b6c79d1daf6edcd046bb866e32c2d16fa6fb3d9f5d69bd41f9d"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "c3873c96e05ca7b85731e949776c44dc5a302a8ab413ebd2459a8ff0cac2d6da"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/isAppHotkey.md": {
-      "fingerprint": "edd33e0d7b8d4f818f36d46bc2a1b0d8e0372c5177f3a398e2cb36579bf4b04c",
+      "fingerprint": "103b89de189c5197113c2446495cdd7b23a08adebea5e8421940f0676709a432",
       "snapshot": {
-        "docs/reference/functions/isAppHotkey.md": "4b62b47aee721c94bb96b8fe3413d0f30afacb3edeae06e3b63ecc1160d4f2a6"
+        "docs/reference/functions/isAppHotkey.md": "8bdcd9da623115eee018594e45b4b07a96fb2ae95b3e2e5267f31aa283a51606"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/isCustomHotkey.md": {
-      "fingerprint": "833720ff7df7a3fe099bfff2a5a9022177b0a839d033830ad162b497fee5cf60",
+      "fingerprint": "e755a049490246248ed7b1302510a17d3a417bcecc3d296d9784421579a36df9",
       "snapshot": {
-        "docs/reference/functions/isCustomHotkey.md": "b138f4e1efe016611e989bf3a05f0c39cedd6223ff80fbb0c7cbcf48642e38ba"
+        "docs/reference/functions/isCustomHotkey.md": "3848399b6bf6c48717e44e4d963cdee45794edede51d68507cd6e63fdf3128c4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "09f93eb10d4537155a183d42eef5c333745c5313d7b7705563ce741527c5922f",
+      "fingerprint": "524b01d55a1aba00c470c5392529766d6b655d903949b8b9ea223b2fdccb249a",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "a0ad72a7bd32e0c383a1a69af552645f3dfa397f48d1fd1156def3869fb43d79"
+        "docs/reference/functions/provideAppHotkeys.md": "6dc230184b877601345bafa685157eceae465732205e056c4773b6d811307a77"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/functions/provideAppHotkeys.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "7799f860aab52a47c888822d410e424fc1c5d7038e690a2c5fec950a130cebca",
+      "fingerprint": "2c66e833bf6b244f71a36eee6650e583e1190f974b2206e0531dd03e78c400db",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "01526ce1022b2d0bdceeaa99c4e8e4fbe53e92c7ce031a00dd8bf878bdf11fc8"
+        "docs/reference/functions/publishAppHotkeysStore.md": "d731152332fce1d3faf03659e64856b878ea870ee0398f9830ec48f386e9cd64"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/functions/publishAppHotkeysStore.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "55bace6c04983db952dff0366b9e63b7c769ecddcc32239552a23ca8718f2f21",
+      "fingerprint": "b52ab8f447a89bb389f008329eea5268c1e34dd2d2e29e33b32ed0ff5bce5b16",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "65fb8177d8f3e90644501f250da1ff337397aa46c470aaa2f0b4fe2623ae871f"
+        "docs/reference/functions/resolveAppHotkey.md": "60bdb4dc2aa620806b9e7176471f4bfda0607f475a1ddb9f6d0231748128af88"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/functions/resolveAppHotkey.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
       "fingerprint": "91c447b9649b9bf70c7f7d5c212464857193ac9f25ca993bfcbee51a602854f6",
@@ -2415,52 +2402,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "1d8f316cbe588b94ea0814c8a9036669d33f31fe22cba9ce5c0bf5cc8ee7b12a",
+      "fingerprint": "9b553b6439c599f0353fdc28136b13f58b784bcfb358b9429954799fd7b8fd71",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "c67e4d2f0887340e2fdf726f7aed82b2932ee2393afaa69c9d119fd9be219f60"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "488dffdc7af044981b5e1776f9494d09cd87c785f14df5a288a11b6f5d7ad2ff"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/interfaces/AppHotkeyListItem.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "10c83b3d96a3b41747b3fd958b1bef39a1a281dfec6a5c3c641e3c7a4a5c9aa5",
+      "fingerprint": "570100552bfc87bf162d3d24de83926a602c51b21c194dac16833f72facd6062",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "8ff23f06e7bd6538d5cd35f602d6dd659cd4c34c619fa17db9a2332a9bde0b57"
+        "docs/reference/interfaces/AppHotkeysState.md": "662bd4ae2335ec21870951b8a58a8fbca982d4d361c4fbe2e5fe801c7b80c816"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/interfaces/AppHotkeysState.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "11f9d1eb296d6d1fda49f3e9ac1cebbfbcd2c0e43bbe521009a353b819c1d16d",
+      "fingerprint": "e0f4e1e17589405f45bdfd2a898ba821902beaa4f2ecad0c54cbdc3bb8255432",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "b8f45849ecb8d58a732c19ed60e12f4b8620126a2665072e6a2d5a493c7abea3"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "5b27879cdf6237d6437f1f10e7e6ac80fceb53e073a24e5e74473542ea28305a"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/Register.md": {
-      "fingerprint": "adb6ef8cb2ac13e70ce294a0e2cd41aa7e8a2e7671bdbfe69c5048558a451641",
+      "fingerprint": "6fd595806d41fd875e74b37d3b16271ab085caa2a542ef9af1d54bbcc59d2c0e",
       "snapshot": {
-        "docs/reference/interfaces/Register.md": "a57b71461ac91d2607bf81176cafe9992dcd7663ac8a134adea7f6c01bfa4fac"
+        "docs/reference/interfaces/Register.md": "14f137d3decf7696a30e33f9fc3d852ee3ea4a5841105449be5fcc1afc864173"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyChordOptions.md": {
@@ -2474,23 +2452,23 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyDefaultKind.md": {
-      "fingerprint": "fdb73638eee0e06f6329adb4ccdb8fbdb0a7267b2241bf7650039307a6af702a",
+      "fingerprint": "02b7ebaaabcbacfebe2b57bf6feb5d2af0fb7126b6e949ef5c6ad511595139c5",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "193f9f9fbe13a6b147e4f4cc5df918d78a6de98ad2e10a886e1ad076e1d56635"
+        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "24830bb64eca14d7cf2726a9d3fd357eb944f2b2800f97e8f209b31eb98d28f9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyId.md": {
-      "fingerprint": "148a8222d3397189b3459bda0c9290379c1959de8106b1779ebdad2b0ece5397",
+      "fingerprint": "4518c2c93b59c50bb9e093af61fa73a58a6f7e141a4bbd8a849b358fcf1d0a19",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyId.md": "9deef3fd7ef13ffaa1bbfa2510e7c9fe618bdca326a23630e1e58345d2f4a953"
+        "docs/reference/type-aliases/AppHotkeyId.md": "c3743910b1239b5595eec729a77e070b5ddf06b37a3625ef4e3c9fae4b777a18"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyOptions.md": {
@@ -2514,17 +2492,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "b49ff730f0da9ca40fe1854d142b5905cbd9b73d7c5556c80f6766cbb8cc26aa",
+      "fingerprint": "72e8829793f79644dabfeff58f8da85f7cc5f9a837e94039d7c740579e109c34",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "4014de2ae42aa3c407a19482714b126b13ee840ebc59d54a8d50e3e1f45f2e25"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "2a266ea0697771a3cd1f1806e9e5fefc183251923c9263445ed12e26f4392337"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/reference/type-aliases/AppHotkeyStatus.md"
-      ]
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
       "fingerprint": "4b0b44b254e786d98a9bc13ab8986d79269c5a5d6fcfd714225ef1f1eb11eafd",
@@ -2537,33 +2512,33 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/CustomHotkeys.md": {
-      "fingerprint": "95b41dadcfdd10a3f55fb9283261048e9875e83d0b74fb306c1f91d427290732",
+      "fingerprint": "7d601a0176469ec52554204cda5393752cda68457d0992c44a78d3fad400fddd",
       "snapshot": {
-        "docs/reference/type-aliases/CustomHotkeys.md": "132c7eead4ab8e9d50b7faacfc05965c10ddb0d59bf3b75369ded5e4fcc2af83"
+        "docs/reference/type-aliases/CustomHotkeys.md": "034e1a971b01a73eb8231eaa9cb7d5aae59a2855790b940abcf93dc85a854cdd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/DefinedAppHotkeys.md": {
-      "fingerprint": "2bb368f480095a140abe81c7b747e2dcb92900dead833b9e4b23c86045761527",
+      "fingerprint": "5179dabef2af930e9a78f6594024a50fda3b124bcb27a35dd35150722f45d3f0",
       "snapshot": {
-        "docs/reference/type-aliases/DefinedAppHotkeys.md": "1f4ce0f7a1c4be3f7a117fbca626556d16463cfb3ff170c4f874625975adf022"
+        "docs/reference/type-aliases/DefinedAppHotkeys.md": "a061864a3976142b899fea5490b7eed8b4b2e487165a3d4b34d306487294258a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeys.md": {
-      "fingerprint": "a21223fb454ade1d762db3abfc4799550365ab709565de0e75fab3c091e4b0f4",
+      "fingerprint": "ab2f7f2c5b1a5aedc17f9f0287ac637ecef6ae5e2fb1e2cf77d562ca6ad50983",
       "snapshot": {
-        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "1681b9f16b9d08cbd30de7f6ca40e95f82758b920f1d200a9cf42ec3158566cc"
+        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "2ed2cd6b4dc7969a9bec9f9323c3e8239ce50d0140b4d25316288da048d551fa"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/Target.md": {
@@ -3691,16 +3666,14 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
-      "fingerprint": "2424528711461290efa466cdd68cf9353a2d4adf4329b27d85445861b759b768",
+      "fingerprint": "4a6089885f1080665237999841992d01482b6f3e23817eb464d8422b7de515eb",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useKeyHold.md": "b8b660372150b459a8689c7702394bb029b50469564ea2dd48d2919301eed74e"
+        "docs/framework/vue/reference/functions/useKeyHold.md": "4b49559805f39ba70a51eddc8fe52e5b1983fae6ff89ab5bf73cb608b7380999"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/framework/vue/reference/functions/useKeyHold.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "ce00fcce44d464eb1290d54905a7c104ee50cd85b521b5608b090a36ac8956c3",
@@ -3740,25 +3713,29 @@
       ]
     },
     "source:packages/vue-hotkeys/src/useHeldKeyCodes.ts": {
-      "fingerprint": "9f5d48c0aa08b5ffea2745a9f8856fb3c9e8490edf386528ce639fa19b03b45c",
+      "fingerprint": "624e3d3365ba2155a89f4ab7fc4bd9fc0cef00cf5a7368807ffffb672e618a85",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHeldKeyCodes.ts": "69c82d02a3548ba47ac319e4060138ff991acf10a11b0c6badde2deb0ef970e0"
+        "packages/vue-hotkeys/src/useHeldKeyCodes.ts": "161734353a26e56e4fc8f05c6db5dec71e827592074d80eb1a1f653a3fcbd629"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
-      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+      "reason": "The state composables now declare read-only refs, and useKeyHold notifies only when the answer for its own key changes. The skill describes each as returning a ref and names no type, so its guidance holds.",
+      "evidence": [
+        "packages/vue-hotkeys/src/useHeldKeyCodes.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md lines 69-73"
+      ]
     },
     "source:packages/vue-hotkeys/src/useHeldKeys.ts": {
-      "fingerprint": "ef43d521c32c5c15115b0fc664b25f15afb4eda7e41cb0c934f570a5d769bcc8",
+      "fingerprint": "97d4cca9c40302a0be821be6608f0c13c338ed7548df9d200773bda29307732c",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHeldKeys.ts": "e26d7899ff65a8921bbd73d454c21582d9045bf78d9f0f07b1cad3942bb20083"
+        "packages/vue-hotkeys/src/useHeldKeys.ts": "527cb59cdb5c1ebc1978e32cc88ce2f44c9bd75b4c0e3946c5deceed87a5b44b"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "The state composables now declare read-only refs, and useKeyHold notifies only when the answer for its own key changes. The skill describes each as returning a ref and names no type, so its guidance holds.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "packages/vue-hotkeys/src/useHeldKeys.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md lines 69-73"
       ]
     },
     "source:packages/vue-hotkeys/src/useHotkeyRegistrations.ts": {
@@ -3775,15 +3752,16 @@
       ]
     },
     "source:packages/vue-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "1afa5502e5359a0ec90381b4f8c5944f288ee45e286d506fc05a85cd578e464e",
+      "fingerprint": "e750c45912a342456561c3a38169454d6526d1af9531ca2b0b81b758075c8103",
       "snapshot": {
-        "packages/vue-hotkeys/src/useKeyHold.ts": "da096cf91adb7c35bf10229c15a34bb6ea85f53c0a427d569ded111afb6bda8e"
+        "packages/vue-hotkeys/src/useKeyHold.ts": "7ddb217e669d73a74389ffaa11920b2a57336ffbeb4baf4c02e63b8c808fbf69"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "no-change",
+      "reason": "The state composables now declare read-only refs, and useKeyHold notifies only when the answer for its own key changes. The skill describes each as returning a ref and names no type, so its guidance holds.",
       "evidence": [
-        "Changed: packages/vue-hotkeys/src/useKeyHold.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "packages/vue-hotkeys/src/useKeyHold.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md lines 69-73"
       ]
     },
     "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
@@ -3823,17 +3801,14 @@
       "evidence": ["packages/vue-hotkeys/tests/ssr.test.ts", "test:lib passes"]
     },
     "source:packages/vue-hotkeys/tests/useKeyHold.test.ts": {
-      "fingerprint": "d6dc17427d7b67c3ac145348621e911a24e01afb66429f9e9dc61a1b20ed6811",
+      "fingerprint": "625c77fb0fd7e1179c107fe8bc3a9a345f90343de07053addaabe2ebc9b2f669",
       "snapshot": {
-        "packages/vue-hotkeys/tests/useKeyHold.test.ts": "dbae9c83411338b0ce7a59ec8a5144e5575993e657638ff93d32f44cb88f146b"
+        "packages/vue-hotkeys/tests/useKeyHold.test.ts": "16f1c432f1ea7575ba5eaaa2dfa4a48afcfcdf00ff0c96a3ecf57c6ce84e23e8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/vue-hotkeys/tests/useKeyHold.test.ts",
-        "test:lib passes"
-      ]
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the Vue provider and composable types, useKeyHold notifications and defineAppHotkeys type-check time; it carries no guidance for library users.",
+      "evidence": ["packages/vue-hotkeys/tests/useKeyHold.test.ts"]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
       "fingerprint": "280489e84cb925c5b570e32df04f8a221a0edca5ba02a2f2b56a174a47c9cecf",
@@ -4765,13 +4740,13 @@
       "evidence": ["docs/framework/vue/guides/app-hotkeys.md"]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeys.md": {
-      "fingerprint": "3ffdfc990fb9e7a5c8e3a1b798d311a3670e855ea8ba021b9ce6aaa5330368b8",
+      "fingerprint": "cd5cfda2c33e31587443971a0b0d1e5a3cdd092d90902d696d311bb684cd57f8",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHeldKeys.md": "e6da7a146b5558e9fb7ce2215548d6fe03924e7e2a1981723a74283915471924"
+        "docs/framework/vue/reference/functions/useHeldKeys.md": "dbfc6ba92b2d116303b584c8cdf5cee1d7666a3edb0ba8565278b026a1cfdc63"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
@@ -6845,13 +6820,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkey.md": {
-      "fingerprint": "8c6ef38d1c1c91bad1306d4f8ca00dfb6354dc4b6a2a816609900129462c8471",
+      "fingerprint": "408c280b838892ae6aa893f411385a4481b141c027463d69d156fe1e407af2cc",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkey.md": "539cc86fcb8061863a5180159c4b56016a22eba9e6adf88b8286df9db2531571"
+        "docs/framework/vue/reference/functions/useHotkey.md": "6db8662a0fc9887782e7f15f9a58c4c2607c3ae84d920c43f6b74553756e01e4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyRecorder.md": {
@@ -6895,13 +6870,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/variables/HotkeysProvider.md": {
-      "fingerprint": "0b60fc73972202cdf97b0be10f02252fbfc4183da2741127db9746df7d485a97",
+      "fingerprint": "0d69137a7cf208c5b17cef4c6b7d741d8b361489ae7ac8235cd37d8ad37bde14",
       "snapshot": {
-        "docs/framework/vue/reference/variables/HotkeysProvider.md": "f181ae9d915d89c876112656e97b38c4216b3bc99be0f77c3a4f5a4ea720294b"
+        "docs/framework/vue/reference/variables/HotkeysProvider.md": "f6c2ec412da42e50dd5dd7a3f12f5008f0bf2f75755c570601ee5e5ffb95ef4e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/definedOptions.md": {
@@ -7105,17 +7080,14 @@
       "evidence": ["packages/hotkeys/src/hint.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "baec2b617215cc61e57c2ba98019b05aea9495c1100b0f6738d0e24708026936",
+      "fingerprint": "7c4c51a2e6c109e255611db3b3249c6de6b8f9ccd2706784067f0f58d36c211e",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "449583b97f4141e383ffb05d5792b953292d90bdcf0268292694cb2fa4ff3524"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "11b5f53becbc85e4f1fc0f0c69202819bd5845e8504e8780941fce9e52e957a4"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/hotkeys/tests/app-hotkeys.test.ts"
-      ]
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the Vue provider and composable types, useKeyHold notifications and defineAppHotkeys type-check time; it carries no guidance for library users.",
+      "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
       "fingerprint": "f928c9450c2f2f916cf639f3cc0a81e3a49effda3b8e90c51002bda9422539ca",
@@ -12796,13 +12768,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeyCodes.md": {
-      "fingerprint": "9a78d68bdb1bef09a1906b46776f3ecd8b1780a4901983dbda7e5809ab9ced38",
+      "fingerprint": "51f43c3d5093e7c8046711b02cb71cff972c6d689de9f76b3e02bac838bc7c2d",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHeldKeyCodes.md": "2c572dbc5a79cbfa363d51ded2395e6bd308cf5915097a30da79c5aa2ac05083"
+        "docs/framework/vue/reference/functions/useHeldKeyCodes.md": "6957961d4464d3a5e30055d99912c7cdd1411091aa1fb5fd02712b3736246064"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: Defined-in links follow source line shifts, and the Vue pages show the new provider type, read-only return types and overload order.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyRegistrations.md": {
@@ -19714,6 +19686,38 @@
       "outcome": "out-of-scope",
       "reason": "Test code for the macOS Option and Cmd+Shift matching rules, AltGr in sequences, and the removed key Sets; it carries no guidance for library users.",
       "evidence": ["packages/hotkeys/tests/typed-keys.ts"]
+    },
+    "source:packages/hotkeys/tests/app-hotkeys-type-performance.test.ts": {
+      "fingerprint": "09c3753975106ac8e52dbbf8b5ac0ae47cfbf3cacfae821c75f6084bd9f88e2a",
+      "snapshot": {
+        "packages/hotkeys/tests/app-hotkeys-type-performance.test.ts": "46dd65673a817ea469df53a4a1123178e6168ba97519ff89729ba6381afda9c5"
+      },
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the Vue provider and composable types, useKeyHold notifications and defineAppHotkeys type-check time; it carries no guidance for library users.",
+      "evidence": [
+        "packages/hotkeys/tests/app-hotkeys-type-performance.test.ts"
+      ]
+    },
+    "source:packages/vue-hotkeys/tests/composable-types.test.ts": {
+      "fingerprint": "ee70231fdbd36e17a936d257f951922345b0cf2f44ba155a649a82284f103c52",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/composable-types.test.ts": "283c1ced1b462d23a176b5f8dfa8742628de612b99dd3dfe730cba033e4e9147"
+      },
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the Vue provider and composable types, useKeyHold notifications and defineAppHotkeys type-check time; it carries no guidance for library users.",
+      "evidence": ["packages/vue-hotkeys/tests/composable-types.test.ts"]
+    },
+    "source:packages/vue-hotkeys/tests/provider-types.test.ts": {
+      "fingerprint": "e73dd87d1b361434ee79ffdb7865d9b0edacb5d609fab44ff36bca28f67c761c",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/provider-types.test.ts": "34ae3cacfca39c3cf8eb5a136112521ca6e1f6981efae14d54c6e185fcfbacda"
+      },
+      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "outcome": "out-of-scope",
+      "reason": "Test code for the Vue provider and composable types, useKeyHold notifications and defineAppHotkeys type-check time; it carries no guidance for library users.",
+      "evidence": ["packages/vue-hotkeys/tests/provider-types.test.ts"]
     }
   }
 }

@@ -28,7 +28,7 @@ import type { Ref } from 'vue'
  * </template>
  * ```
  */
-export function useHeldKeyCodes(): Ref<Record<string, string>> {
+export function useHeldKeyCodes(): Readonly<Ref<Record<string, string>>> {
   const tracker = getKeyStateTracker()
   return useStoreSelector(tracker.store, (state) => state.heldCodes)
 }

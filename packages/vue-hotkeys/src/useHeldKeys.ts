@@ -8,7 +8,7 @@ import type { Ref } from 'vue'
  * This composable subscribes to the global KeyStateTracker and updates whenever keys are pressed
  * or released.
  *
- * @returns Reactive ref containing array of currently held key names
+ * @returns Read-only reactive ref containing array of currently held key names
  *
  * @example
  * ```vue
@@ -25,7 +25,7 @@ import type { Ref } from 'vue'
  * </template>
  * ```
  */
-export function useHeldKeys(): Ref<Array<string>> {
+export function useHeldKeys(): Readonly<Ref<Array<string>>> {
   const tracker = getKeyStateTracker()
   return useStoreSelector(tracker.store, (state) => state.heldKeys)
 }

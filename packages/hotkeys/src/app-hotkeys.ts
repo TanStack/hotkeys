@@ -105,10 +105,17 @@ type StrictOptions<TOptions, TAllowed> = TOptions extends object
   ? { [P in Exclude<keyof TOptions, keyof TAllowed>]: never } & TAllowed
   : TAllowed
 
-/** Rejects options that do not apply to each declaration's default kind. */
+/**
+ * Rejects options that do not apply to each declaration's default kind.
+ *
+ * Each entry holds only `options`. `defineAppHotkeys` intersects this with
+ * the declarations, and repeating a declaration's `hotkey` here makes
+ * TypeScript 5.7 and later intersect two copies of the hotkey unions, which
+ * takes seconds and gigabytes for a few dozen entries.
+ */
 type ValidatedAppHotkeyInputs<T> = {
   [K in keyof T]: T[K] extends { hotkey: infer THotkey }
-    ? Omit<T[K], 'options'> & {
+    ? {
         options?: StrictOptions<
           T[K] extends { options: infer TOptions } ? TOptions : {},
           AllowedOptions<THotkey>
