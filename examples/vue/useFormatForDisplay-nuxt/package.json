@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "@tanstack/vue-hotkeys": "^0.23.0",
+    "@tanstack/vue-hotkeys": "^0.24.0",
     "nuxt": "^4.6.4",
     "vue": "^3.5.45"
   },

@@ -22,7 +22,7 @@
   "dependencies": {
     "@astrojs/node": "^11.1.11",
     "@astrojs/preact": "^6.1.2",
-    "@tanstack/preact-hotkeys": "^0.22.0",
+    "@tanstack/preact-hotkeys": "^0.23.0",
     "astro": "^7.4.7",
     "preact": "^11.2.0"
   },

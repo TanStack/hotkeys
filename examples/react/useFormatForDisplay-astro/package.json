@@ -22,7 +22,7 @@
   "dependencies": {
     "@astrojs/node": "^11.1.11",
     "@astrojs/react": "^7.1.4",
-    "@tanstack/react-hotkeys": "^0.24.0",
+    "@tanstack/react-hotkeys": "^0.25.0",
     "astro": "^7.4.7",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
