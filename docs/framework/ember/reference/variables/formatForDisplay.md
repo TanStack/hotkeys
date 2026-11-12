@@ -9,7 +9,7 @@ title: formatForDisplay
 const formatForDisplay: typeof coreFormatForDisplay = coreFormatForDisplay;
 ```
 
-Defined in: packages/ember-hotkeys/src/formatForDisplay.ts:11
+Defined in: [packages/ember-hotkeys/src/formatForDisplay.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/formatForDisplay.ts#L11)
 
 Formats a hotkey as a label, without the scope's platform or the user's
 keyboard layout.

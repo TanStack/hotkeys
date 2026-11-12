@@ -9,7 +9,7 @@ title: formatForDisplay
 const formatForDisplay: typeof coreFormatForDisplay = coreFormatForDisplay;
 ```
 
-Defined in: format-for-display.ts:12
+Defined in: [format-for-display.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/format-for-display.ts#L12)
 
 Formats a hotkey as a label, without a controller's platform or the user's
 keyboard layout.

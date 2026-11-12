@@ -9,7 +9,7 @@ title: formatForDisplay
 const formatForDisplay: typeof coreFormatForDisplay = coreFormatForDisplay;
 ```
 
-Defined in: packages/svelte-hotkeys/src/formatForDisplay.ts:12
+Defined in: [packages/svelte-hotkeys/src/formatForDisplay.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/formatForDisplay.ts#L12)
 
 Formats a hotkey as a label, without the provider's platform or the user's
 keyboard layout.
