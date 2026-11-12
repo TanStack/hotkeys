@@ -25,6 +25,10 @@ title: "@tanstack/octane-hotkeys"
 - [UseHotkeySequenceOptions](type-aliases/UseHotkeySequenceOptions.md)
 - [UseHotkeyTarget](type-aliases/UseHotkeyTarget.md)
 
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
+
 ## Functions
 
 - [HotkeysProvider](functions/HotkeysProvider.md)
@@ -42,4 +46,5 @@ title: "@tanstack/octane-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
+- [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)

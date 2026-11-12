@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   detectPlatform,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { computed, onMounted, reactive, ref } from 'vue'
@@ -43,6 +43,7 @@ onMounted(() => {
   browserPlatform.value = detectPlatform()
 })
 
+const formatForDisplay = useFormatForDisplay()
 const options = computed(() => toFormatOptions(choices))
 </script>
 

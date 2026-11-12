@@ -13,6 +13,7 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * @example
  * ```tsx
  * const registrations = createHotkeyRegistrations()
+ * const formatForDisplay = createFormatForDisplay()
  * <For each={registrations()}>
  *   {(reg) => <li>{reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}</li>}
  * </For>

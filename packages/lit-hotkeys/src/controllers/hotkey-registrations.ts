@@ -12,11 +12,12 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
  * ```ts
  * class ShortcutPalette extends LitElement {
  *   private registrations = new HotkeyRegistrationsController(this)
+ *   private formatForDisplay = new FormatForDisplayController(this)
  *
  *   render() {
  *     return html`<ul>
  *       ${this.registrations.hotkeys.map(
- *         (reg) => html`<li>${reg.options.meta?.name}: ${formatForDisplay(reg.hotkey)}</li>`,
+ *         (reg) => html`<li>${reg.options.meta?.name}: ${this.formatForDisplay.format(reg.hotkey)}</li>`,
  *       )}
  *     </ul>`
  *   }

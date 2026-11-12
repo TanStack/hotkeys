@@ -8,11 +8,17 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core'
 import { ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing'
-import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  KeyStateTracker,
+  getKeyboardLayoutStore,
+} from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { injectFormatForDisplay } from '../src/injectFormatForDisplay'
 import { injectHeldKeys } from '../src/injectHeldKeys'
 import { injectHotkey } from '../src/injectHotkey'
 import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
+import { injectKeyboardLayout } from '../src/injectKeyboardLayout'
 
 const inZone: Array<boolean> = []
 
@@ -53,6 +59,8 @@ afterEach(() => {
   TestBed.resetTestingModule()
   HotkeyManager.resetInstance()
   KeyStateTracker.resetInstance()
+  getKeyboardLayoutStore().setState(() => null)
+  vi.unstubAllGlobals()
   inZone.length = 0
 })
 
@@ -79,6 +87,27 @@ describe('zone.js apps', () => {
         if (type === 'mousemove') attached.push(NgZone.isInAngularZone())
       })
     await setup()
+    spy.mockRestore()
+    expect(attached).toEqual([false])
+  })
+
+  it('attaches the keyboard layout loader outside the zone', async () => {
+    const attached: Array<boolean> = []
+    const spy = vi
+      .spyOn(window, 'addEventListener')
+      .mockImplementation((type) => {
+        if (type === 'focus') attached.push(NgZone.isInAngularZone())
+      })
+    TestBed.configureTestingModule({
+      providers: [provideZoneChangeDetection()],
+    })
+    TestBed.inject(NgZone).run(() => {
+      TestBed.runInInjectionContext(() => injectKeyboardLayout())
+      // The first tick runs the render hook, and the second runs the effect.
+      TestBed.tick()
+      TestBed.tick()
+    })
+    await TestBed.inject(ApplicationRef).whenStable()
     spy.mockRestore()
     expect(attached).toEqual([false])
   })
@@ -126,6 +155,32 @@ describe('zone.js views', () => {
     ['Eager', ChangeDetectionStrategy.Eager],
     ['OnPush', ChangeDetectionStrategy.OnPush],
   ] as const) {
+    it(`updates a ${name} view when the keyboard layout loads`, async () => {
+      const getLayoutMap = () => Promise.resolve(new Map([['KeyQ', 'a']]))
+      vi.stubGlobal('navigator', { ...navigator, keyboard: { getLayoutMap } })
+      class Label {
+        format = injectFormatForDisplay()
+      }
+      Component({
+        selector: 'app-label',
+        template: `{{ format('[KeyQ]') }}`,
+        changeDetection: strategy,
+      })(Label)
+      TestBed.configureTestingModule({
+        providers: [
+          provideZoneChangeDetection(),
+          { provide: ComponentFixtureAutoDetect, useValue: true },
+        ],
+      })
+      const fixture = TestBed.createComponent(Label)
+      expect(fixture.nativeElement.textContent).toBe('Q')
+      await fixture.whenStable()
+      // Lets the layout request resolve
+      await new Promise((resolve) => setTimeout(resolve))
+      await fixture.whenStable()
+      expect(fixture.nativeElement.textContent).toBe('A')
+    })
+
     it(`updates a ${name} view when a callback changes a field`, async () => {
       const fixture = counter(strategy)
       await fixture.whenStable()

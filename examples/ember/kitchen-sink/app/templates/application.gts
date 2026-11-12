@@ -5,7 +5,7 @@ import { registerDestructor } from '@ember/destroyable'
 import { on } from '@ember/modifier'
 import {
   createHotkeysScope,
-  formatForDisplay,
+  useFormatForDisplay,
   isHotkeySequence,
   useHotkeyHint,
   useHotkeyRecorder,
@@ -59,14 +59,16 @@ class Hint extends Component<{
     hotkey: RegisterableHotkey
   }
 }> {
+  formatForDisplay = useFormatForDisplay()
   visible = useHotkeyHint(this, () => this.args.hotkey)
 
   <template>
-    {{#if this.visible.value}}<kbd>{{formatForDisplay this.args.hotkey}}</kbd>{{else}}{{/if}}
+    {{#if this.visible.value}}<kbd>{{this.formatForDisplay this.args.hotkey}}</kbd>{{else}}{{/if}}
   </template>
 }
 
 class Layout extends Component {
+  formatForDisplay = useFormatForDisplay()
   @tracked currentPath: string = window.location.pathname
   @tracked showShortcuts: boolean = false
   @tracked activity: Array<string> = []
@@ -80,7 +82,7 @@ class Layout extends Component {
   }
   toggleShortcuts = () => (this.showShortcuts = !this.showShortcuts)
   formatRegistration = (reg: HotkeyRegistrationView) =>
-    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   triggerCountLabel = (reg: HotkeyRegistrationView) =>
     `${reg.triggerCount} fired`
   registrationsForGroup = (group: string) =>
@@ -303,6 +305,7 @@ class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
 class EditorPane extends Component<{
   Args: { name: string; log: (message: string) => void }
 }> {
+  formatForDisplay = useFormatForDisplay()
   @tracked text: string = 'One shortcut, two independent editors.'
   @tracked saves: number = 0
   updateText = (e: Event) =>
@@ -351,9 +354,9 @@ class EditorPane extends Component<{
         ></textarea>
       </label>
       <p>
-        <kbd>{{formatForDisplay 'Mod+[KeyS]'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Mod+[KeyS]'}}</kbd>
         Save;
-        <kbd>{{formatForDisplay 'Alt+[Backspace]'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+[Backspace]'}}</kbd>
         Clear
       </p>
     </fieldset>
@@ -361,6 +364,7 @@ class EditorPane extends Component<{
 }
 
 class Editor extends Component<{ Args: { log: (message: string) => void } }> {
+  formatForDisplay = useFormatForDisplay()
   @tracked repeat: boolean = false
   @tracked count: number = 0
   @tracked bubble: boolean = false
@@ -415,10 +419,10 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
       </label>
       <p>
         Hold
-        <kbd>{{formatForDisplay 'Alt+[ArrowRight]'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+[ArrowRight]'}}</kbd>
         to advance:
         {{this.count}}. Release
-        <kbd>{{formatForDisplay 'Alt+[KeyU]'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+[KeyU]'}}</kbd>
         to log a keyup event.
       </p>
       <fieldset
@@ -442,7 +446,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
         </label>
         <p>
           Focus this area and press
-          <kbd>{{formatForDisplay 'Alt+[KeyB]'}}</kbd>. Activity shows whether the
+          <kbd>{{this.formatForDisplay 'Alt+[KeyB]'}}</kbd>. Activity shows whether the
           document handler also receives the event.
         </p>
         <button {{on 'click' this.focusScope}}>Focus this area</button>
@@ -454,12 +458,13 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
 class Sequences extends Component<{
   Args: { log: (message: string) => void }
 }> {
+  formatForDisplay = useFormatForDisplay()
   @tracked timeout: number = 1000
   registrationsState = useHotkeyRegistrations(this)
   updateTimeout = (e: Event) =>
     (this.timeout = Number((e.currentTarget as HTMLInputElement).value))
   formatSequence = (reg: HotkeyRegistrationView) =>
-    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   get goToTopSequence(): HotkeySequence {
     return ['[KeyG]', '[KeyG]']
   }
@@ -546,6 +551,7 @@ class Sequences extends Component<{
 class Recording extends Component<{
   Args: { log: (message: string) => void }
 }> {
+  formatForDisplay = useFormatForDisplay()
   @tracked hotkey: Hotkey = this.initial
   @tracked mode: RecorderKeyMode = 'auto'
   @tracked problem: string = ''
@@ -593,7 +599,7 @@ class Recording extends Component<{
       this.sequence = value
       this.sequenceProblem = ''
       this.args.log(
-        `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+        `Recorded sequence ${this.formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
     onReject: (rejection) => (this.sequenceProblem = rejectionText(rejection)),
@@ -618,7 +624,7 @@ class Recording extends Component<{
     return String(this.hotkey)
   }
   get sequenceText() {
-    return formatForDisplay(
+    return this.formatForDisplay(
       this.sequenceRecorder.isRecording
         ? this.sequenceRecorder.steps
         : this.sequence,
@@ -675,7 +681,7 @@ class Recording extends Component<{
       </label>
       <h3>Single shortcut</h3>
       <p>
-        <kbd>{{formatForDisplay this.hotkey}}</kbd>
+        <kbd>{{this.formatForDisplay this.hotkey}}</kbd>
         — stored as
         <code>{{this.hotkeyText}}</code>
       </p>
@@ -749,6 +755,7 @@ class Recording extends Component<{
 }
 
 class Formatting extends Component {
+  formatForDisplay = useFormatForDisplay()
   @tracked platform: 'mac' | 'windows' | 'linux' = 'mac'
   @tracked modifierSymbols: boolean = false
   @tracked keySymbols: boolean = true
@@ -817,9 +824,9 @@ class Formatting extends Component {
               <td>
                 <code>{{hotkey}}</code>
               </td>
-              <td>{{formatForDisplay hotkey this.options}}</td>
+              <td>{{this.formatForDisplay hotkey this.options}}</td>
               <td>
-                {{#each (formatForDisplay hotkey this.partOptions) as |part i|}}<kbd
+                {{#each (this.formatForDisplay hotkey this.partOptions) as |part i|}}<kbd
                   >{{part}}</kbd>{{/each}}
               </td>
             </tr>{{/each}}

@@ -12,7 +12,7 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 import Component from '@glimmer/component'
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/ember-hotkeys'
@@ -20,8 +20,8 @@ import {
 const saveHotkey = 'Mod+S'
 
 export default class SaveButton extends Component {
+  formatForDisplay = useFormatForDisplay()
   hint = useHotkeyHint(this, saveHotkey)
-  label = formatForDisplay(saveHotkey)
   save = () => {
     /* ... */
   }
@@ -29,7 +29,7 @@ export default class SaveButton extends Component {
   <template>
     {{useHotkey saveHotkey this.save}}
     <button type='button' {{on 'click' this.save}}>
-      Save {{#if this.hint.value}}<kbd>{{this.label}}</kbd>{{/if}}
+      Save {{#if this.hint.value}}<kbd>{{this.formatForDisplay saveHotkey}}</kbd>{{/if}}
     </button>
   </template>
 }
@@ -71,19 +71,20 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 ```gts
 import Component from '@glimmer/component'
 import {
-  formatForDisplay,
   useAppHotkeys,
+  useFormatForDisplay,
   useHotkeyHint,
 } from '@tanstack/ember-hotkeys'
 import type { AppHotkeyId } from '@tanstack/ember-hotkeys'
 
 export default class Hint extends Component<{ Args: { id: AppHotkeyId } }> {
+  formatForDisplay = useFormatForDisplay()
   appHotkeys = useAppHotkeys(this)
   hint = useHotkeyHint(this, () => this.appHotkeys.value[this.args.id])
 
   get label() {
     const { hotkey } = this.appHotkeys.value[this.args.id]
-    return this.hint.value && hotkey ? formatForDisplay(hotkey) : null
+    return this.hint.value && hotkey ? this.formatForDisplay(hotkey) : null
   }
 
   <template>

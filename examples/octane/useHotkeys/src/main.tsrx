@@ -3,7 +3,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/octane-hotkeys'
@@ -48,6 +48,7 @@ function App() @{  <>
 }
 
 function BasicMultiHotkeys() @{
+  const formatForDisplay = useFormatForDisplay()
   const [log, setLog] = useState<Array<string>>([])
   const [saveCount, setSaveCount] = useState(0)
   const [undoCount, setUndoCount] = useState(0)
@@ -123,6 +124,7 @@ function BasicMultiHotkeys() @{
 }
 
 function CommonOptionsDemo() @{
+  const formatForDisplay = useFormatForDisplay()
   const [enabled, setEnabled] = useState(true)
   const [counts, setCounts] = useState({ a: 0, b: 0, c: 0 })
   useHotkeys(
@@ -233,6 +235,7 @@ const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
 ]
 
 function DynamicHotkeysDemo() @{
+  const formatForDisplay = useFormatForDisplay()
   const [shortcuts, setShortcuts] =
     useState<Array<DynamicShortcut>>(DEFAULT_SHORTCUTS)
   const [newHotkey, setNewHotkey] = useState('')
@@ -324,6 +327,7 @@ function DynamicHotkeysDemo() @{
 }
 
 function RegistrationsViewer() @{
+  const formatForDisplay = useFormatForDisplay()
   const { hotkeys } = useHotkeyRegistrations()
   <div className="demo-section">
         <h2>Live Registrations (useHotkeyRegistrations)</h2>

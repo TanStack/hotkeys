@@ -5,8 +5,13 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
-import { HotkeyManager, detectPlatform } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  detectPlatform,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import { provideHotkeys } from '../src/hotkeys-provider'
 import { injectFormatForDisplay } from '../src/injectFormatForDisplay'
 import { injectHotkey } from '../src/injectHotkey'
@@ -37,11 +42,11 @@ function press(modifier: 'metaKey' | 'ctrlKey') {
 }
 
 class Label {
-  format = injectFormatForDisplay()
+  formatForDisplay = injectFormatForDisplay()
 }
 Component({
   selector: 'app-label',
-  template: `<kbd>{{ format('Mod+S') }}</kbd><kbd>{{ format('Mod+S', { platform: 'windows' }) }}</kbd>`,
+  template: `<kbd>{{ formatForDisplay('Mod+S') }}</kbd><kbd>{{ formatForDisplay('Mod+S', { platform: 'windows' }) }}</kbd>`,
 })(Label)
 
 afterEach(() => {
@@ -131,5 +136,11 @@ describe('provider platform', () => {
     recorder.startRecording()
     press('metaKey')
     expect(onRecord).toHaveBeenCalledWith(recorded, expect.anything())
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

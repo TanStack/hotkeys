@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `injectHotkeyRegistrations` returns the hotkeys registered right now. It works with plain `injectHotkey` and `injectHotkeys`, but it only knows about components that exist.
 - `injectAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, including hotkeys on pages that haven't rendered, with the status of each.
 
-Both return signals. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Both return signals. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `injectFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -56,7 +56,7 @@ declare module '@tanstack/hotkeys' {
 ```ts
 import { Component, computed } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkeyRegistrations,
 } from '@tanstack/angular-hotkeys'
 
@@ -67,14 +67,14 @@ import {
       @for (reg of named(); track reg.id) {
         <div>
           <dt>{{ reg.options.meta?.name }}</dt>
-          <dd><kbd>{{ format(reg.hotkey) }}</kbd></dd>
+          <dd><kbd>{{ formatForDisplay(reg.hotkey) }}</kbd></dd>
         </div>
       }
     </dl>
   `,
 })
 export class ShortcutListComponent {
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   private readonly registrations = injectHotkeyRegistrations()
   readonly named = computed(() =>
     this.registrations().filter(
@@ -100,7 +100,7 @@ Registrations exist only while their components exist, so this list can't show s
 
 ```ts
 import { Component } from '@angular/core'
-import { formatForDisplay, injectAppHotkeyList } from '@tanstack/angular-hotkeys'
+import { injectAppHotkeyList, injectFormatForDisplay } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-cheat-sheet',
@@ -109,7 +109,7 @@ import { formatForDisplay, injectAppHotkeyList } from '@tanstack/angular-hotkeys
       @for (item of items(); track item.appHotkey.id) {
         <li [attr.data-status]="item.status">
           {{ item.appHotkey.meta?.name }}:
-          {{ item.appHotkey.hotkey ? format(item.appHotkey.hotkey) : 'Unassigned' }}
+          {{ item.appHotkey.hotkey ? formatForDisplay(item.appHotkey.hotkey) : 'Unassigned' }}
           @if (item.isCustom) { (custom) }
         </li>
       }
@@ -118,7 +118,7 @@ import { formatForDisplay, injectAppHotkeyList } from '@tanstack/angular-hotkeys
 })
 export class CheatSheetComponent {
   readonly items = injectAppHotkeyList()
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 }
 ```
 
@@ -174,7 +174,7 @@ export class CheatSheetComponent {
 }
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `injectFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

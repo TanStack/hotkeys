@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `useHotkeyRegistrations` returns the hotkeys registered right now, in its `hotkeys` property. It works with plain `useHotkey` and `useHotkeys`, but it only knows about rendered helpers.
 - `useAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, in its `value` property, including hotkeys on pages that haven't rendered, with the status of each.
 
-Pass the component as the owner of each one. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Pass the component as the owner of each one. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `useFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -56,11 +56,12 @@ declare module '@tanstack/hotkeys' {
 ```gts
 import Component from '@glimmer/component'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRegistrations,
 } from '@tanstack/ember-hotkeys'
 
 export default class ShortcutList extends Component {
+  formatForDisplay = useFormatForDisplay()
   registrations = useHotkeyRegistrations(this)
 
   get named() {
@@ -74,7 +75,7 @@ export default class ShortcutList extends Component {
       {{#each this.named key='id' as |reg|}}
         <div>
           <dt>{{reg.options.meta.name}}</dt>
-          <dd><kbd>{{formatForDisplay reg.hotkey}}</kbd></dd>
+          <dd><kbd>{{this.formatForDisplay reg.hotkey}}</kbd></dd>
         </div>
       {{/each}}
     </dl>
@@ -98,20 +99,21 @@ Registrations exist only while their helpers are rendered, so this list can't sh
 
 ```gts
 import Component from '@glimmer/component'
-import { formatForDisplay, useAppHotkeyList } from '@tanstack/ember-hotkeys'
+import { useAppHotkeyList, useFormatForDisplay } from '@tanstack/ember-hotkeys'
 import type { AppHotkey } from '@tanstack/ember-hotkeys'
 
-const label = (appHotkey: AppHotkey) =>
-  appHotkey.hotkey ? formatForDisplay(appHotkey.hotkey) : 'Unassigned'
-
 export default class CheatSheet extends Component {
+  formatForDisplay = useFormatForDisplay()
   items = useAppHotkeyList(this)
+
+  label = (appHotkey: AppHotkey) =>
+    appHotkey.hotkey ? this.formatForDisplay(appHotkey.hotkey) : 'Unassigned'
 
   <template>
     <ul>
       {{#each this.items.value key='appHotkey.id' as |item|}}
         <li data-status={{item.status}}>
-          {{item.appHotkey.meta.name}}: {{label item.appHotkey}}
+          {{item.appHotkey.meta.name}}: {{this.label item.appHotkey}}
           {{#if item.isCustom}}(custom){{/if}}
         </li>
       {{/each}}
@@ -172,7 +174,7 @@ export default class CheatSheet extends Component {
 }
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `useFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

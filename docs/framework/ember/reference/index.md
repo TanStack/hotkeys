@@ -30,6 +30,10 @@ title: "@tanstack/ember-hotkeys"
 - [EmberHotkeyTarget](type-aliases/EmberHotkeyTarget.md)
 - [MaybeGetter](type-aliases/MaybeGetter.md)
 
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
+
 ## Functions
 
 - [createHotkeysScope](functions/createHotkeysScope.md)
@@ -43,4 +47,5 @@ title: "@tanstack/ember-hotkeys"
 - [useHotkeyRecorder](functions/useHotkeyRecorder.md)
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
+- [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)

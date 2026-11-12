@@ -45,7 +45,9 @@ export function useAppHotkeys(): RegisteredAppHotkeys {
  * @example
  * ```tsx
  * function CheatSheet() {
+ *   const formatForDisplay = useFormatForDisplay()
  *   const items = useAppHotkeyList()
+ *
  *   return (
  *     <ul>
  *       {items.map(({ appHotkey, status }) => (

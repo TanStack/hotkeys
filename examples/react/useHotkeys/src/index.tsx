@@ -1,8 +1,8 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
   normalizeHotkey,
+  useFormatForDisplay,
   useHotkeyRegistrations,
   useHotkeys,
   validateHotkey,
@@ -58,6 +58,7 @@ function App() {
 // ---------------------------------------------------------------------------
 
 function BasicMultiHotkeys() {
+  const formatForDisplay = useFormatForDisplay()
   const [log, setLog] = React.useState<Array<string>>([])
   const [saveCount, setSaveCount] = React.useState(0)
   const [undoCount, setUndoCount] = React.useState(0)
@@ -144,6 +145,7 @@ function BasicMultiHotkeys() {
 // ---------------------------------------------------------------------------
 
 function CommonOptionsDemo() {
+  const formatForDisplay = useFormatForDisplay()
   const [enabled, setEnabled] = React.useState(true)
   const [counts, setCounts] = React.useState({ a: 0, b: 0, c: 0 })
 
@@ -262,6 +264,7 @@ const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
 ]
 
 function DynamicHotkeysDemo() {
+  const formatForDisplay = useFormatForDisplay()
   const [shortcuts, setShortcuts] =
     React.useState<Array<DynamicShortcut>>(DEFAULT_SHORTCUTS)
   const [newHotkey, setNewHotkey] = React.useState('')
@@ -387,6 +390,7 @@ useHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const registrations = useHotkeyRegistrations()
 
   return (

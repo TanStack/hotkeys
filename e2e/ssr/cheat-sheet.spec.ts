@@ -15,6 +15,10 @@ const platforms = [
     navigatorPlatform: 'MacIntel',
     saveLabel: '⌘ S',
     saveKeys: 'Meta+s',
+    // The physical binding Alt+[KeyQ]: as the server renders it, and once the
+    // browser reports a layout where that key types "a"
+    quickLabel: '⌥ Q',
+    quickLayoutLabel: '⌥ A',
     // A format option the page applies after hydration
     toggle: { choice: 'Text labels', saveLabel: 'Cmd+S' },
   },
@@ -24,6 +28,8 @@ const platforms = [
     navigatorPlatform: 'Win32',
     saveLabel: 'Ctrl+S',
     saveKeys: 'Control+s',
+    quickLabel: 'Alt+Q',
+    quickLayoutLabel: 'Alt+A',
     toggle: { choice: 'macOS', saveLabel: '⌘ S' },
   },
 ]
@@ -59,7 +65,34 @@ function collectProblems(page: Page): Array<string> {
 declare global {
   interface Window {
     __labelChanges?: Array<string>
+    __releaseLayout?: () => void
   }
+}
+
+/**
+ * Runs in the page before its scripts. Gives the browser a keyboard layout
+ * where the Q position types "a", as on French AZERTY, whatever keyboard the
+ * test machine has. The layout arrives only once the test calls
+ * `window.__releaseLayout()`, so the test can first check that hydration left
+ * every label alone.
+ */
+function stubKeyboardLayout(): void {
+  const released = new Promise<void>((resolve) => {
+    window.__releaseLayout = resolve
+  })
+  Object.defineProperty(Navigator.prototype, 'keyboard', {
+    configurable: true,
+    get: () => ({
+      getLayoutMap: () =>
+        released.then(
+          () =>
+            new Map([
+              ['KeyQ', 'a'],
+              ['KeyA', 'q'],
+            ]),
+        ),
+    }),
+  })
 }
 
 /**
@@ -144,6 +177,8 @@ for (const example of examples) {
           expect(textOf(html)).toContain('Built as static HTML')
         } else {
           expect(save).toBe(`Save ${platform.saveLabel}`)
+          // The server knows no keyboard layout, so a position gets its US label
+          expect(rowText(html, 'quick')).toContain(platform.quickLabel)
           expect(textOf(html)).toContain(
             `Server rendered for: ${platform.name}`,
           )
@@ -161,6 +196,7 @@ for (const example of examples) {
             get: () => navigatorPlatform,
           })
         }, platform.navigatorPlatform)
+        await context.addInitScript(stubKeyboardLayout)
         // VitePress renders its labels after hydration, by design
         if (!example.static) await context.addInitScript(recordLabelChanges)
         const page = await context.newPage()
@@ -174,15 +210,24 @@ for (const example of examples) {
 
         const saveLabel = page.locator('tr[data-command="save"] td.label')
         await expect(saveLabel).toHaveText(platform.saveLabel)
-
         await page.keyboard.press(platform.saveKeys)
         await expect(page.locator('.log li').first()).toHaveText('Saved')
+        const quickLabel = page.locator('tr[data-command="quick"] td.label')
         if (!example.static) {
           expect(
             await page.evaluate(() => window.__labelChanges),
             'label changes during hydration',
           ).toEqual([])
+          // No layout has arrived, so a physical key still has its US label
+          await expect(quickLabel).toHaveText(platform.quickLabel)
         }
+
+        // Once the layout arrives, only the physical key's label follows it.
+        // The static example renders its labels in the browser, with the same
+        // label primitive.
+        await page.evaluate(() => window.__releaseLayout?.())
+        await expect(quickLabel).toHaveText(platform.quickLayoutLabel)
+        await expect(saveLabel).toHaveText(platform.saveLabel)
 
         await page
           .getByRole('radio', { name: platform.toggle.choice, exact: true })

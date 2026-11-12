@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
   useHotkeyRegistrations,
@@ -280,6 +280,7 @@ const hotkeys = useHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const hotkeys = useHotkeyRegistrations()
 
   return (
@@ -364,6 +365,7 @@ function ShortcutListItem({
   onCancel,
   onDelete,
 }: ShortcutListItemProps) {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
 
   return (

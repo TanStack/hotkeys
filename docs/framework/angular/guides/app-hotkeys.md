@@ -131,9 +131,9 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 ```ts
 import { Component, computed, input } from '@angular/core'
 import {
-  formatForDisplay,
   injectAppHotkeys,
   injectCustomHotkeys,
+  injectFormatForDisplay,
   injectHotkeyRecorder,
 } from '@tanstack/angular-hotkeys'
 import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
@@ -142,7 +142,7 @@ import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
   selector: 'app-shortcut-row',
   template: `
     {{ appHotkey().meta?.name }}:
-    {{ appHotkey().hotkey ? format(appHotkey().hotkey!) : 'Unassigned' }}
+    {{ appHotkey().hotkey ? formatForDisplay(appHotkey().hotkey!) : 'Unassigned' }}
     <button (click)="recorder.startRecording()">Change</button>
     <button (click)="custom.resetCustomHotkey(id())">Reset</button>
   `,
@@ -152,7 +152,7 @@ export class ShortcutRowComponent {
   readonly appHotkeys = injectAppHotkeys()
   readonly appHotkey = computed(() => this.appHotkeys()[this.id()])
   readonly custom = injectCustomHotkeys()
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 
   readonly recorder = injectHotkeyRecorder(() => ({
     maxSteps: Infinity,

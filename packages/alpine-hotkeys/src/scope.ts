@@ -1,5 +1,8 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
-import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
+import {
+  mergeHotkeysProviderDefaults,
+  subscribePublishedAppHotkeys,
+} from '@tanstack/hotkeys/adapter'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type Alpine from 'alpinejs'
@@ -116,7 +119,9 @@ export function createScope(
     effect,
     select,
     appHotkeys,
-    defaultOptions: () => read(defaultOptions),
+    // Puts `platform` into the hotkey and recorder defaults.
+    defaultOptions: () =>
+      mergeHotkeysProviderDefaults(undefined, read(defaultOptions), undefined),
     addCleanup: (cleanup: () => void) => cleanups.add(cleanup),
     get destroyed() {
       return destroyed

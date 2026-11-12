@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { formatForDisplay } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
 defineProps<{ hotkey: Hotkey }>()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>

@@ -95,25 +95,31 @@ this.hotkeys.createHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `createFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 import type { HotkeyChord } from '@tanstack/alpine-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
-Alpine.data('saveButton', () => ({
-  hotkeys: createHotkeysScope(),
-  label: formatForDisplay(saveHotkey),
-  init() {
-    this.hotkeys.createHotkey(saveHotkey, () => saveDocument())
-  },
-  destroy() {
-    this.hotkeys.destroy()
-  },
-}))
+Alpine.data('saveButton', () => {
+  const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
+
+  return {
+    get label() {
+      return formatForDisplay(saveHotkey)
+    },
+    init() {
+      hotkeys.createHotkey(saveHotkey, () => saveDocument())
+    },
+    destroy() {
+      hotkeys.destroy()
+    },
+  }
+})
 ```
 
 ```html

@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking'
 import { on } from '@ember/modifier'
 
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRecorder,
   useHotkeys,
   useHotkeyRegistrations,
@@ -261,6 +261,7 @@ class App extends Component {
 }
 
 class RegistrationsViewer extends Component {
+  formatForDisplay = useFormatForDisplay()
   registrationsState = useHotkeyRegistrations(this)
   get hotkeys() {
     return this.registrationsState.hotkeys
@@ -288,7 +289,7 @@ class RegistrationsViewer extends Component {
         <tbody>
           {{#each this.hotkeys key='id' as |reg|}}<tr>
               <td>
-                <kbd>{{formatForDisplay reg.hotkey}}</kbd>
+                <kbd>{{this.formatForDisplay reg.hotkey}}</kbd>
               </td>
               <td>{{or reg.options.meta.name '—'}}</td>
               <td class='description-cell'>
@@ -319,6 +320,7 @@ class RegistrationsViewer extends Component {
 }
 
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
+  formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
@@ -368,7 +370,7 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
                 </div>{{else}}<span class='recording-text'>
                   Press any key combination...
                 </span>{{/if}}
-            </div>{{else if this.args.shortcut.hotkey}}<kbd>{{formatForDisplay
+            </div>{{else if this.args.shortcut.hotkey}}<kbd>{{this.formatForDisplay
                 this.args.shortcut.hotkey
               }}</kbd>{{else}}<span class='no-shortcut'>No shortcut</span>{{/if}}
         </div>

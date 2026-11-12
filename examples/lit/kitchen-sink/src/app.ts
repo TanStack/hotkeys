@@ -1,4 +1,5 @@
 import {
+  FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
   HotkeyController,
@@ -6,7 +7,6 @@ import {
   HotkeyRecorderController,
   HotkeyRegistrationsController,
   KeyHoldController,
-  formatForDisplay,
   hotkey,
   isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
@@ -50,9 +50,10 @@ class DemoElement extends LitElement {
 class Hint extends DemoElement {
   @property() hotkey: Hotkey = 'Escape'
   private hint = new HotkeyHintController(this, () => this.hotkey)
+  private formatForDisplay = new FormatForDisplayController(this)
   render() {
     return this.hint.value
-      ? html`<kbd>${formatForDisplay(this.hotkey)}</kbd>`
+      ? html`<kbd>${this.formatForDisplay.format(this.hotkey)}</kbd>`
       : null
   }
 }
@@ -123,6 +124,7 @@ class EditorPane extends DemoElement {
   @property() name = 'Editor'
   @state() private text = 'One shortcut, two independent editors.'
   @state() private saves = 0
+  private formatForDisplay = new FormatForDisplayController(this)
   constructor() {
     super()
     this.addController(
@@ -169,8 +171,8 @@ class EditorPane extends DemoElement {
         ></textarea>
       </label>
       <p>
-        <kbd>${formatForDisplay('Mod+[KeyS]')}</kbd> Save;
-        <kbd>${formatForDisplay('Alt+[Backspace]')}</kbd> Clear
+        <kbd>${this.formatForDisplay.format('Mod+[KeyS]')}</kbd> Save;
+        <kbd>${this.formatForDisplay.format('Alt+[Backspace]')}</kbd> Clear
       </p>
     </fieldset>`
   }
@@ -268,6 +270,7 @@ class Editor extends DemoElement {
 class Sequences extends DemoElement {
   @state() private timeout = 1000
   private registry = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
   constructor() {
     super()
     this.addController(
@@ -329,7 +332,9 @@ class Sequences extends DemoElement {
               : html`<tr>
                   <td>${reg.options.meta?.name}</td>
                   <td>
-                    ${formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
+                    ${this.formatForDisplay.format(reg.hotkey, {
+                      sequenceSeparator: ' → ',
+                    })}
                   </td>
                   <td>
                     ${reg.matchedStepCount}/${reg.hotkey.length} steps;
@@ -352,6 +357,7 @@ class Recording extends DemoElement {
   @state() private problem = ''
   @state() private idle = false
   @state() private enter = true
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, {
     ignoreInputs: false,
     detectConflicts: {
@@ -444,7 +450,7 @@ class Recording extends DemoElement {
       >
       <h3>Single shortcut</h3>
       <p>
-        <kbd>${formatForDisplay(this.binding)}</kbd> —
+        <kbd>${this.formatForDisplay.format(this.binding)}</kbd> —
         <code>${this.binding}</code>
       </p>
       <button
@@ -468,7 +474,7 @@ class Recording extends DemoElement {
       }
       <h3>Sequence</h3>
       <p>
-        ${formatForDisplay(
+        ${this.formatForDisplay.format(
           this.seq.isRecording ? this.seq.steps : this.sequence,
           {
             sequenceSeparator: ' → ',
@@ -528,6 +534,7 @@ class Formatting extends DemoElement {
   @state() private platform: 'mac' | 'windows' | 'linux' = 'mac'
   @state() private modifiers = false
   @state() private keys = true
+  private formatForDisplay = new FormatForDisplayController(this)
   render() {
     const options = {
       platform: this.platform,
@@ -588,11 +595,11 @@ class Formatting extends DemoElement {
             (binding) =>
               html`<tr>
                 <td><code>${binding}</code></td>
-                <td>${formatForDisplay(binding, options)}</td>
+                <td>${this.formatForDisplay.format(binding, options)}</td>
                 <td>
-                  ${formatForDisplay(binding, { ...options, parts: true }).map(
-                    (part) => html`<kbd>${part}</kbd>`,
-                  )}
+                  ${this.formatForDisplay
+                    .format(binding, { ...options, parts: true })
+                    .map((part) => html`<kbd>${part}</kbd>`)}
                 </td>
               </tr>`,
           )}
@@ -622,6 +629,7 @@ class App extends DemoElement {
   private codes = new HeldKeyCodesController(this)
   private shift = new KeyHoldController(this, 'Shift')
   private registry = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
   private updatePath = () => {
     this.path = location.hash.slice(1) || '/'
   }
@@ -724,7 +732,7 @@ class App extends DemoElement {
                           ${reg.options.meta?.group} / ${reg.options.meta?.name}
                         </td>
                         <td>
-                          ${formatForDisplay(reg.hotkey, {
+                          ${this.formatForDisplay.format(reg.hotkey, {
                             sequenceSeparator: ' → ',
                           })}
                         </td>

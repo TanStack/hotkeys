@@ -11,6 +11,7 @@ import { useStyles } from '../styles/use-styles'
 import { DetailsPanel } from './DetailsPanel'
 import { HeldKeysBar } from './HeldKeysTopbar'
 import { HotkeyList, appHotkeySelectionId } from './HotkeyList'
+import { KEYBOARD_LAYOUT_SELECTION_ID } from './KeyboardLayoutDetails'
 import type { DetailsSelection } from './DetailsPanel'
 
 function readResizeObserverBlockSize(entry: ResizeObserverEntry): number {
@@ -44,6 +45,7 @@ export function Shell() {
   const selection = createMemo((): DetailsSelection | null => {
     const id = selectedId()
     if (!id) return null
+    if (id === KEYBOARD_LAYOUT_SELECTION_ID) return { type: 'keyboardLayout' }
     const registration = state.registrations().find((r) => r.id === id)
     if (registration) return { type: 'registration', registration }
     const item = state
@@ -138,7 +140,7 @@ export function Shell() {
         </Header>
 
         <div class={styles().mainContainer}>
-          <HeldKeysBar />
+          <HeldKeysBar selectedId={selectedId} setSelectedId={setSelectedId} />
 
           <div class={styles().panelsContainer}>
             <div

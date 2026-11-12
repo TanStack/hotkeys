@@ -4,8 +4,9 @@ import { hash } from '@ember/helper'
 import { clearRender, render, settled } from '@ember/test-helpers'
 import { setupRenderingTest } from 'ember-qunit'
 import { module, test } from 'qunit'
+import { formatForDisplay as coreFormatForDisplay } from '@tanstack/hotkeys'
 import {
-  createHotkeysScope, useFormatForDisplay, useHotkeyRecorder,
+  createHotkeysScope, formatForDisplay, useFormatForDisplay, useHotkeyRecorder,
   HotkeyManager, KeyStateTracker,
 } from '@tanstack/ember-hotkeys'
 
@@ -27,7 +28,7 @@ class Platform extends Component {
   @tracked saves = 0
   @tracked windowsSaves = 0
   hotkeys = createHotkeysScope(() => ({ platform: this.platform }))
-  format = useFormatForDisplay(this.hotkeys)
+  formatForDisplay = useFormatForDisplay(this.hotkeys)
   recorder = useHotkeyRecorder(this, { onRecord: (value) => records.push(value) }, this.hotkeys)
   save = () => { this.saves++ }
   saveWindows = () => { this.windowsSaves++ }
@@ -36,8 +37,8 @@ class Platform extends Component {
     instance = this
   }
   <template>
-    <kbd id="label">{{this.format "Mod+S"}}</kbd>
-    <kbd id="explicit">{{this.format "Mod+S" (hash platform="windows")}}</kbd>
+    <kbd id="label">{{this.formatForDisplay "Mod+S"}}</kbd>
+    <kbd id="explicit">{{this.formatForDisplay "Mod+S" (hash platform="windows")}}</kbd>
     {{this.hotkeys.useHotkey "Mod+S" this.save}}
     {{this.hotkeys.useHotkey "Mod+S" this.saveWindows platform="windows" conflictBehavior="allow"}}
   </template>
@@ -96,5 +97,11 @@ module('Scope platform', (hooks) => {
     instance.recorder.startRecording()
     await press('metaKey')
     assert.deepEqual(records, ['Mod+S', 'Meta+S'])
+  })
+})
+
+module('The deprecated formatForDisplay export', () => {
+  test('is the core function', (assert) => {
+    assert.strictEqual(formatForDisplay, coreFormatForDisplay)
   })
 })

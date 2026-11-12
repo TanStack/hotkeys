@@ -141,9 +141,9 @@ export function toFormatOptions(choices: FormatChoices): FormatDisplayOptions {
 /** The formatter call for the selected choices, as code. */
 export function toFormatCode(choices: FormatChoices): string {
   const entries = toEntries(choices)
-  if (entries.length === 0) return 'format(hotkey)'
+  if (entries.length === 0) return 'formatForDisplay(hotkey)'
   const fields = entries.map(([key, , code]) => `${key}: ${code}`)
-  return `format(hotkey, { ${fields.join(', ')} })`
+  return `formatForDisplay(hotkey, { ${fields.join(', ')} })`
 }
 
 const platformNames = { mac: 'macOS', windows: 'Windows', linux: 'Linux' }

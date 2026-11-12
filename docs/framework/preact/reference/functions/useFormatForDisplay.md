@@ -14,11 +14,17 @@ function useFormatForDisplay(): {
 };
 ```
 
-Defined in: [useFormatForDisplay.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useFormatForDisplay.ts#L29)
+Defined in: [useFormatForDisplay.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useFormatForDisplay.ts#L36)
 
 Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function
 wins.
+
+Physical bindings such as `[KeyQ]` are labeled with the character the key
+types for this user in Chromium browsers, once the keyboard layout has
+loaded. See `useKeyboardLayout`. A `layoutMap` passed to the returned
+function wins. Firefox and Safari report no layout, so labels there keep the
+key's US character.
 
 Call the hook once at the top of the component; the returned function can
 be called anywhere, such as in a loop or a condition. Server-rendered apps
@@ -311,11 +317,11 @@ formatForDisplay(['G', 'H'])
 
 ```tsx
 function SaveButton() {
-  const format = useFormatForDisplay()
+  const formatForDisplay = useFormatForDisplay()
 
   return (
     <button>
-      Save <kbd>{format('Mod+S')}</kbd>
+      Save <kbd>{formatForDisplay('Mod+S')}</kbd>
     </button>
   )
 }

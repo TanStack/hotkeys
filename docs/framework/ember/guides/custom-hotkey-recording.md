@@ -18,9 +18,10 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 ```gts
 import Component from '@glimmer/component'
 import { on } from '@ember/modifier'
-import { formatForDisplay, useHotkeyRecorder } from '@tanstack/ember-hotkeys'
+import { useFormatForDisplay, useHotkeyRecorder } from '@tanstack/ember-hotkeys'
 
 export default class ShortcutRecorder extends Component {
+  formatForDisplay = useFormatForDisplay()
   recorder = useHotkeyRecorder(this, {
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
@@ -28,7 +29,7 @@ export default class ShortcutRecorder extends Component {
   get label() {
     const { isRecording, recordedHotkey } = this.recorder
     if (isRecording) return 'Press a key combination...'
-    return recordedHotkey ? formatForDisplay(recordedHotkey) : 'Click to record'
+    return recordedHotkey ? this.formatForDisplay(recordedHotkey) : 'Click to record'
   }
 
   <template>
@@ -40,7 +41,7 @@ export default class ShortcutRecorder extends Component {
 }
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `useHotkey`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `useHotkey`, and label it with `useFormatForDisplay`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -62,6 +63,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 
 ```gts
 export default class SequenceRecorder extends Component {
+  formatForDisplay = useFormatForDisplay()
   recorder = useHotkeyRecorder(this, {
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -69,8 +71,8 @@ export default class SequenceRecorder extends Component {
 
   get label() {
     const { isRecording, steps, recordedHotkey } = this.recorder
-    if (isRecording) return formatForDisplay(steps) || 'Press chords, then Enter...'
-    return recordedHotkey ? formatForDisplay(recordedHotkey) : 'Click to record'
+    if (isRecording) return this.formatForDisplay(steps) || 'Press chords, then Enter...'
+    return recordedHotkey ? this.formatForDisplay(recordedHotkey) : 'Click to record'
   }
 
   <template>
@@ -177,7 +179,7 @@ import { tracked } from '@glimmer/tracking'
 import { fn } from '@ember/helper'
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRecorder,
   useHotkeys,
 } from '@tanstack/ember-hotkeys'
@@ -186,6 +188,7 @@ import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 type Action = 'save' | 'undo' | 'search'
 
 export default class ShortcutSettings extends Component {
+  formatForDisplay = useFormatForDisplay()
   @tracked shortcuts: Record<Action, Hotkey> = {
     save: 'Mod+S',
     undo: 'Mod+Z',
@@ -216,7 +219,7 @@ export default class ShortcutSettings extends Component {
       label:
         this.editing === action && this.recorder.isRecording
           ? 'Press keys...'
-          : formatForDisplay(hotkey),
+          : this.formatForDisplay(hotkey),
     }))
   }
 

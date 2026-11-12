@@ -9,7 +9,7 @@ title: createHotkeysScope
 function createHotkeysScope(defaultOptions?): EmberHotkeysScope;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L29)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L30)
 
 Creates contextual helpers and modifiers with shared, optionally reactive defaults.
 Pass the scope to child components through arguments to share configuration.

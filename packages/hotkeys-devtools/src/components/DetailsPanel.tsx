@@ -17,6 +17,7 @@ import { getScopeStatus } from '../_scopes'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import { useStyles } from '../styles/use-styles'
 import { ActionButtons } from './ActionButtons'
+import { KeyboardLayoutDetails } from './KeyboardLayoutDetails'
 import type {
   AppHotkeyListItem,
   ConflictBehavior,
@@ -86,10 +87,11 @@ function IssuesSection(props: {
   )
 }
 
-/** What the details panel shows: a live registration or a declared app hotkey. */
+/** What the details panel shows: a live registration, a declared app hotkey, or the keyboard layout. */
 export type DetailsSelection =
   | { type: 'registration'; registration: HotkeyRegistrationView }
   | { type: 'appHotkey'; item: AppHotkeyListItem }
+  | { type: 'keyboardLayout' }
 
 type DetailsPanelProps = {
   selection: () => DetailsSelection | null
@@ -772,6 +774,7 @@ export function DetailsPanel(props: DetailsPanelProps) {
   const selectionKey = createMemo(() => {
     const selection = props.selection()
     if (!selection) return null
+    if (selection.type === 'keyboardLayout') return 'layout'
     return selection.type === 'appHotkey'
       ? `app:${selection.item.appHotkey.id}`
       : `${selection.registration.kind}:${selection.registration.id}`
@@ -799,7 +802,9 @@ export function DetailsPanel(props: DetailsPanelProps) {
         }
       >
         {(key) =>
-          key.startsWith('app:') ? (
+          key === 'layout' ? (
+            <KeyboardLayoutDetails />
+          ) : key.startsWith('app:') ? (
             <AppHotkeyDetails item={appHotkeyItem()!} styles={styles} />
           ) : key.startsWith('sequence:') ? (
             <SequenceDetails

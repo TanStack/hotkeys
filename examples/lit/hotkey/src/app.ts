@@ -1,6 +1,6 @@
 import {
+  FormatForDisplayController,
   HotkeyController,
-  formatForDisplay,
   hotkey,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, css, html, unsafeCSS } from 'lit'
@@ -55,6 +55,8 @@ export class MyApp extends LitElement {
   private sidebarRef: Ref<HTMLDivElement> = createRef()
   private modalRef: Ref<HTMLDivElement> = createRef()
   private editorRef: Ref<HTMLTextAreaElement> = createRef()
+
+  private formatForDisplay = new FormatForDisplayController(this)
 
   constructor() {
     super()
@@ -184,6 +186,8 @@ export class MyApp extends LitElement {
   }
 
   render() {
+    const formatForDisplay = this.formatForDisplay.format
+
     return html` <div class="app">
       <header>
         <h1>@hotkey</h1>

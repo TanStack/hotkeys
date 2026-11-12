@@ -47,14 +47,15 @@ A settings row records with `useHotkeyRecorder` and saves through `useCustomHotk
 
 ```tsx
 import {
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/preact-hotkeys'
 import type { AppHotkeyId } from '@tanstack/preact-hotkeys'
 
 export function ShortcutRow({ id }: { id: AppHotkeyId }) {
+  const formatForDisplay = useFormatForDisplay()
   const appHotkey = useAppHotkeys()[id]
   const { findConflicts, setCustomHotkey, resetCustomHotkey } =
     useCustomHotkeys()

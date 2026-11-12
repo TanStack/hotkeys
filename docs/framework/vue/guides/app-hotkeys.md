@@ -137,14 +137,15 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 <script setup lang="ts">
 import { computed } from 'vue'
 import {
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
 import type { AppHotkeyId } from '@tanstack/vue-hotkeys'
 
 const props = defineProps<{ id: AppHotkeyId }>()
+const formatForDisplay = useFormatForDisplay()
 const appHotkeys = useAppHotkeys()
 const appHotkey = computed(() => appHotkeys.value[props.id])
 const { setCustomHotkey, resetCustomHotkey, findConflicts } = useCustomHotkeys()

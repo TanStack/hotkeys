@@ -23,7 +23,7 @@ import {
 import { useCallback, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { appHotkeys } from './app-hotkeys'
-import { ActivityContext, Hint, Modal, formatHotkey } from './shared'
+import { ActivityContext, Hint, Modal, useFormatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
@@ -69,6 +69,7 @@ function ShortcutPanel({ onClose }: { onClose: () => void }) {
  * loaded, followed by undeclared registrations on the current page.
  */
 function ShortcutList({ onClose }: { onClose: () => void }) {
+  const formatHotkey = useFormatHotkey()
   const appHotkeys = useAppHotkeys()
   // The panel's scope is newer than 'global', so this handles the toggle
   // hotkey while the panel is open instead of the layout's registration.

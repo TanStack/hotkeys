@@ -3,9 +3,9 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { createEffect, createSignal } from 'solid-js'
@@ -13,6 +13,7 @@ import { render } from 'solid-js/web'
 import './index.css'
 
 function App() {
+  const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
   const heldCodes = createHeldKeyCodes()
   const [history, setHistory] = createSignal<Array<string>>([])

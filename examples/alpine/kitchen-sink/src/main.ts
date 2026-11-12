@@ -1,7 +1,6 @@
 import {
   createHotkeyRecorder,
   createHotkeysScope,
-  formatForDisplay,
   hotkeysPlugin,
   isHotkeySequence,
 } from '@tanstack/alpine-hotkeys'
@@ -42,7 +41,7 @@ const pages = [
 class Hint {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   visible!: AlpineHotkeyState<boolean>
   constructor(
     public props: () => {
@@ -60,7 +59,7 @@ class Hint {
 class Layout {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
   private cleanups: Array<() => void> = []
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   pages = pages
   currentPath: string = window.location.pathname
   showShortcuts = false
@@ -167,7 +166,7 @@ class Tickets {
 class EditorPane {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   target: HTMLFieldSetElement | null = null
   text = 'One shortcut, two independent editors.'
   saves = 0
@@ -217,7 +216,7 @@ class EditorPane {
 class Editor {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   repeat = false
   count = 0
   bubble = false
@@ -267,7 +266,7 @@ class Editor {
 class Sequences {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   timeout = 1000
   registrationState2!: HotkeyRegistrationsResult
   get sequences() {
@@ -311,7 +310,7 @@ class Sequences {
 class Recording {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   hotkey: Hotkey = this.initial
   mode: RecorderKeyMode = 'auto'
   problem = ''
@@ -394,7 +393,7 @@ class Recording {
         this.sequence = value
         this.sequenceProblem = ''
         this.props().log(
-          `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+          `Recorded sequence ${this.formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
         )
       },
       onReject: (rejection) =>
@@ -412,7 +411,9 @@ class Recording {
 }
 
 class Formatting {
-  formatForDisplay = formatForDisplay
+  private hotkeysScope = createHotkeysScope()
+
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   platform: 'mac' | 'windows' | 'linux' = 'mac'
   modifierSymbols = false
   keySymbols = true
@@ -421,6 +422,9 @@ class Formatting {
       platform: this.platform,
       useSymbols: { modifiers: this.modifierSymbols, keys: this.keySymbols },
     }
+  }
+  destroy() {
+    this.hotkeysScope.destroy()
   }
 }
 Alpine.data(

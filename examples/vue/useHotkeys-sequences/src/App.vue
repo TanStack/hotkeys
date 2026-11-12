@@ -2,13 +2,15 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { ref } from 'vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const lastSequence = ref<string | null>(null)
 const history = ref<Array<string>>([])

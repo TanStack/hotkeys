@@ -4,28 +4,42 @@ id: formatting-display
 description: Format Preact hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-> [!WARNING]
-> **Server rendering? Don't render labels with `formatForDisplay`.** It doesn't read the provider's `platform`, so without a `platform` option it renders Linux labels on the server, such as `Ctrl+S`. When Preact hydrates, Mac users see the label change to `⌘ S`, and a label in an attribute, such as a `title`, keeps `Ctrl+S`. Use `useFormatForDisplay()` instead, and set the provider's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `useFormatForDisplay` returns a function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
-Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `formatForDisplay` accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. `useFormatForDisplay` works wherever your labels render:
 
-A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
-
-| Where labels render | Use |
+| Where labels render | What to set up |
 | --- | --- |
-| Only in the browser, such as a Vite single-page app | `formatForDisplay(hotkey)` |
-| On the server, then hydrated | `useFormatForDisplay()`, with the provider's `platform` set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
-| In a static or prerendered page | `formatForDisplay` inside a client-only wrapper. See [Static and prerendered pages](#static-and-prerendered-pages) |
-| Anywhere, for a platform you already know | `formatForDisplay(hotkey, { platform })` |
+| Only in the browser, such as a Vite single-page app | Nothing |
+| On the server, then hydrated | The provider's `platform`, set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
+| In a static or prerendered page | A client-only wrapper. See [Static and prerendered pages](#static-and-prerendered-pages) |
 
 ## Format a hotkey
 
-> [!IMPORTANT]
-> `formatForDisplay` never reads the provider's `platform`. Use it for labels that render only in the browser, or pass `platform` yourself. In a server-rendered app, or when the provider sets `platform`, use `useFormatForDisplay()` instead. It returns a function with the same options.
+Call `useFormatForDisplay` at the top of a component. It returns the function that formats a hotkey:
+
+```tsx
+import { useFormatForDisplay } from '@tanstack/preact-hotkeys'
+
+function SaveButton() {
+  const formatForDisplay = useFormatForDisplay()
+
+  return (
+    <button>
+      Save <kbd>{formatForDisplay('Mod+S')}</kbd>
+    </button>
+  )
+}
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The hook fills in two things for you:
+
+- **The platform** from the nearest `HotkeysProvider`, or the detected platform without one.
+- **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
+
+Call the hook once, then call the function anywhere in the component, including in loops and conditions. Options go in its second argument. The examples in this guide pass `platform`, so each one has a single result:
 
 ```ts
-import { formatForDisplay } from '@tanstack/preact-hotkeys'
-
 formatForDisplay('Mod+S', { platform: 'mac' }) // '⌘ S'
 formatForDisplay('Mod+[KeyS]', { platform: 'mac' }) // '⌘ S'
 formatForDisplay({ code: 'KeyS', mod: true }, { platform: 'windows' }) // 'Ctrl+S'
@@ -34,9 +48,9 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. The extra ISO and JIS keys, which have no US key, use their keycap legends: `[IntlBackslash]` shows `\`, `[IntlRo]` shows `\`, and `[IntlYen]` shows `¥`. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+A `platform` you pass wins over the provider's. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
-`formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+The function accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
 ## Render individual keycaps
 
@@ -85,9 +99,39 @@ formatForDisplay('Control++', {
 
 An empty separator joins labels directly. `undefined` or `null` uses the platform default. `separatorToken` applies within a chord, and `sequenceSeparator` applies between steps.
 
-## Supply layout labels
+## Label physical keys for the user's keyboard
 
-A position, such as `[KeyQ]`, gets a fallback label that may differ from the character printed on the user's keyboard. Pass an already-resolved `layoutMap` to label positions for a known layout:
+A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Labels from `useFormatForDisplay` follow the user's keyboard where the browser reports its layout:
+
+```tsx
+import { useFormatForDisplay } from '@tanstack/preact-hotkeys'
+
+function MoveUp() {
+  const formatForDisplay = useFormatForDisplay()
+  return <kbd>{formatForDisplay('[KeyW]')}</kbd> // 'W' on QWERTY, 'Z' on AZERTY
+}
+```
+
+> [!IMPORTANT]
+> **Layout labels work only in Chromium browsers**, such as Chrome and Edge. Firefox and Safari don't report the keyboard layout, so labels there keep the fallback. For `[KeyQ]`, a French AZERTY user sees `A` in Chrome and `Q` in Firefox. In a cross-origin iframe, Chromium browsers also refuse unless the frame has `allow="keyboard-map"`.
+
+- **The layout loads after the first label mounts.** The first render shows the fallback label, and so does server HTML. The label updates when the layout arrives, and later labels have it at once.
+- **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
+- **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts.
+
+`useKeyboardLayout()` returns the loaded layout, or `null`, for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
+
+The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, set `keyboardLayout: false` in the provider's `defaultOptions`:
+
+```tsx
+<HotkeysProvider defaultOptions={{ keyboardLayout: false }}>
+  <App />
+</HotkeysProvider>
+```
+
+### Supply your own layout
+
+Pass the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -96,7 +140,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works, including a browser `KeyboardLayoutMap`. Formatting stays synchronous. Your app owns loading, errors, and refreshing the map: render fallback labels while it loads, then pass the resolved map on the next render. The library never requests it. Hotkeys that follow characters ignore `layoutMap`.
+Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 
@@ -106,16 +150,14 @@ formatForDisplay('Mod+[KeyQ]', {
 }) // '⌘ Action'
 ```
 
-`keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
-
-The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after the page renders. In a server-rendered app, render fallback labels first and pass the map once it loads, as above. The first render then matches the server's HTML. `keyLabels` works anywhere, including on the server.
+`keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including on the server.
 
 ## Format labels in server-rendered apps
 
 The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. When Preact hydrates, it replaces the label's text with `⌘ S`, so the label changes in front of the user. Preact's `hydrate()` doesn't update attributes, so a label in an attribute, such as a `title`, keeps `Ctrl+S`. To render the right label from the start:
 
 1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
-2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1.
+2. Format labels with `useFormatForDisplay()`. It reads the provider, so it uses the platform from step 1.
 
 ```tsx
 import { HotkeysProvider, detectPlatform } from '@tanstack/preact-hotkeys'
@@ -130,13 +172,13 @@ import { useFormatForDisplay } from '@tanstack/preact-hotkeys'
 
 function Toolbar() {
   // Call it at the top of the component, like any hook
-  const format = useFormatForDisplay()
+  const formatForDisplay = useFormatForDisplay()
 
   return (
     <ul>
       {commands.map((command) => (
         <li key={command.id}>
-          {command.name} <kbd>{format(command.hotkey)}</kbd>
+          {command.name} <kbd>{formatForDisplay(command.hotkey)}</kbd>
         </li>
       ))}
     </ul>
@@ -144,11 +186,11 @@ function Toolbar() {
 }
 ```
 
-`useFormatForDisplay` returns a function with the same options as `formatForDisplay`. Call the hook once at the top of the component, then call the function anywhere, including in loops and conditions. A `platform` passed to the function wins over the provider's.
+Call the hook once at the top of the component, then call the function anywhere, including in loops and conditions. A `platform` passed to the function wins over the provider's.
 
 In the browser, `detectPlatform()` reads the browser's own `navigator`, so the server and the browser get the same platform for practically every user. The provider's `platform` is also the default platform for hotkeys and recorders inside it. The provider that holds `appHotkeys` also compares app hotkeys on its platform, such as for conflicts. An inner provider inherits it.
 
-Without a provider `platform`, `useFormatForDisplay` detects the platform the same way `formatForDisplay` does: `'linux'` on the server and the user's platform in the browser. It doesn't hold the server's label until hydration finishes, so the label changes as described above. Set the provider's `platform` in every server-rendered Preact app.
+Without a provider `platform`, `useFormatForDisplay` detects the platform: `'linux'` on the server and the user's platform in the browser. It doesn't hold the server's label until hydration finishes, so the label changes as described above. Set the provider's `platform` in every server-rendered Preact app.
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
@@ -264,12 +306,13 @@ The [Vite SSR example](../examples/useFormatForDisplay-vite-ssr) shows this setu
 
 ### Render a label only in the browser
 
-To skip server rendering for a label instead, render it after hydration. In the browser, plain `formatForDisplay` detects the platform:
+To skip server rendering for a label instead, render it after hydration. A component that first renders in the browser gets the browser's platform from `useFormatForDisplay` at once:
 
 ```tsx
 import { useEffect, useState } from 'preact/hooks'
 import type { ComponentChildren } from 'preact'
-import { formatForDisplay } from '@tanstack/preact-hotkeys'
+import { useFormatForDisplay } from '@tanstack/preact-hotkeys'
+import type { Hotkey } from '@tanstack/preact-hotkeys'
 
 function ClientOnly({ children, fallback = null }: { children: ComponentChildren; fallback?: ComponentChildren }) {
   const [hydrated, setHydrated] = useState(false)
@@ -277,8 +320,14 @@ function ClientOnly({ children, fallback = null }: { children: ComponentChildren
   return <>{hydrated ? children : fallback}</>
 }
 
+// Formats when it renders, which happens only in the browser
+function ShortcutLabel({ hotkey }: { hotkey: Hotkey }) {
+  const formatForDisplay = useFormatForDisplay()
+  return <kbd>{formatForDisplay(hotkey)}</kbd>
+}
+
 <ClientOnly fallback={<kbd>&nbsp;</kbd>}>
-  <kbd>{formatForDisplay('Mod+S')}</kbd>
+  <ShortcutLabel hotkey="Mod+S" />
 </ClientOnly>
 ```
 
@@ -286,25 +335,38 @@ The server and the first browser render both show the fallback, so hydration mat
 
 ### Static and prerendered pages
 
-A page rendered at build time has no request and no user, so neither `formatForDisplay` nor `useFormatForDisplay` can know the platform. This includes Astro's default static output and any page you prerender with `preact-render-to-string`. Render platform-specific labels in a client-only wrapper, as above.
+A page rendered at build time has no request and no user, so `useFormatForDisplay` can't know the platform. This includes Astro's default static output and any page you prerender with `preact-render-to-string`. Render platform-specific labels in a client-only wrapper, as above.
 
 ### Development warning
 
 In development, formatting a label on the server without a platform logs a warning once. Without a platform, the server renders `'linux'` labels, so users on macOS and Windows get a different label after hydration. If you develop on Linux, you won't see the problem yourself. The warning names the missing setting. It isn't included in production builds.
+
+## Format outside a component
+
+`useFormatForDisplay` is a hook, so it needs a component. Some code that builds labels isn't one, such as a test or a plain module. There, call the plain `formatForDisplay` function and pass the platform yourself:
+
+```ts
+import { formatForDisplay } from '@tanstack/preact-hotkeys'
+
+formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
+```
+
+The plain function takes the same options as the function from the hook. It doesn't read the provider, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+
+The export is marked deprecated so that your editor points component code to the hook. Outside a component, it is the function to use.
 
 ## Parse, compare, and store hotkeys
 
 `parseHotkey` returns each chord's key, as either a logical `key` or a physical `code`, plus its modifiers with `Mod` resolved. Check which one you have before reading it:
 
 ```ts
-import { formatForDisplay, normalizeHotkey, parseHotkey } from '@tanstack/preact-hotkeys'
+import { normalizeHotkey, parseHotkey } from '@tanstack/preact-hotkeys'
 
 const parsed = parseHotkey('Mod+[KeyS]', 'mac')
 if (parsed.code !== undefined) {
   console.log(parsed.code) // 'KeyS'; parsed.key is undefined
 }
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
-formatForDisplay(stored, { platform: 'windows' }) // 'Ctrl+S'
 ```
 
 A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.

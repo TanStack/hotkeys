@@ -3,7 +3,7 @@
     HotkeysProvider,
     createHotkey,
     createHotkeys,
-    formatForDisplay,
+    getFormatForDisplay,
     getHeldKeyCodesMap,
     getHeldKeys,
     getHotkeyRegistrations,
@@ -44,6 +44,7 @@
       hotkey: 'Alt+[Digit5]',
     },
   ] as const
+  const formatForDisplay = getFormatForDisplay()
   let path = $state(location.hash.slice(1) || '/'),
     show = $state(false),
     activity = $state<Array<string>>([])

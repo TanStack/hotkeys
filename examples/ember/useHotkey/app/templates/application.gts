@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking'
 
 import { on } from '@ember/modifier'
 
-import { formatForDisplay, useHotkey, onHotkey } from '@tanstack/ember-hotkeys'
+import { useFormatForDisplay, useHotkey, onHotkey } from '@tanstack/ember-hotkeys'
 import type {
   Hotkey,
   RegisterableHotkey,
@@ -14,6 +14,7 @@ import { modifier } from 'ember-modifier'
 const autofocus = modifier((element: HTMLElement) => element.focus())
 
 class App extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     'onSave: HotkeyCallback = (_event, context) => {\n  if (context.kind === \'chord\') {\n    console.log(context.hotkey, context.parsedChord)\n  }\n}\n\n<template>\n  {{useHotkey "Mod+[KeyS]" this.onSave}}\n</template>'
   usage1 = '{{useHotkey "Mod+K" this.increment requireReset=true}}'
@@ -303,7 +304,7 @@ class App extends Component {
           <h2>Basic Hotkey</h2>
           <p>
             Press
-            <kbd>{{formatForDisplay 'Mod+[KeyS]'}}</kbd>
+            <kbd>{{this.formatForDisplay 'Mod+[KeyS]'}}</kbd>
             to trigger the physical S position
           </p>
           <div class='counter'>Save triggered: {{this.saveCount}}x</div>
@@ -314,7 +315,7 @@ class App extends Component {
           <h2>With requireReset</h2>
           <p>
             Hold
-            <kbd>{{formatForDisplay 'Mod+K'}}</kbd>
+            <kbd>{{this.formatForDisplay 'Mod+K'}}</kbd>
             — only increments once until you release all keys
           </p>
           <div class='counter'>Increment: {{this.incrementCount}}</div>
@@ -328,7 +329,7 @@ class App extends Component {
         <section class='demo-section'>
           <h2>Conditional Hotkey</h2>
           <p>
-            <kbd>{{formatForDisplay 'Mod+E'}}</kbd>
+            <kbd>{{this.formatForDisplay 'Mod+E'}}</kbd>
             is currently
             <strong>{{if this.enabled 'enabled' 'disabled'}}</strong>
           </p>
@@ -348,23 +349,23 @@ class App extends Component {
           </p>
           <div class='hotkey-grid'>
             <div>
-              <kbd>{{formatForDisplay 'Mod+1'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+1'}}</kbd>
               → Tab 1
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+[Digit2]'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+[Digit2]'}}</kbd>
               → Tab 2
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+3'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+3'}}</kbd>
               → Tab 3
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+4'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+4'}}</kbd>
               → Tab 4
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+5'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+5'}}</kbd>
               → Tab 5
             </div>
           </div>
@@ -377,35 +378,35 @@ class App extends Component {
           <p>Selection and navigation shortcuts:</p>
           <div class='hotkey-grid'>
             <div>
-              <kbd>{{formatForDisplay 'Shift+ArrowUp'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Shift+ArrowUp'}}</kbd>
               — Select up
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Shift+ArrowDown'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Shift+ArrowDown'}}</kbd>
               — Select down
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Alt+ArrowLeft'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Alt+ArrowLeft'}}</kbd>
               — Navigate back
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Alt+ArrowRight'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Alt+ArrowRight'}}</kbd>
               — Navigate forward
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Home'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Home'}}</kbd>
               — Go to start
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+End'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+End'}}</kbd>
               — Go to end
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+PageUp'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+PageUp'}}</kbd>
               — Previous page
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+PageDown'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+PageDown'}}</kbd>
               — Next page
             </div>
           </div>
@@ -421,23 +422,23 @@ class App extends Component {
           <p>System and application shortcuts:</p>
           <div class='hotkey-grid'>
             <div>
-              <kbd>{{formatForDisplay 'Alt+F4'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Alt+F4'}}</kbd>
               — Close window
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+F5'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+F5'}}</kbd>
               — Hard refresh
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+F1'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+F1'}}</kbd>
               — Help
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Shift+F10'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Shift+F10'}}</kbd>
               — Context menu
             </div>
             <div>
-              <kbd>{{formatForDisplay 'F12'}}</kbd>
+              <kbd>{{this.formatForDisplay 'F12'}}</kbd>
               — DevTools
             </div>
           </div>
@@ -453,27 +454,27 @@ class App extends Component {
           <p>Complex shortcuts with multiple modifiers:</p>
           <div class='hotkey-grid'>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Shift+S'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Shift+S'}}</kbd>
               — Save As
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Shift+Z'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Shift+Z'}}</kbd>
               — Redo
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+Alt+A'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+Alt+A'}}</kbd>
               — Special action
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+Shift+N'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+Shift+N'}}</kbd>
               — New incognito
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Alt+T'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Alt+T'}}</kbd>
               — Toggle theme
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+Alt+Shift+X'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+Alt+Shift+X'}}</kbd>
               — Triple modifier
             </div>
           </div>
@@ -489,31 +490,31 @@ class App extends Component {
           <p>Text editing and form shortcuts:</p>
           <div class='hotkey-grid'>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Enter'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Enter'}}</kbd>
               — Submit form
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Shift+Enter'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Shift+Enter'}}</kbd>
               — New line
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Backspace'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Backspace'}}</kbd>
               — Delete word
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Delete'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Delete'}}</kbd>
               — Delete forward
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Control+Tab'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Control+Tab'}}</kbd>
               — Next tab
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Shift+Tab'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Shift+Tab'}}</kbd>
               — Previous field
             </div>
             <div>
-              <kbd>{{formatForDisplay 'Mod+Space'}}</kbd>
+              <kbd>{{this.formatForDisplay 'Mod+Space'}}</kbd>
               — Toggle
             </div>
           </div>
@@ -526,7 +527,7 @@ class App extends Component {
 
         {{#if this.lastHotkey}}<div class='info-box'>
             <strong>Last triggered:</strong>
-            {{formatForDisplay this.lastHotkey}}
+            {{this.formatForDisplay this.lastHotkey}}
           </div>{{/if}}
 
         <p class='hint'>
@@ -556,11 +557,11 @@ class App extends Component {
               <p>Click here to focus, then try:</p>
               <div class='hotkey-list'>
                 <div>
-                  <kbd>{{formatForDisplay 'Mod+B'}}</kbd>
+                  <kbd>{{this.formatForDisplay 'Mod+B'}}</kbd>
                   — Trigger sidebar action
                 </div>
                 <div>
-                  <kbd>{{formatForDisplay 'Mod+N'}}</kbd>
+                  <kbd>{{this.formatForDisplay 'Mod+N'}}</kbd>
                   — New item
                 </div>
               </div>
@@ -593,11 +594,11 @@ class App extends Component {
                     <p>Try these shortcuts while modal is open:</p>
                     <div class='hotkey-list'>
                       <div>
-                        <kbd>{{formatForDisplay 'Escape'}}</kbd>
+                        <kbd>{{this.formatForDisplay 'Escape'}}</kbd>
                         — Close modal
                       </div>
                       <div>
-                        <kbd>{{formatForDisplay 'Mod+Enter'}}</kbd>
+                        <kbd>{{this.formatForDisplay 'Mod+Enter'}}</kbd>
                         — Submit
                       </div>
                     </div>
@@ -620,15 +621,15 @@ class App extends Component {
               <p>Focus the editor below and try:</p>
               <div class='hotkey-list'>
                 <div>
-                  <kbd>{{formatForDisplay 'Mod+S'}}</kbd>
+                  <kbd>{{this.formatForDisplay 'Mod+S'}}</kbd>
                   — Save editor content
                 </div>
                 <div>
-                  <kbd>{{formatForDisplay 'Mod+/'}}</kbd>
+                  <kbd>{{this.formatForDisplay 'Mod+/'}}</kbd>
                   — Add comment
                 </div>
                 <div>
-                  <kbd>{{formatForDisplay 'Mod+K'}}</kbd>
+                  <kbd>{{this.formatForDisplay 'Mod+K'}}</kbd>
                   — Clear editor
                 </div>
                 <div>
@@ -652,9 +653,9 @@ class App extends Component {
               </div>
               <p class='hint'>
                 These shortcuts only work when the editor is focused. Notice that
-                <kbd>{{formatForDisplay 'Mod+S'}}</kbd>
+                <kbd>{{this.formatForDisplay 'Mod+S'}}</kbd>
                 here doesn't conflict with the global
-                <kbd>{{formatForDisplay 'Mod+S'}}</kbd>
+                <kbd>{{this.formatForDisplay 'Mod+S'}}</kbd>
                 shortcut.
               </p>
             </div>

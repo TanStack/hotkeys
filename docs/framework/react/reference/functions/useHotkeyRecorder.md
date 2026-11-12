@@ -11,7 +11,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): ReactHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L72)
+Defined in: [useHotkeyRecorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L73)
 
 React hook for recording keyboard shortcuts.
 
@@ -45,6 +45,7 @@ The recorder state and controls
 function ShortcutInput() {
   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
+  const formatForDisplay = useFormatForDisplay()
 
   return (
     <button onClick={recorder.startRecording}>
@@ -67,7 +68,7 @@ const recorder = useHotkeyRecorder({
 function useHotkeyRecorder(options): ReactHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L75)
+Defined in: [useHotkeyRecorder.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L76)
 
 React hook for recording keyboard shortcuts.
 
@@ -101,6 +102,7 @@ The recorder state and controls
 function ShortcutInput() {
   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
+  const formatForDisplay = useFormatForDisplay()
 
   return (
     <button onClick={recorder.startRecording}>

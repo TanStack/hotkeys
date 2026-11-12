@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
@@ -441,6 +441,8 @@ function ActivityLog() {
 }
 
 function Key({ hotkey }: { hotkey: Hotkey }) {
+  const formatForDisplay = useFormatForDisplay()
+
   return <kbd>{formatForDisplay(hotkey)}</kbd>
 }
 

@@ -2,7 +2,7 @@ import { createRoot, createContext, useCallback, useContext, useEffect, useState
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -45,11 +45,13 @@ const pages = [
 ] as const
 
 function Hint({ hotkey }: { hotkey: RegisterableHotkey }) @{
+  const formatForDisplay = useFormatForDisplay()
   const visible = useHotkeyHint(hotkey)
   @if (visible) { <kbd>{formatForDisplay(hotkey)}</kbd> } @else {  }
 }
 
 function Layout() @{
+  const formatForDisplay = useFormatForDisplay()
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
   useEffect(() => {
     const onPopState = () => setCurrentPath(window.location.pathname)
@@ -223,6 +225,7 @@ function Tickets() @{
 }
 
 function EditorPane({ name }: { name: string }) @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [target, setTarget] = useState<HTMLFieldSetElement | null>(null)
   const [text, setText] = useState('One shortcut, two independent editors.')
@@ -270,6 +273,7 @@ function EditorPane({ name }: { name: string }) @{
 }
 
 function Editor() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = useState(false)
   const [count, setCount] = useState(0)
@@ -328,6 +332,7 @@ function Editor() @{
 }
 
 function Sequences() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = useState(1000)
   // An array of chords registers a sequence.
@@ -393,6 +398,7 @@ function Sequences() @{
 }
 
 function Recording() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = useState<Hotkey>(initial)
@@ -532,6 +538,7 @@ function Recording() @{
 }
 
 function Formatting() @{
+  const formatForDisplay = useFormatForDisplay()
   const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)

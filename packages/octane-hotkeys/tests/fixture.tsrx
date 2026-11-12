@@ -235,8 +235,8 @@ export const platformCapture: {
 } = { fired: 0, records: [] };
 
 export function FormatLabel({ platform }: { platform?: Platform }) @{
-  const format = useFormatForDisplay();
-  <kbd>{format('Mod+S', { platform })}</kbd>
+  const formatForDisplay = useFormatForDisplay();
+  <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
 export function PlatformFixture({ platform, label, hotkey }: {

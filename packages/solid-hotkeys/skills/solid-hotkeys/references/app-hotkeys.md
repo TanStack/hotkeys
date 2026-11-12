@@ -47,14 +47,15 @@ A settings row records with `createHotkeyRecorder` and saves through `useCustomH
 
 ```tsx
 import {
+  createFormatForDisplay,
   createHotkeyRecorder,
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
 } from '@tanstack/solid-hotkeys'
 import type { AppHotkeyId } from '@tanstack/solid-hotkeys'
 
 export function ShortcutRow(props: { id: AppHotkeyId }) {
+  const formatForDisplay = createFormatForDisplay()
   const appHotkeys = useAppHotkeys()
   const appHotkey = () => appHotkeys()[props.id]
   const { findConflicts, setCustomHotkey, resetCustomHotkey } =

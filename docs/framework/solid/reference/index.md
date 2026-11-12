@@ -25,6 +25,7 @@ title: "@tanstack/solid-hotkeys"
 
 ## Variables
 
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
 ## Functions
@@ -39,6 +40,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHotkeyRegistrations](functions/createHotkeyRegistrations.md)
 - [createHotkeys](functions/createHotkeys.md)
 - [createHotkeyScopesState](functions/createHotkeyScopesState.md)
+- [createKeyboardLayout](functions/createKeyboardLayout.md)
 - [createKeyHold](functions/createKeyHold.md)
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)

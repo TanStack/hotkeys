@@ -9,7 +9,7 @@ title: useHotkeysContext
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProviderContext.ts:219](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L219)
+Defined in: [HotkeysProviderContext.ts:227](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L227)
 
 The nearest context, or `null`. Outside a component, such as in a bare
 `effectScope`, there is no context to read, so this skips `inject` and its

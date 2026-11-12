@@ -133,14 +133,15 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 import Component from '@glimmer/component'
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/ember-hotkeys'
 import type { AppHotkeyId } from '@tanstack/ember-hotkeys'
 
 export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }> {
+  formatForDisplay = useFormatForDisplay()
   appHotkeys = useAppHotkeys(this)
   custom = useCustomHotkeys(this)
   recorder = useHotkeyRecorder(this, () => ({
@@ -158,7 +159,7 @@ export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }
   }
   get label() {
     const { hotkey } = this.appHotkey
-    return hotkey ? formatForDisplay(hotkey) : 'Unassigned'
+    return hotkey ? this.formatForDisplay(hotkey) : 'Unassigned'
   }
   reset = () => this.custom.resetCustomHotkey(this.args.id)
 

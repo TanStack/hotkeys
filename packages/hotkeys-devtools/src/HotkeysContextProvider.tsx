@@ -1,6 +1,8 @@
 import {
   HotkeyManager,
   KeyStateTracker,
+  getKeyboardLayoutStore,
+  loadKeyboardLayout,
   toHotkeyRegistrationView,
 } from '@tanstack/hotkeys'
 import {
@@ -17,6 +19,7 @@ import type {
   AppHotkeysStore,
   HotkeyRegistrationView,
   HotkeyScopesState,
+  KeyboardLayoutMap,
 } from '@tanstack/hotkeys'
 import type { Accessor } from 'solid-js'
 
@@ -31,6 +34,8 @@ interface HotkeysDevtoolsContextType {
   heldCodes: Accessor<Record<string, string>>
   /** Monotonic clock for sequence in-progress UI (updates while a sequence match is active). */
   sequenceProgressNow: Accessor<number>
+  /** The browser's keyboard layout, or null where it reports none. */
+  keyboardLayout: Accessor<KeyboardLayoutMap | null>
 }
 
 const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
@@ -40,6 +45,7 @@ const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   heldKeys: () => [],
   heldCodes: () => ({}),
   sequenceProgressNow: () => Date.now(),
+  keyboardLayout: () => null,
 })
 
 function readRegistrations(
@@ -84,6 +90,22 @@ export function HotkeysContextProvider(props: { children: any }) {
       setScopes(manager.scopes.state)
     }).unsubscribe
     onCleanup(() => unsubscribe())
+  })
+
+  // Load the keyboard layout, as labels in the app do, so the panel shows it
+  // even when no label is on screen. An app that turned the layout off for
+  // its labels ignores the store.
+  const layoutStore = getKeyboardLayoutStore()
+  const [keyboardLayout, setKeyboardLayout] = createSignal(layoutStore.state)
+  createEffect(() => {
+    const unsubscribe = layoutStore.subscribe(() => {
+      setKeyboardLayout(() => layoutStore.state)
+    }).unsubscribe
+    const stop = loadKeyboardLayout()
+    onCleanup(() => {
+      unsubscribe()
+      stop()
+    })
   })
 
   // Follow the app hotkeys store a provider publishes, and its changes
@@ -154,6 +176,7 @@ export function HotkeysContextProvider(props: { children: any }) {
         heldKeys,
         heldCodes,
         sequenceProgressNow,
+        keyboardLayout,
       }}
     >
       {props.children}

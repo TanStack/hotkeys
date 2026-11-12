@@ -12,8 +12,9 @@ import type { MaybeGetter } from './utils'
 
 /**
  * Helpers and modifiers with shared defaults. Owners retain their own cleanup.
- * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, and to
- * `useFormatForDisplay` to apply its `platform`.
+ * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, to
+ * `useFormatForDisplay` to apply its `platform` and `keyboardLayout`, and to
+ * `useKeyboardLayout` to apply its `keyboardLayout`.
  */
 export interface EmberHotkeysScope {
   onHotkey: typeof OnHotkey

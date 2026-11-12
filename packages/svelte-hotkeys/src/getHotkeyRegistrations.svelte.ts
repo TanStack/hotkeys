@@ -28,6 +28,7 @@ class HotkeyRegistrationsState implements SvelteHotkeyRegistrations {
  * @example
  * ```svelte
  * <script lang="ts">
+ *   const formatForDisplay = getFormatForDisplay()
  *   const registrations = getHotkeyRegistrations()
  * </script>
  *

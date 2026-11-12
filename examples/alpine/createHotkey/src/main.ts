@@ -1,8 +1,4 @@
-import {
-  createHotkeysScope,
-  formatForDisplay,
-  hotkeysPlugin,
-} from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
 import './index.css'
 import type { Hotkey } from '@tanstack/alpine-hotkeys'
@@ -13,7 +9,7 @@ Alpine.plugin(hotkeysPlugin)
 class App {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     "scope.createHotkey('Mod+[KeyS]', (_event, { hotkey, parsedChord }) => {\n  console.log(hotkey, parsedChord)\n})"
   usage1 =

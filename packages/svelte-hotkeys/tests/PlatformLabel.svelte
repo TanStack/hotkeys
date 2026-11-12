@@ -2,7 +2,7 @@
   import { getFormatForDisplay } from '../src/getFormatForDisplay'
 
   let { platform }: { platform?: 'mac' | 'windows' | 'linux' } = $props()
-  const format = getFormatForDisplay()
+  const formatForDisplay = getFormatForDisplay()
 </script>
 
-<kbd>{format('Mod+S', { platform })}</kbd>
+<kbd>{formatForDisplay('Mod+S', { platform })}</kbd>

@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRegistrations,
   useHotkeys,
@@ -335,6 +335,7 @@ function VimEditor() {
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const registrations = useHotkeyRegistrations()
 
   return (

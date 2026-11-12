@@ -19,6 +19,7 @@ import { defaultHotkeyOptions, definedOptions } from './_registration'
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
+import type { DisplayHotkey } from './format'
 import type {
   ActivateHotkeyScopeOptions,
   HotkeyChordOptions,
@@ -414,10 +415,12 @@ export interface HotkeysProviderScopeProps {
  * `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
  * A provider's `platform` is inherited, and is the default platform for its
  * hotkeys and recorders; `hotkey.platform` and `hotkeyRecorder.platform` win.
+ * `keyboardLayout` is inherited too.
  */
 export function mergeHotkeysProviderDefaults<
   T extends {
     platform?: HotkeyPlatform
+    keyboardLayout?: boolean
     hotkey?: object
     hotkeyRecorder?: object
   },
@@ -425,6 +428,10 @@ export function mergeHotkeysProviderDefaults<
   const parentPlatform = { platform: parent?.platform }
   const ownPlatform = { platform: own?.platform }
   return {
+    ...definedOptions(
+      { keyboardLayout: parent?.keyboardLayout },
+      { keyboardLayout: own?.keyboardLayout },
+    ),
     ...definedOptions(parentPlatform, ownPlatform),
     hotkey: {
       ...definedOptions(
@@ -490,4 +497,17 @@ export function activateHotkeysProviderScope(key: string): () => void {
     exclusive: Array.isArray(exclusive) ? { allow: exclusive } : exclusive,
     parent: parent ?? undefined,
   })
+}
+
+/**
+ * Whether a hotkey to display names a physical position, such as `[KeyQ]` or
+ * `{ code: 'KeyQ' }`. Only those labels follow the keyboard layout. A label
+ * primitive that reads the layout reactively checks this first, so a label
+ * such as `Mod+S` doesn't render again when the layout loads.
+ */
+export function namesPhysicalKey(hotkey: DisplayHotkey): boolean {
+  // `Mod+[` names the character, not a position.
+  if (typeof hotkey === 'string') return /\[\w+\]/.test(hotkey)
+  if (Array.isArray(hotkey)) return hotkey.some(namesPhysicalKey)
+  return (hotkey as { code?: unknown }).code !== undefined
 }

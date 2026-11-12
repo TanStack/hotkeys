@@ -15,6 +15,7 @@ import type { Ref } from 'vue'
  * ```vue
  * <script setup>
  * const registrations = useHotkeyRegistrations()
+ * const formatForDisplay = useFormatForDisplay()
  * </script>
  * <template>
  *   <li v-for="reg in registrations" :key="reg.id">

@@ -1,7 +1,6 @@
 import {
   createHotkeyRecorder,
   createHotkeysScope,
-  formatForDisplay,
   hotkeysPlugin,
 } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
@@ -87,7 +86,7 @@ interface ShortcutListItemProps {
 class App {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     'const recorder = createHotkeyRecorder(scope, {\n  maxSteps: 4,\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeys(() => this.definitions)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
   shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
@@ -224,7 +223,7 @@ class App {
 class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   registrationState0!: HotkeyRegistrationsResult
   get hotkeys() {
     return this.registrationState0.hotkeys
@@ -241,7 +240,7 @@ class RegistrationsViewer {
 class ShortcutListItem {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   heldKeys!: AlpineHotkeyState<Array<string>>
   constructor(public props: () => ShortcutListItemProps) {}
   init() {

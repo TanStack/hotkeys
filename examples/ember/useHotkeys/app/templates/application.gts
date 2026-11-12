@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking'
 
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeys,
   useHotkeyRegistrations,
 } from '@tanstack/ember-hotkeys'
@@ -91,6 +91,7 @@ class App extends Component {
 }
 
 class BasicMultiHotkeys extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     "get definitions() {\n  return [\n    { hotkey: 'Shift+S', callback: this.save,\n      options: { meta: { name: 'Save', description: 'Save the document' } } },\n    { hotkey: 'Shift+U', callback: this.undo,\n      options: { meta: { name: 'Undo' } } },\n  ]\n}\n\n<template>{{useHotkeys this.definitions}}</template>"
   @tracked log: Array<string> = []
@@ -145,15 +146,15 @@ class BasicMultiHotkeys extends Component {
       </p>
       <div class='hotkey-grid'>
         <div>
-          <kbd>{{formatForDisplay 'Shift+S'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Shift+S'}}</kbd>
           Save ({{this.saveCount}})
         </div>
         <div>
-          <kbd>{{formatForDisplay 'Shift+U'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Shift+U'}}</kbd>
           Undo ({{this.undoCount}})
         </div>
         <div>
-          <kbd>{{formatForDisplay 'Shift+R'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Shift+R'}}</kbd>
           Redo ({{this.redoCount}})
         </div>
       </div>
@@ -168,6 +169,7 @@ class BasicMultiHotkeys extends Component {
 }
 
 class CommonOptionsDemo extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     "get definitions() {\n  return [\n    { hotkey: 'Alt+J', callback: this.actionA },\n    { hotkey: 'Alt+L', callback: this.actionC, options: { enabled: true } },\n  ]\n}\n\n<template>{{useHotkeys this.definitions enabled=this.enabled}}</template>"
   @tracked enabled: boolean = true
@@ -217,11 +219,11 @@ class CommonOptionsDemo extends Component {
     <div class='demo-section'>
       <h2>Common Options with Per-Hotkey Overrides</h2>
       <p>
-        <kbd>{{formatForDisplay 'Alt+J'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+J'}}</kbd>
         and
-        <kbd>{{formatForDisplay 'Alt+K'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+K'}}</kbd>
         respect the global toggle.
-        <kbd>{{formatForDisplay 'Alt+L'}}</kbd>
+        <kbd>{{this.formatForDisplay 'Alt+L'}}</kbd>
         overrides
         <code>enabled: true</code>
         so it always works.
@@ -234,15 +236,15 @@ class CommonOptionsDemo extends Component {
       </div>
       <div class='hotkey-grid'>
         <div>
-          <kbd>{{formatForDisplay 'Alt+J'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Alt+J'}}</kbd>
           Action A ({{this.counts.a}})
         </div>
         <div>
-          <kbd>{{formatForDisplay 'Alt+K'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Alt+K'}}</kbd>
           Action B ({{this.counts.b}})
         </div>
         <div>
-          <kbd>{{formatForDisplay 'Alt+L'}}</kbd>
+          <kbd>{{this.formatForDisplay 'Alt+L'}}</kbd>
           Action C ({{this.counts.c}})
           <span class='hint'> (always on)</span>
         </div>
@@ -253,6 +255,7 @@ class CommonOptionsDemo extends Component {
 }
 
 class DynamicHotkeysDemo extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     'get definitions() {\n  return this.shortcuts.map((shortcut) => ({\n    hotkey: shortcut.hotkey,\n    callback: () => this.runShortcut(shortcut.id),\n    options: { meta: { name: shortcut.label, description: shortcut.description } },\n  }))\n}\n\n<template>{{useHotkeys this.definitions}}</template>'
   @tracked shortcuts: Array<DynamicShortcut> = DEFAULT_SHORTCUTS
@@ -325,7 +328,7 @@ class DynamicHotkeysDemo extends Component {
       {{#if this.error}}<p role='alert'>{{this.error}}</p>{{/if}}
       <div class='dynamic-list'>
         {{#each this.shortcuts key='id' as |s|}}<div class='dynamic-item'>
-            <kbd>{{formatForDisplay s.hotkey}}</kbd>
+            <kbd>{{this.formatForDisplay s.hotkey}}</kbd>
             <span>{{s.label}}</span>
             <span class='count'>{{s.count}}</span>
             <button {{on 'click' (fn this.remove s)}}>Remove</button>
@@ -368,6 +371,7 @@ class DynamicHotkeysDemo extends Component {
 }
 
 class RegistrationsViewer extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     'registrations = useHotkeyRegistrations(this)\n\n<template>\n  {{#each this.registrations.hotkeys key="id" as |registration|}}\n    <p>{{registration.options.meta.name}}: {{registration.triggerCount}}</p>\n  {{/each}}\n</template>'
   registrationsState = useHotkeyRegistrations(this)
@@ -398,7 +402,7 @@ class RegistrationsViewer extends Component {
         <tbody>
           {{#each this.hotkeys key='id' as |reg|}}<tr>
               <td>
-                <kbd>{{formatForDisplay reg.hotkey}}</kbd>
+                <kbd>{{this.formatForDisplay reg.hotkey}}</kbd>
               </td>
               <td>{{or reg.options.meta.name '—'}}</td>
               <td class='description-cell'>

@@ -6,7 +6,7 @@ import { modifier } from 'ember-modifier'
 import { cancel, schedule } from '@ember/runloop'
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeys,
   useHeldKeyCodes,
 } from '@tanstack/ember-hotkeys'
@@ -16,6 +16,7 @@ const gt = (a: number, b: number) => a > b
 const and = (a: unknown, b: unknown) => a && b
 
 class App extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     "import { useHeldKeys, useHeldKeyCodes } from '@tanstack/ember-hotkeys'\n\n// The containing component owns both subscriptions.\nheldKeys = useHeldKeys(this)\nheldCodes = useHeldKeyCodes(this)\n\n<template>\n  {{#each this.heldKeys.value as |key|}}\n    <kbd>{{key}}</kbd>\n  {{/each}}\n</template>"
   heldKeys = useHeldKeys(this)
@@ -27,7 +28,7 @@ class App extends Component {
   recordHistory = modifier((_element, [keys]: [Array<string>]) => {
     if (keys.length === 0) return
     const combo = keys
-      .map((key) => formatForDisplay({ key }, { useSymbols: true }))
+      .map((key) => this.formatForDisplay({ key }, { useSymbols: true }))
       .join(' + ')
     const timer = schedule('afterRender', () => {
       if (this.history.at(-1) !== combo) {
@@ -56,7 +57,7 @@ class App extends Component {
               }}{{#let (this.keyCode key) as |code|}}
                   {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
                   <kbd class='large'>
-                    {{formatForDisplay (hash key=key) (hash useSymbols=true)}}
+                    {{this.formatForDisplay (hash key=key) (hash useSymbols=true)}}
                     {{#if (and code (neq code key))}}<small
                         class='code-label'
                       >{{code}}</small>{{/if}}

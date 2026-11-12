@@ -102,6 +102,14 @@ export interface DefaultHotkeysOptions {
    * `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
+  /**
+   * Whether labels from `useFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first label renders. Only Chromium
+   * browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /** Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences. */
   hotkey?: EmberHotkeyCommonOptions
   /** Defaults for every recorder. */

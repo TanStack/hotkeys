@@ -141,7 +141,7 @@ The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys
 
 ## Show sequences in your UI
 
-`formatForDisplay` formats each step and joins them with a space:
+The function from `getFormatForDisplay` formats each step and joins them with a space:
 
 ```ts
 formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
@@ -155,11 +155,12 @@ A sequence's first steps have no visible effect, so show users what they've pres
 ```svelte
 <script lang="ts">
   import {
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
   import type { HotkeySequenceRegistrationView } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const registrations = getHotkeyRegistrations()
   const longest = $derived(
     registrations.hotkeys

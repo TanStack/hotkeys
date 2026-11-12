@@ -52,6 +52,7 @@ export interface ReactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * function ShortcutInput() {
  *   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
  *   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
+ *   const formatForDisplay = useFormatForDisplay()
  *
  *   return (
  *     <button onClick={recorder.startRecording}>

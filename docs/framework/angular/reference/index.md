@@ -27,6 +27,7 @@ title: "@tanstack/angular-hotkeys"
 
 ## Variables
 
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HOTKEYS\_INJECTION\_TOKEN](variables/HOTKEYS_INJECTION_TOKEN.md)
 
 ## Functions
@@ -45,5 +46,6 @@ title: "@tanstack/angular-hotkeys"
 - [injectHotkeys](functions/injectHotkeys.md)
 - [injectHotkeysContext](functions/injectHotkeysContext.md)
 - [injectHotkeyScopesState](functions/injectHotkeyScopesState.md)
+- [injectKeyboardLayout](functions/injectKeyboardLayout.md)
 - [injectKeyHold](functions/injectKeyHold.md)
 - [provideHotkeys](functions/provideHotkeys.md)

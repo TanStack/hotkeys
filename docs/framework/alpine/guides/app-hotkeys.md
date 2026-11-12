@@ -128,15 +128,12 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 
 ```ts
 import Alpine from 'alpinejs'
-import {
-  createHotkeyRecorder,
-  createHotkeysScope,
-  formatForDisplay,
-} from '@tanstack/alpine-hotkeys'
+import { createHotkeyRecorder, createHotkeysScope } from '@tanstack/alpine-hotkeys'
 import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRow', (id: AppHotkeyId) => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const appHotkeys = hotkeys.createAppHotkeys()
   const custom = hotkeys.createCustomHotkeys()
   const recorder = createHotkeyRecorder(hotkeys, {

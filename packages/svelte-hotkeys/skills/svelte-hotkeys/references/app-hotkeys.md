@@ -49,13 +49,14 @@ A settings row records with `createHotkeyRecorder` and saves through `getCustomH
 <script lang="ts">
   import {
     createHotkeyRecorder,
-    formatForDisplay,
     getAppHotkeys,
     getCustomHotkeys,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { AppHotkeyId } from '@tanstack/svelte-hotkeys'
 
   let { id }: { id: AppHotkeyId } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const appHotkeys = getAppHotkeys()
   const custom = getCustomHotkeys()
   const appHotkey = $derived(appHotkeys.current[id])

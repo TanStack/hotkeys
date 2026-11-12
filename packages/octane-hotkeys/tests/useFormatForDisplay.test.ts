@@ -1,6 +1,10 @@
-import { HotkeyManager } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { createRoot, drainPassiveEffects, flushSync, hydrateRoot } from 'octane'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import { FormatLabel, PlatformFixture, platformCapture } from './fixture.tsrx'
 import type { Root } from 'octane'
 
@@ -16,7 +20,8 @@ const WINDOWS = {
 const OTHER = { mac: WINDOWS, windows: MAC }
 
 let root: Root | undefined
-let container: HTMLDivElement
+// A test that mounts nothing still reaches the cleanup below
+let container = document.createElement('div')
 
 function flush() {
   drainPassiveEffects()
@@ -114,5 +119,11 @@ describe('provider platform', () => {
     flush()
     press('s', { code: 'KeyS', ...init })
     expect(platformCapture.records).toEqual(['Mod+S'])
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

@@ -1,8 +1,12 @@
 // @vitest-environment happy-dom
 
-import { HotkeyManager } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/preact'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
@@ -28,8 +32,8 @@ const WINDOWS = {
 const OTHER = { mac: WINDOWS, windows: MAC }
 
 function Label({ platform }: { platform?: Platform }) {
-  const format = useFormatForDisplay()
-  return <kbd>{format('Mod+S', { platform })}</kbd>
+  const formatForDisplay = useFormatForDisplay()
+  return <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
 function withPlatform(
@@ -154,5 +158,11 @@ describe('provider platform', () => {
     act(() => recorder!.startRecording())
     press('s', { code: 'KeyS', ...init })
     expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

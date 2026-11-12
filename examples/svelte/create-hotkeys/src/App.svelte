@@ -1,10 +1,12 @@
 <script lang="ts">
   import {
     createHotkeys,
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
   import type { CreateHotkeyDefinition, Hotkey } from '@tanstack/svelte-hotkeys'
+
+  const formatForDisplay = getFormatForDisplay()
 
   // Basic demo
   let log = $state<Array<string>>([])

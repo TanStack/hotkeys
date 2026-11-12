@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
@@ -13,6 +13,7 @@ import './index.css'
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const [lastHotkey, setLastHotkey] = React.useState<Hotkey | null>(null)
   const [saveCount, setSaveCount] = React.useState(0)
   const [incrementCount, setIncrementCount] = React.useState(0)

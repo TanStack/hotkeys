@@ -9,6 +9,7 @@ import {
   resolveAppHotkey,
   toHotkeyRegistrationView,
 } from '../src'
+import { namesPhysicalKey } from '../src/adapter'
 import type {
   AppHotkey,
   CustomHotkeys,
@@ -227,6 +228,18 @@ describe('AppHotkeysStore', () => {
 })
 
 describe('adapter helpers', () => {
+  it('tells whether a label names a physical key', () => {
+    expect(namesPhysicalKey('Mod+[KeyQ]')).toBe(true)
+    expect(namesPhysicalKey({ code: 'KeyQ', mod: true })).toBe(true)
+    expect(namesPhysicalKey(['G', '[KeyH]'])).toBe(true)
+    expect(namesPhysicalKey('Mod+Q')).toBe(false)
+    expect(namesPhysicalKey({ key: 'Q' })).toBe(false)
+    expect(namesPhysicalKey(['G', 'H'])).toBe(false)
+    // The `[` and `]` characters name keys of their own
+    expect(namesPhysicalKey('Mod+[')).toBe(false)
+    expect(namesPhysicalKey('Mod+]')).toBe(false)
+  })
+
   it('resolves an app hotkey from the store by id', () => {
     const store = new AppHotkeysStore(appHotkeys, {
       customHotkeys: { 'doc.save': 'Mod+Shift+S' },

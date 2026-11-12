@@ -9,7 +9,7 @@ title: HotkeysProvider
 const HotkeysProvider: ParentComponent<HotkeysProviderProps>;
 ```
 
-Defined in: [HotkeysProvider.tsx:109](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L109)
+Defined in: [HotkeysProvider.tsx:117](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L117)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
 

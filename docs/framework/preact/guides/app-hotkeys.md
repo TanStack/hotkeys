@@ -133,14 +133,15 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 
 ```tsx
 import {
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/preact-hotkeys'
 import type { AppHotkeyId } from '@tanstack/preact-hotkeys'
 
 function ShortcutRow({ id }: { id: AppHotkeyId }) {
+  const formatForDisplay = useFormatForDisplay()
   const appHotkey = useAppHotkeys()[id]
   const { setCustomHotkey, resetCustomHotkey, findConflicts } = useCustomHotkeys()
 

@@ -3,6 +3,7 @@ import {
   createAppHotkeys,
   createCustomHotkeys,
 } from './createAppHotkeys'
+import { createFormatForDisplay } from './createFormatForDisplay'
 import { createHeldKeyCodes } from './createHeldKeyCodes'
 import { createHeldKeys } from './createHeldKeys'
 import { createHotkey } from './createHotkey'
@@ -11,6 +12,7 @@ import { createHotkeyRegistrations } from './createHotkeyRegistrations'
 import { createHotkeyScopesState } from './createHotkeyScopesState'
 import { createHotkeys } from './createHotkeys'
 import { createKeyHold } from './createKeyHold'
+import { createKeyboardLayout } from './createKeyboardLayout'
 import { createScope, ownerScopes } from './scope'
 import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
 
@@ -39,6 +41,8 @@ export function createHotkeysScope(
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),
     createHotkeyScopesState: () => createHotkeyScopesState(scope),
+    createFormatForDisplay: () => createFormatForDisplay(scope),
+    createKeyboardLayout: () => createKeyboardLayout(scope),
     createAppHotkeys: () => createAppHotkeys(scope),
     createAppHotkeyList: () => createAppHotkeyList(scope),
     createCustomHotkeys: () => createCustomHotkeys(scope),

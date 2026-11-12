@@ -41,19 +41,12 @@ async function settle(change: () => unknown = () => {}) {
   await Alpine.nextTick()
 }
 
-/**
- * Alpine owners take default options but have no hotkey scopes. A platform
- * maps to the hotkey and recorder `platform` defaults.
- */
+/** Alpine owners take default options but have no hotkey scopes. */
 function defaultsFor(
   provider: ConformanceProvider | undefined,
 ): DefaultHotkeysOptions {
   if (!provider) return {}
-  const platform = provider.platform
-  return {
-    hotkey: { ...(platform ? { platform } : {}), ...provider.hotkey },
-    hotkeyRecorder: platform ? { platform } : {},
-  }
+  return { platform: provider.platform, hotkey: provider.hotkey }
 }
 
 /** Passes `target` only when the spec sets it, so other hotkeys use the document. */
@@ -70,7 +63,6 @@ const harness: ConformanceHarness = {
       'createHotkey keeps its first callback; callbacks read Alpine state instead',
     'provider-scope':
       'createHotkeysScope owns registrations but has no hotkey scope; use core activateScope',
-    format: 'there is no format helper; use core formatForDisplay',
   },
   act: settle,
   async cleanup() {
@@ -247,6 +239,17 @@ const harness: ConformanceHarness = {
           hotkey = next
           version.value++
         }),
+      unmount,
+    }
+  },
+
+  async mountFormat({ platform }) {
+    const { hotkeys, unmount } = owner(() => ({ platform }))
+    const formatForDisplay = hotkeys.createFormatForDisplay()
+    await settle()
+    return {
+      format: (hotkey, formatOptions) =>
+        formatForDisplay(hotkey, formatOptions ?? {}),
       unmount,
     }
   },

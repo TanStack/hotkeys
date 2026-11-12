@@ -1,8 +1,8 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHotkey,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { For, Show, createContext, createSignal, useContext } from 'solid-js'
@@ -447,6 +447,7 @@ function ActivityLog() {
 }
 
 function Key(props: { hotkey: Hotkey }) {
+  const formatForDisplay = createFormatForDisplay()
   return <kbd>{formatForDisplay(props.hotkey)}</kbd>
 }
 

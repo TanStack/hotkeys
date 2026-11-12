@@ -1,6 +1,5 @@
 import {
   createHotkeysScope,
-  formatForDisplay,
   hotkeysPlugin,
   normalizeHotkey,
   validateHotkey,
@@ -67,7 +66,7 @@ class App {}
 class BasicMultiHotkeys {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     "scope.createHotkeys([\n  { hotkey: 'Shift+S', callback: save,\n    options: { meta: { name: 'Save', description: 'Save the document' } } },\n  { hotkey: 'Shift+U', callback: undo,\n    options: { meta: { name: 'Undo' } } },\n])"
   log: Array<string> = []
@@ -117,7 +116,7 @@ class BasicMultiHotkeys {
 class CommonOptionsDemo {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     "scope.createHotkeys(\n  [\n    { hotkey: 'Alt+J', callback: actionA },\n    { hotkey: 'Alt+L', callback: actionC, options: { enabled: true } },\n  ],\n  () => ({ enabled: this.enabled }),\n)"
   enabled = true
@@ -172,7 +171,7 @@ class CommonOptionsDemo {
 class DynamicHotkeysDemo {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     'scope.createHotkeys(() => this.shortcuts.map((shortcut) => ({\n  hotkey: shortcut.hotkey,\n  callback: () => this.runShortcut(shortcut.id),\n  options: { meta: { name: shortcut.label, description: shortcut.description } },\n})))'
   shortcuts: Array<DynamicShortcut> = DEFAULT_SHORTCUTS
@@ -235,7 +234,7 @@ class DynamicHotkeysDemo {
 class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     'const registrations = scope.createHotkeyRegistrations()\n\n// Alpine reads registrations.hotkeys, chords and sequences, reactively.\n// <template x-for="reg in registrations.hotkeys" :key="reg.id">\n//   <p x-text="reg.options.meta?.name + \': \' + reg.triggerCount"></p>\n// </template>'
   registrationState0!: HotkeyRegistrationsResult

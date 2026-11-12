@@ -25,6 +25,10 @@ title: "@tanstack/alpine-hotkeys"
 - [AlpineHotkeyTarget](type-aliases/AlpineHotkeyTarget.md)
 - [MaybeGetter](type-aliases/MaybeGetter.md)
 
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
+
 ## Functions
 
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)

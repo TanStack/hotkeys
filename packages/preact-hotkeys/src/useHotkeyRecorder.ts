@@ -48,6 +48,7 @@ export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * @example
  * ```tsx
  * function ShortcutInput() {
+ *   const formatForDisplay = useFormatForDisplay()
  *   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
  *   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
  *

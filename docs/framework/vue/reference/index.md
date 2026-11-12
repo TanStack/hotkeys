@@ -25,6 +25,7 @@ title: "@tanstack/vue-hotkeys"
 
 ## Variables
 
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
 ## Functions
@@ -44,4 +45,5 @@ title: "@tanstack/vue-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
+- [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)

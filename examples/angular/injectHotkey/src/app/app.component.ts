@@ -1,6 +1,6 @@
 import { Component, ElementRef, signal, viewChild } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkey,
   type Hotkey,
 } from '@tanstack/angular-hotkeys'
@@ -285,7 +285,7 @@ export class AppComponent {
     })
   }
 
-  protected formatForDisplay = formatForDisplay
+  protected readonly formatForDisplay = injectFormatForDisplay()
 
   protected openModal(): void {
     this.modalOpen.set(true)

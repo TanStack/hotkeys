@@ -76,11 +76,11 @@ const saveHotkey: HotkeyChord = 'Mod+S'
 
 function SaveButton() {
   useHotkey(saveHotkey, () => save())
-  const format = useFormatForDisplay()
+  const formatForDisplay = useFormatForDisplay()
 
   return (
     <button onClick={save}>
-      Save <kbd>{format(saveHotkey)}</kbd>
+      Save <kbd>{formatForDisplay(saveHotkey)}</kbd>
     </button>
   )
 }

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { formatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
 import { inject, ref } from 'vue'
 import EditorPane from './EditorPane.vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const log = inject<(message: string) => void>('log')!
 const repeat = ref(false),

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { formatForDisplay, getHeldKeys } from '@tanstack/svelte-hotkeys'
+  import { getFormatForDisplay, getHeldKeys } from '@tanstack/svelte-hotkeys'
   import type { Hotkey, HotkeySequence } from '@tanstack/svelte-hotkeys'
 
   interface Shortcut {
@@ -37,6 +37,7 @@
     onDelete,
   }: Props = $props()
 
+  const formatForDisplay = getFormatForDisplay()
   const heldKeys = getHeldKeys()
 </script>
 

@@ -14,6 +14,7 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * @example
  * ```tsx
  * function ShortcutPalette() {
+ *   const formatForDisplay = useFormatForDisplay()
  *   const registrations = useHotkeyRegistrations()
  *
  *   return (

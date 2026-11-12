@@ -23,6 +23,10 @@ title: "@tanstack/preact-hotkeys"
 - [UseHotkeySequenceOptions](type-aliases/UseHotkeySequenceOptions.md)
 - [UseHotkeyTarget](type-aliases/UseHotkeyTarget.md)
 
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
+
 ## Functions
 
 - [HotkeysProvider](functions/HotkeysProvider.md)
@@ -40,4 +44,5 @@ title: "@tanstack/preact-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
+- [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)

@@ -135,13 +135,14 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 <script lang="ts">
   import {
     createHotkeyRecorder,
-    formatForDisplay,
     getAppHotkeys,
     getCustomHotkeys,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { AppHotkeyId } from '@tanstack/svelte-hotkeys'
 
   let { id }: { id: AppHotkeyId } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const appHotkeys = getAppHotkeys()
   const custom = getCustomHotkeys()
   const appHotkey = $derived(appHotkeys.current[id])
