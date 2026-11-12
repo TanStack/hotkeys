@@ -159,19 +159,29 @@ export function openOtherWindow(): { id: string; close: () => void } {
     : spawn('xterm', args, { stdio: 'ignore' })
   // X refuses to focus a window that is not on screen yet, so wait until the
   // window is visible, not only until it exists.
-  const id = x11(
-    'xdotool',
-    ...['search', '--sync', '--onlyvisible', '--class', windowClass],
-  )
-    .trim()
-    .split('\n')[0]!
-  return {
-    id,
-    close: () => {
-      x11('xdotool', 'windowkill', id)
-      child.kill()
-    },
+  const find = (...flags: Array<string>) =>
+    x11('xdotool', 'search', ...flags, '--class', windowClass)
+      .trim()
+      .split('\n')[0]!
+  // In a container, `child` is only the `docker exec` client. Killing the
+  // window is what ends xterm there.
+  const close = (id: string) => {
+    if (id) x11('xdotool', 'windowkill', id)
+    child.kill()
   }
+  let id: string
+  try {
+    id = find('--sync', '--onlyvisible')
+  } catch (error) {
+    // The caller gets no window to close, so close whatever xterm opened.
+    try {
+      close(find())
+    } catch {
+      child.kill()
+    }
+    throw error
+  }
+  return { id, close: () => close(id) }
 }
 
 /** Without a window manager, X11 keyboard focus follows the pointer. */

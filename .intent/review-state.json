@@ -4191,17 +4191,14 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "a2d663f387090f0945bc72615324a4ee682c753224128c1d6ccc09bde96d25ab",
+      "fingerprint": "e527cbaa738a27ba515464032beba72a7c0600d4ddc33271a19f2cbe888fb06c",
       "snapshot": {
-        "e2e/support/x11.ts": "8d4897fc90d0fc2f2e63512f0301344dffb330279bd6f210509ef625202e8784"
+        "e2e/support/x11.ts": "77592cb2653ab0cd417559e79b11e0b066b6e82f0d382ee9f3cbe036c8cf28c4"
       },
-      "head": "2e421ecc3353f2905f07d36ad034161f2cff2cdf",
+      "head": "294209fa015daf110ab4812b333800a9cb0fb802",
       "outcome": "no-change",
-      "reason": "Test support only: the layout suite waits until its helper window is visible before focusing it. No library behavior or guidance changes.",
-      "evidence": [
-        "e2e/support/x11.ts",
-        "git diff 7d9cccc3 -- e2e/support/x11.ts"
-      ]
+      "reason": "Test support only: the layout suite closes its helper window when the wait for it fails. No library behavior or guidance changes.",
+      "evidence": ["e2e/support/x11.ts", "git diff HEAD -- e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
       "fingerprint": "bf00e6ae171ae7dbf832f789bbebc889bc27d21143194e3e1d987bbcf7b50069",
