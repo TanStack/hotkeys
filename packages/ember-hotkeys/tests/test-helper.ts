@@ -22,6 +22,12 @@ class TestApp extends EmberApp {
 Router.map(function () {})
 
 export function start() {
+  // Labels load the keyboard layout from the browser. Tests that don't stub
+  // one must not depend on the layout of the machine that runs them.
+  Object.defineProperty(navigator, 'keyboard', {
+    value: undefined,
+    configurable: true,
+  })
   setTesting(true)
   setApplication(
     TestApp.create({

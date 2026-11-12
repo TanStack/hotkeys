@@ -24,3 +24,4 @@ export type {
 } from './HotkeysCtx.js'
 export * from './getHotkeyHint.svelte.js'
 export * from './getFormatForDisplay.js'
+export * from './getKeyboardLayout.svelte.js'

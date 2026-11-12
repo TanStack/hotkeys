@@ -17,7 +17,7 @@ Shared defaults; call-specific options take precedence.
 optional hotkey?: EmberHotkeyCommonOptions;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L106)
+Defined in: [packages/ember-hotkeys/src/types.ts:114](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L114)
 
 Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences.
 
@@ -29,9 +29,25 @@ Defaults for every hotkey. `requireReset` applies to chords and `timeout` to seq
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:108](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L108)
+Defined in: [packages/ember-hotkeys/src/types.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L116)
 
 Defaults for every recorder.
+
+***
+
+### keyboardLayout?
+
+```ts
+optional keyboardLayout?: boolean;
+```
+
+Defined in: [packages/ember-hotkeys/src/types.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L112)
+
+Whether labels from `useFormatForDisplay` follow the user's keyboard
+layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+loads from the browser when the first label renders. Only Chromium
+browsers report one. Set `false` to never ask the browser for it.
+Default: `true`.
 
 ***
 

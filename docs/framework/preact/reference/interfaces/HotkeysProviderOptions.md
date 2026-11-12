@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.tsx:22](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:34](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L34)
+Defined in: [HotkeysProvider.tsx:42](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L42)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,9 +28,25 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.tsx:36](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L36)
+Defined in: [HotkeysProvider.tsx:44](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L44)
 
 Defaults for every `useHotkeyRecorder`.
+
+***
+
+### keyboardLayout?
+
+```ts
+optional keyboardLayout?: boolean;
+```
+
+Defined in: [HotkeysProvider.tsx:37](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L37)
+
+Whether labels from `useFormatForDisplay` follow the user's keyboard
+layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+loads from the browser when the first label mounts. Only Chromium
+browsers report one. Set `false` to never ask the browser for it.
+Default: `true`.
 
 ***
 

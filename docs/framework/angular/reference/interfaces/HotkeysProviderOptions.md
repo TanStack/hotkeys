@@ -15,7 +15,7 @@ Defined in: [hotkeys-provider.ts:32](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: InjectHotkeyCommonOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L43)
+Defined in: [hotkeys-provider.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L51)
 
 Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,9 +28,25 @@ Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [hotkeys-provider.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L45)
+Defined in: [hotkeys-provider.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L53)
 
 Defaults for every `injectHotkeyRecorder`.
+
+***
+
+### keyboardLayout?
+
+```ts
+optional keyboardLayout?: boolean;
+```
+
+Defined in: [hotkeys-provider.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L46)
+
+Whether labels from `injectFormatForDisplay` follow the user's keyboard
+layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+loads from the browser after the first label renders. Only Chromium
+browsers report one. Set `false` to never ask the browser for it.
+Default: `true`.
 
 ***
 

@@ -4,7 +4,12 @@
 import '@lit-labs/ssr/lib/install-global-dom-shim.js'
 import { LitElementRenderer, render } from '@lit-labs/ssr'
 import { collectResultSync } from '@lit-labs/ssr/lib/render-result.js'
-import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
+import {
+  formatForDisplay,
+  getHotkeyManager,
+  getKeyStateTracker,
+  getKeyboardLayoutStore,
+} from '@tanstack/hotkeys'
 import { LitElement, html } from 'lit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import {
@@ -17,6 +22,7 @@ import {
   HotkeyRegistrationsController,
   HotkeyScopesStateController,
   KeyHoldController,
+  KeyboardLayoutController,
 } from '../src/controllers'
 import { hotkey } from '../src/decorators'
 
@@ -51,11 +57,19 @@ class ServerElement extends LitElement {
   registrations = new HotkeyRegistrationsController(this)
   scopes = new HotkeyScopesStateController(this)
   shift = new KeyHoldController(this, 'Shift')
+  layout = new KeyboardLayoutController(this)
 
   print() {}
 
   override render() {
-    return html`<p>Server</p>`
+    const layoutMap = this.layout.value ?? undefined
+    return html`<p>Server</p>
+      <kbd
+        >${formatForDisplay('Mod+[KeyQ]', {
+          platform: 'windows',
+          layoutMap,
+        })}</kbd
+      >`
   }
 }
 // `@hotkey('Mod+P') print() {}`, applied by hand: test files aren't compiled
@@ -87,6 +101,7 @@ describe('server rendering with the @lit-labs/ssr DOM shim', () => {
       manager.registrations,
       manager.scopes,
       manager.appHotkeys,
+      getKeyboardLayoutStore(),
     ].map(countSubscribers)
 
     let markup = ''
@@ -98,6 +113,18 @@ describe('server rendering with the @lit-labs/ssr DOM shim', () => {
 
     expect(markup).toContain('<p>Server</p>')
     expect(manager.registrations.state.size).toBe(0)
-    expect(counts.map((count) => count())).toEqual([0, 0, 0, 0])
+    expect(counts.map((count) => count())).toEqual([0, 0, 0, 0, 0])
+  })
+
+  it('renders a physical key with its conventional label', () => {
+    // A layout can only be in the store on a server if the app put it there.
+    const store = getKeyboardLayoutStore()
+    store.setState(() => new Map([['KeyQ', 'a']]))
+    const markup = collectResultSync(
+      render(html`<server-element></server-element>`),
+    )
+    store.setState(() => null)
+    expect(markup).toContain('Ctrl+Q')
+    expect(markup).not.toContain('Ctrl+A')
   })
 })

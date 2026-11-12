@@ -15,6 +15,7 @@ title: "@tanstack/lit-hotkeys"
 - [HotkeyRecorderController](classes/HotkeyRecorderController.md)
 - [HotkeyRegistrationsController](classes/HotkeyRegistrationsController.md)
 - [HotkeyScopesStateController](classes/HotkeyScopesStateController.md)
+- [KeyboardLayoutController](classes/KeyboardLayoutController.md)
 - [KeyHoldController](classes/KeyHoldController.md)
 
 ## Type Aliases

@@ -3,7 +3,12 @@ import { getServerPlatformSnapshot } from '@tanstack/hotkeys/adapter'
 import { useCallback, useSyncExternalStore } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { subSlot } from './internal'
-import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import { useKeyboardLayout } from './useKeyboardLayout'
+import type {
+  DisplayHotkey,
+  FormatDisplayOptions,
+  KeyboardLayoutMap,
+} from '@tanstack/hotkeys'
 
 const subscribe = () => () => {}
 
@@ -12,6 +17,10 @@ const subscribe = () => () => {}
  * detected platform without one. A `platform` passed to the returned function
  * wins. Without a provider platform, server rendering and hydration use
  * 'linux', then the client re-renders with the detected platform.
+ *
+ * Physical bindings such as `[KeyQ]` are labeled with the character the key
+ * types for this user, once the browser's keyboard layout has loaded. See
+ * `useKeyboardLayout`. A `layoutMap` passed to the returned function wins.
  *
  * Call the hook once at the top of the component; the returned function can
  * be called anywhere, such as in a loop or a condition. Server-rendered apps
@@ -40,13 +49,17 @@ export function useFormatForDisplay(slot?: symbol): typeof formatForDisplay {
     () => provided ?? getServerPlatformSnapshot(),
     subSlot(slot, 'platform'),
   )
+  const layoutMap = (
+    useKeyboardLayout as (slot: symbol) => KeyboardLayoutMap | null
+  )(subSlot(slot, 'layout'))
   return useCallback(
     (hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
       formatForDisplay(hotkey, {
         ...options,
         platform: options?.platform ?? platform,
+        layoutMap: options?.layoutMap ?? layoutMap ?? undefined,
       }),
-    [platform],
+    [platform, layoutMap],
     subSlot(slot, 'format'),
   ) as typeof formatForDisplay
 }

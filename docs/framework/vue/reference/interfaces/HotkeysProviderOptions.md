@@ -15,7 +15,7 @@ Defined in: [HotkeysProviderContext.ts:31](https://github.com/TanStack/hotkeys/b
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProviderContext.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L42)
+Defined in: [HotkeysProviderContext.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L50)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,9 +28,25 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "onRecord" | "validate">>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L44)
+Defined in: [HotkeysProviderContext.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L52)
 
 Defaults for every `useHotkeyRecorder`.
+
+***
+
+### keyboardLayout?
+
+```ts
+optional keyboardLayout?: boolean;
+```
+
+Defined in: [HotkeysProviderContext.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L45)
+
+Whether labels from `useFormatForDisplay` follow the user's keyboard
+layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+loads from the browser when the first label mounts. Only Chromium
+browsers report one. Set `false` to never ask the browser for it.
+Default: `true`.
 
 ***
 

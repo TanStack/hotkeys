@@ -131,6 +131,20 @@ type Defaults = {
 }
 
 describe('mergeHotkeysProviderDefaults', () => {
+  it('inherits keyboardLayout, and lets a nested provider change it', async () => {
+    const { mergeHotkeysProviderDefaults } = await load()
+    const merge = (parent?: boolean, own?: boolean) =>
+      mergeHotkeysProviderDefaults(
+        { keyboardLayout: parent },
+        { keyboardLayout: own },
+        undefined,
+      ).keyboardLayout
+    expect(merge()).toBeUndefined()
+    expect(merge(false)).toBe(false)
+    expect(merge(false, true)).toBe(true)
+    expect(merge(undefined, false)).toBe(false)
+  })
+
   it('passes the provider platform to hotkeys and recorders', async () => {
     const { mergeHotkeysProviderDefaults } = await load()
     expect(

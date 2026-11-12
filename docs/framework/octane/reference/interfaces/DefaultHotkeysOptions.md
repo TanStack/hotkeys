@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.ts:27](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L39)
+Defined in: [HotkeysProvider.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L47)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,9 +28,25 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L41)
+Defined in: [HotkeysProvider.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L49)
 
 Defaults for every `useHotkeyRecorder`.
+
+***
+
+### keyboardLayout?
+
+```ts
+optional keyboardLayout?: boolean;
+```
+
+Defined in: [HotkeysProvider.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L42)
+
+Whether labels from `useFormatForDisplay` follow the user's keyboard
+layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+loads from the browser when the first label mounts. Only Chromium
+browsers report one. Set `false` to never ask the browser for it.
+Default: `true`.
 
 ***
 

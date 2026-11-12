@@ -76,6 +76,12 @@
       "limit": "3.5 KB"
     },
     {
+      "name": "Keyboard layout loader",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ loadKeyboardLayout, getKeyboardLayoutStore }",
+      "limit": "0.6 KB"
+    },
+    {
       "name": "formatForDisplay",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ formatForDisplay }",

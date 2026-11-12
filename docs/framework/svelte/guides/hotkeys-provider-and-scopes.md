@@ -31,6 +31,7 @@ Pass `defaultOptions` to change the defaults for everything inside the provider:
 
 - `hotkey` defaults apply to every `createHotkey`, `createHotkeys`, and attachment inside the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a function override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
 - `hotkeyRecorder` defaults apply to every `createHotkeyRecorder` inside the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
+- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A nested provider merges its defaults over its parent's, so a provider deeper in the tree can change the defaults for one part of your app.
 

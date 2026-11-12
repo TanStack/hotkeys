@@ -4,6 +4,7 @@ import {
   defineAppHotkeys,
   getHotkeyManager,
   getKeyStateTracker,
+  getKeyboardLayoutStore,
 } from '@tanstack/hotkeys'
 import { describe, expect, it, vi } from 'vitest'
 import { createSSRApp, defineComponent, h } from 'vue'
@@ -18,6 +19,7 @@ import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
 import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
 import { useKeyHold } from '../src/useKeyHold'
+import { useKeyboardLayout } from '../src/useKeyboardLayout'
 
 // Counts live subscriptions made by useStoreSelector on any store, including
 // stores that are private to the adapter.
@@ -75,6 +77,7 @@ for (const store of [
   getKeyStateTracker().store,
   getHotkeyManager().registrations,
   getHotkeyManager().scopes,
+  getKeyboardLayoutStore(),
 ]) {
   trackSubscribers(store)
 }
@@ -85,6 +88,7 @@ function snapshot() {
     tracker: subscriberCount(getKeyStateTracker().store),
     registrations: subscriberCount(manager.registrations),
     scopes: subscriberCount(manager.scopes),
+    keyboardLayout: subscriberCount(getKeyboardLayoutStore()),
     useStoreSelector: selector.count,
   }
 }
@@ -104,6 +108,7 @@ const EveryComposable = defineComponent({
     const registrations = useHotkeyRegistrations()
     const scopes = useHotkeyScopesState()
     const recorder = useHotkeyRecorder({ onRecord: () => {} })
+    const layoutMap = useKeyboardLayout()
     return () =>
       h(
         'div',
@@ -115,6 +120,7 @@ const EveryComposable = defineComponent({
           registrations.value.length,
           scopes.value.active,
           recorder.isRecording.value,
+          layoutMap.value,
         ]),
       )
   },
@@ -131,7 +137,7 @@ describe('server rendering', () => {
     for (let i = 0; i < 100; i++) {
       html = await renderToString(createSSRApp(EveryComposable))
     }
-    expect(html).toBe('<div>[[],{},false,false,0,[],false]</div>')
+    expect(html).toBe('<div>[[],{},false,false,0,[],false,null]</div>')
     expect(snapshot()).toEqual(before)
   })
 
@@ -168,5 +174,33 @@ describe('useFormatForDisplay on the server', () => {
   it("renders labels for the provider's platform", async () => {
     expect(await render('mac')).toContain('<kbd>⌘ S</kbd>')
     expect(await render('windows')).toContain('<kbd>Ctrl+S</kbd>')
+  })
+
+  it('renders the conventional label and never loads the keyboard layout', async () => {
+    const PhysicalLabel = defineComponent({
+      setup() {
+        const format = useFormatForDisplay()
+        return () => h('kbd', format('Mod+[KeyQ]'))
+      },
+    })
+    const getLayoutMap = vi.fn(() => Promise.resolve(new Map([['KeyQ', 'a']])))
+    vi.stubGlobal('navigator', { keyboard: { getLayoutMap } })
+    // Another request, or a store shared with the browser in a test, may
+    // have left a layout behind
+    getKeyboardLayoutStore().setState(() => new Map([['KeyQ', 'a']]))
+    const before = snapshot()
+    const html = await renderToString(
+      createSSRApp({
+        render: () =>
+          h(HotkeysProvider, { defaultOptions: { platform: 'windows' } }, () =>
+            h(PhysicalLabel),
+          ),
+      }),
+    )
+    getKeyboardLayoutStore().setState(() => null)
+    vi.unstubAllGlobals()
+    expect(html).toContain('<kbd>Ctrl+Q</kbd>')
+    expect(getLayoutMap).not.toHaveBeenCalled()
+    expect(snapshot()).toEqual(before)
   })
 })

@@ -85,9 +85,37 @@ formatForDisplay('Control++', {
 
 An empty separator joins labels directly. `undefined` or `null` uses the platform default. `separatorToken` applies within a chord, and `sequenceSeparator` applies between steps.
 
-## Supply layout labels
+## Label physical keys for the user's keyboard
 
-A position, such as `[KeyQ]`, gets a fallback label that may differ from the character printed on the user's keyboard. Pass an already-resolved `layoutMap` to label positions for a known layout:
+A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Labels from `useFormatForDisplay` follow the user's keyboard where the browser reports its layout:
+
+```tsx
+import { useFormatForDisplay } from '@tanstack/react-hotkeys'
+
+function MoveUp() {
+  const format = useFormatForDisplay()
+  return <kbd>{format('[KeyW]')}</kbd> // 'W' on QWERTY, 'Z' on AZERTY
+}
+```
+
+- **The layout loads after the first label mounts.** The first render shows the fallback label, and so does server HTML. The label updates when the layout arrives, and later labels have it at once.
+- **Only Chromium browsers report a layout**, such as Chrome and Edge. In Firefox and Safari, labels keep their fallback. In a cross-origin iframe, the browser also refuses unless the frame has `allow="keyboard-map"`.
+- **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
+- **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts.
+
+`useKeyboardLayout()` returns the loaded layout, or `null`, for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
+
+The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, set `keyboardLayout: false` in the provider's `defaultOptions`:
+
+```tsx
+<HotkeysProvider defaultOptions={{ keyboardLayout: false }}>
+  <App />
+</HotkeysProvider>
+```
+
+### Supply your own layout
+
+`formatForDisplay` takes the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -96,7 +124,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works, including a browser `KeyboardLayoutMap`. Formatting stays synchronous. Your app owns loading, errors, and refreshing the map: render fallback labels while it loads, then pass the resolved map on the next render. The library never requests it. Hotkeys that follow characters ignore `layoutMap`.
+Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout. Outside React, `formatForDisplay` uses only the `layoutMap` you pass: call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 
@@ -106,9 +134,7 @@ formatForDisplay('Mod+[KeyQ]', {
 }) // '⌘ Action'
 ```
 
-`keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
-
-The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after the page renders. In a server-rendered app, render fallback labels first and pass the map once it loads, as above. The first render then matches the server's HTML. `keyLabels` works anywhere, including on the server.
+`keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including on the server.
 
 ## Format labels in server-rendered apps
 

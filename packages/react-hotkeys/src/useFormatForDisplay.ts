@@ -3,12 +3,17 @@
 import { formatForDisplay } from '@tanstack/hotkeys'
 import { useCallback } from 'react'
 import { usePlatform } from './_usePlatform'
+import { useKeyboardLayout } from './useKeyboardLayout'
 import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
  * detected platform without one. A `platform` passed to the returned function
  * wins.
+ *
+ * Physical bindings such as `[KeyQ]` are labeled with the character the key
+ * types for this user, once the browser's keyboard layout has loaded. See
+ * `useKeyboardLayout`. A `layoutMap` passed to the returned function wins.
  *
  * Call the hook once at the top of the component; the returned function can
  * be called anywhere, such as in a loop or a condition. Server-rendered apps
@@ -30,12 +35,14 @@ import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
  */
 export function useFormatForDisplay(): typeof formatForDisplay {
   const platform = usePlatform()
+  const layoutMap = useKeyboardLayout()
   return useCallback(
     (hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
       formatForDisplay(hotkey, {
         ...options,
         platform: options?.platform ?? platform,
+        layoutMap: options?.layoutMap ?? layoutMap ?? undefined,
       }),
-    [platform],
+    [platform, layoutMap],
   ) as typeof formatForDisplay
 }

@@ -12,6 +12,7 @@ export * from './useHotkeyScopesState'
 export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 export * from './useFormatForDisplay'
+export * from './useKeyboardLayout'
 
 export * from './types'
 export * from './createHotkeysScope'

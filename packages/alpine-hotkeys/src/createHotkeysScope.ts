@@ -11,6 +11,7 @@ import { createHotkeyRegistrations } from './createHotkeyRegistrations'
 import { createHotkeyScopesState } from './createHotkeyScopesState'
 import { createHotkeys } from './createHotkeys'
 import { createKeyHold } from './createKeyHold'
+import { createKeyboardLayout } from './createKeyboardLayout'
 import { createScope, ownerScopes } from './scope'
 import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
 
@@ -39,6 +40,7 @@ export function createHotkeysScope(
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),
     createHotkeyScopesState: () => createHotkeyScopesState(scope),
+    createKeyboardLayout: () => createKeyboardLayout(scope),
     createAppHotkeys: () => createAppHotkeys(scope),
     createAppHotkeyList: () => createAppHotkeyList(scope),
     createCustomHotkeys: () => createCustomHotkeys(scope),

@@ -14,12 +14,17 @@ function createFormatForDisplay(): {
 };
 ```
 
-Defined in: [createFormatForDisplay.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createFormatForDisplay.ts#L21)
+Defined in: [createFormatForDisplay.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createFormatForDisplay.ts#L28)
 
 Returns `formatForDisplay` with the provider's `platform` as the default,
 so labels match the user's platform. Call in a component; the returned
 function works anywhere, and JSX updates when the provider's platform
 changes. An explicit `platform` option wins.
+
+Physical bindings such as `[KeyQ]` are labeled with the character the key
+types for this user, once the browser's keyboard layout has loaded, and JSX
+updates when the layout arrives. See `createKeyboardLayout`. An explicit
+`layoutMap` option wins.
 
 Server-rendered apps should set the provider's `defaultOptions.platform`
 from the request user agent with `detectPlatform(userAgent)`.

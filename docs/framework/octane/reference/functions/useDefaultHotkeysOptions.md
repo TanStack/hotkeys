@@ -9,7 +9,7 @@ title: useDefaultHotkeysOptions
 function useDefaultHotkeysOptions(): DefaultHotkeysOptions;
 ```
 
-Defined in: [HotkeysProvider.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L88)
+Defined in: [HotkeysProvider.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L96)
 
 Reads the nearest provider's defaults, or an empty object.
 

@@ -70,9 +70,50 @@ formatForDisplay('Control++', {
 
 An empty separator joins labels directly. `undefined` or `null` uses the platform default. `separatorToken` applies within a chord, and `sequenceSeparator` applies between steps.
 
-## Supply layout labels
+## Label physical keys for the user's keyboard
 
-A position, such as `[KeyQ]`, gets a fallback label that may differ from the character printed on the user's keyboard. Pass an already-resolved `layoutMap` to label positions for a known layout:
+A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Alpine has no label helper, so create the layout state with `createKeyboardLayout` and pass its `value` to `formatForDisplay` as `layoutMap`. Labels then follow the user's keyboard where the browser reports its layout:
+
+```ts
+import Alpine from 'alpinejs'
+import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+
+Alpine.data('moveUp', () => {
+  const hotkeys = createHotkeysScope()
+  const layout = hotkeys.createKeyboardLayout()
+
+  return {
+    get label() {
+      // 'W' on QWERTY, 'Z' on AZERTY
+      return formatForDisplay('[KeyW]', { layoutMap: layout.value ?? undefined })
+    },
+    destroy() {
+      hotkeys.destroy()
+    },
+  }
+})
+```
+
+```html
+<kbd x-data="moveUp" x-text="label"></kbd>
+```
+
+- **Creating it is what loads the layout.** The layout loads when the first `createKeyboardLayout` runs. The label shows the fallback until the layout arrives, and later components have it at once.
+- **Only Chromium browsers report a layout**, such as Chrome and Edge. In Firefox and Safari, labels keep their fallback. In a cross-origin iframe, the browser also refuses unless the frame has `allow="keyboard-map"`.
+- **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
+- **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts. This stops when every owner that created the state is destroyed.
+
+The state's `value` is the loaded layout, or `null`. Use it also for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
+
+The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, don't call `createKeyboardLayout`, or set `keyboardLayout: false` in the default options of `createHotkeysScope`. The state's `value` is then `null`:
+
+```ts
+const hotkeys = createHotkeysScope({ keyboardLayout: false })
+```
+
+### Supply your own layout
+
+`formatForDisplay` takes the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -81,7 +122,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works, including a browser `KeyboardLayoutMap`. Formatting stays synchronous. Your app owns loading, errors, and refreshing the map: render fallback labels while it loads, then pass the resolved map on the next render. The library never requests it. Hotkeys that follow characters ignore `layoutMap`.
+Any object with `get(code): string | undefined` works. `formatForDisplay` uses only the `layoutMap` you pass. Outside a component, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 

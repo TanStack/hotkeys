@@ -14,12 +14,16 @@ function useFormatForDisplay(): {
 };
 ```
 
-Defined in: [useFormatForDisplay.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForDisplay.ts#L32)
+Defined in: [useFormatForDisplay.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForDisplay.ts#L41)
 
 Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function
 wins. Without a provider platform, server rendering and hydration use
 'linux', then the client re-renders with the detected platform.
+
+Physical bindings such as `[KeyQ]` are labeled with the character the key
+types for this user, once the browser's keyboard layout has loaded. See
+`useKeyboardLayout`. A `layoutMap` passed to the returned function wins.
 
 Call the hook once at the top of the component; the returned function can
 be called anywhere, such as in a loop or a condition. Server-rendered apps

@@ -9,7 +9,7 @@ title: AlpineHotkeyOptionsFor
 type AlpineHotkeyOptionsFor<T> = AdapterOptionsFor<T, AlpineHotkeyTarget>;
 ```
 
-Defined in: [types.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L47)
+Defined in: [types.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L48)
 
 The options type for a hotkey: chord options for chords, sequence options for sequences.
 

@@ -182,9 +182,27 @@ function createHarness() {
       recorder = undefined
     },
     /**
+     * Loads the browser's keyboard layout through the library, as an app
+     * does, and returns its entries. Returns null where the browser reports
+     * no layout (Firefox and WebKit have no `navigator.keyboard`).
+     */
+    async loadLayout(): Promise<Array<[string, string]> | null> {
+      const store = Hotkeys.getKeyboardLayoutStore()
+      const stop = Hotkeys.loadKeyboardLayout()
+      const keyboard = (
+        navigator as { keyboard?: { getLayoutMap: () => Promise<unknown> } }
+      ).keyboard
+      // The library's read started first, so it has settled once this one
+      // has and its handlers have run.
+      await keyboard?.getLayoutMap().catch(() => {})
+      await new Promise((resolve) => setTimeout(resolve))
+      stop()
+      return store.state ? [...store.state] : null
+    },
+    /**
      * Linux display labels for a binding: `label` with conventional labels,
-     * and `layoutLabel` with the browser's keyboard layout map (Chromium
-     * only; undefined without `navigator.keyboard`).
+     * and `layoutLabel` with the keyboard layout the library loads (Chromium
+     * only; undefined where the browser reports no layout).
      */
     async formatLabels(binding: string) {
       const format = (layoutMap?: FormatLayoutMap) =>
@@ -192,16 +210,10 @@ function createHarness() {
           platform: 'linux',
           ...(layoutMap && { layoutMap }),
         })
-      const keyboard = (
-        navigator as {
-          keyboard?: { getLayoutMap: () => Promise<FormatLayoutMap> }
-        }
-      ).keyboard
+      const entries = await this.loadLayout()
       return {
         label: format(),
-        layoutLabel: keyboard
-          ? format(await keyboard.getLayoutMap())
-          : undefined,
+        layoutLabel: entries ? format(new Map(entries)) : undefined,
       }
     },
     /** Clears logs between steps of one test. Registrations stay. */

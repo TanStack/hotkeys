@@ -23,6 +23,9 @@ describe('HotkeysProvider types', () => {
     h(HotkeysProvider, { exclusive: 'yes' })
     // @ts-expect-error enabled is a boolean
     h(HotkeysProvider, { enabled: 'no' })
+    h(HotkeysProvider, { defaultOptions: { keyboardLayout: false } })
+    // @ts-expect-error keyboardLayout is a boolean
+    h(HotkeysProvider, { defaultOptions: { keyboardLayout: 'no' } })
   })
 
   it('types the custom-hotkeys-change event', () => {

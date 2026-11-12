@@ -33,6 +33,7 @@ bootstrapApplication(AppComponent, {
 
 - `hotkey` defaults apply to every `injectHotkey` and `injectHotkeys` below the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a function override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
 - `hotkeyRecorder` defaults apply to every `injectHotkeyRecorder` below the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
+- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A `provideHotkeys` in a component's `providers` merges its defaults over its parent's, so a component can change the defaults for its part of your app.
 

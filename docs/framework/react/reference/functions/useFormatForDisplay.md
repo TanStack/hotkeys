@@ -14,11 +14,15 @@ function useFormatForDisplay(): {
 };
 ```
 
-Defined in: [useFormatForDisplay.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useFormatForDisplay.ts#L31)
+Defined in: [useFormatForDisplay.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useFormatForDisplay.ts#L36)
 
 Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function
 wins.
+
+Physical bindings such as `[KeyQ]` are labeled with the character the key
+types for this user, once the browser's keyboard layout has loaded. See
+`useKeyboardLayout`. A `layoutMap` passed to the returned function wins.
 
 Call the hook once at the top of the component; the returned function can
 be called anywhere, such as in a loop or a condition. Server-rendered apps

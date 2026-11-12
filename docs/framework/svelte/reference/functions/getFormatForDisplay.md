@@ -14,12 +14,17 @@ function getFormatForDisplay(): {
 };
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getFormatForDisplay.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getFormatForDisplay.ts#L22)
+Defined in: [packages/svelte-hotkeys/src/getFormatForDisplay.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getFormatForDisplay.ts#L29)
 
 Returns `formatForDisplay` with the provider's `platform` as the default,
 so labels match the user's platform. Call during component initialization,
 like `getContext`; the returned function works anywhere and reads the
 provider's current defaults. An explicit `platform` option wins.
+
+Physical bindings such as `[KeyQ]` are labeled with the character the key
+types for this user, once the browser's keyboard layout has loaded, and
+markup updates when it arrives. See `getKeyboardLayout`. A `layoutMap`
+passed to the returned function wins.
 
 Server-rendered apps should set the provider's `defaultOptions.platform`
 from the request user agent with `detectPlatform(userAgent)`.

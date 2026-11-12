@@ -40,4 +40,5 @@ title: "@tanstack/react-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
+- [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)

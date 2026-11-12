@@ -13,5 +13,6 @@ export * from './hotkey-manager'
 export * from './app-hotkeys'
 export * from './key-state-tracker'
 export * from './hotkey-recorder'
+export * from './keyboard-layout'
 // For `@tanstack/hotkeys/adapter`, which imports it by package name.
 export { createAppHotkeysStore } from './_app-hotkeys-factory'

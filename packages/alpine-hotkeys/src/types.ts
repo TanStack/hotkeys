@@ -14,6 +14,7 @@ import type {
   HotkeySequence,
   HotkeySequenceRecorderOptions,
   IndividualKey,
+  KeyboardLayoutMap,
   RecordedKeyPresses,
   RegisterableHotkey,
   RegisteredAppHotkeys,
@@ -165,6 +166,40 @@ export interface AlpineHotkeys {
   createHotkeyRegistrations: () => HotkeyRegistrationsResult
   /** Read the active, exclusive, allowed, and suspended scopes through `.value`. */
   createHotkeyScopesState: () => AlpineHotkeyState<HotkeyScopesState>
+  /**
+   * Read the browser's keyboard layout through `.value`, or `null` until it
+   * loads and in browsers that don't report one. The layout maps each physical
+   * code to the character it types, such as `KeyQ` to `a` on a French AZERTY
+   * keyboard. Only Chromium browsers report one.
+   *
+   * Creating it is what loads the layout. The layout is read again when the
+   * window regains focus, until the scope is destroyed. Pass `.value` to
+   * `formatForDisplay` as `layoutMap`, so physical bindings such as `[KeyQ]`
+   * are labeled with the character the key types for this user.
+   *
+   * To never ask the browser for the layout, set `keyboardLayout: false` in
+   * the scope's default options. `.value` is then `null`.
+   *
+   * @example
+   * ```ts
+   * Alpine.data('moveUp', () => {
+   *   const hotkeys = createHotkeysScope()
+   *   const layout = hotkeys.createKeyboardLayout()
+   *
+   *   return {
+   *     get label() {
+   *       return formatForDisplay('[KeyW]', {
+   *         layoutMap: layout.value ?? undefined,
+   *       })
+   *     },
+   *     destroy() {
+   *       hotkeys.destroy()
+   *     },
+   *   }
+   * })
+   * ```
+   */
+  createKeyboardLayout: () => AlpineHotkeyState<KeyboardLayoutMap | null>
   /** Read the effective app hotkeys from `provideAppHotkeys` through `.value`. */
   createAppHotkeys: () => AlpineHotkeyState<RegisteredAppHotkeys>
   /** Read every app hotkey with its live status through `.value`. */
@@ -179,6 +214,14 @@ export interface AlpineHotkeys {
 
 /** Shared defaults; call-specific options take precedence. */
 export interface DefaultHotkeysOptions {
+  /**
+   * Whether `createKeyboardLayout` reads the user's keyboard layout, so a
+   * label for `[KeyQ]` can read `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first `createKeyboardLayout` runs. Only
+   * Chromium browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /** Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences. */
   hotkey?: AlpineHotkeyCommonOptions
   /** Defaults for every recorder. */
