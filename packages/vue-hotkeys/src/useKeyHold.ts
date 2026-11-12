@@ -1,17 +1,17 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { computed, toValue } from 'vue'
-import { useHeldKeys } from './useHeldKeys'
+import { computed, onScopeDispose, shallowRef, toValue } from 'vue'
 import type { IndividualKey } from '@tanstack/hotkeys'
-import type { MaybeRefOrGetter, Ref } from 'vue'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 
 /**
  * Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
  *
  * Reads the held keys from the global KeyStateTracker. The key may be a ref
- * or getter; the result follows it without waiting for a key event.
+ * or getter; the result follows it without waiting for a key event. Pressing
+ * or releasing another key doesn't notify anything that reads the ref.
  *
  * @param key - The key to check (e.g., 'Shift', 'Control', 'A')
- * @returns Reactive ref that is true if the key is currently held down
+ * @returns Read-only reactive ref that is true if the key is currently held down
  *
  * @example
  * ```vue
@@ -47,11 +47,25 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
  * </template>
  * ```
  */
-export function useKeyHold(key: MaybeRefOrGetter<IndividualKey>): Ref<boolean> {
-  const heldKeys = useHeldKeys()
+export function useKeyHold(
+  key: MaybeRefOrGetter<IndividualKey>,
+): ComputedRef<boolean> {
+  const tracker = getKeyStateTracker()
+  const isHeld = () => tracker.isKeyHeld(toValue(key))
+  // Counts the key events that changed the answer. A Vue 3.3 computed
+  // notifies its readers whenever a dependency changes, even when it returns
+  // the same value, so it must not depend on every held key.
+  const changes = shallowRef(0)
+  let last = isHeld()
+  // Vue never disposes component scopes on the server, so don't subscribe.
+  if (typeof document !== 'undefined') {
+    const { unsubscribe } = tracker.store.subscribe(() => {
+      if (isHeld() !== last) changes.value++
+    })
+    onScopeDispose(unsubscribe)
+  }
   return computed(() => {
-    // Reading heldKeys reruns this when it changes.
-    void heldKeys.value
-    return getKeyStateTracker().isKeyHeld(toValue(key))
+    void changes.value
+    return (last = isHeld())
   })
 }

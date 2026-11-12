@@ -80,6 +80,20 @@ describe('defineAppHotkeys', () => {
       // @ts-expect-error not a hotkey
       c: { hotkey: 'Mod+NotAKey' },
     })
+    defineAppHotkeys({
+      // @ts-expect-error not an option
+      d: { hotkey: 'Mod+S', options: { notAnOption: true } },
+    })
+    defineAppHotkeys({
+      // @ts-expect-error not an option
+      e: { hotkey: ['G', 'H'], options: { notAnOption: true } },
+    })
+    defineAppHotkeys({
+      // An unbound entry accepts the options of either kind.
+      f: { hotkey: null, options: { timeout: 500, requireReset: true } },
+      g: { hotkey: 'Mod+S', options: { requireReset: true } },
+      h: { hotkey: ['G', 'H'], options: { timeout: 500 } },
+    })
   })
 
   it('isAppHotkey distinguishes app hotkeys from hotkeys', () => {
