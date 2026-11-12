@@ -1,11 +1,10 @@
+import { isCodeName, isModifierCode } from './_chord'
 import {
   altGraphTypedCharacter,
-  isCodeName,
-  isModifierCode,
+  isModifierPress,
   normalizeKeyboardEvent,
 } from './_keyboard-event'
-import { normalizeKeyName } from './constants'
-import { isModifierKey, normalizeHotkey, parseKeyboardEvent } from './parse'
+import { normalizeHotkey, parseKeyboardEvent } from './parse'
 import type {
   RecorderKeyMode,
   RecorderOptions,
@@ -25,12 +24,7 @@ export function hotkeyChordFromKeydown(
   recordBy: RecorderKeyMode = 'code',
 ): HotkeyChord | null {
   const normalized = normalizeKeyboardEvent(event, platform)
-  if (
-    normalized.isComposing ||
-    isModifierKey(normalizeKeyName(event.key)) ||
-    event.key === 'AltGraph'
-  )
-    return null
+  if (normalized.isComposing || isModifierPress(event)) return null
   // A key on a modifier position, such as CapsLock on ControlLeft with the two
   // swapped, is ignored like a modifier press: a modifier code can't be a
   // hotkey's key.

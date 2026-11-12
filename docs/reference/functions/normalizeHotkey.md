@@ -11,7 +11,7 @@ title: normalizeHotkey
 function normalizeHotkey(hotkey, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:237](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L237)
+Defined in: [parse.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L238)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence
@@ -21,7 +21,8 @@ step is normalized, and a one-step sequence becomes its chord.
   Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
   then the key (e.g. `Mod+Shift+E`, `Mod+S`).
 - Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
-- Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
+- Resolves modifier aliases and uppercases single letters (e.g. `ctrl` → `Control`,
+  `a` → `A`). Other key names are case-sensitive and stay as written.
 
 ### Parameters
 
@@ -57,7 +58,7 @@ normalizeHotkey(parseKeyboardEvent(event)) // The chord the event pressed
 function normalizeHotkey(hotkey, platform?): Hotkey;
 ```
 
-Defined in: [parse.ts:241](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L241)
+Defined in: [parse.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L242)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence
@@ -67,7 +68,8 @@ step is normalized, and a one-step sequence becomes its chord.
   Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
   then the key (e.g. `Mod+Shift+E`, `Mod+S`).
 - Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
-- Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
+- Resolves modifier aliases and uppercases single letters (e.g. `ctrl` → `Control`,
+  `a` → `A`). Other key names are case-sensitive and stay as written.
 
 ### Parameters
 

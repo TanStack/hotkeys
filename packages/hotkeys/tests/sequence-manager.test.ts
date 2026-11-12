@@ -730,6 +730,48 @@ describe('HotkeyManager', () => {
 
       expect(callback).not.toHaveBeenCalled()
     })
+
+    // German AltGr+Q types `@`. Windows sends a Control keydown before the
+    // AltGraph keydown, and reports Control+Alt on the character.
+    describe.each([
+      ['linux', {}, [{ key: 'AltGraph', code: 'AltRight' }]],
+      [
+        'windows',
+        { ctrlKey: true, altKey: true },
+        [
+          { key: 'Control', code: 'ControlLeft', ctrlKey: true },
+          { key: 'AltGraph', code: 'AltRight', ctrlKey: true, altKey: true },
+        ],
+      ],
+    ] as const)('a step typed with AltGr on %s', (platform, held, presses) => {
+      const typeAt = (
+        send: (options: Parameters<typeof keydown>[0]) => void,
+      ) => {
+        for (const press of presses) send({ ...press, altGraph: true })
+        send({ key: '@', code: 'KeyQ', altGraph: true, ...held })
+      }
+
+      it('completes the sequence', () => {
+        const callback = vi.fn()
+        HotkeyManager.getInstance().register(['G', '@'], callback, { platform })
+
+        keydown({ key: 'g', code: 'KeyG', target: document })
+        typeAt((options) => keydown({ ...options, target: document }))
+
+        expect(callback).toHaveBeenCalledTimes(1)
+      })
+
+      it('completes a standalone sequence matcher', () => {
+        const matcher = createSequenceMatcher(['G', '@'], { platform })
+        const results: Array<boolean> = []
+
+        matcher.match(keydown({ key: 'g', code: 'KeyG' }))
+        typeAt((options) => results.push(matcher.match(keydown(options))))
+
+        expect(results.at(-1)).toBe(true)
+        expect(results.slice(0, -1)).not.toContain(true)
+      })
+    })
   })
 })
 

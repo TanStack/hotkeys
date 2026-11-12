@@ -1,11 +1,11 @@
-import { canWarn } from './_dev'
 import {
   isKeyNameShape,
   isModifierCode,
   modifierAlias,
   physicalCodeOf,
   splitChordParts,
-} from './_keyboard-event'
+} from './_chord'
+import { canWarn } from './_dev'
 import type { Hotkey } from './hotkey.types'
 
 /** A hotkey to validate: a chord string, a sequence, or untyped input such as saved data. */

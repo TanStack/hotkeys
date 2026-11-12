@@ -1,18 +1,4 @@
-import {
-  EDITING_KEY_NAMES,
-  LOGICAL_ONLY_NAMED_KEYS,
-  NAVIGATION_KEY_NAMES,
-  SHARED_NAMED_KEYS,
-} from './_named-keys'
-import type {
-  CanonicalModifier,
-  EditingKey,
-  FunctionKey,
-  LetterKey,
-  NavigationKey,
-  NumberKey,
-  PunctuationKey,
-} from './key.types'
+import type { CanonicalModifier } from './key.types'
 
 /**
  * Canonical order for modifiers in normalized hotkey strings.
@@ -102,75 +88,6 @@ export const MODIFIER_ALIASES: Record<string, CanonicalModifier | 'Mod'> = {
 }
 
 /**
- * Set of all valid letter keys (A-Z).
- *
- * Used for validation and type checking. Letter keys are matched case-insensitively
- * in hotkey matching, but normalized to uppercase in canonical form.
- */
-export const LETTER_KEYS = /* @__PURE__ */ new Set<LetterKey>(
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZ' as Iterable<LetterKey>,
-)
-
-/**
- * Set of all valid number keys (0-9).
- *
- * Note: Number keys are affected by Shift (Shift+1 → '!' on US layout),
- * so they're excluded from Shift-based hotkey combinations to avoid
- * layout-dependent behavior.
- */
-export const NUMBER_KEYS = /* @__PURE__ */ new Set<NumberKey>(
-  '0123456789' as Iterable<NumberKey>,
-)
-
-/**
- * Set of all valid function keys (F1-F24).
- *
- * Function keys are commonly used for system shortcuts (e.g., F12 for DevTools,
- * Alt+F4 to close windows) and application-specific commands.
- */
-export const FUNCTION_KEYS = /* @__PURE__ */ new Set<FunctionKey>(
-  Array.from({ length: 24 }, (_, i) => `F${i + 1}` as FunctionKey),
-)
-
-/**
- * Set of all valid navigation keys for cursor movement and document navigation.
- *
- * Includes arrow keys, Home/End (line navigation), and PageUp/PageDown (page navigation).
- * These keys are commonly combined with modifiers for selection (Shift+ArrowUp) or
- * navigation shortcuts (Alt+ArrowLeft for back).
- */
-export const NAVIGATION_KEYS = /* @__PURE__ */ new Set<NavigationKey>(
-  NAVIGATION_KEY_NAMES,
-)
-
-/**
- * Set of all valid editing and special keys.
- *
- * Includes keys commonly used for text editing (Enter, Backspace, Delete, Tab) and
- * special actions (Escape, Space). These keys are frequently combined with modifiers
- * for editor shortcuts (Mod+Enter to submit, Shift+Tab to go back).
- */
-export const EDITING_KEYS = /* @__PURE__ */ new Set<EditingKey>(
-  EDITING_KEY_NAMES,
-)
-
-/**
- * Set of all valid punctuation keys commonly used in keyboard shortcuts.
- *
- * These are the literal characters as they appear in `KeyboardEvent.key` (layout-dependent,
- * typically US keyboard layout). Common shortcuts include:
- * - `Mod+/` - Toggle comment
- * - `Mod+[` / `Mod+]` - Indent/outdent
- * - `Mod+=` / `Mod+-` - Zoom in/out
- *
- * Note: Punctuation keys are affected by Shift (Shift+',' → '<' on US layout),
- * so they're excluded from Shift-based hotkey combinations to avoid layout-dependent behavior.
- */
-export const PUNCTUATION_KEYS = /* @__PURE__ */ new Set<PunctuationKey>(
-  '/[]\\=-,.;`\'+?!@#$%^&*()_{}|:"<>~' as Iterable<PunctuationKey>,
-)
-
-/**
  * Maps `KeyboardEvent.code` values for punctuation keys to their canonical characters.
  *
  * On macOS, holding the Option (Alt) key transforms punctuation keys into special characters
@@ -192,38 +109,6 @@ export const PUNCTUATION_CODE_MAP: Record<string, string> = {
   Semicolon: ';',
   Slash: '/',
 }
-
-// Builds ALL_KEYS without spreads, so bundlers can drop it when unused
-function union<T extends Array<Iterable<unknown>>>(
-  ...groups: T
-): Set<T[number] extends Iterable<infer Key> ? Key : never> {
-  return new Set(groups.flatMap((group) => [...group]) as Array<never>)
-}
-
-/**
- * Set of all valid non-modifier keys.
- *
- * This is the union of all key type sets (letters, numbers, function keys,
- * navigation, editing, punctuation, and other named keys): every key with
- * type-safe autocomplete support.
- *
- * @see {@link LETTER_KEYS}
- * @see {@link NUMBER_KEYS}
- * @see {@link FUNCTION_KEYS}
- * @see {@link NAVIGATION_KEYS}
- * @see {@link EDITING_KEYS}
- * @see {@link PUNCTUATION_KEYS}
- */
-export const ALL_KEYS = /* @__PURE__ */ union(
-  LETTER_KEYS,
-  NUMBER_KEYS,
-  FUNCTION_KEYS,
-  NAVIGATION_KEYS,
-  EDITING_KEYS,
-  PUNCTUATION_KEYS,
-  SHARED_NAMED_KEYS,
-  LOGICAL_ONLY_NAMED_KEYS,
-)
 
 /** Whether a key is a single Unicode letter, such as `'a'` or `'é'`. */
 export function isSingleLetterKey(key: string): boolean {

@@ -1,8 +1,6 @@
 import { keydown } from '@tanstack/hotkeys-test-utils'
 import { expect, expectTypeOf, it } from 'vitest'
 import {
-  ALL_KEYS,
-  FUNCTION_KEYS,
   formatForDisplay,
   matchesKeyboardEvent,
   normalizeKeyName,
@@ -11,6 +9,7 @@ import {
 } from '../src'
 import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
+import { FUNCTION_KEY_NAMES } from './typed-keys'
 import type {
   FunctionKey,
   HotkeyChord,
@@ -31,13 +30,12 @@ it('types corresponding logical and physical names without conflating their spel
   >().toBeNever()
 })
 
-it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
+it.each([...FUNCTION_KEY_NAMES, ...SHARED_NAMED_KEYS])(
   'validates, records, and matches both identities for %s',
   (key) => {
     const logical: HotkeyChord = `Alt+${key}`
     const physical: HotkeyChord = `Alt+[${key}]`
     const event = keydown({ key, code: key, altKey: true })
-    expect(ALL_KEYS.has(key)).toBe(true)
     expect(normalizeKeyName(key)).toBe(key)
     expect(parseHotkey(logical).key).toBe(key)
     expect(validateHotkey(logical)).toEqual({

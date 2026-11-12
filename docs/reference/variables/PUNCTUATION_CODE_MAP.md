@@ -9,7 +9,7 @@ title: PUNCTUATION_CODE_MAP
 const PUNCTUATION_CODE_MAP: Record<string, string>;
 ```
 
-Defined in: [constants.ts:182](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L182)
+Defined in: [constants.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L99)
 
 Maps `KeyboardEvent.code` values for punctuation keys to their canonical characters.
 

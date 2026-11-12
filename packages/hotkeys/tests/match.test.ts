@@ -970,6 +970,322 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  // Event shapes are from Apple's layout tables. `keyCode` follows the browser
+  // sources: the layout's unmodified letter, unless Option typed a character
+  // that Chromium and WebKit give a key code of its own, such as `~`.
+  describe('macOS Option follows the letter on the keycap', () => {
+    type Modifiers = Parameters<typeof createKeyboardEvent>[1]
+    const option = (
+      key: string,
+      code: string,
+      keyCode: number,
+      modifiers: Modifiers = {},
+    ) => createKeyboardEvent(key, { altKey: true, ...modifiers, code, keyCode })
+    const fires = (
+      event: KeyboardEvent,
+      hotkey: HotkeyChord,
+      platform: 'mac' | 'windows' | 'linux' = 'mac',
+    ) => matchesKeyboardEvent(event, hotkey, platform)
+
+    it.each([
+      ['French Option+A', 'æ', 'KeyQ', 65, 'Alt+A', 'Alt+Q'],
+      ['Dvorak Option+O', 'ø', 'KeyS', 79, 'Alt+O', 'Alt+S'],
+      ['German Option+Z', 'Ω', 'KeyY', 90, 'Alt+Z', 'Alt+Y'],
+      ['Dvorak Option+E, a dead key', 'Dead', 'KeyD', 69, 'Alt+E', 'Alt+D'],
+    ] as const)(
+      '%s fires the keycap letter, not the US position',
+      (_, key, code, keyCode, keycap, position) => {
+        expect(fires(option(key, code, keyCode), keycap)).toBe(true)
+        expect(fires(option(key, code, keyCode), position)).toBe(false)
+      },
+    )
+
+    it('fires a letter that sits on a US punctuation position', () => {
+      // Dvorak has S where the US layout has `;`
+      expect(fires(option('ß', 'Semicolon', 83), 'Alt+S')).toBe(true)
+      expect(fires(option('ß', 'Semicolon', 83), 'Alt+;')).toBe(false)
+    })
+
+    it('fires the letter when Option types an ASCII symbol', () => {
+      // German Option+L types `@`
+      expect(fires(option('@', 'KeyL', 76), 'Alt+L')).toBe(true)
+      expect(fires(option('@', 'KeyL', 76), 'Alt+@')).toBe(true)
+    })
+
+    it('follows the keycap with Shift and Command held', () => {
+      const shift = option('Æ', 'KeyQ', 65, { shiftKey: true })
+      expect(fires(shift, 'Alt+Shift+A')).toBe(true)
+      expect(fires(shift, 'Alt+Shift+Q')).toBe(false)
+      const command = option('æ', 'KeyQ', 65, { metaKey: true })
+      expect(fires(command, 'Mod+Alt+A')).toBe(true)
+      expect(fires(command, 'Mod+Alt+Q')).toBe(false)
+    })
+
+    it('fires the letter when Command turns a dead key into an ASCII symbol', () => {
+      // US Cmd+Option+N reports `~` and Cmd+Option+I reports `^`. Chromium
+      // and WebKit derive keyCode from that character, so it names no letter.
+      const n = option('~', 'KeyN', 192, { metaKey: true })
+      expect(fires(n, 'Mod+Alt+N')).toBe(true)
+      const i = option('^', 'KeyI', 54, { metaKey: true })
+      expect(fires(i, 'Mod+Alt+I')).toBe(true)
+      // Firefox derives keyCode from the unmodified letter
+      expect(
+        fires(option('~', 'KeyN', 78, { metaKey: true }), 'Mod+Alt+N'),
+      ).toBe(true)
+    })
+
+    it('keeps the key position when keyCode names no letter', () => {
+      // No keyCode, as in most synthetic events
+      expect(fires(option('æ', 'KeyQ', 0), 'Alt+Q')).toBe(true)
+      expect(fires(option('æ', 'KeyQ', 0), 'Alt+A')).toBe(false)
+      // Option+- types an en dash
+      expect(fires(option('–', 'Minus', 189), 'Alt+-')).toBe(true)
+      // A digit-row key is never a letter
+      expect(fires(option('¡', 'Digit1', 49), 'Alt+1')).toBe(true)
+    })
+
+    it.each([
+      ['below A', 64],
+      ['above Z', 91],
+      ['a numpad digit', 97],
+      ['a function key', 112],
+    ] as const)('ignores a keyCode that is %s', (_, keyCode) => {
+      const event = option('æ', 'KeyQ', keyCode)
+      expect(fires(event, 'Alt+Q')).toBe(true)
+      expect(fires(event, 'Alt+A')).toBe(false)
+      expect(fires(event, 'Alt+@' as HotkeyChord)).toBe(false)
+    })
+
+    it('replaces only a character, never a named or unidentified key', () => {
+      // No browser is known to send these with a letter keyCode
+      for (const [key, code] of [
+        ['End', 'Numpad1'],
+        ['Enter', 'Enter'],
+        ['Unidentified', 'KeyQ'],
+        ['', 'KeyQ'],
+      ] as const) {
+        const event = option(key, code, 65)
+        expect(fires(event, 'Alt+A'), key).toBe(false)
+        expect(fires(event, 'Alt+Q'), key).toBe(false)
+      }
+      expect(fires(option('End', 'Numpad1', 65), 'Alt+End')).toBe(true)
+    })
+
+    it('falls back for an ASCII symbol only on a letter position', () => {
+      // `~` typed with Option on the US `;` position names no shortcut there
+      const event = option('~', 'Semicolon', 192)
+      expect(fires(event, 'Alt+;')).toBe(false)
+      expect(fires(event, 'Alt+~' as HotkeyChord)).toBe(true)
+    })
+
+    it('never replaces an ASCII letter the key typed', () => {
+      const event = option('q', 'KeyQ', 65)
+      expect(fires(event, 'Alt+Q')).toBe(true)
+      expect(fires(event, 'Alt+A')).toBe(false)
+    })
+
+    it('leaves physical bindings on the key position', () => {
+      const event = option('æ', 'KeyQ', 65)
+      expect(fires(event, 'Alt+[KeyQ]')).toBe(true)
+      expect(fires(event, 'Alt+[KeyA]')).toBe(false)
+    })
+
+    it('takes the letter from keyCode only with Option held', () => {
+      // Russian Cmd+ф, with a keyCode that disagrees with the position
+      const event = createKeyboardEvent('ф', {
+        metaKey: true,
+        code: 'KeyA',
+        keyCode: 81,
+      })
+      expect(fires(event, 'Mod+A')).toBe(true)
+      expect(fires(event, 'Mod+Q')).toBe(false)
+    })
+
+    it.each(['windows', 'linux'] as const)(
+      'keeps the key position on %s',
+      (platform) => {
+        const event = option('æ', 'KeyQ', 65)
+        expect(fires(event, 'Alt+Q', platform)).toBe(true)
+        expect(fires(event, 'Alt+A', platform)).toBe(false)
+        expect(fires(option('@', 'KeyL', 76), 'Alt+L', platform)).toBe(false)
+      },
+    )
+
+    it('fires only the keycap registration when both letters are registered', () => {
+      const manager = HotkeyManager.getInstance()
+      const onA = vi.fn()
+      const onQ = vi.fn()
+      manager.register('Alt+A', onA, { platform: 'mac' })
+      manager.register('Alt+Q', onQ, { platform: 'mac' })
+      const press = {
+        key: 'æ',
+        code: 'KeyQ',
+        keyCode: 65,
+        altKey: true,
+        target: document,
+      }
+      keydown(press)
+      keyup(press)
+      expect(onA).toHaveBeenCalledOnce()
+      expect(onQ).not.toHaveBeenCalled()
+      HotkeyManager.resetInstance()
+    })
+
+    it('leaves Option typing a character in a text field alone', () => {
+      // German Mac users type `@` with Option+L
+      document.body.innerHTML = '<input type="text">'
+      const input = document.querySelector('input')!
+      input.focus()
+      const onL = vi.fn()
+      HotkeyManager.getInstance().register('Alt+L', onL, { platform: 'mac' })
+      const event = keydown({
+        key: '@',
+        code: 'KeyL',
+        keyCode: 76,
+        altKey: true,
+        target: input,
+      })
+      expect(onL).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+      HotkeyManager.resetInstance()
+      document.body.innerHTML = ''
+    })
+  })
+
+  // With Command held, macOS reports the unshifted character for many keys.
+  describe('macOS Cmd+Shift reporting the unshifted character', () => {
+    type Modifiers = Parameters<typeof createKeyboardEvent>[1]
+    const cmdShift = (key: string, code: string, modifiers: Modifiers = {}) =>
+      createKeyboardEvent(key, {
+        metaKey: true,
+        shiftKey: true,
+        ...modifiers,
+        code,
+      })
+
+    it.each([
+      ['/', 'Slash'],
+      ['=', 'Equal'],
+      ['-', 'Minus'],
+      ['[', 'BracketLeft'],
+      [']', 'BracketRight'],
+      ['\\', 'Backslash'],
+      [';', 'Semicolon'],
+      ["'", 'Quote'],
+      [',', 'Comma'],
+      ['.', 'Period'],
+      ['`', 'Backquote'],
+    ] as const)(
+      'Cmd+Shift+%s fires the binding that names Shift, and no other',
+      (key, code) => {
+        const event = cmdShift(key, code)
+        expect(matchesKeyboardEvent(event, `Mod+Shift+${key}`, 'mac')).toBe(
+          true,
+        )
+        expect(matchesKeyboardEvent(event, `Mod+${key}`, 'mac')).toBe(false)
+      },
+    )
+
+    it('still fires without Shift', () => {
+      const event = createKeyboardEvent('/', { metaKey: true, code: 'Slash' })
+      expect(matchesKeyboardEvent(event, 'Mod+/', 'mac')).toBe(true)
+    })
+
+    it('forgives Shift when Shift typed the character', () => {
+      // French types `/` with Shift on the US `.` position, and `?` with
+      // Shift on the US M position. macOS reports both with Command held.
+      expect(
+        matchesKeyboardEvent(cmdShift('/', 'Period'), 'Mod+/', 'mac'),
+      ).toBe(true)
+      expect(matchesKeyboardEvent(cmdShift('?', 'KeyM'), 'Mod+?', 'mac')).toBe(
+        true,
+      )
+    })
+
+    it('leaves the digit row alone', () => {
+      // A US Mac and a French Mac, which types digits with Shift, send the
+      // same event for Cmd+Shift+1.
+      expect(
+        matchesKeyboardEvent(cmdShift('1', 'Digit1'), 'Mod+1', 'mac'),
+      ).toBe(true)
+    })
+
+    it('leaves the numpad alone', () => {
+      expect(
+        matchesKeyboardEvent(cmdShift('1', 'Numpad1'), 'Mod+1', 'mac'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(cmdShift('/', 'NumpadDivide'), 'Mod+/', 'mac'),
+      ).toBe(true)
+    })
+
+    it('leaves a press with Option held alone', () => {
+      // The character then comes from the Option layer
+      const event = cmdShift('/', 'Slash', { altKey: true })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+/', 'mac')).toBe(true)
+    })
+
+    it('applies only with Command held', () => {
+      const control = createKeyboardEvent('/', {
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'Slash',
+      })
+      expect(matchesKeyboardEvent(control, 'Control+/', 'mac')).toBe(true)
+      const shift = createKeyboardEvent('/', { shiftKey: true, code: 'Slash' })
+      expect(matchesKeyboardEvent(shift, '/', 'mac')).toBe(true)
+    })
+
+    it.each(['windows', 'linux'] as const)(
+      'keeps forgiving Shift on %s',
+      (platform) => {
+        const event = createKeyboardEvent('/', {
+          ctrlKey: true,
+          shiftKey: true,
+          code: 'Slash',
+        })
+        expect(matchesKeyboardEvent(event, 'Mod+/', platform)).toBe(true)
+        const meta = cmdShift('/', 'Slash')
+        expect(matchesKeyboardEvent(meta, 'Meta+/', platform)).toBe(true)
+      },
+    )
+
+    it('fires the Shift binding where the browser reports the shifted character', () => {
+      const help = createKeyboardEvent('?', {
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'Slash',
+      })
+      expect(matchesKeyboardEvent(help, 'Mod+Shift+/', 'windows')).toBe(true)
+      const zoom = createKeyboardEvent('+', {
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'Equal',
+      })
+      expect(matchesKeyboardEvent(zoom, 'Mod+Shift+=', 'linux')).toBe(true)
+    })
+
+    it('fires only the Shift registration when both are registered', () => {
+      const manager = HotkeyManager.getInstance()
+      const onComment = vi.fn()
+      const onHelp = vi.fn()
+      manager.register('Mod+/', onComment, { platform: 'mac' })
+      manager.register('Mod+Shift+/', onHelp, { platform: 'mac' })
+      const press = {
+        key: '/',
+        code: 'Slash',
+        metaKey: true,
+        shiftKey: true,
+        target: document,
+      }
+      keydown(press)
+      keyup(press)
+      expect(onHelp).toHaveBeenCalledOnce()
+      expect(onComment).not.toHaveBeenCalled()
+      HotkeyManager.resetInstance()
+    })
+  })
+
   describe('case-sensitive key names', () => {
     it('does not resolve key aliases', () => {
       expect(
@@ -1440,6 +1756,18 @@ describe('matchesKeyboardEvent', () => {
       const event = createKeyboardEvent('Control', { ctrlKey: true })
       expect(matchesKeyboardEvent(event, 'Control+A')).toBe(false)
     })
+  })
+})
+
+describe('areHotkeysEqual', () => {
+  it('returns false without parsing steps it does not need to compare', () => {
+    // A bracketed token in the key field cannot be parsed
+    const unparsable = { key: '[KeyS]' } as never
+    expect(areHotkeysEqual(['G', 'G'], unparsable, 'mac')).toBe(false)
+    expect(areHotkeysEqual(['G', unparsable], ['X', 'G'], 'mac')).toBe(false)
+    expect(() =>
+      areHotkeysEqual(['G', unparsable], ['G', 'G'], 'mac'),
+    ).toThrow()
   })
 })
 

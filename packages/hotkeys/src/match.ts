@@ -1,9 +1,8 @@
-import { normalizeKeyboardEvent } from './_keyboard-event'
-import { matchKeyboardEvent, parsedChordsEqual } from './_match'
-import { chordHasKey } from './_registration'
-import { normalizeKeyName } from './constants'
+import { chordHasKey, parsedChordsEqual } from './_chord'
+import { isSequenceStep } from './_keyboard-event'
+import { matchKeyboardEvent } from './_match'
 import { formatHotkey } from './format'
-import { isHotkeySequence, isModifierKey, parseHotkey } from './parse'
+import { isHotkeySequence, parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type {
   HotkeyCallback,
@@ -14,30 +13,26 @@ import type {
   RegisterableHotkeySequence,
 } from './hotkey.types'
 
-export interface KeyboardEventMatch {
-  matched: boolean
-  score: 0 | 1 | 2 | 3
-  source?: 'key' | 'code' | 'fallback'
-  identity?: { key: string; code: string }
-}
-
 /**
  * Checks if a KeyboardEvent matches a hotkey.
  *
  * Physical bindings such as `Mod+[KeyS]` match `event.code` exactly.
- * Logical bindings use `event.key`, with a fallback to `code`
- * for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
- * characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
- * Letter keys are matched case-insensitively. Turkish `ı` is its own letter:
- * an `ı` binding never fires on the `i` key, but `I` fires on the `ı` key.
+ * Logical bindings match `event.key`, the character the key types on the
+ * user's keyboard layout. Letters match without regard to case, and Shift
+ * that typed a symbol, such as `?`, does not need to be written.
  *
- * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
- * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
- * Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
- * In these cases, `event.code` is used to determine the physical key. An
- * `'Unidentified'` key also falls back to `code`, except on letter and numpad
- * keys: a numpad key's meaning depends on NumLock, so only `[Numpad5]`-style
- * physical bindings match it.
+ * When `event.key` cannot name the shortcut, the key's conventional position
+ * (`event.code`) stands in. That covers non-Latin letters, dead keys, the
+ * digit row, symbols typed with Shift, and what macOS Option types. With
+ * Option held on macOS, the letter comes from the keycap (`event.keyCode`)
+ * when the browser reports one. A named key such as `End` and a character
+ * typed with AltGr match only as themselves, and so does an ASCII letter
+ * outside the digit row. An `'Unidentified'` key falls back to its position,
+ * except on letter and numpad keys.
+ *
+ * Turkish `ı` is its own letter: an `ı` binding never fires on the `i` key,
+ * but `I` fires on the `ı` key. Keys pressed while an input method editor is
+ * composing match nothing.
  *
  * @param event - The KeyboardEvent to check
  * @param chord - The chord string or parsed chord to match against
@@ -203,6 +198,8 @@ export function areHotkeysEqual(
 ): boolean {
   const a = isHotkeySequence(left) ? left : [left]
   const b = isHotkeySequence(right) ? right : [right]
+  // Steps are parsed as they are compared, so a step that cannot be parsed
+  // throws only when the steps before it are equal.
   return (
     a.length === b.length &&
     a.every((step, index) =>
@@ -256,14 +253,8 @@ export function createSequenceMatcher(
 
   return {
     match(event: KeyboardEvent): boolean {
-      // These events are not sequence steps and must not refresh the timeout.
-      if (
-        (event.type === 'keydown' && event.repeat) ||
-        normalizeKeyboardEvent(event, platform).isComposing ||
-        isModifierKey(normalizeKeyName(event.key))
-      ) {
-        return false
-      }
+      // An event that is not a step must not refresh the timeout.
+      if (!isSequenceStep(event)) return false
       const now = Date.now()
 
       if (currentIndex > 0 && now - lastKeyTime > timeout) {

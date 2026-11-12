@@ -1,16 +1,34 @@
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
+  normalizeKeyboardEvent,
+} from './_keyboard-event'
+import {
   isAsciiLetter,
   isLatinLetter,
   isPrintableKey,
   keysEqual,
-  normalizeKeyboardEvent,
-} from './_keyboard-event'
+} from './_keys'
+import { isSingleLetterKey } from './constants'
 import { parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { HotkeyChord, ParsedHotkeyChord } from './hotkey.types'
-import type { KeyboardEventMatch } from './match'
+
+/**
+ * How a key event matched a chord. The score ranks matches of one key press:
+ * - 3: the exact code, or the exact key with Shift as the binding names it
+ * - 2: a character that is not a letter, matched by a binding without Shift,
+ *   because Shift may have typed it. Turkish `ı` matched as `I` also scores 2.
+ * - 1: a position, or macOS's keycap letter, standing in for the key
+ *
+ * `identity` is the pressed key, kept so its release can be recognized.
+ */
+export interface KeyboardEventMatch {
+  matched: boolean
+  score: 0 | 1 | 2 | 3
+  source?: 'key' | 'code' | 'fallback'
+  identity?: { key: string; code: string }
+}
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
@@ -25,51 +43,86 @@ export function matchKeyboardEvent(
 
   // Keys pressed while composing belong to the input method editor.
   if (normalized.isComposing) return noMatch
-  if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
-  // Outside Windows, AltGr is not Control+Alt. When it typed no new character
-  // (AltGr+Home), it is a modifier no binding includes, so AltGr+F never fires F.
-  if (normalized.altGraph && !altGraphTypedCharacter(normalized)) return noMatch
+
+  // Control, Alt and Meta always match exactly. AltGr's synthetic Control+Alt
+  // flags are not modifiers.
+  const { altGraph } = normalized
+  if (
+    (altGraph ? false : normalized.ctrl) !== parsed.ctrl ||
+    (altGraph ? false : normalized.alt) !== parsed.alt ||
+    normalized.meta !== parsed.meta
+  ) {
+    return noMatch
+  }
+  const shiftMatches = normalized.shift === parsed.shift
+
+  // AltGr matches only the character it typed, never a position. Outside
+  // Windows, AltGr that typed nothing new is a modifier no binding includes.
+  if (altGraph && !altGraphTypedCharacter(normalized)) return noMatch
 
   if (parsed.code !== undefined) {
-    // A held AltGraph means the physical key is not a plain shortcut press.
-    // This matches the recorder, which rejects AltGraph physical recordings.
-    if (normalized.altGraph) return noMatch
-    if (!modifiersMatch(normalized, parsed, false)) return noMatch
-    return normalized.code === parsed.code ? matched('code', 3) : noMatch
+    return !altGraph && shiftMatches && normalized.code === parsed.code
+      ? matched('code', 3)
+      : noMatch
   }
 
-  const direct = keysEqual(normalized.key, parsed.key)
-  const implicitShift =
-    direct &&
-    isPrintableKey(normalized.key) &&
-    !/^\p{Letter}$/u.test(normalized.key) &&
-    !parsed.shift
-
-  if (direct && modifiersMatch(normalized, parsed, implicitShift)) {
-    return matched('key', implicitShift ? 2 : 3)
+  if (keysEqual(normalized.key, parsed.key)) {
+    // With Command held, macOS reports the unshifted character for many keys:
+    // Cmd+Shift+/ arrives as `/`. Shift was then a modifier of its own, not
+    // how the character was typed, so `Mod+/` stays quiet. The position's US
+    // character is the only evidence, so other layouts keep the implicit
+    // Shift. So do the digit row and the numpad: French types digits with
+    // Shift, and sends the event a US keyboard sends for Cmd+Shift+1. With
+    // Option held too, the character comes from the Option layer instead.
+    const shiftTypedNothing =
+      platform === 'mac' &&
+      normalized.meta &&
+      normalized.shift &&
+      !normalized.alt &&
+      !/^(Digit|Numpad)/.test(normalized.code) &&
+      codeToLogicalKey(normalized.code) === normalized.key
+    // Shift that typed a symbol, such as `?`, is not a modifier of the binding.
+    const implicitShift =
+      isPrintableKey(normalized.key) &&
+      !isSingleLetterKey(normalized.key) &&
+      !parsed.shift &&
+      !shiftTypedNothing
+    if (shiftMatches || (implicitShift && normalized.shift)) {
+      return matched('key', implicitShift ? 2 : 3)
+    }
   }
+
+  // Everything below stands in for the character, so Shift must match exactly.
+  if (altGraph || !shiftMatches) return noMatch
 
   // Turkish `ı` is its own letter, so an `ı` binding never fires on the `i`
   // key. Its key is Windows' VK_I, though, so `I` also fires there, as in
   // native Windows apps. An exact `ı` binding outranks it. With Alt, the
   // position decides instead: macOS Option+Shift+B types `ı` too.
-  if (
-    normalized.key === 'ı' &&
-    parsed.key === 'I' &&
-    !normalized.alt &&
-    !normalized.altGraph &&
-    modifiersMatch(normalized, parsed, false)
-  ) {
+  if (normalized.key === 'ı' && parsed.key === 'I' && !normalized.alt) {
     return matched('key', 2)
   }
 
-  if (!positionStandsIn(normalized, platform)) return noMatch
+  // macOS Option changes what a key types: French Option+A types `æ` on the
+  // US Q position, so neither `key` nor `code` names the A keycap. The legacy
+  // `keyCode` does: browsers derive it from the letter the key types without
+  // Option, unless Option typed a character that has a key code of its own.
+  // It is read only here, after `key` failed to match, and only in place of a
+  // character. Named keys and `Unidentified` keep their own rules.
+  const optionLetter =
+    platform === 'mac' &&
+    normalized.alt &&
+    (normalized.key === 'Dead' ||
+      (isPrintableKey(normalized.key) && !isAsciiLetter(normalized.key))) &&
+    event.keyCode > 64 &&
+    event.keyCode < 91
+      ? String.fromCharCode(event.keyCode)
+      : undefined
 
-  // With AltGraph held, only a direct key match counts. Never fall back to
-  // the physical key, which would turn AltGr+M (`µ`) into `M`.
-  if (normalized.altGraph) return noMatch
-  if (!modifiersMatch(normalized, parsed, false)) return noMatch
-  const fallbackKey = codeToLogicalKey(normalized.code)
+  if (optionLetter === undefined && !positionStandsIn(normalized, platform)) {
+    return noMatch
+  }
+  const fallbackKey = optionLetter ?? codeToLogicalKey(normalized.code)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)
     ? matched('fallback', 1)
     : noMatch
@@ -99,6 +152,8 @@ export function matchKeyboardEvent(
  *   numpad 5 with NumLock off this way.
  * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
+ * - ASCII symbols typed with macOS Option on a letter position, such as `~`
+ *   for US Cmd+Option+N, where Command cancels the dead key
  * - Latin letters typed with Alt, such as macOS Option+A typing `å`
  * - Latin letters on punctuation keys with Control or Command, so German
  *   Cmd+ü still fires `Mod+[` (German types `[` with Option)
@@ -124,47 +179,11 @@ function positionStandsIn(
   if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) return true
   if (isAsciiLetter(key)) return false
-  if (/^[!-~]$/.test(key)) return shift
-  if (!isLatinLetter(key)) return true
   const letterKey = code.startsWith('Key')
+  if (/^[!-~]$/.test(key)) {
+    return shift || (alt && platform === 'mac' && letterKey)
+  }
+  if (!isLatinLetter(key)) return true
   if (alt && !(letterKey && ctrl && platform === 'windows')) return true
   return (ctrl || meta) && !letterKey
-}
-
-/** Compares modifiers, excluding synthetic AltGr flags and optionally allowing Shift used to type a glyph. */
-function modifiersMatch(
-  event: ReturnType<typeof normalizeKeyboardEvent>,
-  parsed: ParsedHotkeyChord,
-  allowImplicitShift: boolean,
-): boolean {
-  const ctrl = event.altGraph ? false : event.ctrl
-  const alt = event.altGraph ? false : event.alt
-  if (
-    ctrl !== parsed.ctrl ||
-    alt !== parsed.alt ||
-    event.meta !== parsed.meta
-  ) {
-    return false
-  }
-  return event.shift === parsed.shift || (allowImplicitShift && event.shift)
-}
-
-/**
- * Whether two parsed chords have the same identity: equal modifiers, and the
- * same physical code or (case-insensitively) the same logical key. A code and
- * a key never match, even when one keyboard event could produce both.
- */
-export function parsedChordsEqual(
-  a: ParsedHotkeyChord,
-  b: ParsedHotkeyChord,
-): boolean {
-  return (
-    a.ctrl === b.ctrl &&
-    a.alt === b.alt &&
-    a.shift === b.shift &&
-    a.meta === b.meta &&
-    (a.code !== undefined || b.code !== undefined
-      ? a.code === b.code
-      : keysEqual(a.key, b.key))
-  )
 }

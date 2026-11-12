@@ -1,9 +1,9 @@
-import {
-  MODIFIER_ALIASES,
-  PUNCTUATION_CODE_MAP,
-  normalizeKeyName,
-} from './constants'
-import type { CanonicalModifier, NormalizedKeyboardEvent } from './key.types'
+import { isModifierCode, modifierAlias } from './_chord'
+import { isPrintableKey } from './_keys'
+import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
+import type { NormalizedKeyboardEvent } from './key.types'
+
+// Reads keyboard events: what was pressed, and whether a hotkey may use it.
 
 /** Normalizes Unicode key names and modifier flags while retaining physical code and IME state. */
 export function normalizeKeyboardEvent(
@@ -40,20 +40,53 @@ export function normalizeKeyboardEvent(
     meta: Boolean(event.metaKey),
     altGraph: altGraph && !controlAlt,
     location: event.location,
-    // Safari sends the Enter that commits a composition after compositionend,
-    // with isComposing false but keyCode 229. An `Unidentified` key is ignored
-    // only without a usable code: Chrome on Linux Wayland sends Ctrl+Backquote
-    // as an `Unidentified` key with its code. One on a modifier key, such as
-    // `ControlLeft`, is ignored like a modifier press.
-    isComposing:
-      Boolean(event.isComposing) ||
-      event.keyCode === 229 ||
-      key === 'Process' ||
-      (key === 'Unidentified' &&
-        (!event.code ||
-          event.code === 'Unidentified' ||
-          isModifierCode(event.code))),
+    isComposing: isComposingEvent(event),
   }
+}
+
+/**
+ * Whether a key press belongs to an input method editor, so no hotkey reads it.
+ *
+ * Safari sends the Enter that commits a composition after compositionend,
+ * with isComposing false but keyCode 229. An `Unidentified` key counts only
+ * without a usable code: Chrome on Linux Wayland sends Ctrl+Backquote as an
+ * `Unidentified` key with its code. One on a modifier key, such as
+ * `ControlLeft`, is ignored like a modifier press.
+ */
+function isComposingEvent(event: KeyboardEvent): boolean {
+  return (
+    Boolean(event.isComposing) ||
+    event.keyCode === 229 ||
+    event.key === 'Process' ||
+    (event.key === 'Unidentified' &&
+      (!event.code ||
+        event.code === 'Unidentified' ||
+        isModifierCode(event.code)))
+  )
+}
+
+/**
+ * Whether the event is the press or release of a modifier key itself:
+ * Control, Shift, Alt, Meta, or AltGraph. The key can be missing on events
+ * that autofill and browser extensions send.
+ */
+export function isModifierPress(event: KeyboardEvent): boolean {
+  return (
+    event.key === 'AltGraph' || modifierAlias(event.key || '') !== undefined
+  )
+}
+
+/**
+ * Whether a key event can be a step of a sequence. Auto-repeats, keys an
+ * input method editor reads, and modifier presses are not steps: they neither
+ * advance a sequence nor reset it.
+ */
+export function isSequenceStep(event: KeyboardEvent): boolean {
+  return (
+    !(event.type === 'keydown' && event.repeat) &&
+    !isComposingEvent(event) &&
+    !isModifierPress(event)
+  )
 }
 
 /**
@@ -95,90 +128,4 @@ export function altGraphTypedCharacter(
   // A dead key starts a composed character such as `ẽ`.
   if (event.key === 'Dead') return true
   return isPrintableKey(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
-}
-
-/** Tests for one Unicode code point, including characters represented by a surrogate pair. */
-export function isPrintableKey(key: string): boolean {
-  return key !== '' && Array.from(key).length === 1
-}
-
-/**
- * Resolves a modifier token or alias case-insensitively: `ctrl` → `Control`,
- * `cmd` → `Meta`, `mod` → `Mod`. Returns undefined for anything else.
- */
-export function modifierAlias(
-  token: string,
-): CanonicalModifier | 'Mod' | undefined {
-  // Every alias has a lowercase entry. hasOwn keeps out names like 'constructor'.
-  const lower = token.toLowerCase()
-  return Object.hasOwn(MODIFIER_ALIASES, lower)
-    ? MODIFIER_ALIASES[lower]
-    : undefined
-}
-
-/** Whether a string has the shape of a `KeyboardEvent.code`, such as `KeyS`. */
-export function isCodeName(code: string): boolean {
-  return /^[A-Za-z][A-Za-z0-9]*$/.test(code)
-}
-
-/** The code inside a physical token: `[KeyS]` → `KeyS`. Undefined for anything else. */
-export function physicalCodeOf(token: string): string | undefined {
-  return token.startsWith('[') &&
-    token.endsWith(']') &&
-    isCodeName(token.slice(1, -1))
-    ? token.slice(1, -1)
-    : undefined
-}
-
-/** Whether a `KeyboardEvent.code` is a modifier key, such as `ShiftLeft`. */
-export function isModifierCode(code: string): boolean {
-  return /^(Control|Shift|Alt|Meta)(Left|Right)$/.test(code)
-}
-
-/** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
-export function splitChordParts(hotkey: string): Array<string> {
-  if (!hotkey.endsWith('+')) return hotkey.split('+')
-  const parts = hotkey.slice(0, -1).split('+')
-  if (parts.at(-1) === '') parts.pop()
-  parts.push('+')
-  return parts
-}
-
-/** Identifies ASCII letters whose layout-produced value takes precedence over positional fallbacks. */
-export function isAsciiLetter(key: string): boolean {
-  return /^[A-Za-z]$/.test(key)
-}
-
-/** Identifies a single Latin-script character, including accented letters. */
-export function isLatinLetter(key: string): boolean {
-  return /^\p{Script_Extensions=Latin}$/u.test(key)
-}
-
-let collator: Intl.Collator | undefined
-
-/** Compares letters without case, preserving accents and avoiding expansions such as ß → SS. */
-export function keysEqual(left: string, right: string): boolean {
-  if (left === right) return true
-  if (/^\p{Letter}$/u.test(left) && /^\p{Letter}$/u.test(right)) {
-    // One collator is much cheaper than localeCompare on every key press.
-    collator ??= new Intl.Collator(undefined, { sensitivity: 'accent' })
-    return collator.compare(left, right) === 0
-  }
-  return false
-}
-
-/** Rejects reserved physical-token syntax in logical object fields while allowing Unicode characters. */
-export function assertLogicalKey(key: string): void {
-  if (/^\[.*\]$/s.test(key.trim())) {
-    throw new Error(`[hotkeys] Put '${key}' in the code field, not key`)
-  }
-}
-
-/**
- * Whether a key is written like a key the library knows: one character,
- * F1-F24, or a capitalized name such as `Escape`. Key names are
- * case-sensitive, so `escape` and `f1` don't qualify.
- */
-export function isKeyNameShape(key: string): boolean {
-  return /^(?:.|F(?:[1-9]|1\d|2[0-4])|[A-Z][a-z][A-Za-z\d]*)$/su.test(key)
 }

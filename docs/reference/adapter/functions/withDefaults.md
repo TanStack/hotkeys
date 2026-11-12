@@ -9,7 +9,7 @@ title: withDefaults
 function withDefaults<T>(defaults, options): T;
 ```
 
-Defined in: [\_registration.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/_registration.ts#L47)
+Defined in: [\_registration.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/_registration.ts#L46)
 
 Merges options over defaults for an API whose `setOptions` treats
 `undefined` as "clear". An unset option takes its default, or stays

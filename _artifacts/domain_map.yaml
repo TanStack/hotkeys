@@ -156,6 +156,13 @@ skills:
         source: docs/guides/sensible-defaults.md#modifiers-must-match-exactly; probe on 2026-10-18
         priority: MEDIUM
         status: active
+      - mistake: Binding a shifted symbol with Mod
+        mechanism: With Command held, macOS browsers report the unshifted character, so Cmd+Shift+/ arrives as `/` with Shift. Mod+? never matches it, and Mod+/ does not fire for it either.
+        wrong_pattern: register('Mod+?', showHelp); register('Mod+=', zoomIn)
+        correct_pattern: register('Mod+Shift+/', showHelp); register('Mod+=', zoomIn); register('Mod+Shift+=', zoomIn)
+        source: docs/guides/sensible-defaults.md#keys-match-the-character-the-user-types; src/_match.ts
+        priority: MEDIUM
+        status: active
       - mistake: Targeting an element that cannot take focus
         mechanism: Element targets receive keys only while they or a descendant has focus.
         wrong_pattern: "register('Escape', close, { target: divWithoutTabIndex })"
