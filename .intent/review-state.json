@@ -19870,14 +19870,17 @@
       "evidence": ["packages/alpine-hotkeys/src/createKeyboardLayout.ts"]
     },
     "source:packages/alpine-hotkeys/tests/keyboard-layout.test.ts": {
-      "fingerprint": "129464cc80af4a0a002db996371097a1c5824f392278489abfda783d96edbc17",
+      "fingerprint": "f5dc954a074d7c72cd883222095c8dbbdb5565d26a4b3fe14bd06bfc8af60277",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/keyboard-layout.test.ts": "f4402a7b7fc445be9d9aec9419f0dbcb6a44a80b191b0e63f87cff47c11ed4cf"
+        "packages/alpine-hotkeys/tests/keyboard-layout.test.ts": "b6df5f1c512572f073a1d3caee488e75910858d3ff972f21bef888ca71156a74"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/alpine-hotkeys/tests/keyboard-layout.test.ts"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/alpine-hotkeys/tests/keyboard-layout.test.ts",
+        "git diff HEAD -- packages/alpine-hotkeys/tests/keyboard-layout.test.ts"
+      ]
     },
     "source:packages/angular-hotkeys/src/injectKeyboardLayout.ts": {
       "fingerprint": "cdecbf0d54445a709f5d093d4ac19a1279bfacdbf7c9922e842bed766e882bed",
@@ -19890,15 +19893,16 @@
       "evidence": ["packages/angular-hotkeys/src/injectKeyboardLayout.ts"]
     },
     "source:packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts": {
-      "fingerprint": "1e9cb38c50c7500455f4a442ebd29721c0144f38e063feb2e4ff30173b415582",
+      "fingerprint": "df39996a7fb5c521a1faedc89b0b67544c80ba0a340ea594ea8b87d00f061974",
       "snapshot": {
-        "packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts": "f9a2e3876762f7531ed9b9e8328f4f866f09a78448bec266d9973006b8c3ef6a"
+        "packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts": "205fdf792c80e91f28b02c52959d9ad987e877a82e760a78dbe9998d1b8cabf8"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
       "evidence": [
-        "packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts"
+        "packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts",
+        "git diff HEAD -- packages/angular-hotkeys/tests/injectKeyboardLayout.test.ts"
       ]
     },
     "source:packages/ember-hotkeys/src/keyboardLayout.ts": {
@@ -19922,15 +19926,16 @@
       "evidence": ["packages/ember-hotkeys/src/useKeyboardLayout.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts": {
-      "fingerprint": "f452a0ddd189677d6511295db5e8a53fc4a36b48a3e887b66a5bde92cf871c03",
+      "fingerprint": "84a10064c7cd42396706748a76b91da7dbe1fbb56c8bf9d731927d3d6118b1c0",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts": "c15987f2ec5dca3c2cf8f872c2b3fde73de40ac569b4ee56fefb9d77431a8d3d"
+        "packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts": "0526fdaba86f8795e1315a78ff5f556068f6369d73bd50e0d437f8276c5284c8"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
       "evidence": [
-        "packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts"
+        "packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts",
+        "git diff HEAD -- packages/ember-hotkeys/tests/integration/keyboard-layout.test.gts"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/KeyboardLayoutDetails.tsx": {
@@ -19996,14 +20001,17 @@
       "evidence": ["packages/lit-hotkeys/src/controllers/keyboard-layout.ts"]
     },
     "source:packages/lit-hotkeys/tests/keyboard-layout.test.ts": {
-      "fingerprint": "2e891fdae76359cd3ce557c454a9136d4d1837b27fbf4acc3abb6162e035e3f9",
+      "fingerprint": "a15b654d96dc71b9d45c564d426bbbba65cd4a7a3978171baad864ca5affd63e",
       "snapshot": {
-        "packages/lit-hotkeys/tests/keyboard-layout.test.ts": "352e985979c167ce29e69358f8a2bfccf7aef02949ad45eea9b71fdfc2a25114"
+        "packages/lit-hotkeys/tests/keyboard-layout.test.ts": "88d2dfeaeb4e9a55e5c2686acac194d3f9e1f85bd59af8a73c83c1e5de15f000"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/lit-hotkeys/tests/keyboard-layout.test.ts"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/lit-hotkeys/tests/keyboard-layout.test.ts",
+        "git diff HEAD -- packages/lit-hotkeys/tests/keyboard-layout.test.ts"
+      ]
     },
     "source:packages/octane-hotkeys/src/useKeyboardLayout.ts": {
       "fingerprint": "0dac3b7daa28c3866090fb01a5daf46ecb9c88d24dc5a2a8b0015c99b8326950",
@@ -20038,14 +20046,17 @@
       ]
     },
     "source:packages/octane-hotkeys/tests/useKeyboardLayout.test.ts": {
-      "fingerprint": "42fff79d620dd5774405b0091a01ef5dc5dead726a28043bfb409d3fe8a51bda",
+      "fingerprint": "754cf0b4f79cf17b59e1cc1fa7561d6d3b0155f0dfed2ce9199102c42e7ca07f",
       "snapshot": {
-        "packages/octane-hotkeys/tests/useKeyboardLayout.test.ts": "f31bd56a1f1633ceb7ed8bc53fbddd83337b549dec89f1f08839840cc039980b"
+        "packages/octane-hotkeys/tests/useKeyboardLayout.test.ts": "c7fcf12e3d69546a741220ab7f7e672a0a78a744ba6320f705472ccf0f3a9905"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/octane-hotkeys/tests/useKeyboardLayout.test.ts"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/octane-hotkeys/tests/useKeyboardLayout.test.ts",
+        "git diff HEAD -- packages/octane-hotkeys/tests/useKeyboardLayout.test.ts"
+      ]
     },
     "source:packages/preact-hotkeys/src/useKeyboardLayout.ts": {
       "fingerprint": "8fd71cbd5ff8312491365f2ce445157780710d32993cb429d956edf664d4e59c",
@@ -20058,14 +20069,17 @@
       "evidence": ["packages/preact-hotkeys/src/useKeyboardLayout.ts"]
     },
     "source:packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx": {
-      "fingerprint": "0e186088ce806012b0f1d03345ff0462465fbb42198143d09489bdd319f4d1ec",
+      "fingerprint": "3bfc0ad9939dd5637934d7cf53e0fe5052f396726b51fee3ebefc6765906b065",
       "snapshot": {
-        "packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx": "1dd07feafa98ecd1300e61490af4cdea1aa63ba961647d3d46f719b93dd7db79"
+        "packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx": "34d16eb6c313a930bbb268f3699da1bcdca930fd22ebfafa53aaae9e8a3a740b"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx",
+        "git diff HEAD -- packages/preact-hotkeys/tests/useKeyboardLayout.test.tsx"
+      ]
     },
     "source:packages/react-hotkeys/src/useKeyboardLayout.ts": {
       "fingerprint": "ea6c24256cba5244eec9c4a77e614cf135b822a62cd503dcaa262c53af9a0092",
@@ -20078,14 +20092,17 @@
       "evidence": ["packages/react-hotkeys/src/useKeyboardLayout.ts"]
     },
     "source:packages/react-hotkeys/tests/useKeyboardLayout.test.tsx": {
-      "fingerprint": "eaf024ee712771eb62ad0eea7c2ebb3278c0dacad3bf623a2707005418948e0b",
+      "fingerprint": "c1165217ce2b3efe97890a36426adad3e770f53c95f2e9b31ea3ab24ee447112",
       "snapshot": {
-        "packages/react-hotkeys/tests/useKeyboardLayout.test.tsx": "e935c24325e55b1a575a6736aeeb237a2d43c78fe4461e844466b58fae1b2203"
+        "packages/react-hotkeys/tests/useKeyboardLayout.test.tsx": "d4411ee3a570756b51a5685a9ebcb39b62232143087356bf519b71c4bd338270"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/react-hotkeys/tests/useKeyboardLayout.test.tsx"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/react-hotkeys/tests/useKeyboardLayout.test.tsx",
+        "git diff HEAD -- packages/react-hotkeys/tests/useKeyboardLayout.test.tsx"
+      ]
     },
     "source:packages/solid-hotkeys/src/createKeyboardLayout.ts": {
       "fingerprint": "288468b2f98e1e3576f78f601618d6b8def99e927a5297586cba46fb71f59aca",
@@ -20110,14 +20127,17 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": {
-      "fingerprint": "98b52e17bd15c11db206977528b79f5dea05fdb493b94842e25f7b86cd9b3229",
+      "fingerprint": "60af7d0201006f18a13792ec76268871c0b9f36b4eac72069f9d6713af5a72ae",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": "56a97233bdb93f6f06e4259799b77b838557432235231b5a2c0138802db8ced5"
+        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": "6c9d0bd6522567001095263a453ee5c3f9f2671d2e28bd06abb57226bf8bee51"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx",
+        "git diff HEAD -- packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts": {
       "fingerprint": "c0194a668a7e641e0eff9dc7ebf152218a36a729bd0e3e7664f3bbf69b99f962",
@@ -20150,14 +20170,17 @@
       "evidence": ["packages/svelte-hotkeys/tests/KeyboardLayoutLabel.svelte"]
     },
     "source:packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts": {
-      "fingerprint": "5fb1c79bab6af9299bc2699f3eff612625425ac24c1a71a84bed508abb1516a1",
+      "fingerprint": "a1c97df6d75dcfa969cbd0be077b6eed919cb11b225d747f723889da4efc3d02",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts": "1e68955fb3b148f147471c24dfbf1e837ee757e6e7a4b221a554f54ab09c4af8"
+        "packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts": "1202a9cb598b558f2478191888c230f3ef4a1883436625362340129678b49690"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts",
+        "git diff HEAD -- packages/svelte-hotkeys/tests/getKeyboardLayout.test.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/keyboard-layout-root.svelte.ts": {
       "fingerprint": "0ce76d3ffddec1b0395d39aa818ddcfe3915fba9251eaee1b5373dbecf99144d",
@@ -20206,14 +20229,17 @@
       "evidence": ["packages/vue-hotkeys/src/useKeyboardLayout.ts"]
     },
     "source:packages/vue-hotkeys/tests/useKeyboardLayout.test.ts": {
-      "fingerprint": "94c3bebda776a3dd76a937f1502526c4b9f08d4a304928f8fbd4b5b141921f62",
+      "fingerprint": "0c96cbd53f3becfdd79704cea74cd724b6e9aef9d47ccf6246dffe0796d5c8d9",
       "snapshot": {
-        "packages/vue-hotkeys/tests/useKeyboardLayout.test.ts": "656b858071beeb87489c4928479d4b074b7236e6d77243ca02762c8b01aa9095"
+        "packages/vue-hotkeys/tests/useKeyboardLayout.test.ts": "45b95ff9f95c82ccd5c812e7c5414b82e5029c35b9e05a9adaa296d1c3bbf6ef"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/vue-hotkeys/tests/useKeyboardLayout.test.ts"]
+      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
+      "evidence": [
+        "packages/vue-hotkeys/tests/useKeyboardLayout.test.ts",
+        "git diff HEAD -- packages/vue-hotkeys/tests/useKeyboardLayout.test.ts"
+      ]
     }
   }
 }

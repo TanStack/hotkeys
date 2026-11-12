@@ -8,7 +8,8 @@ import { createKeyboardLayout } from '../src/createKeyboardLayout'
 import type { JSX } from 'solid-js'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 function Label(props: { onLabel?: (label: string) => void }) {
   const format = createFormatForDisplay()
@@ -213,10 +214,10 @@ describe('keyboard layout labels', () => {
     const { container } = render(() => <App />)
     await settle()
     expect(container.textContent).toBe('Ctrl+A')
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle()
-    expect(container.textContent).toBe('Ctrl+Q')
+    expect(container.textContent).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {
@@ -270,7 +271,7 @@ describe('keyboard layout labels', () => {
 
     // A disposed owner keeps its last layout and stops following the store
     unmount()
-    getKeyboardLayoutStore().setState(() => QWERTZ)
+    getKeyboardLayoutStore().setState(() => BEPO)
     expect(layoutMap()?.get('KeyQ')).toBe('a')
   })
 })

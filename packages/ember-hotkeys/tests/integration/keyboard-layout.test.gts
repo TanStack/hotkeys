@@ -10,7 +10,8 @@ import {
 import type { EmberHotkeysScope } from '@tanstack/ember-hotkeys'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 const CUSTOM = new Map([['KeyQ', 'x']])
 
 let calls = 0
@@ -188,10 +189,10 @@ module('Keyboard layout labels', (hooks) => {
     await loaded('a')
     await clearRender()
 
-    layout = QWERTZ
+    layout = BEPO
     await render(<template><Label @hotkeys={{windows}} /></template>)
-    await loaded('q')
-    assert.deepEqual(texts('.label'), ['Ctrl+Q'])
+    await loaded('b')
+    assert.deepEqual(texts('.label'), ['Ctrl+B'])
     assert.strictEqual(calls, 2)
   })
 
@@ -202,11 +203,11 @@ module('Keyboard layout labels', (hooks) => {
     await loaded('a')
     assert.deepEqual(texts('.label'), ['Ctrl+A'])
 
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
-    await loaded('q')
-    assert.deepEqual(texts('.label'), ['Ctrl+Q'])
-    assert.strictEqual(text('entry'), 'q')
+    await loaded('b')
+    assert.deepEqual(texts('.label'), ['Ctrl+B'])
+    assert.strictEqual(text('entry'), 'b')
     assert.strictEqual(calls, 2)
   })
 

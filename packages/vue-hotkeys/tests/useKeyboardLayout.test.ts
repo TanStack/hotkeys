@@ -18,7 +18,8 @@ import { useKeyboardLayout } from '../src/useKeyboardLayout'
 import type { App as VueApp, Component, VNodeChild } from 'vue'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 const Label = defineComponent({
   setup() {
@@ -242,10 +243,10 @@ describe('keyboard layout labels', () => {
     const wrapper = render(app())
     await flushPromises()
     expect(wrapper.text()).toBe('Ctrl+A')
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await flushPromises()
-    expect(wrapper.text()).toBe('Ctrl+Q')
+    expect(wrapper.text()).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {
@@ -308,7 +309,7 @@ describe('keyboard layout labels', () => {
 
     // The ref follows the store until its scope stops
     scope.stop()
-    getKeyboardLayoutStore().setState(() => QWERTZ)
+    getKeyboardLayoutStore().setState(() => BEPO)
     expect(layoutMap.value?.get('KeyQ')).toBe('a')
     window.dispatchEvent(new Event('focus'))
     expect(getLayoutMap).toHaveBeenCalledOnce()

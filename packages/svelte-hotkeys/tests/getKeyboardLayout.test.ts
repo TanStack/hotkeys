@@ -10,7 +10,8 @@ import { SERVER_HTML } from './keyboard-layout-server-html'
 import type { ComponentProps } from 'svelte'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 /** Stubs `navigator.keyboard.getLayoutMap` and returns the mock. */
 function stubLayout(result: () => Promise<Map<string, string>>) {
@@ -178,10 +179,10 @@ describe('keyboard layout labels', () => {
     render()
     await settle()
     expect(labels()).toEqual(['Ctrl+A'])
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle()
-    expect(labels()).toEqual(['Ctrl+Q'])
+    expect(labels()).toEqual(['Ctrl+B'])
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {

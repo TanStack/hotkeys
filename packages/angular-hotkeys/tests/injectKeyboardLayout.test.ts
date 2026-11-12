@@ -13,7 +13,8 @@ import type { Type } from '@angular/core'
 import type { ComponentFixture } from '@angular/core/testing'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 class Label {
   format = injectFormatForDisplay()
@@ -215,10 +216,10 @@ describe('keyboard layout labels', () => {
     setup()
     const fixture = await render(Label)
     expect(text(fixture)).toBe('Ctrl+A')
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle(fixture)
-    expect(text(fixture)).toBe('Ctrl+Q')
+    expect(text(fixture)).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {

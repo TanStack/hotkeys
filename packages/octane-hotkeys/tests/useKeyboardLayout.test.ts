@@ -14,7 +14,8 @@ import {
 import type { Root } from 'octane'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 // The server HTML of LayoutFixture, from tests/ssr.
 const SERVER_HTML = '<!--3--><!--[--><!--[--><kbd>Ctrl+Q</kbd><!--]--><!--]-->'
 
@@ -178,10 +179,10 @@ describe('keyboard layout labels', () => {
     const { container } = mount(LayoutFixture)
     await settle()
     expect(container.textContent).toBe('Ctrl+A')
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle()
-    expect(container.textContent).toBe('Ctrl+Q')
+    expect(container.textContent).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {

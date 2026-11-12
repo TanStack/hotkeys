@@ -8,7 +8,8 @@ import {
 import type { DefaultHotkeysOptions } from '../src'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 const CUSTOM = new Map([['KeyQ', 'x']])
 
 /** The scope defaults that the next `layoutLabel` component uses. */
@@ -147,10 +148,10 @@ describe('createKeyboardLayout', () => {
     await settle()
     expect(text(element)).toBe('Ctrl+A')
 
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle()
-    expect(text(element)).toBe('Ctrl+Q')
+    expect(text(element)).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no scope is left', async () => {
@@ -195,10 +196,10 @@ describe('createKeyboardLayout', () => {
     // Another scope keeps the layout fresh, and this one no longer follows it
     const other = createHotkeysScope()
     other.createKeyboardLayout()
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle()
-    expect(getKeyboardLayoutStore().state?.get('KeyQ')).toBe('q')
+    expect(getKeyboardLayoutStore().state?.get('KeyQ')).toBe('b')
     expect(seen).toEqual([undefined, 'a'])
     other.destroy()
     Alpine.release(runner)

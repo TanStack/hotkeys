@@ -10,7 +10,8 @@ import { useKeyboardLayout } from '../src/useKeyboardLayout'
 import type { ComponentChildren } from 'preact'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 function Label({ onRender }: { onRender?: (label: string) => void }) {
   const format = useFormatForDisplay()
@@ -203,11 +204,11 @@ describe('keyboard layout labels', () => {
     const { container } = render(<App />)
     await settle()
     expect(container.textContent).toBe('Ctrl+A')
-    layout = QWERTZ
+    layout = BEPO
     await act(async () => {
       window.dispatchEvent(new Event('focus'))
     })
-    expect(container.textContent).toBe('Ctrl+Q')
+    expect(container.textContent).toBe('Ctrl+B')
   })
 
   it('stops reading the layout on focus once no label is mounted', async () => {

@@ -6,7 +6,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { KeyboardLayoutController } from '../src/controllers/keyboard-layout'
 
 const AZERTY = new Map([['KeyQ', 'a']])
-const QWERTZ = new Map([['KeyQ', 'q']])
+// The French BÉPO layout types `b` on this key
+const BEPO = new Map([['KeyQ', 'b']])
 
 /** Labels a physical key with the layout from its controller. */
 class LayoutLabel extends LitElement {
@@ -113,11 +114,11 @@ describe('KeyboardLayoutController', () => {
     const host = await mount()
     expect(text(host)).toBe('Ctrl+A')
 
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle(host)
-    expect(text(host)).toBe('Ctrl+Q')
-    expect(host.layout.value?.get('KeyQ')).toBe('q')
+    expect(text(host)).toBe('Ctrl+B')
+    expect(host.layout.value?.get('KeyQ')).toBe('b')
   })
 
   it('stops reading the layout on focus once no host is connected', async () => {
@@ -152,16 +153,16 @@ describe('KeyboardLayoutController', () => {
     host.remove()
     const renders = host.seen.length
 
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle(other)
-    expect(text(other)).toBe('Ctrl+Q')
+    expect(text(other)).toBe('Ctrl+B')
     expect(host.seen).toHaveLength(renders)
 
     document.body.append(host)
     await settle(host)
-    expect(text(host)).toBe('Ctrl+Q')
-    expect(host.seen.at(-1)).toBe('q')
+    expect(text(host)).toBe('Ctrl+B')
+    expect(host.seen.at(-1)).toBe('b')
     // Another host was connected throughout, so reconnecting reads nothing
     expect(getLayoutMap).toHaveBeenCalledTimes(2)
   })
@@ -173,7 +174,7 @@ describe('KeyboardLayoutController', () => {
     host.layout.dispose()
     const renders = host.seen.length
 
-    layout = QWERTZ
+    layout = BEPO
     window.dispatchEvent(new Event('focus'))
     await settle(host)
     expect(host.seen).toHaveLength(renders)
