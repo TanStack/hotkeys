@@ -157,7 +157,12 @@ export function openOtherWindow(): { id: string; close: () => void } {
         stdio: 'ignore',
       })
     : spawn('xterm', args, { stdio: 'ignore' })
-  const id = x11('xdotool', 'search', '--sync', '--class', windowClass)
+  // X refuses to focus a window that is not on screen yet, so wait until the
+  // window is visible, not only until it exists.
+  const id = x11(
+    'xdotool',
+    ...['search', '--sync', '--onlyvisible', '--class', windowClass],
+  )
     .trim()
     .split('\n')[0]!
   return {
