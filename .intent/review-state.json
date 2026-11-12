@@ -4191,15 +4191,16 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "7370c7f839740f87a57670d64c016769c350ee086d46765a4d7005a74f54cc62",
+      "fingerprint": "a2d663f387090f0945bc72615324a4ee682c753224128c1d6ccc09bde96d25ab",
       "snapshot": {
-        "e2e/support/x11.ts": "58e0b31ac22a4d6076496c4c586c993987a3c14fda4b410ec30efccc14621039"
+        "e2e/support/x11.ts": "8d4897fc90d0fc2f2e63512f0301344dffb330279bd6f210509ef625202e8784"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "2e421ecc3353f2905f07d36ad034161f2cff2cdf",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "reason": "Test support only: the layout suite waits until its helper window is visible before focusing it. No library behavior or guidance changes.",
       "evidence": [
-        "Changed: e2e/support/x11.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+        "e2e/support/x11.ts",
+        "git diff 7d9cccc3 -- e2e/support/x11.ts"
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
