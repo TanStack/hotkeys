@@ -17,9 +17,9 @@ How the recorder writes the pressed key:
   `Shift+Enter`, and by physical code otherwise, such as `Alt+[Digit1]` for
   macOS Option+1. The result reads like a hotkey written by hand, so it
   compares equal to one, and its label follows the user's keyboard layout.
-  Recorded by code: Shift or macOS Option with anything but a letter, dead
+  Recorded by code: Shift or macOS Option with a digit or a symbol, dead
   keys and the numpad.
 - `'code'`: always by physical code, such as `Mod+[KeyS]`. The hotkey names
   a position on the keyboard, whatever that key types.
 - `'key'`: always by the character or key name the press produced, such as
-  `ß` for macOS Option+S.
+  `Alt+ß` for macOS Option+S.

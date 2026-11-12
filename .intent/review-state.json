@@ -67,16 +67,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "283704731ef9fdeef04f892be96fc836d8eb00dc7814e3cc96334d98933d71b5",
+      "fingerprint": "8fd029760c8b3983ab03699d92b43c6abe0f494c131b2bf64e9ad619285a7354",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "e35a1a4623d7fba55a7104e926b8914494c34b1253974ecec87c810a4b4bc6fd",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "1cbeb0951436d3578379de1adc6f792b5ebc6fde833e6b70e2fb4a6a49b9ac38",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "3878fee26d720497e2ba216bb575e162d693d4e9868d5f48a470857a60cf2df2",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "84daeb5bf36e261bf0bc4daca4ea8eb2fd496d23e0d3c7570338fa6a4422a145",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
         "packages/hotkeys/src/app-hotkeys.ts": "8cb49e0c6d523be90d5577be44a09732bed719515af6eae6a3811768425f9881",
         "packages/hotkeys/src/conflicts.ts": "b554f5a1220ce5928a2d54860267c0ab798f551e2809c08ed1b088287b7e7fcc",
-        "packages/hotkeys/src/hotkey-recorder.ts": "b9a889f4c641b5a04833ff96ed5481b6b8fc4ddd8d43784d31a62ca8df1f0d8b",
+        "packages/hotkeys/src/hotkey-recorder.ts": "efd77cd6ad292e01add7a28ba87c3f30eea8abd094d699d98a480acea1403de8",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "1d40680b6046115e8c7c71f474e3487fc953b82220e0f5809b01f39c0ca12206",
@@ -86,7 +86,7 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "updated",
       "reason": "The recorder now writes keys by name by default, and findConflicts and setCustomHotkey take the recorder's context. The conflict pitfall and the recording reference say so.",
       "evidence": [
@@ -97,12 +97,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "92eb190742d5134e0d7700240193ce206a9bf3a925e0a840af3bbf09ff7477f2",
+      "fingerprint": "f7ea1ed6d407ff394a19b01935a1a21460fb1961458965b274a8c3d6c136c58c",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "e1926c892b1562fa1ff2bf1e9b587b70d929d1f4e77dacc2bd3653a41abcd922",
+        "docs/guides/sensible-defaults.md": "c5cca624572712ebe1e0d9ec3943e3c986eb3d9010d9e523aa0dae4b11988b2e",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "ea682908f347e0a66708adc63ce87bc7cc3f2d6ea3d43a1aa60e511035e78e46",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -118,7 +118,7 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The defaults guide's recording section describes the recorder's new default. hotkeys-core has no recorder guidance; app-hotkeys covers it.",
       "evidence": [
@@ -283,7 +283,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "69d9d97ce1179e4cc5eaa6bbbba3c2dcb5359c67ff79f066f1f7e61f8a29977b",
+      "fingerprint": "7587d523861a1d294a1b5015b941f7c87b847fde2cf2bf9e207600fc32e3353d",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "beee3344f3467390c14f062ebecb65cb14b59bef383933b74e6115a4cae9da26",
@@ -302,7 +302,7 @@
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "e35a1a4623d7fba55a7104e926b8914494c34b1253974ecec87c810a4b4bc6fd",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "1cbeb0951436d3578379de1adc6f792b5ebc6fde833e6b70e2fb4a6a49b9ac38",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "3878fee26d720497e2ba216bb575e162d693d4e9868d5f48a470857a60cf2df2",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
@@ -313,7 +313,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "a58c562b2bd5626247741e35e9a36e9bf46995c5eb16ebfb6d5f73961fefe643",
-        "docs/guides/sensible-defaults.md": "e1926c892b1562fa1ff2bf1e9b587b70d929d1f4e77dacc2bd3653a41abcd922",
+        "docs/guides/sensible-defaults.md": "c5cca624572712ebe1e0d9ec3943e3c986eb3d9010d9e523aa0dae4b11988b2e",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "25b3dc5b60b7f4559145af84a32a4c904809afd30358ea4ae4f1753ffb80e919",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "011db0eb6966c9bf69aa65a4995bef03544f3169b909c0ba48705f48691c5bb2",
@@ -347,7 +347,7 @@
         "packages/hotkeys/src/app-hotkeys.ts": "8cb49e0c6d523be90d5577be44a09732bed719515af6eae6a3811768425f9881",
         "packages/hotkeys/src/conflicts.ts": "b554f5a1220ce5928a2d54860267c0ab798f551e2809c08ed1b088287b7e7fcc",
         "packages/hotkeys/src/hotkey-manager.ts": "6271bb7ff84a1c726c6d8fa83fb0af11a3de8151137be49588c8817e5c2e47bf",
-        "packages/hotkeys/src/hotkey-recorder.ts": "b9a889f4c641b5a04833ff96ed5481b6b8fc4ddd8d43784d31a62ca8df1f0d8b",
+        "packages/hotkeys/src/hotkey-recorder.ts": "efd77cd6ad292e01add7a28ba87c3f30eea8abd094d699d98a480acea1403de8",
         "packages/hotkeys/src/match.ts": "aed494feb4a49c44d101d48f8e9bd3c2627990bd17cefc6568c33e10f8cfd664",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "9d9ed0e1a8beab18dcb88939f17db24278da2ee7bbb9acd4117a7fcf5bcbcf0f",
@@ -415,7 +415,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "updated",
       "reason": "skill_spec.md gains a source sync entry for the recorder default and key-press conflict checks, and the logical-versus-physical tension is rewritten in skill_spec.md and domain_map.yaml.",
       "evidence": ["_artifacts/skill_spec.md", "_artifacts/domain_map.yaml"]
@@ -4134,11 +4134,11 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "7845bdbaca78fc4dce425b8b49e33dfa094b9b5e1bf97043d3b4d863536466bc",
+      "fingerprint": "5c2d2ac7dd98434f9664c0d2f4794b5fb12bdb7d9aa040dcd0021dbb0e5e4cea",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "44ae912087e57295249b7d106f82873fdd7271f69742473221f8cc1e3f91b3cb"
+        "docs/reference/classes/HotkeyRecorder.md": "526a05f8f6c9185fcae4cbf22f2e7c3792f61a54e4c723ffc5ad0e991f98cdfb"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/classes/HotkeyRecorder.md"]
@@ -5043,21 +5043,21 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "17a28e2c60514d3e1f2e5227020161467fffc231b2d50206e40045ffca628723",
+      "fingerprint": "44865ef8bffb3d1a8bc3394d1514672acf5af8fb0626212d5468322349c5db08",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "128e3d403fa5e1321d66c71d8843940661a366381c23c22b107710c395f98705"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "63a768f4d945c9f3ba35d8bb40d53ee322b158cc5fbf76e845ecde9bc2fb3142"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRecorderOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
-      "fingerprint": "eaaaf6992f4b7084003a31dd83b272cbbf818a2bd8e8b66bc9f136b296a1419f",
+      "fingerprint": "201c8725ada63663a119fe36529a3a7e5b1c0c38a1a7fcfbf57251ef22aede50",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "4408df64f65ac1d18903d5a1e3c4804781e95c1a149a3271424718e36948e66f"
+        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "1c865b1345ccc9283889ba204517a186bf2c6e8973ab62f50c25b1649366dc73"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": [
@@ -5065,31 +5065,31 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyRecorderState.md": {
-      "fingerprint": "17e0d81c237a582d34afd33b08df0c784cdd63ce70f5803b8b77f8365cf9ed0b",
+      "fingerprint": "f563a12bce7c3c09a5d18c812369dd3c3d5d995f41d6de97cf9bd7cb4d282391",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderState.md": "b662c47a457c6f4ced34ad9dca4549d341a9aa1b2da4397002bbeb303c927239"
+        "docs/reference/interfaces/HotkeyRecorderState.md": "003651e8b183ee6e182ce8e4b92ae12da455b7cff8f2a5dc673bfa9aec5af308"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/interfaces/HotkeyRecorderState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "a6aa978982a5817a418afa847a81ba7a436179ef4832100eed7531cc61bc0962",
+      "fingerprint": "a40d1929c0ac792f0beebeae543ae69284549e1da8dac21b3976eaf08c206a15",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "92969359cddbe8f280b305662e84bc0db180fc5350d830127a5cc0f262026608"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "85578d4d1e852c52da465556f25cf33502d10344cb5784909bc26b8a8b40780c"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceRecorderOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
-      "fingerprint": "d20806843f93939e09db964f5982de2b973eece5cc4d055375589e66eadce20f",
+      "fingerprint": "0ee9b522e041203c0a18bb508dd84fe9d17eb84a9dcde9eb158ce033cd2508d4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "cc57b905bdae0c22888e95966c81f50d2ba8a3a96243fe4757cf97131a933c0e"
+        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "c74823381412005a6965ab798ad2c8553c7351812231072e4eb07185a31a74e6"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": [
@@ -5109,21 +5109,21 @@
       ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
-      "fingerprint": "cfb6d23db42a36f4ee1cda8d4b154021b59859fcde63f5effba5625433715988",
+      "fingerprint": "bf5d40f27752dee2fa912ac0998232e7483ab3d69a3c5eadcfd03d246c24e54b",
       "snapshot": {
-        "docs/reference/interfaces/RecorderOptions.md": "5d2971f35ce36df607d79522ce4f330821293d306aeca09eb524d674f82c38c8"
+        "docs/reference/interfaces/RecorderOptions.md": "42ba2ac5289770ade441c3dd7655cb7ec9563d96062bcc47f54ea4edbc1c2c66"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/interfaces/RecorderOptions.md"]
     },
     "source:docs/reference/interfaces/RecorderRejection.md": {
-      "fingerprint": "611a251ac828909f9ba67171d07dbcbe6cc913c4e0f145534ef68ef1ceb657e3",
+      "fingerprint": "a0c8ed85392500316a590a0399f9487e61a89504495244e367f53de030c02963",
       "snapshot": {
-        "docs/reference/interfaces/RecorderRejection.md": "eb736ebd0bbf972e8559ebde782ab3f2428bd77456298525bedb84864b44321b"
+        "docs/reference/interfaces/RecorderRejection.md": "34f98fab8afde734446d33cf68aa9666756016424819f3bb7f72e1e1f4a5e7b5"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/interfaces/RecorderRejection.md"]
@@ -5139,31 +5139,31 @@
       "evidence": ["docs/reference/interfaces/ValidationResult.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
-      "fingerprint": "2d538b65365379b92b9ccbca7d2ceceb104c8b71ea8229de70aa4b56d84cbb5a",
+      "fingerprint": "40de3471a23e22ccaf41102bef092f476329ce665340ebb09262c8aead61df9b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "0159a53a5a3307292920c257c00f62340f5264207b01df42c44da26994605e15"
+        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "58cb7bfcce125d41a86beb6c74d1727b4f6803a41edde8800993c7f7a22a32cd"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/type-aliases/HotkeyRecorderCommitKeys.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "3415d1e06ac693d779c5c03c6550defe2dfa50d9b4aa9a3a41cef047297b8546",
+      "fingerprint": "4943bcee1841b8e86c05a993defa5da93353f204eb4881b120c2e4b807221002",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "2e61cd56977a4a063599ed73f09142064782c5e055839796d232881cb564c108"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "3652c683ec53bb27df761ef1c4923ea7628751310f100273831263233d84cef5"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/type-aliases/HotkeyRecorderOptions.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
-      "fingerprint": "e6ec9e4066d3cdda14b44746a82cad81cfa4556b04cadc9eab4a5eb416413691",
+      "fingerprint": "784a8cbb2a535363bd7bd8353c41f1e331f2d36d251e12fd46228d21d3b15746",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "1a7977de86a9efab2559924456c49de37b00b9ad400569d329d8fe6c93e03b98"
+        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "945fb63c30a6fab23bfe33a71fdc94de5baa7d07068bd9435a0a91b0cb2e6951"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": [
@@ -5171,11 +5171,11 @@
       ]
     },
     "source:docs/reference/type-aliases/RecorderKeyMode.md": {
-      "fingerprint": "5d1ecccd6bfcd9778acb57aaca882215cb18c5b9e99207b570182cedcb7033b4",
+      "fingerprint": "32ee601961fca1873714ef867935ee8fe57fb534dc0820184d5898f0eb449914",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderKeyMode.md": "345fb83af9529bd57138cdb0e650d1b93a0565eb9870bdb4cd3c8e123f515a44"
+        "docs/reference/type-aliases/RecorderKeyMode.md": "b73a95f0e01254fca471122f42fb3190d9b994b3c4d204f986b4329d39925bd5"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/type-aliases/RecorderKeyMode.md"]
@@ -6577,11 +6577,11 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "0d7755e3c4c027a85c93935be8b54f1efd8839561cff8beff142fcd0db435a92",
+      "fingerprint": "27bef4db2c12eb5d63123ff4626c1a817c21ba94bede855a5266e2f136d26c5d",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "d065f39d0a78a2ff9787844d8ca814a593ad5c10a658a44f7df1bdc7b9adb118"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "8f23da7e59847724cabfc91510433351051c8cb95a699564ee92600d036d8b48"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
       "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
@@ -7285,11 +7285,11 @@
       ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "43ef3a56ab470c31aad16911c17ca0031e8f391122a11b6e2e8e2decdd7abb91",
+      "fingerprint": "552a03d354d10b20ea3f8c88d6f6f125153b0a99505d8bf5a55ecd21ac0db6a9",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "89c08215f51d4c3d92288e603db2cb7b3d3c8c25f3ee8f7062a15d00c2eaee02"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "71ab8083f3a1daffd415b62b5cdd666cd1c456707309fd00beb3a637a8b6d8bc"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/alpine/guides/custom-hotkey-recording.md"]
@@ -7458,11 +7458,11 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "fe425215bac8e509aa10ee550e8142b8c983ddc042802aa8303ee716b2eb0ca0",
+      "fingerprint": "316d5cf4b7d44128d5f96bae5b2b8be92b0bd20f3603bdc69d84f759f0bb59ed",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "aeb4cb970bd8966f8d3491bb53c0c4741e21d01e56d865690c497a9cee1350e0"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "e98964205eab65eb3ed12bd9b4039fe4140c2faf4e72ac3a9f206b4dc4c0d51d"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/ember/guides/custom-hotkey-recording.md"]
@@ -7488,11 +7488,11 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "468ff404af7c749709c4d3ea1ad2e2025d6ec5646e8f2ceff5b19026796ccfde",
+      "fingerprint": "86af120798c514f1b06172ec4fdcf8c60018767b1a0486ea666778ecc08e654c",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "a4b1cea7d29a25dd604c808d9a9e0cd11043cc89391a365a3f5643e5bfafa47c"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "bcab63d201d906d444e5607c3a402042b4a1f6145b2b177e78c333c659d17e50"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/lit/guides/custom-hotkey-recording.md"]
@@ -11692,11 +11692,11 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "63a1869ae043ecccd253f28818c2cdeb6b8232124d4ec24f5c50dc8cd91d2cb5",
+      "fingerprint": "82d5d60ea3ce611291c0e21d38379d71ffd6209a3d54460a39218c73e5bd14c9",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "e7dc4e35f74bb48a0d6e471dfdc21924ed90534147690911ee047ad0f3cb16be"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "f8d3b4113c45eebbe583e224791e1420177d0ed2fba2d8ee7c65a966e7e93721"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/angular/guides/custom-hotkey-recording.md"]
@@ -11732,11 +11732,11 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "91b89e6c5d035301d7d561a0c6d10c163237d6e3d00526648bf5635abf14107d",
+      "fingerprint": "b3f8d1391f7c6dac44334e08809513b6c2fd50596debd1e280c237f913ea9e7a",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "07d008f479cb36fcadf9b182d46100ba6bc886bae14688c927ddae7726885fc1"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "5ee53740a79488c6055d9807372b2c98b2f20a3f08e114819296cb83e1d640ec"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/octane/guides/custom-hotkey-recording.md"]
@@ -11772,31 +11772,31 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "347933ef1d607870a24142a765ea3adbb24ac0ef7d57f1c6f1060bedd851ab36",
+      "fingerprint": "6fe84a536f937daa07bf990d5b0229a6164c920760da194b7a841696477f4179",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "e944e8c2b5868c827683167afc09676c69ca971f05afb3214f8e76b0061e1ed4"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "1a9b37610b73d3af5d061ca7ebe9177400b2354492a47ff2403569c6ada7c94a"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/preact/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b0640abfd94e29b7facee2d83e34d444fd99075add06050c001c9ed97c6f0d9e",
+      "fingerprint": "41be93eb8eae8aaf17bd3a4a151ec3f6e3aeed01f456a0447e57f61ece08613a",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "b9020ddf82a02656a05883da898f1fc68533804b9f574c0835a2a44931cf9cea"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "9e32d1155f18ead56a5ee8fbdad0efa421f32aefa7db90f937e5ee4af5a0239d"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/solid/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "ffb61d3c967df766c0219c64e260eb6273a69dc646f37dac365eb54af2109fc8",
+      "fingerprint": "975fd247c2b35ce480344006997ac7c3d22a458add4b233ea95c90ca3fdc3ac2",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "ac2b48f2efbeabd7ffd3462c34b63268c8ec192767983a0ee79967333dbe3b51"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "ada7b46a821f3d78d81302a2309dc3f4ca7ce47671b09d06382dcecccfaec217"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/svelte/guides/custom-hotkey-recording.md"]
@@ -11872,11 +11872,11 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "013025ce189ef87e25a74fe9054ff82ca725a71ce0b0351cfb51b2dc54f14198",
+      "fingerprint": "92a21a393c855a997fd24e40b21503544cadac7dde95f8577ea201838dca0b61",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "b0e6096918c2362cb21c9635d533283d918173e5a8e6f64333a863050d23f76b"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "755d7175867fd2dc671fcd0e92d64aff14c09f8a2e46c5569a1c3da47d3d3368"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "The guide describes the recorder's new default and passing the recorder's context to conflict checks. Both are reflected in the skills updated in this review.",
       "evidence": ["docs/framework/vue/guides/custom-hotkey-recording.md"]
@@ -11944,11 +11944,11 @@
       "evidence": ["docs/reference/type-aliases/HotkeyIssueReason.md"]
     },
     "source:docs/reference/type-aliases/RecorderRejectionReason.md": {
-      "fingerprint": "2cfbc5de4c9074176bc6c17daf65520050e1b8c143b9646aa5f1be34050193b0",
+      "fingerprint": "a193a733140cc9f33b015302f37b0679a911831b349ba879f35b2a49d4d3a03c",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderRejectionReason.md": "1acd897123472913d540b4152f5f11a000b38b59e43ba4aff1ffdb5544e51d9e"
+        "docs/reference/type-aliases/RecorderRejectionReason.md": "3aa4b3b82e71440b3acd6743070ac72ace4a9d749f4d3b4ec3ad812438be8858"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Generated API reference for the recorder default and the conflict check context. The skills updated in this review cover both.",
       "evidence": ["docs/reference/type-aliases/RecorderRejectionReason.md"]
@@ -12053,11 +12053,11 @@
       ]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "3c4b862c45aa7c710a158e7bc7846946c6af6aa679b05e06a6802284535c1c11",
+      "fingerprint": "69bd6cb05509b586d9be3de4305392d3eabc99b77378c5826d6c5fa50ff51457",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "af81faa8e830106017c99d10b7bd4640af87e0301b1a0992e1afa23af57fa1d8"
+        "packages/hotkeys/src/_recorder-chord.ts": "a25807e658a4f0e593a41663d1f5d5d7689698c05b5bf1bdfd71f768a0559564"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Source for the recorder default or the conflict check context. The app-hotkeys skill and each framework's app hotkeys reference, updated in this review, cover it.",
       "evidence": ["packages/hotkeys/src/_recorder-chord.ts"]
@@ -19732,11 +19732,11 @@
       ]
     },
     "source:packages/hotkeys/tests/recorder-auto.test.ts": {
-      "fingerprint": "6711b44cf3913cf8c322edb2f844ecb4b534fbb578adf91c480e21383c834d4e",
+      "fingerprint": "814eadff91a7f8f4be45adb7d3ff01dcf658631adb15ec96f395debd1ca4943f",
       "snapshot": {
-        "packages/hotkeys/tests/recorder-auto.test.ts": "8b5b25ec743b35924b3ce7e658adab80ed834a44fc4fa09f02184bb00df757f3"
+        "packages/hotkeys/tests/recorder-auto.test.ts": "57c8aa39c24518e25cd617c035cdb6f1be3cbbd6806eaf02c9b54cbd83a03c73"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "6568af21d83abc92ff1ee9f330b8c7537f376478",
       "outcome": "no-change",
       "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
       "evidence": ["packages/hotkeys/tests/recorder-auto.test.ts"]

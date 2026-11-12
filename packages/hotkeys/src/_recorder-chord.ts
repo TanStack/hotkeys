@@ -1,4 +1,4 @@
-import { isCodeName, isModifierCode } from './_chord'
+import { isCodeName, isKeyNameShape, isModifierCode } from './_chord'
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
@@ -57,10 +57,12 @@ export function hotkeyChordFromKeydown(
       : null
   }
   // An `Unidentified` key has no name to record. Code mode records its
-  // position. A dead key is recorded only when asked for by key.
+  // position. A dead key, or a key that isn't written like a key name, is
+  // recorded only when asked for by key.
   return parsed.key &&
     parsed.key !== 'Unidentified' &&
-    (recordBy === 'key' || parsed.key !== 'Dead')
+    (recordBy === 'key' ||
+      (parsed.key !== 'Dead' && isKeyNameShape(parsed.key)))
     ? normalizeHotkey(parsed, platform)
     : null
 }
@@ -95,7 +97,8 @@ function keyName(event: KeyboardEvent, platform: Platform): string | undefined {
     return undefined
   }
   const typed = key !== 'Dead' && isPrintableKey(key)
-  if (key !== 'Dead' && !typed) return key
+  // A synthetic event can report anything as its key, such as `[KeyX]`.
+  if (key !== 'Dead' && !typed) return isKeyNameShape(key) ? key : undefined
   if (platform === 'mac' && alt) {
     return isAsciiLetter(key)
       ? key

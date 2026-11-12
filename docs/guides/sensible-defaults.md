@@ -437,18 +437,18 @@ A page that loads the library's files as published, with no bundler, has no `pro
 
 ## Recording captures what the user pressed
 
-The hotkey recorder writes a hotkey the way you would write it by hand (`recordBy: 'auto'`). Control+S records `Mod+S`. On a French AZERTY keyboard, Control and the key labeled A records `Mod+A`, so the label shows the keycap, and the hotkey equals a `Mod+A` in your code.
+The hotkey recorder writes a hotkey the way you would write it by hand (`recordBy: 'auto'`). Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S`. On a French AZERTY keyboard, the same modifier with the key labeled A records `Mod+A`, so the label shows the keycap, and the hotkey equals a `Mod+A` in your code.
 
 Some presses have no name that means the same thing everywhere. The recorder records those by position, in brackets:
 
-- **Shift with anything but a letter.** Shift+/ records `Shift+[Slash]`, and Shift+1 records `Shift+[Digit1]`. For Control+Shift+/, Windows reports `?`, and for Command+Shift+/, macOS reports `/`, so a recorded `?` would not fire on a Mac. Shift with a letter records the letter.
-- **Option on macOS with anything but a letter.** Option+1 types `¡` and records `Alt+[Digit1]`. Option with a letter records the letter on the keycap: Option+S records `Alt+S`, not `ß`.
-- **Dead keys**, which type nothing until the next key.
+- **Shift with a digit or a symbol.** Shift+/ records `Shift+[Slash]`, and Shift+1 records `Shift+[Digit1]`. For Control+Shift+/, Windows reports `?`, and for Command+Shift+/, macOS reports `/`, so a recorded `?` would not fire on a Mac. Shift with a letter or a named key records it by name, such as `Shift+A` and `Shift+Enter`.
+- **Option on macOS with a digit or a symbol.** Option+1 types `¡` and records `Alt+[Digit1]`. Option with a letter records the letter on the keycap: Option+S records `Alt+S`, not `ß`. Option with a named key records it by name, such as `Alt+Enter`.
+- **Dead keys**, which type nothing until the next key. Option with a letter that starts an accent is the exception: Option+E on a US Mac records `Alt+E`.
 - **The numpad**, where one key types `1` or End depending on NumLock.
 
-A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it [matches](#keys-match-the-character-the-user-types). On a Russian layout, Control+ы records `Mod+S`, and Control+х records `Mod+[`.
+A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it [matches](#keys-match-the-character-the-user-types). On Windows with a Russian layout, Control+ы records `Mod+S`, and Control+х records `Mod+[`.
 
-Set `recordBy: 'code'` to record every key by position, such as for game controls. Set `recordBy: 'key'` to record the character every press types, which records `ß` for Option+S and `?` for Shift+/.
+Set `recordBy: 'code'` to record every key by position, such as for game controls. Set `recordBy: 'key'` to record the character every press types, which records `Alt+ß` for Option+S and `Shift+?` for Shift+/.
 
 A recorded hotkey and one written by hand can differ and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press. The recorder's `detectConflicts` option checks with the key presses that made the recording. For app hotkeys, pass the recorder's `context` to `findConflicts`, which does the same.
 

@@ -386,6 +386,15 @@ describe('recordBy: auto', () => {
     expect(byCode.rejection).toEqual({ reason: 'missing-code' })
   })
 
+  it('records the position when the key is not written like a key name', () => {
+    // A synthetic event can report anything as its key
+    const press = { key: '[KeyX]', code: 'KeyS', ctrlKey: true }
+    expect(record(press, 'windows').hotkey).toBe('Mod+[KeyS]')
+    const noCode = record({ ...press, code: '' }, 'windows')
+    expect(noCode.hotkey).toBeUndefined()
+    expect(noCode.rejection).toEqual({ reason: 'missing-code' })
+  })
+
   it('rejects AltGr presses, as recording by code does', () => {
     const press = { key: '@', code: 'KeyQ', altGraph: true }
     expect(record(press, 'linux').rejection).toEqual({ reason: 'alt-graph' })
