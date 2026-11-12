@@ -1,5 +1,28 @@
 # @tanstack/hotkeys
 
+## 0.28.0
+
+### Minor Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Fix which hotkey fires for two kinds of macOS key press.
+
+  **Option with a letter.** Option changes the character a key types, so the matcher used the key's US position to find the letter. On layouts that move letters, that fired the wrong hotkey: on a French AZERTY Mac, Option and the key labeled A fired `Alt+Q`. The matcher now reads the letter on the keycap from `event.keyCode` when Option is held on macOS, and falls back to the position when `keyCode` names no letter. `Alt+A` fires on the key labeled A on AZERTY, Dvorak, Colemak, and QWERTZ. A letter hotkey also fires when Option types an ASCII symbol, such as `Alt+L` for German Option+L (`@`) and `Mod+Alt+N` for US Cmd+Option+N (`~`). A hotkey with Alt and no Control or Command still does not fire in a text field by default, so Option keeps typing its character there.
+
+  **Command and Shift with a symbol key.** With Command held, macOS browsers report the unshifted character, so Cmd+Shift+/ arrives as `/`. That press fired `Mod+/`. It now fires only a hotkey that names Shift, such as `Mod+Shift+/`. This applies to the `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, and `/` keys where they sit in their US positions. Breaking: if your Mac users reach a hotkey with Command and Shift through a binding without Shift, such as zooming in with Cmd++ through `Mod+=`, add the Shift binding (`Mod+Shift+=`). The digit row and the numpad are unchanged.
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Breaking: these exports are removed from the core package and from every adapter, which re-exports the core. The library never read them.
+
+  - The `KeyboardEventMatch` type. It described the matcher's internal result, and no public function returned it.
+  - The key Sets `LETTER_KEYS`, `NUMBER_KEYS`, `FUNCTION_KEYS`, `NAVIGATION_KEYS`, `EDITING_KEYS`, `PUNCTUATION_KEYS`, and `ALL_KEYS`. The key types, such as `LetterKey` and `FunctionKey`, are unchanged. If you listed keys from one of these Sets, keep your own list.
+
+### Patch Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - A sequence step typed with AltGr now completes. Pressing AltGr sends a keydown of its own, and that keydown reset any sequence in progress, so `['G', '@']` could never finish on a German keyboard, where AltGr+Q types `@`. An AltGr press is now skipped like a Control, Shift, Alt, or Meta press, in registered sequences and in `createSequenceMatcher`.
+
+- [#266](https://github.com/TanStack/hotkeys/pull/266) [`e7b1af6`](https://github.com/TanStack/hotkeys/commit/e7b1af6c1210dd93623200378d2aaf8e357dd9a6) - Development warnings now print in apps built with a bundler. Vite, webpack and others replace `process.env.NODE_ENV` and give the browser no `process` global, and the library checked for that global first. In those apps the browser console never showed a duplicate registration, an unknown key name such as `escape`, a repeated exclusive scope, or `checkHotkey` output. Production builds still drop the warning code. A page that loads the library with no bundler still logs nothing, and no longer throws when `process` exists without `env`.
+
+- [#268](https://github.com/TanStack/hotkeys/pull/268) [`f8a1f08`](https://github.com/TanStack/hotkeys/commit/f8a1f08596e7712addb6d514c7771fa61b78ca7e) - Registering an invalid hotkey now logs a console warning in development, from `HotkeyManager.register` and from every framework adapter. A hotkey with an unknown modifier, such as `Ctl+K`, or with no key that isn't a modifier, such as `Shift`, registers nothing, and it did so silently. An adapter logs once for each invalid hotkey, however often it renders. An empty string, `null`, `undefined`, and an empty sequence still mean "no hotkey" and log nothing. Production builds drop the warning.
+
 ## 0.27.1
 
 ### Patch Changes
