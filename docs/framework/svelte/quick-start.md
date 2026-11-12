@@ -74,11 +74,11 @@ Label a button or menu item with `getFormatForDisplay`. Format the same value yo
   const saveHotkey: HotkeyChord = 'Mod+S'
 
   createHotkey(saveHotkey, () => save())
-  const format = getFormatForDisplay()
+  const formatForDisplay = getFormatForDisplay()
 </script>
 
 <button onclick={save}>
-  Save <kbd>{format(saveHotkey)}</kbd>
+  Save <kbd>{formatForDisplay(saveHotkey)}</kbd>
 </button>
 ```
 

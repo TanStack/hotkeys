@@ -145,7 +145,7 @@ The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys
 
 ## Show sequences in your UI
 
-`formatForDisplay` formats each step and joins them with a space:
+The function from `injectFormatForDisplay` formats each step and joins them with a space:
 
 ```ts
 formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
@@ -159,7 +159,7 @@ A sequence's first steps have no visible effect, so show users what they've pres
 ```ts
 import { Component, computed } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkeyRegistrations,
 } from '@tanstack/angular-hotkeys'
 import type { HotkeySequenceRegistrationView } from '@tanstack/angular-hotkeys'
@@ -175,6 +175,7 @@ import type { HotkeySequenceRegistrationView } from '@tanstack/angular-hotkeys'
   `,
 })
 export class PendingKeysComponent {
+  private readonly formatForDisplay = injectFormatForDisplay()
   private readonly registrations = injectHotkeyRegistrations()
   readonly pressed = computed(() => {
     const longest = this.registrations()
@@ -184,7 +185,7 @@ export class PendingKeysComponent {
       )
       .sort((a, b) => b.matchedStepCount - a.matchedStepCount)[0]
     return longest
-      ? formatForDisplay(longest.hotkey.slice(0, longest.matchedStepCount))
+      ? this.formatForDisplay(longest.hotkey.slice(0, longest.matchedStepCount))
       : null
   })
 }

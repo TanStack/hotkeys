@@ -2,7 +2,7 @@
   import {
     createHotkey,
     createHotkeyRecorder,
-    formatForDisplay,
+    getFormatForDisplay,
     isHotkeySequence,
   } from '@tanstack/svelte-hotkeys'
   import { getContext } from 'svelte'
@@ -23,6 +23,7 @@
       conflict: 'This hotkey is already in use.',
     }[reason]
   const log = getContext<(message: string) => void>('log')
+  const formatForDisplay = getFormatForDisplay()
   const initial: Hotkey = 'Alt+[KeyR]'
   let hotkey = $state<Hotkey>(initial),
     sequence = $state<Hotkey>(['[KeyX]', '[KeyY]'])

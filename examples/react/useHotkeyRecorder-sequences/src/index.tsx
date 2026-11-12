@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
   useHotkeyRegistrations,
@@ -68,6 +68,7 @@ const INITIAL_SHORTCUTS: Array<Shortcut> = [
 ]
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const [shortcuts, setShortcuts] = React.useState<Array<Shortcut>>(
     () => INITIAL_SHORTCUTS,
   )
@@ -306,6 +307,7 @@ const registrations = useHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const registrations = useHotkeyRegistrations()
 
   return (
@@ -392,6 +394,7 @@ function ShortcutListItem({
   onCancel,
   onDelete,
 }: ShortcutListItemProps) {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
 
   return (

@@ -37,8 +37,8 @@ A settings row records with `HotkeyRecorderController`:
 ```ts no-check
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HotkeyRecorderController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, html } from 'lit'
 import { property } from 'lit/decorators.js'
@@ -47,6 +47,7 @@ import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 export class ShortcutRow extends LitElement {
   @property() hotkeyId!: AppHotkeyId
   private app = new AppHotkeysController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, () => ({
     maxSteps: Infinity,
     validate: (hotkey, context) => {
@@ -61,7 +62,8 @@ export class ShortcutRow extends LitElement {
   render() {
     const { meta, hotkey } = this.app.appHotkeys[this.hotkeyId]
     return html`
-      ${meta?.name}: ${hotkey ? formatForDisplay(hotkey) : 'Unassigned'}
+      ${meta?.name}:
+      ${hotkey ? this.formatForDisplay.format(hotkey) : 'Unassigned'}
       <button @click=${() => this.recorder.startRecording()}>Change</button>
       <button @click=${() => this.app.resetCustomHotkey(this.hotkeyId)}>
         Reset

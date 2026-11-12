@@ -12,6 +12,8 @@ export * from './useHotkeyScopesState'
 export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 export * from './useFormatForDisplay'
+// Replaces the core export, to point components to the utility
+export { formatForDisplay } from './formatForDisplay'
 export * from './useKeyboardLayout'
 
 export * from './types'

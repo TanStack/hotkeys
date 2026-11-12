@@ -49,7 +49,7 @@
   })
 
   // Formats with the provider's platform, so the server renders the user's labels
-  const format = getFormatForDisplay()
+  const formatForDisplay = getFormatForDisplay()
   const options = $derived(toFormatOptions(choices))
   const sequenceSeparator = $derived(options.sequenceSeparator ?? ' ')
 
@@ -140,7 +140,7 @@
           <tr data-command={command.id}>
             <th scope="row">{command.name}</th>
             <td class="label">
-              {@render hotkeyLabel(format(command.hotkey, options))}
+              {@render hotkeyLabel(formatForDisplay(command.hotkey, options))}
             </td>
           </tr>
         {/each}

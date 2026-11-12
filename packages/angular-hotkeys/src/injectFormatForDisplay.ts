@@ -11,9 +11,10 @@ import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
  * templates. An explicit `platform` option wins.
  *
  * Physical bindings such as `[KeyQ]` are labeled with the character the key
- * types for this user, once the browser's keyboard layout has loaded, and
- * templates update when it arrives. See `injectKeyboardLayout`. A `layoutMap`
- * passed to the returned function wins.
+ * types for this user in Chromium browsers, once the keyboard layout has
+ * loaded, and templates update when it arrives. See `injectKeyboardLayout`. A
+ * `layoutMap` passed to the returned function wins. Firefox and Safari report
+ * no layout, so labels there keep the key's US character.
  *
  * Server-rendered apps should set the provider's `defaultOptions.platform`
  * from the request user agent, such as
@@ -23,10 +24,10 @@ import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
  * ```ts
  * @Component({
  *   selector: 'app-save-button',
- *   template: `<kbd>{{ format('Mod+S') }}</kbd>`,
+ *   template: `<kbd>{{ formatForDisplay('Mod+S') }}</kbd>`,
  * })
  * export class SaveButton {
- *   format = injectFormatForDisplay()
+ *   formatForDisplay = injectFormatForDisplay()
  * }
  * ```
  */

@@ -1,13 +1,13 @@
 import {
   HotkeysProvider,
-  formatForDisplay,
   useAppHotkeys,
+  useFormatForDisplay,
   useHotkey,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
 import { createLazyRoute } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
-import { formatHotkey, useActivity } from '../shared'
+import { useActivity, useFormatHotkey } from '../shared'
 
 export const Route = createLazyRoute('/editor')({ component: EditorRoute })
 
@@ -25,6 +25,7 @@ function EditorRoute() {
  * The shortcut panel shows one row per declaration with two registrations.
  */
 function EditorPane({ name }: { name: string }) {
+  const formatHotkey = useFormatHotkey()
   const log = useActivity()
   const appHotkeys = useAppHotkeys()
   const target = useRef<HTMLFieldSetElement>(null)
@@ -72,6 +73,8 @@ function EditorPane({ name }: { name: string }) {
 
 /** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
+  const formatHotkey = useFormatHotkey()
+  const formatForDisplay = useFormatForDisplay()
   const log = useActivity()
   const appHotkeys = useAppHotkeys()
   const [repeat, setRepeat] = useState(false)

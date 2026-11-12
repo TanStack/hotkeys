@@ -17,14 +17,11 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 
 ```ts
 import Alpine from 'alpinejs'
-import {
-  createHotkeyRecorder,
-  createHotkeysScope,
-  formatForDisplay,
-} from '@tanstack/alpine-hotkeys'
+import { createHotkeyRecorder, createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRecorder', () => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const recorder = createHotkeyRecorder(hotkeys, {
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
@@ -51,7 +48,7 @@ Alpine.data('shortcutRecorder', () => {
 </div>
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `createFormatForDisplay`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -100,6 +97,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 ```ts
 Alpine.data('sequenceRecorder', () => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const recorder = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -216,50 +214,50 @@ For a few hotkeys in one component, Alpine state is enough:
 
 ```ts
 import Alpine from 'alpinejs'
-import {
-  createHotkeyRecorder,
-  createHotkeysScope,
-  formatForDisplay,
-} from '@tanstack/alpine-hotkeys'
+import { createHotkeyRecorder, createHotkeysScope } from '@tanstack/alpine-hotkeys'
 import type { AlpineHotkeyRecorder, Hotkey } from '@tanstack/alpine-hotkeys'
 
 type Action = 'save' | 'undo' | 'search'
 
-Alpine.data('shortcutSettings', () => ({
-  hotkeys: createHotkeysScope(),
-  formatForDisplay,
-  shortcuts: { save: 'Mod+S', undo: 'Mod+Z', search: ['G', 'S'] } as Record<Action, Hotkey>,
-  editing: null as Action | null,
-  recorder: null as AlpineHotkeyRecorder | null,
-  init() {
-    this.recorder = createHotkeyRecorder(this.hotkeys, {
-      maxSteps: Infinity,
-      onRecord: (hotkey) => {
-        if (this.editing) this.shortcuts = { ...this.shortcuts, [this.editing]: hotkey }
-        this.editing = null
-      },
-      onCancel: () => (this.editing = null),
-    })
+Alpine.data('shortcutSettings', () => {
+  const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
 
-    // Register each action with its current hotkey
-    this.hotkeys.createHotkeys(() =>
-      Object.entries(this.shortcuts).map(([action, hotkey]) => ({
-        hotkey,
-        callback: () => this.run(action as Action),
-      })),
-    )
-  },
-  edit(action: Action) {
-    this.editing = action
-    this.recorder?.startRecording()
-  },
-  run(action: Action) {
-    /* ... */
-  },
-  destroy() {
-    this.hotkeys.destroy()
-  },
-}))
+  return {
+    formatForDisplay,
+    shortcuts: { save: 'Mod+S', undo: 'Mod+Z', search: ['G', 'S'] } as Record<Action, Hotkey>,
+    editing: null as Action | null,
+    recorder: null as AlpineHotkeyRecorder | null,
+    init() {
+      this.recorder = createHotkeyRecorder(hotkeys, {
+        maxSteps: Infinity,
+        onRecord: (hotkey) => {
+          if (this.editing) this.shortcuts = { ...this.shortcuts, [this.editing]: hotkey }
+          this.editing = null
+        },
+        onCancel: () => (this.editing = null),
+      })
+
+      // Register each action with its current hotkey
+      hotkeys.createHotkeys(() =>
+        Object.entries(this.shortcuts).map(([action, hotkey]) => ({
+          hotkey,
+          callback: () => this.run(action as Action),
+        })),
+      )
+    },
+    edit(action: Action) {
+      this.editing = action
+      this.recorder?.startRecording()
+    },
+    run(action: Action) {
+      /* ... */
+    },
+    destroy() {
+      hotkeys.destroy()
+    },
+  }
+})
 ```
 
 ```html

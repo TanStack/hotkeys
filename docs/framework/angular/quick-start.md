@@ -95,11 +95,11 @@ const saveHotkey: HotkeyChord = 'Mod+S'
 
 @Component({
   selector: 'app-save-button',
-  template: `<button (click)="save()">Save <kbd>{{ format(saveHotkey) }}</kbd></button>`,
+  template: `<button (click)="save()">Save <kbd>{{ formatForDisplay(saveHotkey) }}</kbd></button>`,
 })
 export class SaveButtonComponent {
   readonly saveHotkey = saveHotkey
-  readonly format = injectFormatForDisplay()
+  readonly formatForDisplay = injectFormatForDisplay()
 
   constructor() {
     injectHotkey(saveHotkey, () => this.save())

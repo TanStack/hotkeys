@@ -12,6 +12,8 @@ export * from './createHotkeyRegistrations'
 export * from './createHotkeyScopesState'
 export * from './createHotkeyHint'
 export * from './createFormatForDisplay'
+// Replaces the core export, to point components to the primitive
+export { formatForDisplay } from './formatForDisplay'
 export * from './createKeyboardLayout'
 export * from './appHotkeys'
 export * from './createHeldKeys'

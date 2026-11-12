@@ -14,8 +14,9 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 
 ```svelte
 <script lang="ts">
-  import { createHotkeyRecorder, formatForDisplay } from '@tanstack/svelte-hotkeys'
+  import { createHotkeyRecorder, getFormatForDisplay } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
@@ -35,7 +36,7 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 </div>
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `getFormatForDisplay`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -57,8 +58,9 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 
 ```svelte
 <script lang="ts">
-  import { createHotkeyRecorder, formatForDisplay } from '@tanstack/svelte-hotkeys'
+  import { createHotkeyRecorder, getFormatForDisplay } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -171,13 +173,14 @@ For a few hotkeys in one component, `$state` is enough:
   import {
     createHotkeyRecorder,
     createHotkeys,
-    formatForDisplay,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
 
   const actions = { save, undo, search }
   type Action = keyof typeof actions
 
+  const formatForDisplay = getFormatForDisplay()
   let shortcuts = $state<Record<Action, Hotkey>>({
     save: 'Mod+S',
     undo: 'Mod+Z',

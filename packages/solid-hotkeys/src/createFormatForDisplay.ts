@@ -10,9 +10,10 @@ import { useDefaultHotkeysOptionsSource } from './defaultOptions'
  * changes. An explicit `platform` option wins.
  *
  * Physical bindings such as `[KeyQ]` are labeled with the character the key
- * types for this user, once the browser's keyboard layout has loaded, and JSX
- * updates when the layout arrives. See `createKeyboardLayout`. An explicit
- * `layoutMap` option wins.
+ * types for this user in Chromium browsers, once the keyboard layout has
+ * loaded, and JSX updates when the layout arrives. See `createKeyboardLayout`.
+ * An explicit `layoutMap` option wins. Firefox and Safari report no layout, so
+ * labels there keep the key's US character.
  *
  * Server-rendered apps should set the provider's `defaultOptions.platform`
  * from the request user agent with `detectPlatform(userAgent)`.
@@ -20,8 +21,8 @@ import { useDefaultHotkeysOptionsSource } from './defaultOptions'
  * @example
  * ```tsx
  * function SaveButton() {
- *   const format = createFormatForDisplay()
- *   return <kbd>{format('Mod+S')}</kbd>
+ *   const formatForDisplay = createFormatForDisplay()
+ *   return <kbd>{formatForDisplay('Mod+S')}</kbd>
  * }
  * ```
  */

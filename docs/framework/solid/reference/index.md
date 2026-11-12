@@ -25,6 +25,7 @@ title: "@tanstack/solid-hotkeys"
 
 ## Variables
 
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
 ## Functions

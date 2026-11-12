@@ -7,10 +7,10 @@
     hotkey = 'Mod+[KeyQ]',
     layoutMap,
   }: { hotkey?: DisplayHotkey; layoutMap?: KeyboardLayoutMap } = $props()
-  const format = getFormatForDisplay()
+  const formatForDisplay = getFormatForDisplay()
   const keyboard = getKeyboardLayout()
 </script>
 
-<kbd>{format(hotkey, { layoutMap })}</kbd><i
+<kbd>{formatForDisplay(hotkey, { layoutMap })}</kbd><i
   >{keyboard.layout?.get('KeyQ') ?? 'none'}</i
 >

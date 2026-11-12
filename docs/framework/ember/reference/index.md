@@ -30,6 +30,10 @@ title: "@tanstack/ember-hotkeys"
 - [EmberHotkeyTarget](type-aliases/EmberHotkeyTarget.md)
 - [MaybeGetter](type-aliases/MaybeGetter.md)
 
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
+
 ## Functions
 
 - [createHotkeysScope](functions/createHotkeysScope.md)

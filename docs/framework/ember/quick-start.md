@@ -77,23 +77,24 @@ shortcuts: Array<EmberHotkeyDefinition> = [
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `useFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```gts
 import Component from '@glimmer/component'
 import { on } from '@ember/modifier'
-import { formatForDisplay, useHotkey } from '@tanstack/ember-hotkeys'
+import { useFormatForDisplay, useHotkey } from '@tanstack/ember-hotkeys'
 import type { HotkeyChord } from '@tanstack/ember-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 export default class SaveButton extends Component {
+  formatForDisplay = useFormatForDisplay()
   save = () => saveDocument()
 
   <template>
     {{useHotkey saveHotkey this.save}}
     <button type="button" {{on 'click' this.save}}>
-      Save <kbd>{{formatForDisplay saveHotkey}}</kbd>
+      Save <kbd>{{this.formatForDisplay saveHotkey}}</kbd>
     </button>
   </template>
 }
@@ -101,7 +102,7 @@ export default class SaveButton extends Component {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server with FastBoot, use `useFormatForDisplay` with a scope's `platform` instead, so the server's HTML shows the user's platform, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server with FastBoot, pass `useFormatForDisplay` a scope whose `platform` is set from the request, so the server's HTML shows the user's labels, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your components
 

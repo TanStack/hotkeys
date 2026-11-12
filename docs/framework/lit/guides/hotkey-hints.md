@@ -12,8 +12,8 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import {
+  FormatForDisplayController,
   HotkeyHintController,
-  formatForDisplay,
   hotkey,
 } from '@tanstack/lit-hotkeys'
 
@@ -22,6 +22,7 @@ const saveHotkey = 'Mod+S'
 @customElement('save-button')
 class SaveButton extends LitElement {
   private hint = new HotkeyHintController(this, saveHotkey)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   @hotkey(saveHotkey)
   save() {
@@ -31,7 +32,7 @@ class SaveButton extends LitElement {
   render() {
     return html`
       <button @click=${() => this.save()}>
-        Save ${this.hint.value ? html`<kbd>${formatForDisplay(saveHotkey)}</kbd>` : ''}
+        Save ${this.hint.value ? html`<kbd>${this.formatForDisplay.format(saveHotkey)}</kbd>` : ''}
       </button>
     `
   }
@@ -76,8 +77,8 @@ import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HotkeyHintController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 
@@ -86,10 +87,11 @@ class ShortcutHint extends LitElement {
   @property() hotkeyId!: AppHotkeyId
   private app = new AppHotkeysController(this)
   private hint = new HotkeyHintController(this, () => this.app.appHotkeys[this.hotkeyId])
+  private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
     const { hotkey } = this.app.appHotkeys[this.hotkeyId]
-    return this.hint.value && hotkey ? html`<kbd>${formatForDisplay(hotkey)}</kbd>` : ''
+    return this.hint.value && hotkey ? html`<kbd>${this.formatForDisplay.format(hotkey)}</kbd>` : ''
   }
 }
 ```

@@ -5,7 +5,6 @@ import '@lit-labs/ssr/lib/install-global-dom-shim.js'
 import { LitElementRenderer, render } from '@lit-labs/ssr'
 import { collectResultSync } from '@lit-labs/ssr/lib/render-result.js'
 import {
-  formatForDisplay,
   getHotkeyManager,
   getKeyStateTracker,
   getKeyboardLayoutStore,
@@ -14,6 +13,7 @@ import { LitElement, html } from 'lit'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
   HotkeyController,
@@ -25,6 +25,7 @@ import {
   KeyboardLayoutController,
 } from '../src/controllers'
 import { hotkey } from '../src/decorators'
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
 
 /** Counts the live subscribers on a store from now on. */
 function countSubscribers(store: {
@@ -48,6 +49,9 @@ function countSubscribers(store: {
 }
 
 class ServerElement extends LitElement {
+  static override properties = { platform: {} }
+  declare platform?: HotkeyPlatform
+
   app = new AppHotkeysController(this)
   codes = new HeldKeyCodesController(this)
   keys = new HeldKeysController(this)
@@ -58,18 +62,17 @@ class ServerElement extends LitElement {
   scopes = new HotkeyScopesStateController(this)
   shift = new KeyHoldController(this, 'Shift')
   layout = new KeyboardLayoutController(this)
+  formatForDisplay = new FormatForDisplayController(this, () => ({
+    platform: this.platform,
+  }))
 
   print() {}
 
   override render() {
-    const layoutMap = this.layout.value ?? undefined
+    const key = this.layout.value?.get('KeyQ') ?? 'q'
     return html`<p>Server</p>
-      <kbd
-        >${formatForDisplay('Mod+[KeyQ]', {
-          platform: 'windows',
-          layoutMap,
-        })}</kbd
-      >`
+      <kbd>${this.formatForDisplay.format('Mod+[KeyQ]')}</kbd>
+      <kbd>${key}</kbd>`
   }
 }
 // `@hotkey('Mod+P') print() {}`, applied by hand: test files aren't compiled
@@ -107,7 +110,7 @@ describe('server rendering with the @lit-labs/ssr DOM shim', () => {
     let markup = ''
     for (let i = 0; i < 100; i++) {
       markup = collectResultSync(
-        render(html`<server-element></server-element>`),
+        render(html`<server-element platform="windows"></server-element>`),
       )
     }
 
@@ -121,10 +124,20 @@ describe('server rendering with the @lit-labs/ssr DOM shim', () => {
     const store = getKeyboardLayoutStore()
     store.setState(() => new Map([['KeyQ', 'a']]))
     const markup = collectResultSync(
-      render(html`<server-element></server-element>`),
+      render(html`<server-element platform="windows"></server-element>`),
     )
     store.setState(() => null)
     expect(markup).toContain('Ctrl+Q')
     expect(markup).not.toContain('Ctrl+A')
+    expect(markup).toContain('<kbd><!--lit-part-->q<!--/lit-part--></kbd>')
+  })
+
+  it('formats labels on the platform from a host property', () => {
+    const markup = (platform: HotkeyPlatform) =>
+      collectResultSync(
+        render(html`<server-element platform=${platform}></server-element>`),
+      )
+    expect(markup('mac')).toContain('⌘ Q')
+    expect(markup('windows')).toContain('Ctrl+Q')
   })
 })

@@ -2,7 +2,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
   useHotkeyRegistrations,
@@ -240,6 +240,7 @@ function App() @{
 }
 
 function RegistrationsViewer() @{
+  const formatForDisplay = useFormatForDisplay()
   const { hotkeys } = useHotkeyRegistrations()
   <section className="demo-section">
         <h2>Live Registrations</h2>
@@ -312,6 +313,7 @@ function ShortcutListItem({
   onCancel,
   onDelete,
 }: ShortcutListItemProps) @{
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
   <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
         <div className="shortcut-item-content">

@@ -2,7 +2,7 @@
 
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
-  formatForDisplay,
+  createFormatForDisplay,
   createHeldKeys,
   createHotkeyRegistrations,
   createHotkeys,
@@ -68,6 +68,7 @@ const INITIAL_SHORTCUTS: Array<Shortcut> = [
 ]
 
 function App() {
+  const formatForDisplay = createFormatForDisplay()
   const [shortcuts, setShortcuts] =
     createSignal<Array<Shortcut>>(INITIAL_SHORTCUTS)
 
@@ -310,6 +311,7 @@ const registrations = createHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = createFormatForDisplay()
   const registrations = createHotkeyRegistrations()
 
   return (
@@ -390,6 +392,7 @@ function ShortcutListItem(props: {
   onCancel: () => void
   onDelete: () => void
 }) {
+  const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
 
   return (

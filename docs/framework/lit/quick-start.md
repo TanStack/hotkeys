@@ -91,18 +91,20 @@ class MyApp extends LitElement {
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `FormatForDisplayController`. Format the same value you register, so the label always matches the binding:
 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { formatForDisplay, hotkey } from '@tanstack/lit-hotkeys'
+import { FormatForDisplayController, hotkey } from '@tanstack/lit-hotkeys'
 import type { HotkeyChord } from '@tanstack/lit-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 @customElement('save-button')
 class SaveButton extends LitElement {
+  private formatForDisplay = new FormatForDisplayController(this)
+
   @hotkey(saveHotkey)
   save() {
     saveDocument()
@@ -111,7 +113,7 @@ class SaveButton extends LitElement {
   render() {
     return html`
       <button @click=${this.save}>
-        Save <kbd>${formatForDisplay(saveHotkey)}</kbd>
+        Save <kbd>${this.formatForDisplay.format(saveHotkey)}</kbd>
       </button>
     `
   }
@@ -120,7 +122,7 @@ class SaveButton extends LitElement {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server with Lit SSR, pass the user's `platform` to `formatForDisplay`, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server with Lit SSR, set the controller's `platform` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your elements
 

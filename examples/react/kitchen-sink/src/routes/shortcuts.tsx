@@ -1,13 +1,13 @@
 import {
-  formatForDisplay,
   isHotkeySequence,
   useAppHotkeyList,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/react-hotkeys'
 import { createLazyRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { formatHotkey, useActivity } from '../shared'
+import { useActivity, useFormatHotkey } from '../shared'
 import type {
   AppHotkeyId,
   Hotkey,
@@ -42,6 +42,8 @@ const statusLabels = {
  * `onCustomHotkeysChange`; this route only calls `useCustomHotkeys`.
  */
 function Shortcuts() {
+  const formatHotkey = useFormatHotkey()
+  const formatForDisplay = useFormatForDisplay()
   const log = useActivity()
   const items = useAppHotkeyList()
   const {

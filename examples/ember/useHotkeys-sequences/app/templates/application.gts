@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking'
 import { on } from '@ember/modifier'
 
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeys,
   useHotkey,
   useHotkeyRegistrations,
@@ -356,6 +356,7 @@ class App extends Component {
 }
 
 class RegistrationsViewer extends Component {
+  formatForDisplay = useFormatForDisplay()
   registrationsState = useHotkeyRegistrations(this)
   get hotkeys() {
     return this.registrationsState.hotkeys
@@ -384,7 +385,7 @@ class RegistrationsViewer extends Component {
         <tbody>
           {{#each this.hotkeys key='id' as |reg|}}<tr>
               <td>
-                <kbd>{{formatForDisplay reg.hotkey}}</kbd>
+                <kbd>{{this.formatForDisplay reg.hotkey}}</kbd>
               </td>
               <td>{{or reg.options.meta.name '—'}}</td>
               <td class='description-cell'>

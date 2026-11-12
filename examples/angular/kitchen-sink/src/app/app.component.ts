@@ -9,7 +9,7 @@ import {
   viewChild,
 } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHeldKeyCodes,
   injectHeldKeys,
   injectHotkey,
@@ -51,13 +51,13 @@ export class Activity {
   selector: 'shortcut-hint',
   standalone: true,
   template: `@if (visible()) {
-    <kbd>{{ format(hotkey()) }}</kbd>
+    <kbd>{{ formatForDisplay(hotkey()) }}</kbd>
   }`,
 })
 export class Hint {
   readonly hotkey = input<Hotkey>('Escape')
   readonly visible = injectHotkeyHint(() => this.hotkey())
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 }
 
 @Component({
@@ -127,8 +127,8 @@ export class Tickets {
       ></textarea>
     </label>
     <p>
-      <kbd>{{ format('Mod+[KeyS]') }}</kbd> Save;
-      <kbd>{{ format('Alt+[Backspace]') }}</kbd> Clear
+      <kbd>{{ formatForDisplay('Mod+[KeyS]') }}</kbd> Save;
+      <kbd>{{ formatForDisplay('Alt+[Backspace]') }}</kbd> Clear
     </p>
   </fieldset>`,
 })
@@ -138,7 +138,7 @@ export class EditorPane {
   readonly text = signal('One shortcut, two independent editors.')
   readonly saves = signal(0)
   readonly activity = inject(Activity)
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   constructor() {
     injectHotkeys(
       () => [
@@ -279,8 +279,9 @@ export class Sequences {
   readonly sequences = computed(() =>
     this.registrations().filter((reg) => reg.kind === 'sequence'),
   )
+  readonly formatForDisplay = injectFormatForDisplay()
   label = (hotkey: Hotkey) =>
-    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   constructor() {
     // An array of chords registers a sequence.
     injectHotkey(
@@ -334,7 +335,7 @@ export class Sequences {
     >
     <h3>Single shortcut</h3>
     <p>
-      <kbd>{{ format(hotkey()) }}</kbd> — <code>{{ hotkey() }}</code>
+      <kbd>{{ formatForDisplay(hotkey()) }}</kbd> — <code>{{ hotkey() }}</code>
     </p>
     <button
       [disabled]="recorder.isRecording() || seq.isRecording()"
@@ -396,9 +397,9 @@ export class Recording {
   readonly idle = signal(false)
   readonly enter = signal(true)
   readonly activity = inject(Activity)
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   label = (hotkey: Hotkey) =>
-    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   setMode(value: string) {
     this.mode.set(value === 'key' || value === 'code' ? value : 'auto')
   }
@@ -504,7 +505,7 @@ export class Recording {
             <td>
               <code>{{ binding }}</code>
             </td>
-            <td>{{ format(binding, options()) }}</td>
+            <td>{{ formatForDisplay(binding, options()) }}</td>
             <td>
               @for (part of parts(binding); track $index) {
                 <kbd>{{ part }}</kbd>
@@ -534,9 +535,9 @@ export class Formatting {
     'Alt+[KeyS]',
     'Mod+[NumpadAdd]',
   ] as const
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   parts = (binding: Hotkey) =>
-    formatForDisplay(binding, { ...this.options(), parts: true })
+    this.formatForDisplay(binding, { ...this.options(), parts: true })
   setPlatform(value: string) {
     this.platform.set(value === 'mac' || value === 'linux' ? value : 'windows')
   }
@@ -648,8 +649,9 @@ export class AppComponent {
     () => Object.values(this.codes()).join(' + ') || 'None',
   )
   readonly registrations = injectHotkeyRegistrations()
+  readonly formatForDisplay = injectFormatForDisplay()
   bindingLabel = (reg: ReturnType<typeof this.registrations>[number]) =>
-    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   constructor() {
     const update = () => this.path.set(location.hash.slice(1) || '/')
     window.addEventListener('hashchange', update)

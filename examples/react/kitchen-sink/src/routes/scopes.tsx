@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-hotkeys'
 import { createLazyRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { Hint, Modal, formatHotkey, useActivity } from '../shared'
+import { Hint, Modal, useActivity, useFormatHotkey } from '../shared'
 
 export const Route = createLazyRoute('/scopes')({ component: ScopesRoute })
 
@@ -27,6 +27,7 @@ type Workspace = (typeof workspaces)[number]
  * stay mounted while only one handles hotkeys.
  */
 function Scopes() {
+  const formatHotkey = useFormatHotkey()
   const log = useActivity()
   const appHotkeys = useAppHotkeys()
   const [saves, setSaves] = useState(0)
@@ -186,6 +187,7 @@ function DetailsForm({
   onSave: (title: string) => void
   onClose: () => void
 }) {
+  const formatHotkey = useFormatHotkey()
   const appHotkeys = useAppHotkeys()
   const [draft, setDraft] = useState(title)
   useHotkey(appHotkeys['details.save'], () => onSave(draft))

@@ -4,11 +4,13 @@ import {
   defineAppHotkeys,
   getHotkeyManager,
   getKeyStateTracker,
+  getKeyboardLayoutStore,
   provideAppHotkeys,
 } from '@tanstack/hotkeys'
 import { LitElement } from 'lit'
 import { afterEach, expect, it, vi } from 'vitest'
 import { AppHotkeysController } from '../src/controllers/app-hotkeys'
+import { FormatForDisplayController } from '../src/controllers/format-for-display'
 import { HeldKeyCodesController } from '../src/controllers/held-key-codes'
 import { HeldKeysController } from '../src/controllers/held-keys'
 import { HotkeyController } from '../src/controllers/hotkey'
@@ -48,6 +50,7 @@ afterEach(() => {
   document.body.replaceChildren()
   HotkeyManager.resetInstance()
   KeyStateTracker.resetInstance()
+  getKeyboardLayoutStore().setState(() => null)
 })
 
 it('reads keys already held when the host connects and after it moves', async () => {
@@ -157,6 +160,11 @@ const readControllers: Array<
       return recorder
     },
     () => afterRemove(),
+  ],
+  [
+    'FormatForDisplayController',
+    (h) => new FormatForDisplayController(h),
+    () => getKeyboardLayoutStore().setState(() => new Map([['KeyQ', 'a']])),
   ],
 ]
 let afterRemove = () => {}

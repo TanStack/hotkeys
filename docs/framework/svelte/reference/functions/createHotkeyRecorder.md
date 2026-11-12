@@ -11,7 +11,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SvelteHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L102)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L103)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -34,6 +34,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```svelte
 <script lang="ts">
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
@@ -49,7 +50,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L105)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L106)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -72,6 +73,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```svelte
 <script lang="ts">
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
@@ -87,7 +89,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L110)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L111)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -110,6 +112,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```svelte
 <script lang="ts">
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
@@ -125,7 +128,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L113)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:114](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L114)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -148,6 +151,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```svelte
 <script lang="ts">
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
@@ -163,7 +167,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L116)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L117)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -186,6 +190,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```svelte
 <script lang="ts">
+  const formatForDisplay = getFormatForDisplay()
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>

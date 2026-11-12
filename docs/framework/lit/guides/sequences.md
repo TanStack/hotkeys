@@ -169,9 +169,11 @@ The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys
 
 ## Show sequences in your UI
 
-`formatForDisplay` formats each step and joins them with a space:
+The `format` function of a `FormatForDisplayController` formats each step and joins them with a space:
 
 ```ts
+const formatForDisplay = this.formatForDisplay.format
+
 formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
 formatForDisplay(['G', 'H'], { sequenceSeparator: ' then ' }) // 'G then H'
 ```
@@ -184,14 +186,15 @@ A sequence's first steps have no visible effect, so show users what they've pres
 import { LitElement, html, nothing } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import {
+  FormatForDisplayController,
   HotkeyRegistrationsController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 import type { HotkeySequenceRegistrationView } from '@tanstack/lit-hotkeys'
 
 @customElement('pending-keys')
 class PendingKeys extends LitElement {
   private registrations = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
     const longest = this.registrations.hotkeys
@@ -205,7 +208,7 @@ class PendingKeys extends LitElement {
     const pressed = longest.hotkey.slice(0, longest.matchedStepCount)
 
     return html`<p role="status">
-      <kbd>${formatForDisplay(pressed)}</kbd> was pressed. Waiting for the next
+      <kbd>${this.formatForDisplay.format(pressed)}</kbd> was pressed. Waiting for the next
       key.
     </p>`
   }

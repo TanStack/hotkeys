@@ -4,15 +4,42 @@ id: formatting-display
 description: Format Lit hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-> [!NOTE]
-> Showing hotkey labels on the page is one of the few parts of TanStack Hotkeys that needs extra care in server-rendered apps. The server doesn't know the user's operating system, so a label it renders can be wrong for the user, and Lit keeps the server's text after hydration. Lit has no provider, so pass the platform to `formatForDisplay` yourself. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `FormatForDisplayController` has a `format` function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
-Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. In the browser, the controller detects the platform. With Lit SSR, set the controller's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
 
 ## Format a hotkey
 
+Create a `FormatForDisplayController` as a class field. Its `format` function formats a hotkey:
+
 ```ts
-import { formatForDisplay } from '@tanstack/lit-hotkeys'
+import { LitElement, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
+import { FormatForDisplayController } from '@tanstack/lit-hotkeys'
+
+@customElement('save-button')
+class SaveButton extends LitElement {
+  private formatForDisplay = new FormatForDisplayController(this)
+
+  render() {
+    return html`
+      <button>
+        Save <kbd>${this.formatForDisplay.format('Mod+S')}</kbd>
+      </button>
+    `
+  }
+}
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The controller fills in two things for you:
+
+- **The platform** from the controller's `platform` option, or the detected platform without one.
+- **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
+
+Create the controller once, then call `format` anywhere in the element, including in loops and conditions. Options go in its second argument. `format` needs no `this`, so you can put it in a variable. The examples in this guide do, and pass `platform`, so each one has a single result:
+
+```ts
+const formatForDisplay = this.formatForDisplay.format
 
 formatForDisplay('Mod+S', { platform: 'mac' }) // '⌘ S'
 formatForDisplay('Mod+[KeyS]', { platform: 'mac' }) // '⌘ S'
@@ -22,9 +49,9 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. The extra ISO and JIS keys, which have no US key, use their keycap legends: `[IntlBackslash]` shows `\`, `[IntlRo]` shows `\`, and `[IntlYen]` shows `¥`. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+A `platform` you pass wins over the controller's. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
-`formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+The function accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
 ## Render individual keycaps
 
@@ -75,37 +102,46 @@ An empty separator joins labels directly. `undefined` or `null` uses the platfor
 
 ## Label physical keys for the user's keyboard
 
-A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Lit has no label helper, so create a `KeyboardLayoutController` and pass its `value` to `formatForDisplay` as `layoutMap`. Labels then follow the user's keyboard where the browser reports its layout:
+A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Labels from `FormatForDisplayController` follow the user's keyboard where the browser reports its layout:
 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { KeyboardLayoutController, formatForDisplay } from '@tanstack/lit-hotkeys'
+import { FormatForDisplayController } from '@tanstack/lit-hotkeys'
 
 @customElement('move-up')
 class MoveUp extends LitElement {
-  private layout = new KeyboardLayoutController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
-    const layoutMap = this.layout.value ?? undefined
     // 'W' on QWERTY, 'Z' on AZERTY
-    return html`<kbd>${formatForDisplay('[KeyW]', { layoutMap })}</kbd>`
+    return html`<kbd>${this.formatForDisplay.format('[KeyW]')}</kbd>`
   }
 }
 ```
 
-- **Creating the controller is what loads the layout.** The layout loads when the first element with a controller connects. The first render shows the fallback label, and so does server HTML. The label updates when the layout arrives. Later elements get it right after their first render, before the browser paints.
-- **Only Chromium browsers report a layout**, such as Chrome and Edge. In Firefox and Safari, labels keep their fallback. In a cross-origin iframe, the browser also refuses unless the frame has `allow="keyboard-map"`.
+> [!IMPORTANT]
+> **Layout labels work only in Chromium browsers**, such as Chrome and Edge. Firefox and Safari don't report the keyboard layout, so labels there keep the fallback. For `[KeyQ]`, a French AZERTY user sees `A` in Chrome and `Q` in Firefox. In a cross-origin iframe, Chromium browsers also refuse unless the frame has `allow="keyboard-map"`.
+
+- **The layout loads when the first element with a controller connects.** The first render shows the fallback label, and so does server HTML. The label updates when the layout arrives. Later elements get it right after their first render, before the browser paints.
 - **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
 - **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts. This stops when no element with a controller is connected.
 
-The controller's `value` is the loaded layout, or `null`. Use it also for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
+A `KeyboardLayoutController` has the loaded layout, or `null`, as its `value`, for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
 
-The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, don't create a `KeyboardLayoutController`. `formatForDisplay` never loads the layout.
+The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, set `keyboardLayout: false` in the controller's options. Lit has no provider, so set it on each controller:
+
+```ts
+private formatForDisplay = new FormatForDisplayController(this, {
+  keyboardLayout: false,
+})
+```
+
+A `KeyboardLayoutController` always loads the layout, so don't create one either.
 
 ### Supply your own layout
 
-`formatForDisplay` takes the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
+Pass the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -114,7 +150,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works. `formatForDisplay` uses only the `layoutMap` you pass. Outside an element, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 
@@ -128,31 +164,37 @@ formatForDisplay('Mod+[KeyQ]', {
 
 ## Format labels in server-rendered apps
 
-With Lit SSR (`@lit-labs/ssr`), the server doesn't know the user's platform. A label formatted on the server without a `platform` uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. Hydration doesn't fix it: Lit expects the browser's first render to match the server's HTML, and keeps the server's text.
+With Lit SSR (`@lit-labs/ssr`), the server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. Hydration doesn't fix it: Lit expects the browser's first render to match the server's HTML, and keeps the server's text. To render the right label from the start:
 
-Lit has no provider, so pass the platform yourself. Give the element a `platform` property, and pass it to `formatForDisplay`:
+1. Give the element a `platform` property, and pass the controller a function that reads it. Lit has no provider, so the controller's options are where the platform goes.
+2. Read the request's `User-Agent` header on the server, and set the element's `platform` attribute to `detectPlatform(userAgent)`.
 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { formatForDisplay } from '@tanstack/lit-hotkeys'
+import { FormatForDisplayController } from '@tanstack/lit-hotkeys'
 import type { HotkeyPlatform } from '@tanstack/lit-hotkeys'
 
 @customElement('save-button')
 class SaveButton extends LitElement {
   @property() platform?: HotkeyPlatform
 
+  // The function is read for each label, so it follows the property
+  private formatForDisplay = new FormatForDisplayController(this, () => ({
+    platform: this.platform,
+  }))
+
   render() {
     return html`
       <button>
-        Save <kbd>${formatForDisplay('Mod+S', { platform: this.platform })}</kbd>
+        Save <kbd>${this.formatForDisplay.format('Mod+S')}</kbd>
       </button>
     `
   }
 }
 ```
 
-On the server, set the attribute from the request's `User-Agent` header:
+On the server, set the attribute:
 
 ```ts
 import { render } from '@lit-labs/ssr'
@@ -163,25 +205,40 @@ const platform = detectPlatform(userAgent)
 const result = render(html`<save-button platform=${platform}></save-button>`)
 ```
 
-The attribute is part of the server's HTML, so the element reads the same `platform` when it upgrades in the browser. Pass it on to child elements that show labels, such as `.platform=${this.platform}`. An element that renders only in the browser can call `formatForDisplay(hotkey)` without a platform.
+Every label in the element then uses the property's platform. A `platform` passed to `format` wins over it.
 
-A `KeyboardLayoutController` has no layout on the server or in an element's first render, so labels that use it hydrate unchanged. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
+The attribute is part of the server's HTML, so the element reads the same `platform` when it upgrades in the browser. Pass it on to child elements that show labels, such as `.platform=${this.platform}`. An element that renders only in the browser needs no `platform`: the controller detects it.
+
+Labels have no keyboard layout on the server or in an element's first render, so they hydrate unchanged. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
 
 Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
+## Format outside an element
+
+`FormatForDisplayController` needs a host element. Some code that builds labels has none, such as a helper function, a test, or a plain module. There, call the plain `formatForDisplay` function and pass the platform yourself:
+
+```ts
+import { formatForDisplay } from '@tanstack/lit-hotkeys'
+
+formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
+```
+
+The plain function takes the same options as the controller's `format`. It doesn't read a controller's options, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+
+The export is marked deprecated so that your editor points element code to the controller. Outside an element, it is the function to use.
 
 ## Parse, compare, and store hotkeys
 
 `parseHotkey` returns each chord's key, as either a logical `key` or a physical `code`, plus its modifiers with `Mod` resolved. Check which one you have before reading it:
 
 ```ts
-import { formatForDisplay, normalizeHotkey, parseHotkey } from '@tanstack/lit-hotkeys'
+import { normalizeHotkey, parseHotkey } from '@tanstack/lit-hotkeys'
 
 const parsed = parseHotkey('Mod+[KeyS]', 'mac')
 if (parsed.code !== undefined) {
   console.log(parsed.code) // 'KeyS'; parsed.key is undefined
 }
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
-formatForDisplay(stored, { platform: 'windows' }) // 'Ctrl+S'
 ```
 
 A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.

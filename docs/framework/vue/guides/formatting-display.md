@@ -4,28 +4,42 @@ id: formatting-display
 description: Format Vue hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-> [!WARNING]
-> **Server rendering? Don't render labels with `formatForDisplay`.** It doesn't read the provider's `platform`, so without a `platform` option it renders Linux labels on the server, such as `Ctrl+S`. Mac users then get `⌘ S` in the browser and a hydration error. Use `useFormatForDisplay()` instead, and set the provider's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `useFormatForDisplay` returns a function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
-Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `formatForDisplay` accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. `useFormatForDisplay` works wherever your labels render:
 
-A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
-
-| Where labels render | Use |
+| Where labels render | What to set up |
 | --- | --- |
-| Only in the browser, such as a Vite single-page app | `formatForDisplay(hotkey)` |
-| On the server, then hydrated, such as with Nuxt | `useFormatForDisplay()`, with the provider's `platform` set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
-| In a static or prerendered page, such as with VitePress | `formatForDisplay` inside a client-only wrapper. See [Static and prerendered pages](#static-and-prerendered-pages) |
-| Anywhere, for a platform you already know | `formatForDisplay(hotkey, { platform })` |
+| Only in the browser, such as a Vite single-page app | Nothing |
+| On the server, then hydrated, such as with Nuxt | The provider's `platform`, set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
+| In a static or prerendered page, such as with VitePress | A client-only wrapper. See [Static and prerendered pages](#static-and-prerendered-pages) |
 
 ## Format a hotkey
 
-> [!IMPORTANT]
-> `formatForDisplay` never reads the provider's `platform`. Use it for labels that render only in the browser, or pass `platform` yourself. In a server-rendered app, or when the provider sets `platform`, use `useFormatForDisplay()` instead. It returns a function with the same options.
+Call `useFormatForDisplay` in `setup` or `<script setup>`. It returns the function that formats a hotkey:
+
+```vue
+<script setup lang="ts">
+import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
+
+const formatForDisplay = useFormatForDisplay()
+</script>
+
+<template>
+  <button>
+    Save <kbd>{{ formatForDisplay('Mod+S') }}</kbd>
+  </button>
+</template>
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The composable fills in two things for you:
+
+- **The platform** from the nearest `HotkeysProvider`, or the detected platform without one.
+- **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
+
+Call the composable once, then call the function anywhere, including in templates, loops, and computed properties. Options go in its second argument. The examples in this guide pass `platform`, so each one has a single result:
 
 ```ts
-import { formatForDisplay } from '@tanstack/vue-hotkeys'
-
 formatForDisplay('Mod+S', { platform: 'mac' }) // '⌘ S'
 formatForDisplay('Mod+[KeyS]', { platform: 'mac' }) // '⌘ S'
 formatForDisplay({ code: 'KeyS', mod: true }, { platform: 'windows' }) // 'Ctrl+S'
@@ -34,9 +48,9 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. The extra ISO and JIS keys, which have no US key, use their keycap legends: `[IntlBackslash]` shows `\`, `[IntlRo]` shows `\`, and `[IntlYen]` shows `¥`. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+A `platform` you pass wins over the provider's. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
-`formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+The function accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
 ## Render individual keycaps
 
@@ -93,17 +107,19 @@ A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a 
 <script setup lang="ts">
 import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 
-const format = useFormatForDisplay()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>
   <!-- 'W' on QWERTY, 'Z' on AZERTY -->
-  <kbd>{{ format('[KeyW]') }}</kbd>
+  <kbd>{{ formatForDisplay('[KeyW]') }}</kbd>
 </template>
 ```
 
+> [!IMPORTANT]
+> **Layout labels work only in Chromium browsers**, such as Chrome and Edge. Firefox and Safari don't report the keyboard layout, so labels there keep the fallback. For `[KeyQ]`, a French AZERTY user sees `A` in Chrome and `Q` in Firefox. In a cross-origin iframe, Chromium browsers also refuse unless the frame has `allow="keyboard-map"`.
+
 - **The layout loads after the first label mounts.** The first render shows the fallback label, and so does server HTML. The label updates when the layout arrives, and later labels have it at once.
-- **Only Chromium browsers report a layout**, such as Chrome and Edge. In Firefox and Safari, labels keep their fallback. In a cross-origin iframe, the browser also refuses unless the frame has `allow="keyboard-map"`.
 - **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
 - **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts.
 
@@ -119,7 +135,7 @@ The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, set
 
 ### Supply your own layout
 
-`formatForDisplay` takes the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
+Pass the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -128,7 +144,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout. Outside Vue, `formatForDisplay` uses only the `layoutMap` you pass: call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 
@@ -145,7 +161,7 @@ formatForDisplay('Mod+[KeyQ]', {
 The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML and `⌘ S` once Vue hydrates, with a hydration mismatch. To render the right label from the start:
 
 1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
-2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1.
+2. Format labels with `useFormatForDisplay()`. It reads the provider, so it uses the platform from step 1.
 
 ```vue
 <script setup lang="ts">
@@ -166,19 +182,19 @@ const platform = detectPlatform(userAgent)
 import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 
 // Call it in setup, like any composable
-const format = useFormatForDisplay()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>
   <ul>
     <li v-for="command in commands" :key="command.id">
-      {{ command.name }} <kbd>{{ format(command.hotkey) }}</kbd>
+      {{ command.name }} <kbd>{{ formatForDisplay(command.hotkey) }}</kbd>
     </li>
   </ul>
 </template>
 ```
 
-`useFormatForDisplay` returns a function with the same options as `formatForDisplay`. Call the composable once in `setup`, then call the function anywhere, including in templates, loops, and computed properties. The function reads the provider's `platform` each time you call it, so labels update when the platform changes. A `platform` passed to the function wins over the provider's.
+Call the composable once in `setup`, then call the function anywhere, including in templates, loops, and computed properties. The function reads the provider's `platform` each time you call it, so labels update when the platform changes. A `platform` passed to the function wins over the provider's.
 
 In the browser, `detectPlatform()` reads the browser's own `navigator`, so the server and the browser get the same platform for practically every user. The provider's `platform` is also the default platform for hotkeys and recorders inside it. The provider that holds `appHotkeys` also compares app hotkeys on its platform, such as for conflicts. An inner provider inherits it.
 
@@ -303,13 +319,14 @@ The [Astro example](../examples/useFormatForDisplay-astro) shows this setup.
 
 ### Render a label only in the browser
 
-To skip server rendering for a label instead, render it after the component mounts. In the browser, plain `formatForDisplay` detects the platform:
+To skip server rendering for a label instead, render it after the component mounts. Without a provider `platform`, the function from `useFormatForDisplay` detects the platform in the browser:
 
 ```vue
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { formatForDisplay } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 
+const formatForDisplay = useFormatForDisplay()
 const mounted = ref(false)
 onMounted(() => {
   mounted.value = true
@@ -337,17 +354,18 @@ A fallback with the label's width keeps the layout from shifting.
 
 ### Static and prerendered pages
 
-A page rendered at build time has no request and no user, so neither `formatForDisplay` nor `useFormatForDisplay` can know the platform. This includes `nuxt generate`, Nuxt routes with `prerender: true` in `routeRules`, VitePress sites, and Astro's default static output. Render platform-specific labels in a client-only wrapper, as above. Without one, Mac and Windows users get `'linux'` labels in the HTML and a hydration mismatch.
+A page rendered at build time has no request and no user, so `useFormatForDisplay` can't know the platform. This includes `nuxt generate`, Nuxt routes with `prerender: true` in `routeRules`, VitePress sites, and Astro's default static output. Render platform-specific labels in a client-only wrapper, as above. Without one, Mac and Windows users get `'linux'` labels in the HTML and a hydration mismatch.
 
 For example, a VitePress site can show shortcut labels in Markdown with a global component:
 
 ```vue
 <!-- .vitepress/theme/Shortcut.vue -->
 <script setup lang="ts">
-import { formatForDisplay } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
 defineProps<{ hotkey: Hotkey }>()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>
@@ -383,19 +401,32 @@ The [VitePress example](../examples/useFormatForDisplay-vitepress) shows labels 
 
 In development, formatting a label on the server without a platform logs a warning once. Without a platform, the server renders `'linux'` labels, so users on macOS and Windows get a different label after hydration. If you develop on Linux, you won't see the problem yourself. The warning names the missing setting. It isn't included in production builds.
 
+## Format outside a component
+
+`useFormatForDisplay` is a composable, so call it in a component's `setup`. Some code that builds labels isn't a component, such as a test or a plain module. There, call the plain `formatForDisplay` function and pass the platform yourself:
+
+```ts
+import { formatForDisplay } from '@tanstack/vue-hotkeys'
+
+formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
+```
+
+The plain function takes the same options as the function from the composable. It doesn't read the provider, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+
+The export is marked deprecated so that your editor points component code to the composable. Outside a component, it is the function to use.
+
 ## Parse, compare, and store hotkeys
 
 `parseHotkey` returns each chord's key, as either a logical `key` or a physical `code`, plus its modifiers with `Mod` resolved. Check which one you have before reading it:
 
 ```ts
-import { formatForDisplay, normalizeHotkey, parseHotkey } from '@tanstack/vue-hotkeys'
+import { normalizeHotkey, parseHotkey } from '@tanstack/vue-hotkeys'
 
 const parsed = parseHotkey('Mod+[KeyS]', 'mac')
 if (parsed.code !== undefined) {
   console.log(parsed.code) // 'KeyS'; parsed.key is undefined
 }
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
-formatForDisplay(stored, { platform: 'windows' }) // 'Ctrl+S'
 ```
 
 A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.

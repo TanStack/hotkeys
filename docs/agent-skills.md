@@ -107,7 +107,7 @@ Open a fresh session in your coding agent and ask it to build something with Tan
 You should see:
 
 - The agent registers shortcuts with the adapter API, such as `useHotkey('Mod+S', ...)`, instead of a `keydown` listener.
-- It uses `Mod` and `formatForDisplay` instead of `isMac` checks and hand-written `⌘`/`Ctrl` labels.
+- It uses `Mod` and the adapter's label primitive, such as `useFormatForDisplay`, instead of `isMac` checks and hand-written `⌘`/`Ctrl` labels.
 - It relies on the defaults for text inputs and `preventDefault` instead of reimplementing them.
 - The dialog's `Escape` is registered inside an `exclusive` scope with a per-instance name, instead of a "shortcuts enabled" flag.
 - Shortcuts that need a help dialog carry `meta: { name }`, or are declared as app hotkeys.

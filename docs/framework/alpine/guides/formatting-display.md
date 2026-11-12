@@ -4,13 +4,45 @@ id: formatting-display
 description: Format Alpine hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `createFormatForDisplay` returns a function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
 ## Format a hotkey
 
-```ts
-import { formatForDisplay } from '@tanstack/alpine-hotkeys'
+Call `createFormatForDisplay` on an owner from `createHotkeysScope`. It returns the function that formats a hotkey:
 
+```ts
+import Alpine from 'alpinejs'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
+
+Alpine.data('saveButton', () => {
+  const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
+
+  return {
+    get label() {
+      return formatForDisplay('Mod+S')
+    },
+    destroy() {
+      hotkeys.destroy()
+    },
+  }
+})
+```
+
+```html
+<button x-data="saveButton" type="button">
+  Save <kbd x-text="label"></kbd>
+</button>
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The function fills in two things for you:
+
+- **The platform** from the default options of `createHotkeysScope`, or the detected platform without one.
+- **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
+
+Call `createFormatForDisplay` once, then call the function anywhere in the component, including in loops and conditions. To call it from markup, such as `x-text="formatForDisplay(hotkey)"`, return the function from the component. Don't call `createFormatForDisplay` itself in a reactive expression, where each evaluation adds a new subscription. Options go in the function's second argument. The examples in this guide pass `platform`, so each one has a single result:
+
+```ts
 formatForDisplay('Mod+S', { platform: 'mac' }) // '⌘ S'
 formatForDisplay('Mod+[KeyS]', { platform: 'mac' }) // '⌘ S'
 formatForDisplay({ code: 'KeyS', mod: true }, { platform: 'windows' }) // 'Ctrl+S'
@@ -19,9 +51,15 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. The extra ISO and JIS keys, which have no US key, use their keycap legends: `[IntlBackslash]` shows `\`, `[IntlRo]` shows `\`, and `[IntlYen]` shows `¥`. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+A `platform` you pass wins over the owner's. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
-`formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+The function accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+
+To set the platform yourself, such as in a test, pass `platform` in the default options of `createHotkeysScope`. It is also the default platform for the owner's hotkeys and recorders:
+
+```ts
+const hotkeys = createHotkeysScope({ platform: 'mac' })
+```
 
 ## Render individual keycaps
 
@@ -72,20 +110,20 @@ An empty separator joins labels directly. `undefined` or `null` uses the platfor
 
 ## Label physical keys for the user's keyboard
 
-A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Alpine has no label helper, so create the layout state with `createKeyboardLayout` and pass its `value` to `formatForDisplay` as `layoutMap`. Labels then follow the user's keyboard where the browser reports its layout:
+A position, such as `[KeyQ]`, has a fallback label for a US keyboard: `Q`. On a French AZERTY keyboard, that key is labeled A. Labels from `createFormatForDisplay` follow the user's keyboard where the browser reports its layout:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('moveUp', () => {
   const hotkeys = createHotkeysScope()
-  const layout = hotkeys.createKeyboardLayout()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
 
   return {
     get label() {
       // 'W' on QWERTY, 'Z' on AZERTY
-      return formatForDisplay('[KeyW]', { layoutMap: layout.value ?? undefined })
+      return formatForDisplay('[KeyW]')
     },
     destroy() {
       hotkeys.destroy()
@@ -98,22 +136,27 @@ Alpine.data('moveUp', () => {
 <kbd x-data="moveUp" x-text="label"></kbd>
 ```
 
-- **Creating it is what loads the layout.** The layout loads when the first `createKeyboardLayout` runs. The label shows the fallback until the layout arrives, and later components have it at once.
-- **Only Chromium browsers report a layout**, such as Chrome and Edge. In Firefox and Safari, labels keep their fallback. In a cross-origin iframe, the browser also refuses unless the frame has `allow="keyboard-map"`.
+> [!IMPORTANT]
+> **Layout labels work only in Chromium browsers**, such as Chrome and Edge. Firefox and Safari don't report the keyboard layout, so labels there keep the fallback. For `[KeyQ]`, a French AZERTY user sees `A` in Chrome and `Q` in Firefox. In a cross-origin iframe, Chromium browsers also refuse unless the frame has `allow="keyboard-map"`.
+
+- **The layout loads when the first `createFormatForDisplay` runs.** The label shows the fallback until the layout arrives, and later components have it at once.
+- **Format in a getter or a template expression**, as `label` does above. Alpine runs it again when the layout arrives. A label stored as a plain property, such as `label: formatForDisplay('[KeyW]')`, keeps its first value.
 - **Only positions change.** Hotkeys that follow characters, such as `Mod+Q`, already show the right key. Matching and recording never use the layout.
-- **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts. This stops when every owner that created the state is destroyed.
+- **The layout is read again when the window regains focus**, because browsers send no event when the user switches layouts. This stops when every owner that created the function is destroyed.
 
-The state's `value` is the loaded layout, or `null`. Use it also for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
+`createKeyboardLayout` returns the loaded layout, or `null`, as a reactive `value`, for labels you draw yourself, such as an on-screen keyboard. It maps each code to the character the key types without modifiers, such as `KeyQ` to `a`.
 
-The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, don't call `createKeyboardLayout`, or set `keyboardLayout: false` in the default options of `createHotkeysScope`. The state's `value` is then `null`:
+The layout comes from `navigator.keyboard.getLayoutMap()`. To never call it, set `keyboardLayout: false` in the default options of `createHotkeysScope`:
 
 ```ts
 const hotkeys = createHotkeysScope({ keyboardLayout: false })
 ```
 
+Alpine has no provider, so the option applies to that owner. Share one options object between components to set it for all of them.
+
 ### Supply your own layout
 
-`formatForDisplay` takes the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
+Pass the same kind of map as `layoutMap`, for a layout your app already knows, such as one the user picked in settings:
 
 ```ts
 const layoutMap = new Map([['KeyQ', 'a']])
@@ -122,7 +165,7 @@ formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
 formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
-Any object with `get(code): string | undefined` works. `formatForDisplay` uses only the `layoutMap` you pass. Outside a component, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+Any object with `get(code): string | undefined` works. A `layoutMap` you pass wins over the loaded layout.
 
 Use `keyLabels` for your own labels, keyed by physical code or by key name:
 
@@ -136,21 +179,34 @@ formatForDisplay('Mod+[KeyQ]', {
 
 ## Labels in server templates
 
-Alpine runs only in the browser, so `formatForDisplay` detects the user's platform there. If your server templates, such as Laravel Blade or Rails views, also print shortcut labels, the server doesn't know the platform. Either let Alpine render those labels, such as with `x-text`, or detect the platform from the request's `User-Agent` header with the rules `detectPlatform` uses: `'mac'` if it contains `mac`, `'windows'` if it contains `win`, and `'linux'` otherwise, ignoring case.
+Alpine runs only in the browser, so labels from `createFormatForDisplay` use the platform detected there. If your server templates, such as Laravel Blade or Rails views, also print shortcut labels, the server doesn't know the platform. Either let Alpine render those labels, such as with `x-text`, or detect the platform from the request's `User-Agent` header with the rules `detectPlatform` uses: `'mac'` if it contains `mac`, `'windows'` if it contains `win`, and `'linux'` otherwise, ignoring case.
+
+## Format outside a component
+
+`createFormatForDisplay` needs an owner from `createHotkeysScope`. Some code that builds labels has none, such as a helper function, a test, or a plain module. There, call the plain `formatForDisplay` function and pass the platform yourself:
+
+```ts
+import { formatForDisplay } from '@tanstack/alpine-hotkeys'
+
+formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
+```
+
+The plain function takes the same options as the function from `createFormatForDisplay`. It doesn't read an owner's default options, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
+
+The export is marked deprecated so that your editor points component code to `createFormatForDisplay`. Outside a component, it is the function to use.
 
 ## Parse, compare, and store hotkeys
 
 `parseHotkey` returns each chord's key, as either a logical `key` or a physical `code`, plus its modifiers with `Mod` resolved. Check which one you have before reading it:
 
 ```ts
-import { formatForDisplay, normalizeHotkey, parseHotkey } from '@tanstack/alpine-hotkeys'
+import { normalizeHotkey, parseHotkey } from '@tanstack/alpine-hotkeys'
 
 const parsed = parseHotkey('Mod+[KeyS]', 'mac')
 if (parsed.code !== undefined) {
   console.log(parsed.code) // 'KeyS'; parsed.key is undefined
 }
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
-formatForDisplay(stored, { platform: 'windows' }) // 'Ctrl+S'
 ```
 
 A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.

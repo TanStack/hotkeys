@@ -19,8 +19,10 @@ const subscribe = () => () => {}
  * 'linux', then the client re-renders with the detected platform.
  *
  * Physical bindings such as `[KeyQ]` are labeled with the character the key
- * types for this user, once the browser's keyboard layout has loaded. See
- * `useKeyboardLayout`. A `layoutMap` passed to the returned function wins.
+ * types for this user in Chromium browsers, once the keyboard layout has
+ * loaded. See `useKeyboardLayout`. A `layoutMap` passed to the returned
+ * function wins. Firefox and Safari report no layout, so labels there keep the
+ * key's US character.
  *
  * Call the hook once at the top of the component; the returned function can
  * be called anywhere, such as in a loop or a condition. Server-rendered apps
@@ -30,10 +32,10 @@ const subscribe = () => () => {}
  * @example
  * ```tsx
  * function SaveButton() @{
- *   const format = useFormatForDisplay()
+ *   const formatForDisplay = useFormatForDisplay()
  *
  *   <button>
- *     Save <kbd>{format('Mod+S')}</kbd>
+ *     Save <kbd>{formatForDisplay('Mod+S')}</kbd>
  *   </button>
  * }
  * ```

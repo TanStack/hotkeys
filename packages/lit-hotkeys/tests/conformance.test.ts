@@ -5,6 +5,7 @@ import {
 } from '@tanstack/hotkeys-test-utils/conformance'
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import { LitElement, html } from 'lit'
+import { FormatForDisplayController } from '../src/controllers/format-for-display'
 import { HeldKeyCodesController } from '../src/controllers/held-key-codes'
 import { HeldKeysController } from '../src/controllers/held-keys'
 import { HotkeyController } from '../src/controllers/hotkey'
@@ -81,7 +82,6 @@ const harness: ConformanceHarness = {
     'provider-scope':
       'there is no provider; scopes come from core activateScope',
     'provider-defaults': 'there is no provider for default options',
-    format: 'there is no format controller; use core formatForDisplay',
   },
   act: settle,
   async cleanup() {
@@ -243,6 +243,18 @@ const harness: ConformanceHarness = {
           hotkey = next
           host.requestUpdate()
         }),
+      unmount: view.unmount,
+    }
+  },
+
+  async mountFormat({ platform }) {
+    const host = new ConformanceHost()
+    // Lit has no provider: the platform is the controller's own option.
+    const formatForDisplay = new FormatForDisplayController(host, { platform })
+    const view = await attach(host)
+    return {
+      format: (hotkey, formatOptions) =>
+        formatForDisplay.format(hotkey, formatOptions ?? {}),
       unmount: view.unmount,
     }
   },

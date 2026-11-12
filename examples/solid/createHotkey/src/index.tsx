@@ -3,8 +3,8 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHotkey,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { Show, createEffect, createSignal } from 'solid-js'
@@ -13,6 +13,7 @@ import type { Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
 
 function App() {
+  const formatForDisplay = createFormatForDisplay()
   const [lastHotkey, setLastHotkey] = createSignal<Hotkey | null>(null)
   const [saveCount, setSaveCount] = createSignal(0)
   const [incrementCount, setIncrementCount] = createSignal(0)

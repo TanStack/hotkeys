@@ -1,6 +1,10 @@
-import { HotkeyManager } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import PlatformHarness from './PlatformHarness.svelte'
 import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
 
@@ -91,5 +95,11 @@ describe('provider platform', () => {
     press(mod)
     expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
     await unmount(component)
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

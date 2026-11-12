@@ -223,11 +223,10 @@ for (const example of examples) {
         }
 
         // Once the layout arrives, only the physical key's label follows it.
-        // The static example calls `formatForDisplay` itself, which loads none.
+        // The static example renders its labels in the browser, with the same
+        // label primitive.
         await page.evaluate(() => window.__releaseLayout?.())
-        await expect(quickLabel).toHaveText(
-          example.static ? platform.quickLabel : platform.quickLayoutLabel,
-        )
+        await expect(quickLabel).toHaveText(platform.quickLayoutLabel)
         await expect(saveLabel).toHaveText(platform.saveLabel)
 
         await page

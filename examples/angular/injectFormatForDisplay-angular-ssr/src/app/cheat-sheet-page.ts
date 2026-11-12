@@ -165,7 +165,7 @@ function isStepList(
             <td
               appHotkeyLabel
               class="label"
-              [label]="format(command.hotkey, options())"
+              [label]="formatForDisplay(command.hotkey, options())"
               [sequenceSeparator]="options().sequenceSeparator ?? ' '"
             ></td>
           </tr>
@@ -177,7 +177,7 @@ function isStepList(
 export class CheatSheet {
   readonly choices = input.required<FormatChoices>()
   // Formats with the provider's platform, so the server renders the user's labels
-  readonly format = injectFormatForDisplay()
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly options = computed(() => toFormatOptions(this.choices()))
   readonly commands = commands
 }

@@ -118,14 +118,15 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 ```ts
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HotkeyRecorderController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 
 class ShortcutRow extends LitElement {
   @property() hotkeyId!: AppHotkeyId
   private app = new AppHotkeysController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   private recorder = new HotkeyRecorderController(this, () => ({
     maxSteps: Infinity,
@@ -141,7 +142,7 @@ class ShortcutRow extends LitElement {
     const appHotkey = this.app.appHotkeys[this.hotkeyId]
     return html`
       ${appHotkey.meta?.name}:
-      ${appHotkey.hotkey ? formatForDisplay(appHotkey.hotkey) : 'Unassigned'}
+      ${appHotkey.hotkey ? this.formatForDisplay.format(appHotkey.hotkey) : 'Unassigned'}
       <button @click=${() => this.recorder.startRecording()}>Change</button>
       <button @click=${() => this.app.resetCustomHotkey(this.hotkeyId)}>Reset</button>
     `

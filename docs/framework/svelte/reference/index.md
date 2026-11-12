@@ -37,6 +37,7 @@ title: "@tanstack/svelte-hotkeys"
 ## Variables
 
 - [DEFAULT\_OPTIONS](variables/DEFAULT_OPTIONS.md)
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
 ## Functions

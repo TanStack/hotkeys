@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `useHotkeyRegistrations` returns the hotkeys registered right now, in its `hotkeys` array. It works with plain `useHotkey` and `useHotkeys`, but it only knows about mounted components.
 - `useAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, including hotkeys on pages that haven't rendered, with the status of each.
 
-Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `useFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -54,9 +54,10 @@ declare module '@tanstack/hotkeys' {
 `useHotkeyRegistrations` returns every registered hotkey, and updates when hotkeys register, unregister, or change. Show the ones with a name:
 
 ```tsx
-import { formatForDisplay, useHotkeyRegistrations } from '@tanstack/octane-hotkeys'
+import { useFormatForDisplay, useHotkeyRegistrations } from '@tanstack/octane-hotkeys'
 
 function ShortcutList() @{
+  const formatForDisplay = useFormatForDisplay()
   const registrations = useHotkeyRegistrations().hotkeys.filter(
     (reg) => reg.options.meta?.name && reg.status === 'active',
   )
@@ -89,9 +90,10 @@ Registrations exist only while their components are mounted, so this list can't 
 `useAppHotkeyList` returns every app hotkey in declaration order, whether or not anything has registered it. Each item has the `appHotkey`, with its current `hotkey` and its `meta`, plus a `status` and `isCustom`, which is `true` when the user changed the hotkey:
 
 ```tsx
-import { formatForDisplay, useAppHotkeyList } from '@tanstack/octane-hotkeys'
+import { useAppHotkeyList, useFormatForDisplay } from '@tanstack/octane-hotkeys'
 
 function CheatSheet() @{
+  const formatForDisplay = useFormatForDisplay()
   const items = useAppHotkeyList()
 
   <ul>
@@ -146,7 +148,7 @@ function CheatSheet() @{
 }
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `useFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

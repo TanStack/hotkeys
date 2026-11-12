@@ -33,7 +33,7 @@ The library owns the keyboard. Register every shortcut with your framework adapt
 | Instead of                                                            | Use                                                                                                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | A `keydown` listener that checks `event.key`, `metaKey`, or `ctrlKey` | A registered hotkey such as `'Mod+S'`. Inside a widget's own key handler, `matchesKeyboardEvent(event, 'Mod+Enter')`.                         |
-| `isMac` checks and `⌘`/`Ctrl` label maps                              | `Mod` in the hotkey, `formatForDisplay(hotkey)` for labels, or `formatForDisplay({ key })` for held keys                                      |
+| `isMac` checks and `⌘`/`Ctrl` label maps                              | `Mod` in the hotkey, and the adapter's label primitive, such as `useFormatForDisplay()`, for labels of hotkeys and of held keys as `{ key }`  |
 | Skipping events from text fields, calling `preventDefault`            | The defaults: single keys and Shift/Alt chords are skipped while typing, `Mod` chords and `Escape` still fire, and matched keys are prevented |
 | A shortcut registry, service, context, or wrapper hook                | The adapter API, called where each action lives. For one list of every shortcut, load `@tanstack/hotkeys#app-hotkeys`.                        |
 | A "shortcuts enabled" flag or topmost-dialog tracking                 | Scopes, with `exclusive` for dialogs                                                                                                          |
@@ -68,7 +68,7 @@ When nesting scopes, stacking dialogs, or keeping some hotkeys working during an
 - **Single-character shortcuts need an off switch.** For WCAG 2.1.4, `K`, `?`, and `['G', 'H']` need a user setting passed as `enabled`, or an app hotkey users can remap.
 - **react-hotkeys-hook names don't carry over.** `useHotkeys` and `HotkeysProvider` share names, not signatures: there's no dependency array, `preventDefault` is on by default, and sequences are arrays. Remove the old library, so two libraries don't handle the same keys.
 - **Install only the adapter.** A separately installed `@tanstack/hotkeys` at another version is a second copy, and scopes don't apply across copies.
-- **Server-rendered labels need the user's platform.** On a server, `formatForDisplay` renders Linux labels, because the server can't see the user's OS. Read the request's `User-Agent` header, pass `detectPlatform(userAgent)` as the platform of the adapter's provider or scope, and format labels with the adapter's formatter, such as `useFormatForDisplay`. Those pages then depend on the user agent, so keep them out of shared caches or add the platform to the cache key.
+- **Server-rendered labels need the user's platform.** A server renders Linux labels without a platform, because it can't see the user's OS. Read the request's `User-Agent` header, pass `detectPlatform(userAgent)` as the platform of the adapter's provider or scope, and format labels with the adapter's formatter, such as `useFormatForDisplay`. Those pages then depend on the user agent, so keep them out of shared caches or add the platform to the cache key.
 
 When writing tests for hotkeys, read [testing](references/testing.md).
 

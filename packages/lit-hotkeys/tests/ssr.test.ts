@@ -8,6 +8,7 @@ import {
 import { describe, expect, it, vi } from 'vitest'
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
   HotkeyController,
@@ -93,6 +94,7 @@ describe('server rendering', () => {
         new HotkeyScopesStateController(host),
         new KeyHoldController(host, 'Shift'),
         new KeyboardLayoutController(host),
+        new FormatForDisplayController(host),
       ]
       for (const controller of controllers) controller.hostConnected()
     }

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { computed, inject, ref } from 'vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const log = inject<(message: string) => void>('log')!
 const timeout = ref(1000)

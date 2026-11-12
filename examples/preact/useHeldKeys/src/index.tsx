@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/preact-hotkeys'
@@ -11,6 +11,7 @@ import React from 'preact/compat'
 import './index.css'
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
   const heldCodes = useHeldKeyCodes()
 
@@ -30,7 +31,7 @@ function App() {
         return h
       })
     }
-  }, [heldKeys])
+  }, [heldKeys, formatForDisplay])
 
   console.log('heldKeys', heldKeys)
 

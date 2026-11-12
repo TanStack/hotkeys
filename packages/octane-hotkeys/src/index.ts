@@ -17,6 +17,8 @@ export * from './useHeldKeyCodes'
 export * from './useKeyHold'
 export * from './useHotkeyHint'
 export * from './useFormatForDisplay'
+// Replaces the core export, to point components to the hook
+export { formatForDisplay } from './formatForDisplay'
 export * from './useKeyboardLayout'
 export * from './useHotkeyRegistrations'
 export * from './useHotkeyScopesState'

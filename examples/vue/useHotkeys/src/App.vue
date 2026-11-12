@@ -2,13 +2,15 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { computed, ref } from 'vue'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/vue-hotkeys'
+
+const formatForDisplay = useFormatForDisplay()
 
 const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 

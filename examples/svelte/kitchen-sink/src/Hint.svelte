@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { formatForDisplay, getHotkeyHint } from '@tanstack/svelte-hotkeys'
+  import { getFormatForDisplay, getHotkeyHint } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
 
   let { hotkey }: { hotkey: Hotkey } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const hint = getHotkeyHint(() => hotkey)
 </script>
 

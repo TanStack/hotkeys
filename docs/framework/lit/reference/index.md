@@ -8,6 +8,7 @@ title: "@tanstack/lit-hotkeys"
 ## Classes
 
 - [AppHotkeysController](classes/AppHotkeysController.md)
+- [FormatForDisplayController](classes/FormatForDisplayController.md)
 - [HeldKeyCodesController](classes/HeldKeyCodesController.md)
 - [HeldKeysController](classes/HeldKeysController.md)
 - [HotkeyController](classes/HotkeyController.md)
@@ -17,6 +18,10 @@ title: "@tanstack/lit-hotkeys"
 - [HotkeyScopesStateController](classes/HotkeyScopesStateController.md)
 - [KeyboardLayoutController](classes/KeyboardLayoutController.md)
 - [KeyHoldController](classes/KeyHoldController.md)
+
+## Interfaces
+
+- [FormatForDisplayControllerOptions](interfaces/FormatForDisplayControllerOptions.md)
 
 ## Type Aliases
 
@@ -28,6 +33,10 @@ title: "@tanstack/lit-hotkeys"
 - [HotkeyControllerSequenceOptions](type-aliases/HotkeyControllerSequenceOptions.md)
 - [HotkeyControllerTarget](type-aliases/HotkeyControllerTarget.md)
 - [HotkeyDecorator](type-aliases/HotkeyDecorator.md)
+
+## Variables
+
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 
 ## Functions
 

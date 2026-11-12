@@ -8,6 +8,7 @@ import type {
   HotkeyCallbackContextFor,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeyRecorderOptions,
   HotkeyRegistrationView,
   HotkeyScopesState,
@@ -19,6 +20,7 @@ import type {
   RegisterableHotkey,
   RegisteredAppHotkeys,
   Target,
+  formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
   AdapterAppHotkeyOptions,
@@ -167,30 +169,61 @@ export interface AlpineHotkeys {
   /** Read the active, exclusive, allowed, and suspended scopes through `.value`. */
   createHotkeyScopesState: () => AlpineHotkeyState<HotkeyScopesState>
   /**
+   * Returns `formatForDisplay` with the scope's `platform` as the default, or
+   * the detected platform without one. A `platform` passed to the returned
+   * function wins.
+   *
+   * Physical bindings such as `[KeyQ]` are labeled with the character the key
+   * types for this user in Chromium browsers, once the keyboard layout has
+   * loaded. A getter or an `x-text` expression that calls the function runs
+   * again when the layout arrives. See `createKeyboardLayout`. A `layoutMap`
+   * passed to the returned function wins. To never ask the browser for the
+   * layout, set `keyboardLayout: false` in the scope's default options. Firefox
+   * and Safari report no layout, so labels there keep the key's US character.
+   *
+   * Create it once, then call the returned function anywhere.
+   *
+   * @example
+   * ```ts
+   * Alpine.data('saveButton', () => {
+   *   const hotkeys = createHotkeysScope()
+   *   const formatForDisplay = hotkeys.createFormatForDisplay()
+   *
+   *   return {
+   *     get label() {
+   *       return formatForDisplay('Mod+S')
+   *     },
+   *     destroy() {
+   *       hotkeys.destroy()
+   *     },
+   *   }
+   * })
+   * ```
+   */
+  createFormatForDisplay: () => typeof formatForDisplay
+  /**
    * Read the browser's keyboard layout through `.value`, or `null` until it
    * loads and in browsers that don't report one. The layout maps each physical
    * code to the character it types, such as `KeyQ` to `a` on a French AZERTY
    * keyboard. Only Chromium browsers report one.
    *
    * Creating it is what loads the layout. The layout is read again when the
-   * window regains focus, until the scope is destroyed. Pass `.value` to
-   * `formatForDisplay` as `layoutMap`, so physical bindings such as `[KeyQ]`
-   * are labeled with the character the key types for this user.
+   * window regains focus, until the scope is destroyed.
+   * `createFormatForDisplay` uses it, so you only need it for labels you draw
+   * yourself.
    *
    * To never ask the browser for the layout, set `keyboardLayout: false` in
    * the scope's default options. `.value` is then `null`.
    *
    * @example
    * ```ts
-   * Alpine.data('moveUp', () => {
+   * Alpine.data('moveKeys', () => {
    *   const hotkeys = createHotkeysScope()
    *   const layout = hotkeys.createKeyboardLayout()
    *
    *   return {
-   *     get label() {
-   *       return formatForDisplay('[KeyW]', {
-   *         layoutMap: layout.value ?? undefined,
-   *       })
+   *     label(code: string) {
+   *       return (layout.value?.get(code) ?? code).toUpperCase()
    *     },
    *     destroy() {
    *       hotkeys.destroy()
@@ -215,11 +248,17 @@ export interface AlpineHotkeys {
 /** Shared defaults; call-specific options take precedence. */
 export interface DefaultHotkeysOptions {
   /**
-   * Whether `createKeyboardLayout` reads the user's keyboard layout, so a
-   * label for `[KeyQ]` can read `A` on a French AZERTY keyboard. The layout
-   * loads from the browser when the first `createKeyboardLayout` runs. Only
-   * Chromium browsers report one. Set `false` to never ask the browser for it.
-   * Default: `true`.
+   * The user's platform, for labels from `createFormatForDisplay`, hotkeys,
+   * and recorders. `hotkey.platform` and `hotkeyRecorder.platform` win.
+   * Detected when unset.
+   */
+  platform?: HotkeyPlatform
+  /**
+   * Whether labels from `createFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first `createFormatForDisplay` or
+   * `createKeyboardLayout` runs. Only Chromium browsers report one. Set
+   * `false` to never ask the browser for it. Default: `true`.
    */
   keyboardLayout?: boolean
   /** Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences. */

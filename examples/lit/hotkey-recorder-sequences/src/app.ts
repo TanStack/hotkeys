@@ -1,8 +1,8 @@
 import {
+  FormatForDisplayController,
   HeldKeysController,
   HotkeyRecorderController,
   HotkeyRegistrationsController,
-  formatForDisplay,
   getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
@@ -89,6 +89,7 @@ export class MyApp extends LitElement {
 
   private heldKeys = new HeldKeysController(this)
   private registrations = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   private recorder = new HotkeyRecorderController(this, {
     // Record up to four chords; Enter or the fourth chord commits.
@@ -237,6 +238,8 @@ export class MyApp extends LitElement {
   }
 
   render() {
+    const formatForDisplay = this.formatForDisplay.format
+
     return html`
       <div class="app">
         <header>

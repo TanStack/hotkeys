@@ -27,6 +27,7 @@ title: "@tanstack/angular-hotkeys"
 
 ## Variables
 
+- [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HOTKEYS\_INJECTION\_TOKEN](variables/HOTKEYS_INJECTION_TOKEN.md)
 
 ## Functions

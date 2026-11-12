@@ -3,10 +3,10 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHotkey,
   createHotkeyRegistrations,
   createHotkeys,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { For, Show, createSignal } from 'solid-js'
@@ -347,6 +347,7 @@ function VimEditor() {
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = createFormatForDisplay()
   const registrations = createHotkeyRegistrations()
 
   return (

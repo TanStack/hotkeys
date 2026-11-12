@@ -1,6 +1,7 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
   createHotkey,
@@ -9,7 +10,6 @@ import {
   createHotkeyRegistrations,
   createHotkeys,
   createKeyHold,
-  formatForDisplay,
   isHotkeySequence,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
@@ -52,6 +52,7 @@ const pages = [
 ] as const
 /** A separate component lets each navigation link or button subscribe to its hint. */
 function Hint(props: { hotkey: RegisterableHotkey }) {
+  const formatForDisplay = createFormatForDisplay()
   const visible = createHotkeyHint(() => props.hotkey)
   return (
     <Show when={visible()}>
@@ -61,6 +62,7 @@ function Hint(props: { hotkey: RegisterableHotkey }) {
 }
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
+  const formatForDisplay = createFormatForDisplay()
   const [path, setPath] = createSignal(location.hash.slice(1) || '/')
   onMount(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
@@ -262,6 +264,7 @@ function Tickets() {
 }
 /** Each editor owns a target ref, so the same shortcuts can be reused independently. */
 function EditorPane({ name }: { name: string }) {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   let target: HTMLFieldSetElement | undefined
   const [text, setText] = createSignal('One shortcut, two independent editors.')
@@ -315,6 +318,7 @@ function EditorPane({ name }: { name: string }) {
 }
 /** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = createSignal(false)
   const [count, setCount] = createSignal(0)
@@ -395,6 +399,7 @@ function Editor() {
 }
 /** Single and bulk sequences share a timeout and expose progress through the registry. */
 function Sequences() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = createSignal(1000)
   createHotkey(
@@ -473,6 +478,7 @@ function Sequences() {
 }
 /** Recorder output feeds local state; reset and validation are application policy. */
 function Recording() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = createSignal<Hotkey>(initial)
@@ -653,6 +659,7 @@ function Recording() {
 }
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
+  const formatForDisplay = createFormatForDisplay()
   const [platform, setPlatform] = createSignal<'mac' | 'windows' | 'linux'>(
     'mac',
   )

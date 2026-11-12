@@ -15,10 +15,14 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { HotkeyRecorderController, formatForDisplay } from '@tanstack/lit-hotkeys'
+import {
+  FormatForDisplayController,
+  HotkeyRecorderController,
+} from '@tanstack/lit-hotkeys'
 
 @customElement('shortcut-recorder')
 class ShortcutRecorder extends LitElement {
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, {
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
@@ -30,7 +34,7 @@ class ShortcutRecorder extends LitElement {
         ${isRecording
           ? 'Press a key combination...'
           : recordedHotkey
-            ? formatForDisplay(recordedHotkey)
+            ? this.formatForDisplay.format(recordedHotkey)
             : 'Click to record'}
       </button>
       ${isRecording
@@ -41,7 +45,7 @@ class ShortcutRecorder extends LitElement {
 }
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `HotkeyController`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `HotkeyController`, and label it with `FormatForDisplayController`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -64,6 +68,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 ```ts
 @customElement('sequence-recorder')
 class SequenceRecorder extends LitElement {
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, {
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -74,9 +79,9 @@ class SequenceRecorder extends LitElement {
     return html`
       <button @click=${() => this.recorder.startRecording()}>
         ${isRecording
-          ? formatForDisplay(steps) || 'Press chords, then Enter...'
+          ? this.formatForDisplay.format(steps) || 'Press chords, then Enter...'
           : recordedHotkey
-            ? formatForDisplay(recordedHotkey)
+            ? this.formatForDisplay.format(recordedHotkey)
             : 'Click to record'}
       </button>
     `
@@ -180,9 +185,9 @@ For a few hotkeys in one element, reactive state is enough:
 import { LitElement, html } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import {
+  FormatForDisplayController,
   HotkeyController,
   HotkeyRecorderController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 import type { Hotkey } from '@tanstack/lit-hotkeys'
 
@@ -197,6 +202,7 @@ class ShortcutSettings extends LitElement {
   }
   @state() editing: Action | null = null
 
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, {
     maxSteps: Infinity,
     onRecord: (hotkey) => {
@@ -226,7 +232,7 @@ class ShortcutSettings extends LitElement {
           ${action}:
           ${this.editing === action && this.recorder.isRecording
             ? 'Press keys...'
-            : formatForDisplay(hotkey)}
+            : this.formatForDisplay.format(hotkey)}
         </button>
       `,
     )

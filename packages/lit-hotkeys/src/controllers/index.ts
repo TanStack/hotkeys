@@ -1,4 +1,5 @@
 export * from './app-hotkeys'
+export * from './format-for-display'
 export * from './held-key-codes'
 export * from './held-keys'
 export * from './hotkey'

@@ -1,7 +1,11 @@
 import { render } from '@solidjs/testing-library'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { createSignal } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'
 import { createHotkey } from '../src/createHotkey'
@@ -33,8 +37,8 @@ describe('provider platform', () => {
   it('formats labels and updates when the platform changes', () => {
     const [platform, setPlatform] = createSignal<Platform>('mac')
     function Label() {
-      const format = createFormatForDisplay()
-      return <kbd>{format('Mod+S')}</kbd>
+      const formatForDisplay = createFormatForDisplay()
+      return <kbd>{formatForDisplay('Mod+S')}</kbd>
     }
     const { container, unmount } = render(() => (
       <HotkeysProvider defaultOptions={{ platform: platform() }}>
@@ -49,8 +53,8 @@ describe('provider platform', () => {
 
   it('lets an explicit platform option win', () => {
     function Label() {
-      const format = createFormatForDisplay()
-      return <kbd>{format('Mod+S', { platform: 'windows' })}</kbd>
+      const formatForDisplay = createFormatForDisplay()
+      return <kbd>{formatForDisplay('Mod+S', { platform: 'windows' })}</kbd>
     }
     const { container, unmount } = renderIn('mac', () => <Label />)
     expect(container.textContent).toBe('Ctrl+S')
@@ -103,5 +107,11 @@ describe('provider platform', () => {
     press(mod)
     expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     unmount()
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

@@ -13,9 +13,10 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 ## Record a chord
 
 ```tsx
-import { formatForDisplay, useHotkeyRecorder } from '@tanstack/octane-hotkeys'
+import { useFormatForDisplay, useHotkeyRecorder } from '@tanstack/octane-hotkeys'
 
 function ShortcutRecorder() @{
+  const formatForDisplay = useFormatForDisplay()
   const recorder = useHotkeyRecorder({
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
@@ -35,7 +36,7 @@ function ShortcutRecorder() @{
 }
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `useHotkey`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `useHotkey`, and label it with `useFormatForDisplay`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -57,6 +58,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 
 ```tsx
 function SequenceRecorder() @{
+  const formatForDisplay = useFormatForDisplay()
   const recorder = useHotkeyRecorder({
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -165,7 +167,7 @@ For a few hotkeys in one component, state is enough:
 ```tsx
 import { useState } from 'octane'
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRecorder,
   useHotkeys,
 } from '@tanstack/octane-hotkeys'
@@ -175,6 +177,7 @@ const actions = { save, undo, search }
 type Action = keyof typeof actions
 
 function ShortcutSettings() @{
+  const formatForDisplay = useFormatForDisplay()
   const [shortcuts, setShortcuts] = useState<Record<Action, Hotkey>>({
     save: 'Mod+S',
     undo: 'Mod+Z',

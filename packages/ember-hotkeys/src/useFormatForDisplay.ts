@@ -17,13 +17,14 @@ import type { EmberHotkeysScope } from './createHotkeysScope'
  * templates update when they change. An explicit `platform` option wins.
  *
  * Physical bindings such as `[KeyQ]` are labeled with the character the key
- * types for this user, once the browser's keyboard layout has loaded. The
- * returned function reads the layout from the browser after the render in
- * which it first formats a label. It has no owner, so it doesn't read the
- * layout again when the window regains focus: see `useKeyboardLayout` for
+ * types for this user in Chromium browsers, once the keyboard layout has
+ * loaded. The returned function reads the layout from the browser after the
+ * render in which it first formats a label. It has no owner, so it doesn't read
+ * the layout again when the window regains focus: see `useKeyboardLayout` for
  * that. A `layoutMap` passed to the returned function wins. To never ask the
  * browser for the layout, set `keyboardLayout: false` in the scope's default
- * options.
+ * options. Firefox and Safari report no layout, so labels there keep the key's
+ * US character.
  *
  * Server-rendered apps should set the scope's default `platform` from the
  * request user agent, such as
@@ -33,9 +34,9 @@ import type { EmberHotkeysScope } from './createHotkeysScope'
  * @example
  * ```gts
  * class SaveButton extends Component<{ Args: { hotkeys: EmberHotkeysScope } }> {
- *   format = useFormatForDisplay(this.args.hotkeys)
+ *   formatForDisplay = useFormatForDisplay(this.args.hotkeys)
  *
- *   <template><kbd>{{this.format "Mod+S"}}</kbd></template>
+ *   <template><kbd>{{this.formatForDisplay "Mod+S"}}</kbd></template>
  * }
  * ```
  */

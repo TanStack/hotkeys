@@ -47,7 +47,7 @@ onMounted(() => {
 })
 
 // Formats with the provider's platform, so the server renders the user's labels
-const format = useFormatForDisplay()
+const formatForDisplay = useFormatForDisplay()
 const options = computed(() => toFormatOptions(choices))
 </script>
 
@@ -110,7 +110,7 @@ const options = computed(() => toFormatOptions(choices))
             <th scope="row">{{ command.name }}</th>
             <td class="label">
               <HotkeyLabel
-                :label="format(command.hotkey, options)"
+                :label="formatForDisplay(command.hotkey, options)"
                 :sequence-separator="options.sequenceSeparator ?? ' '"
               />
             </td>

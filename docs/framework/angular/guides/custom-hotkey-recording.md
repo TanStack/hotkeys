@@ -14,7 +14,7 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 
 ```ts
 import { Component } from '@angular/core'
-import { formatForDisplay, injectHotkeyRecorder } from '@tanstack/angular-hotkeys'
+import { injectFormatForDisplay, injectHotkeyRecorder } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-shortcut-recorder',
@@ -24,7 +24,7 @@ import { formatForDisplay, injectHotkeyRecorder } from '@tanstack/angular-hotkey
         recorder.isRecording()
           ? 'Press a key combination...'
           : recorder.recordedHotkey()
-            ? format(recorder.recordedHotkey()!)
+            ? formatForDisplay(recorder.recordedHotkey()!)
             : 'Click to record'
       }}
     </button>
@@ -34,14 +34,14 @@ import { formatForDisplay, injectHotkeyRecorder } from '@tanstack/angular-hotkey
   `,
 })
 export class ShortcutRecorderComponent {
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly recorder = injectHotkeyRecorder({
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+S'
   })
 }
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `injectHotkey`, and label it with `formatForDisplay`.
+The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `injectHotkey`, and label it with `injectFormatForDisplay`.
 
 Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
@@ -68,16 +68,16 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
     <button (click)="recorder.startRecording()">
       {{
         recorder.isRecording()
-          ? format(recorder.steps()) || 'Press chords, then Enter...'
+          ? formatForDisplay(recorder.steps()) || 'Press chords, then Enter...'
           : recorder.recordedHotkey()
-            ? format(recorder.recordedHotkey()!)
+            ? formatForDisplay(recorder.recordedHotkey()!)
             : 'Click to record'
       }}
     </button>
   `,
 })
 export class SequenceRecorderComponent {
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly recorder = injectHotkeyRecorder({
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+S' or ['G', 'G']
@@ -180,7 +180,7 @@ For a few hotkeys in one component, signals are enough:
 ```ts
 import { Component, signal } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkeyRecorder,
   injectHotkeys,
 } from '@tanstack/angular-hotkeys'
@@ -194,13 +194,13 @@ type Action = 'save' | 'undo' | 'search'
     @for (entry of entries(); track entry[0]) {
       <button (click)="edit(entry[0])">
         {{ entry[0] }}:
-        {{ editing() === entry[0] && recorder.isRecording() ? 'Press keys...' : format(entry[1]) }}
+        {{ editing() === entry[0] && recorder.isRecording() ? 'Press keys...' : formatForDisplay(entry[1]) }}
       </button>
     }
   `,
 })
 export class ShortcutSettingsComponent {
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly shortcuts = signal<Record<Action, Hotkey>>({
     save: 'Mod+S',
     undo: 'Mod+Z',

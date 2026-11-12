@@ -14,7 +14,7 @@ function useFormatForDisplay(): {
 };
 ```
 
-Defined in: [useFormatForDisplay.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useFormatForDisplay.ts#L31)
+Defined in: [useFormatForDisplay.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useFormatForDisplay.ts#L32)
 
 Returns `formatForDisplay` with the provider's `platform` as the default,
 so labels match the user's platform. Call in `setup`; the returned function
@@ -22,9 +22,10 @@ works anywhere, and templates update when the provider's platform changes.
 An explicit `platform` option wins.
 
 Physical bindings such as `[KeyQ]` are labeled with the character the key
-types for this user, once the browser's keyboard layout has loaded, and
-templates update when it arrives. See `useKeyboardLayout`. A `layoutMap`
-passed to the returned function wins.
+types for this user in Chromium browsers, once the keyboard layout has
+loaded, and templates update when it arrives. See `useKeyboardLayout`. A
+`layoutMap` passed to the returned function wins. Firefox and Safari report
+no layout, so labels there keep the key's US character.
 
 Server-rendered apps should set the provider's `defaultOptions.platform`
 from the request user agent with `detectPlatform(userAgent)`.
@@ -315,10 +316,10 @@ formatForDisplay(['G', 'H'])
 
 ```vue
 <script setup lang="ts">
-const format = useFormatForDisplay()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>
-  <kbd>{{ format('Mod+S') }}</kbd>
+  <kbd>{{ formatForDisplay('Mod+S') }}</kbd>
 </template>
 ```

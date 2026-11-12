@@ -54,16 +54,16 @@ interface ScopeSignature {
 
 /** A label, as an app draws one: nothing but `useFormatForDisplay`. */
 class Label extends Component<ScopeSignature> {
-  format = useFormatForDisplay(this.args.hotkeys)
+  formatForDisplay = useFormatForDisplay(this.args.hotkeys)
   custom = CUSTOM
   get label() {
-    const label = this.format('Mod+[KeyQ]')
+    const label = this.formatForDisplay('Mod+[KeyQ]')
     labels.push(label)
     return label
   }
   <template>
     <kbd class="label">{{this.label}}</kbd>
-    <kbd class="custom">{{this.format "[KeyQ]" (hash layoutMap=this.custom)}}</kbd>
+    <kbd class="custom">{{this.formatForDisplay "[KeyQ]" (hash layoutMap=this.custom)}}</kbd>
   </template>
 }
 
@@ -108,8 +108,8 @@ module('Keyboard layout labels', (hooks) => {
 
   test('loads the layout without a scope', async (assert) => {
     stubLayout(() => Promise.resolve(AZERTY))
-    const format = useFormatForDisplay()
-    await render(<template><kbd id="plain">{{format "[KeyQ]"}}</kbd></template>)
+    const formatForDisplay = useFormatForDisplay()
+    await render(<template><kbd id="plain">{{formatForDisplay "[KeyQ]"}}</kbd></template>)
     await loaded('a')
     assert.strictEqual(text('plain'), 'A')
   })
@@ -247,10 +247,10 @@ module('Keyboard layout labels', (hooks) => {
 
   test('does not load the layout for labels that all pass a layoutMap', async (assert) => {
     stubLayout(() => Promise.resolve(AZERTY))
-    const format = useFormatForDisplay()
+    const formatForDisplay = useFormatForDisplay()
     const custom = CUSTOM
     await render(<template>
-      <kbd id="plain">{{format "[KeyQ]" (hash layoutMap=custom)}}</kbd>
+      <kbd id="plain">{{formatForDisplay "[KeyQ]" (hash layoutMap=custom)}}</kbd>
     </template>)
     assert.strictEqual(text('plain'), 'X')
     assert.strictEqual(calls, 0)

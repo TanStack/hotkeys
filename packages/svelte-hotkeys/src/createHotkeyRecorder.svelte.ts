@@ -90,6 +90,7 @@ class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
  * @example
  * ```svelte
  * <script lang="ts">
+ *   const formatForDisplay = getFormatForDisplay()
  *   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
  *   const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
  * </script>

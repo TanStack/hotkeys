@@ -11,7 +11,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): PreactHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L70)
+Defined in: [useHotkeyRecorder.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L71)
 
 Preact hook for recording keyboard shortcuts.
 
@@ -43,6 +43,7 @@ The recorder state and controls
 
 ```tsx
 function ShortcutInput() {
+  const formatForDisplay = useFormatForDisplay()
   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
 
@@ -67,7 +68,7 @@ const recorder = useHotkeyRecorder({
 function useHotkeyRecorder(options): PreactHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L73)
+Defined in: [useHotkeyRecorder.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L74)
 
 Preact hook for recording keyboard shortcuts.
 
@@ -99,6 +100,7 @@ The recorder state and controls
 
 ```tsx
 function ShortcutInput() {
+  const formatForDisplay = useFormatForDisplay()
   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
 

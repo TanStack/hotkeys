@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `useHotkeyRegistrations` returns the hotkeys registered right now. It works with plain `useHotkey` and `useHotkeys`, but it only knows about mounted components.
 - `useAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, including hotkeys on pages that haven't rendered, with the status of each.
 
-Both return refs. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Both return refs. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `useFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -56,8 +56,9 @@ declare module '@tanstack/hotkeys' {
 ```vue
 <script setup lang="ts">
 import { computed } from 'vue'
-import { formatForDisplay, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
 
+const formatForDisplay = useFormatForDisplay()
 const registrations = useHotkeyRegistrations()
 const named = computed(() =>
   registrations.value.filter(
@@ -94,8 +95,9 @@ Registrations exist only while their components are mounted, so this list can't 
 
 ```vue
 <script setup lang="ts">
-import { formatForDisplay, useAppHotkeyList } from '@tanstack/vue-hotkeys'
+import { useAppHotkeyList, useFormatForDisplay } from '@tanstack/vue-hotkeys'
 
+const formatForDisplay = useFormatForDisplay()
 const items = useAppHotkeyList()
 </script>
 
@@ -164,7 +166,7 @@ const groups = computed(() => [
 </template>
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `useFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

@@ -1,9 +1,9 @@
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHotkeyRegistrations,
   createHotkeys,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { For, Show, createSignal } from 'solid-js'
@@ -14,6 +14,7 @@ import './index.css'
 const plugins = [hotkeysDevtoolsPlugin()]
 
 function BasicMultiHotkeys() {
+  const formatForDisplay = createFormatForDisplay()
   const [log, setLog] = createSignal<Array<string>>([])
   const [saveCount, setSaveCount] = createSignal(0)
   const [undoCount, setUndoCount] = createSignal(0)
@@ -95,6 +96,7 @@ function BasicMultiHotkeys() {
 }
 
 function CommonOptionsDemo() {
+  const formatForDisplay = createFormatForDisplay()
   const [enabled, setEnabled] = createSignal(true)
   const [counts, setCounts] = createSignal({ a: 0, b: 0, c: 0 })
 
@@ -209,6 +211,7 @@ const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
 ]
 
 function DynamicHotkeysDemo() {
+  const formatForDisplay = createFormatForDisplay()
   const [shortcuts, setShortcuts] =
     createSignal<Array<DynamicShortcut>>(DEFAULT_SHORTCUTS)
   const [newHotkey, setNewHotkey] = createSignal('')
@@ -326,6 +329,7 @@ createHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = createFormatForDisplay()
   const registrations = createHotkeyRegistrations()
 
   return (

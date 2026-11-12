@@ -25,7 +25,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
 | Recording | Records a key by name, or by position where it has no portable name; Escape, Tab, and Shift+Tab cancel | `recordBy`, `recordTab`, recorder options |
-| Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | `formatForDisplay` options |
+| Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | Options of your framework's label primitive, such as `useFormatForDisplay` |
 
 ## `Mod` follows the platform
 
@@ -79,7 +79,7 @@ On a layout where the `KeyQ` position types `a`, `A` follows the character and `
 - In strings, every physical code goes in brackets, including codes that share a name with a logical key, such as `[Enter]` and `[F13]`. Codes are type-checked and autocomplete in your editor.
 - In objects, use the `code` field for a physical binding and `key` for a logical one. A binding has one or the other, never both, and `key` never takes brackets.
 - In a chord's callback, `context.parsedChord.code` is set only for physical bindings. The same goes for each step in a sequence's `context.parsedSequence`. Check `code !== undefined` before reading it.
-- `formatForDisplay` labels physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets. Your framework's label primitive, such as `useFormatForDisplay`, labels a position with the character it types on the user's keyboard, where the browser reports the layout. Elsewhere, and when you call `formatForDisplay` yourself without a `layoutMap`, the label is the key's US character. Your framework's Formatting & Display guide has the details.
+- Labels show physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets. Your framework's label primitive, such as `useFormatForDisplay`, labels a position with the character it types on the user's keyboard. That works only in Chromium browsers, such as Chrome and Edge, which report the layout. In Firefox and Safari, the label is the key's US character. Your framework's Formatting & Display guide has the details.
 
 The [hotkey recorder](#recording-captures-what-the-user-pressed) records a physical binding for a press that has no portable name, such as Shift+/. Set `recordBy: 'code'` to record one for every key.
 
@@ -472,7 +472,7 @@ Some system shortcuts swallow a modifier's own keyup without taking focus from t
 
 ## Display matches the platform
 
-`formatForDisplay` uses each platform's conventions. On macOS, `Mod+Shift+S` displays as `⇧ ⌘ S`. On Windows and Linux, it displays as `Ctrl+Shift+S`. Sequence steps are separated by a space: `G G`.
+Your framework's label primitive, such as `useFormatForDisplay`, uses each platform's conventions. On macOS, `Mod+Shift+S` displays as `⇧ ⌘ S`. On Windows and Linux, it displays as `Ctrl+Shift+S`. Sequence steps are separated by a space: `G G`.
 
 Pass `useSymbols: false` for text labels on macOS, or `keyLabels` to rename individual keys.
 

@@ -2,7 +2,7 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -18,6 +18,8 @@ import Hint from './Hint.vue'
 import Recording from './Recording.vue'
 import Sequences from './Sequences.vue'
 import Tickets from './Tickets.vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const pages = [
   { path: '/', name: 'Tickets', component: Tickets, hotkey: 'Alt+[Digit1]' },

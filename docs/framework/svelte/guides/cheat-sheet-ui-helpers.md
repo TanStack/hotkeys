@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `getHotkeyRegistrations` returns the hotkeys registered right now, in its `hotkeys` property. It works with plain `createHotkey` and `createHotkeys`, but it only knows about mounted components.
 - `getAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, in its `current` property, including hotkeys on pages that haven't rendered, with the status of each.
 
-Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `getFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -56,10 +56,11 @@ declare module '@tanstack/hotkeys' {
 ```svelte
 <script lang="ts">
   import {
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const registrations = getHotkeyRegistrations()
   const named = $derived(
     registrations.hotkeys.filter(
@@ -94,8 +95,9 @@ Registrations exist only while their components are mounted, so this list can't 
 
 ```svelte
 <script lang="ts">
-  import { formatForDisplay, getAppHotkeyList } from '@tanstack/svelte-hotkeys'
+  import { getAppHotkeyList, getFormatForDisplay } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const items = getAppHotkeyList()
 </script>
 
@@ -156,7 +158,7 @@ Group rows by `meta.group`:
 {/each}
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `getFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

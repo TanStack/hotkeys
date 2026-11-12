@@ -141,7 +141,7 @@ The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys
 
 ## Show sequences in your UI
 
-`formatForDisplay` formats each step and joins them with a space:
+The function from `useFormatForDisplay` formats each step and joins them with a space:
 
 ```ts
 formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
@@ -155,9 +155,10 @@ A sequence's first steps have no visible effect, so show users what they've pres
 ```vue
 <script setup lang="ts">
 import { computed } from 'vue'
-import { formatForDisplay, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
 import type { HotkeySequenceRegistrationView } from '@tanstack/vue-hotkeys'
 
+const formatForDisplay = useFormatForDisplay()
 const registrations = useHotkeyRegistrations()
 const longest = computed(
   () =>

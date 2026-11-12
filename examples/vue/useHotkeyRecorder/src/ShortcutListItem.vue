@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
 interface Shortcut {
@@ -25,6 +25,7 @@ defineEmits<{
   delete: []
 }>()
 
+const formatForDisplay = useFormatForDisplay()
 const heldKeys = useHeldKeys()
 </script>
 

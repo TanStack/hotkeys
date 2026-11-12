@@ -48,6 +48,8 @@ export function useAppHotkeys(): RegisteredAppHotkeys {
  * ```tsx
  * function CheatSheet() {
  *   const items = useAppHotkeyList()
+ *   const formatForDisplay = useFormatForDisplay()
+ *
  *   return (
  *     <ul>
  *       {items.map(({ appHotkey, status }) => (

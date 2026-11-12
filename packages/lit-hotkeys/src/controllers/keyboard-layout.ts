@@ -12,22 +12,22 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
  *
  * Creating the controller is what loads the layout: it loads when the first
  * host connects, and is read again when the window regains focus while a host
- * is connected. Pass `value` to `formatForDisplay` as `layoutMap`, so physical
- * bindings such as `[KeyQ]` are labeled with the character the key types for
- * this user. To never ask the browser for the layout, don't create the
- * controller.
+ * is connected. `FormatForDisplayController` uses this controller, so you
+ * only need it for labels you draw yourself. To never ask the browser for the
+ * layout, don't create the controller.
  *
  * `value` is `null` on the server and for the host's first render, so a
  * server-rendered element hydrates unchanged.
  *
  * @example
  * ```ts
- * class MoveUp extends LitElement {
+ * class MoveKeys extends LitElement {
  *   private layout = new KeyboardLayoutController(this)
  *
  *   render() {
- *     const layoutMap = this.layout.value ?? undefined
- *     return html`<kbd>${formatForDisplay('[KeyW]', { layoutMap })}</kbd>`
+ *     const label = (code: string) =>
+ *       (this.layout.value?.get(code) ?? code).toUpperCase()
+ *     return html`<kbd>${label('KeyW')}</kbd>`
  *   }
  * }
  * ```

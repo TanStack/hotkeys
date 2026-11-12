@@ -16,4 +16,6 @@ export * from './injectHotkeyScopesState'
 export * from './injectHotkeyHint'
 export * from './injectAppHotkeys'
 export * from './injectFormatForDisplay'
+// Replaces the core export, to point components to `injectFormatForDisplay`
+export { formatForDisplay } from './formatForDisplay'
 export * from './injectKeyboardLayout'

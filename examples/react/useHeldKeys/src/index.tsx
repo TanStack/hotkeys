@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/react-hotkeys'
@@ -13,6 +13,7 @@ import './index.css'
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
   const heldCodes = useHeldKeyCodes()
 
@@ -32,7 +33,7 @@ function App() {
         return h
       })
     }
-  }, [heldKeys])
+  }, [heldKeys, formatForDisplay])
 
   console.log('heldKeys', heldKeys)
 

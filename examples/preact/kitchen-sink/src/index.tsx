@@ -1,8 +1,8 @@
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
   isHotkeySequence,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -54,12 +54,14 @@ const pages = [
 
 /** A separate component lets each navigation link or button subscribe to its hint. */
 function Hint({ hotkey }: { hotkey: RegisterableHotkey }) {
+  const formatForDisplay = useFormatForDisplay()
   const visible = useHotkeyHint(hotkey)
   return visible ? <kbd>{formatForDisplay(hotkey)}</kbd> : null
 }
 
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
+  const formatForDisplay = useFormatForDisplay()
   const [path, setPath] = useState(location.hash.slice(1) || '/')
   useEffect(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
@@ -263,6 +265,7 @@ function Tickets() {
 
 /** Each editor owns a target ref, so the same shortcuts can be reused independently. */
 function EditorPane({ name }: { name: string }) {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const target = useRef<HTMLFieldSetElement>(null)
   const [text, setText] = useState('One shortcut, two independent editors.')
@@ -317,6 +320,7 @@ function EditorPane({ name }: { name: string }) {
 
 /** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = useState(false)
   const [count, setCount] = useState(0)
@@ -386,6 +390,7 @@ function Editor() {
 
 /** Sequences register with useHotkey and useHotkeys and expose progress through the registry. */
 function Sequences() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = useState(1000)
   useHotkey(['[KeyG]', '[KeyG]'], () => log('Sequence: go to top'), {
@@ -461,6 +466,7 @@ function Sequences() {
 
 /** Recorder output feeds local state; reset and validation are application policy. */
 function Recording() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = useState<Hotkey>(initial)
@@ -632,6 +638,7 @@ function Recording() {
 
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
+  const formatForDisplay = useFormatForDisplay()
   const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)

@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking'
 import { on } from '@ember/modifier'
 
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRecorder,
   useHotkeys,
   useHotkeyRegistrations,
@@ -95,6 +95,7 @@ const progress = (reg: HotkeyRegistrationView) =>
     : '\u2014'
 
 class App extends Component {
+  formatForDisplay = useFormatForDisplay()
   usage0 =
     'recorder = useHotkeyRecorder(this, {\n  maxSteps: 4,\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nregistrations = useHotkeyRegistrations(this)\n\n<template>\n  {{useHotkeys this.definitions}}\n  <button type="button" {{on "click" this.recorder.startRecording}}>Record</button>\n</template>'
   @tracked shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
@@ -271,7 +272,7 @@ class App extends Component {
             removes the last chord or clears.
             {{#if (gt this.recorder.steps.length 0)}}<div>
                 Steps:
-                <kbd>{{formatForDisplay this.recorder.steps}}</kbd>
+                <kbd>{{this.formatForDisplay this.recorder.steps}}</kbd>
               </div>{{/if}}
           </div>{{/if}}
 
@@ -288,6 +289,7 @@ class App extends Component {
 }
 
 class RegistrationsViewer extends Component {
+  formatForDisplay = useFormatForDisplay()
   registrationsState = useHotkeyRegistrations(this)
   get hotkeys() {
     return this.registrationsState.hotkeys
@@ -316,7 +318,7 @@ class RegistrationsViewer extends Component {
         <tbody>
           {{#each this.hotkeys key='id' as |reg|}}<tr>
               <td>
-                <kbd>{{formatForDisplay reg.hotkey}}</kbd>
+                <kbd>{{this.formatForDisplay reg.hotkey}}</kbd>
               </td>
               <td>{{or reg.options.meta.name '—'}}</td>
               <td class='description-cell'>
@@ -348,6 +350,7 @@ class RegistrationsViewer extends Component {
 }
 
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
+  formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
@@ -359,11 +362,11 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
       (e.currentTarget as HTMLInputElement).value,
     )
   get liveSequenceText() {
-    return formatForDisplay(this.args.liveSteps)
+    return this.formatForDisplay(this.args.liveSteps)
   }
   get savedHotkeyText() {
     const { hotkey } = this.args.shortcut
-    return hotkey === null ? '' : formatForDisplay(hotkey)
+    return hotkey === null ? '' : this.formatForDisplay(hotkey)
   }
 
   <template>

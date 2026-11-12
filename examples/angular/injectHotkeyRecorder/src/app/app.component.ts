@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHeldKeys,
   injectHotkeyRecorder,
   injectHotkeyRegistrations,
@@ -71,7 +71,7 @@ export class AppComponent {
   draftName = signal('')
   draftDescription = signal('')
 
-  formatForDisplay = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   heldKeys = injectHeldKeys()
 
   private readonly recorder = injectHotkeyRecorder({

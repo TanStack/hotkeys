@@ -124,7 +124,7 @@ function choicesOf(
 
 function CheatSheet({ choices }: { choices: FormatChoices }) @{
   // Formats with the provider's platform, so the server renders the user's labels
-  const format = useFormatForDisplay()
+  const formatForDisplay = useFormatForDisplay()
   const options = toFormatOptions(choices)
 
   <section className="panel" aria-labelledby="cheat-sheet-title">
@@ -136,7 +136,7 @@ function CheatSheet({ choices }: { choices: FormatChoices }) @{
             <th scope="row">{command.name}</th>
             <td className="label">
               <HotkeyLabel
-                label={format(command.hotkey, options)}
+                label={formatForDisplay(command.hotkey, options)}
                 sequenceSeparator={options.sequenceSeparator ?? ' '}
               />
             </td>

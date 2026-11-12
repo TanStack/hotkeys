@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
-  formatForDisplay,
   isHotkeySequence,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
@@ -11,6 +11,8 @@ import type {
   RecorderKeyMode,
   RecorderRejection,
 } from '@tanstack/vue-hotkeys'
+
+const formatForDisplay = useFormatForDisplay()
 
 // The recorder sends a reason code, so the app writes the text
 const rejectionText = ({ reason, message }: RecorderRejection) =>

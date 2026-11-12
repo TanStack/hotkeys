@@ -2,12 +2,14 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { nextTick, ref, watch } from 'vue'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
+
+const formatForDisplay = useFormatForDisplay()
 
 const lastHotkey = ref<Hotkey | null>(null)
 const saveCount = ref(0)

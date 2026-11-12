@@ -76,12 +76,12 @@ import type { HotkeyChord } from '@tanstack/vue-hotkeys'
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 useHotkey(saveHotkey, () => save())
-const format = useFormatForDisplay()
+const formatForDisplay = useFormatForDisplay()
 </script>
 
 <template>
   <button @click="save">
-    Save <kbd>{{ format(saveHotkey) }}</kbd>
+    Save <kbd>{{ formatForDisplay(saveHotkey) }}</kbd>
   </button>
 </template>
 ```
