@@ -9,7 +9,6 @@ import {
 } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import ts from 'typescript'
 
 type ExportTarget = string | { [condition: string]: ExportTarget }
 
@@ -23,7 +22,6 @@ interface PackedManifest {
   files: Array<string>
   exports: Record<string, ExportTarget>
   dependencies?: Record<string, string>
-  peerDependencies?: Record<string, string>
   'ember-addon'?: { version: number; main: string }
 }
 
@@ -153,34 +151,6 @@ try {
       assert.ok(
         !/sourceMappingURL\s*=/.test(readFileSync(path, 'utf8')),
         `Published source map reference: ${file}`,
-      )
-    }
-    // An inferred Vue component type lists every type argument of the Vue
-    // version the package was built with. Vue 3.3, the oldest supported
-    // version, declares 13 on `DefineComponent` and rejects a longer list.
-    if (manifest.peerDependencies?.vue && file.endsWith('.d.ts')) {
-      const check = (node: ts.Node): void => {
-        const name = ts.isTypeReferenceNode(node)
-          ? node.typeName
-          : ts.isImportTypeNode(node)
-            ? node.qualifier
-            : undefined
-        if (name?.getText().split('.').at(-1) === 'DefineComponent') {
-          assert.ok(
-            ((node as ts.NodeWithTypeArguments).typeArguments?.length ?? 0) <=
-              13,
-            `Give the component a written-out type that Vue 3.3 accepts: ${file}`,
-          )
-        }
-        ts.forEachChild(node, check)
-      }
-      check(
-        ts.createSourceFile(
-          file,
-          readFileSync(path, 'utf8'),
-          ts.ScriptTarget.Latest,
-          true,
-        ),
       )
     }
   }

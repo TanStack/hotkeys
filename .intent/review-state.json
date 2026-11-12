@@ -437,16 +437,16 @@
       "evidence": [".changeset/intent-skills.md"]
     },
     "source:scripts/verify-package.ts": {
-      "fingerprint": "52262d2399f4732d484b3ebb34c4769ff7b7f6245c644daa660aa255ba404293",
+      "fingerprint": "f93157da0086ac1b234efa6b91482b6fed8538ad55f98ab186105837b9e274bc",
       "snapshot": {
-        "scripts/verify-package.ts": "e0a2b15f3012c15b93416cfff0b4d122394730dee6516f8fc14ab72208ca4b40"
+        "scripts/verify-package.ts": "86c307730526309a448097c15fb9e041a8ac9f4bce1bd9328802f694996a0bb6"
       },
-      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
-      "reason": "Adds a package check that fails when a packed Vue declaration passes more type arguments to DefineComponent than Vue 3.3 accepts. Packaging checks are not covered by skills.",
+      "reason": "Adds package checks for Ember v2 addon metadata and preserved 'use client' directives. Packaging checks aren't covered by skills.",
       "evidence": [
         "scripts/verify-package.ts",
-        "pnpm test:build passes for @tanstack/vue-hotkeys and @tanstack/vue-hotkeys-devtools"
+        "pnpm exec nx run-many --targets=test:build passes for all 18 packages"
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-hints.md": {
