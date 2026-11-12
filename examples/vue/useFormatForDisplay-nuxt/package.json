@@ -10,6 +10,15 @@
     "lint:fix": "nuxt prepare && oxlint . --fix",
     "test:types": "nuxt typecheck"
   },
+  "nx": {
+    "targets": {
+      "test:types": {
+        "dependsOn": [
+          "build"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "@tanstack/vue-hotkeys": "^0.23.0",
     "nuxt": "^4.6.4",

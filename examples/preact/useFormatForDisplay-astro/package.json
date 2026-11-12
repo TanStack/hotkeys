@@ -10,6 +10,15 @@
     "lint:fix": "oxlint . --fix",
     "test:types": "astro check"
   },
+  "nx": {
+    "targets": {
+      "test:types": {
+        "dependsOn": [
+          "build"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "@astrojs/node": "^11.1.11",
     "@astrojs/preact": "^6.1.2",
