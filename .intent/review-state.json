@@ -19689,121 +19689,121 @@
       "evidence": ["packages/svelte-hotkeys/tests/recorders.test.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectKeyboardLayout.md": {
-      "fingerprint": "1b00b581eb90467137e83770a6cde417e0b68560183cce6e52bb7d0502778ed2",
+      "fingerprint": "54699e866cca3614b6dd5817236994396a675fcdeaa8b8573790aef3d96cfa9e",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectKeyboardLayout.md": "f36beb0aac180419a499822ba0ef30b9767ecabc47ead1b4607480a7a781da6a"
+        "docs/framework/angular/reference/functions/injectKeyboardLayout.md": "b9c7dcce14722d573d05f4428dcd1735e9897afcc591a0402c2cfa8814e332b6"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/angular/reference/functions/injectKeyboardLayout.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "3a8dce1cb5756232d793d595156d3a3fb75d6e4df59e030cd5a00b7f0b6392b9",
+      "fingerprint": "75e675e198bc3e14c8e90bb5e05d0c647433af25fbdf3b2f7f7928d7f9c8cad7",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useKeyboardLayout.md": "a9dd4d838fcf8883d1d49d91783e3e9b1c053a5f76ec348ade0001f3eff1e72a"
+        "docs/framework/ember/reference/functions/useKeyboardLayout.md": "c0f2ca768c01d30435d0370595ef33572c60e4cf586d4e1ae5ab7d55c30b6273"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/ember/reference/functions/useKeyboardLayout.md"
       ]
     },
     "source:docs/framework/lit/reference/classes/KeyboardLayoutController.md": {
-      "fingerprint": "113a67c892a593568f88db521291d46d28d292a767685b6a52ae2a0285a18a5a",
+      "fingerprint": "392026ce73cadcd18b6d4dec2deadcffec7daeddece2291b5280c8315257000f",
       "snapshot": {
-        "docs/framework/lit/reference/classes/KeyboardLayoutController.md": "175f5f382434e61c6c95ebf9dc30f253d3a450a754dcc2750f0b0f11628c9ce4"
+        "docs/framework/lit/reference/classes/KeyboardLayoutController.md": "84e3cbac16b3260b138cd6027e56f68c4cf8034c817de71cf38a5ddda6d16c59"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/lit/reference/classes/KeyboardLayoutController.md"
       ]
     },
     "source:docs/framework/octane/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "091576faf584fd3e612eeab78ca0b23a9d0c0e8b7e52f5b937b86e25a43abfae",
+      "fingerprint": "ead4c422b5a22d10eb6dbb6b8a9bc37375ed5b320d153a217bcff35215078871",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useKeyboardLayout.md": "f1e8015fb862b5928022629d948e7292ff501d5db69965ea0e00b8e8c6f77c81"
+        "docs/framework/octane/reference/functions/useKeyboardLayout.md": "af9785147f68f382c68bf7422245144f0a8d88dcb9e277b3f23bc5491d473daa"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/octane/reference/functions/useKeyboardLayout.md"
       ]
     },
     "source:docs/framework/preact/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "8dbeef2b86b5095dce6fb2fb88b2c4150c9f248bc060ad73e68256ca6cedb419",
+      "fingerprint": "913e0b4a759f1016fe00390a27901dac5569ce622204f76b4749590872869cae",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useKeyboardLayout.md": "65539fc4423bc039b153edb1a63f037d1d2a8858dee23eae63c396639f6cbec2"
+        "docs/framework/preact/reference/functions/useKeyboardLayout.md": "81dd6dd74f592eba074d5a3effad67cab1d50688c01900eb8a361d76bcd3f6ec"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/preact/reference/functions/useKeyboardLayout.md"
       ]
     },
     "source:docs/framework/react/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "f6b0fe773e040e0c4a16d82499332c2e208ef69869727ed4dcb8a2e247b599f4",
+      "fingerprint": "94426bc2e90e183c96fe8a8493653e8a65265c821bed37098300fd3379ab4c7f",
       "snapshot": {
-        "docs/framework/react/reference/functions/useKeyboardLayout.md": "79ef36be9368290767c8e22c930428b20433421186faf9ad2545b6dc11ddc735"
+        "docs/framework/react/reference/functions/useKeyboardLayout.md": "593a9a5de9f0a038515c2f0a59e55eb56874ad7698d69ae8165f65d3f9627a5f"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/react/reference/functions/useKeyboardLayout.md"
       ]
     },
     "source:docs/framework/solid/reference/functions/createKeyboardLayout.md": {
-      "fingerprint": "e7c7570fe5e12948d892acb698b572197943d64105eaadc706e62f403c053912",
+      "fingerprint": "90892992b8dcf113663e073626786124ed7e138ca78216c67cbd4cc6155ec590",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createKeyboardLayout.md": "759a2b6c4201d08c3ad72a347a2b7778025b95684e320a723a74c6447291df35"
+        "docs/framework/solid/reference/functions/createKeyboardLayout.md": "1684c1aab37afe33c6f9218234b7f710af81e11af378a4b19de9738acf45a45a"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/solid/reference/functions/createKeyboardLayout.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getKeyboardLayout.md": {
-      "fingerprint": "f6aa58f46ed64553c6b499f7885f9885ff3e801e248a3ecbbc49dd5021448b43",
+      "fingerprint": "f107b527b24cf19109774220831f0e73087b186bef24bbcec7a69f83e08ffafd",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getKeyboardLayout.md": "4fee6a9e024b236fd0f8fd78b8b8be840f34a99e24f793d7425dcd3a864660b7"
+        "docs/framework/svelte/reference/functions/getKeyboardLayout.md": "a08e5eccce1f618f12a9d38ab925c29c7eff53956298b4eb154923b430a5ce85"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/svelte/reference/functions/getKeyboardLayout.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": {
-      "fingerprint": "655c56eee87dbd130fe6b46ec37df4d0618c8d776238969c72d388778afad6ef",
+      "fingerprint": "c76b9fa82754d7695d96f0677017002c100113555b744edb8d79e7b3339d2fa0",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": "29d963a00502dadd3dec5589d47e99fe2ca9459f45100cbcdaf41fa6a734bef4"
+        "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": "f5d2173a618ce487e56470378b78af3612bd0c9dc40cbf387dd3188dd871569b"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md"
       ]
     },
     "source:docs/framework/vue/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "427e612561f515b55b7f698d5150a18ca1ed126b6864e6471a7d175ebf6ff9ab",
+      "fingerprint": "4ab3f8c481c394cb6cceea474b68dbeee131e52559cbfc2983fcab355e311618",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useKeyboardLayout.md": "1277d34b19f916388f5f94804fc30527f036c510f811fdeab2d6c983936a6469"
+        "docs/framework/vue/reference/functions/useKeyboardLayout.md": "f7e8fb1bb53c1157486f5350c2905f162471f9aef3365c6875e4adfaaee5598f"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": [
         "docs/framework/vue/reference/functions/useKeyboardLayout.md"
       ]
@@ -19819,33 +19819,33 @@
       "evidence": ["docs/reference/adapter/functions/namesPhysicalKey.md"]
     },
     "source:docs/reference/functions/getKeyboardLayoutStore.md": {
-      "fingerprint": "8311c88cefde7f2bd9d244d049c8c4ffe02067bab266b9adb50ce548a9d2f057",
+      "fingerprint": "51a3d7c7789bf6ea541edd695f2b946c09016f1b74e068b8b89305a4e9a23261",
       "snapshot": {
-        "docs/reference/functions/getKeyboardLayoutStore.md": "3921786e7b09f6bb3da0ee743ba2bc2063e6633098ed67789f63ed4a66245ac3"
+        "docs/reference/functions/getKeyboardLayoutStore.md": "c434623113cb90d71f9e034aea27422fbe4cab6992dd9c1e37b87f542de5aefd"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": ["docs/reference/functions/getKeyboardLayoutStore.md"]
     },
     "source:docs/reference/functions/loadKeyboardLayout.md": {
-      "fingerprint": "e01def51d536970408f905d6926c4952e6b16272aa08aa92ce2c755514d96a3f",
+      "fingerprint": "72d08196c19966b45ea6c085f9ae7224b1fdc8a19998addd5e5f914ce54886c5",
       "snapshot": {
-        "docs/reference/functions/loadKeyboardLayout.md": "35f4170fe9bf27738e5701ac470360715ffed6f44dea4f99a4da9f20e6ccda99"
+        "docs/reference/functions/loadKeyboardLayout.md": "b20b850ea536348f66041903381b512bf42474a8979502275041478c0dfa1c7f"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": ["docs/reference/functions/loadKeyboardLayout.md"]
     },
     "source:docs/reference/type-aliases/KeyboardLayoutMap.md": {
-      "fingerprint": "54096ca36e9020077e9c3267beba696d7c8b811b745fdd01392c1450647b4560",
+      "fingerprint": "aebf003dd92d7912119e0d025a22d4ff44c5e9b24db93e05809f7b088193232f",
       "snapshot": {
-        "docs/reference/type-aliases/KeyboardLayoutMap.md": "3dbb2aa9539066804f53cacaa179656a0c78acfae2df659d80d67b2539814212"
+        "docs/reference/type-aliases/KeyboardLayoutMap.md": "fcdf644b66bb4e339b7a80a7735560eb67efa36d8b595dfb7320e452d807f1c5"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "d734ca11c40743d80f09683818259240c96dc55e",
       "outcome": "no-change",
-      "reason": "Generated API reference for the keyboard layout primitives and option. The skill rows updated in this review cover the label behavior.",
+      "reason": "Generated API reference for the keyboard layout primitives, regenerated with current source line numbers. The skill rows updated for this change cover the label behavior.",
       "evidence": ["docs/reference/type-aliases/KeyboardLayoutMap.md"]
     },
     "source:e2e/browser/keyboard-layout.spec.ts": {
