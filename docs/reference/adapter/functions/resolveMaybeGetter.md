@@ -9,7 +9,7 @@ title: resolveMaybeGetter
 function resolveMaybeGetter<T>(value): T;
 ```
 
-Defined in: \_getter.ts:4
+Defined in: [\_getter.ts:4](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/_getter.ts#L4)
 
 Calls a getter, or returns a plain value.
 
