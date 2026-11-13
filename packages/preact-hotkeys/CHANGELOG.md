@@ -1,5 +1,21 @@
 # @tanstack/preact-hotkeys
 
+## 0.23.1
+
+### Patch Changes
+
+- [#276](https://github.com/TanStack/hotkeys/pull/276) [`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd) - Types that every adapter wrote out for itself now come from one place in `@tanstack/hotkeys`.
+
+  - New types: `MaybeGetter`, `HotkeyEventType`, `KeyIdentity`, `ResolvableModifier`, `HotkeyCommonOptions`, `HotkeyRegistrationsResult`, `RegisteredAppHotkeyListItem`, `CustomHotkeyActions` and `HotkeyRecorderActions`. `HotkeyRecorderState` takes the recorded hotkey type as an optional type argument.
+  - Each adapter's types, such as `UseCustomHotkeysResult` and `ReactHotkeyRecorder`, now extend these, and keep their names.
+  - `@tanstack/hotkeys/adapter` adds helpers that the adapters shared by copy: hint visibility, the label formatter, keyboard layout following, the app hotkeys store lookup and custom hotkey actions.
+  - `@tanstack/hotkeys-devtools` exports `HOTKEYS_DEVTOOLS_PLUGIN_NAME`, `HOTKEYS_DEVTOOLS_DEFAULT_PROPS` and `HotkeysDevtoolsRenderPlugin`, which the framework devtools plugins extend.
+
+  Behavior is unchanged.
+
+- Updated dependencies [[`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd)]:
+  - @tanstack/hotkeys@0.30.0
+
 ## 0.23.0
 
 ### Minor Changes
