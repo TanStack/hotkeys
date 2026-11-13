@@ -2,17 +2,19 @@ import {
   getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
 } from '@tanstack/hotkeys'
-import { read, select, trackPublishedAppHotkeys } from './utils'
+import {
+  isHotkeyHintVisible,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
+import { select, trackPublishedAppHotkeys } from './utils'
 import type {
   AppHotkey,
   HeldModifierOptions,
+  MaybeGetter,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type { EmberHotkeyState } from './types'
-import type { MaybeGetter } from './utils'
 
 /**
  * Recomputes for held modifiers and tracked changes to the hotkey or options.
@@ -32,20 +34,19 @@ export function useHotkeyHint(
   // Tracks registration, enabled, and scope changes, but invalidates only
   // when this hotkey's result changes (firing any hotkey publishes too).
   const active = select(owner, manager.registrations, () =>
-    manager.hasActiveRegistration(read(hotkey)),
+    manager.hasActiveRegistration(resolveMaybeGetter(hotkey)),
   )
   return select(owner, getKeyStateTracker().store, (state) => {
     // Read it first, so a render that returns false still tracks it. A
     // hotkey registered while its modifier is held then shows.
-    const isActive = active.value
-    const value = read(hotkey)
-    const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, appHotkeys()).hotkey
-      : value
-    return (
-      resolved !== null &&
-      matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
-      isActive
+    void active.value
+    const value = resolveMaybeGetter(hotkey)
+    // Only app hotkeys read, and so track, the published store.
+    return isHotkeyHintVisible(
+      value,
+      state.heldKeys,
+      resolveMaybeGetter(options),
+      isAppHotkey(value) ? appHotkeys() : null,
     )
   })
 }

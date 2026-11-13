@@ -1,7 +1,8 @@
 import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
-import type { HotkeyChordOptions, Target } from '../src/hotkey-manager'
+import type { HotkeyChordOptions } from '../src/hotkey-manager'
+import type { Target } from '../src/hotkey.types'
 
 // React, Svelte and Octane run declarative key handlers from one listener on
 // the app's root container, and Solid from one on the document. These tests

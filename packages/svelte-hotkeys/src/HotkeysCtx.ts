@@ -12,11 +12,13 @@ import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { Snippet } from 'svelte'
 import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 
@@ -41,12 +43,7 @@ export interface HotkeysProviderOptions {
    */
   hotkey?: CreateHotkeyCommonOptions
   /** Defaults for every `createHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
 /** Options for `setHotkeysContext` and props for `HotkeysProvider`. */
@@ -76,16 +73,8 @@ export interface HotkeysProviderProps extends HotkeysContextOptions {
 
 export const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
-interface HotkeysContextValue {
-  readonly appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor's defaults, including `hotkey.scope`. */
-  readonly defaultOptions: HotkeysProviderOptions
-  /** Whether this context and every ancestor are enabled. */
-  readonly enabled: boolean
-}
-
 const [useHotkeysContext, setHotkeysContextValue] =
-  createContext<HotkeysContextValue | null>()
+  createContext<HotkeysContextValue<HotkeysProviderOptions> | null>()
 
 /**
  * Sets the hotkeys context for descendants. `HotkeysProvider` calls this; call
@@ -110,14 +99,14 @@ const [useHotkeysContext, setHotkeysContextValue] =
  */
 export function setHotkeysContext(
   options: HotkeysContextOptions = {},
-): HotkeysContextValue {
+): HotkeysContextValue<HotkeysProviderOptions> {
   return setHotkeysContextSource(() => options)
 }
 
 /** Sets the context from a getter, so default options stay reactive. */
 export function setHotkeysContextSource(
   source: () => HotkeysContextOptions,
-): HotkeysContextValue {
+): HotkeysContextValue<HotkeysProviderOptions> {
   const parent = getHotkeysContext()
   let store: AppHotkeysStore | null = null
   // Created when app hotkeys first arrive. That can be after the context is
@@ -174,7 +163,7 @@ export function setHotkeysContextSource(
   return context
 }
 
-export function getHotkeysContext(): HotkeysContextValue | null {
+export function getHotkeysContext(): HotkeysContextValue<HotkeysProviderOptions> | null {
   try {
     return useHotkeysContext()
   } catch {

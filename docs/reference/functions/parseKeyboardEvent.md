@@ -9,7 +9,7 @@ title: parseKeyboardEvent
 function parseKeyboardEvent(event, platform?): ParsedHotkeyChord;
 ```
 
-Defined in: [parse.ts:292](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L292)
+Defined in: [parse.ts:294](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L294)
 
 Parses a KeyboardEvent into the chord it pressed, in the same format as
 `parseHotkey()`. Pass the result to `normalizeHotkey` for its canonical string.
@@ -24,7 +24,7 @@ The KeyboardEvent to parse
 
 ### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving modifiers (defaults to auto-detection)
 

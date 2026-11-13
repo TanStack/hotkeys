@@ -3,12 +3,7 @@ import {
   KeyStateTracker,
   getHotkeyManager,
 } from '@tanstack/hotkeys'
-import {
-  createRoot,
-  delegateEvents,
-  drainPassiveEffects,
-  flushSync,
-} from 'octane'
+import { createRoot, delegateEvents, flushSync } from 'octane'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import {
   AppHotkeysFixture,
@@ -24,16 +19,12 @@ import {
   optionalCapture,
   scopeCapture,
 } from './fixture.tsrx'
+import { flush } from './utils'
 import type { Root } from 'octane'
 
 delegateEvents(['click'])
 let root: Root
 let container: HTMLDivElement
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 function key(key: string, type = 'keydown', options: KeyboardEventInit = {}) {
   flushSync(() => {
     document.dispatchEvent(

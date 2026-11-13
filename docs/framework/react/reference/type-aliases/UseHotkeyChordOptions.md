@@ -9,6 +9,6 @@ title: UseHotkeyChordOptions
 type UseHotkeyChordOptions = AdapterChordOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L34)
+Defined in: [useHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L32)
 
 Options for a chord such as `'Mod+S'`.

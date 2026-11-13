@@ -18,11 +18,13 @@ import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysProviderScopeProps,
+  HotkeysContextValue as SharedHotkeysContextValue,
+} from '@tanstack/hotkeys/adapter'
 import type { ReactElement, ReactNode } from 'react'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
@@ -48,21 +50,10 @@ export interface HotkeysProviderOptions {
    */
   hotkey?: UseHotkeyCommonOptions
   /** Defaults for every `useHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
-  defaultOptions: HotkeysProviderOptions
-  /** Whether this provider and every ancestor are enabled. */
-  enabled: boolean
-}
+type HotkeysContextValue = SharedHotkeysContextValue<HotkeysProviderOptions>
 
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 

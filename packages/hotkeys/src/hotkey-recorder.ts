@@ -1,5 +1,6 @@
 import { splitChordParts } from './_chord'
 import { isTypingEvent } from './_event-target'
+import { resolveMaybeGetter } from './_getter'
 import { isModifierPress, normalizeKeyboardEvent } from './_keyboard-event'
 import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
 import {
@@ -17,8 +18,10 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeySequence,
+  MaybeGetter,
   ParsedHotkeyChord,
 } from './hotkey.types'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * How the recorder writes the pressed key:
@@ -71,7 +74,7 @@ export interface RecorderOptions {
   /** How the pressed key is written. Default: `'auto'`. */
   recordBy?: RecorderKeyMode
   /** Platform used for Mod and AltGraph handling. Defaults to platform detection. */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /** Opt in to live-registry conflicts, including sequence prefixes. Default: false. */
   detectConflicts?: boolean | HotkeyConflictOptions
   /** Rejected candidates leave recording active. */
@@ -105,15 +108,28 @@ export type HotkeyRecorderValidationContext =
   | HotkeySequenceRecorderValidationContext
 
 /**
- * State interface for the HotkeyRecorder.
+ * State interface for the HotkeyRecorder. Adapters narrow `THotkey` to the
+ * kind their recorder records.
  */
-export interface HotkeyRecorderState {
+export interface HotkeyRecorderState<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
   isRecording: boolean
   /** Chords recorded so far in a multi-step recording (empty for `maxSteps: 1`) */
   steps: HotkeySequence
   /** The last committed hotkey: a chord, or a sequence of two or more steps */
-  recordedHotkey: Hotkey | null
+  recordedHotkey: THotkey | null
+}
+
+/** The recorder controls that framework adapters return. */
+export interface HotkeyRecorderActions {
+  /** Start recording a new hotkey */
+  startRecording: () => void
+  /** Stop recording without calling onCancel */
+  stopRecording: () => void
+  /** Cancel recording and call onCancel */
+  cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  commitRecording: () => void
 }
 
 /** Which keys commit a multi-step recording before it reaches `maxSteps`. */
@@ -250,17 +266,15 @@ export class HotkeyRecorder {
     createStore<HotkeyRecorderState>(initialState)
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
-  #optionsSource: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)
+  #optionsSource: MaybeGetter<HotkeyRecorderOptions>
   #optionOverrides: Partial<ResolvedRecorderOptions> = {}
-  #platform: 'mac' | 'windows' | 'linux'
+  #platform: HotkeyPlatform
   #events: Array<KeyboardEvent> = []
   #idleTimer: ReturnType<typeof setTimeout> | null = null
 
   get #options(): ResolvedRecorderOptions {
     return {
-      ...((typeof this.#optionsSource === 'function'
-        ? this.#optionsSource()
-        : this.#optionsSource) as ResolvedRecorderOptions),
+      ...(resolveMaybeGetter(this.#optionsSource) as ResolvedRecorderOptions),
       ...this.#optionOverrides,
     }
   }
@@ -269,15 +283,9 @@ export class HotkeyRecorder {
     return Math.max(1, this.#options.maxSteps ?? 1)
   }
 
-  constructor(
-    options: HotkeyChordRecorderOptions | (() => HotkeyChordRecorderOptions),
-  )
-  constructor(
-    options:
-      | HotkeySequenceRecorderOptions
-      | (() => HotkeySequenceRecorderOptions),
-  )
-  constructor(options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)) {
+  constructor(options: MaybeGetter<HotkeyChordRecorderOptions>)
+  constructor(options: MaybeGetter<HotkeySequenceRecorderOptions>)
+  constructor(options: MaybeGetter<HotkeyRecorderOptions>) {
     this.#optionsSource = options
     this.#platform = detectPlatform()
   }

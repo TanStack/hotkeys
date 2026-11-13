@@ -13,7 +13,7 @@ function matchesKeyboardEvent(
 ): boolean;
 ```
 
-Defined in: [match.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L52)
+Defined in: [match.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L53)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -52,7 +52,7 @@ The chord string or parsed chord to match against
 
 ### platform?
 
-`"mac"` \| `"windows"` \| `"linux"` = `...`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md) = `...`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 

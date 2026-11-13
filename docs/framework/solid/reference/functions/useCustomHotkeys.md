@@ -9,7 +9,7 @@ title: useCustomHotkeys
 function useCustomHotkeys(): UseCustomHotkeysResult;
 ```
 
-Defined in: [appHotkeys.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L101)
+Defined in: [appHotkeys.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L70)
 
 Reads and changes the user's custom hotkeys. Changes apply to every
 registered app hotkey immediately and are passed to the provider's

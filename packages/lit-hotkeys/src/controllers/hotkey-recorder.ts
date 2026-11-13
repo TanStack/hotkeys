@@ -1,11 +1,15 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { isServer } from './_server'
 import type {
   Hotkey,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
+  HotkeyRecorderState,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -47,7 +51,9 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
  * }
  * ```
  */
-export class HotkeyRecorderController implements ReactiveController {
+export class HotkeyRecorderController
+  implements ReactiveController, HotkeyRecorderState, HotkeyRecorderActions
+{
   /** The recorder instance. */
   private _recorder: HotkeyRecorder
   private _optionOverrides: Partial<HotkeyRecorderOptions> = {}
@@ -101,15 +107,13 @@ export class HotkeyRecorderController implements ReactiveController {
   )
   constructor(
     private _host: ReactiveControllerHost,
-    private _options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
+    private _options: MaybeGetter<HotkeyRecorderOptions>,
   ) {
     // Overloads already checked the options; either shape is valid here.
     this._recorder = new HotkeyRecorder(
       () =>
         ({
-          ...(typeof this._options === 'function'
-            ? this._options()
-            : this._options),
+          ...resolveMaybeGetter(this._options),
           ...this._optionOverrides,
         }) as HotkeySequenceRecorderOptions,
     )

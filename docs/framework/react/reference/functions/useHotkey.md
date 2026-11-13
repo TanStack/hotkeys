@@ -15,7 +15,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L96)
+Defined in: [useHotkey.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L94)
 
 React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -93,7 +93,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L101)
+Defined in: [useHotkey.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L99)
 
 React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.

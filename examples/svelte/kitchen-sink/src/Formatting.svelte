@@ -1,8 +1,9 @@
 <script lang="ts">
   import { getFormatForDisplay } from '@tanstack/svelte-hotkeys'
+  import type { HotkeyPlatform } from '@tanstack/svelte-hotkeys'
 
   const formatForDisplay = getFormatForDisplay()
-  let platform = $state<'mac' | 'windows' | 'linux'>('mac'),
+  let platform = $state<HotkeyPlatform>('mac'),
     modifiers = $state(false),
     keys = $state(true)
   const options = $derived.by(() => ({

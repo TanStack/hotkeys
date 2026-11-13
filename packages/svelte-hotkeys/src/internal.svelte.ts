@@ -8,17 +8,14 @@ import type {
   HotkeyPlatform,
 } from '@tanstack/hotkeys'
 
-export type MaybeGetter<T> = T | (() => T)
+export type { MaybeGetter } from '@tanstack/hotkeys'
+export { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 
 interface SubscribableStore<TState> {
   state: TState
   subscribe: (
     listener: () => void,
   ) => (() => void) | { unsubscribe: () => void }
-}
-
-export function resolveMaybeGetter<T>(value: MaybeGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : value
 }
 
 export function createStoreSubscriber<TState>(

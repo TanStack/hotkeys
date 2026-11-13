@@ -1,9 +1,12 @@
 import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
+import { hotkeySteps } from './_chord'
+import { ownValue } from './_keys'
 import { GLOBAL_SCOPE } from './_registration'
+import { stepsOverlap } from './_steps'
 import { createStore } from './_store'
 import { getHotkeyManager } from './hotkey-manager'
-import { areHotkeysEqual, matchesKeyboardEvent } from './match'
-import { isHotkeySequence, simplifyHotkey } from './parse'
+import { areHotkeysEqual } from './match'
+import { simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
 import { validateHotkey } from './validate'
 import type { Store } from './_store'
@@ -19,8 +22,7 @@ import type {
   HotkeyMeta,
   HotkeySequence,
 } from './hotkey.types'
-
-type Platform = 'mac' | 'windows' | 'linux'
+import type { HotkeyPlatform } from './platform'
 
 type DeclaredOptionKeys =
   | 'capture'
@@ -221,7 +223,7 @@ export function isAppHotkey(value: unknown): value is AppHotkey {
 function hotkeysEqual(
   left: Hotkey | null,
   right: Hotkey | null,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): boolean {
   if (left === null || right === null) return left === right
   return areHotkeysEqual(left, right, platform)
@@ -230,7 +232,7 @@ function hotkeysEqual(
 /** Whether an app hotkey's effective hotkey differs from its default. */
 export function isCustomHotkey(
   appHotkey: AppHotkey,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): boolean {
   return !hotkeysEqual(appHotkey.hotkey, appHotkey.defaultHotkey, platform)
 }
@@ -351,26 +353,15 @@ export interface RecordedKeyPresses {
 function hotkeysOverlap(
   left: Hotkey,
   right: Hotkey,
-  platform: Platform,
+  platform: HotkeyPlatform,
   events?: ReadonlyArray<KeyboardEvent>,
 ): boolean {
-  const a = isHotkeySequence(left) ? left : [left]
-  const b = isHotkeySequence(right) ? right : [right]
-  const length = Math.min(a.length, b.length)
-  for (let i = 0; i < length; i++) {
-    const event = events?.[i]
-    if (
-      !areHotkeysEqual(a[i]!, b[i]!, platform) &&
-      !(
-        event &&
-        matchesKeyboardEvent(event, a[i]!, platform) &&
-        matchesKeyboardEvent(event, b[i]!, platform)
-      )
-    ) {
-      return false
-    }
-  }
-  return true
+  return stepsOverlap(
+    hotkeySteps(left),
+    hotkeySteps(right),
+    [platform, platform],
+    events,
+  )
 }
 
 /**
@@ -381,12 +372,7 @@ function hotkeysOverlap(
  * - `'inactive'`: has a hotkey, but nothing has registered it
  * - `'unbound'`: no hotkey assigned
  */
-export type AppHotkeyStatus =
-  | 'active'
-  | 'suspended'
-  | 'disabled'
-  | 'inactive'
-  | 'unbound'
+export type AppHotkeyStatus = HotkeyRegistrationStatus | 'inactive' | 'unbound'
 
 /** One row of an app hotkey cheat sheet. */
 export interface AppHotkeyListItem<T extends AppHotkey = AppHotkey> {
@@ -406,6 +392,39 @@ export interface AppHotkeysState<T extends AppHotkeys = AppHotkeys> {
   customHotkeys: CustomHotkeys<T>
 }
 
+/** A cheat sheet row for one of the registered app hotkeys. */
+export type RegisteredAppHotkeyListItem = AppHotkeyListItem<
+  RegisteredAppHotkeys[keyof RegisteredAppHotkeys]
+>
+
+/** Actions that change the user's custom hotkeys, as adapters return them. */
+export interface CustomHotkeyActions {
+  /**
+   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
+   */
+  setCustomHotkey: (
+    id: AppHotkeyId,
+    hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
+  ) => Array<AppHotkey>
+  /** Restores the default hotkey for an app hotkey. */
+  resetCustomHotkey: (id: AppHotkeyId) => void
+  /** Restores every default hotkey. */
+  resetCustomHotkeys: () => void
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
+  findConflicts: (
+    id: AppHotkeyId,
+    hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
+  ) => Array<AppHotkey>
+}
+
 /** Options for `AppHotkeysStore`. */
 export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
   /**
@@ -419,7 +438,7 @@ export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys<T>) => void
   /** Platform used to compare hotkeys. Defaults to detection. */
-  platform?: Platform
+  platform?: HotkeyPlatform
 }
 
 /**
@@ -458,7 +477,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     })
   }
 
-  get #platform(): Platform {
+  get #platform(): HotkeyPlatform {
     return this.#options.platform ?? detectPlatform()
   }
 
@@ -534,7 +553,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
   /** Effective app hotkey for an id, or `undefined` when it is not declared. */
   get(id: string): AppHotkey | undefined {
     const { appHotkeys } = this.store.state
-    return Object.hasOwn(appHotkeys, id) ? appHotkeys[id] : undefined
+    return ownValue(appHotkeys, id)
   }
 
   /**

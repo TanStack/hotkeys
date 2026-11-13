@@ -21,7 +21,7 @@ Getter arguments can read changing tracked component properties.
 
 ### key
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`IndividualKey`\>
+`MaybeGetter`\<`IndividualKey`\>
 
 ## Returns
 

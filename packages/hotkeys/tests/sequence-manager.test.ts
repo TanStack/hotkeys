@@ -2,9 +2,15 @@ import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 import { createSequenceMatcher } from '../src/match'
-import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
-import type { HotkeySequenceOptions as SequenceOptions } from '../src/hotkey-manager'
-import type { HotkeyChord, HotkeySequence } from '../src/hotkey.types'
+import type {
+  HotkeySequenceRegistrationView,
+  HotkeySequenceOptions as SequenceOptions,
+} from '../src/hotkey-manager'
+import type {
+  HotkeyChord,
+  HotkeyEventType,
+  HotkeySequence,
+} from '../src/hotkey.types'
 
 /** Reads a sequence registration's public view, including match progress. */
 function sequenceView(id: string): HotkeySequenceRegistrationView {
@@ -23,7 +29,7 @@ function dispatchKeyFromElement(
   element: HTMLElement,
   key: string,
   options: {
-    eventType?: 'keydown' | 'keyup'
+    eventType?: HotkeyEventType
     ctrlKey?: boolean
     shiftKey?: boolean
     altKey?: boolean

@@ -8,6 +8,7 @@ import {
   untracked,
 } from '@angular/core'
 import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
@@ -57,16 +58,14 @@ export function injectKeyboardLayout(): Signal<KeyboardLayoutMap | null> {
   const zone = inject(NgZone)
   effect((onCleanup) => {
     if (!rendered() || !enabled()) return
-    const store = getKeyboardLayoutStore()
-    // Outside the zone, so the loader's focus listener doesn't run change
-    // detection each time the window regains focus.
-    const stop = untracked(() => zone.runOutsideAngular(loadKeyboardLayout))
-    layout.set(store.get())
-    const { unsubscribe } = store.subscribe((next) => layout.set(next))
-    onCleanup(() => {
-      unsubscribe()
-      stop()
-    })
+    // Load outside the zone, so the loader's focus listener doesn't run
+    // change detection each time the window regains focus.
+    const stop = followKeyboardLayout(
+      (next) => layout.set(next),
+      () => untracked(() => zone.runOutsideAngular(loadKeyboardLayout)),
+    )
+    layout.set(getKeyboardLayoutStore().get())
+    onCleanup(stop)
   })
   return computed(() => (enabled() ? layout() : null))
 }

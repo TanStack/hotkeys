@@ -9,7 +9,7 @@ title: PUNCTUATION_KEY_DISPLAY_LABELS
 const PUNCTUATION_KEY_DISPLAY_LABELS: object;
 ```
 
-Defined in: [display-labels.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/display-labels.ts#L85)
+Defined in: [display-labels.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/display-labels.ts#L81)
 
 ## Type Declaration
 

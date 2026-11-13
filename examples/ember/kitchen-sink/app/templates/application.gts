@@ -16,6 +16,7 @@ import {
 } from '@tanstack/ember-hotkeys'
 import type {
   Hotkey,
+  HotkeyPlatform,
   HotkeySequence,
   EmberHotkeyDefinition,
   RegisterableHotkey,
@@ -756,7 +757,7 @@ class Recording extends Component<{
 
 class Formatting extends Component {
   formatForDisplay = useFormatForDisplay()
-  @tracked platform: 'mac' | 'windows' | 'linux' = 'mac'
+  @tracked platform: HotkeyPlatform = 'mac'
   @tracked modifierSymbols: boolean = false
   @tracked keySymbols: boolean = true
   updatePlatform = (e: Event) =>

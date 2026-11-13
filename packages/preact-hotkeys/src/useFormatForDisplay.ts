@@ -1,8 +1,8 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { useCallback } from 'preact/hooks'
+import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
+import { useMemo } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { useKeyboardLayout } from './useKeyboardLayout'
-import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
@@ -37,13 +37,12 @@ export function useFormatForDisplay(): typeof formatForDisplay {
   // Without a provider platform, formatForDisplay detects it.
   const platform = useDefaultHotkeysOptions().platform
   const layoutMap = useKeyboardLayout()
-  return useCallback(
-    (hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-      formatForDisplay(hotkey, {
-        ...options,
-        platform: options?.platform ?? platform,
-        layoutMap: options?.layoutMap ?? layoutMap ?? undefined,
-      }),
+  return useMemo(
+    () =>
+      createFormatForDisplay(
+        () => platform,
+        () => layoutMap,
+      ),
     [platform, layoutMap],
-  ) as typeof formatForDisplay
+  )
 }

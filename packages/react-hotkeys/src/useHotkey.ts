@@ -14,18 +14,16 @@ import type {
   AdapterHotkeyOptions,
   AdapterOptionsFor,
   AdapterSequenceOptions,
+  RefTarget,
 } from '@tanstack/hotkeys/adapter'
 
 /**
  * A React ref, element, document, or window to listen on. A `null` or
  * `undefined` target, or a ref that is still unset, waits for the element.
  */
-export type UseHotkeyTarget =
-  | React.RefObject<HTMLElement | null | undefined>
-  | HTMLElement
-  | Document
-  | Window
-  | null
+export type UseHotkeyTarget = RefTarget<
+  React.RefObject<HTMLElement | null | undefined>
+>
 
 /** Options shared by chords and sequences. */
 export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>

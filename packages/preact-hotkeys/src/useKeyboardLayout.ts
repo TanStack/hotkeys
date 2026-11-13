@@ -1,4 +1,5 @@
-import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import { useLayoutEffect, useState } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
@@ -33,14 +34,9 @@ export function useKeyboardLayout(): KeyboardLayoutMap | null {
   // A layout effect, so a layout that already loaded shows before paint.
   useLayoutEffect(() => {
     if (!enabled) return
-    const store = getKeyboardLayoutStore()
-    setLayoutMap(store.get())
-    const { unsubscribe } = store.subscribe(setLayoutMap)
-    const stop = loadKeyboardLayout()
-    return () => {
-      unsubscribe()
-      stop()
-    }
+    const stop = followKeyboardLayout(setLayoutMap)
+    setLayoutMap(getKeyboardLayoutStore().get())
+    return stop
   }, [enabled])
   return enabled ? layoutMap : null
 }

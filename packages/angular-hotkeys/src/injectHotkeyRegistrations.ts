@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { injectSelector } from './_injectSelector'
 import type { Signal } from '@angular/core'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
@@ -29,7 +30,8 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 export function injectHotkeyRegistrations(): Signal<
   Array<HotkeyRegistrationView>
 > {
-  return injectSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+  return injectSelector(
+    getHotkeyManager().registrations,
+    getHotkeyRegistrationViews,
   )
 }

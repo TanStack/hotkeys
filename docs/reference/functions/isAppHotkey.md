@@ -9,7 +9,7 @@ title: isAppHotkey
 function isAppHotkey(value): value is AppHotkey<string, HotkeyChord | HotkeySequence | null>;
 ```
 
-Defined in: [app-hotkeys.ts:213](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L213)
+Defined in: [app-hotkeys.ts:215](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L215)
 
 Whether a value is an app hotkey created by `defineAppHotkeys`.
 

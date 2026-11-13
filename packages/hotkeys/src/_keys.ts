@@ -3,6 +3,17 @@ import { isSingleLetterKey } from './constants'
 // Classifies and compares key values: the characters and names that
 // `KeyboardEvent.key` reports and that hotkeys are written with.
 
+/**
+ * Reads a table's own property only, so names such as `toString` or
+ * `constructor` never read Object.prototype.
+ */
+export function ownValue<T>(
+  table: Readonly<Record<string, T>> | undefined,
+  name: string,
+): T | undefined {
+  return table && Object.hasOwn(table, name) ? table[name] : undefined
+}
+
 /** Tests for one Unicode code point, including characters represented by a surrogate pair. */
 export function isPrintableKey(key: string): boolean {
   return key !== '' && Array.from(key).length === 1

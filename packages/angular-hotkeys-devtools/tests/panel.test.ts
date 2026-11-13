@@ -6,7 +6,10 @@ import {
 import { hotkeysDevtoolsNoOpPlugin, hotkeysDevtoolsPlugin } from '../src/plugin'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))
-vi.mock('@tanstack/hotkeys-devtools/production', () => ({
+vi.mock('@tanstack/hotkeys-devtools/production', async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import('@tanstack/hotkeys-devtools/production')
+  >()),
   HotkeysDevtoolsCore: class {
     mount = core.mount
     unmount = core.unmount

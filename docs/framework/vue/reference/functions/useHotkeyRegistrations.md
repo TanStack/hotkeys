@@ -9,7 +9,7 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(): Readonly<Ref<HotkeyRegistrationView[]>>;
 ```
 
-Defined in: [useHotkeyRegistrations.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L27)
+Defined in: [useHotkeyRegistrations.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L28)
 
 Vue composable that reactively reads every hotkey registration, chords and
 sequences, from the singleton HotkeyManager. Narrow each view with `kind`.

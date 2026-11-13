@@ -8,7 +8,7 @@ import {
   defineAppHotkeys, useAppHotkeyList, useCustomHotkeys,
 } from '@tanstack/octane-hotkeys';
 import type {
-  Hotkey, OctaneHotkeyRecorder, UseCustomHotkeysResult,
+  Hotkey, HotkeyPlatform, OctaneHotkeyRecorder, UseCustomHotkeysResult,
 } from '@tanstack/octane-hotkeys';
 
 export const capture: {
@@ -226,30 +226,28 @@ export function ForwardedOptionsFixture() @{
   <div>{'forwarded'}</div>
 }
 
-type Platform = 'mac' | 'windows' | 'linux';
-
 export const platformCapture: {
   fired: number;
   records: unknown[];
   recorder?: OctaneHotkeyRecorder;
 } = { fired: 0, records: [] };
 
-export function FormatLabel({ platform }: { platform?: Platform }) @{
+export function FormatLabel({ platform }: { platform?: HotkeyPlatform }) @{
   const formatForDisplay = useFormatForDisplay();
   <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
 export function PlatformFixture({ platform, label, hotkey }: {
-  platform?: Platform;
-  label?: Platform;
-  hotkey?: Platform;
+  platform?: HotkeyPlatform;
+  label?: HotkeyPlatform;
+  hotkey?: HotkeyPlatform;
 }) @{
   <HotkeysProvider defaultOptions={{ platform }}>
     <PlatformConsumer label={label} hotkey={hotkey} />
   </HotkeysProvider>
 }
 
-function PlatformConsumer({ label, hotkey }: { label?: Platform; hotkey?: Platform }) @{
+function PlatformConsumer({ label, hotkey }: { label?: HotkeyPlatform; hotkey?: HotkeyPlatform }) @{
   useHotkey('Mod+S', () => { platformCapture.fired++ }, { platform: hotkey });
   platformCapture.recorder = useHotkeyRecorder({
     recordBy: 'key',

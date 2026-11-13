@@ -14,7 +14,6 @@ title: "@tanstack/alpine-hotkeys"
 - [AlpineHotkeys](interfaces/AlpineHotkeys.md)
 - [AlpineHotkeyState](interfaces/AlpineHotkeyState.md)
 - [DefaultHotkeysOptions](interfaces/DefaultHotkeysOptions.md)
-- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 
 ## Type Aliases
 
@@ -23,7 +22,6 @@ title: "@tanstack/alpine-hotkeys"
 - [AlpineHotkeyDefinition](type-aliases/AlpineHotkeyDefinition.md)
 - [AlpineHotkeyOptionsFor](type-aliases/AlpineHotkeyOptionsFor.md)
 - [AlpineHotkeyTarget](type-aliases/AlpineHotkeyTarget.md)
-- [MaybeGetter](type-aliases/MaybeGetter.md)
 
 ## Variables
 

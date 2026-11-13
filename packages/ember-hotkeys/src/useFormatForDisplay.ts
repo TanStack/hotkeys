@@ -1,5 +1,4 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { namesPhysicalKey } from '@tanstack/hotkeys/adapter'
+import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
 import {
   layoutEnabled,
   requestLayout,
@@ -7,7 +6,7 @@ import {
   untilRendered,
 } from './keyboardLayout'
 import { scopeDefaults } from './utils'
-import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 import type { EmberHotkeysScope } from './createHotkeysScope'
 
 /**
@@ -58,15 +57,10 @@ export function useFormatForDisplay(
     }
     return layoutMap() ?? undefined
   }
-  return ((hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-    formatForDisplay(hotkey, {
-      ...options,
-      platform:
-        options?.platform ?? (scope && scopeDefaults.get(scope)!().platform),
-      // Only a position's label follows the layout. Other labels don't read
-      // it, so they don't render again when it loads.
-      layoutMap:
-        options?.layoutMap ??
-        (namesPhysicalKey(hotkey) ? loadedLayout() : undefined),
-    })) as typeof formatForDisplay
+  // Only a position's label reads the layout, so other labels don't render
+  // again when it loads.
+  return createFormatForDisplay(
+    () => scope && scopeDefaults.get(scope)!().platform,
+    loadedLayout,
+  )
 }

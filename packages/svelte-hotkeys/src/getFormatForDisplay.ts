@@ -1,7 +1,7 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { namesPhysicalKey } from '@tanstack/hotkeys/adapter'
+import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import { getKeyboardLayout } from './getKeyboardLayout.svelte.js'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the provider's `platform` as the default,
@@ -30,14 +30,10 @@ import { getKeyboardLayout } from './getKeyboardLayout.svelte.js'
 export function getFormatForDisplay(): typeof formatForDisplay {
   const context = getHotkeysContext()
   const keyboard = getKeyboardLayout()
-  return ((hotkey, options) =>
-    formatForDisplay(hotkey, {
-      ...options,
-      platform: options?.platform ?? context?.defaultOptions.platform,
-      // Only a position's label follows the layout. Other labels don't read
-      // it, so they don't render again when it loads.
-      layoutMap:
-        options?.layoutMap ??
-        (namesPhysicalKey(hotkey) ? (keyboard.layout ?? undefined) : undefined),
-    })) as typeof formatForDisplay
+  // Only a position's label reads the layout, so other labels don't render
+  // again when it loads.
+  return createFormatForDisplay(
+    () => context?.defaultOptions.platform,
+    () => keyboard.layout,
+  )
 }

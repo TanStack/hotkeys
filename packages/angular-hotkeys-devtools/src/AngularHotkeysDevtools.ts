@@ -1,5 +1,8 @@
 import { createAngularPanel } from '@tanstack/devtools-utils/angular'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
+import {
+  HOTKEYS_DEVTOOLS_DEFAULT_PROPS,
+  HotkeysDevtoolsCore,
+} from '@tanstack/hotkeys-devtools/production'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 
 export interface HotkeysDevtoolsAngularInit extends Partial<HotkeysDevtoolsPanelProps> {}
@@ -15,8 +18,9 @@ export const HotkeysDevtoolsPanel = () => {
       const props = inputs()
       return {
         ...props,
-        theme: props.theme ?? 'dark',
-        devtoolsOpen: props.devtoolsOpen ?? true,
+        theme: props.theme ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.theme,
+        devtoolsOpen:
+          props.devtoolsOpen ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.devtoolsOpen,
       }
     }, host)
 }

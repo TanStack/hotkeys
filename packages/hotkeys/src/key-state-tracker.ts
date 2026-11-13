@@ -2,6 +2,7 @@ import { createStore } from './_store'
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
 import { detectPlatform } from './platform'
 import type { Store } from './_store'
+import type { KeyIdentity } from './key.types'
 
 /**
  * State interface for the KeyStateTracker.
@@ -73,7 +74,7 @@ export class KeyStateTracker {
     getDefaultKeyStateTrackerState(),
   )
 
-  #heldEntries: Map<string, { key: string; code: string }> = new Map()
+  #heldEntries: Map<string, KeyIdentity> = new Map()
   /** Window listeners as `[type, listener, capture]`, removed together on destroy. */
   #listeners: Array<[string, EventListener, boolean]> = []
 

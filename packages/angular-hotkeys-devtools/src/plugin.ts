@@ -1,3 +1,4 @@
+import { HOTKEYS_DEVTOOLS_PLUGIN_NAME } from '@tanstack/hotkeys-devtools/production'
 import { HotkeysDevtoolsPanel } from './AngularHotkeysDevtools'
 import type { HotkeysDevtoolsAngularInit } from './AngularHotkeysDevtools'
 
@@ -18,7 +19,7 @@ export interface HotkeysDevtoolsAngularNoOpPlugin {
   render: null
 }
 
-const name = 'TanStack Hotkeys'
+const name = HOTKEYS_DEVTOOLS_PLUGIN_NAME
 
 // Same shape as `createAngularPlugin` from `@tanstack/devtools-utils/angular`.
 export function hotkeysDevtoolsPlugin(

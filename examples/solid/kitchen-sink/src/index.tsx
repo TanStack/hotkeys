@@ -24,6 +24,7 @@ import {
 import { Dynamic, render } from 'solid-js/web'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
   RecorderRejection,
   RegisterableHotkey,
@@ -660,9 +661,7 @@ function Recording() {
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
   const formatForDisplay = createFormatForDisplay()
-  const [platform, setPlatform] = createSignal<'mac' | 'windows' | 'linux'>(
-    'mac',
-  )
+  const [platform, setPlatform] = createSignal<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = createSignal(false)
   const [keySymbols, setKeySymbols] = createSignal(true)
   const options = () => ({
@@ -676,9 +675,7 @@ function Formatting() {
         Platform{' '}
         <select
           value={platform()}
-          onChange={(e) =>
-            setPlatform(e.currentTarget.value as 'mac' | 'windows' | 'linux')
-          }
+          onChange={(e) => setPlatform(e.currentTarget.value as HotkeyPlatform)}
         >
           <option value="mac">macOS</option>
           <option value="windows">Windows</option>

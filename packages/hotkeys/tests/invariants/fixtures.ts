@@ -1,11 +1,16 @@
 import { keyEvent } from '@tanstack/hotkeys-test-utils'
 import { SHARED_NAMED_KEYS } from '../../src/_named-keys'
 import { TYPED_KEYS } from '../typed-keys'
+import type { HotkeyPlatform } from '../../src'
 
 // Chords and keyboard events shared by the invariant suites. The events model
 // what browsers report, so a failure points at the library, not the fixture.
 
-export const PLATFORMS = ['mac', 'windows', 'linux'] as const
+export const PLATFORMS = [
+  'mac',
+  'windows',
+  'linux',
+] as const satisfies ReadonlyArray<HotkeyPlatform>
 export type Platform = (typeof PLATFORMS)[number]
 
 const MODIFIERS = ['Control', 'Alt', 'Shift', 'Meta'] as const

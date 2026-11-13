@@ -13,10 +13,8 @@ import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import type { Hotkey } from '@tanstack/hotkeys'
+import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
 import type { ReactNode } from 'react'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 const SERVER = { userAgent: 'Node.js/26', platform: '' }
 const MAC = {
@@ -30,12 +28,15 @@ const WINDOWS = {
 // Detection would pick the other platform, so a pass means the provider's won.
 const OTHER = { mac: WINDOWS, windows: MAC }
 
-function Label({ platform }: { platform?: Platform }) {
+function Label({ platform }: { platform?: HotkeyPlatform }) {
   const formatForDisplay = useFormatForDisplay()
   return <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
-function withPlatform(platform: Platform | undefined, children: ReactNode) {
+function withPlatform(
+  platform: HotkeyPlatform | undefined,
+  children: ReactNode,
+) {
   return (
     <HotkeysProvider defaultOptions={{ platform }}>{children}</HotkeysProvider>
   )

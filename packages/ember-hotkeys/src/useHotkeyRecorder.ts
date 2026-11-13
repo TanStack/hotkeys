@@ -4,17 +4,17 @@ import {
   registerDestructor,
 } from '@ember/destroyable'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { read, scopeDefaults, select } from './utils'
+import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
+import { scopeDefaults, select } from './utils'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
 import type { EmberHotkeysScope } from './createHotkeysScope'
 import type { EmberHotkeyRecorder } from './types'
-import type { MaybeGetter } from './utils'
 
 /**
  * Creates an owned recorder with autotracked state and current callback
@@ -62,7 +62,7 @@ export function useHotkeyRecorder(
     () =>
       withDefaults(
         scope && scopeDefaults.get(scope)!().hotkeyRecorder,
-        read(options),
+        resolveMaybeGetter(options),
       ) as HotkeySequenceRecorderOptions,
   )
   const state = select(owner, recorder.store, (value) => value)

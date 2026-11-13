@@ -14,13 +14,13 @@ import type { KeyOptions } from '@tanstack/hotkeys-test-utils'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   RecorderRejection,
 } from '../src'
 
 // The default recorder mode, `recordBy: 'auto'`: a press is recorded by name
 // when it has one, and by physical code otherwise.
 
-type Platform = 'mac' | 'windows' | 'linux'
 type Press = Omit<KeyOptions, 'target'>
 
 const recorders: Array<HotkeyRecorder> = []
@@ -35,7 +35,7 @@ afterEach(() => {
 /** Records one key press and returns what the recorder did with it. */
 function record(
   press: Press,
-  platform: Platform,
+  platform: HotkeyPlatform,
   options: Partial<HotkeyChordRecorderOptions> = {},
 ) {
   let hotkey: HotkeyChord | undefined
@@ -55,7 +55,7 @@ function record(
 }
 
 describe('recordBy: auto', () => {
-  it.each<[string, Platform, Press, string, string]>([
+  it.each<[string, HotkeyPlatform, Press, string, string]>([
     // Letters follow the layout, so the label is the keycap
     [
       'US Ctrl+S',
@@ -219,7 +219,7 @@ describe('recordBy: auto', () => {
     expect(formatForDisplay(hotkey!, { platform })).toBe(label)
   })
 
-  it.each<[string, Platform, Press, string]>([
+  it.each<[string, HotkeyPlatform, Press, string]>([
     // macOS reports `/` for Cmd+Shift+/, so a typed `?` would not fire there
     [
       'Shift+symbol',
@@ -485,7 +485,7 @@ describe('app hotkey conflicts of a recorded hotkey', () => {
     undo: { hotkey: 'Mod+Z' },
     goHome: { hotkey: ['G', 'H'] },
   })
-  const newStore = (platform: Platform = 'windows') =>
+  const newStore = (platform: HotkeyPlatform = 'windows') =>
     new AppHotkeysStore(appHotkeys, { platform })
   const ids = (conflicts: Array<{ id: string }>) => conflicts.map((c) => c.id)
 

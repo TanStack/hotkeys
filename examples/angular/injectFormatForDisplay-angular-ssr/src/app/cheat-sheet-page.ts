@@ -20,14 +20,13 @@ import {
   toFormatCode,
   toFormatOptions,
 } from './format-options'
+import type { HotkeyPlatform } from '@tanstack/angular-hotkeys'
 import type { FormatChoices, OptionGroup } from './format-options'
 
 interface LogEntry {
   id: number
   message: string
 }
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 @Component({
   selector: 'header[appHeader]',
@@ -57,7 +56,7 @@ export class Header {
   // The platform the server rendered with, from the provider
   readonly serverPlatform = computed(() => this.context.defaultOptions.platform)
   // Read only in the browser after hydration, so it can't cause a mismatch
-  readonly browserPlatform = signal<Platform | null>(null)
+  readonly browserPlatform = signal<HotkeyPlatform | null>(null)
   readonly platformName = platformName
 
   constructor() {

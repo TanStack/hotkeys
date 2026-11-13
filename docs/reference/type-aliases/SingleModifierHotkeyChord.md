@@ -14,7 +14,7 @@ type SingleModifierHotkeyChord =
   | `Mod+${Key}`;
 ```
 
-Defined in: [hotkey.types.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L18)
+Defined in: [hotkey.types.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L24)
 
 Single modifier + key combinations.
 Uses canonical modifiers (4) + Mod (1) = 5 modifiers.

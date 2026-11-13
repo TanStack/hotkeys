@@ -9,27 +9,15 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
-  HotkeySequence,
+  HotkeyRecorderState,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 
-export interface ReactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
-  /** Whether recording is currently active */
-  isRecording: boolean
-  /** Chords recorded so far in a multi-step recording (for live preview) */
-  steps: HotkeySequence
-  /** The last committed hotkey */
-  recordedHotkey: THotkey | null
-  /** Start recording a new hotkey */
-  startRecording: () => void
-  /** Stop recording without calling onCancel */
-  stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  commitRecording: () => void
-}
+/** The recorder state and controls returned by `useHotkeyRecorder`. */
+export interface ReactHotkeyRecorder<THotkey extends Hotkey = Hotkey>
+  extends HotkeyRecorderState<THotkey>, HotkeyRecorderActions {}
 
 /**
  * React hook for recording keyboard shortcuts.

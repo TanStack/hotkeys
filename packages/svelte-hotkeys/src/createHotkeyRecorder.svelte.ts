@@ -6,28 +6,16 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
+  HotkeyRecorderState,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { MaybeGetter } from './internal.svelte.js'
 
-export interface SvelteHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
-  /** Whether recording is currently active */
-  readonly isRecording: boolean
-  /** Chords recorded so far in a multi-step recording (for live preview) */
-  readonly steps: HotkeySequence
-  /** The last committed hotkey */
-  readonly recordedHotkey: THotkey | null
-  /** Start recording a new hotkey */
-  startRecording: () => void
-  /** Stop recording without calling onCancel */
-  stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  commitRecording: () => void
-}
+export interface SvelteHotkeyRecorder<THotkey extends Hotkey = Hotkey>
+  extends Readonly<HotkeyRecorderState<THotkey>>, HotkeyRecorderActions {}
 
 class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
   #recorder: HotkeyRecorder

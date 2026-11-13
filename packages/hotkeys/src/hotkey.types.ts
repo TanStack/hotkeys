@@ -1,5 +1,11 @@
 import type { CanonicalModifier, Key, LogicalKey } from './key.types'
 
+/** An element, document, or window that hotkeys can listen on. */
+export type Target = HTMLElement | Document | Window
+
+/** The keyboard event a hotkey listens for. */
+export type HotkeyEventType = 'keydown' | 'keyup'
+
 // =============================================================================
 // HotkeyChord Types
 // =============================================================================
@@ -325,3 +331,6 @@ export interface HotkeyMeta {
  * - `'allow'` - Allow multiple registrations without warning
  */
 export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow'
+
+/** A value, or a function that returns it, for options read when needed. */
+export type MaybeGetter<T> = T | (() => T)

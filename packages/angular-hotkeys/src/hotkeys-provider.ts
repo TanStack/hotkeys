@@ -22,11 +22,13 @@ import type {
   AppHotkeysState,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {
@@ -50,12 +52,7 @@ export interface HotkeysProviderOptions {
    */
   hotkey?: InjectHotkeyCommonOptions
   /** Defaults for every `injectHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
 /** Options for `provideHotkeys`. */
@@ -121,9 +118,6 @@ export const HOTKEYS_INJECTION_TOKEN = new InjectionToken<HotkeysContextValue>(
     factory: () => ROOT_CONTEXT,
   },
 )
-
-/** A value, or a signal or getter that returns it. */
-export type MaybeGetter<T> = T | (() => T)
 
 /** Creates a provider's context. Runs in an injection context. */
 function createHotkeysContext(

@@ -20,11 +20,11 @@ type HotkeyDefinition =
   | {
   callback: HotkeyCallback;
   hotkey: null | undefined;
-  options?: HotkeyChordOptions & HotkeySequenceOptions;
+  options?: HotkeyCommonOptions;
 };
 ```
 
-Defined in: [adapter.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L50)
+Defined in: [adapter.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L70)
 
 A hotkey and its callback, with optional per-binding options. Chords accept
 `requireReset`; sequences accept `timeout`.
@@ -61,7 +61,7 @@ A hotkey and its callback, with optional per-binding options. Chords accept
 {
   callback: HotkeyCallback;
   hotkey: null | undefined;
-  options?: HotkeyChordOptions & HotkeySequenceOptions;
+  options?: HotkeyCommonOptions;
 }
 ```
 
@@ -82,5 +82,5 @@ No hotkey. Registers nothing.
 #### options?
 
 ```ts
-optional options?: HotkeyChordOptions & HotkeySequenceOptions;
+optional options?: HotkeyCommonOptions;
 ```

@@ -9,7 +9,7 @@ title: useHotkeyHint
 function useHotkeyHint(hotkey, options?): boolean;
 ```
 
-Defined in: [useHotkeyHint.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyHint.ts#L24)
+Defined in: [useHotkeyHint.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyHint.ts#L19)
 
 Reports whether held modifiers reveal a shortcut hint. The hint shows only
 while the hotkey can fire: some registration of it is enabled and in an

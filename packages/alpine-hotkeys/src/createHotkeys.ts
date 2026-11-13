@@ -1,14 +1,11 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
-import { read } from './scope'
+import type { MaybeGetter } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type {
-  AlpineHotkeyCommonOptions,
-  AlpineHotkeyDefinition,
-  MaybeGetter,
-} from './types'
+import type { AlpineHotkeyCommonOptions, AlpineHotkeyDefinition } from './types'
 
 export function createHotkeys(
   scope: HotkeysScope,
@@ -21,10 +18,10 @@ export function createHotkeys(
   try {
     scope.effect(() =>
       bindings.update(
-        prepareHotkeyDefinitions(read(definitions), {
+        prepareHotkeyDefinitions(resolveMaybeGetter(definitions), {
           appHotkeysStore: scope.appHotkeys(),
           defaults: scope.defaultOptions().hotkey,
-          commonOptions: read(options),
+          commonOptions: resolveMaybeGetter(options),
           // An unset target skips registration until it is set.
           resolveTarget: (target) => target,
         }),

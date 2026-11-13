@@ -9,7 +9,7 @@ title: AdapterSequenceOptions
 type AdapterSequenceOptions<TTarget> = WithTarget<HotkeySequenceOptions, TTarget>;
 ```
 
-Defined in: [adapter.ts:227](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L227)
+Defined in: [adapter.ts:244](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L244)
 
 Options for a sequence such as `['G', 'G']`, with a framework target.
 

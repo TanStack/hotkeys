@@ -9,9 +9,9 @@ title: MaybeGetter
 type MaybeGetter<T> = T | (() => T);
 ```
 
-Defined in: [hotkeys-provider.ts:126](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L126)
+Defined in: [hotkey.types.ts:336](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L336)
 
-A value, or a signal or getter that returns it.
+A value, or a function that returns it, for options read when needed.
 
 ## Type Parameters
 

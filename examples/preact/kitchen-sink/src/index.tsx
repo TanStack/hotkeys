@@ -23,6 +23,7 @@ import {
 } from 'preact/hooks'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
   RecorderRejection,
   RegisterableHotkey,
@@ -639,7 +640,7 @@ function Recording() {
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
   const formatForDisplay = useFormatForDisplay()
-  const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
+  const [platform, setPlatform] = useState<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)
   const options = {

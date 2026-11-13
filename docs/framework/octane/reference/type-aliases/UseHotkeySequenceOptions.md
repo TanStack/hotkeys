@@ -9,6 +9,6 @@ title: UseHotkeySequenceOptions
 type UseHotkeySequenceOptions = AdapterSequenceOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L36)
+Defined in: [useHotkey.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L33)
 
 Options for a sequence such as `['G', 'G']`.

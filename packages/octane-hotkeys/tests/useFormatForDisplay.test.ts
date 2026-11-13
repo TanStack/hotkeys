@@ -2,10 +2,11 @@ import {
   HotkeyManager,
   formatForDisplay as coreFormatForDisplay,
 } from '@tanstack/hotkeys'
-import { createRoot, drainPassiveEffects, flushSync, hydrateRoot } from 'octane'
+import { createRoot, flushSync, hydrateRoot } from 'octane'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as adapter from '../src'
 import { FormatLabel, PlatformFixture, platformCapture } from './fixture.tsrx'
+import { flush } from './utils'
 import type { Root } from 'octane'
 
 const MAC = {
@@ -23,11 +24,6 @@ let root: Root | undefined
 // A test that mounts nothing still reaches the cleanup below
 let container = document.createElement('div')
 
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 function mount(body: typeof PlatformFixture | typeof FormatLabel, props = {}) {
   container = document.createElement('div')
   document.body.append(container)

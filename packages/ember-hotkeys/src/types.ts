@@ -1,20 +1,17 @@
 import type {
-  AppHotkey,
-  AppHotkeyListItem,
+  CustomHotkeyActions,
   CustomHotkeys,
   Hotkey,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeyRegistrationView,
-  HotkeySequence,
-  HotkeySequenceRecorderOptions,
-  RecordedKeyPresses,
-  RegisteredAppHotkeys,
+  HotkeyRecorderActions,
+  HotkeyRecorderState,
+  RegisteredAppHotkeyListItem,
   Target,
 } from '@tanstack/hotkeys'
 import type {
   AdapterCommonOptions,
   AdapterHotkeyDefinition,
+  HotkeyRecorderDefaults,
 } from '@tanstack/hotkeys/adapter'
 
 /** A reactive value. Read `.value` where the framework tracks dependencies. */
@@ -35,62 +32,18 @@ export type EmberHotkeyDefinition = AdapterHotkeyDefinition<EmberHotkeyTarget>
 export type EmberHotkeyCommonOptions = AdapterCommonOptions<EmberHotkeyTarget>
 
 /** Recording state and controls owned by the containing component. */
-export interface EmberHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
-  /** Whether the recorder is listening for a shortcut. */
-  readonly isRecording: boolean
-  /** Chords captured so far in a multi-step recording. */
-  readonly steps: HotkeySequence
-  /** The last committed hotkey, including brackets for physical codes. */
-  readonly recordedHotkey: THotkey | null
-  /** Start a new recording session. */
-  startRecording: () => void
-  /** Stop and clear recorder state without calling onRecord or onCancel. */
-  stopRecording: () => void
-  /** Stop, clear recorder state, and call onCancel. */
-  cancelRecording: () => void
-  /** Commit the current steps (multi-step recordings). */
-  commitRecording: () => void
-}
-
-/** Live registration views from the shared hotkey manager. */
-export interface HotkeyRegistrationsResult {
-  /** Every registration, chords and sequences. Narrow each view with `kind`. */
-  readonly hotkeys: Array<HotkeyRegistrationView>
-}
+export interface EmberHotkeyRecorder<THotkey extends Hotkey = Hotkey>
+  extends Readonly<HotkeyRecorderState<THotkey>>, HotkeyRecorderActions {}
 
 /** Every app hotkey with its live status. */
 export type EmberAppHotkeyList = EmberHotkeyState<
-  Array<AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>>
+  Array<RegisteredAppHotkeyListItem>
 >
 
 /** Custom hotkey state and actions. */
-export interface EmberCustomHotkeys {
+export interface EmberCustomHotkeys extends CustomHotkeyActions {
   /** The user's hotkeys that differ from the defaults. */
   readonly value: CustomHotkeys
-  /**
-   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
-   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
-   */
-  setCustomHotkey: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey | null,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
-  /** Restores the default hotkey for an app hotkey. */
-  resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
-  /** Restores every default hotkey. */
-  resetCustomHotkeys: () => void
-  /**
-   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
-   * recorder's `context` for a recorded hotkey: it has the key press, which
-   * also finds a hotkey written differently that the same press fires.
-   */
-  findConflicts: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
 }
 
 /** Shared defaults; call-specific options take precedence. */
@@ -113,10 +66,5 @@ export interface DefaultHotkeysOptions {
   /** Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences. */
   hotkey?: EmberHotkeyCommonOptions
   /** Defaults for every recorder. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }

@@ -1,7 +1,11 @@
-import { keysEqual } from './_keys'
+import { keysEqual, ownValue } from './_keys'
 import { MODIFIER_ALIASES } from './constants'
-import type { ParsedHotkeyChord } from './hotkey.types'
-import type { CanonicalModifier } from './key.types'
+import type {
+  ParsedHotkeyChord,
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+} from './hotkey.types'
+import type { ResolvableModifier } from './key.types'
 
 // How a hotkey is written, and what a parsed chord means. Nothing here reads
 // a keyboard event.
@@ -10,14 +14,9 @@ import type { CanonicalModifier } from './key.types'
  * Resolves a modifier token or alias case-insensitively: `ctrl` → `Control`,
  * `cmd` → `Meta`, `mod` → `Mod`. Returns undefined for anything else.
  */
-export function modifierAlias(
-  token: string,
-): CanonicalModifier | 'Mod' | undefined {
-  // Every alias has a lowercase entry. hasOwn keeps out names like 'constructor'.
-  const lower = token.toLowerCase()
-  return Object.hasOwn(MODIFIER_ALIASES, lower)
-    ? MODIFIER_ALIASES[lower]
-    : undefined
+export function modifierAlias(token: string): ResolvableModifier | undefined {
+  // Every alias has a lowercase entry.
+  return ownValue(MODIFIER_ALIASES, token.toLowerCase())
 }
 
 /** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
@@ -104,4 +103,11 @@ export function parsedStepsEqual(
     a.length === b.length &&
     a.every((step, index) => parsedChordsEqual(step, b[index]!))
   )
+}
+
+/** The steps of a hotkey: a sequence's chords, or a chord as one step. */
+export function hotkeySteps(
+  hotkey: RegisterableHotkey,
+): ReadonlyArray<RegisterableHotkeyChord> {
+  return Array.isArray(hotkey) ? hotkey : [hotkey as RegisterableHotkeyChord]
 }

@@ -1,11 +1,12 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { createStoreSubscriber } from './internal.svelte.js'
-import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
+import type {
+  HotkeyRegistrationView,
+  HotkeyRegistrationsResult,
+} from '@tanstack/hotkeys'
 
-export interface SvelteHotkeyRegistrations {
-  /** Every registration, chords and sequences. Narrow each view with `kind`. */
-  readonly hotkeys: Array<HotkeyRegistrationView>
-}
+export interface SvelteHotkeyRegistrations extends HotkeyRegistrationsResult {}
 
 class HotkeyRegistrationsState implements SvelteHotkeyRegistrations {
   #manager = getHotkeyManager()
@@ -13,9 +14,7 @@ class HotkeyRegistrationsState implements SvelteHotkeyRegistrations {
 
   get hotkeys(): Array<HotkeyRegistrationView> {
     this.#subscribe()
-    return Array.from(this.#manager.registrations.state.values()).map(
-      toHotkeyRegistrationView,
-    )
+    return getHotkeyRegistrationViews(this.#manager.registrations.state)
   }
 }
 

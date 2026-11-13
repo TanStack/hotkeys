@@ -2,8 +2,9 @@ import { createTheme } from '@tanstack/devtools-ui'
 import * as goober from 'goober'
 import { createEffect, createSignal } from 'solid-js'
 import { tokens } from './tokens'
+import type { HotkeysDevtoolsTheme } from '../types'
 
-const stylesFactory = (theme: 'light' | 'dark') => {
+const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
   const { colors, font, size, alpha, border } = tokens
   const { fontFamily, size: fontSize } = font
   const css = goober.css

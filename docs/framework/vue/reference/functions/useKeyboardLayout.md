@@ -9,7 +9,7 @@ title: useKeyboardLayout
 function useKeyboardLayout(): Readonly<Ref<KeyboardLayoutMap | null>>;
 ```
 
-Defined in: [useKeyboardLayout.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyboardLayout.ts#L43)
+Defined in: [useKeyboardLayout.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyboardLayout.ts#L44)
 
 Vue composable that returns a ref of the browser's keyboard layout, or
 `null` until it loads and in browsers that don't report one. The layout maps

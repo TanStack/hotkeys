@@ -29,6 +29,7 @@ import { isHotkeySequence, parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { KeyboardEventMatch } from './_match'
 import type { Store } from './_store'
+import type { ListenerTarget } from './_target-listeners'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type {
   ConflictBehavior,
@@ -37,19 +38,19 @@ import type {
   HotkeyCallbackContext,
   HotkeyCallbackContextFor,
   HotkeyChord,
+  HotkeyEventType,
   HotkeyMeta,
   HotkeySequence,
   ParsedHotkeyChord,
   RegisterableHotkey,
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
+  Target,
 } from './hotkey.types'
-import type { CanonicalModifier } from './key.types'
+import type { CanonicalModifier, KeyIdentity } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 export type { ConflictBehavior }
-
-/** An element, document, or window that hotkeys can listen on. */
-export type Target = HTMLElement | Document | Window
 
 /**
  * Options shared by chords and sequences.
@@ -79,7 +80,7 @@ export interface HotkeyOptions {
    * its modifiers, doesn't fire it. `preventDefault` applies to its keydown
    * too.
    */
-  eventType?: 'keydown' | 'keyup'
+  eventType?: HotkeyEventType
   /**
    * Skip a key press that a listener outside TanStack Hotkeys already handled
    * by calling `preventDefault()`, such as a component library's dialog that
@@ -98,7 +99,7 @@ export interface HotkeyOptions {
    */
   ignoreInputs?: boolean | 'auto'
   /** The target platform for resolving 'Mod' */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /**
    * Prevent the default browser action when the hotkey matches. For a
    * sequence, every step that advances it does. Defaults to true.
@@ -155,11 +156,17 @@ export interface HotkeySequenceOptions extends HotkeyOptions {
 }
 
 /**
+ * Chord and sequence options together, for options applied to hotkeys of
+ * either kind. Each option applies only to the kinds that support it.
+ */
+export type HotkeyCommonOptions = HotkeyChordOptions & HotkeySequenceOptions
+
+/**
  * The options type for a hotkey: chord options for chords (including one-step
  * tuples), sequence options for sequences.
  */
 export type HotkeyOptionsFor<T extends RegisterableHotkey> = [T] extends [never]
-  ? HotkeyChordOptions & HotkeySequenceOptions
+  ? HotkeyCommonOptions
   : T extends readonly [RegisterableHotkeyChord]
     ? HotkeyChordOptions
     : T extends RegisterableHotkeySequence
@@ -187,7 +194,7 @@ export interface HotkeyChordRegistration extends RegistrationBase<HotkeyChordOpt
   hotkey: HotkeyChord
   parsedChord: ParsedHotkeyChord
   /** The concrete key/code that activated a requireReset registration. */
-  activeMatch?: { key: string; code: string }
+  activeMatch?: KeyIdentity
 }
 
 /** A registered sequence in the HotkeyManager. */
@@ -251,6 +258,12 @@ export interface HotkeySequenceRegistrationView extends RegistrationViewBase {
 export type HotkeyRegistrationView =
   | HotkeyChordRegistrationView
   | HotkeySequenceRegistrationView
+
+/** The registrations an adapter reports, chords and sequences. */
+export interface HotkeyRegistrationsResult {
+  /** Every registration, chords and sequences. Narrow each view with `kind`. */
+  readonly hotkeys: Array<HotkeyRegistrationView>
+}
 
 /** Whether a registration can fire now. Without a manager, scopes don't apply. */
 function getRegistrationStatus(
@@ -379,7 +392,7 @@ function inactiveHandle(callback: HotkeyCallback): HotkeyRegistrationHandle {
 /** Defaults for a registration of the given kind. */
 function registrationDefaults(
   kind: HotkeyRegistration['kind'],
-): Partial<HotkeyChordOptions & HotkeySequenceOptions> {
+): Partial<HotkeyCommonOptions> {
   return {
     ...defaultHotkeyOptions,
     ...(kind === 'sequence'
@@ -391,8 +404,8 @@ function registrationDefaults(
 /** Drops options that do not apply to a registration's kind. */
 function optionsForKind(
   kind: HotkeyRegistration['kind'],
-  options: Partial<HotkeyChordOptions & HotkeySequenceOptions>,
-): Partial<HotkeyChordOptions & HotkeySequenceOptions> {
+  options: Partial<HotkeyCommonOptions>,
+): Partial<HotkeyCommonOptions> {
   if (kind === 'chord') {
     const { timeout: _timeout, ...rest } = options
     return rest
@@ -400,9 +413,6 @@ function optionsForKind(
   const { requireReset: _requireReset, ...rest } = options
   return rest
 }
-
-/** A node a registration's listener can attach to. */
-type ListenerTarget = Target | ShadowRoot
 
 /**
  * Where a registration listens: its target, or for an element target that
@@ -577,7 +587,7 @@ export class HotkeyManager {
     allowed: [],
     suspended: [],
   })
-  #platform: 'mac' | 'windows' | 'linux'
+  #platform: HotkeyPlatform
   #scopeActivations = new Set<ScopeActivation>()
   #scopeActivationCount = 0
   /** Active scopes, lowest precedence first, derived from activations. */
@@ -790,7 +800,7 @@ export class HotkeyManager {
    */
   #handledByLiveHotkey(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
     // The composed path includes targets inside open shadow roots, which
     // `event.target` hides from listeners outside them.
@@ -867,7 +877,7 @@ export class HotkeyManager {
   register(
     input: RegisterableHotkey,
     callback: HotkeyCallback,
-    options: HotkeyChordOptions & HotkeySequenceOptions = {},
+    options: HotkeyCommonOptions = {},
   ): HotkeyRegistrationHandle {
     const hotkey = simplifyHotkey(input)
     // Nothing to listen for: no hotkey, an empty sequence, or no DOM during
@@ -925,10 +935,7 @@ export class HotkeyManager {
       }
     }
 
-    const steps =
-      registration.kind === 'sequence'
-        ? registration.parsedSequence
-        : [registration.parsedChord]
+    const steps = resolvedSteps(registration)
     // A step without a usable key registers nothing: an empty key would match
     // key-less events, such as autofill's, and modifier-only steps and unknown
     // modifiers aren't supported.
@@ -1148,7 +1155,7 @@ export class HotkeyManager {
   #processTargetEvent(
     event: KeyboardEvent,
     target: ListenerTarget,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     ids: Set<string>,
     first: boolean,
@@ -1208,7 +1215,7 @@ export class HotkeyManager {
   #processRound(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     ids: Set<string>,
   ): void {
@@ -1231,7 +1238,7 @@ export class HotkeyManager {
   #processChords(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     registrations: Array<HotkeyChordRegistration>,
   ): void {
@@ -1261,7 +1268,7 @@ export class HotkeyManager {
     }
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
-    const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
+    const matches = new Map<string, KeyboardEventMatch>()
     let bestScore = 0
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
@@ -1403,7 +1410,7 @@ export class HotkeyManager {
    */
   #isOwnedBySequence(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
     const key = event.code || normalizeKeyName(event.key)
     if (eventType === 'keyup') {
@@ -1421,7 +1428,7 @@ export class HotkeyManager {
 
   #continuesSequence(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
     if (isRecordingEvent(event) || !isSequenceStep(event)) return false
     const path = event.composedPath()
@@ -1460,7 +1467,7 @@ export class HotkeyManager {
   #processSequences(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     registrations: Array<HotkeySequenceRegistration>,
   ): void {

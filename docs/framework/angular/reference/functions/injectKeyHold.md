@@ -9,7 +9,7 @@ title: injectKeyHold
 function injectKeyHold(key): Signal<boolean>;
 ```
 
-Defined in: [injectKeyHold.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectKeyHold.ts#L41)
+Defined in: [injectKeyHold.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectKeyHold.ts#L42)
 
 Angular inject-based API that returns a signal that is true when the given key is held.
 
@@ -20,7 +20,7 @@ if the specified key is held.
 
 ### key
 
-`IndividualKey` \| (() => `IndividualKey`)
+`MaybeGetter`\<`IndividualKey`\>
 
 The key to check (e.g. 'Shift', 'Control', 'Space') - can be a getter function
 

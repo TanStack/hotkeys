@@ -7,7 +7,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '../src/hotkey-recorder'
-import type { HotkeyChord } from '../src/hotkey.types'
+import type { HotkeyChord, HotkeyEventType } from '../src/hotkey.types'
 
 // Explicit US-layout fixtures; production recording must never infer a code from a key.
 const fixtureCodes: Record<string, string> = {
@@ -34,7 +34,7 @@ function createRecorder(options: HotkeyChordRecorderOptions) {
 
 /** Builds a keyboard event with independently specified logical and physical fixture values. */
 function createKeyboardEvent(
-  type: 'keydown' | 'keyup',
+  type: HotkeyEventType,
   key: string,
   options: {
     ctrlKey?: boolean

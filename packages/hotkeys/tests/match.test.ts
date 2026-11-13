@@ -8,7 +8,7 @@ import {
   matchesKeyboardEvent,
 } from '../src/match'
 import type { KeyOptions } from '@tanstack/hotkeys-test-utils'
-import type { HotkeyChord } from '../src'
+import type { CanonicalModifier, HotkeyChord, HotkeyPlatform } from '../src'
 
 /**
  * Creates a keydown event, inferring `code` for US letters and digits when it
@@ -172,7 +172,7 @@ describe('matchesKeyboardEvent', () => {
         shift: false,
         alt: false,
         meta: true,
-        modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
+        modifiers: ['Meta'] as Array<CanonicalModifier>,
       }
       expect(matchesKeyboardEvent(event, parsed)).toBe(true)
     })
@@ -984,7 +984,7 @@ describe('matchesKeyboardEvent', () => {
     const fires = (
       event: KeyboardEvent,
       hotkey: HotkeyChord,
-      platform: 'mac' | 'windows' | 'linux' = 'mac',
+      platform: HotkeyPlatform = 'mac',
     ) => matchesKeyboardEvent(event, hotkey, platform)
 
     it.each([
@@ -1865,7 +1865,7 @@ describe('createHotkeyChordHandler', () => {
       shift: false,
       alt: false,
       meta: true,
-      modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
+      modifiers: ['Meta'] as Array<CanonicalModifier>,
     }
     const handler = createHotkeyChordHandler(parsed, callback, {
       platform: 'mac',

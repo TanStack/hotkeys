@@ -11,7 +11,7 @@ type HotkeyCallbackContext =
   | HotkeySequenceCallbackContext;
 ```
 
-Defined in: [hotkey.types.ts:255](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L255)
+Defined in: [hotkey.types.ts:261](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L261)
 
 Context passed to hotkey callbacks along with the keyboard event.
 Narrow with `kind` to read `parsedChord` or `parsedSequence`.

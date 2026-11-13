@@ -1,9 +1,11 @@
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { injectHotkeys } from './injectHotkeys'
 import type { ElementRef, Signal } from '@angular/core'
 import type {
   AppHotkey,
   HotkeyCallback,
   HotkeyCallbackContextFor,
+  MaybeGetter,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -49,8 +51,6 @@ export type InjectHotkeyOptionsFor<T extends RegisterableHotkey> =
 export type InjectAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
   AdapterAppHotkeyOptions<T, InjectHotkeyTarget>
 
-type MaybeGetter<T> = T | (() => T)
-
 /**
  * Angular inject-based API for registering a hotkey: a chord such as
  * `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -94,9 +94,9 @@ export function injectHotkey(
     () =>
       [
         {
-          hotkey: typeof hotkey === 'function' ? hotkey() : hotkey,
+          hotkey: resolveMaybeGetter(hotkey),
           callback,
-          options: typeof options === 'function' ? options() : options,
+          options: resolveMaybeGetter(options),
         },
       ] as never,
   )

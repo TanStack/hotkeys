@@ -1,5 +1,8 @@
 import { createPreactPanel } from '@tanstack/devtools-utils/preact'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
+import {
+  HOTKEYS_DEVTOOLS_DEFAULT_PROPS,
+  HotkeysDevtoolsCore,
+} from '@tanstack/hotkeys-devtools/production'
 import { Component, h } from 'preact'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { JSX } from 'preact'
@@ -12,7 +15,7 @@ type HotkeysDevtoolsPanelComponent = (
 
 const panels = createPreactPanel(HotkeysDevtoolsCore)
 
-function withDefaults(
+function withPanelDefaults(
   CorePanel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
   // `CorePanel` remounts the devtools whenever it renders with a new props
@@ -33,10 +36,11 @@ function withDefaults(
   return (props = {}) =>
     h(Panel, {
       ...props,
-      theme: props.theme ?? 'dark',
-      devtoolsOpen: props.devtoolsOpen ?? true,
+      theme: props.theme ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.theme,
+      devtoolsOpen:
+        props.devtoolsOpen ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.devtoolsOpen,
     })
 }
 
-export const HotkeysDevtoolsPanel = withDefaults(panels[0])
-export const HotkeysDevtoolsPanelNoOp = withDefaults(panels[1])
+export const HotkeysDevtoolsPanel = withPanelDefaults(panels[0])
+export const HotkeysDevtoolsPanelNoOp = withPanelDefaults(panels[1])

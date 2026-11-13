@@ -1,4 +1,4 @@
-import type { CanonicalModifier } from './key.types'
+import type { CanonicalModifier, ResolvableModifier } from './key.types'
 
 /**
  * Canonical order for modifiers in normalized hotkey strings.
@@ -49,7 +49,7 @@ export const MODIFIER_KEYS = /* @__PURE__ */ new Set<string>(MODIFIER_ORDER)
  * MODIFIER_ALIASES['Mod'] // 'Mod' (resolved at runtime)
  * ```
  */
-export const MODIFIER_ALIASES: Record<string, CanonicalModifier | 'Mod'> = {
+export const MODIFIER_ALIASES: Record<string, ResolvableModifier> = {
   // Control variants
   Control: 'Control',
   Ctrl: 'Control',

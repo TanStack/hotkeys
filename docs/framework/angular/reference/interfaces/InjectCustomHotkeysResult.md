@@ -9,6 +9,10 @@ Defined in: [injectAppHotkeys.ts:64](https://github.com/TanStack/hotkeys/blob/ma
 
 Custom hotkey state and actions returned by `injectCustomHotkeys`.
 
+## Extends
+
+- `Readonly`\<`CustomHotkeyActions`\>
+
 ## Properties
 
 ### customHotkeys
@@ -20,105 +24,3 @@ readonly customHotkeys: Signal<CustomHotkeys<Readonly<Record<string, AppHotkey<s
 Defined in: [injectAppHotkeys.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L66)
 
 The user's hotkeys that differ from the defaults.
-
-***
-
-### findConflicts
-
-```ts
-readonly findConflicts: (id, hotkey, recordedWith?) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
-```
-
-Defined in: [injectAppHotkeys.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L86)
-
-Other app hotkeys that would collide if `id` used `hotkey`. Pass the
-recorder's `context` for a recorded hotkey: it has the key press, which
-also finds a hotkey written differently that the same press fires.
-
-#### Parameters
-
-##### id
-
-`string`
-
-##### hotkey
-
-`Hotkey`
-
-##### recordedWith?
-
-`RecordedKeyPresses`
-
-#### Returns
-
-`AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>[]
-
-***
-
-### resetCustomHotkey
-
-```ts
-readonly resetCustomHotkey: (id) => void;
-```
-
-Defined in: [injectAppHotkeys.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L78)
-
-Restores the default hotkey for an app hotkey.
-
-#### Parameters
-
-##### id
-
-`string`
-
-#### Returns
-
-`void`
-
-***
-
-### resetCustomHotkeys
-
-```ts
-readonly resetCustomHotkeys: () => void;
-```
-
-Defined in: [injectAppHotkeys.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L80)
-
-Restores every default hotkey.
-
-#### Returns
-
-`void`
-
-***
-
-### setCustomHotkey
-
-```ts
-readonly setCustomHotkey: (id, hotkey, recordedWith?) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
-```
-
-Defined in: [injectAppHotkeys.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L72)
-
-Sets the user's hotkey for an app hotkey. `null` unbinds it.
-Returns conflicting app hotkeys; when any exist, nothing changes. Pass
-the recorder's `context` for a recorded hotkey, as for `findConflicts`.
-
-#### Parameters
-
-##### id
-
-`string`
-
-##### hotkey
-
-`Hotkey` \| `null`
-
-##### recordedWith?
-
-`RecordedKeyPresses`
-
-#### Returns
-
-`AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>[]

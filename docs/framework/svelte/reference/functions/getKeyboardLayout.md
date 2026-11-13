@@ -9,7 +9,7 @@ title: getKeyboardLayout
 function getKeyboardLayout(): SvelteKeyboardLayout;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts#L80)
+Defined in: [packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts#L74)
 
 Svelte function that returns reactive access to the browser's keyboard
 layout. `layout` is `null` until the layout loads and in browsers that

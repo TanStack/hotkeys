@@ -9,7 +9,7 @@ title: useAppHotkeys
 function useAppHotkeys(owner): EmberHotkeyState<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useAppHotkeys.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useAppHotkeys.ts#L20)
+Defined in: [packages/ember-hotkeys/src/useAppHotkeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useAppHotkeys.ts#L24)
 
 Reads the effective app hotkeys from `provideAppHotkeys`, typed by `Register`.
 

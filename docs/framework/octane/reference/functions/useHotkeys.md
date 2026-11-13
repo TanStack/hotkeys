@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(definitions, options?): void;
 ```
 
-Defined in: [useHotkeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeys.ts#L23)
+Defined in: [useHotkeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeys.ts#L24)
 
 Registers a changing list of hotkeys (chords, sequences, and app hotkeys)
 after commit and releases it on unmount. Options merge in this order:

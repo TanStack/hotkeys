@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
@@ -20,7 +21,8 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * ```
  */
 export function createHotkeyRegistrations(): () => Array<HotkeyRegistrationView> {
-  return useSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+  return useSelector(
+    getHotkeyManager().registrations,
+    getHotkeyRegistrationViews,
   )
 }

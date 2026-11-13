@@ -11,7 +11,7 @@ title: normalizeHotkey
 function normalizeHotkey(hotkey, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L238)
+Defined in: [parse.ts:240](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L240)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence
@@ -34,7 +34,7 @@ The hotkey to normalize
 
 #### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving `Mod` (defaults to auto-detection)
 
@@ -58,7 +58,7 @@ normalizeHotkey(parseKeyboardEvent(event)) // The chord the event pressed
 function normalizeHotkey(hotkey, platform?): Hotkey;
 ```
 
-Defined in: [parse.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L242)
+Defined in: [parse.ts:244](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L244)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence
@@ -81,7 +81,7 @@ The hotkey to normalize
 
 #### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving `Mod` (defaults to auto-detection)
 

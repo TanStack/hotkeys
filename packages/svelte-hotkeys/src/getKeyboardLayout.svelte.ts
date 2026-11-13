@@ -1,4 +1,5 @@
-import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import { createSubscriber } from 'svelte/reactivity'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
@@ -12,14 +13,7 @@ class KeyboardLayoutState implements SvelteKeyboardLayout {
   #store = getKeyboardLayoutStore()
   // Loads the layout while an effect or markup reads it. Calls are counted,
   // so every reader can load it.
-  #subscribe = createSubscriber((update) => {
-    const stop = loadKeyboardLayout()
-    const { unsubscribe } = this.#store.subscribe(update)
-    return () => {
-      unsubscribe()
-      stop()
-    }
-  })
+  #subscribe = createSubscriber((update) => followKeyboardLayout(update))
   // Server HTML never has a layout, so a component that hydrates starts
   // without one, even when the layout has already loaded.
   #mounted = $state(false)

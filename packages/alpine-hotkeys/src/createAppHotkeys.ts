@@ -1,3 +1,7 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { createHotkeyRegistrations } from './createHotkeyRegistrations'
 import type { AppHotkeysStore, RegisteredAppHotkeys } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
@@ -6,11 +10,10 @@ import type { AlpineCustomHotkeys } from './types'
 function requireStore(
   scope: HotkeysScope,
 ): AppHotkeysStore<RegisteredAppHotkeys> {
-  const store = scope.appHotkeys()
-  if (!store) {
-    throw new Error('[hotkeys] App hotkeys require provideAppHotkeys()')
-  }
-  return store
+  return requireAppHotkeysStore(
+    scope.appHotkeys(),
+    'App hotkeys require provideAppHotkeys()',
+  )
 }
 
 export function createAppHotkeys(scope: HotkeysScope) {
@@ -35,11 +38,6 @@ export function createCustomHotkeys(scope: HotkeysScope): AlpineCustomHotkeys {
     get value() {
       return requireStore(scope).customHotkeys
     },
-    setCustomHotkey: (id, hotkey, recordedWith) =>
-      requireStore(scope).setCustomHotkey(id, hotkey, recordedWith),
-    resetCustomHotkey: (id) => requireStore(scope).resetCustomHotkey(id),
-    resetCustomHotkeys: () => requireStore(scope).resetCustomHotkeys(),
-    findConflicts: (id, hotkey, recordedWith) =>
-      requireStore(scope).findConflicts(id, hotkey, recordedWith),
+    ...bindCustomHotkeyActions(() => requireStore(scope)),
   }
 }

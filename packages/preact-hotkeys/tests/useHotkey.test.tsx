@@ -7,6 +7,7 @@ import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useHotkey } from '../src/useHotkey'
 import type { HotkeyCallback } from '@tanstack/hotkeys'
+import type { HotkeyEventType } from '@tanstack/preact-hotkeys'
 
 function HotkeyTestComponent({
   callback,
@@ -15,7 +16,7 @@ function HotkeyTestComponent({
 }: {
   callback: HotkeyCallback
   enabled?: boolean
-  eventType?: 'keydown' | 'keyup'
+  eventType?: HotkeyEventType
 }) {
   useHotkey('Mod+S', callback, { platform: 'mac', enabled, eventType })
   return null

@@ -1,14 +1,25 @@
 import { isModifierCode, modifierAlias } from './_chord'
-import { isPrintableKey } from './_keys'
+import { isPrintableKey, ownValue } from './_keys'
 import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
 import type { NormalizedKeyboardEvent } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 // Reads keyboard events: what was pressed, and whether a hotkey may use it.
+
+/**
+ * The letter printed on the key for a macOS Option press, from the legacy
+ * `keyCode`, or undefined when `keyCode` isn't a letter (A to Z).
+ */
+export function macKeycapLetter(event: KeyboardEvent): string | undefined {
+  return event.keyCode > 64 && event.keyCode < 91
+    ? String.fromCharCode(event.keyCode)
+    : undefined
+}
 
 /** Normalizes Unicode key names and modifier flags while retaining physical code and IME state. */
 export function normalizeKeyboardEvent(
   event: KeyboardEvent,
-  platform?: 'mac' | 'windows' | 'linux',
+  platform?: HotkeyPlatform,
 ): NormalizedKeyboardEvent {
   let altGraph = false
   try {
@@ -99,9 +110,8 @@ export function codeToLogicalKey(code: string): string | undefined {
   if (/^Digit[0-9]$/i.test(code)) return code.slice(5)
   if (/^Numpad[0-9]$/i.test(code)) return code.slice(6)
 
-  // Own properties only, so codes such as `toString` never read Object.prototype
-  if (Object.hasOwn(PUNCTUATION_CODE_MAP, code))
-    return PUNCTUATION_CODE_MAP[code]
+  const punctuation = ownValue(PUNCTUATION_CODE_MAP, code)
+  if (punctuation !== undefined) return punctuation
 
   const named: Record<string, string> = {
     NumpadAdd: '+',
@@ -112,7 +122,7 @@ export function codeToLogicalKey(code: string): string | undefined {
     NumpadEnter: 'Enter',
     Space: 'Space',
   }
-  return Object.hasOwn(named, code) ? named[code] : undefined
+  return ownValue(named, code)
 }
 
 /**

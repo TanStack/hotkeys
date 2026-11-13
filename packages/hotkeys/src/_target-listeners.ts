@@ -1,5 +1,7 @@
-type Target = HTMLElement | Document | Window | ShadowRoot
-type EventType = 'keydown' | 'keyup'
+import type { HotkeyEventType, Target } from './hotkey.types'
+
+/** A node a registration's listener can attach to. */
+export type ListenerTarget = Target | ShadowRoot
 type ListenerGroup = {
   ids: Set<string>
   keydown: EventListener
@@ -8,7 +10,7 @@ type ListenerGroup = {
 
 /** Shares keyboard listeners within each target and capture phase. */
 export class TargetListeners {
-  #targets = new Map<Target, Map<boolean, ListenerGroup>>()
+  #targets = new Map<ListenerTarget, Map<boolean, ListenerGroup>>()
   #processed = new WeakMap<
     KeyboardEvent,
     {
@@ -20,8 +22,8 @@ export class TargetListeners {
   constructor(
     private dispatch: (
       event: KeyboardEvent,
-      target: Target,
-      eventType: EventType,
+      target: ListenerTarget,
+      eventType: HotkeyEventType,
       capture: boolean,
       ids: Set<string>,
       first: boolean,
@@ -33,7 +35,12 @@ export class TargetListeners {
    * existing listener moves after listeners added since it, such as one a
    * framework attached later to delegate key events.
    */
-  add(target: Target, capture: boolean, id: string, last = false): void {
+  add(
+    target: ListenerTarget,
+    capture: boolean,
+    id: string,
+    last = false,
+  ): void {
     if (typeof document === 'undefined') return
     const phases = this.#targets.get(target) ?? new Map()
     let group = phases.get(capture)
@@ -46,7 +53,7 @@ export class TargetListeners {
     if (!group) {
       const ids = new Set<string>()
       const listener =
-        (eventType: EventType): EventListener =>
+        (eventType: HotkeyEventType): EventListener =>
         (rawEvent) => {
           const event = rawEvent as KeyboardEvent
           let processed = this.#processed.get(event)
@@ -79,7 +86,7 @@ export class TargetListeners {
     group.ids.add(id)
   }
 
-  remove(target: Target, capture: boolean, id: string): void {
+  remove(target: ListenerTarget, capture: boolean, id: string): void {
     const phases = this.#targets.get(target)
     const group = phases?.get(capture)
     if (!group) return

@@ -2,6 +2,8 @@ import { keyEvent } from '@tanstack/hotkeys-test-utils'
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { KeyStateTracker } from '../src/key-state-tracker'
+import type { HotkeyPlatform } from '../src'
+import type { HotkeyEventType } from '../src/hotkey.types'
 
 /** Marks a test event as real user input, as the tracker ignores synthetic events for recovery. */
 function trusted<T extends Event>(event: T): T {
@@ -13,7 +15,7 @@ function trusted<T extends Event>(event: T): T {
  * Helper to create and dispatch a KeyboardEvent
  */
 function dispatchKey(
-  type: 'keydown' | 'keyup',
+  type: HotkeyEventType,
   key: string,
   code?: string,
   modifiers: KeyboardEventInit = {},
@@ -26,7 +28,7 @@ function dispatchKey(
 }
 
 /** Makes core platform detection report `platform`. */
-function onPlatform(platform: 'mac' | 'windows' | 'linux') {
+function onPlatform(platform: HotkeyPlatform) {
   const userAgent = {
     mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
     windows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',

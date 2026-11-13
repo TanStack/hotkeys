@@ -9,6 +9,6 @@ title: EmberHotkeyDefinition
 type EmberHotkeyDefinition = AdapterHotkeyDefinition<EmberHotkeyTarget>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L32)
+Defined in: [packages/ember-hotkeys/src/types.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L29)
 
 One hotkey for `useHotkeys` and `onHotkeys`: a chord, a sequence, or an app hotkey.

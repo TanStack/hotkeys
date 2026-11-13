@@ -9,7 +9,7 @@ title: hasNonModifierKey
 function hasNonModifierKey(chord, platform?): boolean;
 ```
 
-Defined in: [parse.ts:330](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L330)
+Defined in: [parse.ts:332](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L332)
 
 Checks if a chord contains at least one non-modifier key.
 
@@ -28,7 +28,7 @@ The chord string or parsed chord to check
 
 ### platform?
 
-`Platform` = `...`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md) = `...`
 
 The target platform for parsing (defaults to auto-detection)
 

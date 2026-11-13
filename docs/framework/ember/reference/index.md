@@ -19,7 +19,6 @@ title: "@tanstack/ember-hotkeys"
 - [EmberHotkeyRecorder](interfaces/EmberHotkeyRecorder.md)
 - [EmberHotkeysScope](interfaces/EmberHotkeysScope.md)
 - [EmberHotkeyState](interfaces/EmberHotkeyState.md)
-- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 
 ## Type Aliases
 
@@ -28,7 +27,6 @@ title: "@tanstack/ember-hotkeys"
 - [EmberHotkeyCommonOptions](type-aliases/EmberHotkeyCommonOptions.md)
 - [EmberHotkeyDefinition](type-aliases/EmberHotkeyDefinition.md)
 - [EmberHotkeyTarget](type-aliases/EmberHotkeyTarget.md)
-- [MaybeGetter](type-aliases/MaybeGetter.md)
 
 ## Variables
 

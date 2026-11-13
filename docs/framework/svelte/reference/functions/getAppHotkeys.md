@@ -9,7 +9,7 @@ title: getAppHotkeys
 function getAppHotkeys(): SvelteAppHotkeys;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L49)
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L45)
 
 Returns reactive access to the effective app hotkeys from `HotkeysProvider`,
 typed by `Register`.

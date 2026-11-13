@@ -1,8 +1,7 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { namesPhysicalKey } from '@tanstack/hotkeys/adapter'
+import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
 import { injectHotkeysContext } from './hotkeys-provider'
 import { injectKeyboardLayout } from './injectKeyboardLayout'
-import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the provider's `platform` as the default,
@@ -36,14 +35,10 @@ export function injectFormatForDisplay(): typeof formatForDisplay {
   const layoutMap = injectKeyboardLayout()
   // Read when called, so templates track changes to the provider's platform
   // and to the layout.
-  return ((hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-    formatForDisplay(hotkey, {
-      ...options,
-      platform: options?.platform ?? context.defaultOptions.platform,
-      // Only a position's label follows the layout. Other labels don't read
-      // it, so they don't render again when it loads.
-      layoutMap:
-        options?.layoutMap ??
-        (namesPhysicalKey(hotkey) ? (layoutMap() ?? undefined) : undefined),
-    })) as typeof formatForDisplay
+  // Only a position's label reads the layout, so other labels don't render
+  // again when it loads.
+  return createFormatForDisplay(
+    () => context.defaultOptions.platform,
+    () => layoutMap(),
+  )
 }

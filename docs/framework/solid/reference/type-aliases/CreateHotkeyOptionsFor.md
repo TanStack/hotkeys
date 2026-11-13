@@ -9,7 +9,7 @@ title: CreateHotkeyOptionsFor
 type CreateHotkeyOptionsFor<T> = AdapterOptionsFor<T, CreateHotkeyTarget>;
 ```
 
-Defined in: [createHotkey.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L39)
+Defined in: [createHotkey.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L41)
 
 The options type for a hotkey: chord options for chords, sequence options for sequences.
 

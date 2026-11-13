@@ -9,6 +9,6 @@ title: AlpineHotkeyCommonOptions
 type AlpineHotkeyCommonOptions = AdapterCommonOptions<AlpineHotkeyTarget>;
 ```
 
-Defined in: [types.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L47)
+Defined in: [types.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L50)
 
 Options for every kind; each applies to the kinds that support it.

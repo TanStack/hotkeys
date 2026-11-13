@@ -11,7 +11,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(owner, options): AlpineHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [createHotkeyRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L18)
+Defined in: [createHotkeyRecorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L19)
 
 Creates a recorder owned by a `createHotkeysScope` owner. It uses the
 owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
@@ -37,7 +37,7 @@ owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
 function createHotkeyRecorder(owner, options): AlpineHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L22)
+Defined in: [createHotkeyRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L23)
 
 Creates a recorder owned by a `createHotkeysScope` owner. It uses the
 owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
@@ -63,7 +63,7 @@ owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
 function createHotkeyRecorder(owner, options): AlpineHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L28)
+Defined in: [createHotkeyRecorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L29)
 
 Creates a recorder owned by a `createHotkeysScope` owner. It uses the
 owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
@@ -89,7 +89,7 @@ owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
 function createHotkeyRecorder(owner, options): AlpineHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [createHotkeyRecorder.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L32)
+Defined in: [createHotkeyRecorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L33)
 
 Creates a recorder owned by a `createHotkeysScope` owner. It uses the
 owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
@@ -115,7 +115,7 @@ owner's `hotkeyRecorder` defaults, and options can follow Alpine state.
 function createHotkeyRecorder(owner, options): AlpineHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L36)
+Defined in: [createHotkeyRecorder.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeyRecorder.ts#L37)
 
 Creates a recorder owned by a `createHotkeysScope` owner. It uses the
 owner's `hotkeyRecorder` defaults, and options can follow Alpine state.

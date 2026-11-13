@@ -9,7 +9,7 @@ title: UseHotkeyOptionsFor
 type UseHotkeyOptionsFor<T> = AdapterOptionsFor<T, UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L42)
+Defined in: [useHotkey.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L40)
 
 The options type for a hotkey: chord options for chords, sequence options for sequences.
 

@@ -5,7 +5,6 @@ import type {
   HotkeyCallback,
   HotkeyCallbackContextFor,
   RegisterableHotkey,
-  Target,
 } from '@tanstack/hotkeys'
 import type {
   AdapterAppHotkeyOptions,
@@ -14,6 +13,7 @@ import type {
   AdapterHotkeyOptions,
   AdapterOptionsFor,
   AdapterSequenceOptions,
+  RefTarget,
 } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyDefinition } from './useHotkeys'
 
@@ -21,10 +21,7 @@ import type { UseHotkeyDefinition } from './useHotkeys'
  * A ref object, element, document, or window to listen on. A `null` or
  * `undefined` target, or a ref that is still unset, waits for the element.
  */
-export type UseHotkeyTarget =
-  | { current: HTMLElement | null | undefined }
-  | Target
-  | null
+export type UseHotkeyTarget = RefTarget
 
 /** Options shared by chords and sequences. */
 export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>

@@ -40,7 +40,7 @@ type PhysicalKeyCode =
   | "Suspend";
 ```
 
-Defined in: [key.types.ts:186](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L186)
+Defined in: [key.types.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L189)
 
 Supported physical KeyboardEvent.code names, independent of keyboard layout.
 Letter, digit, and numpad names use finite template unions. Modifier codes

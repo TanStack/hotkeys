@@ -1,7 +1,7 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { namesPhysicalKey } from '@tanstack/hotkeys/adapter'
+import { createFormatForDisplay as createCoreFormatForDisplay } from '@tanstack/hotkeys/adapter'
 import { createKeyboardLayout } from './createKeyboardLayout'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the provider's `platform` as the default,
@@ -29,14 +29,7 @@ import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 export function createFormatForDisplay(): typeof formatForDisplay {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const layoutMap = createKeyboardLayout()
-  return ((hotkey, options) =>
-    formatForDisplay(hotkey, {
-      ...options,
-      platform: options?.platform ?? defaultOptions().platform,
-      // Only a position's label follows the layout. Other labels don't read
-      // it, so they don't render again when it loads.
-      layoutMap:
-        options?.layoutMap ??
-        (namesPhysicalKey(hotkey) ? (layoutMap() ?? undefined) : undefined),
-    })) as typeof formatForDisplay
+  // Only a position's label reads the layout, so other labels don't render
+  // again when it loads.
+  return createCoreFormatForDisplay(() => defaultOptions().platform, layoutMap)
 }

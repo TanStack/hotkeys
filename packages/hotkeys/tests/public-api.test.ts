@@ -1,12 +1,12 @@
 import { expect, expectTypeOf, it } from 'vitest'
 import * as hotkeys from '../src'
 import type {
-  NormalizedKeyboardEvent,
-  NonPunctuationKey,
-  SingleModifierHotkeyChord,
   DisplayHotkey,
-  MultiHotkeyChordHandler,
   HotkeySequenceRegistration,
+  MultiHotkeyChordHandler,
+  NonPunctuationKey,
+  NormalizedKeyboardEvent,
+  SingleModifierHotkeyChord,
   Target,
 } from '../src'
 

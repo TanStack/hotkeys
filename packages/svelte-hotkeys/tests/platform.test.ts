@@ -6,9 +6,8 @@ import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as adapter from '../src'
 import PlatformHarness from './PlatformHarness.svelte'
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
 import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 function press(init: KeyboardEventInit) {
   document.dispatchEvent(
@@ -20,13 +19,16 @@ function press(init: KeyboardEventInit) {
 }
 
 function setup(
-  initial: Platform,
-  options: { hotkeyPlatform?: Platform; labelPlatform?: Platform } = {},
+  initial: HotkeyPlatform,
+  options: {
+    hotkeyPlatform?: HotkeyPlatform
+    labelPlatform?: HotkeyPlatform
+  } = {},
 ) {
   const onHotkey = vi.fn()
   const onRecord = vi.fn()
   let recorder!: SvelteHotkeyRecorder
-  let setPlatform!: (platform: Platform) => void
+  let setPlatform!: (platform: HotkeyPlatform) => void
   const component = mount(PlatformHarness, {
     target: document.body,
     props: {

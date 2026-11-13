@@ -17,7 +17,7 @@ type TwoModifierHotkeyChord =
   | `Mod+Shift+${Key}`;
 ```
 
-Defined in: [hotkey.types.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L34)
+Defined in: [hotkey.types.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L40)
 
 Two modifier + key combinations.
 

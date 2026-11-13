@@ -1,25 +1,25 @@
 import { computed } from '@angular/core'
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { injectHotkeysContext } from './hotkeys-provider'
 import { injectHotkeyRegistrations } from './injectHotkeyRegistrations'
 import type { Signal } from '@angular/core'
 import type {
-  AppHotkey,
-  AppHotkeyListItem,
-  AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
-  Hotkey,
-  RecordedKeyPresses,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 
 function injectRequiredStore(name: string) {
   const context = injectHotkeysContext()
-  if (!context.appHotkeysStore) {
-    throw new Error(`[hotkeys] ${name} requires provideHotkeys with appHotkeys`)
-  }
   return {
-    store:
-      context.appHotkeysStore as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    store: requireAppHotkeysStore(
+      context.appHotkeysStore,
+      `${name} requires provideHotkeys with appHotkeys`,
+    ),
     state: context.appHotkeysState,
   }
 }
@@ -50,7 +50,7 @@ export function injectAppHotkeys(): Signal<RegisteredAppHotkeys> {
  * mounted are `'inactive'`; those without a hotkey are `'unbound'`.
  */
 export function injectAppHotkeyList(): Signal<
-  Array<AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>>
+  Array<RegisteredAppHotkeyListItem>
 > {
   const { store, state } = injectRequiredStore('injectAppHotkeyList')
   const registrations = injectHotkeyRegistrations()
@@ -61,33 +61,9 @@ export function injectAppHotkeyList(): Signal<
 }
 
 /** Custom hotkey state and actions returned by `injectCustomHotkeys`. */
-export interface InjectCustomHotkeysResult {
+export interface InjectCustomHotkeysResult extends Readonly<CustomHotkeyActions> {
   /** The user's hotkeys that differ from the defaults. */
   readonly customHotkeys: Signal<CustomHotkeys>
-  /**
-   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
-   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
-   */
-  readonly setCustomHotkey: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey | null,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
-  /** Restores the default hotkey for an app hotkey. */
-  readonly resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
-  /** Restores every default hotkey. */
-  readonly resetCustomHotkeys: () => void
-  /**
-   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
-   * recorder's `context` for a recorded hotkey: it has the key press, which
-   * also finds a hotkey written differently that the same press fires.
-   */
-  readonly findConflicts: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
 }
 
 /**
@@ -102,11 +78,6 @@ export function injectCustomHotkeys(): InjectCustomHotkeysResult {
       state()
       return store.customHotkeys
     }),
-    setCustomHotkey: (id, hotkey, recordedWith) =>
-      store.setCustomHotkey(id, hotkey, recordedWith),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey, recordedWith) =>
-      store.findConflicts(id, hotkey, recordedWith),
+    ...bindCustomHotkeyActions(() => store),
   }
 }

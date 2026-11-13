@@ -14,7 +14,7 @@ function injectFormatForDisplay(): {
 };
 ```
 
-Defined in: [injectFormatForDisplay.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectFormatForDisplay.ts#L34)
+Defined in: [injectFormatForDisplay.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectFormatForDisplay.ts#L33)
 
 Returns `formatForDisplay` with the provider's `platform` as the default,
 so labels match the user's platform. Call it in an injection context, such

@@ -7,15 +7,9 @@
   } from '@tanstack/svelte-hotkeys'
   import ShortcutListItem from './ShortcutListItem.svelte'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
+  import type { Shortcut } from './types'
 
   const formatForDisplay = getFormatForDisplay()
-
-  interface Shortcut {
-    id: string
-    name: string
-    description: string
-    hotkey: Hotkey | ''
-  }
 
   let nextId = 0
   function createId(): string {

@@ -1,6 +1,7 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
 import { createEffect, onCleanup, untrack } from 'solid-js'
 import { delegateEvents } from 'solid-js/web'
@@ -8,6 +9,7 @@ import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
 } from './defaultOptions'
+import type { MaybeGetter } from '@tanstack/hotkeys'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type {
   CreateHotkeyCommonOptions,
@@ -39,12 +41,8 @@ export type CreateHotkeyDefinition = AdapterHotkeyDefinition<CreateHotkeyTarget>
  * ```
  */
 export function createHotkeys(
-  hotkeys:
-    | ReadonlyArray<CreateHotkeyDefinition>
-    | (() => ReadonlyArray<CreateHotkeyDefinition>),
-  commonOptions:
-    | CreateHotkeyCommonOptions
-    | (() => CreateHotkeyCommonOptions) = {},
+  hotkeys: MaybeGetter<ReadonlyArray<CreateHotkeyDefinition>>,
+  commonOptions: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
@@ -56,17 +54,13 @@ export function createHotkeys(
   createEffect(() => {
     // Track app hotkeys so registrations move with custom hotkeys.
     appHotkeys.state()
-    const definitions = prepareHotkeyDefinitions(
-      typeof hotkeys === 'function' ? hotkeys() : hotkeys,
-      {
-        appHotkeysStore: appHotkeys.store,
-        defaults: defaultOptions().hotkey,
-        commonOptions:
-          typeof commonOptions === 'function' ? commonOptions() : commonOptions,
-        // An unset target skips registration until the element exists.
-        resolveTarget: (target) => target,
-      },
-    )
+    const definitions = prepareHotkeyDefinitions(resolveMaybeGetter(hotkeys), {
+      appHotkeysStore: appHotkeys.store,
+      defaults: defaultOptions().hotkey,
+      commonOptions: resolveMaybeGetter(commonOptions),
+      // An unset target skips registration until the element exists.
+      resolveTarget: (target) => target,
+    })
     // Solid's onKeyDown listener on the document must come before the
     // hotkeys' listener there, even when the first module that uses
     // onKeyDown loads later. This runs only in the browser.

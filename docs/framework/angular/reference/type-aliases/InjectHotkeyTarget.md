@@ -13,7 +13,7 @@ type InjectHotkeyTarget =
   | null;
 ```
 
-Defined in: [injectHotkey.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L25)
+Defined in: [injectHotkey.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L27)
 
 The element to listen on: an element, an `ElementRef`, or a signal of
 either, such as `viewChild<ElementRef>('panel')`. A `null` or `undefined`

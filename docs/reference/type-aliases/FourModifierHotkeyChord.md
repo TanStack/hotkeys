@@ -9,7 +9,7 @@ title: FourModifierHotkeyChord
 type FourModifierHotkeyChord = `Control+Alt+Shift+Meta+${Key}`;
 ```
 
-Defined in: [hotkey.types.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L72)
+Defined in: [hotkey.types.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L78)
 
 Four modifier + key combinations.
 

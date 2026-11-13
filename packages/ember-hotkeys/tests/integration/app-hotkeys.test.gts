@@ -13,7 +13,10 @@ import {
   useHotkey,
   useHotkeys,
 } from '@tanstack/ember-hotkeys'
-import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type {
+  EmberHotkeyDefinition,
+  HotkeyPlatform,
+} from '@tanstack/ember-hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Control+S', meta: { name: 'Save' } },
@@ -22,7 +25,7 @@ const appHotkeys = defineAppHotkeys({
 })
 
 let instance: AppExample
-let currentPlatform: 'mac' | 'windows' | 'linux'
+let currentPlatform: HotkeyPlatform
 
 class AppExample extends Component {
   @tracked count = 0

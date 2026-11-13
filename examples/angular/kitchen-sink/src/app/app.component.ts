@@ -24,6 +24,7 @@ import {
 import type { ElementRef } from '@angular/core'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
   RecorderRejection,
 } from '@tanstack/angular-hotkeys'
@@ -522,7 +523,7 @@ export class Recording {
   </section>`,
 })
 export class Formatting {
-  readonly platform = signal<'mac' | 'windows' | 'linux'>('mac')
+  readonly platform = signal<HotkeyPlatform>('mac')
   readonly modifiers = signal(false)
   readonly keys = signal(true)
   readonly options = computed(() => ({

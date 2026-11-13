@@ -3,13 +3,18 @@
 // a second HotkeyManager and app hotkeys factory.
 import {
   detectPlatform,
+  formatForDisplay,
   getAppHotkeyRegistrationOptions,
   getHotkeyManager,
+  getKeyboardLayoutStore,
   isAppHotkey,
   isHotkeySequence,
+  loadKeyboardLayout,
+  matchesHeldModifiers,
   normalizeHotkey,
   parseHotkey,
   resolveAppHotkey,
+  toHotkeyRegistrationView,
 } from '@tanstack/hotkeys'
 // Stateless once loaded, apart from a collator created on first use, so a
 // copy per entry is fine.
@@ -18,16 +23,28 @@ import { canWarn } from './_dev'
 import { defaultHotkeyOptions, definedOptions } from './_registration'
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
-import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
-import type { DisplayHotkey } from './format'
+import type {
+  AppHotkey,
+  AppHotkeysStore,
+  CustomHotkeyActions,
+  RegisteredAppHotkeys,
+} from './app-hotkeys'
+import type { DisplayHotkey, FormatDisplayOptions } from './format'
+import type { HeldModifierOptions } from './hint'
 import type {
   ActivateHotkeyScopeOptions,
   HotkeyChordOptions,
+  HotkeyCommonOptions,
   HotkeyOptions,
+  HotkeyRegistration,
   HotkeyRegistrationHandle,
+  HotkeyRegistrationView,
   HotkeySequenceOptions,
-  Target,
 } from './hotkey-manager'
+import type {
+  HotkeyChordRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from './hotkey-recorder'
 import type {
   HotkeyCallback,
   HotkeyChord,
@@ -35,10 +52,13 @@ import type {
   RegisterableHotkey,
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
+  Target,
 } from './hotkey.types'
+import type { KeyboardLayoutMap } from './keyboard-layout'
 import type { HotkeyPlatform } from './platform'
 
 export { createAppHotkeysStore } from '@tanstack/hotkeys'
+export { resolveMaybeGetter } from './_getter'
 export { createStore } from './_store'
 export { definedOptions, withDefaults } from './_registration'
 export type { Store } from './_store'
@@ -62,14 +82,11 @@ export type HotkeyDefinition =
       /** No hotkey. Registers nothing. */
       hotkey: null | undefined
       callback: HotkeyCallback
-      options?: HotkeyChordOptions & HotkeySequenceOptions
+      options?: HotkeyCommonOptions
     }
 
 /** Options shared by every definition. Each option applies only to the kinds that support it. */
-export type HotkeyBindingsCommonOptions = HotkeyChordOptions &
-  HotkeySequenceOptions
-
-type ResolvedOptions = HotkeyChordOptions & HotkeySequenceOptions
+export type HotkeyBindingsCommonOptions = HotkeyCommonOptions
 
 /**
  * Reconciles adapter registrations while retaining handles for option updates.
@@ -83,9 +100,9 @@ export function createHotkeyBindings(
     string,
     {
       handle: HotkeyRegistrationHandle
-      target: ResolvedOptions['target']
-      platform: ResolvedOptions['platform']
-      options: ResolvedOptions
+      target: HotkeyCommonOptions['target']
+      platform: HotkeyCommonOptions['platform']
+      options: HotkeyCommonOptions
     }
   >()
 
@@ -105,16 +122,16 @@ export function createHotkeyBindings(
       const prepared: Array<{
         key: string
         callback: HotkeyCallback
-        options: ResolvedOptions
+        options: HotkeyCommonOptions
         register: () => HotkeyRegistrationHandle
       }> = []
       definitions.forEach((definition, index) => {
         // `undefined` means "not set", so it keeps the default.
-        const merged = definedOptions<ResolvedOptions>(
+        const merged = definedOptions<HotkeyCommonOptions>(
           commonOptions,
           definition.options,
         )
-        const options: ResolvedOptions = {
+        const options: HotkeyCommonOptions = {
           ...defaultHotkeyOptions,
           ...merged,
           ...adapterOptions,
@@ -411,6 +428,40 @@ export interface HotkeysProviderScopeProps {
 }
 
 /**
+ * Provider defaults for every recorder. Each recorder sets its own
+ * `maxSteps`, `onRecord`, and `validate`.
+ */
+export type HotkeyRecorderDefaults = Partial<
+  Omit<
+    HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
+    'maxSteps' | 'onRecord' | 'validate'
+  >
+>
+
+/**
+ * The shape of a provider's default options. Adapters declare their own
+ * interface, documented with their API names, that satisfies this one.
+ */
+export interface HotkeysDefaultOptions<
+  THotkeyOptions = object,
+  TRecorderOptions = HotkeyRecorderDefaults,
+> {
+  platform?: HotkeyPlatform
+  keyboardLayout?: boolean
+  hotkey?: THotkeyOptions
+  hotkeyRecorder?: TRecorderOptions
+}
+
+/** The value a framework provider passes down to its hotkeys and labels. */
+export interface HotkeysContextValue<TDefaults> {
+  appHotkeysStore: AppHotkeysStore | null
+  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
+  defaultOptions: TDefaults
+  /** Whether this provider and every ancestor are enabled. */
+  enabled: boolean
+}
+
+/**
  * Merges a provider's default options over its parent's. A provider with a
  * `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
  * A provider's `platform` is inherited, and is the default platform for its
@@ -418,12 +469,7 @@ export interface HotkeysProviderScopeProps {
  * `keyboardLayout` is inherited too.
  */
 export function mergeHotkeysProviderDefaults<
-  T extends {
-    platform?: HotkeyPlatform
-    keyboardLayout?: boolean
-    hotkey?: object
-    hotkeyRecorder?: object
-  },
+  T extends HotkeysDefaultOptions<object, object>,
 >(parent: T | undefined, own: T | undefined, scope: string | undefined): T {
   const parentPlatform = { platform: parent?.platform }
   const ownPlatform = { platform: own?.platform }
@@ -510,4 +556,129 @@ export function namesPhysicalKey(hotkey: DisplayHotkey): boolean {
   if (typeof hotkey === 'string') return /\[\w+\]/.test(hotkey)
   if (Array.isArray(hotkey)) return hotkey.some(namesPhysicalKey)
   return (hotkey as { code?: unknown }).code !== undefined
+}
+
+/**
+ * The app hotkeys store, typed by `Register`, or throws when there is none.
+ * `message` says which API needs it and how to provide one.
+ */
+export function requireAppHotkeysStore(
+  store: AppHotkeysStore | null | undefined,
+  message: string,
+): AppHotkeysStore<RegisteredAppHotkeys> {
+  if (!store) throw new Error(`[hotkeys] ${message}`)
+  // Not a no-op once apps augment `Register`.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+  return store as unknown as AppHotkeysStore<RegisteredAppHotkeys>
+}
+
+/**
+ * The store published with `publishAppHotkeysStore` or `provideAppHotkeys`,
+ * or `null`. For adapters that resolve app hotkeys without a provider.
+ */
+export function getPublishedAppHotkeysStore(): AppHotkeysStore | null {
+  return getHotkeyManager().appHotkeys.state
+}
+
+/**
+ * Custom hotkey actions that call the store from `getStore` each time, so they
+ * follow a store that changes.
+ */
+export function bindCustomHotkeyActions(
+  getStore: () => AppHotkeysStore<RegisteredAppHotkeys>,
+): CustomHotkeyActions {
+  return {
+    setCustomHotkey: (id, hotkey, recordedWith) =>
+      getStore().setCustomHotkey(id, hotkey, recordedWith),
+    resetCustomHotkey: (id) => getStore().resetCustomHotkey(id),
+    resetCustomHotkeys: () => getStore().resetCustomHotkeys(),
+    findConflicts: (id, hotkey, recordedWith) =>
+      getStore().findConflicts(id, hotkey, recordedWith),
+  }
+}
+
+/** Views of every registration, chords and sequences, for registration lists. */
+export function getHotkeyRegistrationViews(
+  registrations: ReadonlyMap<string, HotkeyRegistration> = getHotkeyManager()
+    .registrations.state,
+): Array<HotkeyRegistrationView> {
+  return Array.from(registrations.values()).map(toHotkeyRegistrationView)
+}
+
+/**
+ * Whether a hotkey's hint shows: its modifiers are held and a registration
+ * that can fire exists. App hotkeys resolve through `appHotkeysStore`.
+ * Adapters read the held keys and registrations reactively, then call this.
+ */
+export function isHotkeyHintVisible(
+  hotkey: RegisterableHotkey | AppHotkey | null | undefined,
+  heldKeys: ReadonlyArray<string>,
+  options: HeldModifierOptions = {},
+  appHotkeysStore?: AppHotkeysStore | null,
+): boolean {
+  const resolved = isAppHotkey(hotkey)
+    ? resolveAppHotkey(hotkey, appHotkeysStore).hotkey
+    : hotkey
+  return (
+    resolved !== null &&
+    matchesHeldModifiers(resolved, heldKeys, options) &&
+    getHotkeyManager().hasActiveRegistration(hotkey)
+  )
+}
+
+/**
+ * A `formatForDisplay` that uses a provider's platform and keyboard layout
+ * when the call doesn't pass them. Only a label that names a physical key
+ * reads `getLayoutMap`, so other labels don't depend on the layout.
+ */
+export function createFormatForDisplay(
+  getPlatform: () => HotkeyPlatform | undefined,
+  getLayoutMap: () => KeyboardLayoutMap | null | undefined,
+): typeof formatForDisplay {
+  return ((hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
+    formatForDisplay(hotkey, {
+      ...options,
+      platform: options?.platform ?? getPlatform(),
+      layoutMap:
+        options?.layoutMap ??
+        (namesPhysicalKey(hotkey) ? (getLayoutMap() ?? undefined) : undefined),
+    })) as typeof formatForDisplay
+}
+
+/**
+ * Loads the browser's keyboard layout and calls `onChange` when it changes.
+ * Pass `load` to run the load differently, such as outside Angular's zone.
+ * Returns a function that stops following and releases the load.
+ */
+export function followKeyboardLayout(
+  onChange: (layoutMap: KeyboardLayoutMap | null) => void,
+  load: () => () => void = loadKeyboardLayout,
+): () => void {
+  const stop = load()
+  const { unsubscribe } = getKeyboardLayoutStore().subscribe(onChange)
+  return () => {
+    unsubscribe()
+    stop()
+  }
+}
+
+/**
+ * A framework ref, element, document, or window to listen on. A `null` or
+ * `undefined` target, or a ref that is still unset, waits for the element.
+ */
+export type RefTarget<TRef = { current: HTMLElement | null | undefined }> =
+  | TRef
+  | Target
+  | null
+
+/**
+ * Resolves a ref object to its current element; other targets pass through.
+ * An unset ref resolves to `null` or `undefined`, so registration waits.
+ */
+export function resolveRefTarget(
+  target: RefTarget<{ current: HTMLElement | null | undefined }>,
+): Target | null | undefined {
+  return target !== null && typeof target === 'object' && 'current' in target
+    ? target.current
+    : target
 }

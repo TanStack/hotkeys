@@ -1,12 +1,13 @@
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { createHotkeys } from './createHotkeys'
-import { read } from './scope'
 import type {
   AppHotkey,
   HotkeyCallback,
+  MaybeGetter,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type { AlpineHotkeyCommonOptions, MaybeGetter } from './types'
+import type { AlpineHotkeyCommonOptions } from './types'
 
 export function createHotkey(
   scope: HotkeysScope,
@@ -15,6 +16,10 @@ export function createHotkey(
   options: MaybeGetter<AlpineHotkeyCommonOptions> = {},
 ) {
   createHotkeys(scope, () => [
-    { hotkey: read(hotkey), callback, options: read(options) } as never,
+    {
+      hotkey: resolveMaybeGetter(hotkey),
+      callback,
+      options: resolveMaybeGetter(options),
+    } as never,
   ])
 }
