@@ -2,10 +2,11 @@ import { MODIFIER_KEYS, normalizeKeyName } from './constants'
 import { isHotkeySequence, parseHotkey } from './parse'
 import type { RegisterableHotkey } from './hotkey.types'
 import type { CanonicalModifier } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 export interface HeldModifierOptions {
   /** Resolve Mod for this platform. Defaults to platform detection. */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /** Require every binding modifier to be held. Default: false (nonempty subset). */
   exact?: boolean
 }

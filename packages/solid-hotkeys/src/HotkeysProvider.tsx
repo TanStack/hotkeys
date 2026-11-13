@@ -17,11 +17,13 @@ import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { JSX, ParentComponent } from 'solid-js'
 import type { CreateHotkeyCommonOptions } from './createHotkey'
 
@@ -46,23 +48,11 @@ export interface HotkeysProviderOptions {
    */
   hotkey?: CreateHotkeyCommonOptions
   /** Defaults for every `createHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  readonly appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
-  readonly defaultOptions: HotkeysProviderOptions
-  /** Whether this provider and every ancestor are enabled. */
-  readonly enabled: boolean
-}
-
-const HotkeysContext = createContext<HotkeysContextValue | null>(null)
+const HotkeysContext =
+  createContext<HotkeysContextValue<HotkeysProviderOptions> | null>(null)
 
 export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   children: JSX.Element
@@ -183,7 +173,7 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
     if (key) onCleanup(activateHotkeysProviderScope(key))
   })
 
-  const contextValue: HotkeysContextValue = {
+  const contextValue: HotkeysContextValue<HotkeysProviderOptions> = {
     get appHotkeysStore() {
       return store() ?? parent?.appHotkeysStore ?? null
     },

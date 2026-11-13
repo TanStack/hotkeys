@@ -1,4 +1,5 @@
 import { withAltGraph } from './alt-graph'
+import type { HotkeyEventType } from '@tanstack/hotkeys'
 
 /** Options for `keydown` and `keyup`. */
 export interface KeyOptions extends KeyboardEventInit {
@@ -15,7 +16,7 @@ export interface KeyOptions extends KeyboardEventInit {
  * bubble and are cancelable unless the options say otherwise.
  */
 export function keyEvent(
-  type: 'keydown' | 'keyup',
+  type: HotkeyEventType,
   options: KeyOptions,
 ): KeyboardEvent {
   const { altGraph = false, target, ...init } = options

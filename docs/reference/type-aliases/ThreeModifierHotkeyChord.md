@@ -14,7 +14,7 @@ type ThreeModifierHotkeyChord =
   | `Mod+Alt+Shift+${Key}`;
 ```
 
-Defined in: [hotkey.types.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L53)
+Defined in: [hotkey.types.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L59)
 
 Three modifier + key combinations.
 

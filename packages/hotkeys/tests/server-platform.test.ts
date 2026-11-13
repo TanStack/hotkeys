@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import type { HotkeyPlatform } from '../src'
 
 const agents = {
   mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
@@ -125,8 +126,8 @@ describe('in a browser', () => {
 })
 
 type Defaults = {
-  platform?: 'mac' | 'windows' | 'linux'
-  hotkey?: { platform?: 'mac' | 'windows' | 'linux'; scope?: string }
+  platform?: HotkeyPlatform
+  hotkey?: { platform?: HotkeyPlatform; scope?: string }
   hotkeyRecorder?: object
 }
 

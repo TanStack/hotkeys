@@ -1,8 +1,8 @@
-import { chordHasKey, parsedChordsEqual } from './_chord'
+import { chordHasKey, hotkeySteps, parsedChordsEqual } from './_chord'
 import { isSequenceStep } from './_keyboard-event'
 import { matchKeyboardEvent } from './_match'
 import { formatHotkey } from './format'
-import { isHotkeySequence, parseHotkey } from './parse'
+import { parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type {
   HotkeyCallback,
@@ -12,6 +12,7 @@ import type {
   RegisterableHotkey,
   RegisterableHotkeySequence,
 } from './hotkey.types'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * Checks if a KeyboardEvent matches a hotkey.
@@ -52,7 +53,7 @@ import type {
 export function matchesKeyboardEvent(
   event: KeyboardEvent,
   chord: HotkeyChord | ParsedHotkeyChord,
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): boolean {
   const parsed =
     typeof chord === 'string' ? parseHotkey(chord, platform) : chord
@@ -70,7 +71,7 @@ export interface CreateHotkeyChordHandlerOptions {
   /** Stop event propagation when the chord matches. Defaults to true */
   stopPropagation?: boolean
   /** The target platform for resolving 'Mod' */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
 }
 
 /**
@@ -196,8 +197,8 @@ export function areHotkeysEqual(
   right: RegisterableHotkey,
   platform = detectPlatform(),
 ): boolean {
-  const a = isHotkeySequence(left) ? left : [left]
-  const b = isHotkeySequence(right) ? right : [right]
+  const a = hotkeySteps(left)
+  const b = hotkeySteps(right)
   // Steps are parsed as they are compared, so a step that cannot be parsed
   // throws only when the steps before it are equal.
   return (
@@ -238,7 +239,7 @@ export const DEFAULT_SEQUENCE_TIMEOUT = 1000
  */
 export function createSequenceMatcher(
   sequence: RegisterableHotkeySequence,
-  options: { timeout?: number; platform?: 'mac' | 'windows' | 'linux' } = {},
+  options: { timeout?: number; platform?: HotkeyPlatform } = {},
 ): {
   match: (event: KeyboardEvent) => boolean
   reset: () => void

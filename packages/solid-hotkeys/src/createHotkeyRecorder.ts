@@ -1,5 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
 import { createEffect, onCleanup } from 'solid-js'
 import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
@@ -7,26 +7,22 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
 
-export interface SolidHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
+export interface SolidHotkeyRecorder<
+  THotkey extends Hotkey = Hotkey,
+> extends HotkeyRecorderActions {
   /** Whether recording is currently active */
   isRecording: () => boolean
   /** Chords recorded so far in a multi-step recording (for live preview) */
   steps: () => HotkeySequence
   /** The last committed hotkey */
   recordedHotkey: () => THotkey | null
-  /** Start recording a new hotkey */
-  startRecording: () => void
-  /** Stop recording without calling onCancel */
-  stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  commitRecording: () => void
 }
 
 /**
@@ -61,13 +57,13 @@ export function createHotkeyRecorder(
   options: () => HotkeyRecorderOptions,
 ): SolidHotkeyRecorder
 export function createHotkeyRecorder(
-  options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
+  options: MaybeGetter<HotkeyRecorderOptions>,
 ): SolidHotkeyRecorder {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const resolve = () =>
     withDefaults(
       defaultOptions().hotkeyRecorder,
-      typeof options === 'function' ? options() : options,
+      resolveMaybeGetter(options),
     ) as HotkeySequenceRecorderOptions
 
   // Create recorder once synchronously; overloads already checked the options.

@@ -9,7 +9,7 @@ title: useAppHotkeyList
 function useAppHotkeyList(owner): EmberAppHotkeyList;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useAppHotkeys.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useAppHotkeys.ts#L36)
+Defined in: [packages/ember-hotkeys/src/useAppHotkeys.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useAppHotkeys.ts#L40)
 
 Lists every app hotkey with its live status, for cheat sheets and settings
 screens. App hotkeys whose components have not rendered are `'inactive'`;

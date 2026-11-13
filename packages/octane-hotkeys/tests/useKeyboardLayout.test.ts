@@ -1,5 +1,5 @@
 import { HotkeyManager, getKeyboardLayoutStore } from '@tanstack/hotkeys'
-import { createRoot, drainPassiveEffects, flushSync, hydrateRoot } from 'octane'
+import { createRoot, flushSync, hydrateRoot } from 'octane'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   BareLabel,
@@ -11,6 +11,7 @@ import {
   NestedLayoutFixture,
   layoutCapture,
 } from './keyboard-layout.tsrx'
+import { flush } from './utils'
 import type { Root } from 'octane'
 
 const AZERTY = new Map([['KeyQ', 'a']])
@@ -21,11 +22,6 @@ const SERVER_HTML = '<!--3--><!--[--><!--[--><kbd>Ctrl+Q</kbd><!--]--><!--]-->'
 
 const roots: Array<Root> = []
 
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 function mount(body: unknown, props: { keyboardLayout?: boolean } = {}) {
   const container = document.createElement('div')
   document.body.append(container)

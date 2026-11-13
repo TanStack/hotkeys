@@ -1,23 +1,14 @@
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
-import {
-  createRoot,
-  delegateEvents,
-  drainPassiveEffects,
-  flushSync,
-} from 'octane'
+import { createRoot, delegateEvents, flushSync } from 'octane'
 import { afterEach, beforeEach, expect, it } from 'vitest'
 import { RefTargetFixture, refTargetLog } from './ref-targets.tsrx'
+import { flush } from './utils'
 import type { Root } from 'octane'
 
 delegateEvents(['click'])
 let root: Root
 let container: HTMLDivElement
 
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 function press(key: string, target: EventTarget) {
   flushSync(() => {
     target.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }))

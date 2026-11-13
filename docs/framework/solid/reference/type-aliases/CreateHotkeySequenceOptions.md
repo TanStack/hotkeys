@@ -9,6 +9,6 @@ title: CreateHotkeySequenceOptions
 type CreateHotkeySequenceOptions = AdapterSequenceOptions<CreateHotkeyTarget>;
 ```
 
-Defined in: [createHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L32)
+Defined in: [createHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L34)
 
 Options for a sequence such as `['G', 'G']`.

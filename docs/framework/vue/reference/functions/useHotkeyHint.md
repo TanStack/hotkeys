@@ -9,7 +9,7 @@ title: useHotkeyHint
 function useHotkeyHint(hotkey, options?): ComputedRef<boolean>;
 ```
 
-Defined in: [useHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyHint.ts#L27)
+Defined in: [useHotkeyHint.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyHint.ts#L22)
 
 Returns a computed ref indicating whether held modifiers reveal this shortcut.
 The hint shows only while the hotkey can fire: some registration of it is

@@ -7,6 +7,7 @@ import type {
   HotkeyOptions,
   HotkeySequenceRegistration,
 } from '../src/hotkey-manager'
+import type { HotkeyEventType } from '../src/hotkey.types'
 
 const recorders: Array<HotkeyRecorder> = []
 afterEach(() => {
@@ -20,7 +21,7 @@ afterEach(() => {
 
 function press(
   target: EventTarget,
-  type: 'keydown' | 'keyup' = 'keydown',
+  type: HotkeyEventType = 'keydown',
   key = 's',
   repeat = false,
 ) {

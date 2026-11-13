@@ -9,7 +9,7 @@ title: AppHotkeyControllerOptions
 type AppHotkeyControllerOptions<T> = AdapterAppHotkeyOptions<T, HotkeyControllerTarget>;
 ```
 
-Defined in: [controllers/hotkey.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L50)
+Defined in: [controllers/hotkey.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L52)
 
 Call-site options for an app hotkey, typed by its declared default kind.
 

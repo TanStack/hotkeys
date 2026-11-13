@@ -1,4 +1,5 @@
 import {
+  DEFAULT_SEQUENCE_TIMEOUT,
   detectPlatform,
   formatForDisplay,
   normalizeHotkey,
@@ -14,6 +15,7 @@ import {
   useRegistrationConflicts,
 } from '../_registrations'
 import { getScopeStatus } from '../_scopes'
+import { getTargetSelector } from '../_targets'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import { useStyles } from '../styles/use-styles'
 import { ActionButtons } from './ActionButtons'
@@ -23,21 +25,23 @@ import type {
   ConflictBehavior,
   Hotkey,
   HotkeyChordRegistrationView,
+  HotkeyPlatform,
   HotkeyRegistrationView,
   HotkeySequenceRegistrationView,
   ParsedHotkeyChord,
+  Target,
 } from '@tanstack/hotkeys'
 
-const PLATFORM_ROWS = [
-  { id: 'mac' as const, label: 'macOS' },
-  { id: 'windows' as const, label: 'Windows' },
-  { id: 'linux' as const, label: 'Linux' },
+const PLATFORM_ROWS: ReadonlyArray<{ id: HotkeyPlatform; label: string }> = [
+  { id: 'mac', label: 'macOS' },
+  { id: 'windows', label: 'Windows' },
+  { id: 'linux', label: 'Linux' },
 ]
 
 function KeyBreakdownPlatformTable(props: {
   getParsed: () => ParsedHotkeyChord
   /** Platform used when the parsed hotkey was produced (registration `options.platform`). */
-  getCanonicalPlatform: () => 'mac' | 'windows' | 'linux'
+  getCanonicalPlatform: () => HotkeyPlatform
   styles: ReturnType<typeof useStyles>
 }) {
   const st = () => props.styles()
@@ -97,27 +101,9 @@ type DetailsPanelProps = {
   selection: () => DetailsSelection | null
 }
 
-function getTargetDescription(target: HTMLElement | Document | Window): string {
-  if (typeof document !== 'undefined' && target === document) {
-    return 'document'
-  }
-  if (typeof window !== 'undefined' && target === window) {
-    return 'window'
-  }
-  if (target instanceof HTMLElement) {
-    const tag = target.tagName.toLowerCase()
-    const id = target.id ? `#${target.id}` : ''
-    const cls = target.className
-      ? `.${target.className.split(' ').join('.')}`
-      : ''
-    return `${tag}${id}${cls}`
-  }
-  return 'element'
-}
-
 function HotkeyDetails(props: {
   registration: HotkeyChordRegistrationView
-  getTargetDescription: (t: HTMLElement | Document | Window) => string
+  getTargetDescription: (t: Target) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const state = useHotkeysDevtoolsState()
@@ -376,7 +362,7 @@ function HotkeyDetails(props: {
 function SequenceDetails(props: {
   registration: HotkeySequenceRegistrationView
   state: ReturnType<typeof useHotkeysDevtoolsState>
-  getTargetDescription: (t: HTMLElement | Document | Window) => string
+  getTargetDescription: (t: Target) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
@@ -615,7 +601,7 @@ function SequenceDetails(props: {
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>timeout</span>
               <span class={styles().optionValue}>
-                {liveReg().options.timeout ?? 1000}ms
+                {liveReg().options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT}ms
               </span>
             </div>
             <div class={styles().optionRow}>
@@ -810,13 +796,13 @@ export function DetailsPanel(props: DetailsPanelProps) {
             <SequenceDetails
               registration={registration() as HotkeySequenceRegistrationView}
               state={state}
-              getTargetDescription={getTargetDescription}
+              getTargetDescription={getTargetSelector}
               styles={styles}
             />
           ) : (
             <HotkeyDetails
               registration={registration() as HotkeyChordRegistrationView}
-              getTargetDescription={getTargetDescription}
+              getTargetDescription={getTargetSelector}
               styles={styles}
             />
           )

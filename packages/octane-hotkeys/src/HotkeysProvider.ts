@@ -17,11 +17,13 @@ import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface DefaultHotkeysOptions {
@@ -46,23 +48,11 @@ export interface DefaultHotkeysOptions {
    */
   hotkey?: UseHotkeyCommonOptions
   /** Defaults for every `useHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
-  defaultOptions: DefaultHotkeysOptions
-  appHotkeysStore: AppHotkeysStore | null
-  /** Whether this provider and every ancestor are enabled. */
-  enabled: boolean
-}
-
-const HotkeysContext = createContext<HotkeysContextValue | null>(null)
+const HotkeysContext =
+  createContext<HotkeysContextValue<DefaultHotkeysOptions> | null>(null)
 
 export type HotkeysProviderOptions = DefaultHotkeysOptions
 
@@ -88,7 +78,7 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
 }
 
 /** Reads the nearest provider, or null outside a provider. */
-export function useHotkeysContext(): HotkeysContextValue | null {
+export function useHotkeysContext(): HotkeysContextValue<DefaultHotkeysOptions> | null {
   return useContext(HotkeysContext)
 }
 

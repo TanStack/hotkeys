@@ -1,6 +1,7 @@
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
+  macKeycapLetter,
   normalizeKeyboardEvent,
 } from './_keyboard-event'
 import {
@@ -13,6 +14,8 @@ import { isSingleLetterKey } from './constants'
 import { parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { HotkeyChord, ParsedHotkeyChord } from './hotkey.types'
+import type { KeyIdentity, NormalizedKeyboardEvent } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * How a key event matched a chord. The score ranks matches of one key press:
@@ -27,14 +30,14 @@ export interface KeyboardEventMatch {
   matched: boolean
   score: 0 | 1 | 2 | 3
   source?: 'key' | 'code' | 'fallback'
-  identity?: { key: string; code: string }
+  identity?: KeyIdentity
 }
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
   event: KeyboardEvent,
   hotkey: HotkeyChord | ParsedHotkeyChord,
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): KeyboardEventMatch {
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
@@ -113,10 +116,8 @@ export function matchKeyboardEvent(
     platform === 'mac' &&
     normalized.alt &&
     (normalized.key === 'Dead' ||
-      (isPrintableKey(normalized.key) && !isAsciiLetter(normalized.key))) &&
-    event.keyCode > 64 &&
-    event.keyCode < 91
-      ? String.fromCharCode(event.keyCode)
+      (isPrintableKey(normalized.key) && !isAsciiLetter(normalized.key)))
+      ? macKeycapLetter(event)
       : undefined
 
   if (optionLetter === undefined && !positionStandsIn(normalized, platform)) {
@@ -129,7 +130,7 @@ export function matchKeyboardEvent(
 
   // Preserve the triggering code so keyup can reset a shortcut even if its character changes.
   function matched(
-    source: 'key' | 'code' | 'fallback',
+    source: NonNullable<KeyboardEventMatch['source']>,
     score: 1 | 2 | 3,
   ): KeyboardEventMatch {
     return {
@@ -165,15 +166,8 @@ export function matchKeyboardEvent(
  * Control+Alt as AltGr, so Polish Control+Alt+A types `ą`.
  */
 function positionStandsIn(
-  {
-    key,
-    code,
-    ctrl,
-    meta,
-    shift,
-    alt,
-  }: ReturnType<typeof normalizeKeyboardEvent>,
-  platform: 'mac' | 'windows' | 'linux',
+  { key, code, ctrl, meta, shift, alt }: NormalizedKeyboardEvent,
+  platform: HotkeyPlatform,
 ): boolean {
   if (key === 'Unidentified') return !/^(Key|Numpad)/.test(code)
   if (key !== 'Dead' && !isPrintableKey(key)) return false

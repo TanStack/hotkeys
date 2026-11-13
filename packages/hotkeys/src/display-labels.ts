@@ -1,4 +1,4 @@
-import type { CanonicalModifier } from './key.types'
+import type { ResolvableModifier } from './key.types'
 
 // =============================================================================
 // Display Symbols
@@ -19,7 +19,7 @@ import type { CanonicalModifier } from './key.types'
  * MAC_MODIFIER_SYMBOLS['Shift'] // '⇧'
  * ```
  */
-export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | 'Mod', string> = {
+export const MAC_MODIFIER_SYMBOLS: Record<ResolvableModifier, string> = {
   Control: '⌃',
   Alt: '⌥',
   Shift: '⇧',
@@ -42,7 +42,7 @@ export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | 'Mod', string> = {
  * MAC_MODIFIER_LABELS['Meta'] // 'cmd'
  * ```
  */
-export const MAC_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> = {
+export const MAC_MODIFIER_LABELS: Record<ResolvableModifier, string> = {
   Control: 'Control',
   Alt: 'Option',
   Shift: 'Shift',
@@ -65,10 +65,7 @@ export const MAC_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> = {
  * STANDARD_MODIFIER_LABELS['Shift'] // 'Shift'
  * ```
  */
-export const WINDOWS_MODIFIER_LABELS: Record<
-  CanonicalModifier | 'Mod',
-  string
-> = {
+export const WINDOWS_MODIFIER_LABELS: Record<ResolvableModifier, string> = {
   Control: 'Ctrl',
   Alt: 'Alt',
   Shift: 'Shift',
@@ -76,11 +73,10 @@ export const WINDOWS_MODIFIER_LABELS: Record<
   Mod: 'Ctrl',
 }
 
-export const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> =
-  {
-    ...WINDOWS_MODIFIER_LABELS,
-    Meta: 'Super',
-  }
+export const LINUX_MODIFIER_LABELS: Record<ResolvableModifier, string> = {
+  ...WINDOWS_MODIFIER_LABELS,
+  Meta: 'Super',
+}
 
 export const PUNCTUATION_KEY_DISPLAY_LABELS = {
   '`': 'Backquote',

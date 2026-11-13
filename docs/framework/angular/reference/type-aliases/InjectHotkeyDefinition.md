@@ -9,7 +9,7 @@ title: InjectHotkeyDefinition
 type InjectHotkeyDefinition = AdapterHotkeyDefinition<InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L25)
+Defined in: [injectHotkeys.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L27)
 
 One hotkey for `injectHotkeys`. Chords accept `requireReset`; sequences
 accept `timeout`; hotkeys of unknown kind accept only shared options.

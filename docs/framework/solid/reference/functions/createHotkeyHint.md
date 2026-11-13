@@ -9,7 +9,7 @@ title: createHotkeyHint
 function createHotkeyHint(hotkey, options?): () => boolean;
 ```
 
-Defined in: [createHotkeyHint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyHint.ts#L25)
+Defined in: [createHotkeyHint.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyHint.ts#L24)
 
 Returns an accessor indicating whether held modifiers reveal this shortcut.
 The hint shows only while the hotkey can fire: some registration of it is
@@ -22,15 +22,15 @@ effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
 
 ### hotkey
 
+`MaybeGetter`\<
   \| `RegisterableHotkey`
   \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
-  \| (() => RegisterableHotkey \| AppHotkey\<string, HotkeyChord \| HotkeySequence \| null\> \| null \| undefined)
   \| `null`
-  \| `undefined`
+  \| `undefined`\>
 
 ### options?
 
-`HeldModifierOptions` \| (() => `HeldModifierOptions`) = `{}`
+`MaybeGetter`\<`HeldModifierOptions`\> = `{}`
 
 ## Returns
 

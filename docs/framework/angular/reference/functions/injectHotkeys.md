@@ -9,7 +9,7 @@ title: injectHotkeys
 function injectHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [injectHotkeys.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L47)
+Defined in: [injectHotkeys.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L49)
 
 Angular inject-based API for registering several hotkeys at once: chords,
 sequences, and app hotkeys. Pass a getter for a reactive list.
@@ -26,13 +26,11 @@ document.
 
 ### hotkeys
 
-  \| readonly [`InjectHotkeyDefinition`](../type-aliases/InjectHotkeyDefinition.md)[]
-  \| (() => readonly [`InjectHotkeyDefinition`](../type-aliases/InjectHotkeyDefinition.md)[])
+`MaybeGetter`\<readonly [`InjectHotkeyDefinition`](../type-aliases/InjectHotkeyDefinition.md)[]\>
 
 ### commonOptions?
 
-  \| [`InjectHotkeyCommonOptions`](../type-aliases/InjectHotkeyCommonOptions.md)
-  \| (() => [`InjectHotkeyCommonOptions`](../type-aliases/InjectHotkeyCommonOptions.md)) = `{}`
+`MaybeGetter`\<[`InjectHotkeyCommonOptions`](../type-aliases/InjectHotkeyCommonOptions.md)\> = `{}`
 
 ## Returns
 

@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { useStoreSelector } from './useStoreSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 import type { Ref } from 'vue'
@@ -27,7 +28,8 @@ import type { Ref } from 'vue'
 export function useHotkeyRegistrations(): Readonly<
   Ref<Array<HotkeyRegistrationView>>
 > {
-  return useStoreSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+  return useStoreSelector(
+    getHotkeyManager().registrations,
+    getHotkeyRegistrationViews,
   )
 }

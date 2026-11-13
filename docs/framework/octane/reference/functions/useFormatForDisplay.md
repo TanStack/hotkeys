@@ -14,7 +14,7 @@ function useFormatForDisplay(): {
 };
 ```
 
-Defined in: [useFormatForDisplay.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForDisplay.ts#L43)
+Defined in: [useFormatForDisplay.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForDisplay.ts#L42)
 
 Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function

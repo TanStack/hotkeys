@@ -1,9 +1,13 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { useHotkeysContext } from './HotkeysProvider'
 import { subSlot, useAppHotkeysStore } from './internal'
 import { useHotkeyRegistrations } from './useHotkeyRegistrations'
 import type {
-  AppHotkeyListItem,
   AppHotkeysStore,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 import type { HotkeyRegistrationsResult, UseCustomHotkeysResult } from './types'
@@ -12,16 +16,13 @@ function useRequiredStore(
   name: string,
   slot: symbol | undefined,
 ): AppHotkeysStore<RegisteredAppHotkeys> {
-  const store = useAppHotkeysStore(
-    useHotkeysContext()?.appHotkeysStore ?? null,
-    subSlot(slot, `${name}-store`),
+  return requireAppHotkeysStore(
+    useAppHotkeysStore(
+      useHotkeysContext()?.appHotkeysStore ?? null,
+      subSlot(slot, `${name}-store`),
+    ),
+    `${name} requires a HotkeysProvider with appHotkeys`,
   )
-  if (!store) {
-    throw new Error(
-      `[hotkeys] ${name} requires a HotkeysProvider with appHotkeys`,
-    )
-  }
-  return store
 }
 
 /**
@@ -38,12 +39,10 @@ export function useAppHotkeys(slot?: symbol): RegisteredAppHotkeys {
  * cheat sheets and settings screens. App hotkeys whose components have not
  * mounted are `'inactive'`; those without a hotkey are `'unbound'`.
  */
-export function useAppHotkeyList(): Array<
-  AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>
->
+export function useAppHotkeyList(): Array<RegisteredAppHotkeyListItem>
 export function useAppHotkeyList(
   slot?: symbol,
-): Array<AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>> {
+): Array<RegisteredAppHotkeyListItem> {
   const store = useRequiredStore('useAppHotkeyList', slot)
   const registrations = (
     useHotkeyRegistrations as (slot: symbol) => HotkeyRegistrationsResult
@@ -61,11 +60,6 @@ export function useCustomHotkeys(slot?: symbol): UseCustomHotkeysResult {
   const store = useRequiredStore('useCustomHotkeys', slot)
   return {
     customHotkeys: store.customHotkeys,
-    setCustomHotkey: (id, hotkey, recordedWith) =>
-      store.setCustomHotkey(id, hotkey, recordedWith),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey, recordedWith) =>
-      store.findConflicts(id, hotkey, recordedWith),
+    ...bindCustomHotkeyActions(() => store),
   }
 }

@@ -1,12 +1,14 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
 import type {
   AppHotkey,
   HotkeyCallback,
+  MaybeGetter,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -49,8 +51,6 @@ export type HotkeyControllerOptionsFor<T extends RegisterableHotkey> =
 /** Call-site options for an app hotkey, typed by its declared default kind. */
 export type AppHotkeyControllerOptions<T extends AppHotkey = AppHotkey> =
   AdapterAppHotkeyOptions<T, HotkeyControllerTarget>
-
-type MaybeGetter<T> = T | (() => T)
 
 /**
  * A Lit ReactiveController that registers a hotkey when the host element is
@@ -122,16 +122,12 @@ export class HotkeyController implements ReactiveController {
   }
 
   private _sync(): void {
-    const options =
-      typeof this._options === 'function' ? this._options() : this._options
+    const options = resolveMaybeGetter(this._options)
     this._bindings.update(
       prepareHotkeyDefinitions<HotkeyControllerTarget>(
         [
           {
-            hotkey:
-              typeof this._hotkey === 'function'
-                ? this._hotkey()
-                : this._hotkey,
+            hotkey: resolveMaybeGetter(this._hotkey),
             callback: this._boundCallback,
             options,
           } as never,

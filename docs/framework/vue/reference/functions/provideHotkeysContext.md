@@ -9,7 +9,7 @@ title: provideHotkeysContext
 function provideHotkeysContext(options?): void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:120](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L120)
+Defined in: [HotkeysProviderContext.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L110)
 
 Provides default options, app hotkeys, and the user's custom hotkeys to
 descendants. `HotkeysProvider` calls this; call it directly in a component's

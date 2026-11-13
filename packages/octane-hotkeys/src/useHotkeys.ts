@@ -1,6 +1,7 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
 import { useLayoutEffect, useRef } from 'octane'
 import { useHotkeysContext } from './HotkeysProvider'
@@ -51,8 +52,7 @@ export function useHotkeys(
           commonOptions,
           // Reads a ref object after each render. An unset target skips
           // registration until it is set.
-          resolveTarget: (target) =>
-            target && 'current' in target ? target.current : target,
+          resolveTarget: resolveRefTarget,
         }),
       )
     },

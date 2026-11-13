@@ -1,7 +1,6 @@
 import { codeToLogicalKey } from './_keyboard-event'
 import { normalizeKeyName } from './constants'
-
-type Target = HTMLElement | Document | Window
+import type { Target } from './hotkey.types'
 
 // Nodes and windows can come from another frame (a same-origin iframe or a
 // popup window), whose DOM classes differ from this window's. These helpers

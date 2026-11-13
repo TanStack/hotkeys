@@ -183,6 +183,7 @@ describe('adapter entry', () => {
     expect(relative.sort()).toEqual([
       './_chord',
       './_dev',
+      './_getter',
       './_registration',
       './_registration',
       './_server',

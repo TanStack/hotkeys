@@ -7,6 +7,7 @@ import type {
   HeldModifierOptions,
   Hotkey,
   HotkeyCallback,
+  HotkeyEventType,
   HotkeyMeta,
   HotkeyPlatform,
   HotkeyRecorderOptions,
@@ -82,7 +83,7 @@ export type ConformanceFeature =
 
 export interface ConformanceHotkeyOptions {
   enabled?: boolean
-  eventType?: 'keydown' | 'keyup'
+  eventType?: HotkeyEventType
   meta?: HotkeyMeta
   platform?: HotkeyPlatform
   preventDefault?: boolean | 'always'

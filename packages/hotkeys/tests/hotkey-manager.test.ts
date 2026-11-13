@@ -1,6 +1,7 @@
 import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
+import type { HotkeyEventType } from '../src/hotkey.types'
 
 describe('HotkeyManager', () => {
   beforeEach(() => {
@@ -309,7 +310,7 @@ describe('HotkeyManager', () => {
      * a listener is attached to document.
      */
     function createBraveLikeEvent(
-      type: 'keydown' | 'keyup',
+      type: HotkeyEventType,
       key: string,
       options: {
         ctrlKey?: boolean
@@ -881,7 +882,7 @@ describe('HotkeyManager', () => {
     function dispatchKeyboardEventFromElement(
       target: HTMLElement | Document,
       element: HTMLElement,
-      type: 'keydown' | 'keyup',
+      type: HotkeyEventType,
       key: string,
       options: {
         ctrlKey?: boolean

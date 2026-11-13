@@ -1,4 +1,5 @@
-import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import {
   getCurrentInstance,
   onMounted,
@@ -55,14 +56,11 @@ export function useKeyboardLayout(): Readonly<Ref<KeyboardLayoutMap | null>> {
       (on, _, onCleanup) => {
         layout.value = on ? store.get() : null
         if (!on) return
-        const stop = loadKeyboardLayout()
-        const { unsubscribe } = store.subscribe((next) => {
-          layout.value = next
-        })
-        onCleanup(() => {
-          unsubscribe()
-          stop()
-        })
+        onCleanup(
+          followKeyboardLayout((next) => {
+            layout.value = next
+          }),
+        )
       },
       { immediate: true },
     )

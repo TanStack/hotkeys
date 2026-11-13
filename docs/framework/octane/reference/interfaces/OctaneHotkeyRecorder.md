@@ -9,108 +9,13 @@ Defined in: [types.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages
 
 Recording state and controls owned by the containing component.
 
+## Extends
+
+- `HotkeyRecorderState`\<`THotkey`\>
+- `HotkeyRecorderActions`
+
 ## Type Parameters
 
 ### THotkey
 
 `THotkey` *extends* `Hotkey` = `Hotkey`
-
-## Properties
-
-### cancelRecording
-
-```ts
-cancelRecording: () => void;
-```
-
-Defined in: [types.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L24)
-
-Stop, clear recorder state, and call onCancel.
-
-#### Returns
-
-`void`
-
-***
-
-### commitRecording
-
-```ts
-commitRecording: () => void;
-```
-
-Defined in: [types.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L26)
-
-Commit the current steps (multi-step recordings).
-
-#### Returns
-
-`void`
-
-***
-
-### isRecording
-
-```ts
-isRecording: boolean;
-```
-
-Defined in: [types.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L14)
-
-Whether the recorder is listening for a shortcut.
-
-***
-
-### recordedHotkey
-
-```ts
-recordedHotkey: THotkey | null;
-```
-
-Defined in: [types.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L18)
-
-The last committed hotkey, including brackets for physical codes.
-
-***
-
-### startRecording
-
-```ts
-startRecording: () => void;
-```
-
-Defined in: [types.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L20)
-
-Start a new recording session.
-
-#### Returns
-
-`void`
-
-***
-
-### steps
-
-```ts
-steps: HotkeySequence;
-```
-
-Defined in: [types.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L16)
-
-Chords captured so far in a multi-step recording.
-
-***
-
-### stopRecording
-
-```ts
-stopRecording: () => void;
-```
-
-Defined in: [types.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L22)
-
-Stop and clear recorder state without calling onRecord or onCancel.
-
-#### Returns
-
-`void`

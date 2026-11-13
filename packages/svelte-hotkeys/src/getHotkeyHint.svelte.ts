@@ -1,10 +1,5 @@
-import {
-  getHotkeyManager,
-  getKeyStateTracker,
-  isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
+import { isHotkeyHintVisible } from '@tanstack/hotkeys/adapter'
 import { createSubscriber } from 'svelte/reactivity'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import { resolveMaybeGetter } from './internal.svelte.js'
@@ -39,21 +34,13 @@ export function getHotkeyHint(
   // Read each time: a provider creates its store when its app hotkeys arrive.
   const getStore = () => context?.appHotkeysStore ?? null
   // Resolve current reactive arguments without caching a stale hotkey.
-  const read = () => {
-    const value = resolveMaybeGetter(hotkey)
-    const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, getStore()).hotkey
-      : value
-    return (
-      resolved !== null &&
-      matchesHeldModifiers(
-        resolved,
-        tracker.store.state.heldKeys,
-        resolveMaybeGetter(options),
-      ) &&
-      manager.hasActiveRegistration(value)
+  const read = () =>
+    isHotkeyHintVisible(
+      resolveMaybeGetter(hotkey),
+      tracker.store.state.heldKeys,
+      resolveMaybeGetter(options),
+      getStore(),
     )
-  }
   let previous = false
   // Notify Svelte only when visibility changes, not for every unrelated held key.
   const track = (store: AppHotkeysStore | null) =>

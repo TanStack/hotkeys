@@ -9,7 +9,7 @@ title: getCustomHotkeys
 function getCustomHotkeys(): SvelteCustomHotkeys;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L116)
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L86)
 
 Reads and changes the user's custom hotkeys. Changes apply to every
 registered app hotkey immediately and are passed to the provider's

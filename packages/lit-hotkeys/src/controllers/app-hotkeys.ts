@@ -1,25 +1,28 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import {
+  getHotkeyRegistrationViews,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
 import type {
   AppHotkey,
-  AppHotkeyListItem,
+  AppHotkeyId,
   AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
   Hotkey,
   RecordedKeyPresses,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
-  const store = getAppHotkeysStore()
-  if (!store) {
-    throw new Error(
-      '[hotkeys] AppHotkeysController requires provideAppHotkeys()',
-    )
-  }
-  return store
+  return requireAppHotkeysStore(
+    getAppHotkeysStore(),
+    'AppHotkeysController requires provideAppHotkeys()',
+  )
 }
 
 /**
@@ -42,7 +45,9 @@ function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
  * }
  * ```
  */
-export class AppHotkeysController implements ReactiveController {
+export class AppHotkeysController
+  implements ReactiveController, CustomHotkeyActions
+{
   private _unsubscribe: (() => void) | undefined
 
   constructor(private _host: ReactiveControllerHost) {
@@ -55,14 +60,8 @@ export class AppHotkeysController implements ReactiveController {
   }
 
   /** Every app hotkey with its live status, in declaration order. */
-  public get list(): Array<
-    AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>
-  > {
-    return requireStore().getList(
-      Array.from(getHotkeyManager().registrations.state.values()).map(
-        toHotkeyRegistrationView,
-      ),
-    )
+  public get list(): Array<RegisteredAppHotkeyListItem> {
+    return requireStore().getList(getHotkeyRegistrationViews())
   }
 
   /** The user's hotkeys that differ from the defaults. */
@@ -76,7 +75,7 @@ export class AppHotkeysController implements ReactiveController {
    * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   public setCustomHotkey(
-    id: keyof RegisteredAppHotkeys & string,
+    id: AppHotkeyId,
     hotkey: Hotkey | null,
     recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
@@ -84,7 +83,7 @@ export class AppHotkeysController implements ReactiveController {
   }
 
   /** Restores the default hotkey for an app hotkey. */
-  public resetCustomHotkey(id: keyof RegisteredAppHotkeys & string): void {
+  public resetCustomHotkey(id: AppHotkeyId): void {
     requireStore().resetCustomHotkey(id)
   }
 
@@ -99,7 +98,7 @@ export class AppHotkeysController implements ReactiveController {
    * also finds a hotkey written differently that the same press fires.
    */
   public findConflicts(
-    id: keyof RegisteredAppHotkeys & string,
+    id: AppHotkeyId,
     hotkey: Hotkey,
     recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {

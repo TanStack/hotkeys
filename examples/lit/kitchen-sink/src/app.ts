@@ -14,6 +14,7 @@ import { LitElement, html } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
   RecorderRejection,
 } from '@tanstack/lit-hotkeys'
@@ -531,7 +532,7 @@ class Recording extends DemoElement {
 
 @customElement('format-demo')
 class Formatting extends DemoElement {
-  @state() private platform: 'mac' | 'windows' | 'linux' = 'mac'
+  @state() private platform: HotkeyPlatform = 'mac'
   @state() private modifiers = false
   @state() private keys = true
   private formatForDisplay = new FormatForDisplayController(this)

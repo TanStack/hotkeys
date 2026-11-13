@@ -11,7 +11,7 @@ type RawHotkeyChord =
   | object & RawModifiers;
 ```
 
-Defined in: [hotkey.types.ts:195](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L195)
+Defined in: [hotkey.types.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L201)
 
 A chord written as an object instead of a string, for building chords from
 data. Set `key` for a logical key or `code` for a physical one, and set a

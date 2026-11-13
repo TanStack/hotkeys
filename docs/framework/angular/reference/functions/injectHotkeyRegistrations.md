@@ -9,7 +9,7 @@ title: injectHotkeyRegistrations
 function injectHotkeyRegistrations(): Signal<HotkeyRegistrationView[]>;
 ```
 
-Defined in: [injectHotkeyRegistrations.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRegistrations.ts#L29)
+Defined in: [injectHotkeyRegistrations.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRegistrations.ts#L30)
 
 Angular inject-based API that reactively reads every hotkey registration,
 chords and sequences, from the singleton HotkeyManager. Narrow each view

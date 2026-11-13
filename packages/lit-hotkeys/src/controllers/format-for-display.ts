@@ -1,9 +1,12 @@
-import { formatForDisplay } from '@tanstack/hotkeys'
+import {
+  createFormatForDisplay,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
 import { KeyboardLayoutController } from './keyboard-layout'
 import type {
-  DisplayHotkey,
-  FormatDisplayOptions,
   HotkeyPlatform,
+  MaybeGetter,
+  formatForDisplay,
 } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -63,19 +66,11 @@ export class FormatForDisplayController implements ReactiveController {
    * user's keyboard layout filled in. It takes the same options as
    * `formatForDisplay` and needs no `this`, so it can be passed around.
    */
-  public format: typeof formatForDisplay = ((
-    hotkey: DisplayHotkey,
-    options?: FormatDisplayOptions,
-  ) => {
-    const { platform, keyboardLayout } = this._read()
-    return formatForDisplay(hotkey, {
-      ...options,
-      platform: options?.platform ?? platform,
-      layoutMap:
-        options?.layoutMap ??
-        ((keyboardLayout !== false && this._layout?.value) || undefined),
-    })
-  }) as typeof formatForDisplay
+  public format: typeof formatForDisplay = createFormatForDisplay(
+    () => this._read().platform,
+    () =>
+      (this._read().keyboardLayout !== false && this._layout?.value) || null,
+  )
 
   /**
    * @param _host - The Lit component that owns this controller. The controller adds itself to it.
@@ -83,9 +78,7 @@ export class FormatForDisplayController implements ReactiveController {
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _options:
-      | FormatForDisplayControllerOptions
-      | (() => FormatForDisplayControllerOptions) = {},
+    private _options: MaybeGetter<FormatForDisplayControllerOptions> = {},
   ) {
     this._host.addController(this)
   }
@@ -112,7 +105,7 @@ export class FormatForDisplayController implements ReactiveController {
   }
 
   private _read(): FormatForDisplayControllerOptions {
-    return typeof this._options === 'function' ? this._options() : this._options
+    return resolveMaybeGetter(this._options)
   }
 
   private _sync(): void {

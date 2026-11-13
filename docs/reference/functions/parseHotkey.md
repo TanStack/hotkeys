@@ -11,7 +11,7 @@ title: parseHotkey
 function parseHotkey(hotkey, platform?): ParsedHotkeyChord;
 ```
 
-Defined in: [parse.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L193)
+Defined in: [parse.ts:195](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L195)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one
@@ -28,7 +28,7 @@ A chord string such as `'Mod+S'`, a chord object, or a sequence
 
 #### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 
@@ -50,7 +50,7 @@ parseHotkey(['G', 'Shift+G']) // [{ key: 'G', ... }, { key: 'G', shift: true, ..
 function parseHotkey(hotkey, platform?): ParsedHotkeyChord[];
 ```
 
-Defined in: [parse.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L197)
+Defined in: [parse.ts:199](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L199)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one
@@ -67,7 +67,7 @@ A chord string such as `'Mod+S'`, a chord object, or a sequence
 
 #### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 
@@ -91,7 +91,7 @@ function parseHotkey(hotkey, platform?):
   | ParsedHotkeyChord[];
 ```
 
-Defined in: [parse.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L201)
+Defined in: [parse.ts:203](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L203)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one
@@ -108,7 +108,7 @@ A chord string such as `'Mod+S'`, a chord object, or a sequence
 
 #### platform?
 
-`Platform`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 

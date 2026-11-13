@@ -24,6 +24,9 @@ export type Modifier =
  */
 export type CanonicalModifier = 'Control' | 'Shift' | 'Alt' | 'Meta'
 
+/** A canonical modifier, or `Mod`, which resolves per platform. */
+export type ResolvableModifier = CanonicalModifier | 'Mod'
+
 /**
  * Letter keys A-Z (case-insensitive in matching).
  */
@@ -253,6 +256,12 @@ export type Key = LogicalKey | PhysicalKey
  * Includes both modifier keys and regular keys.
  */
 export type IndividualKey = CanonicalModifier | Key
+
+/** The key name and physical code of one key press. */
+export interface KeyIdentity {
+  key: string
+  code: string
+}
 
 /** Keyboard event properties normalized for internal matching and recording. */
 export interface NormalizedKeyboardEvent {

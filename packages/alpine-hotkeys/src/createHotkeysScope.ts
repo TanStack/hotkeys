@@ -14,9 +14,10 @@ import { createHotkeys } from './createHotkeys'
 import { createKeyHold } from './createKeyHold'
 import { createKeyboardLayout } from './createKeyboardLayout'
 import { createScope, ownerScopes } from './scope'
-import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
+import type { MaybeGetter } from '@tanstack/hotkeys'
+import type { AlpineHotkeys, DefaultHotkeysOptions } from './types'
 
-export type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
+export type { AlpineHotkeys, DefaultHotkeysOptions } from './types'
 
 /**
  * Owns Alpine effects and Store subscriptions, with optional shared defaults.

@@ -18,13 +18,14 @@ import {
 import { useLive } from './_useLive'
 import type {
   AppHotkeys,
-  AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
@@ -49,23 +50,12 @@ export interface HotkeysProviderOptions {
    */
   hotkey?: UseHotkeyCommonOptions
   /** Defaults for every `useHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  readonly appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor's defaults, including `hotkey.scope`. */
-  readonly defaultOptions: HotkeysProviderOptions
-  /** Whether this context and every ancestor are enabled. */
-  readonly enabled: boolean
-}
+type VueHotkeysContextValue = HotkeysContextValue<HotkeysProviderOptions>
 
-const HotkeysContext: InjectionKey<HotkeysContextValue> =
+const HotkeysContext: InjectionKey<VueHotkeysContextValue> =
   Symbol('HotkeysContext')
 
 const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
@@ -204,7 +194,7 @@ export function provideHotkeysContext(
     )
   })
 
-  const contextValue: HotkeysContextValue = {
+  const contextValue: VueHotkeysContextValue = {
     get appHotkeysStore() {
       return store.value ?? parent?.appHotkeysStore ?? null
     },

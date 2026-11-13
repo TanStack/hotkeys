@@ -19,8 +19,7 @@ import type {
   RegisterableHotkeySequence,
 } from './hotkey.types'
 import type { CanonicalModifier, Key } from './key.types'
-
-type Platform = 'mac' | 'windows' | 'linux'
+import type { HotkeyPlatform } from './platform'
 
 /** A chord in any form: a string, a chord object, or an already-parsed chord. */
 type AnyChord = RegisterableHotkeyChord | ParsedHotkeyChord | (string & {})
@@ -71,7 +70,7 @@ export function simplifyHotkey(hotkey: RegisterableHotkey): RegisterableHotkey {
 
 function parseChordString(
   chord: string,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): ParsedHotkeyChord {
   const parts = splitChordParts(chord).map((part) => part.trim())
   // The last part is the key, and every other part is a modifier
@@ -99,7 +98,7 @@ function parseChordString(
 /** Resolves a chord object's modifiers. Omitted modifiers are false. */
 function parseChordObject(
   chord: RawHotkeyChord,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): ParsedHotkeyChord {
   if (chord.code === undefined) assertLogicalKey(chord.key)
   let ctrl = chord.ctrl ?? false
@@ -127,7 +126,10 @@ function parseChordObject(
   )
 }
 
-function parseChord(chord: AnyChord, platform: Platform): ParsedHotkeyChord {
+function parseChord(
+  chord: AnyChord,
+  platform: HotkeyPlatform,
+): ParsedHotkeyChord {
   return typeof chord === 'string'
     ? parseChordString(chord, platform)
     : parseChordObject(chord, platform)
@@ -140,7 +142,7 @@ function parseChord(chord: AnyChord, platform: Platform): ParsedHotkeyChord {
  */
 function normalizeParsedChord(
   parsed: ParsedHotkeyChord,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): HotkeyChord {
   if (parsed.code === undefined) assertLogicalKey(parsed.key)
   const canUseMod =
@@ -192,19 +194,19 @@ function normalizeParsedChord(
  */
 export function parseHotkey(
   hotkey: AnyChord,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord
 export function parseHotkey(
   hotkey: ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): Array<ParsedHotkeyChord>
 export function parseHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord | Array<ParsedHotkeyChord>
 export function parseHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): ParsedHotkeyChord | Array<ParsedHotkeyChord> {
   return Array.isArray(hotkey)
     ? hotkey.map((step: AnyChord) => parseChord(step, platform))
@@ -237,15 +239,15 @@ export function parseHotkey(
  */
 export function normalizeHotkey(
   hotkey: AnyChord,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): HotkeyChord
 export function normalizeHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): Hotkey
 export function normalizeHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): Hotkey {
   if (Array.isArray(hotkey)) {
     const steps = hotkey.map((step: AnyChord) =>
@@ -291,7 +293,7 @@ export function isModifierKey(key: Key | (string & {})): boolean {
  */
 export function parseKeyboardEvent(
   event: KeyboardEvent,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord {
   const normalized = normalizeKeyboardEvent(event, platform)
   // AltGraph is a character-production modifier, not an ordinary Control+Alt
@@ -329,7 +331,7 @@ export function parseKeyboardEvent(
  */
 export function hasNonModifierKey(
   chord: HotkeyChord | ParsedHotkeyChord | (string & {}),
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): boolean {
   return chordHasKey(
     typeof chord === 'string' ? parseChordString(chord, platform) : chord,

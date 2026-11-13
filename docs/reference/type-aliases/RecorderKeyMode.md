@@ -9,7 +9,7 @@ title: RecorderKeyMode
 type RecorderKeyMode = "auto" | "code" | "key";
 ```
 
-Defined in: [hotkey-recorder.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L37)
+Defined in: [hotkey-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L40)
 
 How the recorder writes the pressed key:
 

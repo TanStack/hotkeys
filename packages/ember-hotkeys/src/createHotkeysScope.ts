@@ -1,14 +1,15 @@
 import {
   definedOptions,
   mergeHotkeysProviderDefaults,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
 import { UseHotkeys } from './useHotkeys'
-import { read, scopeDefaults } from './utils'
+import { scopeDefaults } from './utils'
+import type { MaybeGetter } from '@tanstack/hotkeys'
 import type { DefaultHotkeysOptions } from './types'
-import type { MaybeGetter } from './utils'
 
 /**
  * Helpers and modifiers with shared defaults. Owners retain their own cleanup.
@@ -32,7 +33,11 @@ export function createHotkeysScope(
 ): EmberHotkeysScope {
   // Puts `platform` into the hotkey and recorder defaults.
   const defaults = () =>
-    mergeHotkeysProviderDefaults(undefined, read(defaultOptions), undefined)
+    mergeHotkeysProviderDefaults(
+      undefined,
+      resolveMaybeGetter(defaultOptions),
+      undefined,
+    )
   const scope: EmberHotkeysScope = {
     onHotkey: class extends OnHotkey {
       override modify(

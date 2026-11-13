@@ -9,7 +9,7 @@ title: AlpineHotkeyTarget
 type AlpineHotkeyTarget = Target | null;
 ```
 
-Defined in: [types.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L41)
+Defined in: [types.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L44)
 
 The element to listen on. A `null` or `undefined` target skips registration
 until it is set. Omit `target` for the document.

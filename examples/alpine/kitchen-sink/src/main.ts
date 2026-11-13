@@ -9,6 +9,7 @@ import type {
   AlpineHotkeyRecorder,
   AlpineHotkeyState,
   Hotkey,
+  HotkeyPlatform,
   HotkeyRegistrationsResult,
   RecorderKeyMode,
   RecorderRejection,
@@ -414,7 +415,7 @@ class Formatting {
   private hotkeysScope = createHotkeysScope()
 
   formatForDisplay = this.hotkeysScope.createFormatForDisplay()
-  platform: 'mac' | 'windows' | 'linux' = 'mac'
+  platform: HotkeyPlatform = 'mac'
   modifierSymbols = false
   keySymbols = true
   get options() {

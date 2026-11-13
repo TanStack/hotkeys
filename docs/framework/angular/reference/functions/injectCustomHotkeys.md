@@ -9,7 +9,7 @@ title: injectCustomHotkeys
 function injectCustomHotkeys(): InjectCustomHotkeysResult;
 ```
 
-Defined in: [injectAppHotkeys.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L98)
+Defined in: [injectAppHotkeys.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L74)
 
 Reads and changes the user's custom hotkeys. Changes apply to every
 registered app hotkey immediately and are passed to `onCustomHotkeysChange`

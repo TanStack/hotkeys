@@ -9,6 +9,6 @@ title: AppHotkeySequenceOptions
 type AppHotkeySequenceOptions = Pick<HotkeySequenceOptions, DeclaredOptionKeys | "timeout">;
 ```
 
-Defined in: [app-hotkeys.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L40)
+Defined in: [app-hotkeys.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L42)
 
 Declared options for an app hotkey whose default is a sequence.

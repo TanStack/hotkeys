@@ -15,7 +15,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L55)
+Defined in: [useHotkey.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L52)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
@@ -56,7 +56,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L60)
+Defined in: [useHotkey.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L57)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and

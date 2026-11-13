@@ -18,10 +18,12 @@ import {
   useRegistrationConflicts,
 } from '../_registrations'
 import { groupByScope, scopeStatusDescriptions } from '../_scopes'
+import { getTargetLabel, getTargetTooltip } from '../_targets'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import { useStyles } from '../styles/use-styles'
 import type {
   AppHotkeyListItem,
+  HotkeyMeta,
   HotkeyRegistrationView,
 } from '@tanstack/hotkeys'
 import type { ScopeGroup } from '../_scopes'
@@ -31,53 +33,7 @@ type HotkeyListProps = {
   setSelectedId: (id: string | null) => void
 }
 
-function getTargetLabel(target: HTMLElement | Document | Window): string {
-  if (typeof document !== 'undefined' && target === document) {
-    return 'document'
-  }
-  if (typeof window !== 'undefined' && target === window) {
-    return 'window'
-  }
-  if (target instanceof HTMLElement) {
-    return target.tagName.toLowerCase()
-  }
-  return 'element'
-}
-
-function getTargetTooltip(target: HTMLElement | Document | Window): string {
-  if (typeof document !== 'undefined' && target === document) {
-    return 'Listening on document'
-  }
-  if (typeof window !== 'undefined' && target === window) {
-    return 'Listening on window'
-  }
-  if (target instanceof HTMLElement) {
-    const tag = target.tagName.toLowerCase()
-    const parts: Array<string> = [tag]
-    if (target.id) {
-      parts.push(`id="${target.id}"`)
-    }
-    if (target.className) {
-      const classes = target.className.split(/\s+/).filter(Boolean).join(', ')
-      parts.push(`class="${classes}"`)
-    }
-    // Collect data- attributes
-    const dataAttrs = Array.from(target.attributes)
-      .filter((attr) => attr.name.startsWith('data-'))
-      .map((attr) => `${attr.name}="${attr.value}"`)
-    if (dataAttrs.length > 0) {
-      parts.push(...dataAttrs)
-    }
-    return `Listening on ${parts.join(' ')}`
-  }
-  return 'Listening on element'
-}
-
-function buildRowTooltip(meta?: {
-  name?: string
-  description?: string
-  group?: string
-}): string | undefined {
+function buildRowTooltip(meta?: HotkeyMeta): string | undefined {
   if (!meta) return undefined
   const parts: Array<string> = []
   if (meta.group) parts.push(meta.group)

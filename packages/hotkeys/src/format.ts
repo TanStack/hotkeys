@@ -5,6 +5,7 @@ import {
   splitChordParts,
 } from './_chord'
 import { codeToLogicalKey } from './_keyboard-event'
+import { ownValue } from './_keys'
 import { warnServerPlatform } from './_server'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import {
@@ -19,6 +20,7 @@ import { normalizeHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { ParsedHotkeyChord, RegisterableHotkeyChord } from './hotkey.types'
 import type { CanonicalModifier } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * Converts a parsed hotkey back to a string, with each platform modifier
@@ -165,7 +167,7 @@ export function formatForDisplay(
 }
 
 /** Detects the platform for a label, warning in development on a server. */
-function detectDisplayPlatform(): 'mac' | 'windows' | 'linux' {
+function detectDisplayPlatform(): HotkeyPlatform {
   warnServerPlatform()
   return detectPlatform()
 }
@@ -209,14 +211,6 @@ function formatChordParts(
   )
 }
 
-/** Own properties only, so names such as `toString` never read Object.prototype. */
-function lookup(
-  table: Readonly<Record<string, string>> | undefined,
-  name: string,
-): string | undefined {
-  return table && Object.hasOwn(table, name) ? table[name] : undefined
-}
-
 /**
  * Fallback labels for keys with no US equivalent, from the legends the UI
  * Events code spec gives: `\` on UK ISO keyboards, and `\` (ろ) and `¥` on
@@ -230,7 +224,7 @@ const INTL_KEY_LABELS: Readonly<Record<string, string>> = {
 
 function formatKey(
   segment: string,
-  platform: 'mac' | 'windows' | 'linux',
+  platform: HotkeyPlatform,
   modifierSymbols: boolean,
   keySymbols: boolean,
   options: FormatDisplayOptions,
@@ -246,7 +240,7 @@ function formatKey(
         : LINUX_MODIFIER_LABELS[modifier]
   }
   const code = physicalCodeOf(segment)
-  const label = lookup(options.keyLabels, code ?? segment)
+  const label = ownValue(options.keyLabels, code ?? segment)
   if (label !== undefined) return label
   // Shorten conventional position labels for display only; stored identity is unchanged.
   const numpad = code?.startsWith('Numpad') ?? false
@@ -257,13 +251,13 @@ function formatKey(
     displayKey = normalizeKeyName(mappedKey)
   } else if (code) {
     // The extra ISO and JIS keys have no US key: use their keycap legends.
-    const intl = lookup(INTL_KEY_LABELS, code)
+    const intl = ownValue(INTL_KEY_LABELS, code)
     if (intl !== undefined) return intl
     // Numpad keys keep their names (Add, not +) and gain a prefix below.
     displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
   }
   const display =
-    lookup(
+    ownValue(
       keySymbols ? KEY_DISPLAY_SYMBOLS : PUNCTUATION_KEY_DISPLAY_LABELS,
       displayKey,
     ) ?? displayKey
@@ -281,7 +275,7 @@ export interface FormatDisplayOptions {
    * The target platform. Without it, `formatForDisplay` detects the platform
    * in the browser and uses `'linux'` on a server.
    */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /** Whether to use symbols for the display. Defaults to true. */
   useSymbols?: boolean | { modifiers?: boolean; keys?: boolean }
   /** Return individual key labels instead of a joined string. Default: false. */

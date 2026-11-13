@@ -9,6 +9,6 @@ title: Hotkey
 type Hotkey = HotkeyChord | HotkeySequence;
 ```
 
-Defined in: [hotkey.types.ts:214](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L214)
+Defined in: [hotkey.types.ts:220](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L220)
 
 A hotkey: one chord (`'Mod+S'`) or a sequence of chords (`['G', 'G']`).

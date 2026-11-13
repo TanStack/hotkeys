@@ -1,4 +1,5 @@
-import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import { isServer } from './_server'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
@@ -61,12 +62,7 @@ export class KeyboardLayoutController implements ReactiveController {
     this._host.requestUpdate()
     if (isServer()) return
     const store = getKeyboardLayoutStore()
-    const subscription = store.subscribe(() => this._host.requestUpdate())
-    const stop = loadKeyboardLayout()
-    this._release = () => {
-      subscription.unsubscribe()
-      stop()
-    }
+    this._release = followKeyboardLayout(() => this._host.requestUpdate())
     if (this._rendered) return
     // Server HTML never has a layout, so a hydrating host must render once
     // without one. A layout that has already loaded shows in a second update.

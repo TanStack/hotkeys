@@ -9,7 +9,7 @@ title: createKeyHold
 function createKeyHold(key): () => boolean;
 ```
 
-Defined in: [createKeyHold.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createKeyHold.ts#L45)
+Defined in: [createKeyHold.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createKeyHold.ts#L46)
 
 SolidJS primitive that returns whether a specific key is currently being held.
 
@@ -20,7 +20,7 @@ specified key is held.
 
 ### key
 
-`IndividualKey` \| (() => `IndividualKey`)
+`MaybeGetter`\<`IndividualKey`\>
 
 The key to check (e.g., 'Shift', 'Control', 'A') - can be an accessor function
 

@@ -1,13 +1,7 @@
 <script lang="ts">
   import { getFormatForDisplay, getHeldKeys } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
-
-  interface Shortcut {
-    id: string
-    name: string
-    description: string
-    hotkey: Hotkey | ''
-  }
+  import type { Shortcut } from './types'
 
   interface Props {
     shortcut: Shortcut

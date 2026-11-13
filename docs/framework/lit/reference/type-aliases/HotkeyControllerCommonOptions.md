@@ -9,6 +9,6 @@ title: HotkeyControllerCommonOptions
 type HotkeyControllerCommonOptions = AdapterCommonOptions<HotkeyControllerTarget>;
 ```
 
-Defined in: [controllers/hotkey.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L42)
+Defined in: [controllers/hotkey.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L44)
 
 Options for every kind; each applies to the kinds that support it.

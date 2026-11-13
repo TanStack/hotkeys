@@ -1,31 +1,26 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { computed } from 'vue'
 import { useAppHotkeysStoreSource } from './defaultOptions'
 import { useHotkeyRegistrations } from './useHotkeyRegistrations'
 import type {
-  AppHotkey,
-  AppHotkeyListItem,
-  AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
-  Hotkey,
-  RecordedKeyPresses,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 import type { ComputedRef } from 'vue'
 
 function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()
-  const initial = source.store
-  if (!initial) {
-    throw new Error(
-      `[hotkeys] ${name} requires a HotkeysProvider with app hotkeys`,
-    )
-  }
+  const message = `${name} requires a HotkeysProvider with app hotkeys`
+  const initial = requireAppHotkeysStore(source.store, message)
   return {
     // The nearest provider's store, which changes if a nested provider gets
-    // its app hotkeys later.
-    store: () =>
-      (source.store ??
-        initial) as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    // its app hotkeys later. Typed by `Register`, like `initial`.
+    store: () => requireAppHotkeysStore(source.store ?? initial, message),
     state: source.state,
   }
 }
@@ -54,7 +49,7 @@ export function useAppHotkeys(): ComputedRef<RegisteredAppHotkeys> {
  * mounted are `'inactive'`; those without a hotkey are `'unbound'`.
  */
 export function useAppHotkeyList(): ComputedRef<
-  Array<AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>>
+  Array<RegisteredAppHotkeyListItem>
 > {
   const { store, state } = useRequiredStore('useAppHotkeyList')
   const registrations = useHotkeyRegistrations()
@@ -65,33 +60,9 @@ export function useAppHotkeyList(): ComputedRef<
 }
 
 /** Custom hotkey state and actions returned by `useCustomHotkeys`. */
-export interface UseCustomHotkeysResult {
+export interface UseCustomHotkeysResult extends CustomHotkeyActions {
   /** The user's hotkeys that differ from the defaults. */
   customHotkeys: ComputedRef<CustomHotkeys>
-  /**
-   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
-   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
-   */
-  setCustomHotkey: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey | null,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
-  /** Restores the default hotkey for an app hotkey. */
-  resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
-  /** Restores every default hotkey. */
-  resetCustomHotkeys: () => void
-  /**
-   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
-   * recorder's `context` for a recorded hotkey: it has the key press, which
-   * also finds a hotkey written differently that the same press fires.
-   */
-  findConflicts: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
 }
 
 /**
@@ -106,11 +77,6 @@ export function useCustomHotkeys(): UseCustomHotkeysResult {
       void state.value
       return store().customHotkeys
     }),
-    setCustomHotkey: (id, hotkey, recordedWith) =>
-      store().setCustomHotkey(id, hotkey, recordedWith),
-    resetCustomHotkey: (id) => store().resetCustomHotkey(id),
-    resetCustomHotkeys: () => store().resetCustomHotkeys(),
-    findConflicts: (id, hotkey, recordedWith) =>
-      store().findConflicts(id, hotkey, recordedWith),
+    ...bindCustomHotkeyActions(store),
   }
 }

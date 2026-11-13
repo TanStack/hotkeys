@@ -37,7 +37,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeAccessor`\<`T` \| `null` \| `undefined`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -45,7 +45,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### options?
 
-`MaybeAccessor`\<[`CreateAppHotkeyOptions`](../type-aliases/CreateAppHotkeyOptions.md)\<`T`\>\>
+`MaybeGetter`\<[`CreateAppHotkeyOptions`](../type-aliases/CreateAppHotkeyOptions.md)\<`T`\>\>
 
 ### Returns
 
@@ -91,7 +91,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeAccessor`\<`T` \| `null` \| `undefined`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -99,7 +99,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### options?
 
-`MaybeAccessor`\<`AdapterOptionsFor`\<`T`, [`CreateHotkeyTarget`](../type-aliases/CreateHotkeyTarget.md)\>\>
+`MaybeGetter`\<`AdapterOptionsFor`\<`T`, [`CreateHotkeyTarget`](../type-aliases/CreateHotkeyTarget.md)\>\>
 
 ### Returns
 

@@ -9,7 +9,7 @@ title: HotkeyControllerTarget
 type HotkeyControllerTarget = Target | null;
 ```
 
-Defined in: [controllers/hotkey.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L27)
+Defined in: [controllers/hotkey.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L29)
 
 The element to listen on. A `null` or `undefined` target skips registration
 until it is set. Omit `target` for the document.

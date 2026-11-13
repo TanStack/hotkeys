@@ -10,9 +10,8 @@ import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
 import type { JSX } from 'solid-js'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 function press(init: KeyboardEventInit) {
   document.dispatchEvent(
@@ -23,7 +22,7 @@ function press(init: KeyboardEventInit) {
   )
 }
 
-function renderIn(platform: Platform, child: () => JSX.Element) {
+function renderIn(platform: HotkeyPlatform, child: () => JSX.Element) {
   return render(() => (
     <HotkeysProvider defaultOptions={{ platform }}>{child()}</HotkeysProvider>
   ))
@@ -35,7 +34,7 @@ afterEach(() => {
 
 describe('provider platform', () => {
   it('formats labels and updates when the platform changes', () => {
-    const [platform, setPlatform] = createSignal<Platform>('mac')
+    const [platform, setPlatform] = createSignal<HotkeyPlatform>('mac')
     function Label() {
       const formatForDisplay = createFormatForDisplay()
       return <kbd>{formatForDisplay('Mod+S')}</kbd>

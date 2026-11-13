@@ -8,28 +8,22 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
-  HotkeySequence,
+  HotkeyRecorderState,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { MaybeRefOrGetter, Ref } from 'vue'
 
-export interface VueHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
-  /** Whether recording is currently active */
-  isRecording: Readonly<Ref<boolean>>
-  /** Chords recorded so far in a multi-step recording (for live preview) */
-  steps: Readonly<Ref<HotkeySequence>>
-  /** The last committed hotkey */
-  recordedHotkey: Readonly<Ref<THotkey | null>>
-  /** Start recording a new hotkey */
-  startRecording: () => void
-  /** Stop recording without calling onCancel */
-  stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  commitRecording: () => void
+/** The recorder state, each field as a read-only ref. */
+type VueHotkeyRecorderState<THotkey extends Hotkey> = {
+  [K in keyof HotkeyRecorderState<THotkey>]: Readonly<
+    Ref<HotkeyRecorderState<THotkey>[K]>
+  >
 }
+
+export interface VueHotkeyRecorder<THotkey extends Hotkey = Hotkey>
+  extends VueHotkeyRecorderState<THotkey>, HotkeyRecorderActions {}
 
 /**
  * Vue composable for recording keyboard shortcuts. Options may be a ref or getter.

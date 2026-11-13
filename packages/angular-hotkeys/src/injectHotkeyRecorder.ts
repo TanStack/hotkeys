@@ -8,7 +8,7 @@ import {
   untracked,
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectWrapCallback } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
@@ -16,27 +16,23 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 
-export interface AngularHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
+export interface AngularHotkeyRecorder<
+  THotkey extends Hotkey = Hotkey,
+> extends Readonly<HotkeyRecorderActions> {
   /** Whether recording is currently active */
   readonly isRecording: () => boolean
   /** Chords recorded so far in a multi-step recording (for live preview) */
   readonly steps: () => HotkeySequence
   /** The last committed hotkey */
   readonly recordedHotkey: () => THotkey | null
-  /** Start recording a new hotkey */
-  readonly startRecording: () => void
-  /** Stop recording without calling onCancel */
-  readonly stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  readonly cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  readonly commitRecording: () => void
 }
 
 /**
@@ -89,7 +85,7 @@ export function injectHotkeyRecorder(
   options: () => HotkeyRecorderOptions,
 ): AngularHotkeyRecorder
 export function injectHotkeyRecorder(
-  options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
+  options: MaybeGetter<HotkeyRecorderOptions>,
 ): AngularHotkeyRecorder {
   const context = injectHotkeysContext()
   const destroyRef = inject(DestroyRef)
@@ -102,7 +98,7 @@ export function injectHotkeyRecorder(
   const resolve = (): HotkeySequenceRecorderOptions => {
     const resolved: Record<string, any> = withDefaults(
       context.defaultOptions.hotkeyRecorder,
-      typeof options === 'function' ? options() : options,
+      resolveMaybeGetter(options),
     )
     for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
       const callback = resolved[key]

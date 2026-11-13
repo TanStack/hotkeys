@@ -45,8 +45,10 @@ const recorder = useHotkeyRecorder(() => ({
   detectConflicts: {
     exclude: (reg) => reg.options.meta?.name === 'Recorded action',
   },
-  validate: (_, { parsedChord }) =>
-    parsedChord.modifiers.length > 0 || 'Include a modifier.',
+  // A getter gets the sequence types, so narrow to a chord first.
+  validate: (_, context) =>
+    (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
+    'Include a modifier.',
   onRecord: (value) => {
     hotkey.value = value
     problem.value = ''

@@ -1,30 +1,26 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import { getHotkeyRegistrations } from './getHotkeyRegistrations.svelte.js'
 import { createAppHotkeysSource } from './internal.svelte.js'
 import type {
-  AppHotkey,
-  AppHotkeyListItem,
-  AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
-  Hotkey,
-  RecordedKeyPresses,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 
 function requireStore(name: string) {
   const source = createAppHotkeysSource(getHotkeysContext())
+  const message = `${name} requires a HotkeysProvider with appHotkeys`
   const initial = source.store
-  if (!initial) {
-    throw new Error(
-      `[hotkeys] ${name} requires a HotkeysProvider with appHotkeys`,
-    )
-  }
+  requireAppHotkeysStore(initial, message)
   return {
     // The nearest provider's store, which changes if a nested provider gets
     // its app hotkeys later.
-    store: () =>
-      (source.store ??
-        initial) as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    store: () => requireAppHotkeysStore(source.store ?? initial, message),
     subscribe: source.subscribe,
   }
 }
@@ -58,9 +54,7 @@ export function getAppHotkeys(): SvelteAppHotkeys {
 
 export interface SvelteAppHotkeyList {
   /** Every app hotkey with its live status, in declaration order. */
-  readonly current: Array<
-    AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>
-  >
+  readonly current: Array<RegisteredAppHotkeyListItem>
 }
 
 /**
@@ -79,33 +73,9 @@ export function getAppHotkeyList(): SvelteAppHotkeyList {
   }
 }
 
-export interface SvelteCustomHotkeys {
+export interface SvelteCustomHotkeys extends CustomHotkeyActions {
   /** The user's hotkeys that differ from the defaults. */
   readonly current: CustomHotkeys
-  /**
-   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
-   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
-   */
-  setCustomHotkey: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey | null,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
-  /** Restores the default hotkey for an app hotkey. */
-  resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
-  /** Restores every default hotkey. */
-  resetCustomHotkeys: () => void
-  /**
-   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
-   * recorder's `context` for a recorded hotkey: it has the key press, which
-   * also finds a hotkey written differently that the same press fires.
-   */
-  findConflicts: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey,
-    recordedWith?: RecordedKeyPresses,
-  ) => Array<AppHotkey>
 }
 
 /**
@@ -120,11 +90,6 @@ export function getCustomHotkeys(): SvelteCustomHotkeys {
       subscribe()
       return store().customHotkeys
     },
-    setCustomHotkey: (id, hotkey, recordedWith) =>
-      store().setCustomHotkey(id, hotkey, recordedWith),
-    resetCustomHotkey: (id) => store().resetCustomHotkey(id),
-    resetCustomHotkeys: () => store().resetCustomHotkeys(),
-    findConflicts: (id, hotkey, recordedWith) =>
-      store().findConflicts(id, hotkey, recordedWith),
+    ...bindCustomHotkeyActions(store),
   }
 }

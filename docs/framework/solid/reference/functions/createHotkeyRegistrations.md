@@ -9,7 +9,7 @@ title: createHotkeyRegistrations
 function createHotkeyRegistrations(): () => HotkeyRegistrationView[];
 ```
 
-Defined in: [createHotkeyRegistrations.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRegistrations.ts#L22)
+Defined in: [createHotkeyRegistrations.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRegistrations.ts#L23)
 
 Solid primitive that reactively reads every hotkey registration, chords and
 sequences, from the singleton HotkeyManager. Narrow each view with `kind`.

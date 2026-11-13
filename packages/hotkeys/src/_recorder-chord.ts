@@ -3,15 +3,16 @@ import {
   altGraphTypedCharacter,
   codeToLogicalKey,
   isModifierPress,
+  macKeycapLetter,
   normalizeKeyboardEvent,
 } from './_keyboard-event'
 import { isAsciiLetter, isLatinLetter, isPrintableKey } from './_keys'
 import { matchKeyboardEvent } from './_match'
+import { isSingleLetterKey } from './constants'
 import { normalizeHotkey, parseKeyboardEvent } from './parse'
 import type { RecorderKeyMode, RecorderRejection } from './hotkey-recorder'
 import type { HotkeyChord } from './hotkey.types'
-
-type Platform = 'mac' | 'windows' | 'linux'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * Converts a keydown to a chord that fires for the same key press.
@@ -27,7 +28,7 @@ type Platform = 'mac' | 'windows' | 'linux'
  */
 export function hotkeyChordFromKeydown(
   event: KeyboardEvent,
-  platform: Platform,
+  platform: HotkeyPlatform,
   recordBy: RecorderKeyMode = 'auto',
 ): HotkeyChord | null {
   const normalized = normalizeKeyboardEvent(event, platform)
@@ -85,7 +86,10 @@ export function hotkeyChordFromKeydown(
  *   it types depends on NumLock), modifier positions and AltGr presses keep
  *   their position.
  */
-function keyName(event: KeyboardEvent, platform: Platform): string | undefined {
+function keyName(
+  event: KeyboardEvent,
+  platform: HotkeyPlatform,
+): string | undefined {
   const { key, alt, shift, altGraph } = normalizeKeyboardEvent(event, platform)
   if (
     !key ||
@@ -100,15 +104,11 @@ function keyName(event: KeyboardEvent, platform: Platform): string | undefined {
   // A synthetic event can report anything as its key, such as `[KeyX]`.
   if (key !== 'Dead' && !typed) return isKeyNameShape(key) ? key : undefined
   if (platform === 'mac' && alt) {
-    return isAsciiLetter(key)
-      ? key
-      : event.keyCode > 64 && event.keyCode < 91
-        ? String.fromCharCode(event.keyCode)
-        : undefined
+    return isAsciiLetter(key) ? key : macKeycapLetter(event)
   }
   if (!typed || !key.trim()) return undefined
   if (isLatinLetter(key)) return key
-  if (/^\p{Letter}$/u.test(key)) return codeToLogicalKey(event.code)
+  if (isSingleLetterKey(key)) return codeToLogicalKey(event.code)
   return shift ? undefined : key
 }
 
@@ -119,7 +119,7 @@ function keyName(event: KeyboardEvent, platform: Platform): string | undefined {
  */
 export function chordRejection(
   event: KeyboardEvent,
-  platform: Platform,
+  platform: HotkeyPlatform,
   recordBy: RecorderKeyMode = 'auto',
 ): RecorderRejection | undefined {
   const normalized = normalizeKeyboardEvent(event, platform)

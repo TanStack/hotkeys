@@ -17,7 +17,7 @@ type ParsedHotkeyChord = ParsedModifiers &
 };
 ```
 
-Defined in: [hotkey.types.ts:156](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L156)
+Defined in: [hotkey.types.ts:162](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L162)
 
 A parsed chord matches either a logical key or a physical code, never both.
 Check `code !== undefined` to narrow to a physical binding. Its logical

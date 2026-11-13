@@ -24,13 +24,13 @@ map to Command+S on Mac and Ctrl+S on Windows/Linux.
 
 ### modifier
 
-`"Mod"` \| [`CanonicalModifier`](../type-aliases/CanonicalModifier.md)
+[`ResolvableModifier`](../type-aliases/ResolvableModifier.md)
 
 The modifier to resolve. If 'Mod', resolves based on platform.
 
 ### platform?
 
-`"mac"` \| `"windows"` \| `"linux"` = `...`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md) = `...`
 
 The target platform. Defaults to auto-detection.
 

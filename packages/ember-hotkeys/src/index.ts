@@ -2,7 +2,6 @@ export * from '@tanstack/hotkeys'
 export { UseHotkey as useHotkey } from './useHotkey'
 export { UseHotkeys as useHotkeys } from './useHotkeys'
 
-export type { MaybeGetter } from './utils'
 export * from './useHeldKeys'
 export * from './useHeldKeyCodes'
 export * from './useKeyHold'

@@ -2,17 +2,18 @@ import {
   getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
 } from '@tanstack/hotkeys'
-import { read } from './scope'
+import {
+  isHotkeyHintVisible,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
 import type {
   AppHotkey,
   HeldModifierOptions,
+  MaybeGetter,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type { MaybeGetter } from './types'
 
 export function createHotkeyHint(
   scope: HotkeysScope,
@@ -23,16 +24,17 @@ export function createHotkeyHint(
   // Tracks registration, enabled, and scope changes.
   const registrations = scope.select(manager.registrations, (state) => state)
   return scope.select(getKeyStateTracker().store, (state) => {
-    const value = read(hotkey)
+    const value = resolveMaybeGetter(hotkey)
+    // Read the reactive sources first, so Alpine tracks them. Only app hotkeys
+    // read the published store.
+    void registrations.value
+    const appHotkeysStore = isAppHotkey(value) ? scope.appHotkeys() : null
     // App hotkeys use their effective hotkey; a sequence uses its first step.
-    const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, scope.appHotkeys()).hotkey
-      : value
-    return (
-      resolved !== null &&
-      matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
-      registrations.value.size > 0 &&
-      manager.hasActiveRegistration(value)
+    return isHotkeyHintVisible(
+      value,
+      state.heldKeys,
+      resolveMaybeGetter(options),
+      appHotkeysStore,
     )
   })
 }

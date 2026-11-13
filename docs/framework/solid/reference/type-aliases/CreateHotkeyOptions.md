@@ -9,6 +9,6 @@ title: CreateHotkeyOptions
 type CreateHotkeyOptions = AdapterHotkeyOptions<CreateHotkeyTarget>;
 ```
 
-Defined in: [createHotkey.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L26)
+Defined in: [createHotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L28)
 
 Options shared by chords and sequences.

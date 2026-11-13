@@ -13,7 +13,7 @@ function matchesHeldModifiers(
 ): boolean;
 ```
 
-Defined in: [hint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hint.ts#L25)
+Defined in: [hint.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hint.ts#L26)
 
 Returns whether held modifiers should reveal a shortcut hint.
 By default, any nonempty subset of the binding's modifiers qualifies; an

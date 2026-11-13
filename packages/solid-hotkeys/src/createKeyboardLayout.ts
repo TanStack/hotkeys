@@ -1,4 +1,5 @@
-import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
+import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
 import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
@@ -38,16 +39,8 @@ export function createKeyboardLayout(): () => KeyboardLayoutMap | null {
   // Effects run after mount, and never on a server.
   createEffect(() => {
     if (!enabled()) return
-    const store = getKeyboardLayoutStore()
-    setLayoutMap(() => store.get())
-    const { unsubscribe } = store.subscribe((state) => {
-      setLayoutMap(() => state)
-    })
-    const stop = loadKeyboardLayout()
-    onCleanup(() => {
-      unsubscribe()
-      stop()
-    })
+    onCleanup(followKeyboardLayout((state) => setLayoutMap(() => state)))
+    setLayoutMap(() => getKeyboardLayoutStore().get())
   })
   return () => (enabled() ? layoutMap() : null)
 }

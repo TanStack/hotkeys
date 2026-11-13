@@ -9,6 +9,6 @@ title: InjectHotkeyOptions
 type InjectHotkeyOptions = AdapterHotkeyOptions<InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L32)
+Defined in: [injectHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L34)
 
 Options shared by chords and sequences.

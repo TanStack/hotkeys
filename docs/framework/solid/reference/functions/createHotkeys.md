@@ -9,7 +9,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [createHotkeys.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L41)
+Defined in: [createHotkeys.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L43)
 
 Solid primitive for registering several hotkeys at once: chords, sequences,
 and app hotkeys. Pass an accessor for a reactive list.
@@ -24,13 +24,11 @@ A `null` or `undefined` target skips registration until it is set.
 
 ### hotkeys
 
-  \| readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[]
-  \| (() => readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[])
+`MaybeGetter`\<readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[]\>
 
 ### commonOptions?
 
-  \| [`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)
-  \| (() => [`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)) = `{}`
+`MaybeGetter`\<[`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)\> = `{}`
 
 ## Returns
 

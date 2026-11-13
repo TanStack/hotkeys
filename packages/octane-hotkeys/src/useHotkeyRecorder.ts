@@ -6,15 +6,11 @@ import { select, subSlot } from './internal'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { OctaneHotkeyRecorder } from './types'
-
-type RecorderActions = Omit<
-  OctaneHotkeyRecorder,
-  'isRecording' | 'steps' | 'recordedHotkey'
->
 
 /**
  * Records a shortcut and destroys the recorder on unmount. With the default
@@ -41,7 +37,7 @@ export function useHotkeyRecorder(
   ) as HotkeySequenceRecorderOptions
   // The actions are created with the recorder, so they keep their identity
   // across renders.
-  const ref = useRef<[HotkeyRecorder, RecorderActions] | null>(
+  const ref = useRef<[HotkeyRecorder, HotkeyRecorderActions] | null>(
     null,
     subSlot(slot, 'recorder'),
   )

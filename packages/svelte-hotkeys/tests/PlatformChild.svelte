@@ -2,10 +2,9 @@
   import { createHotkey } from '../src/createHotkey.svelte'
   import { createHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
   import PlatformLabel from './PlatformLabel.svelte'
-  import type { Hotkey } from '@tanstack/hotkeys'
+  import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
   import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
 
-  type Platform = 'mac' | 'windows' | 'linux'
   let {
     hotkeyPlatform,
     labelPlatform,
@@ -13,8 +12,8 @@
     onRecord,
     recorder = $bindable(),
   }: {
-    hotkeyPlatform?: Platform
-    labelPlatform?: Platform
+    hotkeyPlatform?: HotkeyPlatform
+    labelPlatform?: HotkeyPlatform
     onHotkey: () => void
     onRecord: (hotkey: Hotkey) => void
     recorder?: SvelteHotkeyRecorder

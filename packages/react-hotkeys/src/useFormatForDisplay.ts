@@ -1,10 +1,10 @@
 'use client'
 
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { useCallback } from 'react'
+import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
+import { useMemo } from 'react'
 import { usePlatform } from './_usePlatform'
 import { useKeyboardLayout } from './useKeyboardLayout'
-import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import type { formatForDisplay } from '@tanstack/hotkeys'
 
 /**
  * Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
@@ -38,13 +38,12 @@ import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
 export function useFormatForDisplay(): typeof formatForDisplay {
   const platform = usePlatform()
   const layoutMap = useKeyboardLayout()
-  return useCallback(
-    (hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-      formatForDisplay(hotkey, {
-        ...options,
-        platform: options?.platform ?? platform,
-        layoutMap: options?.layoutMap ?? layoutMap ?? undefined,
-      }),
+  return useMemo(
+    () =>
+      createFormatForDisplay(
+        () => platform,
+        () => layoutMap,
+      ),
     [platform, layoutMap],
-  ) as typeof formatForDisplay
+  )
 }

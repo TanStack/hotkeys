@@ -9,6 +9,6 @@ title: UseHotkeyOptions
 type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L30)
+Defined in: [useHotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L28)
 
 Options shared by chords and sequences.

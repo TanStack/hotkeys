@@ -1,15 +1,14 @@
+import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
 import {
-  getHotkeyManager,
-  getKeyStateTracker,
-  isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
-} from '@tanstack/hotkeys'
+  isHotkeyHintVisible,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
 import type {
   AppHotkey,
   HeldModifierOptions,
+  MaybeGetter,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
@@ -25,13 +24,10 @@ export class HotkeyHintController implements ReactiveController {
   /** Attaches to the host; getter arguments can read changing reactive properties. */
   constructor(
     private host: ReactiveControllerHost,
-    private hotkey:
-      | RegisterableHotkey
-      | AppHotkey
-      | null
-      | undefined
-      | (() => RegisterableHotkey | AppHotkey | null | undefined),
-    private options: HeldModifierOptions | (() => HeldModifierOptions) = {},
+    private hotkey: MaybeGetter<
+      RegisterableHotkey | AppHotkey | null | undefined
+    >,
+    private options: MaybeGetter<HeldModifierOptions> = {},
   ) {
     host.addController(this)
   }
@@ -91,20 +87,13 @@ export class HotkeyHintController implements ReactiveController {
 
   /** Recomputes visibility and reports whether the host needs another render. */
   private update(): boolean {
-    const value =
-      typeof this.hotkey === 'function' ? this.hotkey() : this.hotkey
     // App hotkeys use their effective hotkey; a sequence uses its first step.
-    const hotkey = isAppHotkey(value)
-      ? resolveAppHotkey(value, getAppHotkeysStore()).hotkey
-      : value
-    const next =
-      hotkey !== null &&
-      matchesHeldModifiers(
-        hotkey,
-        getKeyStateTracker().store.state.heldKeys,
-        typeof this.options === 'function' ? this.options() : this.options,
-      ) &&
-      getHotkeyManager().hasActiveRegistration(value)
+    const next = isHotkeyHintVisible(
+      resolveMaybeGetter(this.hotkey),
+      getKeyStateTracker().store.state.heldKeys,
+      resolveMaybeGetter(this.options),
+      getAppHotkeysStore(),
+    )
     const changed = next !== this.visible
     this.visible = next
     return changed

@@ -1,6 +1,6 @@
 import { runConformanceSuite } from '@tanstack/hotkeys-test-utils/conformance'
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
-import { createRoot, drainPassiveEffects, flushSync } from 'octane'
+import { createRoot, flushSync } from 'octane'
 import {
   FormatView,
   HeldKeysView,
@@ -9,6 +9,7 @@ import {
   RecorderView,
   RegistrationsView,
 } from './conformance.tsrx'
+import { flush } from './utils'
 import type {
   ConformanceHarness,
   HotkeysSpec,
@@ -18,12 +19,6 @@ import type {
   OctaneHotkeyRecorder,
   formatForDisplay,
 } from '@tanstack/octane-hotkeys'
-
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 
 function settle(change: () => unknown) {
   flushSync(() => void change())

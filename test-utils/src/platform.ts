@@ -1,5 +1,7 @@
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
+
 /** A platform the test environment can pretend to be. */
-export type TestPlatform = 'mac' | 'windows' | 'linux'
+export type TestPlatform = HotkeyPlatform
 
 /** Browser user agents for each platform. Core `detectPlatform()` reads these. */
 export const USER_AGENTS: Record<TestPlatform, string> = {

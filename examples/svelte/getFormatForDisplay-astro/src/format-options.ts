@@ -1,4 +1,7 @@
-import type { FormatDisplayOptions } from '@tanstack/svelte-hotkeys'
+import type {
+  FormatDisplayOptions,
+  HotkeyPlatform,
+} from '@tanstack/svelte-hotkeys'
 
 /**
  * The format option toggles, with no framework code, so every example can
@@ -148,6 +151,6 @@ export function toFormatCode(choices: FormatChoices): string {
 
 const platformNames = { mac: 'macOS', windows: 'Windows', linux: 'Linux' }
 
-export function platformName(platform: 'mac' | 'windows' | 'linux'): string {
+export function platformName(platform: HotkeyPlatform): string {
   return platformNames[platform]
 }

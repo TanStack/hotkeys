@@ -1,19 +1,15 @@
 import { registerDestructor } from '@ember/destroyable'
 import { trackedObject } from '@ember/reactive/collections'
-import { getHotkeyManager } from '@tanstack/hotkeys'
-import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
+import {
+  getPublishedAppHotkeysStore,
+  subscribePublishedAppHotkeys,
+} from '@tanstack/hotkeys/adapter'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type { DefaultHotkeysOptions } from './types'
 
-export type MaybeGetter<T> = T | (() => T)
-
 /** Reads the merged defaults behind each `createHotkeysScope` result. */
 export const scopeDefaults = new WeakMap<object, () => DefaultHotkeysOptions>()
-
-export function read<T>(value: MaybeGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : value
-}
 
 export function select<T, TSelected>(
   owner: object,
@@ -56,6 +52,6 @@ export function trackPublishedAppHotkeys(
   )
   return () => {
     void state.version
-    return getHotkeyManager().appHotkeys.state
+    return getPublishedAppHotkeysStore()
   }
 }

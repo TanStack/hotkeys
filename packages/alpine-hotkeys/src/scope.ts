@@ -1,12 +1,13 @@
-import { getHotkeyManager } from '@tanstack/hotkeys'
 import {
+  getPublishedAppHotkeysStore,
   mergeHotkeysProviderDefaults,
+  resolveMaybeGetter,
   subscribePublishedAppHotkeys,
 } from '@tanstack/hotkeys/adapter'
-import type { AppHotkeysStore } from '@tanstack/hotkeys'
+import type { AppHotkeysStore, MaybeGetter } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type Alpine from 'alpinejs'
-import type { DefaultHotkeysOptions, MaybeGetter } from './types'
+import type { DefaultHotkeysOptions } from './types'
 
 type AlpineInstance = typeof Alpine
 
@@ -40,10 +41,6 @@ export const ownerScopes = new WeakMap<object, HotkeysScope>()
  */
 export function scopeOf(owner: object): HotkeysScope {
   return ownerScopes.get(getAlpine().raw(owner))!
-}
-
-export function read<T>(value: MaybeGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : value
 }
 
 export function createScope(
@@ -111,7 +108,7 @@ export function createScope(
       cleanups.add(subscribePublishedAppHotkeys(() => state.version++))
     }
     void appHotkeysState.version
-    return getHotkeyManager().appHotkeys.state
+    return getPublishedAppHotkeysStore()
   }
 
   return {
@@ -121,7 +118,11 @@ export function createScope(
     appHotkeys,
     // Puts `platform` into the hotkey and recorder defaults.
     defaultOptions: () =>
-      mergeHotkeysProviderDefaults(undefined, read(defaultOptions), undefined),
+      mergeHotkeysProviderDefaults(
+        undefined,
+        resolveMaybeGetter(defaultOptions),
+        undefined,
+      ),
     addCleanup: (cleanup: () => void) => cleanups.add(cleanup),
     get destroyed() {
       return destroyed

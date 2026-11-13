@@ -9,7 +9,7 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(owner): HotkeyRegistrationsResult;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRegistrations.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRegistrations.ts#L6)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRegistrations.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRegistrations.ts#L7)
 
 Reads public snapshots of every registration, chords and sequences.
 
@@ -21,4 +21,4 @@ Reads public snapshots of every registration, chords and sequences.
 
 ## Returns
 
-[`HotkeyRegistrationsResult`](../interfaces/HotkeyRegistrationsResult.md)
+`HotkeyRegistrationsResult`

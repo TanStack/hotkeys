@@ -7,6 +7,7 @@ import {
 import { render } from 'solid-js/web'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import HotkeysDevtools from '../src/components/index'
+import type { HotkeyEventType } from '@tanstack/hotkeys'
 
 // Stable class names let these tests inspect the real UI without coupling to CSS generation.
 vi.mock('../src/styles/use-styles', () => ({
@@ -60,7 +61,7 @@ const search = (ui: Element, query: string) => {
   input.dispatchEvent(new Event('input', { bubbles: true }))
 }
 const press = (
-  type: 'keydown' | 'keyup',
+  type: HotkeyEventType,
   key: string,
   code: string,
   init: KeyboardEventInit = {},

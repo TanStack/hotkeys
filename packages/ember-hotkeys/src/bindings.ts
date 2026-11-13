@@ -4,13 +4,10 @@ import {
   registerDestructor,
 } from '@ember/destroyable'
 import { scheduleOnce } from '@ember/runloop'
-import {
-  getHotkeyManager,
-  isAppHotkey,
-  isHotkeySequence,
-} from '@tanstack/hotkeys'
+import { isAppHotkey, isHotkeySequence } from '@tanstack/hotkeys'
 import {
   createHotkeyBindings,
+  getPublishedAppHotkeysStore,
   prepareHotkeyDefinitions,
   subscribePublishedAppHotkeys,
 } from '@tanstack/hotkeys/adapter'
@@ -45,7 +42,7 @@ export function createOwnedBindings(owner: object) {
     const { definitions, commonOptions, element } = state
     bindings.update(
       prepareHotkeyDefinitions(definitions, {
-        appHotkeysStore: getHotkeyManager().appHotkeys.state,
+        appHotkeysStore: getPublishedAppHotkeysStore(),
         commonOptions: element
           ? { ...commonOptions, target: element }
           : commonOptions,

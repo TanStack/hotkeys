@@ -23,7 +23,6 @@ title: "@tanstack/angular-hotkeys"
 - [InjectHotkeyOptionsFor](type-aliases/InjectHotkeyOptionsFor.md)
 - [InjectHotkeySequenceOptions](type-aliases/InjectHotkeySequenceOptions.md)
 - [InjectHotkeyTarget](type-aliases/InjectHotkeyTarget.md)
-- [MaybeGetter](type-aliases/MaybeGetter.md)
 
 ## Variables
 

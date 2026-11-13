@@ -1,9 +1,10 @@
 import { computed } from '@angular/core'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { injectSelector } from './_injectSelector'
 import { runOutsideZone } from './_zone'
 import type { Signal } from '@angular/core'
-import type { IndividualKey } from '@tanstack/hotkeys'
+import type { IndividualKey, MaybeGetter } from '@tanstack/hotkeys'
 
 /**
  * Angular inject-based API that returns a signal that is true when the given key is held.
@@ -39,7 +40,7 @@ import type { IndividualKey } from '@tanstack/hotkeys'
  * ```
  */
 export function injectKeyHold(
-  key: IndividualKey | (() => IndividualKey),
+  key: MaybeGetter<IndividualKey>,
 ): Signal<boolean> {
   const tracker = runOutsideZone(getKeyStateTracker)
   const heldKeysSelector = injectSelector(
@@ -50,6 +51,6 @@ export function injectKeyHold(
   return computed(() => {
     // Reading the held keys reruns this when they change.
     heldKeysSelector()
-    return tracker.isKeyHeld(typeof key === 'function' ? key() : key)
+    return tracker.isKeyHeld(resolveMaybeGetter(key))
   })
 }

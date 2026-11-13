@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useFormatForDisplay } from '@tanstack/vue-hotkeys'
 import { computed, ref } from 'vue'
+import type { HotkeyPlatform } from '@tanstack/vue-hotkeys'
 
 const formatForDisplay = useFormatForDisplay()
 
-const platform = ref<'mac' | 'windows' | 'linux'>('mac'),
+const platform = ref<HotkeyPlatform>('mac'),
   modifiers = ref(false),
   keys = ref(true)
 const options = computed(() => ({

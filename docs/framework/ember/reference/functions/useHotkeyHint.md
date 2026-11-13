@@ -13,7 +13,7 @@ function useHotkeyHint(
 ): EmberHotkeyState<boolean>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L25)
+Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L27)
 
 Recomputes for held modifiers and tracked changes to the hotkey or options.
 The hint shows only while the hotkey can fire: some registration of it is
@@ -30,7 +30,7 @@ effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
 
 ### hotkey
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<
+`MaybeGetter`\<
   \| `RegisterableHotkey`
   \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
   \| `null`
@@ -38,7 +38,7 @@ effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
 
 ### options?
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HeldModifierOptions`\> = `{}`
+`MaybeGetter`\<`HeldModifierOptions`\> = `{}`
 
 ## Returns
 

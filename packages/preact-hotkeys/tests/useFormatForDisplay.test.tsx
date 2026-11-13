@@ -11,11 +11,9 @@ import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import type { Hotkey } from '@tanstack/hotkeys'
+import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
 import type { ComponentChildren } from 'preact'
 import type { PreactHotkeyRecorder } from '../src/useHotkeyRecorder'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 // preact-render-to-string is not installed, so a server runtime's navigator
 // stands in for the server.
@@ -31,13 +29,13 @@ const WINDOWS = {
 // Detection would pick the other platform, so a pass means the provider's won.
 const OTHER = { mac: WINDOWS, windows: MAC }
 
-function Label({ platform }: { platform?: Platform }) {
+function Label({ platform }: { platform?: HotkeyPlatform }) {
   const formatForDisplay = useFormatForDisplay()
   return <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
 function withPlatform(
-  platform: Platform | undefined,
+  platform: HotkeyPlatform | undefined,
   children: ComponentChildren,
 ) {
   return (
@@ -116,7 +114,7 @@ describe('provider platform', () => {
     platform,
   }: {
     onSave: () => void
-    platform?: Platform
+    platform?: HotkeyPlatform
   }) {
     useHotkey('Mod+S', onSave, { platform })
     return null

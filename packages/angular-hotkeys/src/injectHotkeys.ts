@@ -9,9 +9,11 @@ import {
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
 import { injectWrapCallback } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
+import type { MaybeGetter } from '@tanstack/hotkeys'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type {
   InjectHotkeyCommonOptions,
@@ -45,12 +47,8 @@ export type InjectHotkeyDefinition = AdapterHotkeyDefinition<InjectHotkeyTarget>
  * ```
  */
 export function injectHotkeys(
-  hotkeys:
-    | ReadonlyArray<InjectHotkeyDefinition>
-    | (() => ReadonlyArray<InjectHotkeyDefinition>),
-  commonOptions:
-    | InjectHotkeyCommonOptions
-    | (() => InjectHotkeyCommonOptions) = {},
+  hotkeys: MaybeGetter<ReadonlyArray<InjectHotkeyDefinition>>,
+  commonOptions: MaybeGetter<InjectHotkeyCommonOptions> = {},
 ): void {
   const context = injectHotkeysContext()
   const zone = inject(NgZone)
@@ -61,21 +59,17 @@ export function injectHotkeys(
   effect(() => {
     // Track app hotkeys so registrations move with custom hotkeys.
     context.appHotkeysState()
-    const definitions = prepareHotkeyDefinitions(
-      typeof hotkeys === 'function' ? hotkeys() : hotkeys,
-      {
-        appHotkeysStore: context.appHotkeysStore,
-        defaults: context.defaultOptions.hotkey,
-        commonOptions:
-          typeof commonOptions === 'function' ? commonOptions() : commonOptions,
-        // Reading a signal here tracks it. A missing target skips
-        // registration until the element exists.
-        resolveTarget: (target) => {
-          const value = typeof target === 'function' ? target() : target
-          return value instanceof ElementRef ? value.nativeElement : value
-        },
+    const definitions = prepareHotkeyDefinitions(resolveMaybeGetter(hotkeys), {
+      appHotkeysStore: context.appHotkeysStore,
+      defaults: context.defaultOptions.hotkey,
+      commonOptions: resolveMaybeGetter(commonOptions),
+      // Reading a signal here tracks it. A missing target skips
+      // registration until the element exists.
+      resolveTarget: (target) => {
+        const value = typeof target === 'function' ? target() : target
+        return value instanceof ElementRef ? value.nativeElement : value
       },
-    )
+    })
     // Callbacks run in the zone and mark the component for check, so their
     // changes update the view.
     for (const definition of definitions) {

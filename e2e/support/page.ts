@@ -3,6 +3,7 @@
 import * as Hotkeys from '../../packages/hotkeys/src'
 import type {
   HotkeyOptions,
+  HotkeyPlatform,
   HotkeyRecorderOptions,
   HotkeyRegistrationHandle,
   RegisterableHotkey,
@@ -53,7 +54,7 @@ function createHarness() {
   const keydowns: Array<ObservedKeydown> = []
   const handles = new Map<string, HotkeyRegistrationHandle>()
   let observed: Array<string> = []
-  let platform: 'mac' | 'windows' | 'linux' | undefined
+  let platform: HotkeyPlatform | undefined
   let recorder: Hotkeys.HotkeyRecorder | undefined
   let recorded: unknown
 
@@ -92,7 +93,7 @@ function createHarness() {
     fired,
     keydowns,
     /** Platform passed to matching, parsing and registration. Defaults to detection. */
-    setPlatform(value: 'mac' | 'windows' | 'linux' | undefined) {
+    setPlatform(value: HotkeyPlatform | undefined) {
       platform = value
     },
     /** Bindings to check against every keydown with `matchesKeyboardEvent`. */

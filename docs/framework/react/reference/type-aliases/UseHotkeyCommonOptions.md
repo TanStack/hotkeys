@@ -9,6 +9,6 @@ title: UseHotkeyCommonOptions
 type UseHotkeyCommonOptions = AdapterCommonOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L40)
+Defined in: [useHotkey.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L38)
 
 Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it.

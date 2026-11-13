@@ -10,10 +10,9 @@ import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
 import type { Component } from 'vue'
 import type { HotkeysProviderOptions } from '../src/HotkeysProviderContext'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 function mountIn(
   defaultOptions: () => HotkeysProviderOptions,
@@ -40,7 +39,7 @@ afterEach(() => {
 
 describe('provider platform', () => {
   it('formats labels and updates when the platform changes', async () => {
-    const platform = ref<Platform>('mac')
+    const platform = ref<HotkeyPlatform>('mac')
     const wrapper = mountIn(
       () => ({ platform: platform.value }),
       defineComponent({

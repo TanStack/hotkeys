@@ -14,7 +14,7 @@ type HotkeyChord =
   | FourModifierHotkeyChord;
 ```
 
-Defined in: [hotkey.types.ts:126](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L126)
+Defined in: [hotkey.types.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L132)
 
 A type-safe hotkey string.
 

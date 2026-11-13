@@ -26,3 +26,5 @@ export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 
 export * from './types'
+// Same type as core's; named here so the two `export *` don't collide.
+export type { HotkeyRegistrationsResult } from './types'

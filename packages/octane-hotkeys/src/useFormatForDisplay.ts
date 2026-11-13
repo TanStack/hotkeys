@@ -1,14 +1,13 @@
-import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
-import { getServerPlatformSnapshot } from '@tanstack/hotkeys/adapter'
+import { detectPlatform } from '@tanstack/hotkeys'
+import {
+  createFormatForDisplay,
+  getServerPlatformSnapshot,
+} from '@tanstack/hotkeys/adapter'
 import { useCallback, useSyncExternalStore } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { subSlot } from './internal'
 import { useKeyboardLayout } from './useKeyboardLayout'
-import type {
-  DisplayHotkey,
-  FormatDisplayOptions,
-  KeyboardLayoutMap,
-} from '@tanstack/hotkeys'
+import type { KeyboardLayoutMap, formatForDisplay } from '@tanstack/hotkeys'
 
 const subscribe = () => () => {}
 
@@ -55,13 +54,11 @@ export function useFormatForDisplay(slot?: symbol): typeof formatForDisplay {
     useKeyboardLayout as (slot: symbol) => KeyboardLayoutMap | null
   )(subSlot(slot, 'layout'))
   return useCallback(
-    (hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-      formatForDisplay(hotkey, {
-        ...options,
-        platform: options?.platform ?? platform,
-        layoutMap: options?.layoutMap ?? layoutMap ?? undefined,
-      }),
+    createFormatForDisplay(
+      () => platform,
+      () => layoutMap,
+    ),
     [platform, layoutMap],
     subSlot(slot, 'format'),
-  ) as typeof formatForDisplay
+  )
 }

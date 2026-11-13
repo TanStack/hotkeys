@@ -3,11 +3,11 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
 import { useEffect, useRef } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
-import { resolveTarget } from './utils'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions, UseHotkeyTarget } from './useHotkey'
 
@@ -85,7 +85,10 @@ export function useHotkeys(
     })
     const { hotkeys, ...context } = latestRef.current
     bindingsRef.current.update(
-      prepareHotkeyDefinitions(hotkeys, { ...context, resolveTarget }),
+      prepareHotkeyDefinitions(hotkeys, {
+        ...context,
+        resolveTarget: resolveRefTarget,
+      }),
     )
   })
 

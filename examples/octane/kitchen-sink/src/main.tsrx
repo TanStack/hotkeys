@@ -16,6 +16,7 @@ import {
 
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
   RecorderRejection,
   RegisterableHotkey,
@@ -539,7 +540,7 @@ function Recording() @{
 
 function Formatting() @{
   const formatForDisplay = useFormatForDisplay()
-  const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
+  const [platform, setPlatform] = useState<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)
   const options = {

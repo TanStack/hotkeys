@@ -1,14 +1,15 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { read, scopeOf } from './scope'
+import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
+import { scopeOf } from './scope'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type { AlpineHotkeyRecorder, AlpineHotkeys, MaybeGetter } from './types'
+import type { AlpineHotkeyRecorder, AlpineHotkeys } from './types'
 
 /**
  * Creates a recorder owned by a `createHotkeysScope` owner. It uses the
@@ -54,7 +55,7 @@ export function createRecorder(
     () =>
       withDefaults(
         scope.defaultOptions().hotkeyRecorder,
-        read(options),
+        resolveMaybeGetter(options),
       ) as HotkeySequenceRecorderOptions,
   )
   const state = scope.select(instance.store, (value) => value)

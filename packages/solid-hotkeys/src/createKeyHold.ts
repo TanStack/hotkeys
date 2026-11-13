@@ -1,7 +1,8 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { createMemo } from 'solid-js'
 import { useSelector } from './_useSelector'
-import type { IndividualKey } from '@tanstack/hotkeys'
+import type { IndividualKey, MaybeGetter } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns whether a specific key is currently being held.
@@ -42,15 +43,13 @@ import type { IndividualKey } from '@tanstack/hotkeys'
  * }
  * ```
  */
-export function createKeyHold(
-  key: IndividualKey | (() => IndividualKey),
-): () => boolean {
+export function createKeyHold(key: MaybeGetter<IndividualKey>): () => boolean {
   const tracker = getKeyStateTracker()
   const heldKeysSelector = useSelector(tracker.store, (state) => state.heldKeys)
 
   return createMemo(() => {
     // Reading the held keys reruns this when they change.
     heldKeysSelector()
-    return tracker.isKeyHeld(typeof key === 'function' ? key() : key)
+    return tracker.isKeyHeld(resolveMaybeGetter(key))
   })
 }

@@ -7,6 +7,8 @@ title: "@tanstack/hotkeys"
 
 ## Interfaces
 
+- [HotkeysContextValue](interfaces/HotkeysContextValue.md)
+- [HotkeysDefaultOptions](interfaces/HotkeysDefaultOptions.md)
 - [HotkeysProviderScopeProps](interfaces/HotkeysProviderScopeProps.md)
 - [PrepareHotkeyDefinitionsOptions](interfaces/PrepareHotkeyDefinitionsOptions.md)
 
@@ -21,20 +23,31 @@ title: "@tanstack/hotkeys"
 - [AdapterSequenceOptions](type-aliases/AdapterSequenceOptions.md)
 - [HotkeyBindingsCommonOptions](type-aliases/HotkeyBindingsCommonOptions.md)
 - [HotkeyDefinition](type-aliases/HotkeyDefinition.md)
+- [HotkeyRecorderDefaults](type-aliases/HotkeyRecorderDefaults.md)
+- [RefTarget](type-aliases/RefTarget.md)
 - [Store](type-aliases/Store.md)
 - [WithTarget](type-aliases/WithTarget.md)
 
 ## Functions
 
 - [activateHotkeysProviderScope](functions/activateHotkeysProviderScope.md)
+- [bindCustomHotkeyActions](functions/bindCustomHotkeyActions.md)
 - [createAppHotkeysStore](functions/createAppHotkeysStore.md)
+- [createFormatForDisplay](functions/createFormatForDisplay.md)
 - [createHotkeyBindings](functions/createHotkeyBindings.md)
 - [createStore](functions/createStore.md)
 - [definedOptions](functions/definedOptions.md)
+- [followKeyboardLayout](functions/followKeyboardLayout.md)
+- [getHotkeyRegistrationViews](functions/getHotkeyRegistrationViews.md)
 - [getHotkeysProviderScopeKey](functions/getHotkeysProviderScopeKey.md)
+- [getPublishedAppHotkeysStore](functions/getPublishedAppHotkeysStore.md)
 - [getServerPlatformSnapshot](functions/getServerPlatformSnapshot.md)
+- [isHotkeyHintVisible](functions/isHotkeyHintVisible.md)
 - [mergeHotkeysProviderDefaults](functions/mergeHotkeysProviderDefaults.md)
 - [namesPhysicalKey](functions/namesPhysicalKey.md)
 - [prepareHotkeyDefinitions](functions/prepareHotkeyDefinitions.md)
+- [requireAppHotkeysStore](functions/requireAppHotkeysStore.md)
+- [resolveMaybeGetter](functions/resolveMaybeGetter.md)
+- [resolveRefTarget](functions/resolveRefTarget.md)
 - [subscribePublishedAppHotkeys](functions/subscribePublishedAppHotkeys.md)
 - [withDefaults](functions/withDefaults.md)

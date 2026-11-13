@@ -34,6 +34,14 @@ it('resolves aliases, disabled state and exclusions', () => {
     }),
   ).toHaveLength(1)
 })
+it('finds conflicts for a bracketed key that is not a code', () => {
+  // '[1]' parses as the key '[1]'; parsing that result again would throw.
+  const manager = HotkeyManager.getInstance()
+  manager.register('Control+[1]' as never, vi.fn(), { platform: 'windows' })
+  expect(
+    findHotkeyConflicts('Control+[1]' as never, { platform: 'windows' }),
+  ).toHaveLength(1)
+})
 it('allows disjoint targets and finds overlapping targets', () => {
   const a = document.createElement('div'),
     b = document.createElement('div'),

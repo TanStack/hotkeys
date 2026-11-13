@@ -1,8 +1,10 @@
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { createHotkeys } from './createHotkeys'
 import type {
   AppHotkey,
   HotkeyCallback,
   HotkeyCallbackContextFor,
+  MaybeGetter,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -43,8 +45,6 @@ export type CreateHotkeyOptionsFor<T extends RegisterableHotkey> =
 export type CreateAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
   AdapterAppHotkeyOptions<T, CreateHotkeyTarget>
 
-type MaybeAccessor<T> = T | (() => T)
-
 /**
  * Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
  * sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -64,27 +64,27 @@ type MaybeAccessor<T> = T | (() => T)
  * ```
  */
 export function createHotkey<T extends AppHotkey>(
-  hotkey: MaybeAccessor<T | null | undefined>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback,
-  options?: MaybeAccessor<CreateAppHotkeyOptions<T>>,
+  options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
 ): void
 export function createHotkey<const T extends RegisterableHotkey>(
-  hotkey: MaybeAccessor<T | null | undefined>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
-  options?: MaybeAccessor<CreateHotkeyOptionsFor<T>>,
+  options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
 ): void
 export function createHotkey(
-  hotkey: MaybeAccessor<RegisterableHotkey | AppHotkey | null | undefined>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
-  options: MaybeAccessor<CreateHotkeyCommonOptions> = {},
+  options: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
   createHotkeys(
     () =>
       [
         {
-          hotkey: typeof hotkey === 'function' ? hotkey() : hotkey,
+          hotkey: resolveMaybeGetter(hotkey),
           callback,
-          options: typeof options === 'function' ? options() : options,
+          options: resolveMaybeGetter(options),
         },
       ] as never,
   )
