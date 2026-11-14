@@ -1,0 +1,111 @@
+name: Heisenbench
+
+# Counts the work each core function does on the PR and on the commit it
+# branched from, then posts the difference. Counts are exact, so one run of
+# each side is enough. See https://www.npmjs.com/package/heisenbench
+
+on:
+  pull_request:
+    paths:
+      - 'packages/hotkeys/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/heisenbench.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PKG: packages/hotkeys
+
+jobs:
+  count:
+    name: Count
+    # Runs the PR's code, so it holds no write token.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      # Heisenbench needs Node 26.4 or newer. Counts do not depend on the
+      # Node version, so the library's own tests stay on .nvmrc. The shared
+      # setup action is not used here: its Node shims follow .nvmrc.
+      - name: Setup Node 26
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Count the PR and its base
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # Fail early if pnpm scripts would not run on Node 26.4 or newer.
+          (cd "$PKG" && pnpm exec node -e 'const [a, b] = process.versions.node.split(".").map(Number); if (a < 26 || (a === 26 && b < 4)) { console.error(`Node ${process.version} is older than 26.4`); process.exit(1) }')
+          # `bench <checkout> [run flags]` counts the bench files in a checkout.
+          bench() {
+            (cd "$1/$PKG" && pnpm run bench "${@:2}")
+          }
+          out="$RUNNER_TEMP/heisenbench"
+          mkdir -p "$out"
+          base=$(git merge-base "$BASE_SHA" HEAD)
+          # A bench file that does not load, or a case that fails, is in the
+          # report, so a failed run is not fatal.
+          bench "$GITHUB_WORKSPACE" --out "$out/head.json" || true
+          if git ls-tree -r --name-only "$base" -- "$PKG/bench" | grep -q '\.bench\.'; then
+            # The base has bench files of its own: count it in its own checkout.
+            git worktree add -q "$RUNNER_TEMP/base" "$base"
+            (cd "$RUNNER_TEMP/base" && pnpm install --frozen-lockfile) &&
+              bench "$RUNNER_TEMP/base" --out "$out/base.json" || true
+          else
+            # The first PR: this PR's bench files on the base's code.
+            bench "$GITHUB_WORKSPACE" --source-from "$base" --out "$out/base.json" || true
+          fi
+          (cd "$PKG" && pnpm run bench:diff \
+            "$out/base.json" "$out/head.json" --repo "$GITHUB_WORKSPACE" --out "$out/section.md")
+          cat "$out/section.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload section
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: heisenbench
+          path: ${{ runner.temp }}/heisenbench/section.md
+
+  comment:
+    name: Comment
+    # Holds the write token and runs nothing from the PR: it reads
+    # section.md as text. A fork's PR gets the job summary only.
+    needs: count
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download section
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: heisenbench
+      - name: Post or update the comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          marker='<!-- heisenbench-comment -->'
+          body="$(printf '%s\n\n%s' "$marker" "$(head -c 60000 section.md)")"
+          id=$(gh api "repos/$GH_REPO/issues/$PR/comments" --paginate \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\"))) | .id" | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$GH_REPO/issues/comments/$id" -f body="$body" > /dev/null
+          else
+            gh api "repos/$GH_REPO/issues/$PR/comments" -f body="$body" > /dev/null
+          fi

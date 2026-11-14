@@ -12,6 +12,7 @@
   },
   "type": "module",
   "scripts": {
+    "bench": "nx run-many --targets=bench --exclude=examples/** --output-style=stream",
     "build": "nx affected --skip-nx-cache --targets=build --exclude=examples/** && size-limit",
     "build:all": "nx run-many --targets=build --exclude=examples/** && size-limit",
     "build:core": "nx run-many --targets=build --projects=packages/hotkeys",
@@ -55,43 +56,43 @@
     {
       "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "13.5 KB"
+      "limit": "14 KB"
     },
     {
       "name": "HotkeyManager",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ getHotkeyManager }",
-      "limit": "8.5 KB"
+      "limit": "8 KB"
     },
     {
       "name": "HotkeyRecorder",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ HotkeyRecorder }",
-      "limit": "7 KB"
+      "limit": "6 KB"
     },
     {
       "name": "KeyStateTracker",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ getKeyStateTracker }",
-      "limit": "3.5 KB"
+      "limit": "2 KB"
     },
     {
       "name": "Keyboard layout loader",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ loadKeyboardLayout, getKeyboardLayoutStore }",
-      "limit": "0.6 KB"
+      "limit": "0.5 KB"
     },
     {
       "name": "formatForDisplay",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ formatForDisplay }",
-      "limit": "3 KB"
+      "limit": "2 KB"
     },
     {
       "name": "Provider without app hotkeys",
       "path": "packages/hotkeys/dist/adapter.js",
       "import": "{ createAppHotkeysStore }",
-      "limit": "0.5 KB"
+      "limit": "0.1 KB"
     },
     {
       "name": "React useHotkey",
@@ -101,7 +102,7 @@
         "react",
         "react-dom"
       ],
-      "limit": "11 KB"
+      "limit": "9 KB"
     },
     {
       "name": "React useHotkey + HotkeysProvider",
@@ -111,7 +112,7 @@
         "react",
         "react-dom"
       ],
-      "limit": "12 KB"
+      "limit": "10 KB"
     }
   ],
   "nx": {

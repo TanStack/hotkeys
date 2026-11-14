@@ -17,6 +17,34 @@ that follows the repository template.
   update; `0.13.3` fixes this in TanStack/store#367. Verify
   `packages/preact-hotkeys/tests/useHotkeyHint.test.tsx` before upgrading.
 
+## Performance checks
+
+`packages/hotkeys/bench/` holds [Heisenbench](https://www.npmjs.com/package/heisenbench)
+benches for the core. Heisenbench counts the work each function does (steps), and the
+count is the same on every run. The Heisenbench workflow posts the PR's step changes as a
+PR comment.
+
+- Heisenbench needs Node 26.4 or newer. Run `pnpm bench` from the root on that Node.
+- After you change `packages/hotkeys/src`, compare the counts before and after the
+  change. In `packages/hotkeys`, run these commands. `--source-from HEAD` counts the
+  committed code from git and does not change the working tree.
+
+  ```bash
+  pnpm bench --source-from HEAD --out "${TMPDIR:-/tmp}/before.json"
+  pnpm bench --out "${TMPDIR:-/tmp}/after.json"
+  pnpm bench:diff "${TMPDIR:-/tmp}/before.json" "${TMPDIR:-/tmp}/after.json"
+  ```
+
+- In the diff or the PR comment, explain or fix each of these:
+  - Steps changed in a function that the change did not touch.
+  - Steps grew by more than a few percent in a case that the change was not meant to
+    affect.
+  - Steps grew by much more than the changed lines explain.
+  - A bench file is listed under "Did not run".
+- Steps are not time. Do not claim a speedup or a slowdown from steps alone.
+- When you add a hot path, such as work on every key press or registration, add a case
+  to the bench files.
+
 <!-- intent-maintainer:start -->
 
 ## Library Skill Maintenance
