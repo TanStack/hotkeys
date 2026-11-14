@@ -30,9 +30,9 @@ PR comment.
   committed code from git and does not change the working tree.
 
   ```bash
-  pnpm bench --source-from HEAD --out "$TMPDIR/before.json"
-  pnpm bench --out "$TMPDIR/after.json"
-  pnpm bench:diff "$TMPDIR/before.json" "$TMPDIR/after.json"
+  pnpm bench --source-from HEAD --out "${TMPDIR:-/tmp}/before.json"
+  pnpm bench --out "${TMPDIR:-/tmp}/after.json"
+  pnpm bench:diff "${TMPDIR:-/tmp}/before.json" "${TMPDIR:-/tmp}/after.json"
   ```
 
 - In the diff or the PR comment, explain or fix each of these:
