@@ -5,6 +5,9 @@
   "ignoreDependencies": ["@faker-js/faker"],
   "ignoreWorkspaces": ["examples/**", "e2e/adapters/apps/**"],
   "workspaces": {
+    "packages/hotkeys": {
+      "entry": ["bench/*.bench.ts", "bench/dom.ts"]
+    },
     "packages/react-hotkeys": {
       "ignore": []
     },

@@ -34,7 +34,9 @@
     "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
-    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts",
+    "bench": "heisenbench run bench/*.bench.ts --import bench/dom.ts",
+    "bench:diff": "heisenbench diff"
   },
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -54,7 +56,8 @@
   "devDependencies": {
     "@tanstack/hotkeys-test-utils": "workspace:*",
     "@tanstack/store": "^0.11.2",
-    "fast-check": "^4.10.2"
+    "fast-check": "^4.10.2",
+    "heisenbench": "^0.2.0"
   },
   "inlinedDependencies": {
     "@tanstack/store": "0.11.2"
