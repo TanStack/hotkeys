@@ -34,14 +34,17 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Setup Tools
-        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
       # Heisenbench needs Node 26.4 or newer. Counts do not depend on the
-      # Node version, so the library's own tests stay on .nvmrc.
+      # Node version, so the library's own tests stay on .nvmrc. The shared
+      # setup action is not used here: its Node shims follow .nvmrc.
       - name: Setup Node 26
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 26
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: Install
+        run: pnpm install --frozen-lockfile
       - name: Count the PR and its base
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}

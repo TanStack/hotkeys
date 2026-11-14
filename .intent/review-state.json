@@ -22142,15 +22142,15 @@
       ]
     },
     "source:.github/workflows/heisenbench.yml": {
-      "fingerprint": "8292dcf923101d38365ac1c8ef77f6cb0bd340ced8ed6b61c5eaa556201a3095",
+      "fingerprint": "8163df8776b3fe24cbd792432c376b75dd68c4aaeefcfc9c31cc4b7314b6d8d4",
       "snapshot": {
-        ".github/workflows/heisenbench.yml": "c9bf3daa9fe386109e6e58a3076f193ac206fe8c446f0ae609b2e5d7cfd77013"
+        ".github/workflows/heisenbench.yml": "4d42025484c074b1dbc93a80745c0d21d1a6fa37f2b16dfaa8ec7e553c8e5b7a"
       },
-      "head": "5c96d1170d168e19bcbf97073abd1ee49f4cbcdd",
+      "head": "c7f1c3a3c811a9031139723fe4061883001e3df1",
       "outcome": "out-of-scope",
-      "reason": "Dev-only benchmark tooling, CI config and repo ignore rules; no public API, behavior or documented usage changes, so no skill guidance applies.",
+      "reason": "CI workflow setup change for the Heisenbench job; no public API, behavior or documented usage changes.",
       "evidence": [
-        "Changes add bench files, a Heisenbench workflow, knip/tsconfig entries and ignore files; nothing under packages/hotkeys/src, docs or skills changed."
+        "Only .github/workflows/heisenbench.yml changed: Node 26 and pnpm setup steps replace the shared setup action."
       ]
     },
     "source:packages/hotkeys/.gitignore": {
