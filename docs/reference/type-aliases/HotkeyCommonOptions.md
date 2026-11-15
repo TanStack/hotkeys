@@ -9,7 +9,7 @@ title: HotkeyCommonOptions
 type HotkeyCommonOptions = HotkeyChordOptions & HotkeySequenceOptions;
 ```
 
-Defined in: [hotkey-manager.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L167)
+Defined in: [hotkey-manager.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L173)
 
 Chord and sequence options together, for options applied to hotkeys of
 either kind. Each option applies only to the kinds that support it.

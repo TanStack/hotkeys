@@ -32,6 +32,7 @@ A hotkey registered with the manager differs from one registered with a composab
 - Provider defaults and scopes don't apply. It uses the built-in defaults and belongs to the `'global'` scope, unless you pass `scope`.
 - Its hotkey and options are plain values, not refs or getters. To change options later, call `handle.setOptions`.
 - During server rendering, `register` returns a handle that does nothing.
+- A `null` target, such as a `querySelector` result that found nothing, also returns a handle that does nothing. The handle doesn't wait for the element, so call `register` again once it exists. Omit `target` to listen on `document`. `register` treats `target: undefined` as omitted, so it listens on `document` too.
 
 For example, code that sets up a chart library outside Vue can register the chart's hotkeys and return a function that removes them:
 

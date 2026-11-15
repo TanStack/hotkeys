@@ -115,7 +115,13 @@ export interface HotkeyOptions {
    * last step does, so earlier steps reach other listeners. Defaults to true
    */
   stopPropagation?: boolean
-  /** The DOM element to attach the event listener to. Defaults to document. */
+  /**
+   * The DOM element to attach the event listener to. Defaults to document.
+   * In `register`, `null`, such as a `querySelector` that found nothing,
+   * registers nothing and returns an inactive handle, while an omitted or
+   * `undefined` target listens on document. `setOptions` does not move a
+   * registration to another target.
+   */
   target?: Target | null
   /**
    * Optional metadata (name, description, custom fields via declaration
@@ -885,11 +891,13 @@ export class HotkeyManager {
     options: HotkeyCommonOptions = {},
   ): HotkeyRegistrationHandle {
     const hotkey = simplifyHotkey(input)
-    // Nothing to listen for: no hotkey, an empty sequence, or no DOM during
-    // server rendering. The handle stays inactive.
+    // Nothing to listen for: no hotkey, an empty sequence, a `null` target
+    // (such as a selector that found nothing), or no DOM during server
+    // rendering. The handle stays inactive.
     if (
       (hotkey as RegisterableHotkey | null | undefined) == null ||
       (isHotkeySequence(hotkey) && hotkey.length === 0) ||
+      options.target === null ||
       (typeof document === 'undefined' && !options.target)
     ) {
       return inactiveHandle(callback)
