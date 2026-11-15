@@ -111,6 +111,8 @@ describe('keyboard layout labels', () => {
     expect(getLayoutMap).not.toHaveBeenCalled()
 
     flushSync(() => root.render(LayoutFixture, { keyboardLayout: true }))
+    // Start the layout request now, not whenever Octane runs effects.
+    flush()
     await settle()
     expect(container.textContent).toBe('Ctrl+A')
 
