@@ -313,7 +313,7 @@ Escape closes one thing at a time: the innermost dialog, popover, or menu. While
 
 - A native modal `<dialog>`, unless it has `closedby="none"`, and a non-modal `<dialog>` with `closedby="any"` or `closedby="closerequest"`. When modal dialogs stack, only the top one counts.
 - An open popover, except a `popover="manual"` popover, which doesn't close on Escape.
-- The innermost element around focus, other than a `<dialog>`, with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, and a focused combobox or menu button with `aria-expanded="true"`. Most component libraries render their dialogs, popovers, and menus this way.
+- The innermost element around focus, other than a `<dialog>`, with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, an expanded combobox (`aria-expanded="true"`) that has focus or contains it, and a focused element with `aria-expanded="true"` and any `aria-haspopup` value other than `"false"`, such as a menu or listbox button. Most component libraries render their dialogs, popovers, and menus this way.
 
 TanStack Hotkeys finds native dialogs and popovers in the document, and the ones inside a shadow root that hold focus. It finds the other overlays from focus only, so a closed dialog that a library leaves in the page doesn't count. It looks when the key press reaches `window`, before listeners on the document and its elements run, so a library that closes its overlay from one of those still gets the key press alone.
 

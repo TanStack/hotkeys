@@ -12,7 +12,7 @@
 '@tanstack/octane-hotkeys': minor
 ---
 
-Escape goes to the innermost open overlay, not only to native dialogs and popovers. While focus is inside an element with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, or on a combobox or menu button with `aria-expanded="true"`, hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay closes. This changes what one Escape press does:
+Escape goes to the innermost open overlay, not only to native dialogs and popovers. While focus is inside an element with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, or on an expanded combobox or popup button (`aria-expanded="true"`, with `aria-haspopup` on the button), hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay closes. This changes what one Escape press does:
 
 - Dialogs that stayed open now close, and the page hotkey doesn't run: Reka UI (shadcn-vue, Nuxt UI), Headless UI, Vuetify, Bits UI (shadcn-svelte), Kobalte (solid-ui, shadcn-solid), Corvu, and Shoelace.
 - Dialogs that closed and also ran the page hotkey now only close: Radix UI (shadcn/ui), PrimeVue, and the Angular CDK and Angular Material. The first Escape in an open React Aria `ComboBox` closes its list without running the page hotkey.

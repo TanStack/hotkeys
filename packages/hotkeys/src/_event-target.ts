@@ -373,7 +373,7 @@ function closesNatively(dialog: Element): boolean {
 
 /**
  * Whether an element around focus closes on Escape in the WAI-ARIA patterns:
- * dialogs and menus, and a combobox or a menu button whose popup is open,
+ * dialogs and menus, and a combobox or a popup button whose popup is open,
  * which keep focus while it is. A `<dialog>` closes only as the browser
  * decides, whatever its role.
  */
