@@ -252,12 +252,12 @@ describe.each(['hotkey', 'sequence'] as const)('%s in ARIA widgets', (kind) => {
     expect(callback).toHaveBeenCalledOnce()
   })
 
-  it('still fires Escape and modifier shortcuts in a menu by default', () => {
+  it('leaves Escape to a menu, and still fires modifier shortcuts in it', () => {
     render('<div role="menu" tabindex="0"></div>')
     const element = focus('[role="menu"]')
     const escape = register('Escape')
-    press(element, 'Escape')
-    expect(escape).toHaveBeenCalledOnce()
+    expect(press(element, 'Escape').defaultPrevented).toBe(false)
+    expect(escape).not.toHaveBeenCalled()
 
     HotkeyManager.resetInstance()
     const save = register('Mod+S', { platform: 'mac' })

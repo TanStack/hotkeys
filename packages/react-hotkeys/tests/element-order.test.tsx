@@ -22,7 +22,7 @@ function Panel({ childStops = false }: { childStops?: boolean }) {
     <div ref={panelRef} tabIndex={0} onKeyDown={() => log.push('panel')}>
       <input
         role="combobox"
-        aria-expanded="true"
+        aria-expanded="false"
         data-testid="child"
         onKeyDown={(event) => {
           log.push('child')

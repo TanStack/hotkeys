@@ -261,7 +261,7 @@ Component libraries reach Preact through `preact/compat` and behave as they do i
 
 Turn it on if you use Ark UI.
 
-Kobalte, and solid-ui and shadcn-solid built on it, call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. Corvu doesn't call `preventDefault()`. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Kobalte, and solid-ui and shadcn-solid built on it, and Corvu handle Escape after your hotkeys, so the option can't help with them. Their dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Angular
 
@@ -281,13 +281,13 @@ Turn it on if you use:
 - Tiptap or ProseMirror, or CodeMirror
 - PrimeVue's CascadeSelect, TreeSelect, ContextMenu, TieredMenu, or DatePicker
 
-Reka UI, and shadcn-vue and Nuxt UI built on it, don't call `preventDefault()` on Escape, unlike Radix UI in React. Neither do most other Vue overlay libraries. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Reka UI, and shadcn-vue and Nuxt UI built on it, don't call `preventDefault()` on Escape, unlike Radix UI in React. Neither do most other Vue overlay libraries, so the option can't help with them. Their dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Svelte
 
 Turn it on if you use Skeleton or Ark UI.
 
-Bits UI, and shadcn-svelte built on it, and Melt UI call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Bits UI, and shadcn-svelte built on it, and Melt UI call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys and the option can't help. Bits UI dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Lit
 
@@ -309,106 +309,103 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. When modal dialogs stack, only the top one counts: a hotkey targeted inside it receives Escape, and hotkeys in the dialogs underneath skip it. TanStack Hotkeys finds these elements in the document. Inside a shadow root, where component libraries such as Material Web keep their `<dialog>`, it finds the ones that hold focus.
+Escape closes one thing at a time: the innermost dialog, popover, or menu. While one is open, hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay gets the key press and closes. A hotkey targeted at the overlay, or at an element inside it, still receives Escape. These count as overlays:
 
-For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
+- A native modal `<dialog>`, unless it has `closedby="none"`, and a non-modal `<dialog>` with `closedby="any"` or `closedby="closerequest"`. When modal dialogs stack, only the top one counts.
+- An open popover, except a `popover="manual"` popover, which doesn't close on Escape.
+- The innermost element around focus, other than a `<dialog>`, with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, an expanded combobox (`aria-expanded="true"`) that has focus or contains it, and a focused element with `aria-expanded="true"` and any `aria-haspopup` value other than `"false"`, such as a menu or listbox button. Most component libraries render their dialogs, popovers, and menus this way.
 
-- With the default `preventDefault` and `stopPropagation`, the hotkey takes the key press. A library that listens on `window` never receives a key that stopped propagating at the document, so the overlay stays open and your hotkey runs.
-- A library that closes without calling `preventDefault()`, or after your hotkeys run, closes the overlay, and your hotkey runs too.
+TanStack Hotkeys finds native dialogs and popovers in the document, and the ones inside a shadow root that hold focus. It finds the other overlays from focus only, so a closed dialog that a library leaves in the page doesn't count. It looks when the key press reaches `window`, before listeners on the document and its elements run, so a library that closes its overlay from one of those still gets the key press alone.
 
-Give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
+Follow these rules for your own `Escape` hotkeys:
+
+1. **Let the browser close your own overlays.** Build them on `<dialog>` with `showModal()` and on `popover` or `popover="auto"`, and don't register an `Escape` hotkey to close them. A `popover="manual"` popover doesn't close on Escape, so close it with an `Escape` hotkey targeted at it. For a dialog that users can't dismiss, use `<dialog closedby="none">`, not an element with `role="dialog"`. Browsers without `closedby` still close it on Escape, so also call `preventDefault()` on its `cancel` event.
+2. **Register an overlay's `Escape` on the overlay.** When your code closes an overlay, such as an ARIA dialog you built, target its `Escape` hotkey at the overlay element. A global `Escape` hotkey skips the overlay it means to close, and nothing reports it.
+3. **Use a global `Escape` only when nothing is open.** It fits actions such as clearing a selection. Turn it off with `enabled: !open`, or give the overlay an exclusive scope, while an overlay that TanStack Hotkeys can't find is open. The overlays it can't find are listed below. Keep the default `preventDefault` on that hotkey: with `'always'`, it still prevents Escape while it's off, and an overlay that checks `defaultPrevented` stays open.
+4. **Keep `Escape` out of page sections and sequences.** Inside an ARIA dialog, a hotkey in any named scope keeps Escape, so a page section's `Escape` hotkey takes it from a library's dialog. Users press Escape to back out of what's open, so a sequence step on `Escape` competes with every overlay.
+
+While focus is inside a `role="dialog"` or `role="alertdialog"` element, any hotkey in a named scope keeps Escape, whatever its target. So a dialog component that activates its own scope and registers an `Escape` hotkey to close itself still closes. While a combobox or menu inside that dialog is open, the first Escape closes it, and the next one closes the dialog. The exemption doesn't apply to native overlays: an open native dialog or popover gets Escape before any hotkey outside it, whatever its scope. While a popover is open, the first Escape closes it, and the next one reaches the dialog's hotkey. If other named scopes can be active while the dialog is open, make the dialog's scope exclusive so their `Escape` hotkeys don't run.
+
+Some overlays don't get Escape this way:
+
+- An overlay without focus inside it, such as a popover in a shadow root while its trigger has focus, or a dialog after a click on its plain text moved focus to the page.
+- An overlay without one of these roles, such as an Alpine component that closes with `@keydown.escape.window`.
+- An overlay inside a closed shadow root, which hides it from the page.
+- An overlay that a `window` capture listener closes, when that listener was added before your first hotkey.
+
+For these, give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
 
 <!-- ::start:framework -->
 
 # React
 
-These overlays stay open:
+Tested: Radix UI and shadcn/ui dialogs and Headless UI's `Dialog` close on Escape and your hotkey doesn't run. The first Escape in an open React Aria `ComboBox` closes its list, and the next one runs your hotkey.
 
-- Headless UI's `Dialog`
-- Ant Design's modals, drawers, dropdowns, and popovers
-
-Mantine's modals, drawers, popovers, menus, and comboboxes close on Escape without calling `preventDefault()`, so they close and your hotkey runs too.
+Not yet tested with this rule: Ant Design and Mantine.
 
 See [scopes](../framework/react/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Preact
 
-These overlays stay open:
-
-- Headless UI's `Dialog`
-- Ant Design's modals, drawers, dropdowns, and popovers
-
-Mantine's overlays close on Escape and your hotkey runs too.
+Component libraries reach Preact through `preact/compat` and behave as they do in React: Radix UI dialogs and Headless UI's `Dialog` get Escape.
 
 See [scopes](../framework/preact/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Solid
 
-Kobalte, solid-ui, shadcn-solid, and Corvu overlays close on Escape and your hotkey runs too.
+Tested: Kobalte and Corvu dialogs, and solid-ui and shadcn-solid built on Kobalte, close on Escape and your hotkey doesn't run.
 
 See [scopes](../framework/solid/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Angular
 
-These overlays stay open:
+Tested: Angular CDK dialogs, and Angular Material's built on them, close on Escape and your hotkey doesn't run.
 
-- ng-bootstrap's modals and offcanvas
-
-PrimeNG's dialogs, drawers, and popovers, and ng-bootstrap's dropdowns and typeaheads, close on Escape and your hotkey runs too.
+Not yet tested with this rule: ng-bootstrap and PrimeNG.
 
 See [scopes](../framework/angular/guides/provide-hotkeys-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Vue
 
-These overlays stay open:
+Tested: Reka UI dialogs, and shadcn-vue and Nuxt UI built on Reka UI, Headless UI's `Dialog`, Vuetify's dialogs, and PrimeVue's dialogs close on Escape and your hotkey doesn't run.
 
-- Reka UI, shadcn-vue, and Nuxt UI: dialogs, popovers, selects, and menus
-- Headless UI's `Dialog`
-- Vuetify's dialogs and menus
-- Naive UI's modals, drawers, and dropdowns
-- Quasar's dialogs and menus
-
-PrimeVue's dialogs, drawers, and popovers, and Element Plus's dialogs, drawers, and dropdowns, close on Escape and your hotkey runs too.
+Not yet tested with this rule: Naive UI, Quasar, and Element Plus.
 
 See [scopes](../framework/vue/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Svelte
 
-Bits UI, shadcn-svelte, Melt UI, and Flowbite Svelte overlays close on Escape and your hotkey runs too.
+Tested: Bits UI dialogs, and shadcn-svelte built on Bits UI, close on Escape and your hotkey doesn't run.
+
+Not yet tested with this rule: Melt UI and Flowbite Svelte.
 
 See [scopes](../framework/svelte/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Lit
 
-These overlays stay open:
+Tested: Shoelace dialogs, Web Awesome dialogs, and Material Web dialogs close on Escape and your hotkey doesn't run.
 
-- Shoelace dialogs, drawers, and dropdowns, in browsers with `CloseWatcher`
-- Vaadin overlays
-
-Web Awesome and Ionic overlays close on Escape and your hotkey runs too. Material Web dialogs use a native `<dialog>`, so they close on Escape and your hotkey doesn't run.
+Not yet tested with this rule: Vaadin and Ionic.
 
 See [scopes](../framework/lit/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Alpine
 
-These overlays stay open:
+Pines and Penguin UI modals, and other components that close with `@keydown.escape.window`, get Escape only when they render one of the roles above and focus is inside them.
 
-- Pines and Penguin UI modals, slide-overs, and dropdowns
-- Any component that closes with `@keydown.escape.window`
-
-Flowbite's modals, drawers, and popovers close on Escape and your hotkey runs too.
+Not yet tested with this rule: Flowbite.
 
 See [scopes](../framework/alpine/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Ember
 
-ember-power-select, ember-basic-dropdown, and ember-bootstrap close on Escape and your hotkey runs too.
+ember-power-select, ember-basic-dropdown, and ember-bootstrap haven't been tested with this rule.
 
 See [scopes](../framework/ember/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Octane
 
-No component library for Octane is widespread yet. Native modal dialogs and popovers that close on Escape get it on their own, as in every framework.
+No component library for Octane is widespread yet. Overlays get Escape as in every framework.
 
 See [scopes](../framework/octane/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 

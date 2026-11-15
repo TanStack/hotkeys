@@ -1,11 +1,11 @@
 import { chordHasKey, isKeyNameShape, parsedStepsEqual } from './_chord'
 import { canWarn } from './_dev'
 import {
-  closesNativeLayer,
   getTargetDocument,
   isDocumentLevel,
   shouldIgnoreInputEvent,
   targetHasFocus,
+  yieldsEscape,
 } from './_event-target'
 import { isSequenceStep } from './_keyboard-event'
 import { keysEqual } from './_keys'
@@ -1588,13 +1588,17 @@ export class HotkeyManager {
   }
 
   /**
-   * Whether the registration skips the event: Escape belongs to an open modal
-   * dialog or popover outside its target, or another listener prevented the
+   * Whether the registration skips the event: Escape belongs to a dialog,
+   * popover, or menu outside its target, or another listener prevented the
    * event and the registration skips such events.
    */
   #skips(registration: HotkeyRegistration, event: KeyboardEvent): boolean {
     return (
-      closesNativeLayer(event, registration.target) ||
+      yieldsEscape(
+        event,
+        registration.target,
+        registration.options.scope !== GLOBAL_SCOPE,
+      ) ||
       (!!registration.options.ignoreDefaultPrevented &&
         event.defaultPrevented &&
         !this.#prevented.has(event))
