@@ -125,9 +125,10 @@ export interface HotkeyOptions {
   target?: Target | null
   /**
    * Optional metadata (name, description, custom fields via declaration
-   * merging). It can be written inline. A changed string, number, or boolean
-   * field re-renders registration lists. A new array, object, element, or
-   * function replaces the old one but does not re-render them on its own.
+   * merging). It can be written inline. A new `meta` with a changed string,
+   * number, or boolean field re-renders registration lists. Editing the object
+   * in place does not. A new array, object, element, or function replaces the
+   * old one but does not re-render them on its own.
    */
   meta?: HotkeyMeta
   /**
@@ -1039,8 +1040,11 @@ export class HotkeyManager {
           if (optionsEqual(reg.options, options)) {
             // Keep the newest callbacks and elements in `meta` without
             // publishing them. Write into the same options object, which
-            // registration views already hold.
-            reg.options.meta = options.meta as HotkeyMeta | undefined
+            // registration views already hold. Equal options both have or
+            // both lack a `meta` key, so a lacking one stays absent.
+            if ('meta' in options) {
+              reg.options.meta = options.meta as HotkeyMeta | undefined
+            }
             return prev
           }
           const capture = !!reg.options.capture

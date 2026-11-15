@@ -67,10 +67,10 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "d9a46651ae517b6862bb6f3ed90554f2f54d71fea9d4c2ac3fd406f4e38335cc",
+      "fingerprint": "ca9b499e46e968b3c1b353c53bcb1e5d7b83bb6d152da7926ee84d0100ceed89",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
@@ -86,22 +86,22 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "updated",
-      "reason": "Added that a React Server Component passes appHotkeys to AppHotkeysProvider, not HotkeysProvider.",
-      "evidence": ["The SKILL.md diff in this branch."]
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "outcome": "no-change",
+      "reason": "Guidance already matches; this commit only clarifies the meta re-render sentence and keeps an absent meta key absent.",
+      "evidence": ["Diff of the changed sources."]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "4b3822818bce921f0bc65c5b6d5cdf4500c2106ab0c3f79d1b7463437bd94b5d",
+      "fingerprint": "a6f1a4b1ef681c08edc9156b691f1cfab8a2cefef1b0d686f17cb2e722ac3ef7",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
         "docs/guides/sensible-defaults.md": "d769b22f94fc337807b304e75d1f31b7db31043ddb114163ee607930d205a976",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "29a153faac08f8dccb8c5c74aa7ee2166a8d121be28c29cf23f08d2de18aeac5",
+        "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,11 +113,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -275,7 +275,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "9bcf97728f5e82531f592ad71f7e633e3292e8758d91a17a27afa9074e7008f9",
+      "fingerprint": "45a666b69f38aa56a1f855a916b5ded169452cdb35b4772b0f90cae89bfad912",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -293,7 +293,7 @@
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a74db3400ec989737d270db75970b396e79a3a15b1e271bfc593ebc547db6daa",
         "docs/framework/preact/quick-start.md": "15dd32dedf3fa4374a1d1203e0025019b2d1bb0ac8cb5a293022dba955680dae",
         "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
@@ -333,12 +333,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "29a153faac08f8dccb8c5c74aa7ee2166a8d121be28c29cf23f08d2de18aeac5",
+        "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -406,11 +406,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -683,27 +683,27 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "4a6e409c7fc003d2a9a9a4111b562132d597caceaa585acafb5a6cbdc1db3726",
+      "fingerprint": "dccbd3d7287ecedb3d233bd0ec1991dac8588a8b5968e71690e8978a12b081fa",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "33ef4cee6ae0327e7a5e080e7c91dd50f4799b55cb7fa89c27df424645d69cc9"
+        "docs/reference/classes/HotkeyManager.md": "81dbc0db123446fb5da43f1b5fb197a02549eeaa2fc09f81b2cc4051e89063f4"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/classes/HotkeyManager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "d749c3aca359c77b23edb05d3a6c71532f4143b411fa0f58740ef8b756ed4c8b",
+      "fingerprint": "b437d4d522bbcf6b272db82d4dde23d68ac2e49f768c0070364081811d47bf13",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "c80026b2654586ef6be8fc3faf455afce683cd667515cda58ed6318145e3a6e4"
+        "docs/reference/functions/getHotkeyManager.md": "d0c1bbd7a470f3b059ff28522962dfcdbcbc924fe9a5c17ae1fcd1bd360290f0"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/functions/getHotkeyManager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1282,171 +1282,171 @@
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "3af76436d7268b3640c63eb68ffbe6731adcaab30af73d0ec6e50bb16a000765",
+      "fingerprint": "97bc4d3dba32b780b109857c71d9f2172a6e10d9bd8572523718478864dc1f74",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "67841e74aefb0de44fb43b9b5177f7357094260f657e9d6d124747384ee5f60c"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "555240d3147e91c896d1f3e41826d95fb7e38ef96a7ca0d0459a2386ff6fe61b"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/functions/toHotkeyRegistrationView.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "43f6dc6c48006df94517aac1071bb442b5f9c4625dbfb40fadb19c7c6f3bf9ae",
+      "fingerprint": "8b65212062cacbd5d75397799bd389619d9b790e8b490f681a3e523f2725022f",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "3636ac7213551fdab498372a1cfd86392d80110d89b8ce48fa34802814f62303"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9e7d8e949c43fc0efdf87488c5365f85ef2b1cfa1d2c1f84d33261caac2b3424"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "98c0cecf42199cfd645054fa1a2ea07c80094552ccd75b7cf28f74467f90f535",
+      "fingerprint": "42efa41841f22bd870170c6deda8d3a07de10706edbfe41679afd3cb8faeacb6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "81fa48a5529b894c1704c2c1fa7fc08ca8d84b0d10943a4f9d9bd744cdabdd5b"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "26859739632b053b3435984688cf7a9baf3caabfbc8efca1147bf8e89ba0e020"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyChordOptions.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "692bc9b5c2c361d2529f94b1b03a89d6349e6875a83ffe10fd393ad2db90c259",
+      "fingerprint": "ea071fd4ee15a1a0c2011a7d11aff314eb283a8f42912ecb47d3a8dc4dbc343f",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "4fe8bf3a9aa7a34905c65ec0159b2811b57ec5a2a053975f7c1b0c8f344d47a8"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "77d485d01eb117fffb2292c4c314236d61d1b8684e44f790d322ea4970d664ff"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyChordRegistration.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "98476b1dbdbafad75d8bbc268bd5eb754b82f82c92f12d9c453354cd86a75365",
+      "fingerprint": "1fe40b94a8becfdd8bd69c0428932bad303a4e89edd8e98dd7a819599db54877",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "7622ef0f9df331dfe434a29ff15c5476a4afadba97783e6eeaf2a187868f9941"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "f92f6477cbbd564054a09de540afb93a134889e066d4c4f9a25af326db359f3c"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyChordRegistrationView.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "51d87e85fcda34b51986686f63aec22c7892dee8b924bf70f3110545ba9a8255",
+      "fingerprint": "275cf0609e3375fe041cffb2a8b02b2f9047b4466b5eebee99d98145c3ee833b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "6296fbb0b572a620fc2ba90d7d1ce9dc87531af2121a543f81e9ea304d9f72b9"
+        "docs/reference/interfaces/HotkeyOptions.md": "69b22c368db176345da5ef2db544ca483119d1f4b9ccf47891acc6cdd725d8f2"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyOptions.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyOptions.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "d9b1f2ec6434bb7def36842dc485723ea1deedd69862f1beee32b232204cbda2",
+      "fingerprint": "4290a41a0d61571d821beba2035b278c5681a534512b826b26cccd896fbe95c9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "5dc81d4f44e5eb16638918c31912283bc487c000d4dea7c722a0c89e2fa3ea43"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "63345fe94aea1c8676cf247bdfb880e1734a9361fc9e6e1553eafb7b5e6ad6c4"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyRegistrationHandle.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "f18d38f0a2c01a92868e57f7dd9b61ae3a2d8fa7cc23ab4f84eb1db17b3f715a",
+      "fingerprint": "4e36697e220f70243d5e47c9f6dfdb0b28cd8a8eb03482933d06075186faef61",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "24fce3dc434e2ca2ff808291bcb058417c64931b2acb46f983009dc608889573"
+        "docs/reference/interfaces/HotkeyScopesState.md": "17c4049c6a626dd8857c7b87ee4eb55e749a9a530bf5dca515b8bf1f514b356f"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyScopesState.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyScopesState.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "b4ad022ef5a9f4c54e75c1de0832718c7a95e644e71e79174b967114b9ec1062",
+      "fingerprint": "eef1720d70d830c06d10635476337278820a9328373f3b46b58abcb337ad792c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "a51358141fcd26e9a2a3223578aecc732a58f000cf2bb4c9256b1b917eb77a56"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "7f8981ba1fe574e16b4466af92ebec6f7615479cc06874c55dbbff1c33617aa0"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeySequenceOptions.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "2b78fb4bbe196189104b3f66cf82d64a8871365937edd13e90fd8b44b7579eb3",
+      "fingerprint": "0dd601911d74bdbf7008bc943c2362869b00447796072280fec1fa408ca120b9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "f2d3b0f4e568a8a688f76a4072715958f35cdee8f3e1a35bd6846b4e7a319855"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "d94a7cb455da1a1fc6eda5d5755153b3419ba085540d6bb2202f61db3a579687"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistration.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "ee0a75da41155010f849d2cf96c92fa86bd010b210b4391bc6e6b88abca10a4c",
+      "fingerprint": "d72ae96095da27ef77b7e493667392b8cd57bbd44ecde9245e1f09a0d36e5737",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e8320da9961a1c10cea4adc72f75ee8423b6450fe5f7c9312e5d885eaeed5fff"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "97f70a278ba26e96ccd9010032b11f6e425760379ddfb926f98f03f7e43afd67"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeySequenceRegistrationView.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "665604e6bd1a603d6cbe203c93f562af447318f489698d31773f4976efe48369",
+      "fingerprint": "984b7a2279a7d1575a951390ffbe4e15a64fb84899ea8fbe11f37dd762aad9f6",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "fb0330d499e93189b2c2d66efec2e30454a745bfc49f48ce89195365c6b200e7"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "5b98db06194e944d96baa99dbe3d91b619603649ecf1400a4d2d9bee7c1216a7"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/type-aliases/HotkeyOptionsFor.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "756b7efb4f9cdde7cc3a5a9035446b79d27ae82692b4f3c0f73e64c06f1f6238",
+      "fingerprint": "231a1d59466eacac84133c94c955c6fc792c04e9945c5d1d85e0db50308cc042",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "5fa7ade25e314ddaf647f408d0cc21f1c44c820eeb24839d3a8abe3aefa7fcde"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "5d3ec3e5743fe69713b5f007ea1282a3512140d4eb1d8bbf13c15722561931a6"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/type-aliases/HotkeyRegistration.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "4bf5c09f7adde49a9ffd1337b8838ee408439ccf68bdadb09bb4f8fdf1e075de",
+      "fingerprint": "9371a092efa9554c24bfeddc5ba4b26f81cac96878bd7ba7be07a9b81ec4de7b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "947877c7b6aab0235d012d3978ea9441af02bef0779b6178e5f87a50644dc17a"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "d27d31838c73ce515ea7366dfbd5b2275ccfe1099c420c1f762b67100c1e45d2"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationView.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1462,27 +1462,27 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "c62e209337ef89e10dfeae31be6bceff30f723158ad667442f6e7e9bdad51694",
+      "fingerprint": "51b726825767eb17f5ef4f83605c3a71bbfe0f27eb5442923d726faf818e56c4",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "5a10cee62a1b90854952af5fb479ffecb700c363645a03fc41eb5517103c0af8"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "aa116a8c66f3ed74be9442421f9eaaf714482e711fe985d7a92cd3b0a17be681"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "57eeecfea1ac2c07444ba20ec65ba659c95773b9303e3a38342edcd33b704aba",
+      "fingerprint": "6aaa3a1382d0c2e991962011a46c4f3078a4ccafec43e7b41d8dd9ed143fe15b",
       "snapshot": {
-        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "bce5de497b95e6d6427e280c7167786442b44939ebdcfd2c3f20cba8c3fb03cb"
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "82c35a7fc1f824986a27f49a9289dd95cb0814cdf3cce60a3c48040269707d44"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/alpine/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/alpine/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-manager.md": {
@@ -1490,11 +1490,11 @@
       "snapshot": {
         "docs/framework/alpine/guides/hotkey-manager.md": "4346caae21d013a161814cf86d0d15aea1a2428c706640b4f5763bc85e40858a"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/alpine/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeysScope.md": {
@@ -1678,15 +1678,15 @@
       ]
     },
     "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "ce8c6386afdedfb5c570ce3a1abe78a134819cba37a6aef558408b2c3bb26f5f",
+      "fingerprint": "1fba709ea65e3bcc930acd8264bea6ce51c1eca8403bec6ce3b49ca36ebc0014",
       "snapshot": {
-        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "ee5cea6face5c1252c352f710029a6011cdb9e715c377f3ad428500c5057d499"
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "8be8bfc909f05e4b1c37ebf71a054e834c75279fbc92eb5c93060073eb866981"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/angular/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/angular/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/angular/guides/hotkey-manager.md": {
@@ -1694,11 +1694,11 @@
       "snapshot": {
         "docs/framework/angular/guides/hotkey-manager.md": "7bb6aab15d6fd5daf32baa7131dfe585a92a46ec45d6cb4062683a48f131beb1"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/angular/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyScopesState.md": {
@@ -1724,15 +1724,15 @@
       ]
     },
     "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "39914e61024ce72c094abf62afac36cef97f9b414b2cef0efd00f2251a014f57",
+      "fingerprint": "a2aa8721edcd7c4b2c3df792ef5c08958963b518fddf652c9089df012e5e5946",
       "snapshot": {
-        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "37a9a0a51eb97311d14988707dd6b20e2d09f3bbeaf51c01aada1e356214234a"
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "ca0473580fadefee64551eec94dbd4d56172bfaa2d8cba8876ea3eb5715d61cd"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/ember/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/ember/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/ember/guides/hotkey-manager.md": {
@@ -1740,11 +1740,11 @@
       "snapshot": {
         "docs/framework/ember/guides/hotkey-manager.md": "418bf5e5b0df1c286de1e95e17d71513abea2e609233d22bc61834fd3ec7e129"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/ember/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyScopesState.md": {
@@ -1770,15 +1770,15 @@
       ]
     },
     "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "d6377def0f1b52c3d7708cafa6193abd5f79d90d9546dc0d99adfed239dc5592",
+      "fingerprint": "e40046447325e892d296c800ce5ebda374ddbdefa30cf070912157850075a10b",
       "snapshot": {
-        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "59e40588a2ed08e2e4e78301e602d7e515476c186219b79635bf5b2cf106f5d0"
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "a8563f5b7371aec308d0edfc29add70769b6e777b0dfd4ffc24e801ac922328f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/lit/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/lit/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/lit/guides/hotkey-manager.md": {
@@ -1786,11 +1786,11 @@
       "snapshot": {
         "docs/framework/lit/guides/hotkey-manager.md": "2f4bcbe63b52142d1f16127ca42691a715c0cc31bb5451c7fa96c04200e2b765"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/lit/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
@@ -1814,15 +1814,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "1b6eb2d9a4284c1e4f05545a5df399c9e040c44a777208f38e7f5e88145a38d4",
+      "fingerprint": "3c456bae0b11e4a7d5dd842c8b5d29fccb4e546578b593587b34727a3e092112",
       "snapshot": {
-        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "11ebeea5453c4558060cf75691a2030ca91bb3d9618e1ec1541aa09727245c4b"
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "035c51b6e9c3a5c6b63110e41e53d5262c95c6d20bc9f9a6d6acca0fb1726582"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/octane/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/octane/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/octane/guides/hotkey-manager.md": {
@@ -1830,11 +1830,11 @@
       "snapshot": {
         "docs/framework/octane/guides/hotkey-manager.md": "e6bd9baf09036f5c4ac47dddab9ef55816c25708403f5bc2c73dad261d4c4d03"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/octane/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyScopesState.md": {
@@ -1858,15 +1858,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "db0a378c109fe05dc31e25211ea6264e036a2df5fca74bc9fe76f40b63a08633",
+      "fingerprint": "58e74079da7cd86dafc113ebc8b289ce8a318b1635ad414abf4f438b4d4adb59",
       "snapshot": {
-        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "6a37723afc14da168da7e53fbd00a03bbb01b1dca6a5a75f4dc59fc632918596"
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "eae832012fac6ef17cbb5a88a2f3be7274dcba3a5e31f9b162461924d4c17883"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/preact/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/preact/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/preact/guides/hotkey-manager.md": {
@@ -1874,11 +1874,11 @@
       "snapshot": {
         "docs/framework/preact/guides/hotkey-manager.md": "e56b485e984290847ff097f100f72d0e91173fde7be82cf20f4237a30cea40c7"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/preact/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyScopesState.md": {
@@ -1906,11 +1906,11 @@
       "snapshot": {
         "docs/framework/react/guides/hotkey-manager.md": "5f2265ea60fbdfaca8c06c52db31b7b1adf382624e85e089aac7d5a1c28c980b"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/react/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
@@ -1936,15 +1936,15 @@
       ]
     },
     "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "71b83ac149de5f62fb2bf27b871b21a8be85a82e41ce04ab418fac171dc52fb7",
+      "fingerprint": "67ab69f7f2e8279bc4d489fbefc720cd23f5890cf32968169a6b6dbe1fc6505b",
       "snapshot": {
-        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "96659d5c73f47bac9dd4c7e78b978b79b98e32622d5cb8745218883c0a52d4a5"
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "2286384e0afae31e56afdb54c46a2b85ddba3e8e1a11b5bf297d9da89d773de4"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/solid/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/solid/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/solid/guides/hotkey-manager.md": {
@@ -1952,11 +1952,11 @@
       "snapshot": {
         "docs/framework/solid/guides/hotkey-manager.md": "87a129610814f56acccd62a29377d80cf564f3c8201d795c8ac0214bf19d54ee"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/solid/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyScopesState.md": {
@@ -1980,15 +1980,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "494b4e19a48b7d3f3aff73b71a63988cd289434ed614cc28cc27b2295862cff0",
+      "fingerprint": "669a6fac5440035ba9dd9af14031f3b7fe2c131fa814f189aad9a52a1155f767",
       "snapshot": {
-        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "dc566029606ddcd39863e1dca8b706ab2a6e4cbc2cab2991758a39ae4b8b4502"
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "382d1e391ff3c71d095957a6a32fa9350322fe9fb28c38ba0ead0e8cc99d423c"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/svelte/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/svelte/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/svelte/guides/hotkey-manager.md": {
@@ -1996,11 +1996,11 @@
       "snapshot": {
         "docs/framework/svelte/guides/hotkey-manager.md": "4e773afa40958bd509c306673e00183f756211bfe8d7c0b34a4d0beeb98f9214"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/svelte/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyScopesState.md": {
@@ -2034,15 +2034,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "10c8fa1a4268b3d983baaba6fc9667962b511e578312d5206e0f9d4cb25eeeab",
+      "fingerprint": "1e9cf165e27e69a1ae82c5abfd844d6a392a3f6a0d30c639336095a26f80f39e",
       "snapshot": {
-        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "8b8fcb36726a6ef60bfa0028562cd056954127416e44820736c5919c73543d6f"
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "269c6a004e9cdfcd5eaba8064f39c25b2b4a9638f9952ad0f9328bbf16e6625a"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/vue/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/vue/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/vue/guides/hotkey-manager.md": {
@@ -2050,11 +2050,11 @@
       "snapshot": {
         "docs/framework/vue/guides/hotkey-manager.md": "a09cff21218074ed8ee5a77c5621ca6f4f9ea87e85f86548a543778897fbbeed"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/hotkey-manager.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/framework/vue/guides/hotkey-manager.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyScopesState.md": {
@@ -2088,15 +2088,15 @@
       "evidence": ["Diff of docs/reference/index.md against origin/main."]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "850ef6e85a5cc21aa38da7cb5d393d45cec4e27598d167f77ba1571dd0e50422",
+      "fingerprint": "1fd2aad2a3f705f8f33ace3b0fd48ebae4c032fcdb305e83864142993435e0ba",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "cbad3416af43a3226041a88aadd23aa8ca4965cb8a60a601ff506d4c23997857"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "83f25bfccb1ae97faac97793122ab420b91480f0fae07dbfe4815635bf2c0480"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/type-aliases/HotkeyRegistrationStatus.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -21800,15 +21800,15 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "61081a4efb9ea667d57de571290c245f097c7537d981fb8f26d55cbab0f2cf8a",
+      "fingerprint": "61d3f559d0d5c24be07432575035875b84740f3b718e717d66cc50c6acd2e2bb",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "de21b4aaa553ffc416a233a56384359e85b3b3418e859ebea10df81faebce263"
+        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "c544b9f64d27680690cfff9606d9b8d471907d09f9cf4a3a18f6210e2c0ed2d4"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyRegistrationsResult.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/interfaces/HotkeyRegistrationsResult.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/interfaces/KeyIdentity.md": {
@@ -21824,15 +21824,15 @@
       ]
     },
     "source:docs/reference/type-aliases/HotkeyCommonOptions.md": {
-      "fingerprint": "5d1864330bcdb74d078db58fe1891b921342a142488a8e72e3e26d15a386fd18",
+      "fingerprint": "ea2de8afa05b4fa25a4e4dc19ae6c9914aff801f6057592379342e963fbdc4fd",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyCommonOptions.md": "7b8c30dfc937c2cc9dae6472300617d338cbf031593292ea78d4e4abd4baf7e7"
+        "docs/reference/type-aliases/HotkeyCommonOptions.md": "57bdb732182dd839378b1f3fc5de876cafc004482a1f8468757f47c063144a5e"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "c6a8febe5ada139976a4f7dd7e722db6f23a5475",
       "outcome": "no-change",
       "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
       "evidence": [
-        "Changed: docs/reference/type-aliases/HotkeyCommonOptions.md at dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02"
+        "Changed: docs/reference/type-aliases/HotkeyCommonOptions.md at c6a8febe5ada139976a4f7dd7e722db6f23a5475"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyEventType.md": {

@@ -22,7 +22,7 @@ Options shared by chords and sequences.
 optional afterDelegatedHandlers?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:154](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L154)
+Defined in: [hotkey-manager.ts:155](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L155)
 
 Run after key handlers that a framework calls from one listener on its
 root or the document, such as React's `onKeyDown`, so handlers inside the
@@ -40,7 +40,7 @@ Adapters for frameworks that delegate key events set this.
 optional appHotkeyId?: string;
 ```
 
-Defined in: [hotkey-manager.ts:144](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L144)
+Defined in: [hotkey-manager.ts:145](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L145)
 
 Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
 
@@ -144,12 +144,13 @@ even in these controls.
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [hotkey-manager.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L132)
+Defined in: [hotkey-manager.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L133)
 
 Optional metadata (name, description, custom fields via declaration
-merging). It can be written inline. A changed string, number, or boolean
-field re-renders registration lists. A new array, object, element, or
-function replaces the old one but does not re-render them on its own.
+merging). It can be written inline. A new `meta` with a changed string,
+number, or boolean field re-renders registration lists. Editing the object
+in place does not. A new array, object, element, or function replaces the
+old one but does not re-render them on its own.
 
 ***
 
@@ -189,7 +190,7 @@ treat `'always'` as `true`.
 optional scope?: string;
 ```
 
-Defined in: [hotkey-manager.ts:142](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L142)
+Defined in: [hotkey-manager.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L143)
 
 Scope this hotkey belongs to. Defaults to `'global'`, which is always
 active. Other scopes are active while activated with
