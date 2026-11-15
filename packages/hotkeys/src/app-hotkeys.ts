@@ -192,9 +192,7 @@ export type CustomHotkeys<T extends AppHotkeys = RegisteredAppHotkeys> = {
 export function defineAppHotkeys<
   const T extends Record<string, AppHotkeyInput>,
 >(definitions: T & ValidatedAppHotkeyInputs<T>): DefinedAppHotkeys<T> {
-  setAppHotkeysStoreFactory(
-    (appHotkeys, options) => new AppHotkeysStore(appHotkeys, options),
-  )
+  installAppHotkeysStore()
   const result: Record<string, AppHotkey> = {}
   for (const [id, input] of Object.entries(definitions as T)) {
     const hotkey = input.hotkey === null ? null : simplifyHotkey(input.hotkey)
@@ -209,6 +207,17 @@ export function defineAppHotkeys<
     }
   }
   return result as DefinedAppHotkeys<T>
+}
+
+/**
+ * Lets providers in this bundle create stores for app hotkeys.
+ * `defineAppHotkeys` calls it. Adapters call it where the declarations can
+ * arrive from another bundle, such as from a React Server Component.
+ */
+export function installAppHotkeysStore(): void {
+  setAppHotkeysStoreFactory(
+    (appHotkeys, options) => new AppHotkeysStore(appHotkeys, options),
+  )
 }
 
 /** Whether a value is an app hotkey created by `defineAppHotkeys`. */

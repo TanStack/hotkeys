@@ -11,7 +11,7 @@ function getPublishedAppHotkeysStore():
   | null;
 ```
 
-Defined in: [adapter.ts:579](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L579)
+Defined in: [adapter.ts:582](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L582)
 
 The store published with `publishAppHotkeysStore` or `provideAppHotkeys`,
 or `null`. For adapters that resolve app hotkeys without a provider.

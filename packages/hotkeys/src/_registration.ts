@@ -97,17 +97,54 @@ export function handleConflict(
   unregister(conflictingId)
 }
 
-/** Compare updates without publishing unchanged options, including fresh metadata objects. */
+/**
+ * Compare updates without publishing unchanged options. A component can pass
+ * `meta` inline: its primitive fields compare by value, and its object and
+ * function fields, such as arrays, elements and callbacks, by kind only:
+ * array, function, or other object.
+ * Frameworks rebuild those on every render, and publishing them would
+ * re-render registration lists, which render the caller again and loop. The
+ * registration still keeps the newest ones.
+ */
 export function optionsEqual(left: object, right: object): boolean {
-  const a = left as Record<string, unknown>
-  const b = right as Record<string, unknown>
+  return recordsEqual(left, right, (key, a, b) =>
+    key === 'meta' && isReference(a) && isReference(b)
+      ? recordsEqual(a, b, (_, x, y) => Object.is(x, y) || sameKind(x, y))
+      : Object.is(a, b),
+  )
+}
+
+function recordsEqual(
+  a: object,
+  b: object,
+  equal: (key: string, a: unknown, b: unknown) => boolean,
+): boolean {
   const keys = Object.keys(a)
   return (
     keys.length === Object.keys(b).length &&
-    keys.every((key) =>
-      key === 'meta' && a[key] && b[key]
-        ? optionsEqual(a[key], b[key])
-        : Object.is(a[key], b[key]),
+    keys.every(
+      (key) =>
+        Object.hasOwn(b, key) &&
+        equal(
+          key,
+          (a as Record<string, unknown>)[key],
+          (b as Record<string, unknown>)[key],
+        ),
     )
+  )
+}
+
+function isReference(value: unknown): value is object {
+  return (
+    (typeof value === 'object' && value !== null) || typeof value === 'function'
+  )
+}
+
+function sameKind(a: unknown, b: unknown): boolean {
+  return (
+    isReference(a) &&
+    isReference(b) &&
+    typeof a === typeof b &&
+    Array.isArray(a) === Array.isArray(b)
   )
 }

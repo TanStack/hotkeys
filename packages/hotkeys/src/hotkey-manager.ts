@@ -117,7 +117,12 @@ export interface HotkeyOptions {
   stopPropagation?: boolean
   /** The DOM element to attach the event listener to. Defaults to document. */
   target?: Target | null
-  /** Optional metadata (name, description, custom fields via declaration merging) */
+  /**
+   * Optional metadata (name, description, custom fields via declaration
+   * merging). It can be written inline. A changed string, number, or boolean
+   * field re-renders registration lists. A new array, object, element, or
+   * function replaces the old one but does not re-render them on its own.
+   */
   meta?: HotkeyMeta
   /**
    * Scope this hotkey belongs to. Defaults to `'global'`, which is always
@@ -1023,7 +1028,13 @@ export class HotkeyManager {
             else if (key in defaults) options[key] = defaults[key]
             else delete options[key]
           }
-          if (optionsEqual(reg.options, options)) return prev
+          if (optionsEqual(reg.options, options)) {
+            // Keep the newest callbacks and elements in `meta` without
+            // publishing them. Write into the same options object, which
+            // registration views already hold.
+            reg.options.meta = options.meta as HotkeyMeta | undefined
+            return prev
+          }
           const capture = !!reg.options.capture
           const from = manager.#listenerTargets.get(id) ?? reg.target
           const to = listenerTarget({ target: reg.target, options })

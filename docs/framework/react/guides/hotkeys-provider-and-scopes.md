@@ -53,6 +53,8 @@ Pass your [app hotkeys](./app-hotkeys) to the root provider, along with the user
 
 Nested providers use the app hotkeys and custom hotkeys of the provider above them, so pass these only once, at the root.
 
+To pass `appHotkeys` from a React Server Component, such as a Next.js `app/layout.tsx`, render `AppHotkeysProvider` instead of `HotkeysProvider`. See [App hotkeys with Server Components](./app-hotkeys#app-hotkeys-with-server-components).
+
 ## Group hotkeys into scopes
 
 Apps reuse keys. `Escape` should close the dialog, not the panel behind it, and `Mod+S` should post the comment you are typing, not save the whole document. You could pass [`enabled`](./hotkeys#enable-and-disable-hotkeys) to every hotkey, but then each component has to know about every other component that might want the same key.

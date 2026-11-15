@@ -67,14 +67,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "e13931b2a9c6686457b78ec68a9ed6daa43977fb2235e666e9e97ad0b441d3b3",
+      "fingerprint": "d9a46651ae517b6862bb6f3ed90554f2f54d71fea9d4c2ac3fd406f4e38335cc",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "41f7693e08d3774659234e08d6aba8f607c4ac41fa1c8384eee3409d59554ecd",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "ca39a1fc11fa49a3fef854e0effb912c433d3041b261622c4f72bb74f6e7b64c",
+        "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "84daeb5bf36e261bf0bc4daca4ea8eb2fd496d23e0d3c7570338fa6a4422a145",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/src/app-hotkeys.ts": "c3e67dc1cba2982551d5dcd2862fe4d67ee048993357c18a8d230b38f5a05b6c",
+        "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -86,24 +86,22 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "The change shares type and helper definitions across packages and keeps every public name and behavior, so the skill text stays accurate.",
-      "evidence": [
-        "Searched packages/*/skills for each replaced type spelling and changed API; none appear. Public export names and option shapes are unchanged."
-      ]
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "updated",
+      "reason": "Added that a React Server Component passes appHotkeys to AppHotkeysProvider, not HotkeysProvider.",
+      "evidence": ["The SKILL.md diff in this branch."]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "68633edb14471da44e6926e0b2dba75c01b309c779a219a29d270b6300838c20",
+      "fingerprint": "fd723462961ea1631a365a7299e21eaaa7cf95b66f76499b362cb4afcafeb32f",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
         "docs/guides/sensible-defaults.md": "d769b22f94fc337807b304e75d1f31b7db31043ddb114163ee607930d205a976",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6073879da861da98bf8d87d6323b2d024d3a3649266e9aee8612fd44f490b9a6",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "25d47f00725705b54aa6eb8024d210a350412b8fc8202c8231c1c2970df661a6",
+        "packages/hotkeys/src/hotkey-manager.ts": "c3375d8b7c210f62141edf0da4b96c74d19db4b185c20d4d0fee8d4b3f604a1b",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,10 +113,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "7e43e7c071ffaaa0449912902a34bf1345aaf186",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "updated",
-      "reason": "The Escape rules now cover manual popovers, browsers without closedby, and preventDefault: 'always' on a global Escape hotkey that is turned off.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Added the meta update rule: primitive fields re-render lists; a new array, object, element, or function alone does not.",
+      "evidence": ["The SKILL.md diff in this branch."]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "9d3464baf9efc96d28f5361bbfbc50554be6da6da2187f650a701b79eb443b7b",
@@ -179,17 +177,17 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "e0236bc0e9be805d47ed7e521f1baaefc5a00e2c84e1696c559cf09572db523e",
+      "fingerprint": "f8f9bb2def02fd9f59eda46dd69362120207b426dd1576151d8a1f7dfb437311",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "94eb6267d3210dc0587cf30da42caeb4bc8f5c1e9fa28864c0ed4dff40c78067",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
+        "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "4339f02f27abd944fe58cea13b1c3edaae5e7304949ec0a318a9643ac9a9feba",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
         "packages/react-hotkeys/src/useHotkeys.ts": "2faa5a863c8db89d93bde16d0d39840a6fe31c4bcd474d434b01440cdc826960",
-        "packages/react-hotkeys/src/utils.ts": null,
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -208,12 +206,10 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "The change shares type and helper definitions across packages and keeps every public name and behavior, so the skill text stays accurate.",
-      "evidence": [
-        "Searched packages/*/skills for each replaced type spelling and changed API; none appear. Public export names and option shapes are unchanged."
-      ]
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "updated",
+      "reason": "Documented AppHotkeysProvider for server components and replaced the deleted src/utils.ts source with src/AppHotkeysProvider.tsx.",
+      "evidence": ["The SKILL.md diff in this branch."]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
       "fingerprint": "827944e4f6c2a65f10effc96cfd6fefeeefeb09e8dd3a006522426f6a3a88185",
@@ -277,11 +273,11 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "bada6842751ccdb25deb35fcf94947d6eeea06189a1a7edfe74958396e69a938",
+      "fingerprint": "6d67a44b729031619ce531c05540a722aad9fe78f08c9c277155369e4ea29ff5",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
-        "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
+        "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
         "docs/framework/alpine/guides/app-hotkeys.md": "ba8566f13ea2dfe6d63ca80aa5456bb4729bcb8db0c082980171ea7900025def",
         "docs/framework/alpine/quick-start.md": "e6e78df61dc758f7e934ff157ab0f0207f34ef0159902039405d773efadfc04d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "eeb6082bcdb07cc21e1fe2c7e7849b260f7931d1c803a41333332e88f28b20b5",
@@ -294,10 +290,10 @@
         "docs/framework/octane/quick-start.md": "ddd84d511804926eacbafcd68ea50a95ddb7b210acd7cc5b97226cf78bce9ad8",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a74db3400ec989737d270db75970b396e79a3a15b1e271bfc593ebc547db6daa",
         "docs/framework/preact/quick-start.md": "15dd32dedf3fa4374a1d1203e0025019b2d1bb0ac8cb5a293022dba955680dae",
-        "docs/framework/react/guides/app-hotkeys.md": "41f7693e08d3774659234e08d6aba8f607c4ac41fa1c8384eee3409d59554ecd",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "ca39a1fc11fa49a3fef854e0effb912c433d3041b261622c4f72bb74f6e7b64c",
+        "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
@@ -333,14 +329,14 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "afddc8e2c34ec8bb6351d4162d38710c60927c60cbb0cc6695b5dfd751d32159",
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "84daeb5bf36e261bf0bc4daca4ea8eb2fd496d23e0d3c7570338fa6a4422a145",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6073879da861da98bf8d87d6323b2d024d3a3649266e9aee8612fd44f490b9a6",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/app-hotkeys.ts": "c3e67dc1cba2982551d5dcd2862fe4d67ee048993357c18a8d230b38f5a05b6c",
+        "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "25d47f00725705b54aa6eb8024d210a350412b8fc8202c8231c1c2970df661a6",
+        "packages/hotkeys/src/hotkey-manager.ts": "c3375d8b7c210f62141edf0da4b96c74d19db4b185c20d4d0fee8d4b3f604a1b",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -361,8 +357,10 @@
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "493b6e75c203964b8f3b4e9ff455938d0dbfb041e3a44961164452ff9b1dde8c",
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "94eb6267d3210dc0587cf30da42caeb4bc8f5c1e9fa28864c0ed4dff40c78067",
+        "packages/preact-hotkeys/src/utils.ts": null,
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
+        "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "4339f02f27abd944fe58cea13b1c3edaae5e7304949ec0a318a9643ac9a9feba",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
@@ -407,10 +405,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "7e43e7c071ffaaa0449912902a34bf1345aaf186",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "The skill set and domain map are unchanged.",
-      "evidence": ["_artifacts/skill_tree.yaml"]
+      "reason": "Synced skill_tree.yaml after the React skill replaced the deleted src/utils.ts source with src/AppHotkeysProvider.tsx. No skill added, removed, or renamed.",
+      "evidence": ["Diff of _artifacts/skill_tree.yaml against origin/main."]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -682,24 +680,28 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "ff1af0dfccd3cba94c346b081e62096450d088c6e001bd868f4789636c34f16a",
+      "fingerprint": "4dfdb9841de864424d06ecedbb8fa15d4c1f93d45215a5b5f1c7b17ee3f0b7cb",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "ce0cb482933ae63b2e52ec37e96a74c3dfa01fc471e141d406c1d2c0423b5560"
+        "docs/reference/classes/HotkeyManager.md": "685cfdca6806a3182354fb659e92d25932b4d5beba2df539115498ffd95c11b7"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/reference/classes/HotkeyManager.md against origin/main."
+      ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "9fe065495ee0dd19d1f0ba49d570ea9e6b5353642ea7fc9cab1988116e99d51d",
+      "fingerprint": "55a242390bf1cd5c5c1e8e0b3cdea6f8159f9dff92acd0b2e572b0c884b5e76c",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
+        "docs/reference/functions/getHotkeyManager.md": "059e5e035d36786813196658eee5166c6447420cb8a5c5f7f13ebcd7c5d2e85a"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/reference/functions/getHotkeyManager.md against origin/main."
+      ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1005,15 +1007,15 @@
       ]
     },
     "source:packages/octane-hotkeys/tests/octane-hotkeys.test.ts": {
-      "fingerprint": "6a796da57fcf4752b45c8abd761ff27a593ff6026931f94fb3480d2188f04c52",
+      "fingerprint": "7bf3475e06e333c4507a1532701b68ddac184d4c08de1d72ca35e68dbaf8ddbd",
       "snapshot": {
-        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "d6a427110c5dd049f58a6dab6749bae7ae0a6e3e6a0c1634ad59202bb6300fd9"
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "c6559a46d078cd14f04d8a11869cb2030a6ccc2b879e7c0ad4585bbc1c38b05d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of packages/octane-hotkeys/tests/octane-hotkeys.test.ts against origin/main."
       ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyHint.ts": {
@@ -1277,171 +1279,171 @@
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "70df4d2234b5ca374b41c9a608957ea5ab8ef537223695d4c6b3c30f1d85fdd1",
+      "fingerprint": "981ef12ee7c685bcf8e8bd2ecd8d5dd6bdc3670d0292b5980b43e863ca12b37e",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "a517ad33c8e079b78e7054212de6d7ec866b3386a2790537511a7cb8f317ee22"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "9a1cffebfa23d686c57a443659258e3a1fd8eba31242af441cb9d446032ad363"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/toHotkeyRegistrationView.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "57219bb44adcde31d76e043c4856c16d00fb594146993d3b5141706d0050545a",
+      "fingerprint": "6eefc22e3cfbf49dffa79553f81bf30691f987621d84fb032034a1a8d78850d8",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "ce8f94683820f0b9f89126224eae28be61d18213e45adf52cd12990744d8d2a0"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "2aa30bc94bd1759b262d14dbab32cddf13cb7d8ad2a4dd6ad7d8a5b01237840c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/ActivateHotkeyScopeOptions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "0f5a11da6148eecb10ed6f8987aac4f45bbbdf0828c1b48d58976a98f80919d2",
+      "fingerprint": "1d0f495416ba48dc37aeff3c23ef80175958ebdb049a27968df30435757a2aa6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "3f60ca9e2f39ffb650a6fc8d687ad889f0895b396ccead2bb6a1bb1160da30ae"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "dd251cc551635e80b51a99e14c6c443c476cf84eb5ef776df22da10aea3c6104"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyChordOptions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "949675262caf7cf03cf7a77e7cf3ae0bf2df7d71a7060ae91b0a18fd2836f117",
+      "fingerprint": "fdd8b1843db4fb1655365cacca17100de83b19571068658ffe1dbd15b25de54b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "040593606ecfd258b30dc8cf1d743b776a491c86eca91acccb0200e6e00f04e7"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "6a07bd5894e19769064bed2b6a14f1f34374e2960458bc4c6aeee8f0d2db7489"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyChordRegistration.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "69afb14255202032c4318bf535598d747ea67f5e84c90f5579d056d11c87b083",
+      "fingerprint": "6d650a95f66878a4333b4158365264a92e7f2ae16c22af4a89da0ac90b9b5a13",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "02ac6ef9a67d8e02c812ac671d0b88cf6770346a6e3dcb7774d9ed034e7c8d1e"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "aa22b9586611287395b20a42a66c8f0d9e0775f83be61583720ce772f9c7ce70"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyChordRegistrationView.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "43368a4965763cc48a82ef953c0535e1eb30b3e9fed78965c2624411cae20e49",
+      "fingerprint": "b0a1e60e3a628547275b54552abdfc13623b39dee15297372f8ae1bf05888191",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "693ee7b3d613ed851fa7f022a9cc2a8c04e8e401a2f6b50ce36c7287926c5d6e"
+        "docs/reference/interfaces/HotkeyOptions.md": "26fe67bb17585f9f35138708a61c43763cf31bdbf56ae98ba6b42646b142e029"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyOptions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "75cb9239eb9d6eaaf5d835255b9589e5d25e8d20a0b540847e8b90442b087c4c",
+      "fingerprint": "bc62911286cce03c7450ef22ade21697c8fd95b6dfdbc4b3899d0e2661d1e015",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "95bbae0adc37214a9341da9ee47062377198c462b3a3ab07f0b7daae9f115368"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "1ad5d04833dd3521d5dd94db99501c85a22289a1b6d59fc3803b2ffe64667060"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyRegistrationHandle.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "cd092b9a0c3216c57b857168d68b3f91fe7fbf7bfbbbd4948ed0ff2527192810",
+      "fingerprint": "c6697d7e7ec815e767fa5a3a509b12972dca59c12e1f2b7732913ca94769f7b3",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "89cc91b23a53958139767663ce3ea9c27923853ce2e85066d0a56fc2ae20f14a"
+        "docs/reference/interfaces/HotkeyScopesState.md": "1fd998f812e4dde4fcbd41a52322d47b60ba8b50d485b88f3d62c85bd007ffc8"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyScopesState.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "37e6fca5e42de6f86c13b67220b1b8ba49dc099223855004c5e610cdd113a593",
+      "fingerprint": "130acf2996a1a4d95ddfb5f81d587a4ea2809d3742bfcb175015201f6924493e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "e201fae9057b4fe3568ccfa00048bc70fc466fad41d41021c94a6ed844ddc3ae"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "0c7f309b378dfcfad303519b0939b3910b0f124706d42f6f67f9043a410645d6"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeySequenceOptions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "5f1ba7c9bc1675698db03894bfde4a99f6759d04396cb5b2ad600559e255c0c9",
+      "fingerprint": "0cb3f39afe92a2c5c2af812e3081b4389209b87ae50ef758be9981aec2d83239",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "834806e9fcba20663a14eb1fd4952f834e91b231d1bb749023f20f3659c94995"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "52d2db6ebc899004c76354b49cff1ae8212f74841b7c91d73976a236d291ec84"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeySequenceRegistration.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "eb195a1a1d206db6fa6838e58c71d0dbe3b6994b675adb6be11154a9101b2edd",
+      "fingerprint": "7b21d3b81fa0d390b62fa1da9bcacfaebd78dfa79476827ea072251d561685d1",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e451453e3ca46393b91bc0e22fa2c7ec80820d4e96443c8cdac73a1a3110da8c"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "d8f32f42e42039451ee5d5926e6770c124d34eccd0d522741d2306f1563c2d48"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeySequenceRegistrationView.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "13e844c1a4fedc384ad84393bcf2b29a472fcdda8b5bbe28adca277cb785e103",
+      "fingerprint": "adc4b2b149349dff1c29f8b535983f7705ae25bb1ef88572eb090c891685ce9d",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "3ab7b881986b47e7c211e5acc07fb23d7c083431b8c69f415c72eea107d90b4b"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "a69bc6a238e77c0419e7f4143efb618ac9ec78716a4a41cf637f40146bd3f0de"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/HotkeyOptionsFor.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "4bfc63b1579b86de8aeb6a21cf4022af452708fc6c7bd91ca8f511170d74ebb7",
+      "fingerprint": "a4a14468d9b61989104b7dedeca6cf451308cb5eae5b3a964f1cce5d3035a8dd",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "fabdb7ea7b17dcffe2ad60e532136608fbae233a58c4889960a42531d3cccf38"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "2c584183a94ec93ced3ba62f05ed3f6ac9dc2352e5c6e00402d2baf16d08a5a8"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/HotkeyRegistration.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "609c8c98e275e1dca1ae0fdf14053505e427e32fd1e5c5b333e9faf63b74a807",
+      "fingerprint": "4d56d1e1694bdcb126327e4c246946342e1311ea31bf8ee7869018747a099aaa",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "9d4cd7bfa7e8cedd81ee3fe8592a9a1351e89007516cec32f8ad98ac5e6f9e0c"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "a76b3414a795e47082d0d53e6f6cbe096800e3b36e1dbe678d91eb0b31a7d508"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/HotkeyRegistrationView.md against origin/main."
       ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1457,28 +1459,27 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "408ed955076dfba7d279762f3fabcf23be0cd7ca019248676042ecf128470314",
+      "fingerprint": "14f93bce1e7e21728e48454b0ba4b26d1d1b5bd7e602d6152f95e66f614b1bbc",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "1fb0fa04ebf172e8efbd26bfeaf48e7d861f3c20ec529f43bdf503999a104242"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "dfada9d25131cc15d3e652b7855dd377d22786de5817f28e0d72f73303145c18"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of packages/hotkeys/tests/hotkey-manager.test.ts against origin/main."
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "b3f74e002314615f9c5531cc727c1f11596323ba37274c068ecb37597d24ef2a",
+      "fingerprint": "57eeecfea1ac2c07444ba20ec65ba659c95773b9303e3a38342edcd33b704aba",
       "snapshot": {
-        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "e842faa24dd1a7c1e7e4fe4b3010ff5db5f1bcff94054bfcf5c80a0680c070ac"
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "bce5de497b95e6d6427e280c7167786442b44939ebdcfd2c3f20cba8c3fb03cb"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/alpine/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/alpine/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-manager.md": {
@@ -1674,16 +1675,15 @@
       ]
     },
     "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "304a19d952092ce0fdf71b41478d72b46076fbfb761a13be242f411dbb4de044",
+      "fingerprint": "ce8c6386afdedfb5c570ce3a1abe78a134819cba37a6aef558408b2c3bb26f5f",
       "snapshot": {
-        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "ff68bc9025cba316f186ee22cb49315c8066ddf304cd8ccb3d8ca8170f19507e"
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "ee5cea6face5c1252c352f710029a6011cdb9e715c377f3ad428500c5057d499"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/angular/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/angular/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/angular/guides/hotkey-manager.md": {
@@ -1721,16 +1721,15 @@
       ]
     },
     "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "20d8f8f223b2b03c2f4ea0046659be293e3836be68bb979ea6c4404166b824a3",
+      "fingerprint": "39914e61024ce72c094abf62afac36cef97f9b414b2cef0efd00f2251a014f57",
       "snapshot": {
-        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "4ca9d62791dccbc4c614f077ca8d6f1e8d3eb895182a57699b3b84c3adf31638"
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "37a9a0a51eb97311d14988707dd6b20e2d09f3bbeaf51c01aada1e356214234a"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/ember/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/ember/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/ember/guides/hotkey-manager.md": {
@@ -1768,16 +1767,15 @@
       ]
     },
     "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "c1c5d3dfb49341f8c1845cb07bb7fed0b70c59da09bb6a08ecc48c01a72cfa99",
+      "fingerprint": "d6377def0f1b52c3d7708cafa6193abd5f79d90d9546dc0d99adfed239dc5592",
       "snapshot": {
-        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "e662c598e250165dd8f11867f1ba37ebdf6dcbec935383d5a2ce76adacaa6ef5"
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "59e40588a2ed08e2e4e78301e602d7e515476c186219b79635bf5b2cf106f5d0"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/lit/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/lit/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/lit/guides/hotkey-manager.md": {
@@ -1813,16 +1811,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "0e21f5a226aa5f386e872a0d4c6c1d13fb44c980ecd8bac194c45b83084c2a0e",
+      "fingerprint": "1b6eb2d9a4284c1e4f05545a5df399c9e040c44a777208f38e7f5e88145a38d4",
       "snapshot": {
-        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "2b6f7226a4ffbddd62a19f8e10f433bfe2ac19fe0cb542ad9681c30aa515451b"
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "11ebeea5453c4558060cf75691a2030ca91bb3d9618e1ec1541aa09727245c4b"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/octane/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/octane/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/octane/guides/hotkey-manager.md": {
@@ -1858,16 +1855,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "2404a4b7b15c81d7188a15a9239cdffec0db5ceff80ec5a61b18a7efbc6f6b6b",
+      "fingerprint": "db0a378c109fe05dc31e25211ea6264e036a2df5fca74bc9fe76f40b63a08633",
       "snapshot": {
-        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "834c4467872699925d342a3c80fb178fe31bf9f5bd6ca51826fc65c12a8db0fe"
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "6a37723afc14da168da7e53fbd00a03bbb01b1dca6a5a75f4dc59fc632918596"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/preact/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/preact/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/preact/guides/hotkey-manager.md": {
@@ -1925,26 +1921,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/index.md": {
-      "fingerprint": "1497a5ba09b14f407723e0396ba9149fa0ef8c765cded9091699297fa41a9ce3",
+      "fingerprint": "908e7ce4b7e52b4edbefb8234f1445eb271aee0fad3915a7949438463f78e8e8",
       "snapshot": {
-        "docs/framework/react/reference/index.md": "1d1fed6bb37a0aec3e0150931e28991a0014a338db1e6ddc77a782de7c891c66"
+        "docs/framework/react/reference/index.md": "49d5ddcac4a082a6e3ae8b4001e6456285541eac1c7849c1d5a2df54b2dcd0d0"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page for the deprecated formatForDisplay export, the new Lit and Alpine label primitives, and Defined-in line shifts.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/framework/react/reference/index.md against origin/main."
+      ]
     },
     "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "7f48d012e9964d38e6c9c0ee57ebaedb297ae98de2fd512f606a5febf7c810f0",
+      "fingerprint": "71b83ac149de5f62fb2bf27b871b21a8be85a82e41ce04ab418fac171dc52fb7",
       "snapshot": {
-        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "1b84e01e8060ac34cfe8590bfb50e1a66c8cbe1b1f3df1e2b47a74332f986864"
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "96659d5c73f47bac9dd4c7e78b978b79b98e32622d5cb8745218883c0a52d4a5"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/solid/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/solid/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/solid/guides/hotkey-manager.md": {
@@ -1980,16 +1977,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "22dd553d885d21ee3216e0ec41238d962de111b9465d6762aa01102b75f90c8c",
+      "fingerprint": "494b4e19a48b7d3f3aff73b71a63988cd289434ed614cc28cc27b2295862cff0",
       "snapshot": {
-        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "4230d5ddafb0117cc05482e12ad5a036059d1e5768202f88c0abc4253fcdc7ef"
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "dc566029606ddcd39863e1dca8b706ab2a6e4cbc2cab2991758a39ae4b8b4502"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/svelte/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/svelte/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/svelte/guides/hotkey-manager.md": {
@@ -2035,16 +2031,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "75a41a7c7a1d440dd735d4b55633dfaf87b4160272633249c52a82042cb21e4d",
+      "fingerprint": "10c8fa1a4268b3d983baaba6fc9667962b511e578312d5206e0f9d4cb25eeeab",
       "snapshot": {
-        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "9ea6bb9ac0de4671555a1bb65aa7a6ca794c1345ad23acb606594f63cf9d6e1d"
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "8b8fcb36726a6ef60bfa0028562cd056954127416e44820736c5919c73543d6f"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md",
-        "git diff 7d9cccc3 -- docs/framework/vue/guides/cheat-sheet-ui-helpers.md"
+        "Diff of docs/framework/vue/guides/cheat-sheet-ui-helpers.md against origin/main."
       ]
     },
     "source:docs/framework/vue/guides/hotkey-manager.md": {
@@ -2080,27 +2075,25 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/index.md": {
-      "fingerprint": "ad69fe8d271c173413b97a220e37fb71c96cbbc096a039cc5fe48ee030136c0c",
+      "fingerprint": "5ef0414bb8f8f800ca20887d0dec58beccd11bf58826df662a8a98c7497382f6",
       "snapshot": {
-        "docs/reference/index.md": "9e9d1079c3d84bf0f3cfdc099207e89c952172bf72eac9148382a03437bbb04b"
+        "docs/reference/index.md": "fd69b93c04e037d11f3966147287c445a2b6644dbcd45c749741a80d3f3a58db"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": ["Diff of docs/reference/index.md against origin/main."]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "0f22797bccd54fc0b1d69f2414a6e6705714403977304c3e4b7767cd77a412ad",
+      "fingerprint": "b250d3868bd5b61eff4c8846e6fb0608841831704c05e8eecc399fa2d27d34c2",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "4d98e243f8c72bd21973842904b66cb06a34c36a99d60e7bc42f4b69af8d1680"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "48c13dfab0d357a2e7820610a96b36c875e7751a9d6d8fa17ed81b25fba57ca5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/HotkeyRegistrationStatus.md against origin/main."
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2231,15 +2224,15 @@
       ]
     },
     "source:packages/octane-hotkeys/tests/fixture.tsrx": {
-      "fingerprint": "898f06391eed8a03184a81102c3aadca386f86c406404338b101e450d3842c0e",
+      "fingerprint": "c8f15d7178554c3c222d82216492bf127aba8869082be71461ea35bdf58f9df9",
       "snapshot": {
-        "packages/octane-hotkeys/tests/fixture.tsrx": "c4cd086a4e5c97baddc94122425123d4c5463b9766affe5e9d77bd7cbb61c6bf"
+        "packages/octane-hotkeys/tests/fixture.tsrx": "38d621db2f1fd3d481f39e22c8d9a70fe375f15f8b65884cc7eacdf9c71e3c9f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of packages/octane-hotkeys/tests/fixture.tsrx against origin/main."
       ]
     },
     "source:packages/preact-hotkeys/src/index.ts": {
@@ -2281,16 +2274,15 @@
       ]
     },
     "source:packages/react-hotkeys/src/index.ts": {
-      "fingerprint": "7d0ee18071c7beeda5b30a2f7a0f5994558f83280c80d29fd690949e47b42b4a",
+      "fingerprint": "6aba7c6151b69f5722d2fba126d8cd9dcf097663cfc2d9e8121b4db9ed68f6f4",
       "snapshot": {
-        "packages/react-hotkeys/src/index.ts": "7f57622dbb38eac3a1d8e0f330c952ee63094a7f0fa6a9a547ab27fa3ee43da8"
+        "packages/react-hotkeys/src/index.ts": "ec4f827c2ef8bb9a71b41c0923f6478149116b562f853c1bde3fa06265fd8e7c"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Source of the deprecated formatForDisplay export, a new label primitive, or JSDoc for them. The framework skill describes the label primitive and the deprecation.",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "packages/react-hotkeys/src/index.ts",
-        "git diff 7d9cccc3 -- packages/react-hotkeys/src/index.ts"
+        "Diff of packages/react-hotkeys/src/index.ts against origin/main."
       ]
     },
     "source:packages/react-hotkeys/src/useHotkeyScopesState.ts": {
@@ -2306,16 +2298,15 @@
       ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": {
-      "fingerprint": "f3bfd17a4c54a0fd63ed8b9b6a8b092da5066e35af3410a0bd414a3b5a86c17b",
+      "fingerprint": "0d841e9fa99632331ac408d0203caf495c5bc04c1e8405bbf89d5fcbedcc7549",
       "snapshot": {
-        "packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": "4e6e7f573b907096de7761dee7c09a609a73b64cf27a2b419e9131e2dedb8e63"
+        "packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": "19bb75925763885acfe7028dceeda4806a6028700d900186a15daa00e4e2a953"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx",
-        "test:lib passes"
+        "Diff of packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx against origin/main."
       ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2442,15 +2433,15 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "7c565858042f7d231a56d736eb02339653bc959e62eae04a372dd83486049350",
+      "fingerprint": "85ec1220697bd47df8cd7466e8a888310c8ccc59eaf101af65ade034d022bad3",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "6542f4ffa52c2c38088ea5f17deecd76fc44b23816431df2cb5fda7ffd672784"
+        "docs/reference/classes/AppHotkeysStore.md": "3a9566f07d58353b032a486020a63ae0b33bafc670ca15c1e9b65505427a0c15"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/classes/AppHotkeysStore.md against origin/main."
       ]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
@@ -2466,75 +2457,75 @@
       ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "31c859c509674de98614ae3f30b0bdb77935b902ed187b5203c204a58d0bcd3d",
+      "fingerprint": "ea5d299b1051161963484638c2fad8eb89bb8bb2f064a033df57938ad26e95ba",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "0f43053733d7d9d03d4b27806539947602226a8830533c53a39c9a76f502b7e6"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "dbefb4ca305ea5e8237394e6843f6752be6eb19ca5421afb3537708ea2da1eb9"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/getAppHotkeyRegistrationOptions.md against origin/main."
       ]
     },
     "source:docs/reference/functions/isAppHotkey.md": {
-      "fingerprint": "a0b0d35cb50fe403ea814c56e712265c621d9e23c746c52639918cbfa937476b",
+      "fingerprint": "78f098d1e02e39087ec08dd70edebbf5d274d586ecb6c92a7c8bc1770e424e7d",
       "snapshot": {
-        "docs/reference/functions/isAppHotkey.md": "39b7e6848b51c1d628322e4d5501def2b9794f3390e5c741391d62f4ae4a1aea"
+        "docs/reference/functions/isAppHotkey.md": "ef4545ba007ac1365a7a2f268a7ca75686d13959c7a78955aa6bbfea33f080f2"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/isAppHotkey.md against origin/main."
       ]
     },
     "source:docs/reference/functions/isCustomHotkey.md": {
-      "fingerprint": "49b45ce3cf86f9731421eae15c08ee11246df346a38209f3b0d6cb03eabe597d",
+      "fingerprint": "c6cbe1c5cca8723053e5e94c8de57a3d808b9aa253746eab9c12caef06cd7b92",
       "snapshot": {
-        "docs/reference/functions/isCustomHotkey.md": "c110c1bf78b557cfe4db1462c358dafcd38eafbad651459a71d1e3a7ca8f6b15"
+        "docs/reference/functions/isCustomHotkey.md": "a4b7e6d1f7b8f584f6d6073cc048d0dbd7c2fa91539ff303c5e9bc47ccd9b454"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/isCustomHotkey.md against origin/main."
       ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "f525c1ad3dce18697af0b6062b56f4d10bb9e46f9b93b083b108560f87299684",
+      "fingerprint": "48674668d2bd1d0f2731f96cfa2b5bb204ffdc60e6ca880e64e940f38c783d47",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "6c63da5b971b90df570322bc63c3c68e868d52b92cc47f466a6d5846df124f7a"
+        "docs/reference/functions/provideAppHotkeys.md": "a891edc860d4ece9fc7e135ae2fe8b68dde437e19cf8cfa869f42be18148aeb4"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/provideAppHotkeys.md against origin/main."
       ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "1d4fa7fc0f7235104c54168b700a06275f9e830f659140b4b4c536a2b6cfb771",
+      "fingerprint": "7976bc772f33788ca284e07d4fde75006eadfadd02e737d123374004ac63a85b",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "dba7bea1c86beea36387375afbb8f05ebc0400e3cc3763becf530f2fedc0a530"
+        "docs/reference/functions/publishAppHotkeysStore.md": "827f70297ceb31d227d951dd6189a4860b5d397db44ce2a3d876f91e6d4812e1"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/publishAppHotkeysStore.md against origin/main."
       ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "223951a584506f72de12d36e3b19cf0c99c7a20f789f8f89e6057c4fcfa1e9c7",
+      "fingerprint": "e11e92af80f58f9c253620750f2141a3c1ed097efcb1b93558ae63e65c3797c0",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "a784551b9f92b3c3217e72d5ca167b6ec0555b3a2c1aea7b40063c65e83365b9"
+        "docs/reference/functions/resolveAppHotkey.md": "c2dd045b526a9f47423b820fd4c17f9df4683f5b134428e4166354b8681bcaf1"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/functions/resolveAppHotkey.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
@@ -2562,39 +2553,39 @@
       ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "361cc9a529f76f1c07e121160cd983a4851d148dfbbec366c2851abc18081ce6",
+      "fingerprint": "f85122452fa04d41030554d4dee191692b6ce0ab234ab98aa37132be13af56a2",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "a357c6eb11f37ee70266cba59095d2b1f2f34b5ed4d4ce269a2fd2b1a0bb1b89"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "44eaef9d14146910bb195a9790a1c33e45250be328aaa2acdf01be79e50fe1a0"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/AppHotkeyListItem.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "1cda7d8acac789e9c50f0f1d7bcfc11e1394b5a3e66d4c6b700b2bd34f393206",
+      "fingerprint": "670bd645636d5c312c2c5aa6e433069abc63d4b85c208ddc4bbea8c409f2c46d",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "a92e7c661b92d75f9ee8b3d0c05d7c1b250ee6b67d0b3d778a04e228f2cb0e60"
+        "docs/reference/interfaces/AppHotkeysState.md": "830b889888160b358d9adfb403b59d99ffbce36feb56b196cd11e0a44d0706b9"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/AppHotkeysState.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "309f37da7b05a7c3183be0b4600e7e242261568862bdcba2bedd45a70bcab645",
+      "fingerprint": "a6f87662e86bface120dbd2ef281e9998925398a168139e563eaec1cf6200e2e",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "9976b8d6badd18e980c28bc791a260e27c2b46fcac9f2db077c476b74399904b"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "0e8d4a76642d2d294bdf9112f87ec3a95625908a7ad736fb23d55a8bdff8a402"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/AppHotkeysStoreOptions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2670,15 +2661,15 @@
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "afe348aad06931e3cdb116842e826cc2f63b25293892ab84889f53a442489400",
+      "fingerprint": "c486caabbbeda0ac1f238165829d162d59633a80fb8b3f5f54017d365a19c1d6",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "87f9f4b5059e7bebb2d828b4ff941bf45315856a49597ce1608d1df840f07dcd"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "4a5e3739b583f8545fa35cb2a4640bd2ce8004d5237d5250561440b1524437d5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/AppHotkeyStatus.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
@@ -2752,14 +2743,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/config.json": {
-      "fingerprint": "16af19e58bf175bcade10250b5940fc7dfc72e689088fcbbbc8ee9fea3e4e40e",
+      "fingerprint": "18bc34dfa6b6a7406c8c670d0fa7941c0d95092a6dcc4abf7500686a3c13ca26",
       "snapshot": {
-        "docs/config.json": "0317434ef0d4db6bbba0b6472b8f82477dc987b1e4df9c285713d9e170721271"
+        "docs/config.json": "6936fdc15b4500a6a0dd57fa09423c3fbad3fcb985a9cc86bc7c7b490a122eae"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["docs/config.json"]
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "evidence": ["Diff of docs/config.json against origin/main."]
     },
     "source:docs/devtools.md": {
       "fingerprint": "f23246ab0c1af1ae9b82ea5e36d4666dac80ec702289a7c3142796bacada787b",
@@ -2774,17 +2765,14 @@
       ]
     },
     "source:docs/installation.md": {
-      "fingerprint": "c2cdb7d7baafc96be4a0b5ac7b66de30e46d42b47cd1ae17f0596f467cd084d5",
+      "fingerprint": "a98d73f2c524f3dfe8a6a320acd40b8544245456676c62c71113bef0ca5f309d",
       "snapshot": {
-        "docs/installation.md": "4d42c5fe9581aa4e456ed5d0aeff19835efa42b2368eb1d001f560566a955adc"
+        "docs/installation.md": "fbc4689cb353f82892bf9fde5d4b1dc8912a3ac314b652973de7225a0f727ca1"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "The Alpine line now says to install hotkeysPlugin before Alpine.start(). The alpine-hotkeys skill item covers that setup.",
-      "evidence": [
-        "docs/installation.md",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
-      ]
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "evidence": ["Diff of docs/installation.md against origin/main."]
     },
     "source:nx.json": {
       "fingerprint": "e014971f835053ffc5ccbd92101c2526f8b5f2893ec5585cb893ea2283872953",
@@ -3107,15 +3095,15 @@
       ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "d7b1c1a30a6df8adf383bb7fbd4f4720cbc35adaaaae444bdc4405d14b0305c1",
+      "fingerprint": "a8c06eeb87110ea91a2ca62b6ff8b5f8eb3805bce531dc6d686b4e2a8824bf3c",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "121cc4bb4e1a7a9b389201e4a70922694f84ee8c04564c05fd1b878d26aa3c8d"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "85395e47e658e244722894896e94ed40fa0414bb558f199a14dbc6eb1b1eee1e"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/framework/react/reference/interfaces/HotkeysProviderProps.md against origin/main."
       ]
     },
     "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
@@ -5020,15 +5008,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "75ff0e238226cf4bd81227cefe68855949e7c3a33b3deb712d84e593faac228e",
+      "fingerprint": "b8b0771cb095228f7e1b9103b45d1349f568dae684a89dc2e82a00ac0672eb98",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "68c5de27030ad1ace6df1126f3ae41fb30cb081ad8dcb12358c892704f7b94f6"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "df20e3590a7b624d6c80406ce0d7d1f6147b8e1835d949f504435546bf8feb84"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/activateHotkeysProviderScope.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/createAppHotkeysStore.md": {
@@ -5042,15 +5030,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/createHotkeyBindings.md": {
-      "fingerprint": "e2776d298166b78a7bb50507a6362a62fbae67ec1348836fe28a81ec0d8ba593",
+      "fingerprint": "10d8428a4ce019c26c969239d0c6a3734600324ea87926ab16d7cce54f0c65bc",
       "snapshot": {
-        "docs/reference/adapter/functions/createHotkeyBindings.md": "7a9ef2922997c8c96c1075ee8876d3ef8cb70e4564c5fd949ebf38e0bd4decc9"
+        "docs/reference/adapter/functions/createHotkeyBindings.md": "ffdcc0475a00face47647cad814f4a80aab4e056cfc7c91bd388d86ee155960a"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/createHotkeyBindings.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
@@ -5064,195 +5052,195 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "214deb87cb7099a3aa620ac20b66c1fae0e56b4e8e5609afb249767ec23bd8aa",
+      "fingerprint": "e2cd7a1ce85d0a61ab044511bc848999fc333d12e69c67934eda406b7642af58",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "f734b5551aafb9c99deb1e10e38d34c639000f469c730b8d54f8b46ec7b3c30b"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "84a4c31dd107a87e8f43ac0eb169a767ff24028db6f9731af705b26a2c56da75"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/getHotkeysProviderScopeKey.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "343597726952d3d2ea8e899b2c50710b8ed8b86743a793789a73d793acc4c130",
+      "fingerprint": "94b2e4a50ebab41d6631efcfdf3ca938522dfbc2ac7eca5eb7d14f69f1e3b84d",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "2b76bfcbd9b4f2f96530c4df9e38ac523f35613afb8a0f3935eab73c905152e7"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "c46eabb0ac02d3a78c0341f0e5a1e4edf4abcd358f22737a8332fbebb89af352"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "311d4c2599e57c94d475637d670c266f8537700fd1866fc9a303919778026364",
+      "fingerprint": "04be5f8c48f0471c6d6d4bf181ddbdd5165db34db099edafb0e4f9e8019a2ea3",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "e7d4db7d59b7e65be2a5b9ddbfab0670b83fd842e9d73830df4596d6029bcba3"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "3097cd500cfab670b1d489c66585b54bcef6f683feb720e851347354dd9ee21b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/prepareHotkeyDefinitions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "51a41def9f4fadbe2429656de9f57c854feda5093581896750620dc9e6ce7ab5",
+      "fingerprint": "45cf8d0c0d39091ee26137f8ef7539af782520110379a475e32379897a0069d8",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "384c8277204a15c3c355ab53834171762b5c5f4de0fb697a3db92f86b29fc268"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "697c4d6cf4fcc99a1d218bec2505144e976d0ea068c3ad4c8d7cf87ee2c8b222"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/subscribePublishedAppHotkeys.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/index.md": {
-      "fingerprint": "ff2738648b63ece9627dfe55e73b408ee11c6d38e19712dc95fc5272bba61444",
+      "fingerprint": "3cef9cf6f8989879f00650a61906bdc03a04db558991aa4a4a572d44ab2e8d0d",
       "snapshot": {
-        "docs/reference/adapter/index.md": "e8f2aa1ea2180675fe54a1ea224c6ed56dd37075ece0f590685f950e21b5510d"
+        "docs/reference/adapter/index.md": "3565f3ccb11796d615fa3436757b670899853269584c557f84a3c79c212bb99c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/index.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "30abd4b08a5d13c33f3dbdf4d9ad57ebdee2f1432ea90a5bf208b215c803ef89",
+      "fingerprint": "850a686702e043b1af6dda2dfd506923b64ed38be769097379339ce067c17014",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "012a510a5164b643ecc97113f3c3fa6d614093181329d976341dd977445380de"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "abff834e962ebb8b12c20a14f2f6013f713e75860c60aaa3328f2d0507fe8401"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "b7999fd1d36f28d9de43636424c8c830ac4cbacf9f8474fa42b94b015036c9d0",
+      "fingerprint": "8461ee22e95fbd986c588454bcd075726fa4b3507cf9f70409bf010e68058e03",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "ab1b7c185e6004117c44bc6efbc056af50f979c2f105a4dbba6d28dfecddfbfb"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "b722a5bb0ed7bdd7329dc84dacb5f97ea4d5b6de641f742ed59265cff3d243d9"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
-      "fingerprint": "7947208fd20de3585000710caf22860a49b8dff6d1380e11a70c28cfd665e7b1",
+      "fingerprint": "e43ac2e4bbed80782223d3d776feba0b9e80c5cdaabadb31473530902012ef5d",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "133c3b205e5437c0878f7ac8650c5b82115fc61a060547c340d37d3fa85cbad9"
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "7ef1c96fe557feb968f486c18e46865ec23e85e0dd6d054f1d15ef3e8da5ee04"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterChordOptions.md": {
-      "fingerprint": "f458d7ab770c38def4b02f158477ad1aeaee0d885d648b76d4c0102b3cc67744",
+      "fingerprint": "f854d4391343f01b4d59205e5adc03de55ae086a75ce3047374c9f26ec819c5a",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "06d9a2bf5dcbbf93a1dc2f508f038deac21935a962399a141567981af3007233"
+        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "7c985e8077d6e974d7b4ad5f08d78b2afbfdeebfacad4e08a03a57c8ffad8967"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterChordOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterCommonOptions.md": {
-      "fingerprint": "2e43fda5bf28b1c3bea713e9d16575e64f8523913ce57cb3f831eb0ea65257ce",
+      "fingerprint": "70aef8021fac7e6b89b98f66eda7d358805be963afd69d10ed682b94844c4db5",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "00f0e720245ae02b4ee19e821fa9b2aa2173bc3b5ab688cb3dceb3db2094c2ea"
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "2e68f5ce60cc3458f58f5122b2a7b6751334873a2b19a95448669abf95b01fa5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterCommonOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": {
-      "fingerprint": "67832d5e5c829e750dd548bc5edf381139da4e03707b8c6cfe0f41d42358d17d",
+      "fingerprint": "16df826e000c0ea69a95667f153ed2cc8c062b34007ad0ab329c9e8df17df8cb",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "3e9039c365a2153a1c0f42ecbe2641b42a0fe0ee48dc0d28ae3dd8a0b3216a27"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "fb59e148da9b572cdc71d60e9fe739252610e2a398596341237b23fe62e268ce"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": {
-      "fingerprint": "c4765145213232f1257bdc130829d527a0e685321dcf0596be02b2f473a55ee1",
+      "fingerprint": "c7489f5da7ef5224a699d026c91c373408f6aa696bec9021c80c7cabde9af8ad",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "88a1f515233ab54982e7d318e8ada12ce5f2b058c734fdf8aef2f397c51f6dbd"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "6b8abf9f6f8ca71f3c5334dcdbc14c3d18d74895ac2a3faa599ad2f9ff6c124f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterOptionsFor.md": {
-      "fingerprint": "bd37ffffa76da86ce18866c5a87215baadadbed7d6681b618266cc382fe564ae",
+      "fingerprint": "fa685d2bc4766d4e4101cad219ad33be0addd306b7f512abdd00d20df7d64a7a",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "0bb09f1afed02cadde536d6b25e9a2898c579368cc9961a2a9e4aa00f3ca6245"
+        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "943089e8e1d29a3b074a08590e2a4613d7e712a3319705d9a1359a96d1e7cbd8"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterOptionsFor.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": {
-      "fingerprint": "88d1abd06d2cb84ba4ffa4f71fadbcebdbe28aadaf6e29ca3c0b6e4619c405c1",
+      "fingerprint": "674cc88779952a6904c4b07571db60c2bf90426df2f10e13cc1f75b154760eae",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "d762550792f065baaa5225b2e1f21bb2745bcb37f5ba3701c5c94252d506ff72"
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "0c8cdf2869e34ab4722d149a8ffdadd443dbbbfa97acec7949c2fbdb7a563183"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/AdapterSequenceOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": {
-      "fingerprint": "d6ad687412063906a7dbb7fffdd1b8852945994d971e5d35667122622aa6a7dd",
+      "fingerprint": "e5111ca87c9b598fdd911f872e3fea2637a7994f39e13132f5b4a9294e863682",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "46b3568f0e2732ce95b105ff0063fbf458d7cd4dce5acb2cc5ba70c68b7c0938"
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "e71e7d2239641e384a6b0ba57e227b05922003cf3c63826f46314b5c0b4ca1cc"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyDefinition.md": {
-      "fingerprint": "c640c6e960a161daa0d0cb5e3647976cf8b647c48ba6b4f3e0b676e8ef96f540",
+      "fingerprint": "44d72ad4fd49bc5a5a6c2ebcdd06bedb635d6b38e5f8c6f664316fd1e7c0ab3d",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "61f577efe58fe88352184027f97a6ebbc8651c7ba0d13d1920cf2389d6eed6e9"
+        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "8ff97ba232a5c7555fe873d372e09914fd92898e4e1ea2dfca3264a3c38588bb"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/HotkeyDefinition.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
@@ -5266,15 +5254,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
-      "fingerprint": "6e4a819d5e52c7cc5c264b6af0fbbe721531b39d8beb9f3de7ab0270f4198345",
+      "fingerprint": "614dd81fca8529be4f65796c2bd70c71972973358cce596efc8896c43cd3dd40",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/WithTarget.md": "ed1bdbdb0b2a4c93a7a67395c159cfd91139ebf472933abce057750e085578ab"
+        "docs/reference/adapter/type-aliases/WithTarget.md": "8aefa2b26c8246ffc5588d4f91fc259bda54446e1339f62c928f57c1c7a8cb2a"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/WithTarget.md against origin/main."
       ]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
@@ -5583,29 +5571,27 @@
       ]
     },
     "source:packages/hotkeys/src/_app-hotkeys-factory.ts": {
-      "fingerprint": "8a9609b2d89e8b5494bfbac5ff34c8d22c6ab36c4b25dee27af1df0dc3aa501b",
+      "fingerprint": "c402c32b78719f3d3a0db4266e810555958c26fd2d0c9440ac9ca87a5ae3a5ea",
       "snapshot": {
-        "packages/hotkeys/src/_app-hotkeys-factory.ts": "23c14ec20fae4c3aed2d27ff9b4ece5c387525f53f90541f6e9bd989af08f4f7"
+        "packages/hotkeys/src/_app-hotkeys-factory.ts": "cf303b26f94e1ad835654adaa801b5c0b8736bd4c46c8149bc02362157b7cbd8"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "packages/hotkeys/src/_app-hotkeys-factory.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Diff of packages/hotkeys/src/_app-hotkeys-factory.ts against origin/main."
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "c4ea0ee95a480fa7081ad53efc35b241dcf311529d55578e71861e29aa475528",
+      "fingerprint": "5fb21ac3bebb12ce87979c3955404aef49f1e2c8fb3504190f22444c179b247d",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "aa4305a3f35e1a7156f64d7dc15a1277a060469a7f5ac208a77298e262e66a53"
+        "packages/hotkeys/src/_registration.ts": "f31406296496852c0d1895e4dc353eca76de46edbd84dfe7968563ecc7d9089b"
       },
-      "head": "f8a1f08596e7712addb6d514c7771fa61b78ca7e",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Internal matcher and helper modules: the macOS matching rules, helpers moved into _keyboard-event.ts, _keys.ts and _chord.ts, and the unused key Sets removed from constants.ts. The one change to what the skills teach, writing the Shift with Command on macOS, is recorded on the hotkeys-core skill. No skill names these internals or the removed exports.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "packages/hotkeys/src/_registration.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Diff of packages/hotkeys/src/_registration.ts against origin/main."
       ]
     },
     "source:packages/hotkeys/src/_store.ts": {
@@ -5621,15 +5607,15 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "d03ce9e354ed6087f478fff3bada8a5d77097ddf0fd9582232deb9e092b5e257",
+      "fingerprint": "a897098fbaa1012a3e91191a17d9262c7a6c3dd33b4a5d7c4a6a891a1ea02519",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "a1521385f46cd8a2343316a84d18f7aa346a282906d50903b30651021fb39afe"
+        "packages/hotkeys/src/adapter.ts": "e26ffd11a1e1bb85f7696a9d6444f2851cda58800cb2887dbda90a3644093095"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of packages/hotkeys/src/adapter.ts against origin/main."
       ]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
@@ -8359,15 +8345,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
-      "fingerprint": "5fc2c473db80ea924334b208add650cfc8d4495881e2a6818aa43c2c2fe06319",
+      "fingerprint": "990d97927aa736de47b7ee6f4e86c25077aa7568e66fa72359ad30f81bdb083e",
       "snapshot": {
-        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "07737525efe7ca879e3cf84add74214d2cc8b28a7e324de823381b3e53b496c3"
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "9506d4a948be15e75438746bc190eaf6a20efedc94142464fee291b84b19f95d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/getServerPlatformSnapshot.md against origin/main."
       ]
     },
     "source:docs/reference/functions/detectPlatform.md": {
@@ -17736,16 +17722,15 @@
       ]
     },
     "source:packages/preact-hotkeys/tests/useHotkeyRegistrations.test.tsx": {
-      "fingerprint": "508c6c570b21d0bae369c07a98dceea711f30ac95699f920515dcba3cb376f61",
+      "fingerprint": "e7cea63f8c367d7d2387d8d35b552a67c0b09eb091b526f87b62700cb51d96d9",
       "snapshot": {
-        "packages/preact-hotkeys/tests/useHotkeyRegistrations.test.tsx": "d617b3aea8e51869662b91b83833f844fab2dc8f5600558cbb63a31233c9cff7"
+        "packages/preact-hotkeys/tests/useHotkeyRegistrations.test.tsx": "c8ea48264bc7193a9b20b79f0207886c2462d95fc1dee1fb2f4d2f05775b11ab"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
       "evidence": [
-        "packages/preact-hotkeys/tests/useHotkeyRegistrations.test.tsx",
-        "test:lib passes"
+        "Diff of packages/preact-hotkeys/tests/useHotkeyRegistrations.test.tsx against origin/main."
       ]
     },
     "source:packages/preact-hotkeys/tests/useHotkeys-sequences.test.tsx": {
@@ -20342,15 +20327,15 @@
       "evidence": ["packages/vue-hotkeys/tests/provider-types.test.ts"]
     },
     "source:docs/reference/interfaces/RecordedKeyPresses.md": {
-      "fingerprint": "2d9db94eeac732c763f7b98294fec494e90feed4efa686b0e995399a7540d4c0",
+      "fingerprint": "7d8a0e2ede1caad7e84c1339e912b9e2bbbae78457d1fe842d5e93871fdeb050",
       "snapshot": {
-        "docs/reference/interfaces/RecordedKeyPresses.md": "3cfc8cb9f3d776a28b4943c9fc79f2d26501eb1bbbcb33adaa6a3218697fb1ce"
+        "docs/reference/interfaces/RecordedKeyPresses.md": "f777bc5bc0a4b83fc7f53b2b030f0f93d86461e9866cc429c303338b66eef97a"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/RecordedKeyPresses.md against origin/main."
       ]
     },
     "source:e2e/layouts/alt-graph.spec.ts": {
@@ -20550,15 +20535,15 @@
       ]
     },
     "source:docs/reference/adapter/functions/namesPhysicalKey.md": {
-      "fingerprint": "36107eb8cbe0168aaeafba7e85d8cb2d7b706c9f36e4de3ed8d575ae7d155baa",
+      "fingerprint": "141b8eb70f870e98aacf39236f4cb7b1ccec7b94e5df179eede528e75b7cf47e",
       "snapshot": {
-        "docs/reference/adapter/functions/namesPhysicalKey.md": "92cb5d1e47d08495083005dbc3e591e92ae08da10c3e259a1e10d75d66482d59"
+        "docs/reference/adapter/functions/namesPhysicalKey.md": "57f7a2bec07a70397ef052e49e0e9050402ff14b8f78980cb4674d9e34e65aaa"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/namesPhysicalKey.md against origin/main."
       ]
     },
     "source:docs/reference/functions/getKeyboardLayoutStore.md": {
@@ -21632,87 +21617,87 @@
       ]
     },
     "source:docs/reference/adapter/functions/bindCustomHotkeyActions.md": {
-      "fingerprint": "11d2d5a57a9595ed68169e4f2d067eb697a04ba9050b1b290df72b538ebe7df9",
+      "fingerprint": "60e308cfb8ad93758f2b1dddb084f1d7b06c4229ad6a784e01d6d4ddec3037d3",
       "snapshot": {
-        "docs/reference/adapter/functions/bindCustomHotkeyActions.md": "35f050be030daa45065383f4a764b2189375ef6edf60a1f1ce0a0a8a9949f261"
+        "docs/reference/adapter/functions/bindCustomHotkeyActions.md": "a5702ce51119704be93db7559dc9b090dd3b10a7270dc1859e4a23c8b4fdba37"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/bindCustomHotkeyActions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/createFormatForDisplay.md": {
-      "fingerprint": "593de4708d5f99e79b3ff7960706e9139e5415da40d9f0c4bfcbd9f6382a5ced",
+      "fingerprint": "3058ccbad885776b35246ba575d9fb597458aa19aa8d3af0b5e9627ac953c70e",
       "snapshot": {
-        "docs/reference/adapter/functions/createFormatForDisplay.md": "1fb9c8fe759a432ac5f9cea32595c573987132fb505aa7771a17e98baac75963"
+        "docs/reference/adapter/functions/createFormatForDisplay.md": "c647126e06bd42d39b53189ef9cfd13952ff15ded0246152a2d063b749067dd5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/createFormatForDisplay.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/followKeyboardLayout.md": {
-      "fingerprint": "daf5f60e35a082f4571429f7cf8c2f8eb4d2295c90a9708ce24e45251ccf0a12",
+      "fingerprint": "0f85d21b10736eb3f53f0184561745660614917df5f3f507583065d560b8a446",
       "snapshot": {
-        "docs/reference/adapter/functions/followKeyboardLayout.md": "ddadfdc9b06f70f68905fde25d411629ddcb22ea7a314bc2cf0ed57095529bc7"
+        "docs/reference/adapter/functions/followKeyboardLayout.md": "f9707e21c1aace27e12504b91520be498a7b73cb1c80e29aedad186db711653c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/followKeyboardLayout.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/getHotkeyRegistrationViews.md": {
-      "fingerprint": "d6b194e6207b92103ce493f9a2c0fc7731517ca67e9a713a3333089582c0aa60",
+      "fingerprint": "e8995b8b2abed54e4305197a55847861784a4b26eb13dd13d095f432dcfb6fbd",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeyRegistrationViews.md": "a8d0b966a8813d99878e260ff84b40c4eda779a066dabc8d5148bad543d0a351"
+        "docs/reference/adapter/functions/getHotkeyRegistrationViews.md": "92fdec2a89b9335f11c8b82be119a522a4a8c1f2f8fe273a3b44e768f57b594d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/getHotkeyRegistrationViews.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": {
-      "fingerprint": "21f35b4d92029d5d116b4a893a34f8513e863e5889f39eb1ad4bd2456951860b",
+      "fingerprint": "a160206560cba6d0e2ed2a79c8260e26eb8170298de54fdca77a03e96fc61d4d",
       "snapshot": {
-        "docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": "b242105bed40a7aeb1b73daf254dddcdf7dee543ac62c292d78687fc4fe3f1dd"
+        "docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": "89183d03342424addc6f3d32525cc2cc7a65cc5eff68ea8c050bf90ae7789e17"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/getPublishedAppHotkeysStore.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/isHotkeyHintVisible.md": {
-      "fingerprint": "cea60bdbfef4b456f173f041c812946b38602e388a0a5c71ab38ca2cdea039d3",
+      "fingerprint": "f05ac271f8b0b91254a78e179dacfb090060869a1e62c494bacc858d09ebb519",
       "snapshot": {
-        "docs/reference/adapter/functions/isHotkeyHintVisible.md": "cd244c6cdefdd4147cdd6b323791933286052b4b3f0e59e85b0ca38a7f5d5c50"
+        "docs/reference/adapter/functions/isHotkeyHintVisible.md": "0b9f8c87e19f8a083b5b5bea54634dc12f42d6a0efc3b9388edec59dea27c57b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/isHotkeyHintVisible.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/requireAppHotkeysStore.md": {
-      "fingerprint": "c911ba5200cd1583c9cedfe7aba125257c33d0cec1c65fe7ed9595f9c66bf601",
+      "fingerprint": "a9d6f246ef3e9f0036c80f1afba1fa516a68a096206d7a68d1ab60d7adce649a",
       "snapshot": {
-        "docs/reference/adapter/functions/requireAppHotkeysStore.md": "476465caa5d0c7a6df21024148b1377fe6db5375f7778c1003aaa17d53129930"
+        "docs/reference/adapter/functions/requireAppHotkeysStore.md": "ceeb871ade5ff6b038bd9e5260d92acc32f07e9c9f2fbd3e234995aa21035cc7"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/requireAppHotkeysStore.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/functions/resolveMaybeGetter.md": {
@@ -21728,75 +21713,75 @@
       ]
     },
     "source:docs/reference/adapter/functions/resolveRefTarget.md": {
-      "fingerprint": "20528ecaf858cdc0adc75f298b69d82dff6959c7296e3f749f7d78987aa52fe4",
+      "fingerprint": "1d4deee04b0a6644118408ead8a931b212d53916ad8edaf28c7800a36115014e",
       "snapshot": {
-        "docs/reference/adapter/functions/resolveRefTarget.md": "56c9c263ea0108c137a252b90701d63ede23637795ce00f6234abd4464a939d0"
+        "docs/reference/adapter/functions/resolveRefTarget.md": "19e732a719ced92127d03cc20e795f74e8e11f04ba573b039a1315ebdd9241b1"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/functions/resolveRefTarget.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/interfaces/HotkeysContextValue.md": {
-      "fingerprint": "a3fca212532e30c5a0090e6daae2df23290b1338e6cd547b160ee151fcfddea0",
+      "fingerprint": "100ace21d0bbfc502060fc073344723827399008d0d50340c36adaf53b70d7bb",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysContextValue.md": "40ed467fbd9cf3f44fb99c108c93b8af35caa148ed7635b1d80c194d7bbe01e9"
+        "docs/reference/adapter/interfaces/HotkeysContextValue.md": "489bda88e8ae1d1f838d00e1d6a6fed9543330cfdfc9e074f915189589159c57"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/interfaces/HotkeysContextValue.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": {
-      "fingerprint": "34353effe6c9720ffa66b9d51516556e163902d453c8190002e5fccbb5bdf4b1",
+      "fingerprint": "af3b8d48994cc4ceefd074a4649c4e63e279dedf7f46739044b66c5393e5e2e3",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": "00ea7c49223687f6cb6b85baa496ed18aa3e731d8ec8da80af61ad003338c2a3"
+        "docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": "dcec168f91981deb5493cc98b477906650a242aa520274fd60442f73bf8af57b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/interfaces/HotkeysDefaultOptions.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": {
-      "fingerprint": "3db13e49ece4f923b7d16bb8178951a6ac5aa55f3cdd40594dded759d9b9a7ee",
+      "fingerprint": "dea8dd74cc416e728607d7f8fa583b1ea0dda220b1a622c5994ff001b6c8cc2a",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": "f44721ec487a33489f0d9833fbfe7d1644c38441fd57ee5a8a648f7b9fc096e1"
+        "docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": "c8ea9aa786b46d22b670409a26c95a9535d84f8be7b2905e1d55c6538c5a57b6"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md against origin/main."
       ]
     },
     "source:docs/reference/adapter/type-aliases/RefTarget.md": {
-      "fingerprint": "6aa223a712ca1159e6c40855ea43201699adb011bce467f29eb4ae7b785c901c",
+      "fingerprint": "24a6f942fcb052fad9bb6a30d9fd330a3fd8bcaaeb6fa1ad6e9a2f4f902a9d09",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/RefTarget.md": "430b6aae30fd750125a6e0c65b7925fecb07763d4611d3d9c10c37559b2efada"
+        "docs/reference/adapter/type-aliases/RefTarget.md": "fda959c7cc56603dea0fd90903e322845200982f3f7272be8360b81f36f9ce8f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/adapter/type-aliases/RefTarget.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/CustomHotkeyActions.md": {
-      "fingerprint": "e56521ab19f7ea9d8b12993777dc25907a4f90072f64925b65e919d759bff601",
+      "fingerprint": "4e058dbf9196e4e8839b01d874c9dcbee9307de95c4acad64a23916b33baead5",
       "snapshot": {
-        "docs/reference/interfaces/CustomHotkeyActions.md": "a541f66cec4103043eeb69c6237cb1500f262a24b88be23fed2ec604428d625a"
+        "docs/reference/interfaces/CustomHotkeyActions.md": "39115a5978d59cd622130c9ac4434c5d52141a0d05101b5363bcad7469bfb322"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/CustomHotkeyActions.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/HotkeyRecorderActions.md": {
@@ -21812,15 +21797,15 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "f8b1428ddf7f498274c9511880f04bc480b7cd8f66bba31402f9d0c67e87f620",
+      "fingerprint": "7644952dbd3fbf46fb3feebe7be468e4fc944cdee04317860c9a56f0bc23226a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "f23d5436a3e68f29fe9c19a1767d24f431fd2398a2d082d8925cccb374a29230"
+        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "3c568920c2b7b355edf53bb25d0093a77db076f98cba1e0aaa54864242840a10"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/interfaces/HotkeyRegistrationsResult.md against origin/main."
       ]
     },
     "source:docs/reference/interfaces/KeyIdentity.md": {
@@ -21836,15 +21821,15 @@
       ]
     },
     "source:docs/reference/type-aliases/HotkeyCommonOptions.md": {
-      "fingerprint": "168d5615c816c4a1e7feb15abc19ed33d6b405cfd916dfdfdb0dea6127e9e870",
+      "fingerprint": "9d2805a4a706613e15c313299ea921f2bf2137175af8cda23d8a5a9ac060b2f7",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyCommonOptions.md": "e5fa0ec144982843a7d252dffd88138fd57a1427763e533a91bf3eeb85740864"
+        "docs/reference/type-aliases/HotkeyCommonOptions.md": "9d46637770e904387df20614806d125468a4e78038ef8f72567e44253cde6722"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/HotkeyCommonOptions.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyEventType.md": {
@@ -21872,15 +21857,15 @@
       ]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": {
-      "fingerprint": "d4becc16f9f77bf55d4400bbc09ebf3ead5ffd984f6ea7d41ef32472909ab9fc",
+      "fingerprint": "2b6e065a13a308169be5f86c745ac6809b1d96cae060253cf4021a9892f5eda9",
       "snapshot": {
-        "docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": "acbbcd5120729cf3138850c25ad6f6d01e2c06242970e56c6ce1765255cb9add"
+        "docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": "c743672f1ac2ef15b089fbf384cc628011f32a177ccf1e8eb8a1b700542289e3"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Diff of docs/reference/type-aliases/RegisteredAppHotkeyListItem.md against origin/main."
       ]
     },
     "source:docs/reference/type-aliases/ResolvableModifier.md": {
@@ -22120,6 +22105,78 @@
       "outcome": "no-change",
       "reason": "A <dialog> element is judged only by native closing rules, whatever its role. Covered by the core skill.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/react/reference/functions/AppHotkeysProvider.md": {
+      "fingerprint": "0722cf95507ec46803291acc66ba6730f5149d97bb83b5a32d7b3598047fcee3",
+      "snapshot": {
+        "docs/framework/react/reference/functions/AppHotkeysProvider.md": "e48ddf36597cc312d3980d93d554278523a7850521d32f7ddf57f43cadfe3117"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/framework/react/reference/functions/AppHotkeysProvider.md against origin/main."
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": {
+      "fingerprint": "af0bcd527f81980f2ef9ef43f6ae702cc1e22b41553f5db43ced00949b01c5bd",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": "139c23cc88f9658350eb6abebcc67cc4f9d8abd415793771f440178ad6147c08"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md against origin/main."
+      ]
+    },
+    "source:docs/reference/adapter/functions/installAppHotkeysStore.md": {
+      "fingerprint": "edd5838a8a890696d160fde0d93a15db295cc98ff610984ffe42021031ce06d0",
+      "snapshot": {
+        "docs/reference/adapter/functions/installAppHotkeysStore.md": "713f04eb093492dc48de57132e669c46cd7fd98cc71b54d9488556b8f58bf07a"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/reference/adapter/functions/installAppHotkeysStore.md against origin/main."
+      ]
+    },
+    "source:docs/reference/functions/installAppHotkeysStore.md": {
+      "fingerprint": "967c3ac250d48ea7ee4d26f18bb581b03e34954a89687fa456351cebad459b7b",
+      "snapshot": {
+        "docs/reference/functions/installAppHotkeysStore.md": "713f04eb093492dc48de57132e669c46cd7fd98cc71b54d9488556b8f58bf07a"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "evidence": [
+        "Diff of docs/reference/functions/installAppHotkeysStore.md against origin/main."
+      ]
+    },
+    "source:packages/hotkeys/tests/app-hotkeys-factory.test.ts": {
+      "fingerprint": "be094b2d055590a9f30a13eb115c9f53aac4df238dfa8e855b4d8ecccdfeeae5",
+      "snapshot": {
+        "packages/hotkeys/tests/app-hotkeys-factory.test.ts": "73bf42d597dd09dc872f4b5908526f98e82aecd4682c052b2ef7f7a67a5b74cb"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "evidence": [
+        "Diff of packages/hotkeys/tests/app-hotkeys-factory.test.ts against origin/main."
+      ]
+    },
+    "source:packages/react-hotkeys/tests/server-app-hotkeys.test.tsx": {
+      "fingerprint": "d7f5be4664cab69108951f1354457b13867178e8c552b1c595d1f46f0ab3e9af",
+      "snapshot": {
+        "packages/react-hotkeys/tests/server-app-hotkeys.test.tsx": "ade8596960e7db4f6d68fee62d218cdec150a4d1b62616563b64be87538b69f8"
+      },
+      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "outcome": "no-change",
+      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "evidence": [
+        "Diff of packages/react-hotkeys/tests/server-app-hotkeys.test.tsx against origin/main."
+      ]
     }
   }
 }

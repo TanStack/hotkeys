@@ -30,7 +30,7 @@ Each framework package re-exports everything from the core `@tanstack/hotkeys` p
 
 # React
 
-Use React 18 or newer. The hooks and `HotkeysProvider` are client components, so a server component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` directly.
+Use React 18 or newer. The hooks and `HotkeysProvider` are client components, so a server component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` directly. To pass `appHotkeys` from a server component, render `AppHotkeysProvider` instead. See [App hotkeys with Server Components](./framework/react/guides/app-hotkeys#app-hotkeys-with-server-components).
 
 Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
 

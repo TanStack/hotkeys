@@ -9,7 +9,7 @@ title: followKeyboardLayout
 function followKeyboardLayout(onChange, load?): () => void;
 ```
 
-Defined in: [adapter.ts:653](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L653)
+Defined in: [adapter.ts:656](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L656)
 
 Loads the browser's keyboard layout and calls `onChange` when it changes.
 Pass `load` to run the load differently, such as outside Angular's zone.

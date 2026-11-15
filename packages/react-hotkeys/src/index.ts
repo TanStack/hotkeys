@@ -3,6 +3,7 @@ export * from '@tanstack/hotkeys'
 
 // provider
 export * from './HotkeysProvider'
+export * from './AppHotkeysProvider'
 
 // React-specific exports
 export * from './useHotkey'

@@ -49,6 +49,8 @@ declare module '@tanstack/hotkeys' {
 }
 ```
 
+Lists re-render when a string, number, or boolean field of `meta` changes. A new array, object, element, or function in `meta` replaces the old one, so callbacks stay current, but it doesn't re-render lists on its own. That's what lets you write `meta` inline in a component. To show a changed array or element, also change a primitive field, such as `name`.
+
 ## List the hotkeys on screen
 
 `getHotkeyRegistrations` returns every registered hotkey, and updates when hotkeys register, unregister, or change. Show the ones with a name:

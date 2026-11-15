@@ -19,7 +19,7 @@ sources:
   - src/useHotkeys.ts
   - src/HotkeysProvider.tsx
   - src/useAppHotkeys.ts
-  - src/utils.ts
+  - src/AppHotkeysProvider.tsx
   - TanStack/hotkeys:docs/framework/react/quick-start.md
   - TanStack/hotkeys:docs/framework/react/guides/hotkeys-provider-and-scopes.md
   - 'tests/skills/editor-shortcuts/**'
@@ -70,7 +70,7 @@ export function SaveButton({ onSave }: { onSave: () => void }) {
 
 The package also re-exports `@tanstack/hotkeys`, such as `matchesKeyboardEvent` and `defineAppHotkeys`. Its plain `formatForDisplay` export is deprecated: use `useFormatForDisplay()` in components. Outside a component, call the plain function and pass `platform`.
 
-No provider is required. In React Server Components frameworks, call the hooks from client components. The package marks `HotkeysProvider` as a client component, so a server layout can render it without a `'use client'` wrapper.
+No provider is required. In React Server Components frameworks, call the hooks from client components. The package marks `HotkeysProvider` as a client component, so a server layout can render it without a `'use client'` wrapper. To pass `appHotkeys` from a server component, render `AppHotkeysProvider`, which takes the same props. `HotkeysProvider` throws there, because `defineAppHotkeys` ran only on the server. Functions such as `onCustomHotkeysChange` still need a client component.
 
 ## A dialog that owns the keyboard
 
