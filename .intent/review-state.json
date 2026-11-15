@@ -94,13 +94,13 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "270e6726392c5ee4a6c4f6c5651c8d8a5934df93d9b1d8a90417ebe676cad0c4",
+      "fingerprint": "8afbd56f9d7968189e7644a2e9f89b3c8ff6ef31737a3406428ba4f0a14752e0",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
-        "docs/guides/sensible-defaults.md": "a0246dafa4920b78af682c62fcdc3204cd42ebefdcb3315834b395f2bad989e5",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "35d5ec77cd171043fea0c7d37305c70d3e7191894cbadef0612b562ef3db32e2",
+        "docs/guides/sensible-defaults.md": "80d942a2c4281efc6c5e1eb90da0a42ef83c22077f1402c38801acd4bdee3047",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4347d8e4f977fa81d6aa0476ec369f5f7b264339a753a61da329a0173d3cfc4",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/hotkey-manager.ts": "25d47f00725705b54aa6eb8024d210a350412b8fc8202c8231c1c2970df661a6",
@@ -115,9 +115,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "e3354111abad45c79ff5e95339e6624c5aae7187",
+      "head": "05fced44d1dd3fad292bf0fadaca83174c31dfc5",
       "outcome": "updated",
-      "reason": "The core skill now says an open native dialog or popover gets Escape before any hotkey outside it, whatever its scope.",
+      "reason": "The core skill now gives rules for Escape hotkeys: let the browser close native overlays, target an overlay's own Escape at it, keep global Escape for when nothing is open, and keep Escape out of page-section scopes and sequences.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "58c46a20e0259f7bc4dd9bb6b504adf5bfb07a84f7e5dbe5c36e68cbe40b5260",
+      "fingerprint": "175ea26e8f060536f5665d996954ce7cad0364ecf6bce9e6c55ed652ca1c9f65",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "a0246dafa4920b78af682c62fcdc3204cd42ebefdcb3315834b395f2bad989e5",
+        "docs/guides/sensible-defaults.md": "80d942a2c4281efc6c5e1eb90da0a42ef83c22077f1402c38801acd4bdee3047",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -335,7 +335,7 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "84daeb5bf36e261bf0bc4daca4ea8eb2fd496d23e0d3c7570338fa6a4422a145",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "35d5ec77cd171043fea0c7d37305c70d3e7191894cbadef0612b562ef3db32e2",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4347d8e4f977fa81d6aa0476ec369f5f7b264339a753a61da329a0173d3cfc4",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "c3e67dc1cba2982551d5dcd2862fe4d67ee048993357c18a8d230b38f5a05b6c",
@@ -407,7 +407,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "e3354111abad45c79ff5e95339e6624c5aae7187",
+      "head": "05fced44d1dd3fad292bf0fadaca83174c31dfc5",
       "outcome": "no-change",
       "reason": "The skill set and domain map are unchanged.",
       "evidence": ["_artifacts/skill_tree.yaml"]
