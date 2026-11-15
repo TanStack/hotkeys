@@ -317,7 +317,7 @@ Escape closes one thing at a time: the innermost dialog, popover, or menu. While
 
 TanStack Hotkeys finds native dialogs and popovers in the document, and the ones inside a shadow root that hold focus. It finds the other overlays from focus only, so a closed dialog that a library leaves in the page doesn't count. It looks when the key press reaches `window`, before listeners on the document and its elements run, so a library that closes its overlay from one of those still gets the key press alone.
 
-A hotkey in a named scope keeps Escape inside a `role="dialog"` or `role="alertdialog"` element. So a dialog component that activates its own scope and registers an `Escape` hotkey to close itself still closes. While a combobox or menu inside that dialog is open, the first Escape closes it, and the next one closes the dialog. A global `Escape` hotkey skips the overlay. If that hotkey is the one that closes your dialog, give it the dialog's scope or target the dialog.
+While focus is inside a `role="dialog"` or `role="alertdialog"` element, any hotkey in a named scope keeps Escape, whatever its target. So a dialog component that activates its own scope and registers an `Escape` hotkey to close itself still closes. While a combobox or menu inside that dialog is open, the first Escape closes it, and the next one closes the dialog. A global `Escape` hotkey skips the overlay. If that hotkey is the one that closes your dialog, give it the dialog's scope or target the dialog. This exemption doesn't apply to a native `<dialog>`, so target the `<dialog>` instead. If other named scopes can be active while the dialog is open, make the dialog's scope exclusive so their `Escape` hotkeys don't run.
 
 Some overlays don't get Escape this way:
 
