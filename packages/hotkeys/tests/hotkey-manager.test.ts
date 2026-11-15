@@ -1789,6 +1789,22 @@ describe('HotkeyManager', () => {
       expect((view.options.meta as any).icon).toBe(icon)
     })
 
+    it('does not publish repeated meta resets on a hotkey without meta', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn())
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect('meta' in reg.options).toBe(false)
+    })
+
     it('publishes when a primitive meta field changes', () => {
       const manager = HotkeyManager.getInstance()
       const handle = manager.register('Mod+S', vi.fn(), {

@@ -67,10 +67,10 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "d9a46651ae517b6862bb6f3ed90554f2f54d71fea9d4c2ac3fd406f4e38335cc",
+      "fingerprint": "ca9b499e46e968b3c1b353c53bcb1e5d7b83bb6d152da7926ee84d0100ceed89",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
@@ -86,22 +86,22 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "updated",
-      "reason": "Added that a React Server Component passes appHotkeys to AppHotkeysProvider, not HotkeysProvider.",
-      "evidence": ["The SKILL.md diff in this branch."]
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "outcome": "no-change",
+      "reason": "Guidance already matches; this commit only clarifies the meta re-render sentence and keeps an absent meta key absent.",
+      "evidence": ["Diff of the changed sources."]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "fd723462961ea1631a365a7299e21eaaa7cf95b66f76499b362cb4afcafeb32f",
+      "fingerprint": "5391b88750a27ad14350c1472789de60adcc9ed3560c4ac03368d752a95ce3fd",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
         "docs/guides/sensible-defaults.md": "d769b22f94fc337807b304e75d1f31b7db31043ddb114163ee607930d205a976",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "c3375d8b7c210f62141edf0da4b96c74d19db4b185c20d4d0fee8d4b3f604a1b",
+        "packages/hotkeys/src/hotkey-manager.ts": "2234fea06aa3f1fb075e80a82bd225eb7f7e453e283cf708c0c7e584c6d72484",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,10 +113,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "updated",
-      "reason": "Added the meta update rule: primitive fields re-render lists; a new array, object, element, or function alone does not.",
-      "evidence": ["The SKILL.md diff in this branch."]
+      "reason": "Clarified that only a new meta with a changed primitive field re-renders lists; editing the object in place does not.",
+      "evidence": ["The SKILL.md diff in this commit."]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "9d3464baf9efc96d28f5361bbfbc50554be6da6da2187f650a701b79eb443b7b",
@@ -273,7 +273,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "6d67a44b729031619ce531c05540a722aad9fe78f08c9c277155369e4ea29ff5",
+      "fingerprint": "fa695a3e61956af506ebeaea69e0c64115337485ca0fd89c9fd846b5c8edc324",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -291,7 +291,7 @@
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a74db3400ec989737d270db75970b396e79a3a15b1e271bfc593ebc547db6daa",
         "docs/framework/preact/quick-start.md": "15dd32dedf3fa4374a1d1203e0025019b2d1bb0ac8cb5a293022dba955680dae",
         "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "009fcdeaeb176fa628c0935b2d0496c6b383e7d875f2d2096d53175c24615d43",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
@@ -331,12 +331,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "5f8b570efcdc3c98f331f527665b99bc89c2772049a101eff6822807861bba86",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "c3375d8b7c210f62141edf0da4b96c74d19db4b185c20d4d0fee8d4b3f604a1b",
+        "packages/hotkeys/src/hotkey-manager.ts": "2234fea06aa3f1fb075e80a82bd225eb7f7e453e283cf708c0c7e584c6d72484",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -357,7 +357,6 @@
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "493b6e75c203964b8f3b4e9ff455938d0dbfb041e3a44961164452ff9b1dde8c",
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb",
-        "packages/preact-hotkeys/src/utils.ts": null,
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
@@ -405,10 +404,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Synced skill_tree.yaml after the React skill replaced the deleted src/utils.ts source with src/AppHotkeysProvider.tsx. No skill added, removed, or renamed.",
-      "evidence": ["Diff of _artifacts/skill_tree.yaml against origin/main."]
+      "reason": "No skill added, removed, or renamed.",
+      "evidence": ["Skill tree unchanged."]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -680,28 +679,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "4dfdb9841de864424d06ecedbb8fa15d4c1f93d45215a5b5f1c7b17ee3f0b7cb",
+      "fingerprint": "f5abe8495257938b74e8a8e4c44febdd8a486c37911732ca618063275b8977cb",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "685cfdca6806a3182354fb659e92d25932b4d5beba2df539115498ffd95c11b7"
+        "docs/reference/classes/HotkeyManager.md": "3a55a83c2ef47202020008ddb969319460eb536530e61f3b171a66064856126d"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/classes/HotkeyManager.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/classes/HotkeyManager.md."]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "55a242390bf1cd5c5c1e8e0b3cdea6f8159f9dff92acd0b2e572b0c884b5e76c",
+      "fingerprint": "2a270bb430b64ecbfe958137b392ac4989a4e37b6921627a25e8f56a36ee2706",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "059e5e035d36786813196658eee5166c6447420cb8a5c5f7f13ebcd7c5d2e85a"
+        "docs/reference/functions/getHotkeyManager.md": "224b811b09eeba397b38a76d0a52c2d6e3138527be67f24008187485ad8e94c6"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/getHotkeyManager.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/functions/getHotkeyManager.md."]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1279,171 +1274,161 @@
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "981ef12ee7c685bcf8e8bd2ecd8d5dd6bdc3670d0292b5980b43e863ca12b37e",
+      "fingerprint": "3be9e64b5ffd8cbe962523c6ffb6731a39c7d9e00175573b1e4478f1c2ddee11",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "9a1cffebfa23d686c57a443659258e3a1fd8eba31242af441cb9d446032ad363"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "d1b7e00858917d45cdcd2fd3bd7d75616a0cc942e549b837d6abeb53641835fb"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/functions/toHotkeyRegistrationView.md against origin/main."
+        "Diff of docs/reference/functions/toHotkeyRegistrationView.md."
       ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "6eefc22e3cfbf49dffa79553f81bf30691f987621d84fb032034a1a8d78850d8",
+      "fingerprint": "b14b517e4f0c1f19e38dbb05368c0d7886b0b3d557f0add4fc2f668ca6df4bc5",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "2aa30bc94bd1759b262d14dbab32cddf13cb7d8ad2a4dd6ad7d8a5b01237840c"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "0df1f69a90fd605c8f7786995a5b66dac5699a126b2a2058ddd3b875d04b03cc"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/ActivateHotkeyScopeOptions.md against origin/main."
+        "Diff of docs/reference/interfaces/ActivateHotkeyScopeOptions.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "1d0f495416ba48dc37aeff3c23ef80175958ebdb049a27968df30435757a2aa6",
+      "fingerprint": "188a691644b0cedba8acae10b9a74204563575dd09126901228b2622bde247b6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "dd251cc551635e80b51a99e14c6c443c476cf84eb5ef776df22da10aea3c6104"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "0917067e12d634f26dddad53d0d8a337b9a557dd2f8e6761a2ed30017db6351f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyChordOptions.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/interfaces/HotkeyChordOptions.md."]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "fdd8b1843db4fb1655365cacca17100de83b19571068658ffe1dbd15b25de54b",
+      "fingerprint": "3bb93fcac302f34a68f20b3e28e67c513f1798674947642734b9a30032492def",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "6a07bd5894e19769064bed2b6a14f1f34374e2960458bc4c6aeee8f0d2db7489"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "ba98ebfdc8a386e1b9f3bf71a27b075e6bb2cdf8d455da1b81ed58ccd69f06a4"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyChordRegistration.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeyChordRegistration.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "6d650a95f66878a4333b4158365264a92e7f2ae16c22af4a89da0ac90b9b5a13",
+      "fingerprint": "dfeee4a5cfb732c100b0da1ea1611348ca4a9055aa8a390d42eacbfc88db0b11",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "aa22b9586611287395b20a42a66c8f0d9e0775f83be61583720ce772f9c7ce70"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "53166c845e4c55b35f59c36f1f1cfd173404fcc943679586ebf69b79b9cc89b1"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyChordRegistrationView.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeyChordRegistrationView.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "b0a1e60e3a628547275b54552abdfc13623b39dee15297372f8ae1bf05888191",
+      "fingerprint": "27bb4d74034861c54ed721999267cd28186fb5f0848e4b76e5d4cd2dddbd1266",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "26fe67bb17585f9f35138708a61c43763cf31bdbf56ae98ba6b42646b142e029"
+        "docs/reference/interfaces/HotkeyOptions.md": "0aa6dea4a6538fe1858dee01497ab387b7e7b9f40e631f9bfd8ed2eccb0d946a"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyOptions.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/interfaces/HotkeyOptions.md."]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "bc62911286cce03c7450ef22ade21697c8fd95b6dfdbc4b3899d0e2661d1e015",
+      "fingerprint": "de2b8045ff74fbf6330d722255459d0807dc2d3cf8a13262ca52f26f84fe5209",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "1ad5d04833dd3521d5dd94db99501c85a22289a1b6d59fc3803b2ffe64667060"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "1a409f4cbd488f1aab0ed82b1e82a7c29fc1bf9aa7bdda7bf1a65552b8d44a9f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyRegistrationHandle.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeyRegistrationHandle.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "c6697d7e7ec815e767fa5a3a509b12972dca59c12e1f2b7732913ca94769f7b3",
+      "fingerprint": "14aae0add7cc398cb68a5dcf564d0c3639c5058981521c338b400958863b7558",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "1fd998f812e4dde4fcbd41a52322d47b60ba8b50d485b88f3d62c85bd007ffc8"
+        "docs/reference/interfaces/HotkeyScopesState.md": "6bc016031815314abd8bbd279714cede156274a8443781f40b329b9c81caa840"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyScopesState.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/interfaces/HotkeyScopesState.md."]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "130acf2996a1a4d95ddfb5f81d587a4ea2809d3742bfcb175015201f6924493e",
+      "fingerprint": "a4eb8ce54e25fe369e2fa9ca9a6bef7723cd76ec4700b48168a3badde3844c2d",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "0c7f309b378dfcfad303519b0939b3910b0f124706d42f6f67f9043a410645d6"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "010cea69102c371691e216c380285efe8e21cb2055c3c69256acc4ba34d9b81a"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeySequenceOptions.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeySequenceOptions.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "0cb3f39afe92a2c5c2af812e3081b4389209b87ae50ef758be9981aec2d83239",
+      "fingerprint": "626b232be840a130db6942e0c1b7250920653e57f41e17e00af1a53561daa3af",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "52d2db6ebc899004c76354b49cff1ae8212f74841b7c91d73976a236d291ec84"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "af4d73b91d9a1e66bcf54e69653d5bfd031611cb05143dda033ffce162546437"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeySequenceRegistration.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeySequenceRegistration.md."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "7b21d3b81fa0d390b62fa1da9bcacfaebd78dfa79476827ea072251d561685d1",
+      "fingerprint": "1e2e9a35c6c683c06dd44e2d6859757cec59c39f36f64d8cd70ceec70b37ed80",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "d8f32f42e42039451ee5d5926e6770c124d34eccd0d522741d2306f1563c2d48"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "1887acd5f22524d6049d9beae38ff3c234db992d44f9991fdb94f9fb174ba8d1"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeySequenceRegistrationView.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeySequenceRegistrationView.md."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "adc4b2b149349dff1c29f8b535983f7705ae25bb1ef88572eb090c891685ce9d",
+      "fingerprint": "4c3a0496c22191d92126c1d0050f9a827e5a24d780a03cef2063def642f9d480",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "a69bc6a238e77c0419e7f4143efb618ac9ec78716a4a41cf637f40146bd3f0de"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "699861b27f51a0d758b0173fcb2d124a98c13264d115b5048761e1971cf3bf48"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/type-aliases/HotkeyOptionsFor.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/type-aliases/HotkeyOptionsFor.md."]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "a4a14468d9b61989104b7dedeca6cf451308cb5eae5b3a964f1cce5d3035a8dd",
+      "fingerprint": "f988116498f7412d31c323073f920426d6b7418183463a884f653b89244d3c47",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "2c584183a94ec93ced3ba62f05ed3f6ac9dc2352e5c6e00402d2baf16d08a5a8"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "653dfd75a72d4678232a69b4b9e109f571856790c73e16f9024bd35a357f9f1f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/type-aliases/HotkeyRegistration.md against origin/main."
-      ]
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
+      "evidence": ["Diff of docs/reference/type-aliases/HotkeyRegistration.md."]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "4d56d1e1694bdcb126327e4c246946342e1311ea31bf8ee7869018747a099aaa",
+      "fingerprint": "6afc4cbed263aba17775400f708646c0b8448d01d828dd889a562e4c6833c536",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "a76b3414a795e47082d0d53e6f6cbe096800e3b36e1dbe678d91eb0b31a7d508"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "a8286e7eb9713e11d4ee9568b442d4d9275ce62b812867b430fad4ed5bcc5d70"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/type-aliases/HotkeyRegistrationView.md against origin/main."
+        "Diff of docs/reference/type-aliases/HotkeyRegistrationView.md."
       ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1459,27 +1444,25 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "14f93bce1e7e21728e48454b0ba4b26d1d1b5bd7e602d6152f95e66f614b1bbc",
+      "fingerprint": "ec349bd14bf4f2e5bc90ac4ffc656d7837fe303c759c71443588d13c93c1c5b2",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "dfada9d25131cc15d3e652b7855dd377d22786de5817f28e0d72f73303145c18"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "c7a160ab52cd847cf8a7784c7d1b23e1ea095f90ca2dc9a968b35e162aad3ed0"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
-      "evidence": [
-        "Diff of packages/hotkeys/tests/hotkey-manager.test.ts against origin/main."
-      ]
+      "reason": "Clarified the meta re-render sentence.",
+      "evidence": ["Diff of packages/hotkeys/tests/hotkey-manager.test.ts."]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "57eeecfea1ac2c07444ba20ec65ba659c95773b9303e3a38342edcd33b704aba",
+      "fingerprint": "6aaa3a1382d0c2e991962011a46c4f3078a4ccafec43e7b41d8dd9ed143fe15b",
       "snapshot": {
-        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "bce5de497b95e6d6427e280c7167786442b44939ebdcfd2c3f20cba8c3fb03cb"
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "82c35a7fc1f824986a27f49a9289dd95cb0814cdf3cce60a3c48040269707d44"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/alpine/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/alpine/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-manager.md": {
@@ -1675,15 +1658,15 @@
       ]
     },
     "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "ce8c6386afdedfb5c570ce3a1abe78a134819cba37a6aef558408b2c3bb26f5f",
+      "fingerprint": "1fba709ea65e3bcc930acd8264bea6ce51c1eca8403bec6ce3b49ca36ebc0014",
       "snapshot": {
-        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "ee5cea6face5c1252c352f710029a6011cdb9e715c377f3ad428500c5057d499"
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "8be8bfc909f05e4b1c37ebf71a054e834c75279fbc92eb5c93060073eb866981"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/angular/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/angular/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/angular/guides/hotkey-manager.md": {
@@ -1721,15 +1704,15 @@
       ]
     },
     "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "39914e61024ce72c094abf62afac36cef97f9b414b2cef0efd00f2251a014f57",
+      "fingerprint": "a2aa8721edcd7c4b2c3df792ef5c08958963b518fddf652c9089df012e5e5946",
       "snapshot": {
-        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "37a9a0a51eb97311d14988707dd6b20e2d09f3bbeaf51c01aada1e356214234a"
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "ca0473580fadefee64551eec94dbd4d56172bfaa2d8cba8876ea3eb5715d61cd"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/ember/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/ember/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/ember/guides/hotkey-manager.md": {
@@ -1767,15 +1750,15 @@
       ]
     },
     "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "d6377def0f1b52c3d7708cafa6193abd5f79d90d9546dc0d99adfed239dc5592",
+      "fingerprint": "e40046447325e892d296c800ce5ebda374ddbdefa30cf070912157850075a10b",
       "snapshot": {
-        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "59e40588a2ed08e2e4e78301e602d7e515476c186219b79635bf5b2cf106f5d0"
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "a8563f5b7371aec308d0edfc29add70769b6e777b0dfd4ffc24e801ac922328f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/lit/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/lit/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/lit/guides/hotkey-manager.md": {
@@ -1811,15 +1794,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "1b6eb2d9a4284c1e4f05545a5df399c9e040c44a777208f38e7f5e88145a38d4",
+      "fingerprint": "3c456bae0b11e4a7d5dd842c8b5d29fccb4e546578b593587b34727a3e092112",
       "snapshot": {
-        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "11ebeea5453c4558060cf75691a2030ca91bb3d9618e1ec1541aa09727245c4b"
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "035c51b6e9c3a5c6b63110e41e53d5262c95c6d20bc9f9a6d6acca0fb1726582"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/octane/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/octane/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/octane/guides/hotkey-manager.md": {
@@ -1855,15 +1838,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "db0a378c109fe05dc31e25211ea6264e036a2df5fca74bc9fe76f40b63a08633",
+      "fingerprint": "58e74079da7cd86dafc113ebc8b289ce8a318b1635ad414abf4f438b4d4adb59",
       "snapshot": {
-        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "6a37723afc14da168da7e53fbd00a03bbb01b1dca6a5a75f4dc59fc632918596"
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "eae832012fac6ef17cbb5a88a2f3be7274dcba3a5e31f9b162461924d4c17883"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/preact/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/preact/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/preact/guides/hotkey-manager.md": {
@@ -1933,15 +1916,15 @@
       ]
     },
     "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "71b83ac149de5f62fb2bf27b871b21a8be85a82e41ce04ab418fac171dc52fb7",
+      "fingerprint": "67ab69f7f2e8279bc4d489fbefc720cd23f5890cf32968169a6b6dbe1fc6505b",
       "snapshot": {
-        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "96659d5c73f47bac9dd4c7e78b978b79b98e32622d5cb8745218883c0a52d4a5"
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "2286384e0afae31e56afdb54c46a2b85ddba3e8e1a11b5bf297d9da89d773de4"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/solid/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/solid/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/solid/guides/hotkey-manager.md": {
@@ -1977,15 +1960,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "494b4e19a48b7d3f3aff73b71a63988cd289434ed614cc28cc27b2295862cff0",
+      "fingerprint": "669a6fac5440035ba9dd9af14031f3b7fe2c131fa814f189aad9a52a1155f767",
       "snapshot": {
-        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "dc566029606ddcd39863e1dca8b706ab2a6e4cbc2cab2991758a39ae4b8b4502"
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "382d1e391ff3c71d095957a6a32fa9350322fe9fb28c38ba0ead0e8cc99d423c"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/svelte/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/svelte/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/svelte/guides/hotkey-manager.md": {
@@ -2031,15 +2014,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "10c8fa1a4268b3d983baaba6fc9667962b511e578312d5206e0f9d4cb25eeeab",
+      "fingerprint": "1e9cf165e27e69a1ae82c5abfd844d6a392a3f6a0d30c639336095a26f80f39e",
       "snapshot": {
-        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "8b8fcb36726a6ef60bfa0028562cd056954127416e44820736c5919c73543d6f"
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "269c6a004e9cdfcd5eaba8064f39c25b2b4a9638f9952ad0f9328bbf16e6625a"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
+      "reason": "Clarified the meta re-render sentence.",
       "evidence": [
-        "Diff of docs/framework/vue/guides/cheat-sheet-ui-helpers.md against origin/main."
+        "Diff of docs/framework/vue/guides/cheat-sheet-ui-helpers.md."
       ]
     },
     "source:docs/framework/vue/guides/hotkey-manager.md": {
@@ -2085,15 +2068,15 @@
       "evidence": ["Diff of docs/reference/index.md against origin/main."]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "b250d3868bd5b61eff4c8846e6fb0608841831704c05e8eecc399fa2d27d34c2",
+      "fingerprint": "3832619dcf2a21bb7eb4abc619317961783278007d6bf8144ca7dc165a1b94e3",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "48c13dfab0d357a2e7820610a96b36c875e7751a9d6d8fa17ed81b25fba57ca5"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "a0353fc77d11a50276813013fc9fc4b289004f3161e6d3db41f00e55a06b23c0"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/type-aliases/HotkeyRegistrationStatus.md against origin/main."
+        "Diff of docs/reference/type-aliases/HotkeyRegistrationStatus.md."
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -21797,15 +21780,15 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "7644952dbd3fbf46fb3feebe7be468e4fc944cdee04317860c9a56f0bc23226a",
+      "fingerprint": "7e7a8617f1902db9e0bad7b4c6b51e1532ee8bcb51181cb936acbb1b0746a310",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "3c568920c2b7b355edf53bb25d0093a77db076f98cba1e0aaa54864242840a10"
+        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "8ec87fab0f1b0b2b4cf670ec1e4d3de23ec1da57dbf9d8ea1daad134814da562"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/interfaces/HotkeyRegistrationsResult.md against origin/main."
+        "Diff of docs/reference/interfaces/HotkeyRegistrationsResult.md."
       ]
     },
     "source:docs/reference/interfaces/KeyIdentity.md": {
@@ -21821,15 +21804,15 @@
       ]
     },
     "source:docs/reference/type-aliases/HotkeyCommonOptions.md": {
-      "fingerprint": "9d2805a4a706613e15c313299ea921f2bf2137175af8cda23d8a5a9ac060b2f7",
+      "fingerprint": "9696dfeb26e724d6d99ffa65ef74888c8681e1fd83eb8ba97cda5618bb8affd4",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyCommonOptions.md": "9d46637770e904387df20614806d125468a4e78038ef8f72567e44253cde6722"
+        "docs/reference/type-aliases/HotkeyCommonOptions.md": "30624cce0c51a8ec9565ef844cfc7d9310c3779c111f8f16a86c452d56158852"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "Regenerated TypeDoc page after a JSDoc wording change.",
       "evidence": [
-        "Diff of docs/reference/type-aliases/HotkeyCommonOptions.md against origin/main."
+        "Diff of docs/reference/type-aliases/HotkeyCommonOptions.md."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyEventType.md": {
