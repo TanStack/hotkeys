@@ -62,6 +62,29 @@ function Root() {
 }
 ```
 
+### App hotkeys with Server Components
+
+In React Server Components frameworks such as the Next.js App Router, a server component can't pass `appHotkeys` to `HotkeysProvider`. `HotkeysProvider` loads the store for app hotkeys only in a bundle where `defineAppHotkeys` ran, and here it ran only on the server. Render `AppHotkeysProvider` instead. It takes the same props and loads the store itself:
+
+```tsx
+// app/layout.tsx
+import { AppHotkeysProvider } from '@tanstack/react-hotkeys'
+import { appHotkeys } from './app-hotkeys'
+import type { ReactNode } from 'react'
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html>
+      <body>
+        <AppHotkeysProvider appHotkeys={appHotkeys}>{children}</AppHotkeysProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+A server component can also pass the user's saved `customHotkeys`, such as from a cookie or a database. Functions can't come from a server component: not `onCustomHotkeysChange`, and not a function in the `meta` of a declaration. To pass one, render the provider from a `'use client'` module that imports the declarations.
+
 ## Register app hotkeys
 
 Pass an app hotkey wherever you pass a hotkey. Read it from `useAppHotkeys()`, or import it directly:

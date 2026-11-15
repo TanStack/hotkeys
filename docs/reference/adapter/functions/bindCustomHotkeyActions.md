@@ -9,7 +9,7 @@ title: bindCustomHotkeyActions
 function bindCustomHotkeyActions(getStore): CustomHotkeyActions;
 ```
 
-Defined in: [adapter.ts:587](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L587)
+Defined in: [adapter.ts:590](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L590)
 
 Custom hotkey actions that call the store from `getStore` each time, so they
 follow a store that changes.

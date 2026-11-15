@@ -42,6 +42,7 @@ title: "@tanstack/hotkeys"
 - [getHotkeysProviderScopeKey](functions/getHotkeysProviderScopeKey.md)
 - [getPublishedAppHotkeysStore](functions/getPublishedAppHotkeysStore.md)
 - [getServerPlatformSnapshot](functions/getServerPlatformSnapshot.md)
+- [installAppHotkeysStore](functions/installAppHotkeysStore.md)
 - [isHotkeyHintVisible](functions/isHotkeyHintVisible.md)
 - [mergeHotkeysProviderDefaults](functions/mergeHotkeysProviderDefaults.md)
 - [namesPhysicalKey](functions/namesPhysicalKey.md)

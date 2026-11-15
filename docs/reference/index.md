@@ -156,6 +156,7 @@ title: "@tanstack/hotkeys"
 - [getKeyboardLayoutStore](functions/getKeyboardLayoutStore.md)
 - [getKeyStateTracker](functions/getKeyStateTracker.md)
 - [hasNonModifierKey](functions/hasNonModifierKey.md)
+- [installAppHotkeysStore](functions/installAppHotkeysStore.md)
 - [isAppHotkey](functions/isAppHotkey.md)
 - [isCustomHotkey](functions/isCustomHotkey.md)
 - [isHotkeySequence](functions/isHotkeySequence.md)

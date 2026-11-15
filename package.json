@@ -112,6 +112,16 @@
         "react-dom"
       ],
       "limit": "12 KB"
+    },
+    {
+      "name": "React useHotkey + AppHotkeysProvider",
+      "path": "packages/react-hotkeys/dist/index.js",
+      "import": "{ useHotkey, AppHotkeysProvider }",
+      "ignore": [
+        "react",
+        "react-dom"
+      ],
+      "limit": "11.5 KB"
     }
   ],
   "nx": {

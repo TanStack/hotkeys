@@ -57,7 +57,10 @@ import type {
 import type { KeyboardLayoutMap } from './keyboard-layout'
 import type { HotkeyPlatform } from './platform'
 
-export { createAppHotkeysStore } from '@tanstack/hotkeys'
+export {
+  createAppHotkeysStore,
+  installAppHotkeysStore,
+} from '@tanstack/hotkeys'
 export { resolveMaybeGetter } from './_getter'
 export { createStore } from './_store'
 export { definedOptions, withDefaults } from './_registration'

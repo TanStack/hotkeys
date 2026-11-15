@@ -11,6 +11,10 @@ Defined in: [HotkeysProvider.tsx:60](https://github.com/TanStack/hotkeys/blob/ma
 
 - `HotkeysProviderScopeProps`
 
+## Extended by
+
+- [`AppHotkeysProviderProps`](AppHotkeysProviderProps.md)
+
 ## Type Parameters
 
 ### T

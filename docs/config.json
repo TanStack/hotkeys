@@ -843,6 +843,10 @@
           "label": "react",
           "children": [
             {
+              "label": "AppHotkeysProvider",
+              "to": "framework/react/reference/functions/AppHotkeysProvider"
+            },
+            {
               "label": "HotkeysProvider",
               "to": "framework/react/reference/functions/HotkeysProvider"
             },
@@ -873,6 +877,10 @@
             {
               "label": "useHotkeysContext",
               "to": "framework/react/reference/functions/useHotkeysContext"
+            },
+            {
+              "label": "AppHotkeysProviderProps",
+              "to": "framework/react/reference/interfaces/AppHotkeysProviderProps"
             },
             {
               "label": "HotkeysProviderOptions",
@@ -1595,6 +1603,10 @@
         {
           "label": "AppHotkeysStore",
           "to": "reference/classes/AppHotkeysStore"
+        },
+        {
+          "label": "installAppHotkeysStore",
+          "to": "reference/functions/installAppHotkeysStore"
         },
         {
           "label": "provideAppHotkeys",

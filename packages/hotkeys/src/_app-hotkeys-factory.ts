@@ -23,7 +23,11 @@ export function createAppHotkeysStore<T extends AppHotkeys>(
   options: AppHotkeysStoreOptions<T>,
 ): AppHotkeysStore<T> {
   if (!factory) {
-    throw new Error('[hotkeys] App hotkeys must come from defineAppHotkeys')
+    // Also reached when a React Server Component passes the declarations:
+    // `defineAppHotkeys` then ran only in the server bundle.
+    throw new Error(
+      '[hotkeys] defineAppHotkeys did not run in this bundle. Import the app hotkeys in the module that renders the provider. With React Server Components, render AppHotkeysProvider instead of HotkeysProvider.',
+    )
   }
   return factory(appHotkeys, options) as unknown as AppHotkeysStore<T>
 }

@@ -1,8 +1,10 @@
 // @vitest-environment happy-dom
 
 import { HotkeyManager } from '@tanstack/hotkeys'
-import { act, renderHook } from '@testing-library/react'
+import { act, cleanup, render, renderHook } from '@testing-library/react'
+import React from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
 import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
 
@@ -134,5 +136,74 @@ describe('useHotkeyScopesState', () => {
 
     act(() => release())
     expect(result.current.exclusive).toBeNull()
+  })
+})
+
+describe('useHotkeyRegistrations with inline meta', () => {
+  afterEach(() => {
+    cleanup()
+    HotkeyManager.resetInstance()
+  })
+
+  const inlineMeta = (name: string) => ({
+    name,
+    ...({
+      keywords: ['file', 'write'],
+      icon: <svg aria-hidden />,
+      run: () => {},
+    } as object),
+  })
+
+  it('settles when the component that registers also lists', () => {
+    let renders = 0
+    function SaveButton() {
+      if (++renders > 20) throw new Error('did not settle')
+      useHotkey('Mod+S', () => {}, { meta: inlineMeta('Save') })
+      const registrations = useHotkeyRegistrations()
+      return <output>{registrations[0]?.options.meta?.name ?? 'none'}</output>
+    }
+
+    const view = render(<SaveButton />)
+
+    expect(view.getByText('Save')).toBeTruthy()
+    expect(renders).toBeLessThanOrEqual(3)
+  })
+
+  it('settles when a parent lists and a child registers', () => {
+    let renders = 0
+    function Child() {
+      useHotkey('Mod+S', () => {}, { meta: inlineMeta('Save') })
+      return null
+    }
+    function Palette() {
+      if (++renders > 20) throw new Error('did not settle')
+      const registrations = useHotkeyRegistrations()
+      return (
+        <>
+          <output>{registrations.length} hotkeys</output>
+          <Child />
+        </>
+      )
+    }
+
+    const view = render(<Palette />)
+
+    expect(view.getByText('1 hotkeys')).toBeTruthy()
+    expect(renders).toBeLessThanOrEqual(3)
+  })
+
+  it('shows a meta change that alters content', () => {
+    let renders = 0
+    function SaveButton({ name }: { name: string }) {
+      if (++renders > 20) throw new Error('did not settle')
+      useHotkey('Mod+S', () => {}, { meta: inlineMeta(name) })
+      const registrations = useHotkeyRegistrations()
+      return <output>{registrations[0]?.options.meta?.name ?? 'none'}</output>
+    }
+
+    const view = render(<SaveButton name="Save" />)
+    view.rerender(<SaveButton name="Save as" />)
+
+    expect(view.getByText('Save as')).toBeTruthy()
   })
 })

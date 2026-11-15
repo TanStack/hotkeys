@@ -9,7 +9,7 @@ title: resolveRefTarget
 function resolveRefTarget(target): Target | null | undefined;
 ```
 
-Defined in: [adapter.ts:678](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L678)
+Defined in: [adapter.ts:681](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L681)
 
 Resolves a ref object to its current element; other targets pass through.
 An unset ref resolves to `null` or `undefined`, so registration waits.

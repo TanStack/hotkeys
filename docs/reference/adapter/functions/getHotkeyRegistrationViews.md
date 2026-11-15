@@ -9,7 +9,7 @@ title: getHotkeyRegistrationViews
 function getHotkeyRegistrationViews(registrations?): HotkeyRegistrationView[];
 ```
 
-Defined in: [adapter.ts:601](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L601)
+Defined in: [adapter.ts:604](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L604)
 
 Views of every registration, chords and sequences, for registration lists.
 

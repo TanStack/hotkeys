@@ -9,6 +9,7 @@ import {
   AppHotkeysFixture,
   Fixture,
   ForwardedOptionsFixture,
+  InlineMetaFixture,
   OptionalHotkeyFixture,
   PlatformAppHotkeysFixture,
   ProviderFixture,
@@ -16,6 +17,7 @@ import {
   ScopesFixture,
   appCapture,
   capture,
+  inlineMetaCapture,
   optionalCapture,
   scopeCapture,
 } from './fixture.tsrx'
@@ -370,4 +372,12 @@ it('options forwarded as undefined keep their defaults', () => {
     defaultPrevented: true,
     reachedWindow: false,
   })
+})
+
+it('settles when inline meta holds an array, an element and a function', () => {
+  inlineMetaCapture.renders = 0
+  flushSync(() => root.render(InlineMetaFixture))
+  flush()
+  expect(container.querySelector('#inline-meta')!.textContent).toBe('Save')
+  expect(inlineMetaCapture.renders).toBeLessThanOrEqual(3)
 })

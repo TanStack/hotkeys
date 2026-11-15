@@ -82,7 +82,7 @@ skills:
       - src/useHotkeys.ts
       - src/HotkeysProvider.tsx
       - src/useAppHotkeys.ts
-      - src/utils.ts
+      - src/AppHotkeysProvider.tsx
       - TanStack/hotkeys:docs/framework/react/quick-start.md
       - TanStack/hotkeys:docs/framework/react/guides/hotkeys-provider-and-scopes.md
       - tests/skills/editor-shortcuts/**

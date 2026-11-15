@@ -276,3 +276,16 @@ function PlatformAppHotkeysConsumer() @{
   const list = useAppHotkeyList();
   <output id="platform-custom">{String(list[0]!.isCustom)}</output>
 }
+
+export const inlineMetaCapture: { renders: number } = { renders: 0 };
+
+// Inline `meta` with an array, an element and a function is new on every
+// render. The list below must not render this component again for it.
+export function InlineMetaFixture() @{
+  if (++inlineMetaCapture.renders > 20) throw new Error('did not settle');
+  useHotkey('Control+S', () => {}, {
+    meta: { name: 'Save', ...({ keywords: ['file', 'write'], icon: <svg />, run: () => {} } as object) },
+  });
+  const registrations = useHotkeyRegistrations();
+  <output id="inline-meta">{registrations.hotkeys.map((reg) => reg.options.meta?.name).join(',')}</output>
+}

@@ -1726,6 +1726,126 @@ describe('HotkeyManager', () => {
       })
       expect(reg.options.enabled).toBe(false)
     })
+
+    it('does not publish when a fresh meta has the same content', () => {
+      const manager = HotkeyManager.getInstance()
+      const meta = () => ({
+        name: 'Save',
+        ...({
+          keywords: ['file', 'write'],
+          section: { id: 'document', order: [1, 2] },
+        } as object),
+      })
+      const handle = manager.register('Mod+S', vi.fn(), { meta: meta() })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: meta() })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+    })
+
+    it('keeps the latest function and element values without publishing', () => {
+      const manager = HotkeyManager.getInstance()
+      // React rebuilds elements on every render. Preact vnodes carry an own
+      // `constructor: undefined` and a per-vnode id.
+      const reactIcon = () => ({
+        $$typeof: Symbol.for('react.transitional.element'),
+        type: 'svg',
+        props: {},
+        _owner: new (class Fiber {})(),
+      })
+      const preactIcon = (id: number) => ({
+        type: 'svg',
+        constructor: undefined,
+        __v: id,
+      })
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: {
+          name: 'Save',
+          ...({ icon: reactIcon(), badge: preactIcon(1), run: () => 1 } as any),
+        },
+      })
+      // A list rendered before the update holds this view.
+      const view = toHotkeyRegistrationView(
+        Array.from(manager.registrations.state.values())[0]!,
+      )
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      const run = () => 2
+      const icon = reactIcon()
+      handle.setOptions({
+        meta: { name: 'Save', ...({ icon, badge: preactIcon(2), run } as any) },
+      })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).run).toBe(run)
+      expect((reg.options.meta as any).icon).toBe(icon)
+      expect((view.options.meta as any).run).toBe(run)
+      expect((view.options.meta as any).icon).toBe(icon)
+    })
+
+    it('does not publish repeated meta resets on a hotkey without meta', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn())
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect('meta' in reg.options).toBe(false)
+    })
+
+    it('publishes when a primitive meta field changes', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: { name: 'Mute' },
+      })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: { name: 'Unmute' } })
+      handle.setOptions({ meta: { name: 'Unmute', description: 'Sound' } })
+
+      subscription.unsubscribe()
+      expect(listener).toHaveBeenCalledTimes(2)
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({ name: 'Unmute', description: 'Sound' })
+    })
+
+    it('keeps a changed array without publishing until its kind changes', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: { name: 'Save', ...({ keywords: ['file'] } as object) },
+      })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: ['file', 'write'] } as object) },
+      })
+      expect(listener).not.toHaveBeenCalled()
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: { file: true } } as object) },
+      })
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: 'file' } as object) },
+      })
+
+      subscription.unsubscribe()
+      expect(listener).toHaveBeenCalledTimes(2)
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).keywords).toBe('file')
+    })
   })
 
   describe('toHotkeyRegistrationView', () => {
