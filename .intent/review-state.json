@@ -22107,27 +22107,27 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/react/reference/functions/AppHotkeysProvider.md": {
-      "fingerprint": "0722cf95507ec46803291acc66ba6730f5149d97bb83b5a32d7b3598047fcee3",
+      "fingerprint": "7a92c0e15027b00ac29bf2b382c7e705fc3a41bae04d5de7031025a5d096c972",
       "snapshot": {
-        "docs/framework/react/reference/functions/AppHotkeysProvider.md": "e48ddf36597cc312d3980d93d554278523a7850521d32f7ddf57f43cadfe3117"
+        "docs/framework/react/reference/functions/AppHotkeysProvider.md": "818ddca76f406312ff75a850e8246c42ab6d9914c15f7227766ad5caeb3c886f"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "225de981e43439fc3157a41f2cf1627c3ef8dc6a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "CI regenerated this TypeDoc page with source links for the new AppHotkeysProvider file. The React skill already covers AppHotkeysProvider.",
       "evidence": [
-        "Diff of docs/framework/react/reference/functions/AppHotkeysProvider.md against origin/main."
+        "Autofix diff of docs/framework/react/reference/functions/AppHotkeysProvider.md: Defined in lines now link to the source."
       ]
     },
     "source:docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": {
-      "fingerprint": "af0bcd527f81980f2ef9ef43f6ae702cc1e22b41553f5db43ced00949b01c5bd",
+      "fingerprint": "c3f3c7d8a1bcef2af2225b866e46d8d18d73345aa704f799ec861486ecb8891c",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": "139c23cc88f9658350eb6abebcc67cc4f9d8abd415793771f440178ad6147c08"
+        "docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": "2f91e872cf170e2a35f12ebbc8ff50962e6fbd638f6441eff65d9135791903d0"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "225de981e43439fc3157a41f2cf1627c3ef8dc6a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
+      "reason": "CI regenerated this TypeDoc page with source links for the new AppHotkeysProvider file. The React skill already covers AppHotkeysProvider.",
       "evidence": [
-        "Diff of docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md against origin/main."
+        "Autofix diff of docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md: Defined in lines now link to the source."
       ]
     },
     "source:docs/reference/adapter/functions/installAppHotkeysStore.md": {
