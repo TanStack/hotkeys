@@ -14,7 +14,7 @@
 >
   <input
     role="combobox"
-    aria-expanded="true"
+    aria-expanded="false"
     data-testid="child"
     onkeydown={(event) => {
       log.push('child')

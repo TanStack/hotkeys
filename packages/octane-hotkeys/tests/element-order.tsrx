@@ -10,7 +10,7 @@ export function ElementOrderFixture({ childStops }: { childStops: boolean }) @{
     <input
       id="child"
       role="combobox"
-      aria-expanded="true"
+      aria-expanded="false"
       onKeyDown={(event: KeyboardEvent) => {
         elementOrderLog.push('child');
         if (childStops) event.stopPropagation();

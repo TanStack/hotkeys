@@ -1,3 +1,4 @@
+import { getEscapeLayers, getTargetDocument } from './_event-target'
 import type { HotkeyEventType, Target } from './hotkey.types'
 
 /** A node a registration's listener can attach to. */
@@ -6,11 +7,15 @@ type ListenerGroup = {
   ids: Set<string>
   keydown: EventListener
   keyup: EventListener
+  /** The window counted for this group, kept in case the target moves. */
+  view: Window | null
 }
 
 /** Shares keyboard listeners within each target and capture phase. */
 export class TargetListeners {
   #targets = new Map<ListenerTarget, Map<boolean, ListenerGroup>>()
+  /** Listener groups per window, and its Escape listener while any exist. */
+  #windows = new Map<Window, { count: number; listener: EventListener }>()
   #processed = new WeakMap<
     KeyboardEvent,
     {
@@ -76,12 +81,18 @@ export class TargetListeners {
           }
           this.dispatch(event, target, eventType, capture, pending, first)
         }
-      group = { ids, keydown: listener('keydown'), keyup: listener('keyup') }
+      group = {
+        ids,
+        keydown: listener('keydown'),
+        keyup: listener('keyup'),
+        view: getTargetDocument(target as Target).defaultView,
+      }
       // Attach first, so a target that can't listen leaves nothing behind.
       target.addEventListener('keydown', group.keydown, capture)
       target.addEventListener('keyup', group.keyup, capture)
       phases.set(capture, group)
       this.#targets.set(target, phases)
+      this.#countWindow(group.view, 1)
     }
     group.ids.add(id)
   }
@@ -94,6 +105,7 @@ export class TargetListeners {
     if (group.ids.size === 0) {
       target.removeEventListener('keydown', group.keydown, capture)
       target.removeEventListener('keyup', group.keyup, capture)
+      this.#countWindow(group.view, -1)
       phases!.delete(capture)
       if (phases!.size === 0) this.#targets.delete(target)
     }
@@ -107,6 +119,38 @@ export class TargetListeners {
       }
     }
     this.#targets.clear()
+    for (const [view, { listener }] of this.#windows) {
+      view.removeEventListener('keydown', listener, true)
+    }
+    this.#windows.clear()
     this.#processed = new WeakMap()
+  }
+
+  /**
+   * Counts a group added to or removed from a window. While the window has
+   * groups, a capture listener there reads what an Escape press closes before
+   * listeners on the document and its elements run. So a library that closes
+   * its dialog first, such as from a document capture listener, doesn't hide
+   * the dialog from the hotkeys after it.
+   */
+  #countWindow(view: Window | null, change: 1 | -1): void {
+    if (!view) return
+    let entry = this.#windows.get(view)
+    if (!entry) {
+      // Brave reports another `currentTarget`, so the listener keeps its window.
+      const listener: EventListener = (event) => {
+        if ((event as KeyboardEvent).key === 'Escape') {
+          getEscapeLayers(event as KeyboardEvent, view.document)
+        }
+      }
+      view.addEventListener('keydown', listener, true)
+      entry = { count: 0, listener }
+      this.#windows.set(view, entry)
+    }
+    entry.count += change
+    if (entry.count === 0) {
+      view.removeEventListener('keydown', entry.listener, true)
+      this.#windows.delete(view)
+    }
   }
 }

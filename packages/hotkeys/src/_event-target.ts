@@ -336,10 +336,17 @@ function blocks({ elements, index }: Blocker, target: Target): boolean {
   )
 }
 
-// Native layers
+// Escape layers
 
-/** Open modal dialogs and popovers that close on Escape, per event. */
-const layerCache = new WeakMap<KeyboardEvent, ReadonlyArray<Element>>()
+/** What one Escape press closes. */
+interface EscapeLayers {
+  /** Open dialogs and popovers that the browser closes on Escape. */
+  native: ReadonlyArray<Element>
+  /** The innermost element around focus that closes on Escape in the WAI-ARIA patterns. */
+  aria: Element | null
+}
+
+const layerCache = new WeakMap<KeyboardEvent, EscapeLayers>()
 
 /** Whether `node` is `layer` or inside it, across shadow roots. */
 function isInside(node: Node | null, layer: Element): boolean {
@@ -348,52 +355,111 @@ function isInside(node: Node | null, layer: Element): boolean {
 }
 
 /**
- * Returns whether Escape will close a modal `<dialog>` or an open popover that
- * `target` isn't inside. The browser closes it only when Escape's keydown
- * isn't prevented, so hotkeys outside it leave Escape alone.
+ * Whether the browser closes an open dialog on Escape: a modal one, unless
+ * `closedby="none"`, or a non-modal one with `closedby="any"` or
+ * `"closerequest"`. `closedBy` reports the resolved value, and browsers
+ * without it close modal dialogs only.
  */
-export function closesNativeLayer(
+function closesNatively(dialog: Element): boolean {
+  const closedBy = (dialog as { closedBy?: string }).closedBy
+  if (closedBy) return closedBy !== 'none'
+  // Browsers without `:modal` reject the selector.
+  try {
+    return dialog.matches(':modal')
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Whether an element around focus closes on Escape in the WAI-ARIA patterns:
+ * dialogs and menus, and a combobox or a menu button whose popup is open,
+ * which keep focus while it is.
+ */
+function closesOnEscape(element: Element, focused: Element | null): boolean {
+  const role = getRole(element)
+  if (role === 'dialog' || role === 'alertdialog' || role === 'menu') {
+    return true
+  }
+  if (element.getAttribute('aria-expanded') !== 'true') return false
+  const popup = element.getAttribute('aria-haspopup')
+  return (
+    role === 'combobox' ||
+    (element === focused && popup !== null && popup !== 'false')
+  )
+}
+
+/**
+ * Finds what Escape closes for this event, once. The manager calls this from
+ * a `window` capture listener as well, so the layers are read before a
+ * listener on the page closes one.
+ */
+export function getEscapeLayers(
   event: KeyboardEvent,
-  target: Target,
-): boolean {
-  if (event.type !== 'keydown' || event.key !== 'Escape') return false
+  doc: Document,
+): EscapeLayers {
   let layers = layerCache.get(event)
-  if (!layers) {
-    const doc = getTargetDocument(target)
-    const focused = getDeepActiveElement(doc)
-    // A document search doesn't reach into shadow roots, where component
-    // libraries keep their dialogs. The event's path does, for the layers
-    // that hold focus.
-    const path = event.composedPath().filter(isElement)
-    const query = (selector: string): Array<Element> => {
-      // Browsers without popovers reject the selector.
-      try {
-        const found = [...doc.querySelectorAll(selector)]
-        return found.concat(
-          path.filter(
-            (element) => element.matches(selector) && !found.includes(element),
-          ),
-        )
-      } catch {
-        return []
-      }
+  if (layers) return layers
+  const focused = getDeepActiveElement(doc)
+  // A document search doesn't reach into shadow roots, where component
+  // libraries keep their dialogs. The event's path does, for the layers
+  // that hold focus.
+  const path = event.composedPath().filter(isElement)
+  const query = (selector: string): Array<Element> => {
+    // Browsers without popovers reject the selector.
+    try {
+      const found = [...doc.querySelectorAll(selector)]
+      return found.concat(
+        path.filter(
+          (element) => element.matches(selector) && !found.includes(element),
+        ),
+      )
+    } catch {
+      return []
     }
-    const dialogs = query('dialog:modal')
-    // Focus can't leave the topmost modal dialog. So while focus is inside a
-    // modal dialog, the ones that don't contain it are underneath, and Escape
-    // doesn't close them.
-    const holding = dialogs.filter((dialog) => isInside(focused, dialog))
-    layers = [
+  }
+  const dialogs = query('dialog[open]').filter(closesNatively)
+  // Focus can't leave the topmost modal dialog. So while focus is inside a
+  // dialog, the ones that don't contain it are underneath, and Escape
+  // doesn't close them.
+  const holding = dialogs.filter((dialog) => isInside(focused, dialog))
+  let aria: Element | null = null
+  for (let node: Node | null = focused; node && !aria;) {
+    if (isElement(node) && closesOnEscape(node, focused)) aria = node
+    node = composedParent(node)
+  }
+  layers = {
+    native: [
       ...(holding.length ? holding : dialogs),
       ...query(':popover-open').filter(
         (layer) => (layer as HTMLElement).popover !== 'manual',
       ),
-    ]
-    layerCache.set(event, layers)
+    ],
+    aria,
   }
-  return layers.some(
-    (layer) => isDocumentLevel(target) || !isInside(target, layer),
-  )
+  layerCache.set(event, layers)
+  return layers
+}
+
+/**
+ * Whether a hotkey on `target` leaves an Escape keydown to a layer. A hotkey
+ * keeps Escape when its target is inside every layer. For an ARIA layer, a
+ * hotkey in a named scope keeps it from an ARIA dialog too: such a hotkey
+ * usually closes the dialog it belongs to. A combobox or menu inside that
+ * dialog still closes first.
+ */
+export function yieldsEscape(
+  event: KeyboardEvent,
+  target: Target,
+  scoped: boolean,
+): boolean {
+  if (event.type !== 'keydown' || event.key !== 'Escape') return false
+  const { native, aria } = getEscapeLayers(event, getTargetDocument(target))
+  const outside = (layer: Element) =>
+    isDocumentLevel(target) || !isInside(target, layer)
+  const role = aria && getRole(aria)
+  const owned = scoped && (role === 'dialog' || role === 'alertdialog')
+  return native.some(outside) || (!!aria && !owned && outside(aria))
 }
 
 // Every registration the event reaches asks about the same event.

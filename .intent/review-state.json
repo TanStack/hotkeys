@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "4f8cd03b79636e6db3b5aace631534056da6de14712219e860b89a77ff91620b",
+      "fingerprint": "bf6b2916aa9caca146a9ed967d0e50c4af0f26f73c3752adbea005f2a35d1271",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
-        "docs/guides/sensible-defaults.md": "b440744e4543957a5771b281cf1e59cd699c1553baa7339252d2f56f56c29e72",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "35e63fe996c87c218f145142783f31e3982f49d09b3713b17004f927d949a4c7",
+        "docs/guides/sensible-defaults.md": "123e2ea357313c6769229bf95331f9bba50402e2f7fcb9cb1ed898cc66b82fa1",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e4ce9b5638e10a00b0bedbc913502d3bafa28c0ad8228461f85998a6822fa919",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "cbb26e7a2dab37e1b6d346c5172d9588633b747934b8fb6884ed99a85b3bfe49",
+        "packages/hotkeys/src/hotkey-manager.ts": "25d47f00725705b54aa6eb8024d210a350412b8fc8202c8231c1c2970df661a6",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,12 +115,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "The change shares type and helper definitions across packages and keeps every public name and behavior, so the skill text stays accurate.",
-      "evidence": [
-        "Searched packages/*/skills for each replaced type spelling and changed API; none appear. Public export names and option shapes are unchanged."
-      ]
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "outcome": "updated",
+      "reason": "The core skill now says Escape goes to the innermost overlay, including ARIA dialogs, menus and expanded comboboxes, and when a targeted or scoped hotkey keeps it.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "9d3464baf9efc96d28f5361bbfbc50554be6da6da2187f650a701b79eb443b7b",
@@ -279,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "e6828ea03e549e5e25932831da2364217a339b00776305a47ca4d5f68f7c278c",
+      "fingerprint": "2a58fb95fbc4741ce2d90728d4ebd2049badefd45d2a0d7da4f266d34390d1a3",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -309,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "b440744e4543957a5771b281cf1e59cd699c1553baa7339252d2f56f56c29e72",
+        "docs/guides/sensible-defaults.md": "123e2ea357313c6769229bf95331f9bba50402e2f7fcb9cb1ed898cc66b82fa1",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -337,12 +335,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "84daeb5bf36e261bf0bc4daca4ea8eb2fd496d23e0d3c7570338fa6a4422a145",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "35e63fe996c87c218f145142783f31e3982f49d09b3713b17004f927d949a4c7",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e4ce9b5638e10a00b0bedbc913502d3bafa28c0ad8228461f85998a6822fa919",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "c3e67dc1cba2982551d5dcd2862fe4d67ee048993357c18a8d230b38f5a05b6c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "cbb26e7a2dab37e1b6d346c5172d9588633b747934b8fb6884ed99a85b3bfe49",
+        "packages/hotkeys/src/hotkey-manager.ts": "25d47f00725705b54aa6eb8024d210a350412b8fc8202c8231c1c2970df661a6",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -363,14 +361,12 @@
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "493b6e75c203964b8f3b4e9ff455938d0dbfb041e3a44961164452ff9b1dde8c",
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb",
-        "packages/preact-hotkeys/src/utils.ts": null,
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "94eb6267d3210dc0587cf30da42caeb4bc8f5c1e9fa28864c0ed4dff40c78067",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "4339f02f27abd944fe58cea13b1c3edaae5e7304949ec0a318a9643ac9a9feba",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
         "packages/react-hotkeys/src/useHotkeys.ts": "2faa5a863c8db89d93bde16d0d39840a6fe31c4bcd474d434b01440cdc826960",
-        "packages/react-hotkeys/src/utils.ts": null,
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -411,12 +407,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "No new skill is needed for an internal type refactor.",
-      "evidence": [
-        "The new exports are shared types and adapter-author helpers, not user workflows."
-      ]
+      "reason": "The skill set and domain map are unchanged. The Escape rule is covered by the existing core skill.",
+      "evidence": ["_artifacts/skill_tree.yaml"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -688,28 +682,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "0ec287580c84800cdbc77bf9555436ba5f553dec1fd9b407122ca6086500ef90",
+      "fingerprint": "ff1af0dfccd3cba94c346b081e62096450d088c6e001bd868f4789636c34f16a",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "2452fd99cea1a9bda69d020d64e2241882764f033d70d3175d6882735b8f7cb6"
+        "docs/reference/classes/HotkeyManager.md": "ce0cb482933ae63b2e52ec37e96a74c3dfa01fc471e141d406c1d2c0423b5560"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "19854d92052fe02697a87fc64cfbfc9580d03a2f1361a81b4ea8ead87c1500a4",
+      "fingerprint": "9fe065495ee0dd19d1f0ba49d570ea9e6b5353642ea7fc9cab1988116e99d51d",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "47b5171b2de7613483c350c827c25ba957041c7437f501b2e4f95c6d79f4b85e"
+        "docs/reference/functions/getHotkeyManager.md": "7d5f350773100835240b74b5a97987c1a4a2584f5317dbfc17c4e74bcc093f69"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -2752,16 +2742,14 @@
       ]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "6bef21c961f86b640b9b37d844495c0b76da98203dc02f69ade5832088cf1fdf",
+      "fingerprint": "575921d8e1e4eabb92a5c74e16b0f090806d6d82d66194452583be74b80b920f",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "d0bcada7cb1ea140a894345c68623e03daf34f9ad42c0127fc1499ddb192bd0a"
+        "packages/hotkeys/src/_event-target.ts": "559e9c32bad4ccdfbd48caa20efb4a1d31087fec2badbe1223077d29fcd3df2d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/config.json": {
       "fingerprint": "16af19e58bf175bcade10250b5940fc7dfc72e689088fcbbbc8ee9fea3e4e40e",
@@ -7628,16 +7616,14 @@
       ]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "5174a9ef535560e977814d64c6752535891dd7aecd722f6d831dcfe56cd800b0",
+      "fingerprint": "665b5fdd17ee34c51cb44737a4919e0286ada7bfc4a5618216065b9d6b533bb9",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "110a11988d4e5238b6314c4817805e7ba2851eb4e3b580fb1245129a9d004d9a"
+        "packages/hotkeys/src/_target-listeners.ts": "b70de4f6d529e8943d9006411f911ee70e7c202391dcc26ddc87a868b9cde6e1"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
       "fingerprint": "a1920d2364f4135a11c4a41d451299dabe36429292237d1293d2da0ed9e40efd",
@@ -11813,27 +11799,24 @@
       ]
     },
     "source:packages/octane-hotkeys/tests/element-order.tsrx": {
-      "fingerprint": "86eb7654a893e3bfa780628bd18ad4ec797e40d48f4491910f172cb84fad9fd0",
+      "fingerprint": "a50575daf9029ababb4c9d14cc09632b27b34c5c0bbc5e3d663403a89d3cae5a",
       "snapshot": {
-        "packages/octane-hotkeys/tests/element-order.tsrx": "0106fd6be2c660d4651927277bed317fdbc8a3ee6252b13aa3f062c210a110ca"
+        "packages/octane-hotkeys/tests/element-order.tsrx": "d3bd1a14871f5436e1fe4fae446f0bd37595c3ea4c955bd1b309ad5032e73c94"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Listener-order test fixture: its combobox is now collapsed so Escape still reaches the panel hotkey under the Escape layer rule.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/react-hotkeys/tests/element-order.test.tsx": {
-      "fingerprint": "4d5db80327e4fb3aa02df172ef3a12982a5610287e115abcbd8090bf99c42c50",
+      "fingerprint": "32d679f6c2bf064eafa9ca11e5fd11800fc9245f75bae5265536f3c48dd73904",
       "snapshot": {
-        "packages/react-hotkeys/tests/element-order.test.tsx": "95b949bb831ca1396ee9a683908754afb749444560f030a613e99d4899c30d55"
+        "packages/react-hotkeys/tests/element-order.test.tsx": "bee5a50d632346893494a647c6d2da3d5c9b53c7c6e5a40e25da3ba2b353a1df"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/react-hotkeys/tests/element-order.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Listener-order test fixture: its combobox is now collapsed so Escape still reaches the panel hotkey under the Escape layer rule.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/react-hotkeys/tests/useHotkeys-sequences.test.tsx": {
       "fingerprint": "36716427c8fd9caee8ae2786211df6e574c5b40dafb020e89e24a998074a43d6",
@@ -11862,26 +11845,23 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/element-order.test.tsx": {
-      "fingerprint": "98bce4ed777d2c5b85ee20bfc01e428db1d7f736d48cfa4d50c04d59b9f7088d",
+      "fingerprint": "03829a74f9a02ed017ab603f2aff44a21341ca32864058e9bbfe7c2606bc3526",
       "snapshot": {
-        "packages/solid-hotkeys/tests/element-order.test.tsx": "da11176c4556e199f0f75bea7c67381f5ee0ad715ad4a494529b0ea9deafced8"
+        "packages/solid-hotkeys/tests/element-order.test.tsx": "0dc77db41a7f857e3fa3cd0392c57cec099ce343a66c49d14cb3cd79c8a6d286"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/element-order.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Listener-order test fixture: its combobox is now collapsed so Escape still reaches the panel hotkey under the Escape layer rule.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/ElementOrder.svelte": {
-      "fingerprint": "57bcae9cb9a07342825afc1c8ef3e91f8a04221f4c01da1438bf65e2d44a092f",
+      "fingerprint": "834d795413c10832cf3475d8e067b7363358738abae980b2160abc77527cb34d",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/ElementOrder.svelte": "a6c9886d46b4ddb6fd3a2e61a95eb2c2093ffc06edd755b1fda965c754680423"
+        "packages/svelte-hotkeys/tests/ElementOrder.svelte": "5ea520c8bc8035213c0a8d39675f857019d3d37d74cc4ebb7ef0ff12fd95203d"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Listener-order test fixture: its combobox is now collapsed so Escape still reaches the panel hotkey under the Escape layer rule.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/element-order.test.ts": {
@@ -12024,16 +12004,14 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "2e0fbc32aa6fa329b3f222229f5fea277b23b4b30e2fade336b277bb022541dd",
+      "fingerprint": "e8cebb1843e97c69f5db1f730c529367af1504f725f4b469923c0f456c27bb97",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "d90b1c106ba597a37543ff6fa3064defc9a0470d732ce04de292c9b24a787e5b"
+        "e2e/browser/native-overlays.spec.ts": "154021c236394f4444fa200e79c4263b7dcbf80cd5124c8594b4a11d99b3e0f4"
       },
-      "head": "de066eff64352b8f5cc28d8b34eb069329177dbc",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Adds a positive control to one browser test; no guidance changed",
-      "evidence": [
-        "Changed: e2e/browser/native-overlays.spec.ts at de066eff64352b8f5cc28d8b34eb069329177dbc"
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/hasNonModifierKey.md": {
       "fingerprint": "9f657ee5fd81b2bb02f0192f5c095dfd0a76acc7283fc55c9d9abea6809df401",
@@ -19317,16 +19295,14 @@
       "evidence": ["packages/hotkeys/tests/alt-graph.test.ts"]
     },
     "source:packages/hotkeys/tests/aria-widgets.test.ts": {
-      "fingerprint": "1066e586de870097b06cc29c76e1eadd616a1b05138895d4077d2926c7c247af",
+      "fingerprint": "7a0de1eddc21093a85ef8460185888c407e26feb4c39edd84a0fea7adfc418e7",
       "snapshot": {
-        "packages/hotkeys/tests/aria-widgets.test.ts": "b1d83f9f7269cfda3668aae3955c08e2cbff96166d191469f97966915d414912"
+        "packages/hotkeys/tests/aria-widgets.test.ts": "60185cfbcf227ed147d5ce0f32745f5a64eec437690e166395b5bb30fe4d1f98"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/aria-widgets.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/conflicts.test.ts": {
       "fingerprint": "47cd1f817f7b1dac9a6094c0313d93b7f6b1048e8b515925bea96f249636f90f",
@@ -22136,6 +22112,16 @@
       "evidence": [
         "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
       ]
+    },
+    "source:packages/hotkeys/tests/escape-layers.test.ts": {
+      "fingerprint": "5dad4fd9fedf3de39960dc22d77b30be929e6a7229827c93cd9c3c4101f83d80",
+      "snapshot": {
+        "packages/hotkeys/tests/escape-layers.test.ts": "10b917e76d3df7285251d2455bf87b2e53855f6b4a073627b32738fddbc724f0"
+      },
+      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "outcome": "no-change",
+      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     }
   }
 }
