@@ -32,6 +32,7 @@ A hotkey registered with the manager differs from one registered with a hook:
 - Provider defaults and scopes don't apply. It uses the built-in defaults and belongs to the `'global'` scope, unless you pass `scope`.
 - Its `target` must be an element, `document`, or `window`, not a ref.
 - During server rendering, `register` returns a handle that does nothing.
+- A `null` target, such as a `querySelector` result that found nothing, also returns a handle that does nothing. The handle doesn't wait for the element, so call `register` again once it exists. Omit `target` to listen on `document`. `register` treats `target: undefined` as omitted, so it listens on `document` too.
 
 For example, code that sets up a chart library outside React can register the chart's hotkeys and return a function that removes them:
 

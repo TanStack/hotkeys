@@ -9,7 +9,7 @@ title: toHotkeyRegistrationView
 function toHotkeyRegistrationView(reg): HotkeyRegistrationView;
 ```
 
-Defined in: [hotkey-manager.ts:286](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L286)
+Defined in: [hotkey-manager.ts:292](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L292)
 
 Creates a public view from an internal registration, stripping the callback.
 

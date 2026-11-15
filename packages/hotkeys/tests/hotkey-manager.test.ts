@@ -2290,6 +2290,37 @@ describe('HotkeyManager edge cases', () => {
     })
   })
 
+  describe('a null target', () => {
+    it('registers nothing, like a selector that found no element', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const addListener = vi.spyOn(document, 'addEventListener')
+      const handle = manager.register('K', callback, {
+        target: document.querySelector('#missing') as HTMLElement | null,
+      })
+      expect(handle.isActive).toBe(false)
+      expect(manager.registrations.state.size).toBe(0)
+      expect(addListener).not.toHaveBeenCalled()
+
+      const event = keydown({ key: 'k', target: document.body })
+      expect(callback).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
+    it('differs from an omitted or undefined target, which listen on the document', () => {
+      const manager = HotkeyManager.getInstance()
+      const omitted = vi.fn()
+      const unset = vi.fn()
+      manager.register('K', omitted)
+      manager.register('J', unset, { target: undefined })
+
+      keydown({ key: 'k', target: document.body })
+      keydown({ key: 'j', target: document.body })
+      expect(omitted).toHaveBeenCalledOnce()
+      expect(unset).toHaveBeenCalledOnce()
+    })
+  })
+
   describe('registrations for different event types', () => {
     it('are not duplicates', () => {
       const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
