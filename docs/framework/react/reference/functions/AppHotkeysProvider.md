@@ -9,7 +9,7 @@ title: AppHotkeysProvider
 function AppHotkeysProvider<T>(props): ReactElement;
 ```
 
-Defined in: AppHotkeysProvider.tsx:44
+Defined in: [AppHotkeysProvider.tsx:44](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/AppHotkeysProvider.tsx#L44)
 
 A `HotkeysProvider` that also loads the store for app hotkeys, so a React
 Server Component, such as a Next.js `app/layout.tsx`, can render it with
