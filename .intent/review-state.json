@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "bf6b2916aa9caca146a9ed967d0e50c4af0f26f73c3752adbea005f2a35d1271",
+      "fingerprint": "74313ef21de04b4b63915557f7ccd7c35c97ead70543e50e5cba9ffaecf25fdb",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "cb874c4a6120119adef2a815db239fa535a0dadd247c362c5c976c0a5c6f060d",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
-        "docs/guides/sensible-defaults.md": "123e2ea357313c6769229bf95331f9bba50402e2f7fcb9cb1ed898cc66b82fa1",
+        "docs/guides/sensible-defaults.md": "23cab50c650b6ae16fdcf4a54c53911f56655732d3e27c649c10fedffcdbcb06",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e4ce9b5638e10a00b0bedbc913502d3bafa28c0ad8228461f85998a6822fa919",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,9 +115,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
-      "outcome": "updated",
-      "reason": "The core skill now says Escape goes to the innermost overlay, including ARIA dialogs, menus and expanded comboboxes, and when a targeted or scoped hotkey keeps it.",
+      "head": "dde7a29dd668cd9af190d7b11751b36ba62f8805",
+      "outcome": "no-change",
+      "reason": "The core skill already covers the Escape rule. A <dialog> following only native closing rules does not change its guidance.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "2a58fb95fbc4741ce2d90728d4ebd2049badefd45d2a0d7da4f266d34390d1a3",
+      "fingerprint": "c5803eddf2194826c3c1c0628eb96665a9d850b2de64d3900c33a919d3d5427a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "123e2ea357313c6769229bf95331f9bba50402e2f7fcb9cb1ed898cc66b82fa1",
+        "docs/guides/sensible-defaults.md": "23cab50c650b6ae16fdcf4a54c53911f56655732d3e27c649c10fedffcdbcb06",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -407,9 +407,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "dde7a29dd668cd9af190d7b11751b36ba62f8805",
       "outcome": "no-change",
-      "reason": "The skill set and domain map are unchanged. The Escape rule is covered by the existing core skill.",
+      "reason": "The skill set and domain map are unchanged.",
       "evidence": ["_artifacts/skill_tree.yaml"]
     },
     "source:.changeset/intent-skills.md": {
@@ -2742,13 +2742,13 @@
       ]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "575921d8e1e4eabb92a5c74e16b0f090806d6d82d66194452583be74b80b920f",
+      "fingerprint": "e5c497d49337b848a566b0ccc000d76c8680b4b360db404c8e98e7f10bb66b7b",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "559e9c32bad4ccdfbd48caa20efb4a1d31087fec2badbe1223077d29fcd3df2d"
+        "packages/hotkeys/src/_event-target.ts": "0945bf8665f4cc5c97226ffbf0016b400656c24268846e60d6f9f05e8e8236aa"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "dde7a29dd668cd9af190d7b11751b36ba62f8805",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "reason": "A <dialog> element is judged only by native closing rules, whatever its role. Covered by the core skill.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/config.json": {
@@ -12004,13 +12004,13 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "e8cebb1843e97c69f5db1f730c529367af1504f725f4b469923c0f456c27bb97",
+      "fingerprint": "caa6ab54a1cd2dcdfef485e2b25649c280b7dbe022a6f67de67287b5e17857a1",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "154021c236394f4444fa200e79c4263b7dcbf80cd5124c8594b4a11d99b3e0f4"
+        "e2e/browser/native-overlays.spec.ts": "5e17a4577ed311c55d1739a253f1b64134a0b3b1ca1a53747ed21429c2c9be69"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "dde7a29dd668cd9af190d7b11751b36ba62f8805",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "reason": "A <dialog> element is judged only by native closing rules, whatever its role. Covered by the core skill.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/hasNonModifierKey.md": {
@@ -22114,13 +22114,13 @@
       ]
     },
     "source:packages/hotkeys/tests/escape-layers.test.ts": {
-      "fingerprint": "5dad4fd9fedf3de39960dc22d77b30be929e6a7229827c93cd9c3c4101f83d80",
+      "fingerprint": "ccbd227bbeddd157a07c25d4ec1dc0473b5e3ac99ab752e8cbacfd3e3a5dfe1c",
       "snapshot": {
-        "packages/hotkeys/tests/escape-layers.test.ts": "10b917e76d3df7285251d2455bf87b2e53855f6b4a073627b32738fddbc724f0"
+        "packages/hotkeys/tests/escape-layers.test.ts": "ee02ef15568ca5cffdefcbbe252750c33529fae66b9b500d6e17770a663019f3"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "dde7a29dd668cd9af190d7b11751b36ba62f8805",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
+      "reason": "A <dialog> element is judged only by native closing rules, whatever its role. Covered by the core skill.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     }
   }

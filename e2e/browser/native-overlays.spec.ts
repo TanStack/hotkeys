@@ -262,24 +262,26 @@ test.describe('native overlays', () => {
     expect(await hk.firedNames()).toEqual(['escape'])
   })
 
-  test('a modal dialog with closedby="none" leaves Escape to the hotkey', async ({
-    page,
-    harness,
-  }) => {
-    const hk = await harness(
-      '<dialog id="dialog" closedby="none"><button>OK</button></dialog>',
-    )
-    test.skip(
-      !(await page.evaluate(() => 'closedBy' in HTMLDialogElement.prototype)),
-      'closedby is not supported',
-    )
-    await hk.register('escape', 'Escape')
-    await page.evaluate(() =>
-      (document.getElementById('dialog') as HTMLDialogElement).showModal(),
-    )
-    await page.keyboard.press('Escape')
-    expect(await hk.firedNames()).toEqual(['escape'])
-  })
+  for (const role of ['', ' role="alertdialog"']) {
+    test(`a modal dialog${role} with closedby="none" leaves Escape to the hotkey`, async ({
+      page,
+      harness,
+    }) => {
+      const hk = await harness(
+        `<dialog id="dialog"${role} closedby="none"><button>OK</button></dialog>`,
+      )
+      test.skip(
+        !(await page.evaluate(() => 'closedBy' in HTMLDialogElement.prototype)),
+        'closedby is not supported',
+      )
+      await hk.register('escape', 'Escape')
+      await page.evaluate(() =>
+        (document.getElementById('dialog') as HTMLDialogElement).showModal(),
+      )
+      await page.keyboard.press('Escape')
+      expect(await hk.firedNames()).toEqual(['escape'])
+    })
+  }
 
   test('a non-modal dialog with closedby="any" closes on Escape instead of running a global hotkey', async ({
     page,

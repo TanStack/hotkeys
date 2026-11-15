@@ -115,6 +115,10 @@ describe('Escape inside an ARIA layer', () => {
       '<button id="focus" aria-haspopup="menu" aria-expanded="false">Edit</button>',
     ],
     [
+      '<dialog> that the browser does not close, despite its role',
+      '<dialog open role="dialog"><button id="focus">OK</button></dialog>',
+    ],
+    [
       'closed dialog left in the page, with focus outside it',
       '<div role="dialog" aria-modal="true" hidden><button>OK</button></div><button id="focus">Page</button>',
     ],
