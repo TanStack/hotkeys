@@ -1,5 +1,15 @@
 # @tanstack/hotkeys
 
+## 0.32.0
+
+### Minor Changes
+
+- [#281](https://github.com/TanStack/hotkeys/pull/281) [`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a) - Inline `meta` with arrays, objects, elements, or functions no longer re-renders forever next to `useHotkeyRegistrations`. React threw "Maximum update depth exceeded", and Preact froze the tab. A changed string, number, or boolean field of `meta` still re-renders registration lists. A new array, object, element, or function replaces the old one but doesn't re-render them on its own.
+
+  Add `AppHotkeysProvider` to `@tanstack/react-hotkeys`. A React Server Component, such as a Next.js `app/layout.tsx`, can render it with `appHotkeys` from a server module. `HotkeysProvider` threw there, because `defineAppHotkeys` ran only on the server, and it now says to use `AppHotkeysProvider`. `HotkeysProvider` bundles without app hotkeys stay the same size.
+
+- [#282](https://github.com/TanStack/hotkeys/pull/282) [`24d4182`](https://github.com/TanStack/hotkeys/commit/24d41826ef464f6298810d4352429936327f6b8d) - Behavior change: `HotkeyManager.register` with `target: null` now registers nothing and returns an inactive handle. Before, it listened on `document`, so a `querySelector` that found no element turned an element hotkey into a page-wide one that also prevented the key's default action. The framework adapters already skipped a `null` target. To listen on `document`, omit `target` or pass `document`.
+
 ## 0.31.0
 
 ### Minor Changes

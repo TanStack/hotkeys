@@ -1,5 +1,18 @@
 # @tanstack/react-hotkeys
 
+## 0.27.0
+
+### Minor Changes
+
+- [#281](https://github.com/TanStack/hotkeys/pull/281) [`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a) - Inline `meta` with arrays, objects, elements, or functions no longer re-renders forever next to `useHotkeyRegistrations`. React threw "Maximum update depth exceeded", and Preact froze the tab. A changed string, number, or boolean field of `meta` still re-renders registration lists. A new array, object, element, or function replaces the old one but doesn't re-render them on its own.
+
+  Add `AppHotkeysProvider` to `@tanstack/react-hotkeys`. A React Server Component, such as a Next.js `app/layout.tsx`, can render it with `appHotkeys` from a server module. `HotkeysProvider` threw there, because `defineAppHotkeys` ran only on the server, and it now says to use `AppHotkeysProvider`. `HotkeysProvider` bundles without app hotkeys stay the same size.
+
+### Patch Changes
+
+- Updated dependencies [[`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a), [`24d4182`](https://github.com/TanStack/hotkeys/commit/24d41826ef464f6298810d4352429936327f6b8d)]:
+  - @tanstack/hotkeys@0.32.0
+
 ## 0.26.0
 
 ### Minor Changes
