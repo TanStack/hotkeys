@@ -33,9 +33,11 @@ type CanadianFrenchKeys =
   | "É";
 ```
 
-Defined in: key-sets/canadian-french.ts:7
+Defined in: [key-sets/canadian-french.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/canadian-french.ts#L9)
 
 The printable keys of the Canadian French layout, other than A-Z and 0-9:
-what its keys type without a modifier and with Shift. Built from xkb `ca` and
-macOS `CanadianFrench-PC`. Left out, because only one of the two platforms
-types them without AltGr or Option: `«`, `»`, `^`, `` ` ``.
+what its keys type without a modifier and with Shift. Built from xkb `ca`,
+macOS `CanadianFrench-PC`, and Windows `fr-CA-t-k0-windows-var` from Unicode
+CLDR. Left out, because not every platform types them without AltGr or
+Option: `«` (Linux and Windows only), `»` (Linux and Windows only), `^`
+(macOS only), `` ` `` (macOS only).

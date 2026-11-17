@@ -34,9 +34,10 @@ type SwedishKeys =
   | ">";
 ```
 
-Defined in: key-sets/swedish.ts:7
+Defined in: [key-sets/swedish.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/swedish.ts#L8)
 
 The printable keys of the Swedish layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `se` and macOS
-`Swedish`. Left out, because only one of the two platforms types them without
-AltGr or Option: `¤`, `½`, `€`, `°`.
+keys type without a modifier and with Shift. Built from xkb `se`, macOS
+`Swedish`, and Windows `sv-t-k0-windows` from Unicode CLDR. Left out, because
+not every platform types them without AltGr or Option: `¤` (Linux and Windows
+only), `½` (Linux and Windows only), `€` (macOS only), `°` (macOS only).

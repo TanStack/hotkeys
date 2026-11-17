@@ -34,14 +34,14 @@ type SlovakKeys =
   | "."
   | ":"
   | "-"
-  | "_"
-  | "\\"
-  | "|";
+  | "_";
 ```
 
-Defined in: key-sets/slovak.ts:7
+Defined in: [key-sets/slovak.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/slovak.ts#L9)
 
 The printable keys of the Slovak QWERTZ layout, other than A-Z and 0-9: what
-its keys type without a modifier and with Shift. Built from xkb `sk` and
-macOS `Slovak`. Left out, because only one of the two platforms types them
-without AltGr or Option: `;`, `<`, `>`.
+its keys type without a modifier and with Shift. Built from xkb `sk`, macOS
+`Slovak`, and Windows `sk-t-k0-windows` from Unicode CLDR. Left out, because
+not every platform types them without AltGr or Option: `;` (Linux and Windows
+only), `\` (Linux and macOS only), `|` (Linux and macOS only), `<` (macOS
+only), `>` (macOS only), `&` (Windows only), `*` (Windows only).

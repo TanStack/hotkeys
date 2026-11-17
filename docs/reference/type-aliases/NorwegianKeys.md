@@ -9,7 +9,8 @@ title: NorwegianKeys
 type NorwegianKeys = DanishKeys;
 ```
 
-Defined in: key-sets/danish.ts:38
+Defined in: [key-sets/danish.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/danish.ts#L40)
 
 The printable keys of the Norwegian layout, other than A-Z and 0-9. It types
-the same characters as Danish. Built from xkb `no` and macOS `Norwegian`.
+the same characters as Danish. Built from xkb `no`, macOS `Norwegian`, and
+Windows `nb-t-k0-windows` from Unicode CLDR.

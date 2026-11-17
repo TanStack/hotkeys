@@ -34,8 +34,8 @@ type HungarianKeys =
   | "Í";
 ```
 
-Defined in: key-sets/hungarian.ts:6
+Defined in: [key-sets/hungarian.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/hungarian.ts#L6)
 
 The printable keys of the Hungarian QWERTZ layout, other than A-Z and 0-9:
-what its keys type without a modifier and with Shift. Built from xkb `hu` and
-macOS `Hungarian`.
+what its keys type without a modifier and with Shift. Built from xkb `hu`,
+macOS `Hungarian`, and Windows `hu-t-k0-windows` from Unicode CLDR.

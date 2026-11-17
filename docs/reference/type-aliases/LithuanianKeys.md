@@ -15,9 +15,7 @@ type LithuanianKeys =
   | "Š"
   | "Ų"
   | "Ū"
-  | "„"
   | "("
-  | "“"
   | ")"
   | "-"
   | "_"
@@ -42,9 +40,11 @@ type LithuanianKeys =
   | "?";
 ```
 
-Defined in: key-sets/lithuanian.ts:7
+Defined in: [key-sets/lithuanian.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/lithuanian.ts#L9)
 
 The printable keys of the Lithuanian layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `lt` and macOS
-`Lithuanian`. Left out, because only one of the two platforms types them
-without AltGr or Option: `–`, `€`, `§`, `±`.
+keys type without a modifier and with Shift. Built from xkb `lt`, macOS
+`Lithuanian`, and Windows `lt-t-k0-windows` from Unicode CLDR. Left out,
+because not every platform types them without AltGr or Option: `„` (Linux and
+macOS only), `“` (Linux and macOS only), `–` (Linux only), `€` (Linux only),
+`§` (macOS only), `±` (macOS only).

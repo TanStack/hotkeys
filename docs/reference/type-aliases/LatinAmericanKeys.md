@@ -38,9 +38,10 @@ type LatinAmericanKeys =
   | "_";
 ```
 
-Defined in: key-sets/latin-american.ts:7
+Defined in: [key-sets/latin-american.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/latin-american.ts#L8)
 
 The printable keys of the Latin American Spanish layout, other than A-Z and
 0-9: what its keys type without a modifier and with Shift. Built from xkb
-`latam` and macOS `LatinAmerican`. Left out, because only one of the two
-platforms types them without AltGr or Option: `<`, `>`.
+`latam`, macOS `LatinAmerican`, and Windows `es-419-t-k0-windows` from
+Unicode CLDR. Left out, because not every platform types them without AltGr
+or Option: `<` (Linux and Windows only), `>` (Linux and Windows only).

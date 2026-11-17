@@ -67,14 +67,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "ca9b499e46e968b3c1b353c53bcb1e5d7b83bb6d152da7926ee84d0100ceed89",
+      "fingerprint": "a2a53da2d8f18efea8e04479169154b425591e0dbe2d34b12d9c74292d1fc02c",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "3cef888028218ec8f69d2fcbf3a0cc2cd409c43e4e4cd85bd534aa17e99fcc99",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
+        "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -86,19 +86,21 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "dc8ab34259b83bfcc7cfe29fc31bc0db70c5ac02",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "no-change",
-      "reason": "Guidance already matches; this commit only clarifies the meta re-render sentence and keeps an absent meta key absent.",
-      "evidence": ["Diff of the changed sources."]
+      "reason": "app-hotkeys.ts only moved the Register interface to register.ts and re-exports it; app hotkey behavior and API are unchanged.",
+      "evidence": [
+        "packages/hotkeys/src/app-hotkeys.ts re-exports Register from ./register"
+      ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "a6f1a4b1ef681c08edc9156b691f1cfab8a2cefef1b0d686f17cb2e722ac3ef7",
+      "fingerprint": "329e12a2b33637aee3e32513dd8271bdd67a8eae691bd475faf1ec403edacb0c",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
-        "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
+        "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
-        "docs/guides/sensible-defaults.md": "d769b22f94fc337807b304e75d1f31b7db31043ddb114163ee607930d205a976",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
+        "docs/guides/sensible-defaults.md": "304a97befbe9307fccbf15c8b137b73f26640b356d7c93b3bf93e415a83bcc8e",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
@@ -113,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb",
-      "outcome": "no-change",
-      "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Added a pitfall: keys of other layouts need a `keys` registration on Register, which changes types only; keep UsKeys, prefer US bindings for shared shortcuts.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -275,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "45a666b69f38aa56a1f855a916b5ded169452cdb35b4772b0f90cae89bfad912",
+      "fingerprint": "c01766d18f4f5517172ccb8405b55ccfcf66397cbc475d196c1f1587eb205bec",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -296,7 +298,7 @@
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0658e80ee1a7abc6d126b30bb208a076e87b23f6119cfdb1ecb099e07b3c9c4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
-        "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
+        "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
         "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
@@ -305,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "d769b22f94fc337807b304e75d1f31b7db31043ddb114163ee607930d205a976",
+        "docs/guides/sensible-defaults.md": "304a97befbe9307fccbf15c8b137b73f26640b356d7c93b3bf93e415a83bcc8e",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -333,10 +335,10 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a4f333a7162e7d9aa89c1f36b693d955c1b54f37327c642d1d4763a7c2964ced",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/app-hotkeys.ts": "17e1dd4e15676fde91755363448765f4b0f710a5214eda0e91a8bec6bb9c6a65",
+        "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
         "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
@@ -406,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "no-change",
-      "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
+      "reason": "The planning record covers app hotkeys and core guidance; the layout key types are covered by the hotkeys-core pitfall, so no planning change is needed.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1169,117 +1171,112 @@
       ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "f43c3935011d185920b6935e3e613d23c6ce8b5f5bfb070985b86aea05e78dac",
+      "fingerprint": "123db60e8be5b57c3d5f7df887c455b931607bf10fef4cffe3856c7e89e5b957",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "5d93592c764b83378e1a55e899f768b59995ff46f038495f28aabf4812466c6a"
+        "docs/framework/alpine/guides/hotkeys.md": "6ec8cd80ac4d659256e73ad536178727baef066a371c26238d9f3f682bca3dba"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/alpine/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "0a53716c413a5fe32010b08b69c03196b466a65271f6b1e1e2ecb767e4faeab0",
+      "fingerprint": "c38c4acc62fa7cb9c8914a156e002f09e6a3a1b68cefd98ea8b88526effc35af",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "b566f27a11c568bbafd8832c3598f93f8e062a95d08d9370af326d015f0117f4"
+        "docs/framework/angular/guides/hotkeys.md": "5af2751a63556726b8d40668fec63b4c46ed0b8a93582584eb475b50f90fef64"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/angular/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "c65857fc901c2d2bcfe781dcb2ab39e683f28abce8da314648ea4bb75d42c8af",
+      "fingerprint": "5bb2c4e8a94f164a9a2076cd3bf3d8bddc9e689a132b1a191936a193cea68c44",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "8270526554653a2e084b9f9c948e656963f64dbc194662b531f0f58f94e8f8d4"
+        "docs/framework/ember/guides/hotkeys.md": "a22a3ed3ed281b1c0a0a93c4c3748d9eecf372287beef3be596e27f2fb1fa1ab"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/ember/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "bc007e4ad2712c54864f90568d3b9b2c242649274d987a3eaaf45025b51867f9",
+      "fingerprint": "534b86459841fa247486b79570a9a4c3850c03fd9e26bd15057fbbf6ccc5beed",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "ad1b6193ee96953f35cd093199ae990b8d9df53ee64321185cead6e2dae0daa4"
+        "docs/framework/lit/guides/hotkeys.md": "34a4d84756f02307b084aea5ebdd423fdb68bfef89f8b61184ebc7f7fe1c1296"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/lit/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "51f317b559534986998090727ab8f9560b0fd28d0616ce97de9af3e0e47b0af7",
+      "fingerprint": "5ad1d5c8ffec1ee33b409b44175abe2ff060915ccb34311cde9ab56ce5642ace",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "3336c2ccaa09b3b34ab170c5ba699f31f8fea34934d5859a6f14768810ed5011"
+        "docs/framework/octane/guides/hotkeys.md": "17107a48efef149e03319e3129d6fade99b35c95b17ca1a677f2f0f8dca11c96"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/octane/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "57455f09eeacea0be46dd5e67b49429f660622e4aef98bd40adaa2b9db089a6b",
+      "fingerprint": "816b8219d82787e2d804a3365355dac07c1be2e94f6ae62e50ca608e1a89b54d",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "58f57c9c8b363ea50c7a1ee995a34739260d89d445f30291b092f98774f4caa7"
+        "docs/framework/preact/guides/hotkeys.md": "27f1a00d7975d0b10a2d8ccc133537ad1beb3cacf5726161b0234a6f280c04d6"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/preact/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "a23cb820411548ba7b223c364a38a7e8c7ebd961955a46b8191227d3e5c77b1a",
+      "fingerprint": "32b30e8cfc28045c4310923e2248d85b913d731d1dc7d2e238ac616826c56954",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "c9079732570ca490d6a8d0cbfc85078d6a0ef843a07e237cbde5d5e76b95736e"
+        "docs/framework/solid/guides/hotkeys.md": "3b85965dfa53726e02064646c9a9c3e789f45c1171d823b40ba5b6a49f3655b2"
       },
-      "head": "63e54fdad498b1f48cf5e0c65b30271d0b4fefb3",
-      "outcome": "no-change",
-      "reason": "Test harness guard and a Solid docs example; no guidance changed",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkeys.md at 63e54fdad498b1f48cf5e0c65b30271d0b4fefb3"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
-      "fingerprint": "5ed5311cc614e9154b016bbe807dbf19447fe4df5ed347d4b37b93541512ac50",
+      "fingerprint": "48ff9781112bd9265738629e88e1b09e60ad1b42366749c7b866c5474099a807",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys.md": "ab06376b1bf6c6e11790c1bf36d0b051633791eb8333cde619b1e481b11538f9"
+        "docs/framework/svelte/guides/hotkeys.md": "28eb8df7da4f6199170b11cc5c24669bee81477e7e76cf13164b3005d53ae078"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "docs/framework/svelte/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "6d5fbffee5286a0fd72241cd5e2363c8975386224941da83f7466bbe1b59b410",
+      "fingerprint": "81a2e074b3b4f330b322c6b7349ccc43b520420ac47e30fc3546b6c15b419d9a",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "827c2ab8e9c671e2dd8c7af46a738075eaf8ac32f2ff693c07be21da512f16bb"
+        "docs/framework/vue/guides/hotkeys.md": "83f9a5b67d9d30b1522a9c5bfa2e09b73546d18664aa238a2b15f80a1cf0c4e9"
       },
-      "head": "cb07b6e30afe73eb13ea4f2ad08eaaeed387e0d7",
-      "outcome": "no-change",
-      "reason": "Adds one sentence on typing a ref that holds a hotkey as ref<Hotkey>. The Vue skill passes hotkeys as literals, props and getters, so its guidance is unchanged.",
-      "evidence": ["docs/framework/vue/guides/hotkeys.md"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
       "fingerprint": "97bc4d3dba32b780b109857c71d9f2172a6e10d9bd8572523718478864dc1f74",
@@ -2078,14 +2075,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/index.md": {
-      "fingerprint": "5ef0414bb8f8f800ca20887d0dec58beccd11bf58826df662a8a98c7497382f6",
+      "fingerprint": "779f4559f05a5de3fae6faf7d0beb0a1de8103963ec9a3cf3f5ba5d7978f32a7",
       "snapshot": {
-        "docs/reference/index.md": "fd69b93c04e037d11f3966147287c445a2b6644dbcd45c749741a80d3f3a58db"
+        "docs/reference/index.md": "9d461915c9e8b2d40869da21e80b7d21f66b2e5f7dd46ce77f32f965cbcfc396"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": ["Diff of docs/reference/index.md against origin/main."]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
       "fingerprint": "1fd2aad2a3f705f8f33ace3b0fd48ebae4c032fcdb305e83864142993435e0ba",
@@ -2436,292 +2433,244 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "85ec1220697bd47df8cd7466e8a888310c8ccc59eaf101af65ade034d022bad3",
+      "fingerprint": "2ea1c17846092bbe1f0ce82fef444f83c337253e0fac6a948f91c4d562a9984b",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "3a9566f07d58353b032a486020a63ae0b33bafc670ca15c1e9b65505427a0c15"
+        "docs/reference/classes/AppHotkeysStore.md": "0aba3b2cbc054c040d228d207c9f75db54be21d0368359b2f2507e28d55e779b"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/classes/AppHotkeysStore.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
-      "fingerprint": "ec320a34865ec332e41e63df32c85d42ad54f75012645ec0faa35ce6c406d76e",
+      "fingerprint": "3f8796c285759f8dae386d554e869595660160e977f2e4fa62655319a8577947",
       "snapshot": {
-        "docs/reference/functions/defineAppHotkeys.md": "36d6be784ac9653fee2bf657dc57e71d7e5865e47af291b929b6f2fb1d19b88c"
+        "docs/reference/functions/defineAppHotkeys.md": "8b95d22d2635040efa635237e12fcac7dc313f44872673f7fb75c41e10e691fa"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "ea5d299b1051161963484638c2fad8eb89bb8bb2f064a033df57938ad26e95ba",
+      "fingerprint": "b716816491b69149d9fa2321b68cbe5c960e111aacc6e5c5f0606a83eea7f5d4",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "dbefb4ca305ea5e8237394e6843f6752be6eb19ca5421afb3537708ea2da1eb9"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "2d59052de3dd6a208d4a8a8b3f4fc95cdf4646b620e79ec407c609c7e0ddc797"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/getAppHotkeyRegistrationOptions.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/isAppHotkey.md": {
-      "fingerprint": "78f098d1e02e39087ec08dd70edebbf5d274d586ecb6c92a7c8bc1770e424e7d",
+      "fingerprint": "103b89de189c5197113c2446495cdd7b23a08adebea5e8421940f0676709a432",
       "snapshot": {
-        "docs/reference/functions/isAppHotkey.md": "ef4545ba007ac1365a7a2f268a7ca75686d13959c7a78955aa6bbfea33f080f2"
+        "docs/reference/functions/isAppHotkey.md": "8bdcd9da623115eee018594e45b4b07a96fb2ae95b3e2e5267f31aa283a51606"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/isAppHotkey.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/isCustomHotkey.md": {
-      "fingerprint": "c6cbe1c5cca8723053e5e94c8de57a3d808b9aa253746eab9c12caef06cd7b92",
+      "fingerprint": "0ae737e97f8a4f80486ee002b9a908f12571a685d4a8e9f561417327a99f11e1",
       "snapshot": {
-        "docs/reference/functions/isCustomHotkey.md": "a4b7e6d1f7b8f584f6d6073cc048d0dbd7c2fa91539ff303c5e9bc47ccd9b454"
+        "docs/reference/functions/isCustomHotkey.md": "62c404d3b1e1f734b207db60a54125274bf7796d9d8383e11b9279f8affe46ab"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/isCustomHotkey.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "48674668d2bd1d0f2731f96cfa2b5bb204ffdc60e6ca880e64e940f38c783d47",
+      "fingerprint": "67e4500b49d6fb8d5f5c453aa46a49f3822c036c635ef34c117ea1dac59a7e15",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "a891edc860d4ece9fc7e135ae2fe8b68dde437e19cf8cfa869f42be18148aeb4"
+        "docs/reference/functions/provideAppHotkeys.md": "cdd8dffa33d7b836c2fc8841d23990ae4b1eb012ed26d37ff07c39a0deeafd3a"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/provideAppHotkeys.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "7976bc772f33788ca284e07d4fde75006eadfadd02e737d123374004ac63a85b",
+      "fingerprint": "4f1318c1a701d2c24beea1658704204ab4149b3875d1637789cd016827f0c5cb",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "827f70297ceb31d227d951dd6189a4860b5d397db44ce2a3d876f91e6d4812e1"
+        "docs/reference/functions/publishAppHotkeysStore.md": "8f17cf658c74bd66854558ddd1f055097372ca2bd6f0aa41e01293190c63a606"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/publishAppHotkeysStore.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "e11e92af80f58f9c253620750f2141a3c1ed097efcb1b93558ae63e65c3797c0",
+      "fingerprint": "678938b52fd93c88be6ba975d814b6053ca5865d5e5ecde53df5138103a2dc65",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "c2dd045b526a9f47423b820fd4c17f9df4683f5b134428e4166354b8681bcaf1"
+        "docs/reference/functions/resolveAppHotkey.md": "d0ea15ef8869e50df8147068276596062d79270342270db22f7a0829aaf92a22"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/resolveAppHotkey.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
-      "fingerprint": "2b1f1ca2c7f4830c64355ec63ded33d4ff82965f8c5544077737c4c738460074",
+      "fingerprint": "3b30224b99f1b3e2ec160c01fd9c450399ca3964e9e60c3f8594b6708b78bb90",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkey.md": "8dbb0f00f80939a2ebeb7c26c86fa9dd9dd3149c39b54dd9d9134ca3ff2fe1ab"
+        "docs/reference/interfaces/AppHotkey.md": "c74e6ffd1bdf828aa1c8a3b90ab32488800d7ca6c1a5f5d35fa9409e25e87c1b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/AppHotkeyInput.md": {
-      "fingerprint": "1040cec5466ded591c5bc56e3f4d0797a2b8c09ae1f9a50e6ac3561a67b4d8d2",
+      "fingerprint": "bb4c0df985d7edf8c6c024b64bd5a85aade9f15d9f2e06934c6e9711b118812b",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyInput.md": "5a5bde5c0fe2369d5123b477c122a738003247afa9174ee08f24ce75441f710e"
+        "docs/reference/interfaces/AppHotkeyInput.md": "3308a0226f0b7f8cff1b1635d821afa8ed8c78ec0490fa0491c73475c0df7251"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "f85122452fa04d41030554d4dee191692b6ce0ab234ab98aa37132be13af56a2",
+      "fingerprint": "716b769423dd6d1582f51e84af75be9514489287826dd6f7d09a3300814901b2",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "44eaef9d14146910bb195a9790a1c33e45250be328aaa2acdf01be79e50fe1a0"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "037ad2fa16d2d3e19c4089a92f07bf1e15ec8a160c265e047b582e10e140d921"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/AppHotkeyListItem.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "670bd645636d5c312c2c5aa6e433069abc63d4b85c208ddc4bbea8c409f2c46d",
+      "fingerprint": "1b80bb84e3cba7151e31be24ef3cfe91fe8400b6343e371fff9aa7826c219951",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "830b889888160b358d9adfb403b59d99ffbce36feb56b196cd11e0a44d0706b9"
+        "docs/reference/interfaces/AppHotkeysState.md": "26b5d9f5faecfa3793605fd8eee9fa5bc9c1502d9ca99b1cfd32d91ef9a2fec5"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/AppHotkeysState.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "a6f87662e86bface120dbd2ef281e9998925398a168139e563eaec1cf6200e2e",
+      "fingerprint": "1fd883dea8c58181c72bb2c2a871eba6fba3944312938a739f09addd3b306c6d",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "0e8d4a76642d2d294bdf9112f87ec3a95625908a7ad736fb23d55a8bdff8a402"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "be21c5eaf5890363eed51d0acdce51125c2b0f7995a1d1d5e6679abf2dd3adb0"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/AppHotkeysStoreOptions.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/Register.md": {
-      "fingerprint": "ad0ab5685ff1685f9cb838a78c4872503075ec43c5818e0d6799dceeda50cab9",
+      "fingerprint": "e8327baf0e0d43563d5bcf3deffdf934f959ecda36e1e47d24ea1121cf7d8e84",
       "snapshot": {
-        "docs/reference/interfaces/Register.md": "291e7fa7d91714e0de56da99544ee5d88a097f2f76e65a6c333b4589c629a0cc"
+        "docs/reference/interfaces/Register.md": "94d84acb772851f61857e7a84f16eb25b189901fe6d32d44a062f4f10980d185"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeyChordOptions.md": {
-      "fingerprint": "53a72c59a9a510cc35104262a8afde10f1ed9905c26103bab552b5ff040885eb",
+      "fingerprint": "8e5264e9e82cb6de135dcb80926a9ab4523186cd0c58d9a3d5b3ab932d955403",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyChordOptions.md": "bdce8a26824b3a403ba25821ab1eb9f6a19be1210248dd6aa6a0aa6f77538425"
+        "docs/reference/type-aliases/AppHotkeyChordOptions.md": "8a60b92579b77089f644d3286ff0ada5afee24d926427ea8791c4539ebf7f19d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeyDefaultKind.md": {
-      "fingerprint": "2878873056f89c2c70798ffe579b21044e0369a26c4957ecc0dde5947c1647ae",
+      "fingerprint": "bca37710f973fc32bbf516d37675df657910386f1aa350153b5dd85b2a3a44b4",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "8c01462d18e93951d6523aaca9c68987f944d1f451d590617d4310ef5c58335a"
+        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "933a93afbdcc2ad61453d184cd45537daab864d4a2ec308a876f4191e38c79a2"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeyId.md": {
-      "fingerprint": "5bee2c758f16015fd7755d9df231c3ea5e49c7c3aaa33cc8f0a53fdc8715bce1",
+      "fingerprint": "f991e0a67dd06c1090fa9bf2e72992fd3da4c74879c7c3f7b04cf4ec845e1d21",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyId.md": "7156ecea3a872de98250d52f78acb08f815c4c1f4058b265b42f555a64ec764b"
+        "docs/reference/type-aliases/AppHotkeyId.md": "ec05e68918bb86fde8e25555b88b9ee85240f781acb0f21eef74e7d94bf0a6ed"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeyOptions.md": {
-      "fingerprint": "9aecdfa2002ed69c576feac78662c633f3c0e09882de8971490f770d3e1aadf4",
+      "fingerprint": "7115603d13d6edac495a35e04e2fc7f082cae83c080458e87e24337ab177597f",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyOptions.md": "204cc8c191fd3e8978dee33037ac29150a81768af6af1e0b4b166e5e8285624c"
+        "docs/reference/type-aliases/AppHotkeyOptions.md": "a103138346c4f053bb4f2cd8d45870fa5191bc9b8d75fd4cbf7ad3e2c2afb70c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeySequenceOptions.md": {
-      "fingerprint": "1b02389c65f4295e4df7f2072a0b3cf2c19ece73984f7b24e5e8be7738772d10",
+      "fingerprint": "cf24ca514ad43cf038f84d7d888a56e519ed4987449ad879906d8f934eb8312b",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeySequenceOptions.md": "b878b66e964839ead57fe741c1876669bf7ddf2e3f2bf11425533744cbbfa33e"
+        "docs/reference/type-aliases/AppHotkeySequenceOptions.md": "e62725757f6f655a7dff80c2b17e57d9940f419ad53429a22a180c04b94c5520"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "c486caabbbeda0ac1f238165829d162d59633a80fb8b3f5f54017d365a19c1d6",
+      "fingerprint": "561681dd62fc03de248ac4c9a8a12de058527c8a087a8f66413ae5c7078ac4e4",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "4a5e3739b583f8545fa35cb2a4640bd2ce8004d5237d5250561440b1524437d5"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "d33f1d67c1b93ee033980fde7c8dfc790fb27a8a817a56801ec9ac490992233b"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/type-aliases/AppHotkeyStatus.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
-      "fingerprint": "daca47eb624b7939859a981b350f78f15c33f6a4009eacbda25af2c12326d2cc",
+      "fingerprint": "48b62e12bb2b718c9fce96f8dfce8171b0cf48b5fdacb47859161985270ff55c",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeys.md": "353787dd564cc47f229287e37753b4ecd358fd23e5d9c686e48f3f1ef122ad3f"
+        "docs/reference/type-aliases/AppHotkeys.md": "a2140c85b4d3089f2ed6dc4876c31fcd6437a7b605773b00537289cba05e2d70"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/CustomHotkeys.md": {
-      "fingerprint": "5b8f292a8912be94a024ac4b134dedd81312b72526291f7ddbe5e9ad36e6bf21",
+      "fingerprint": "ac567f2a4e65e7af1293d40685942d13d3c3ecd236808730394f011327866b6f",
       "snapshot": {
-        "docs/reference/type-aliases/CustomHotkeys.md": "4c5c13a2e85821ead5e260ecc16c2196aeafeda86080e9c4c8232d481da0c05a"
+        "docs/reference/type-aliases/CustomHotkeys.md": "b69ad8e7857d2c16005e861b4224bce49608e0c7cd80622f9dda87f35003ac90"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/DefinedAppHotkeys.md": {
-      "fingerprint": "f9ca0cdd4220d3b8bcb9b2ec8011c3fa045a5a7450d1a54297e795f67b4db2d8",
+      "fingerprint": "6b3ebfcd43e823023ddef112207dc7f4ecc72c24b083200077216922743add62",
       "snapshot": {
-        "docs/reference/type-aliases/DefinedAppHotkeys.md": "b6feb7e2c8e894501eede460320fb45394fb603458a1783e0c25289f3108a665"
+        "docs/reference/type-aliases/DefinedAppHotkeys.md": "afcaa6a3af048c6ba06837fc39b9e7615d37fa33611ab2da49b5b80319abce2a"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeys.md": {
-      "fingerprint": "3d2285c73dde8069df4067a0c7158d9d0054c5628f172464d2660e31e5c08a76",
+      "fingerprint": "9aa594ad0064767f73286450ea67c2b43e2717250cfad527f565f9b5490aec15",
       "snapshot": {
-        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "c6d9b04a7e542fec3d1c6256214ab7f9f276e1bad83053aaf3a91c57a5779018"
+        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "cf7f2681bb3bedfaea13d0b601359c433fa9e1f7e5fdcc2b56dd5ab5b7726804"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/Target.md": {
       "fingerprint": "a2dd0f2c761b2ffad8bbb14b82903e48c2977e92bcbb189bea349a812639935f",
@@ -2746,14 +2695,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/config.json": {
-      "fingerprint": "18bc34dfa6b6a7406c8c670d0fa7941c0d95092a6dcc4abf7500686a3c13ca26",
+      "fingerprint": "4af90bb4d46f090ecd1966fdef00fa8736093794cb1caafd62de7d8773102b52",
       "snapshot": {
-        "docs/config.json": "6936fdc15b4500a6a0dd57fa09423c3fbad3fcb985a9cc86bc7c7b490a122eae"
+        "docs/config.json": "49e6e4e815938a2caac94c186cdf59e967a5f35866b5c287ea0f307eb8e9284c"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
-      "evidence": ["Diff of docs/config.json against origin/main."]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/devtools.md": {
       "fingerprint": "f23246ab0c1af1ae9b82ea5e36d4666dac80ec702289a7c3142796bacada787b",
@@ -5679,14 +5628,14 @@
       "evidence": ["packages/hotkeys/tests/store.test.ts", "test:lib passes"]
     },
     "source:packages/hotkeys/tsconfig.json": {
-      "fingerprint": "05c0c493491baa0b027e36d283ad87d80dddff37d19edcd17abb61ce1b3ecf87",
+      "fingerprint": "d36f891a7f3c3e5354daea5db87bc6a1b0b2db89d75d773257ebfee768ce246a",
       "snapshot": {
-        "packages/hotkeys/tsconfig.json": "31d4933920aae60359767a97a47ed849bb484c4004d76a7cfd022c3068c30e0e"
+        "packages/hotkeys/tsconfig.json": "5775893859bdb402ce8725edd11fdf62faed5af87ba33269f8b6dec6488c8bc9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Drops the exclude for the deleted eslint.config.js.",
-      "evidence": ["packages/hotkeys/tsconfig.json"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tsdown.config.ts": {
       "fingerprint": "0381c8a4e25188fceaa410a433d0e4b888b5ef599e4a8ba77932769504684e08",
@@ -8014,14 +7963,16 @@
       "evidence": ["packages/angular-hotkeys/tests/zone.test.ts"]
     },
     "source:packages/hotkeys/src/index.ts": {
-      "fingerprint": "a0de518a2bfa1042cf1835489bc21dc5bfd6dfb76b9990b4e39a5e7897ad996d",
+      "fingerprint": "1215ef18da2d3d7e657a7e0632ddd09e7d210e391da19f5ce8f7a7e5ca81cf53",
       "snapshot": {
-        "packages/hotkeys/src/index.ts": "ab02fcad00ac545e07fa6ace2d7611a05f1e74d856bb816e2060ea1056812892"
+        "packages/hotkeys/src/index.ts": "745024fbdaab344551d87eb79acfdbf2933dd67e20bfc0794cca6692b6be3ad7"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
-      "outcome": "no-change",
-      "reason": "Source for keyboard layout labels. The label primitive rows updated in this review cover the behavior.",
-      "evidence": ["packages/hotkeys/src/index.ts"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
     },
     "source:packages/hotkeys/vitest.config.ts": {
       "fingerprint": "2c3a797dc287593b29279b85a63ad909063e0fa5b81493ce06301a5442898777",
@@ -12087,27 +12038,25 @@
       ]
     },
     "source:docs/reference/type-aliases/PhysicalKeyCode.md": {
-      "fingerprint": "c1d7b580a89f76e9be53e83f56b1908a3db0396130a036308e18395538a65cd9",
+      "fingerprint": "e233fcfcade1fadec85d422ef37597d115f7c48d58fbafbd32e4c097a1aa914a",
       "snapshot": {
-        "docs/reference/type-aliases/PhysicalKeyCode.md": "67823829dacacaed6e05c3f2e7c2194be82b7aba659cd7b629a413ea6147ea27"
+        "docs/reference/type-aliases/PhysicalKeyCode.md": "1e045a8143d7c96c2b4516b90a4ef4e34fa534a09e5e7633034fd5cd37012687"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/src/key.types.ts": {
-      "fingerprint": "42b17c891495ae6cfa935c9cdb98d4b91920bdffba1c0603be5a1d722f5364c1",
+      "fingerprint": "3149e7d31cf73e70330322f977d40c3a82e6d9392c23ad3a984de214a17fdc51",
       "snapshot": {
-        "packages/hotkeys/src/key.types.ts": "c113530e10215b40d447ea0d857d367e9b38235c882baf79fb81b1799ca069ef"
+        "packages/hotkeys/src/key.types.ts": "cf09c6b5a99e4fbd72dc7c7c277daed9a1404ecaaff1ad368719a1efd3666df6"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
       ]
     },
     "source:packages/hotkeys/src/parse.ts": {
@@ -13478,16 +13427,14 @@
       ]
     },
     "source:docs/reference/interfaces/NormalizedKeyboardEvent.md": {
-      "fingerprint": "e71d064b817c1bdb901f0a016466b2a66c6121b7b4ddce457ef1fb4bfbe1bd19",
+      "fingerprint": "e2125779f6b79bde2da0d0d5507ac48147ef4bddc46a54588dca5b8b1a9262b0",
       "snapshot": {
-        "docs/reference/interfaces/NormalizedKeyboardEvent.md": "f00a309c838faf4055757ba83fbe854ca7bd79d6337e0b522d57cfa1a346b9bf"
+        "docs/reference/interfaces/NormalizedKeyboardEvent.md": "a3512dabce2ff56002106d86290dd0b66d51292ff4cb1bddc92f566bfb984aae"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/ParsedModifiers.md": {
       "fingerprint": "0de62d05b29c5c31a1000cc83b51b9db9ae21c0587f6e1ebda3f95c61aab0471",
@@ -13514,14 +13461,14 @@
       ]
     },
     "source:docs/reference/type-aliases/CanonicalModifier.md": {
-      "fingerprint": "e87e3268397bf8396661c87c56e65a2440c9062bb1ce0c7161c1befc03256832",
+      "fingerprint": "bba4572e1f9798676b922901e004146d5fd89194676d2a60583017a730949a43",
       "snapshot": {
-        "docs/reference/type-aliases/CanonicalModifier.md": "72a063f9f34b61a8a27c4a743213c7b25ad40b5ca2558cac4d77c92524b40d9b"
+        "docs/reference/type-aliases/CanonicalModifier.md": "4733f93d6e20858249b5969c649f29855db17aa186d3267235bbb02c5b9e4da1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/ConflictBehavior.md": {
       "fingerprint": "2e096e3a5f0f562a1c36185700a0622c4aead467c4dfc0f1d0e642f45e01bb20",
@@ -13536,16 +13483,14 @@
       ]
     },
     "source:docs/reference/type-aliases/EditingKey.md": {
-      "fingerprint": "730dedf1a77138f2359d9247b52ad54f2dde00d23f8fffaea8c5e489ac1db9de",
+      "fingerprint": "344778a50d81b54ddbc8f15201b0bb3cfc39fd818ba465eed3333a815f69c046",
       "snapshot": {
-        "docs/reference/type-aliases/EditingKey.md": "172b9d3d92f6ab8aaf2b1675cf1cb95ad66f00acd1e454a1424ac33e1b748499"
+        "docs/reference/type-aliases/EditingKey.md": "2c46eb07147736d6c639c34c802a625a105aa9fabdf8963ee113e43d28308939"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/FourModifierHotkeyChord.md": {
       "fingerprint": "7615bf825ce5c8c10618b9777610290bb8ceaa8aedbb931016a2fe708e442b38",
@@ -13560,16 +13505,14 @@
       ]
     },
     "source:docs/reference/type-aliases/FunctionKey.md": {
-      "fingerprint": "7259da99e7f00d799ac933c8f7fad593204ab1eb1b11320023df57e08b79dad2",
+      "fingerprint": "593b649ec4a657b8242bbf471d6fcea4da65b43c919bde3f277a66e31ef581fd",
       "snapshot": {
-        "docs/reference/type-aliases/FunctionKey.md": "6d61270fdffe8177d931298f727ac000193e01f74e899e33bd50c675d910a8ab"
+        "docs/reference/type-aliases/FunctionKey.md": "1de185ea63eb901c45d9c75370039abcf78ac70e06b375e289c9541e7d14ddbe"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/Hotkey.md": {
       "fingerprint": "7b3975984890c0f7dd0c3bf896b5f6679aafb11b34a3b2755719c007442191bd",
@@ -13644,110 +13587,94 @@
       ]
     },
     "source:docs/reference/type-aliases/IndividualKey.md": {
-      "fingerprint": "264698a0960b8c98d46105406215f80600f0e5ee4189a2f8b0a34655a689abfb",
+      "fingerprint": "55fb2787baae837901605fcaf0fcb0ef61090afb0320b2acad16255f5af8f541",
       "snapshot": {
-        "docs/reference/type-aliases/IndividualKey.md": "eb448d4e19f5ad74ee74c8caf528cde0db66254f0c6e14a00616b420eb3e8998"
+        "docs/reference/type-aliases/IndividualKey.md": "0d826071205ecc3d0adf7312486d8ce4605667b68c016b187ea1ddc2a7bb08e0"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/Key.md": {
-      "fingerprint": "d7da9d251fe838051e23d945620f37a89f0e090e7d289a771d5c73962bb78cee",
+      "fingerprint": "28a57f322bebd160c34c9e0363cab0fee89e40f439861c29c6109a4ff1f52413",
       "snapshot": {
-        "docs/reference/type-aliases/Key.md": "9fe2467eccdf3ba7a1fd73d322bd92bd7fc62685bab2992d946d495f7b91fd0a"
+        "docs/reference/type-aliases/Key.md": "3a4515ae6ede72316d6fbe59a5f6c4912187d1f2abe1b03a953416b96e5f3b18"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/LetterKey.md": {
-      "fingerprint": "0d9e222002a38f423283321e16167112885a23d2ffc6623cef876725ef263635",
+      "fingerprint": "2879e49816fd9fc127e779312d25f9371ac64a3b4c2805ee4cd21b70fd8dfd1d",
       "snapshot": {
-        "docs/reference/type-aliases/LetterKey.md": "ed9f485c64d1f6c2d01f7afd634fae55d2bf9653b0bfc6d8e9889f3732ccaaf6"
+        "docs/reference/type-aliases/LetterKey.md": "65bd2f1dd5dfa315298d2ef9720fa2ab445e88cd0b88d0656a116f863eb86bf5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/LogicalKey.md": {
-      "fingerprint": "2b6a6634deae2428418e8d0377b2e8e272eaf144322dd5d96e170877d146b8ec",
+      "fingerprint": "c27e4be00a6acaf6b420a789aeabedf80f19d53d139551765ef05fbacea4590a",
       "snapshot": {
-        "docs/reference/type-aliases/LogicalKey.md": "6e77dc7670a22549f2c3b173e44f154fe9fd363f94e6b37f57bb10ab72617b19"
+        "docs/reference/type-aliases/LogicalKey.md": "559411484149a1b68aa889cf95caa9572d39e05bc1cf30faa79dae63dff8805f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/Modifier.md": {
-      "fingerprint": "0a6e9b5c48427617d70c75cd698c7d0e890539e12f57d5234fede5858103f01d",
+      "fingerprint": "9a3bfa50b5a654c96463396a6ab7d12e45d9542e9f4bc157a83dcce0c9023d94",
       "snapshot": {
-        "docs/reference/type-aliases/Modifier.md": "5cffdfd39b3b2fd81fa4434befe1bce0c249d93f3ff9fedcb37d9ae57d035fb6"
+        "docs/reference/type-aliases/Modifier.md": "facdabba0cdc261778126d5de931fd621b50ef305c56fae96ce571a4a65c9d0f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/NamedKey.md": {
-      "fingerprint": "8f84329615c469ab8c4df001e3a27cf9d5f3cf447aed98f0973458072ae21833",
+      "fingerprint": "01d2af31ee75e96db2514fd2db6f095a25f9018a05bfcda5c5af28b55244506d",
       "snapshot": {
-        "docs/reference/type-aliases/NamedKey.md": "fd22d0098b014ab693404fd9e2ad25d008f356b977280d4180df63aa34273bd8"
+        "docs/reference/type-aliases/NamedKey.md": "f7c327df8d3258400bd5f84f76e59f39df620619a7a0665da4b027085526fc81"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/NavigationKey.md": {
-      "fingerprint": "4e2a045319d9b2c89fde0b118fbdeee02d7c667928a945188ecd1c8212fcbc8f",
+      "fingerprint": "bf8b9a101eafc56326b22d500350c5dbcd3b2783749c36c8a384d4f6133cf289",
       "snapshot": {
-        "docs/reference/type-aliases/NavigationKey.md": "1ddfb28452f415351eec9e77d721f6207e4eca7be6573a1be85184e65a7bcfec"
+        "docs/reference/type-aliases/NavigationKey.md": "e18d7c160da425173201c205a5ccbf378dda02a73b802d89aa86a6fd52283f82"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/NonPunctuationKey.md": {
-      "fingerprint": "1bdaa7ae72a47b5db11f48ba499eff72ea453e48d886252e4a82b641832fa0f3",
+      "fingerprint": "e3b541870b52cf9cb2c15763cd6b426272d689a50de63c68cb8d10f92b8809a1",
       "snapshot": {
-        "docs/reference/type-aliases/NonPunctuationKey.md": "70868784936b5fa63bf3348c8a36b6f87a3da6e32ad2c547b75a9b4d08785515"
+        "docs/reference/type-aliases/NonPunctuationKey.md": "cbe2ff60dc0c1c0935753c9e371d28f102f0e90a37dcebfc261bb89eabd2678b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/NumberKey.md": {
-      "fingerprint": "3a6794364ee589275df2cfec8b16ef348bc499dd0a96190cfedf85fb074f4585",
+      "fingerprint": "33233b1322e26abd1a71b333fe4bd5996454f906f66aa9d1e13016582ee675aa",
       "snapshot": {
-        "docs/reference/type-aliases/NumberKey.md": "ea65a4988ec56d8d7b9c73e7a1a88f41d64f58df1c2b90b1c594377e38eead80"
+        "docs/reference/type-aliases/NumberKey.md": "1978c35577253998de5e5dd87927ef68411e7fd87d4719ebf0cbea60abfdc2a5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/ParsedHotkeyChord.md": {
       "fingerprint": "e5e10c5b3105ecaa5d25ab06e7b39f6b9deb3717106fd9432152907d43e43ccf",
@@ -13762,28 +13689,24 @@
       ]
     },
     "source:docs/reference/type-aliases/PhysicalKey.md": {
-      "fingerprint": "36278848e6ea34d035851ff78fdf7b94c9e016a9b9bae89a106a2231e7080b0d",
+      "fingerprint": "10cf011e1029104d5cca7506fd7a651b44bfa8cf95ae3fb8a33364f6971c6c4a",
       "snapshot": {
-        "docs/reference/type-aliases/PhysicalKey.md": "53d0f44a52f42c1498d965b81b1770043b639ed8632fdadbb744e5760d964707"
+        "docs/reference/type-aliases/PhysicalKey.md": "f7345f8ec5603a614f4fe41e45a1640463e70f2de095e53bc8341f3014c9473f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/PunctuationKey.md": {
-      "fingerprint": "f02aae004e63b3a8f2ad99eb91003e4c6da41e16350b5622aa0ceebc01205a5a",
+      "fingerprint": "6d8b0d1e57f01063dff40928b4858d872451d3c56b45ec6d89bcf34ee1f597dd",
       "snapshot": {
-        "docs/reference/type-aliases/PunctuationKey.md": "8522d64536c8f78b2a869feaf9df21a857a9507a49f971cd3556e848dc7c9dca"
+        "docs/reference/type-aliases/PunctuationKey.md": "5f0fd0d9bf635d3f436041dc8ef107087900cd99b97af497772689b6af852d0d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/RawHotkeyChord.md": {
       "fingerprint": "35bd9918fe5788d0ddf4679bc4e07ca18c9b51dfe230de28c10312264fac6106",
@@ -17872,14 +17795,14 @@
       ]
     },
     "source:packages/react-hotkeys/tsconfig.json": {
-      "fingerprint": "25b913a944c2831c7f1c7c63029de96efc835f54fa8620657956d3c8d3956d88",
+      "fingerprint": "bd6f4ec09da99d3dfc5727ed8bae2ed117cbbbba82bebbdcece2c6c41d72a2a4",
       "snapshot": {
-        "packages/react-hotkeys/tsconfig.json": "9a45367a724655f4a9506bfb2c64418b33b673d42a17303627a9ae0e20fa815e"
+        "packages/react-hotkeys/tsconfig.json": "1ea318367bbf88cb3c26b75955decceb0660ed0a4da3b7074e501637d408702d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Drops the exclude for the deleted eslint.config.js.",
-      "evidence": ["packages/react-hotkeys/tsconfig.json"]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/react-hotkeys/vitest.config.ts": {
       "fingerprint": "e5748f9c25618753353cb02256a4a701261bc00d021d5155df81abb42ff21f9e",
@@ -20330,16 +20253,14 @@
       "evidence": ["packages/vue-hotkeys/tests/provider-types.test.ts"]
     },
     "source:docs/reference/interfaces/RecordedKeyPresses.md": {
-      "fingerprint": "7d8a0e2ede1caad7e84c1339e912b9e2bbbae78457d1fe842d5e93871fdeb050",
+      "fingerprint": "12230504fc8e8ec4a9edc132bff27d606266e7bc085139d6b84e0b036b7a22ad",
       "snapshot": {
-        "docs/reference/interfaces/RecordedKeyPresses.md": "f777bc5bc0a4b83fc7f53b2b030f0f93d86461e9866cc429c303338b66eef97a"
+        "docs/reference/interfaces/RecordedKeyPresses.md": "58ef7dc290e7cf3d69b8bd12e4e7389c6b5564454fe216b022ffe61ad0613e97"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/RecordedKeyPresses.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/layouts/alt-graph.spec.ts": {
       "fingerprint": "f2b5312c1798b0280d6dde6f92d11f61c749838f08dba89ea79b5acdfa40b4b7",
@@ -21776,16 +21697,14 @@
       ]
     },
     "source:docs/reference/interfaces/CustomHotkeyActions.md": {
-      "fingerprint": "4e058dbf9196e4e8839b01d874c9dcbee9307de95c4acad64a23916b33baead5",
+      "fingerprint": "2ee8db31135b753e78f12a7d893f5740ce3f748a6b08bd108cfa19b504dfb374",
       "snapshot": {
-        "docs/reference/interfaces/CustomHotkeyActions.md": "39115a5978d59cd622130c9ac4434c5d52141a0d05101b5363bcad7469bfb322"
+        "docs/reference/interfaces/CustomHotkeyActions.md": "0c9fc1707a5713a83bcab20de54601aaff1a270a47dcdbe64d81b44f27bdc545"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/interfaces/CustomHotkeyActions.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/HotkeyRecorderActions.md": {
       "fingerprint": "14ee123e15112493e554fcc6d1bf3694c99ed11324b2672236f470180a3c9bd5",
@@ -21812,16 +21731,14 @@
       ]
     },
     "source:docs/reference/interfaces/KeyIdentity.md": {
-      "fingerprint": "075daa41afc0ef52b1a626166c1ab3c0ba82de91e0c270df6ff3c0f6bf0499d8",
+      "fingerprint": "46885e2ce6f4b0697372e058a902f4df9526f7a9c0141ea4a5c48ce2996ae2d2",
       "snapshot": {
-        "docs/reference/interfaces/KeyIdentity.md": "5326dc7c30c8aadd79acedc011f04e22abd5fd59d32348953dbc20d9b4a8e016"
+        "docs/reference/interfaces/KeyIdentity.md": "f66ae20937313bdc3530aa0366c7207ab25873afaba47229994194f8ecaeafff"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/HotkeyCommonOptions.md": {
       "fingerprint": "ea2de8afa05b4fa25a4e4dc19ae6c9914aff801f6057592379342e963fbdc4fd",
@@ -21860,28 +21777,24 @@
       ]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": {
-      "fingerprint": "2b6e065a13a308169be5f86c745ac6809b1d96cae060253cf4021a9892f5eda9",
+      "fingerprint": "788ecf6334adca54e90d55cad1c0429f0a833dbcaef48ea27bdd039d1018a721",
       "snapshot": {
-        "docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": "c743672f1ac2ef15b089fbf384cc628011f32a177ccf1e8eb8a1b700542289e3"
+        "docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": "3a7d1f57765ea82515069928f588c77db50ff6c03792dfeed44ed787ee6d4fb0"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/type-aliases/RegisteredAppHotkeyListItem.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/ResolvableModifier.md": {
-      "fingerprint": "376dd91628825e3646a26f4497b6d28c06656138138b218200023cc6dcbfce14",
+      "fingerprint": "fcb4596a0b2b6fea6a50fc233100d68908142fd1c1c40254655601e6cce29489",
       "snapshot": {
-        "docs/reference/type-aliases/ResolvableModifier.md": "2e9f6ae412f7534ce7dbe9b5b08e5f8265cd09231a3913210aa50aa877536378"
+        "docs/reference/type-aliases/ResolvableModifier.md": "75ae6b3d2a8ba25acdbac599bc50fab958a81be070385de5a75c7a6351f0cb7f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:examples/svelte/create-hotkey-recorder-sequences/src/types.ts": {
       "fingerprint": "ef94d161423d43b6ac5d8721c33c1f44f671484f192c8862b67ce7054c60fa33",
@@ -22134,28 +22047,24 @@
       ]
     },
     "source:docs/reference/adapter/functions/installAppHotkeysStore.md": {
-      "fingerprint": "edd5838a8a890696d160fde0d93a15db295cc98ff610984ffe42021031ce06d0",
+      "fingerprint": "6612e9ac0d99d5f115e6f086ccf6c391b0bb4bc72faa1aa41398526c578e18c0",
       "snapshot": {
-        "docs/reference/adapter/functions/installAppHotkeysStore.md": "713f04eb093492dc48de57132e669c46cd7fd98cc71b54d9488556b8f58bf07a"
+        "docs/reference/adapter/functions/installAppHotkeysStore.md": "cc462b98f9b5415ed60dfbf3753ade0dbde6b5460cb4b5e28d073a80d2ab1851"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/adapter/functions/installAppHotkeysStore.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/installAppHotkeysStore.md": {
-      "fingerprint": "967c3ac250d48ea7ee4d26f18bb581b03e34954a89687fa456351cebad459b7b",
+      "fingerprint": "2b75f6ccea93bbb51aaef1263b92e03c8c0c1e573ebe3b4eb77d198068715215",
       "snapshot": {
-        "docs/reference/functions/installAppHotkeysStore.md": "713f04eb093492dc48de57132e669c46cd7fd98cc71b54d9488556b8f58bf07a"
+        "docs/reference/functions/installAppHotkeysStore.md": "cc462b98f9b5415ed60dfbf3753ade0dbde6b5460cb4b5e28d073a80d2ab1851"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/reference/functions/installAppHotkeysStore.md against origin/main."
-      ]
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/app-hotkeys-factory.test.ts": {
       "fingerprint": "be094b2d055590a9f30a13eb115c9f53aac4df238dfa8e855b4d8ecccdfeeae5",
@@ -22180,6 +22089,1474 @@
       "evidence": [
         "Diff of packages/react-hotkeys/tests/server-app-hotkeys.test.tsx against origin/main."
       ]
+    },
+    "source:docs/framework/alpine/guides/keyboard-layouts.md": {
+      "fingerprint": "be691b80f6c99a298da5e33bb86d408f8232bc710b3e0bafe0580714af749803",
+      "snapshot": {
+        "docs/framework/alpine/guides/keyboard-layouts.md": "f08986b2ef443e23f3d340757fcf4aecf0ab9967531a3fb36b03d2612bf4b928"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/angular/guides/keyboard-layouts.md": {
+      "fingerprint": "7f7d6394933d4e9f0e4fb8e3ffae30822b9bbb282635363e8823c9f419ddb944",
+      "snapshot": {
+        "docs/framework/angular/guides/keyboard-layouts.md": "a542124170dead797a2dade0a8e5a4659153a32e783207ead53c0a17a87237d4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/ember/guides/keyboard-layouts.md": {
+      "fingerprint": "dd6e2209bb86f1d185730b1fd53f1f92c9750ff08321c40594b16bd8b7f9ec22",
+      "snapshot": {
+        "docs/framework/ember/guides/keyboard-layouts.md": "c30489bf021e8d7639837713948bd8fbb88fcf11679d9ee453726f162d95c407"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/lit/guides/keyboard-layouts.md": {
+      "fingerprint": "e710136e7818de59bcd350f569e0d6bbe7ee6ae5faad5a1ae115b6bb0b3be9ad",
+      "snapshot": {
+        "docs/framework/lit/guides/keyboard-layouts.md": "ca30e7c01d34e8c5487573152cfacd3b14070c3e277270ffed659cb0b3910605"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/octane/guides/keyboard-layouts.md": {
+      "fingerprint": "7cd3baaf722bb5ec214bf80fa67a1ae1b64add5c1f667d25a01fa70fe81394e6",
+      "snapshot": {
+        "docs/framework/octane/guides/keyboard-layouts.md": "629760b4554be6f6b6fefe1fdb5363717730330d8f6554fd284c33850a1018cd"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/preact/guides/keyboard-layouts.md": {
+      "fingerprint": "95e0689178ab714b840ccdbacdbe64ade4f09a94b57f7b862af6e4972bcfd949",
+      "snapshot": {
+        "docs/framework/preact/guides/keyboard-layouts.md": "00fbbd12e7c96b7416b15803dc2c0a3599253faff69c417c62ea9c8c65fd6947"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/react/guides/keyboard-layouts.md": {
+      "fingerprint": "6c9161eb2232984442ab08aa608d776dbcd2ced199f9c760ab0f8c034113ae75",
+      "snapshot": {
+        "docs/framework/react/guides/keyboard-layouts.md": "f29e9e003bfc70e27fef6ca24bf0d0519e6bceb5e2353f389569d33ce4ecd87d"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/solid/guides/keyboard-layouts.md": {
+      "fingerprint": "61db41682c009f3230a623d86e577b9717d78678996c98bfa80e107cf4f6841c",
+      "snapshot": {
+        "docs/framework/solid/guides/keyboard-layouts.md": "ce2f731a32ee63120b0cf535cfb815ff023226a9dd1c31ca475346f1559027ac"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/svelte/guides/keyboard-layouts.md": {
+      "fingerprint": "846d436b101323bd69b5633514e7c58acf503e2af4353d34c0a4da26bfc06bf1",
+      "snapshot": {
+        "docs/framework/svelte/guides/keyboard-layouts.md": "b8c7bc2bc0d5e2533c6596828c7fe2878f04ea7a7d91f49edab073398490baec"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/framework/vue/guides/keyboard-layouts.md": {
+      "fingerprint": "47b1593889265718c2daba2548d48231794c21351163a237cc90df0b3d4dbf89",
+      "snapshot": {
+        "docs/framework/vue/guides/keyboard-layouts.md": "5a22016c3c67aaae3e6777556ea866556a030ec79c2e9d9faa91dd2274904e55"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:docs/reference/type-aliases/AustrianKeys.md": {
+      "fingerprint": "27b4af312d84c395f3b407576e87b723e52185b5e0d52ea54174b9059271a0fd",
+      "snapshot": {
+        "docs/reference/type-aliases/AustrianKeys.md": "dae292cee55a960ef1bcf9643db1b29fce5dc88b1dfe6a82a3d176a6fca2621e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/BelgianKeys.md": {
+      "fingerprint": "6dd87c3b2af459c4c1e5eea8f52006daf272b14676218553c27e8cf05aa4800a",
+      "snapshot": {
+        "docs/reference/type-aliases/BelgianKeys.md": "9654446e3c3d40a30e24e883bc683f8aa13c0679fbb60bc4f616495fd54f04a2"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/BrazilianKeys.md": {
+      "fingerprint": "2e2c8d219aedfa30186e5865bc0bf3738aa64707d4aa79e24888d4529de86b04",
+      "snapshot": {
+        "docs/reference/type-aliases/BrazilianKeys.md": "90c6a9d7b10e01dde0090c48bd4b2834a84b7ebcd3aaf0cbac9e179afca365da"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/BulgarianKeys.md": {
+      "fingerprint": "0fdaaa4827d347645843ded36f6142e477fcc6311121f24841ccbf4f36ebcdf6",
+      "snapshot": {
+        "docs/reference/type-aliases/BulgarianKeys.md": "21d98021e2bdf3baf3b8454878ae5db3ede1c65b67a94cd54ac72dc4916d7e2e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/CanadianFrenchKeys.md": {
+      "fingerprint": "6e4d78a235079b857f91bddfa0823dac9868c32a17a98c1ffde1dd007a8d15ce",
+      "snapshot": {
+        "docs/reference/type-aliases/CanadianFrenchKeys.md": "5f59b36d75c3dea4615ece88c9d7256f8002cfb2cb9f6f6b8fc4a1556abe5584"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/CroatianKeys.md": {
+      "fingerprint": "297411b4ee1dcd2c611247590fae458dae3db09180a864d2a05a41898fe820e3",
+      "snapshot": {
+        "docs/reference/type-aliases/CroatianKeys.md": "d54f46eb51e89c65d8ebad9d0cf774e400c1f5946de24ffa2f5e6eb49d115959"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/CzechKeys.md": {
+      "fingerprint": "7813cf118e6ff4bb669935e444ef80e2b78b6ce8262d55e3d58df6dcd593538c",
+      "snapshot": {
+        "docs/reference/type-aliases/CzechKeys.md": "6fea9f6dc9912972ad64ffd7ec83a044e3ba96d652df30e47e864d0dd043a3ef"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/DanishKeys.md": {
+      "fingerprint": "f09c2dbc71860ac98bf579453b6265bba6407975da5be248f7b34675c0a81b3f",
+      "snapshot": {
+        "docs/reference/type-aliases/DanishKeys.md": "0c6fe721199897f209de7e5c1a6a0aa0fa44664c45edb9dbf03bbef9128a900d"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/EstonianKeys.md": {
+      "fingerprint": "c0bd75f7bfc62e497602b456eed9294bd3527a262653e4f39456efebdd21d05a",
+      "snapshot": {
+        "docs/reference/type-aliases/EstonianKeys.md": "d4750d84e35acde4d78b115e12c4f31a8259e4c3ed37dea67c2f3ab9f5e51090"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/FinnishKeys.md": {
+      "fingerprint": "391379bcd7beb259abc8bf25d2c5f2a8f239569a993e598c55d5f9f49fe64806",
+      "snapshot": {
+        "docs/reference/type-aliases/FinnishKeys.md": "7952d61e4f7add05026b439ea53958816f4c8392e9f639ef5657322b8375cffb"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/FrenchKeys.md": {
+      "fingerprint": "adf5804cc0d437f5b4bee895fd3f4e28ccf5342a968d361d74a832d1bffbf67d",
+      "snapshot": {
+        "docs/reference/type-aliases/FrenchKeys.md": "3975ae12e2bd6144ce8bb87d178a698d3e34c0440d2fd37a6b92d7c891b87445"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/GermanKeys.md": {
+      "fingerprint": "6314513aad958304b879c77f8ba1a858e9f79b3aa176b736b3193be0e0fa31fd",
+      "snapshot": {
+        "docs/reference/type-aliases/GermanKeys.md": "a0864d3a13f63c95274ea57bcf350d544f1b56d66f8b55b1a473117a2b06e5af"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/GreekKeys.md": {
+      "fingerprint": "5cd9be0e43eede75fbbcdd3e137eb7dd2e80b5a9ba577486461bdd4e5ba02a66",
+      "snapshot": {
+        "docs/reference/type-aliases/GreekKeys.md": "a78c141bc2635241bdc48fa4287fc6d0799bbf06f25517365c4e7c72da8b52f0"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/HebrewKeys.md": {
+      "fingerprint": "86841eebe9beab6a227baed2cca18ce5c6f440ced8bb29e094fdfa297449d446",
+      "snapshot": {
+        "docs/reference/type-aliases/HebrewKeys.md": "7f1712c3c20877bbb3efb59cd304e303ce6efdcb40cbf7a92201c61fd82ffe89"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/HungarianKeys.md": {
+      "fingerprint": "8adf8acaab98b0011fc5381cec9a32455e7efd1d4ef098d209f23768ac1338be",
+      "snapshot": {
+        "docs/reference/type-aliases/HungarianKeys.md": "971eb4a65d978f76d37e7847e9b8a5dd15e9257c1ed001b9cde4b1ca5c5e61b6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/IcelandicKeys.md": {
+      "fingerprint": "c6fac80eb845bc8be480d7f248bae05b6167a5c765958bff70a28e1ac813bf5b",
+      "snapshot": {
+        "docs/reference/type-aliases/IcelandicKeys.md": "4a12502c491fd2960339d5831350d3c9684d83d32ed5b487d9ea02e7a3da3155"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/ItalianKeys.md": {
+      "fingerprint": "6c98f261824c835c1a70ab69e195b19af310188fba646c4fe89354770fa2e473",
+      "snapshot": {
+        "docs/reference/type-aliases/ItalianKeys.md": "fddd6dd9cf3b24dfd31d139e7b03409afa21ac1dde00ed99fb3fa56b5f3d7c2e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/LatinAmericanKeys.md": {
+      "fingerprint": "7182a0896e3de556ad1579d7abc818f12e2c233a630f0dadc6ff3268c1187b8c",
+      "snapshot": {
+        "docs/reference/type-aliases/LatinAmericanKeys.md": "507559e766973ea83564ee9a67addc328e81efe6bd2b4996b2125c1e53643090"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/LayoutKey.md": {
+      "fingerprint": "f254479a69652444b30fa289da7f15ab66e56515e53b20840e0ae2783ff00ab7",
+      "snapshot": {
+        "docs/reference/type-aliases/LayoutKey.md": "fe50078d0f33ac84ac2aa159526268a2ae3a7038e5b4c5a82b6068603b28fa06"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/LithuanianKeys.md": {
+      "fingerprint": "cf21603bc8e9d70404edc567b30610c5be3dace6ae22c65e79a106ccf6671543",
+      "snapshot": {
+        "docs/reference/type-aliases/LithuanianKeys.md": "7f98438d374562877eccc06f2b2c6955493d35ee73599474a4abad23c93d7db2"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/NorwegianKeys.md": {
+      "fingerprint": "9a9960697a7c9833366ab30ce2571df890cf5a898ae20f912ca5fad9c1e6548c",
+      "snapshot": {
+        "docs/reference/type-aliases/NorwegianKeys.md": "76c515a44b66eb0e3a9f2edb3fdc5984937c51e5b45cc88a1f42b85032608c2f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/PortugueseKeys.md": {
+      "fingerprint": "0e174e1ece7fa0817dd5b5a4882cb7848259fd04afa9a8b1349a81889cbfdd86",
+      "snapshot": {
+        "docs/reference/type-aliases/PortugueseKeys.md": "05e9f28ec9485a11d53368d241ccf879fb322c03fea1ea84850a49a8090c13d5"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/RomanianKeys.md": {
+      "fingerprint": "a8de56f337fde15eb79615ae3ecbbc6c457f73200241147a3c7d7bb3d1e4d539",
+      "snapshot": {
+        "docs/reference/type-aliases/RomanianKeys.md": "1c1727995f75a1cbd40bd95d813a1230e25d8d0559447735e83ebbbbc9a98dcd"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/RussianKeys.md": {
+      "fingerprint": "cf3e59fc0e0d768191374ebcf31b082d9ee5cb46bfd4c135fe7ac0302a8845a4",
+      "snapshot": {
+        "docs/reference/type-aliases/RussianKeys.md": "b99a28c9a7181cf94cce2308adee34bf916973344df23e35eb0c025f59266bb3"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SerbianLatinKeys.md": {
+      "fingerprint": "0bc12459740f53c2d722fdc03601aefc1ed9edd6d0633e4f769bb8f8d18ff0a9",
+      "snapshot": {
+        "docs/reference/type-aliases/SerbianLatinKeys.md": "af4dd8269bc503d01672a88098fb0e95c3c26c516e01d0665be0c2e03d07d1d4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SlovakKeys.md": {
+      "fingerprint": "6d1f1532a3553fe522c96863570e0081fcead8feec87814cf5dcba7df34b80c2",
+      "snapshot": {
+        "docs/reference/type-aliases/SlovakKeys.md": "a1275a77575c9eac5c133e68d1b39c3d966133c050412f3d3ea7a8d478971838"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SlovenianKeys.md": {
+      "fingerprint": "94a0cbabee5efa03fca9e688118c5cffa2c0134ff5f0469946dc00ae0300c488",
+      "snapshot": {
+        "docs/reference/type-aliases/SlovenianKeys.md": "9409940aea7fd74ac9d3113d3ccf0fca139523ee43cea62273333adbf0f414d9"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SpanishKeys.md": {
+      "fingerprint": "56d7037cb2f18dfac402ccbd329964baeb4d558ae7484d00b4e5089615c98128",
+      "snapshot": {
+        "docs/reference/type-aliases/SpanishKeys.md": "638b4c74c5ba0a3b60c8f8891587c0ee25dab1fd20ea6b4d2117a665b2ea7086"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SwedishKeys.md": {
+      "fingerprint": "639b62ef4912420fd9102dfffde62dbf326af8bbc38cb2fa078e044786b4f6bf",
+      "snapshot": {
+        "docs/reference/type-aliases/SwedishKeys.md": "8413e378ba63e57d262acbb7d6d52697c7efa4c153812b01a23602a53ff6bae0"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SwissFrenchKeys.md": {
+      "fingerprint": "6fc828003e63e2de5aabbe879dd9e193fe38ce1b898f75426f306f6a58a130a7",
+      "snapshot": {
+        "docs/reference/type-aliases/SwissFrenchKeys.md": "e6c9887a4969a517b74b2b7082620ecb977068e5354bcae60a476421f12f6659"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/SwissGermanKeys.md": {
+      "fingerprint": "66c66af2fcc7279a8e50cb04360f5de53355c3efc463c80e8a3c0222d5280144",
+      "snapshot": {
+        "docs/reference/type-aliases/SwissGermanKeys.md": "4a6f32a71fbd6b3823e810be642afb6186a4e5562727d5ffa2f35fa7631f965c"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/TurkishKeys.md": {
+      "fingerprint": "f709fe4e11179b5b301fda9f3415a6238295bf4d477579d21bdedad0e53caed8",
+      "snapshot": {
+        "docs/reference/type-aliases/TurkishKeys.md": "737e7c2cbb92644d556191e7bb6545da03d0647d66abfcaad1220a9f704eaef5"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/UkKeys.md": {
+      "fingerprint": "2e41960354018217484519d50f16afecd7930a4f44592f3bbd33e00c94d870c3",
+      "snapshot": {
+        "docs/reference/type-aliases/UkKeys.md": "c427af12190ef041f64d6f5697d2ad09080fc330510eb8e49231f1cd04815317"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/UkrainianKeys.md": {
+      "fingerprint": "e07246a9bf5a57eac5a175995b9eba82408a167f9d7da8943df872a319e15511",
+      "snapshot": {
+        "docs/reference/type-aliases/UkrainianKeys.md": "4cc347981b0bd729495673bebfc130ab8ef1f85ab55f03a8e708f25e97ec4408"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:docs/reference/type-aliases/UsKeys.md": {
+      "fingerprint": "283b05a661d34f9871f9ed798b9d563204481d3d26b6bca72830b0bb36cbc8f1",
+      "snapshot": {
+        "docs/reference/type-aliases/UsKeys.md": "44fd6a29e51534f96bcde99094fcaefe37fc1c538c327c222a81a90b906d0466"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/alpine/keyboard-layouts/index.html": {
+      "fingerprint": "468211bdafecce63c6266ae9a2df106f525c6c9d5d3abf5fbbc5068b764397b7",
+      "snapshot": {
+        "examples/alpine/keyboard-layouts/index.html": "46e6834d6679bb282efa600d1ee72049afee31a58449638b0d918bdce15d65ac"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/alpine/keyboard-layouts/src/index.css": {
+      "fingerprint": "f0aa9638199967cb2b7a9929d5bf251cce5287760b78b82bcfd2e3ccbaab8b2c",
+      "snapshot": {
+        "examples/alpine/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/alpine/keyboard-layouts/src/main.ts": {
+      "fingerprint": "9f57ac0206569edad9040e93c2647e4509d63fb79abd6993f977d75a3e1349ec",
+      "snapshot": {
+        "examples/alpine/keyboard-layouts/src/main.ts": "ac78351eef3d28f051330963bd5c30128cef712b45e4c04b99b16768f0e457d7"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/alpine/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "a71ba25e6e348a66f41c1882125caf5a869dedfbb7ebd58c61cf26a6f6cc67cf",
+      "snapshot": {
+        "examples/alpine/keyboard-layouts/tsconfig.json": "e20dc456ce5993b97eb690ca506d2c5a1f45ca0b6bfa972fabfd55da5641d2f6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/angular.json": {
+      "fingerprint": "6bce52b281e1e6379a00cf6ee4e59cd1162c74540cdb8de56aff328104d66cb5",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/angular.json": "cf60a25b283e4f25edf0cc27ea3277199a272d1621381d670e4e5c231eb3fc97"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/src/app/app.component.ts": {
+      "fingerprint": "3352dc8f231b585b716137e07b173be9c3fdb70c76b24fce1107c52ee48094e1",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/src/app/app.component.ts": "7099f85d86cd0e2935ceee4cb7ba8cd8ff25bc82a9d01a6d4093eae9b1df8e28"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/src/app/app.config.ts": {
+      "fingerprint": "ceade4e67249dfb1790a32f434fbee069c4a34602948a133fb1c9c0311909f82",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/src/app/app.config.ts": "30e6bbe05c4ca79f571ec04aa0d0b5264f07d6ac8cc21ca7c553bea2e6e4ec64"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/src/index.html": {
+      "fingerprint": "b13bc6ff024390afd028ad0b453adefa4a81ec20d7563eeb98f6ad0424bb57c7",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/src/index.html": "c140b8719679b329e7915f1d12a664a14b2b89b8d8faa41b8014f2c37fbb813f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/src/main.ts": {
+      "fingerprint": "2a62db451afa6f2d7423c38476404db0d1614541cbfd072c26e7ba14fab8cc57",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/src/main.ts": "fb692c0cd75f77a6fad81f02a03ba1ed284240c8900e3688bda8c85f6612cb0b"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/src/styles.css": {
+      "fingerprint": "72707f5c5aea46b8c7254e5d0a6a972ba0f58775065cd80ec83308d7168ec6cd",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/src/styles.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/angular/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "2e154fbf63d831ebadbd58aec2670a4a99ce039a9e0af1e4e89ef1352d471510",
+      "snapshot": {
+        "examples/angular/keyboard-layouts/tsconfig.json": "d2dd90e7f06909b0acd9ed572d0b262ced8cc2d757768037e3085d08f32e06b2"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/app/app.css": {
+      "fingerprint": "24109dea4771e9c4031cf2950abbbed18709a13dbc01bede27e4d29d9059844a",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/app/app.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/app/app.ts": {
+      "fingerprint": "991c054a6d0e30f91a49b921a5e08ceb55de66f78704697f05dc72f7e3f7ea5c",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/app/app.ts": "d7cc420da1a8a88042df05ef10a061877eb6c94f70d6b9c5bed796c040ff70c3"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/app/config.ts": {
+      "fingerprint": "9a4770c20410bdb400fc0cbd8106871100b8a7d32825b76932d196803972700a",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/app/config.ts": "350730980588cada00a9ee50aa1a252042cf5334c8ef76b6f3a2a72064e82818"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/app/router.ts": {
+      "fingerprint": "f90097999962a052d2dac660fad8f47ed98b15e3be7506c1c19859f1ed623855",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/app/router.ts": "b0fc87422a226ddd4b9e868e6ab0c2605bf78bc944dc31dc5df7cff79efa6ea0"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/app/templates/application.gts": {
+      "fingerprint": "4fdcb2649134abd502390231d21714589b49554f9f4c3aa2ebe68cdbe86e4c46",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/app/templates/application.gts": "63e3b6a15b1fafb4fda6b8bd32e3e7148ebb614902f83808474d63551ba76e9d"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/babel.config.js": {
+      "fingerprint": "e2d11ff79466637ae61f0b3734330d688f26b1f3b9ee60f92cbc60dce897c2cf",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/babel.config.js": "86e9c4d3e7139cccfe5cf6a65eac998449e6810d6257c7ea80d430012a1fa068"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/index.html": {
+      "fingerprint": "ff0def77e18c70bf972606c395447b5b8cd62e67ace00c3b4efe854fca6ecc18",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/index.html": "c2847c421eca753cec4d956e83d461cbf4f41bb7c1fd5e657f2066f1d6107328"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "1792a9e4cf56cae0f01fdce8a0e632992d337b243af23a18bc7f96afae149850",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/tsconfig.json": "e6623b3bf25ca5e73f2f16fbc9ab6d85f4c0ffbca41bf5a3f57b6daa84df4c66"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/ember/keyboard-layouts/vite.config.mjs": {
+      "fingerprint": "26322964cded84a484344c25e9bae87145adcd629df8ef27a364b53c0949e21c",
+      "snapshot": {
+        "examples/ember/keyboard-layouts/vite.config.mjs": "e73c5d42f2936c023527c65cfcff8cf051d491bc20f980554d8330d2936bd4ab"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/lit/keyboard-layouts/index.html": {
+      "fingerprint": "c6b9273920731b912d2510344a7eeb6af235f439547fa620421347ac2c56f10d",
+      "snapshot": {
+        "examples/lit/keyboard-layouts/index.html": "4f130f2b6be86a41e742f5fe90eedecdd86954a46b7a23b8a887b90454726e5b"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/lit/keyboard-layouts/src/app.ts": {
+      "fingerprint": "0c30886d83a3eae59dcb51c56f4a655ca9226447953d66338a742317c3836c65",
+      "snapshot": {
+        "examples/lit/keyboard-layouts/src/app.ts": "44385b60adc1d4fc7f4828dae4a64a5bd4108e8dc3f40ed4ae00317081fcb1b4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/lit/keyboard-layouts/src/index.css": {
+      "fingerprint": "4699542b7be42c5914c59f1b7ec84c370e704e013ecb170a47acf2bf42fc7ff6",
+      "snapshot": {
+        "examples/lit/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/lit/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "f32cc3423d3f656744e9a0cff834099f9c888f9b04c916ce91f6f1fd7f67e463",
+      "snapshot": {
+        "examples/lit/keyboard-layouts/tsconfig.json": "505ffc8896ced0227343f72ad681ebb8bf1130ebfd1e6d62804d52e7f38e673f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/octane/keyboard-layouts/index.html": {
+      "fingerprint": "2e7276649d6cef506aca93259fce0a33c2d096195719c68657554488a01b8ef0",
+      "snapshot": {
+        "examples/octane/keyboard-layouts/index.html": "2ee89f837ef542446ab1fcd7595918e7bc0d1a1f32aa3100edafa64b4ec335b2"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/octane/keyboard-layouts/src/index.css": {
+      "fingerprint": "3f6270616747f93b295944e858d274b1d14fc8920efb003b8283c782a6f77b56",
+      "snapshot": {
+        "examples/octane/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/octane/keyboard-layouts/src/main.tsrx": {
+      "fingerprint": "23c6bdc236fa21a4cb3b141b4778a48e0dd9c9cab8c627a16d0bb09df65ee0c3",
+      "snapshot": {
+        "examples/octane/keyboard-layouts/src/main.tsrx": "3da811cb63ecc880977252962f3d23806ac3e8c575605a7a603e1c75f84a8ae6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/octane/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "1091467a3aa8a55df50fd0524e74080e783796405d7318f0269b56aec1a393c3",
+      "snapshot": {
+        "examples/octane/keyboard-layouts/tsconfig.json": "9b89260e5def93f6d0013a8f699fe41bb83ffe5aa0295442ae7f43854da42d98"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/octane/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "8f4d37718ed6943e82858eb0daea4564f7e581f10d96dcf092310eaa567753ba",
+      "snapshot": {
+        "examples/octane/keyboard-layouts/vite.config.ts": "afb216ed61b7edffb952f3294fe364d4fd9377911f8ec8a285c221acdb26303b"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/preact/keyboard-layouts/index.html": {
+      "fingerprint": "b94fcc034ff62aa57cb13d53cd0163a7e0f0c3cbee2543ad2d7e8b36edf187f7",
+      "snapshot": {
+        "examples/preact/keyboard-layouts/index.html": "92acd53209a93bdd7a60c84a6519b9ddbf64fe07d90541f197556ef151d2e9c9"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/preact/keyboard-layouts/src/index.css": {
+      "fingerprint": "c307887ffde70b51c58e2922b4b32dd5313e24757f7662a01e770962e7e1669b",
+      "snapshot": {
+        "examples/preact/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/preact/keyboard-layouts/src/index.tsx": {
+      "fingerprint": "6dd43d7222c6633429387a73d215edd56e452f14e41423bd7e8040f0d55605ed",
+      "snapshot": {
+        "examples/preact/keyboard-layouts/src/index.tsx": "f96fbe83c8491913217d05b42324531dcdeed1edfc6c607d0cdbb84d81f2fb8e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/preact/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "e2475f82232bd183691f42e73d8df6e262384b257cc76bb24a0e776ec3b4456e",
+      "snapshot": {
+        "examples/preact/keyboard-layouts/tsconfig.json": "a4ee1e06027b66a186e09d9c0c6280c8b26dc3048d90264f1fd7f401616b0206"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/preact/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "4a7a81a99116a8f56ff7a3dbeccf66bacd3ead1250bf12a99ea7d8c82c4e7227",
+      "snapshot": {
+        "examples/preact/keyboard-layouts/vite.config.ts": "32531fae7b86b9f383808fd1b88af62240720090c9bf81a0528fdd57aae0b005"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/react/keyboard-layouts/index.html": {
+      "fingerprint": "f6a48d2b95cf27ad080a371943f0f1d89078c016279a562d5b3bbfe45b57f387",
+      "snapshot": {
+        "examples/react/keyboard-layouts/index.html": "289ef7b5d4f703e5747e65569bf901d61ef762eab31eff9176688e5c56d1bc1c"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/react/keyboard-layouts/src/index.css": {
+      "fingerprint": "d2d9d6e5741c0e516713e106b940b0f6063032563843a0fd2e1cfb0f29398612",
+      "snapshot": {
+        "examples/react/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/react/keyboard-layouts/src/index.tsx": {
+      "fingerprint": "66e3f5e934effc24a4b9ec0938542e28836433793f54f6092404ab5c33bb6960",
+      "snapshot": {
+        "examples/react/keyboard-layouts/src/index.tsx": "c35aae3429ec6989c3ad32911092d0e1cdde1f5d86a847f9970dd3a1e4c766fc"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/react/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "24e11550c53d138773d8a8ec008673f8c44cd15a4d4dfbd1e0cba1f43a9bcab3",
+      "snapshot": {
+        "examples/react/keyboard-layouts/tsconfig.json": "17233e3521461fecdb81a19a3346608dfc451673e2da532bd9ef0538de65e289"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/react/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "89b01786b5c1400c09a14c30d5d1a8de386a1c98521ac39be360857818003777",
+      "snapshot": {
+        "examples/react/keyboard-layouts/vite.config.ts": "7c3566d9467f52ec6736741d73e6259606200fffecdbc63aebee82d97a4ed157"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/keyboard-layouts/index.html": {
+      "fingerprint": "f8bcc9e656c19ba3a86ad8d7f7e3dac479b313eeafb668c1eb457c928d4813e3",
+      "snapshot": {
+        "examples/solid/keyboard-layouts/index.html": "e16d5c64ef44aae79ed2278f6056a90b1f3aa561897920bfdc5e0e5613fdba7f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/keyboard-layouts/src/index.css": {
+      "fingerprint": "c1cde8d9a5688dd7b7f5353d5b815f7d9e37ef91ddb1b5afc39de37da7b98dac",
+      "snapshot": {
+        "examples/solid/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/keyboard-layouts/src/index.tsx": {
+      "fingerprint": "91b327acb054dfea6e09dc9a1174d81297fba9b720a5f81615d38f87027fa150",
+      "snapshot": {
+        "examples/solid/keyboard-layouts/src/index.tsx": "1ace1daee1c7477a37ab050284e4b77148de9977c16de728158fc5a52b0ff73a"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "4574c1bea82e58d995e0cf1656472f846441b6037ba1c20deddd7f68a0238a6c",
+      "snapshot": {
+        "examples/solid/keyboard-layouts/tsconfig.json": "09ac0ba991241b8987c3ff1c5a6b421c54459a3603f2253d4a915f70c4a19d1f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "dafac4934b27c5225f7c268c441922361d84f9ed93aaf74eb60a7a995735f8cf",
+      "snapshot": {
+        "examples/solid/keyboard-layouts/vite.config.ts": "ff85b2a31d8f2e2356559dde46de7ea8dc9b8aa3e8219cda88ca8668eaac4b52"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/.gitignore": {
+      "fingerprint": "619698d457c4d2d8da6412de516b0d7320629480da150b16bb0cd5952af8eaf1",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/.gitignore": "d1aec8becdfa546cbb4ed193ffd576dd7f353c742cb9f361be4b2697ecefe992"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/index.html": {
+      "fingerprint": "09a22bdbd5f26aeb3f2dbd17124e8fb59e212d8b736755800267a5c019086461",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/index.html": "eec40c2375447e97c80e887c30273739cca4f81187dc5b25a33314e29eebf1b1"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/src/App.svelte": {
+      "fingerprint": "47b11b0cefb971d581038447a601942ecae84464d471e65aec557f33e2e63df3",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/src/App.svelte": "b6684cbfb8ff07c22b3cadad7d769282e6510ee42dddab86151edb4d8fb15c8f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/src/index.css": {
+      "fingerprint": "a434b9ba3bf27080b5bf4ba53d29447377a4371704b85b2dfda3e5684ff409ad",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/src/main.ts": {
+      "fingerprint": "08dcea843237f5c5a6fb39934eefec85cf2188eb22e2790d4d9b82e02bc2853f",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/src/main.ts": "8efd2b382f51ca25efbf71fbd44bfe98f53e4255e667043bc11bad17e0758ffa"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/static/robots.txt": {
+      "fingerprint": "d578dc123d11dea182ce77e1aa3e221742effa522a98bdc207767ff0b1f8bb1b",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/static/robots.txt": "b033243267bcbdab84cb01e940811d6d77a894d78f0470faaf0eb43f8e4efcc9"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/svelte.config.js": {
+      "fingerprint": "fd2e85361d9e94a0f454170b89391df5eed18a52d9aea03e19926d00a93c96a1",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/svelte.config.js": "65312970777b42cd299ed716d6b340790dac5833d8c8dc8ba017bf618c68c129"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "e74ccb98e1ea53c9e06037c741a1f61ab92d40acf809187f552257d220342758",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/tsconfig.json": "3bb0675a478eb366f816c40ad23f9908036db7edb9ea8caf11a34fed9eecf0e3"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/svelte/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "4bce6dc027fc5ff4d700e8058fee84085f29452571772a8ba167122213f9fed0",
+      "snapshot": {
+        "examples/svelte/keyboard-layouts/vite.config.ts": "386ef819f4d749851e90127a5bc3d65e0d22a7e773fa6ca23589e20336d43edf"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/index.html": {
+      "fingerprint": "c545b4a92bc66f611229c6012d93ee6f0cd60531256d5436312f768b6d514b7d",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/index.html": "92d91491dec755c53fd99c6bb2b26bfcb8f67b75418264535bc49bff35a4d5b1"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/src/App.vue": {
+      "fingerprint": "a0ee6fbbad16c3997432a15b293b00972bec4edb1da5e61e7ae9975c1bcc9dfb",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/src/App.vue": "b0c53fab668f1c2eb1d30a9574c0f0a740acf2e500809222181068b7f1ab8906"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/src/index.css": {
+      "fingerprint": "6df5715c175fd6d6b290e04b1710eb27e811e4954affeb0bbc7a465829ca9e07",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/src/index.css": "04fe364e371b36c5c443c165a9c4ea60aec632b46ce755f68861be594e0d74a4"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/src/index.ts": {
+      "fingerprint": "04184e1161f14d7442a22f144f4b3313970262971b05f0cfe30e2c737e9b3b0d",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/src/index.ts": "b253f637548463445e81eb0908deffcbae88a039dd21e3c751dc3fa7e678998e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/src/vue.d.ts": {
+      "fingerprint": "c36387dce7fb07a44a05554539f62d00483f31bcf0d34565ee67471f42066a27",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/src/vue.d.ts": "a8bcef84fbb5c7f86868e98ab136b1e881514bc6ee3110f39070929f5e8eeae9"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/tsconfig.json": {
+      "fingerprint": "68ed047983494eb4309e8b59a06f44fdfbbabd84bf36e92963791972d2d2263f",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/tsconfig.json": "ce70ec1a28cc08e3bbded1fd405356183abb7397acd4021c970aa0399c075ce9"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:examples/vue/keyboard-layouts/vite.config.ts": {
+      "fingerprint": "9fc87ef457fc8eb0545837b8938e57177ffd5ef28807fe15252b277126a9e2b9",
+      "snapshot": {
+        "examples/vue/keyboard-layouts/vite.config.ts": "0646e0ff42ef72dab57bc185b5532332fda14aec21625357b8ce272028a2cffe"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:packages/hotkeys/src/key-sets/brazilian.ts": {
+      "fingerprint": "bb095534a4f1f46f898c829f1a3f5507b2b7dcc6417c6691c93388eaa32d2b48",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/brazilian.ts": "30be5f390579bf8f4da99ef84a1e640ce2a5cd61676e9503f404a4437092b661"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/bulgarian.ts": {
+      "fingerprint": "03b04cf4d1420e2b46cb0f8e52b3d4e466b951854ba1b067796aa6a60c1cba9b",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/bulgarian.ts": "174994b8aff8568ea943663ac698cce23966e051ccf274e605f66f9bd0595543"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/canadian-french.ts": {
+      "fingerprint": "a7956d334ea86d858f000acd67337f4cc69225e79b2678d8ca3656533afe365f",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/canadian-french.ts": "c8094323aec02c439f57ad31dbf777fa6a8f7dcdd932613eea4f70da6fc656a1"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/croatian.ts": {
+      "fingerprint": "645cb96727f1b395206e1b86b0e8585c3bc34f6770f6e7de749a9e353bf378f5",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/croatian.ts": "e5d3f22a30718a99b3de500eadc3acc77da45b5facead1ef6d370b99f7d9aafd"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/czech.ts": {
+      "fingerprint": "8187394f8b1c1aaeaddfc0ccb5116cc3e9e92eb9702ffa41565be503b4cf5218",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/czech.ts": "af285172b5f804b372370843f428d9e752f82c8db0ffafe182aaffde122574c0"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/danish.ts": {
+      "fingerprint": "5b7b404c9c24c0062728d566916f213e2f67e9d6041d863b10f580d3067d2091",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/danish.ts": "9c35dfe7aa250a2d8d3d1b2508dc8c2d65ac75fcdaf122a94494fcef201f8888"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/estonian.ts": {
+      "fingerprint": "80fd7ce6285a8120b492e5b3f25223049de9477a2ea8a1d0d3b35fa6cb76826a",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/estonian.ts": "8b826b7dce809e725bb0facdc73028b8f459549e2bc4a517e6456cbf31e39908"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/french.ts": {
+      "fingerprint": "4ee5bff418307ba78c05222ea4a86ce5f5ad75688f6d28e37065b3d6d2b77daf",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/french.ts": "2723ff7d70dd3c341f7f2fe5f9141c7f190a52056a7b227c4b8af8291787363a"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/german.ts": {
+      "fingerprint": "194da5e77c04bcd41a3a09ec4b0510eed62254c59429da28707db08a0f27d638",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/german.ts": "ac598b04efeb438ea3a5fbbb3185a4f1933cca12a1488441fdbaa1fdcf134b17"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/greek.ts": {
+      "fingerprint": "99cc9af9f5d2abf34f02781b6200cce25426ea36407adff8522a58067febfbc4",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/greek.ts": "5d47212205c5f2fc7578b13beee90ca94b17ecdd1f6d2dfc6f54a07d365647e6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/hebrew.ts": {
+      "fingerprint": "e353ee6e0f1c3db276cb7c82ad0ab2cf9a043322f018f9e3f7d4e451b3b342cb",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/hebrew.ts": "0131625581e570ef5c06d63a027fe80fdbb3132f39f600533cca055eeb2f7718"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/hungarian.ts": {
+      "fingerprint": "cbdeced083cfcdad578abcb0c0e582606b95301d4be8a62f5f86a5ad4601a4ed",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/hungarian.ts": "7350d2b4065ecabf80bfa730fefea1d60ee767d4ff0dc5805cd05f580885f7c2"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/icelandic.ts": {
+      "fingerprint": "d8601b6d9828b541f6bf552b2e6ec07be59ccce6f0847ee0261603aca970b8df",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/icelandic.ts": "b9c2fe956a7d7ebed6b99daad4a27fa6fcca2e49fbfa56bcc3aa4fbf31a0db48"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/index.ts": {
+      "fingerprint": "dec9107b4f772a9f1fbac8ee57be4713dbfa9c6aacb45a8bba9c3188bd12786f",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/index.ts": "46072af35164fbb1e1a4aac2a01e00f7fca88842462361b90671d926c0b4d52c"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/italian.ts": {
+      "fingerprint": "7c0c65202a564bac0e211eabe776f1e45c790321be4b4216ea7b2b62877f7f98",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/italian.ts": "fab0b98a76db3cc427394fe66d4862e72b57ec3a565af184d4a1c1167bad4d97"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/latin-american.ts": {
+      "fingerprint": "1b709e387927be4ad21a9e6dcd31a99afdc8edd87e8205a5c19c9b70fbfff918",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/latin-american.ts": "1743ee9feca0f63fe38e918c8bd05fa77c08484c6a0c93bff78e00063650c2c7"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/lithuanian.ts": {
+      "fingerprint": "dd9ea39f4aa2feaf19188f8718338b3749b72946068a85b395357c742f721fe2",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/lithuanian.ts": "a5325540fe4e21cf4ad3027fc3c5e825cb7016d2c4239005820173727734dfa6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/portuguese.ts": {
+      "fingerprint": "82b476c2e634246e5662fddcbc744ddcf0364464f8fe2e94f2f9b5924113a843",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/portuguese.ts": "7f7255d4cf63622a1094ee37e55146c7752cdc01c5654128a8967c55b6132314"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/romanian.ts": {
+      "fingerprint": "087092e23d3313096be3e537d9ff70ed90bd0b81c77574548c2312743c3951f3",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/romanian.ts": "a1968e5a48b4398c0f462b9a5a2165a163898354e95f0c4d4cfa89d1b8a78bd5"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/russian.ts": {
+      "fingerprint": "a3b9060abd120c0c9fc417e48c760e0a2c60925c10b19330b8f022dda9061584",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/russian.ts": "631e06123d97f924ee00a2b57d3ef995ee0359d62c0f06b534117b27e1740836"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/slovak.ts": {
+      "fingerprint": "78f99dbd66b162cb3a923404ed4ede4022e0d4040a05d879ff5e5b213c0208f6",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/slovak.ts": "1c52b99f3fa9113fdc8d45da4a34989d1e17c2fce91da076acf8888fbb12a6e6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/spanish.ts": {
+      "fingerprint": "7af50aaecbbdcd4f8091f6fa65522be3e515cccd4a3f4eb1f779710b7cb52476",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/spanish.ts": "e0cae123d5f1e6fe1144ad6288e3d6d7a896a3045cd964fe97119183faa4cb8c"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/swedish.ts": {
+      "fingerprint": "811c0303345cc516b209c36530966e5a21168460a838b3532a2cb4ad6e27a9f4",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/swedish.ts": "db2c3b48b0892d6f1614e68d813fa23bcf00e76f80f6f16132537ebbf2155b1f"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/swiss.ts": {
+      "fingerprint": "883e5afa12b1b04aa6aae896819f202581599717a999217636452e44dff565bd",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/swiss.ts": "8346bcaa31ecaef779b43d3e6889e2371cf046aa5c245754156eb99b1af2daa6"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/turkish.ts": {
+      "fingerprint": "25035664c46c7a9b0716dec8beaa8dc4beefaed868078c0ac9e820ac55c2a249",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/turkish.ts": "b7883ee99edaaf55086fd0874cfd96fb9946397b8c5152b45b5fa0ab52406498"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/uk.ts": {
+      "fingerprint": "b1b4e5c935941206293c4af0dbe0d66e1cc44c3b95ac9ad1c6795630ef4d21af",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/uk.ts": "766161c79cd018a76ffde8426d20ea6555f0e3acbd62fb14ca4be168a59e4b15"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/ukrainian.ts": {
+      "fingerprint": "b043419f3486f156c4d533adfc34330e4f076214b3faccec06dd698c1671e68d",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/ukrainian.ts": "879e23211aa73af9a18e4900d26a1eb8fc326cf011c845980827fbbf95aa4523"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/key-sets/us.ts": {
+      "fingerprint": "677e35bc30aee1963348074ad2248cfe3beb844d4d7bbf0a95acdeab7da177ce",
+      "snapshot": {
+        "packages/hotkeys/src/key-sets/us.ts": "3eab0f8acef0961d62fccaea30c47243986eb725b31530d8bb861792b2b3ab82"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/src/register.ts": {
+      "fingerprint": "6d03331d6b943db5fca7898c8dc9fb4444e1a3006845dccd3e6efb8d15ac6778",
+      "snapshot": {
+        "packages/hotkeys/src/register.ts": "b330366dc15a815d05be64e6bd52d9379539e897a06312bee024ce5f9b0b50a1"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "updated",
+      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+      ]
+    },
+    "source:packages/hotkeys/tests/key-sets.test.ts": {
+      "fingerprint": "a4ae661ea42dec68969db198ef5b16255926f239bcadd0faa0c797f92905dc76",
+      "snapshot": {
+        "packages/hotkeys/tests/key-sets.test.ts": "870e4a027ca015d1e13246b048a49362a1e58016333e0264c519706cbb188919"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:packages/hotkeys/tests/register-keys/register-keys.test-d.ts": {
+      "fingerprint": "7f1e7dd8b7e74642003106e38b8da1146fa177272451778318098dd8419f4a76",
+      "snapshot": {
+        "packages/hotkeys/tests/register-keys/register-keys.test-d.ts": "dd8f162306afdd3f6de30a1b5fd430bdfc90eb16fdec50d85a1f10d6878d870b"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:packages/hotkeys/tests/register-keys/tsconfig.json": {
+      "fingerprint": "d3c22c85a6f871d3d7f6c9fb694619177ff3081c01106380e8c096d494479117",
+      "snapshot": {
+        "packages/hotkeys/tests/register-keys/tsconfig.json": "bae4cfe739d799be51f35515dcabb4a86e8fe6f644279af4ff32be64b48a8e2a"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:packages/react-hotkeys/tests/register-keys/register-keys.test-d.tsx": {
+      "fingerprint": "081ef5e5e73a2a87093e92fd8bc3d44d05614b2ba043606d270e4eb601383ff5",
+      "snapshot": {
+        "packages/react-hotkeys/tests/register-keys/register-keys.test-d.tsx": "7106e9689b7a5b14547bfdd857878bf185073b4b0a6c9ef8e6cc10b760cfaebc"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
+    },
+    "source:packages/react-hotkeys/tests/register-keys/tsconfig.json": {
+      "fingerprint": "276955ae96ba47fbcfe222b39de3c96939b1eb69f71fb56d06dba8a078ac2138",
+      "snapshot": {
+        "packages/react-hotkeys/tests/register-keys/tsconfig.json": "ebe96d393f1c15def9b6f9aa2a80f7c3e16c017d1f4c85e447f86e6bef6f911e"
+      },
+      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     }
   }
 }

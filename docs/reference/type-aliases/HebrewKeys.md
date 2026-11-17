@@ -67,11 +67,11 @@ type HebrewKeys =
   | "?";
 ```
 
-Defined in: key-sets/hebrew.ts:10
+Defined in: [key-sets/hebrew.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/hebrew.ts#L10)
 
 The printable keys of the Hebrew layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `il` and macOS
-`Hebrew-PC`.
+keys type without a modifier and with Shift. Built from xkb `il`, macOS
+`Hebrew-PC`, and Windows `he-t-k0-windows` from Unicode CLDR.
 
 For shortcuts, prefer the US letter names, such as `Mod+A`. They fire on the
 same keys on this layout, and keep working after the user switches to a Latin

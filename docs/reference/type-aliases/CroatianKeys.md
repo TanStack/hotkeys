@@ -36,9 +36,11 @@ type CroatianKeys =
   | ">";
 ```
 
-Defined in: key-sets/croatian.ts:7
+Defined in: [key-sets/croatian.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/croatian.ts#L9)
 
 The printable keys of the Croatian layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `hr` and macOS
-`Croatian-PC`. Left out, because only one of the two platforms types them
-without AltGr or Option: `` ` ``, `~`, `“`, `”`.
+keys type without a modifier and with Shift. Built from xkb `hr`, macOS
+`Croatian-PC`, and Windows `sr-Latn-t-k0-windows` from Unicode CLDR. Left
+out, because not every platform types them without AltGr or Option: `` ` ``
+(Linux only), `~` (Linux and Windows only), `“` (macOS only), `”` (macOS
+only).

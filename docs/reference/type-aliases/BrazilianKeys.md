@@ -34,11 +34,13 @@ type BrazilianKeys =
   | ";"
   | ":"
   | "\\"
-  | "|";
+  | "|"
+  | "/"
+  | "?";
 ```
 
-Defined in: key-sets/brazilian.ts:6
+Defined in: [key-sets/brazilian.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/brazilian.ts#L6)
 
 The printable keys of the Brazilian ABNT2 layout, other than A-Z and 0-9:
-what its keys type without a modifier and with Shift. Built from xkb `br` and
-macOS `Brazilian-ABNT2`.
+what its keys type without a modifier and with Shift. Built from xkb `br`,
+macOS `Brazilian-ABNT2`, and Windows `pt-t-k0-windows` from Unicode CLDR.

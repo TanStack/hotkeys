@@ -44,7 +44,6 @@ type UkrainianKeys =
   | "Д"
   | "Ж"
   | "Є"
-  | "ʼ"
   | "Ґ"
   | "Я"
   | "Ч"
@@ -60,12 +59,14 @@ type UkrainianKeys =
   | "/";
 ```
 
-Defined in: key-sets/ukrainian.ts:11
+Defined in: [key-sets/ukrainian.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/ukrainian.ts#L13)
 
 The printable keys of the Ukrainian layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `ua` and macOS
-`Ukrainian-PC`. Left out, because only one of the two platforms types them
-without AltGr or Option: `'`, `|`, `₴`, ``.
+keys type without a modifier and with Shift. Built from xkb `ua`, macOS
+`Ukrainian-PC`, and Windows `uk-t-k0-windows` from Unicode CLDR. Left out,
+because not every platform types them without AltGr or Option: `'` (Linux
+only), `ʼ` (Linux and macOS only), `|` (Linux only), `₴` (macOS only), `\`
+(macOS and Windows only), `Ё` (Windows only).
 
 For shortcuts, prefer the US letter names, such as `Mod+A`. They fire on the
 same keys on this layout, and keep working after the user switches to a Latin

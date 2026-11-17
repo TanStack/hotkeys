@@ -9,8 +9,8 @@ title: SerbianLatinKeys
 type SerbianLatinKeys = CroatianKeys;
 ```
 
-Defined in: key-sets/croatian.ts:47
+Defined in: [key-sets/croatian.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/croatian.ts#L50)
 
 The printable keys of the Serbian (Latin) layout, other than A-Z and 0-9. It
-types the same characters as Croatian. Built from xkb `rs(latin)` and macOS
-`Serbian-Latin`.
+types the same characters as Croatian. Built from xkb `rs(latin)`, macOS
+`Serbian-Latin`, and Windows `sr-Latn-t-k0-windows` from Unicode CLDR.

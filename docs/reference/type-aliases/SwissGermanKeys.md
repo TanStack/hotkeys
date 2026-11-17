@@ -40,8 +40,11 @@ type SwissGermanKeys =
   | ">";
 ```
 
-Defined in: key-sets/swiss.ts:6
+Defined in: [key-sets/swiss.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/swiss.ts#L9)
 
 The printable keys of the Swiss German QWERTZ layout, other than A-Z and 0-9:
-what its keys type without a modifier and with Shift. Built from xkb `ch` and
-macOS `SwissGerman`.
+what its keys type without a modifier and with Shift. Built from xkb `ch`,
+macOS `SwissGerman`, and Windows `de-CH-t-k0-windows` from Unicode CLDR.
+
+This layout types `Ç`, `È`, `É` and `À` with Shift. Letters match Shift
+exactly, so bind them with it, such as `Shift+Ç`.

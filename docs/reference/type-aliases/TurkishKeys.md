@@ -37,12 +37,15 @@ type TurkishKeys =
   | ">";
 ```
 
-Defined in: key-sets/turkish.ts:10
+Defined in: [key-sets/turkish.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/turkish.ts#L13)
 
 The printable keys of the Turkish Q layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `tr` and macOS
-`Turkish-QWERTY-PC`. Left out, because only one of the two platforms types
-them without AltGr or Option: `^`.
+keys type without a modifier and with Shift. Built from xkb `tr`, macOS
+`Turkish-QWERTY-PC`, and Windows `tr-t-k0-windows` from Unicode CLDR. Left
+out, because not every platform types them without AltGr or Option: `^`
+(Linux only).
 
-Turkish types `İ` only with Shift, so bind it as `Shift+İ`. Dotless `ı` is
-written lowercase, as it is typed.
+This layout types `İ` and `É` with Shift. Letters match Shift exactly, so
+bind them with it, such as `Shift+İ`.
+
+Dotless `ı` is written lowercase, as it is typed.

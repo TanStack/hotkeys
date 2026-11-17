@@ -37,9 +37,11 @@ type CzechKeys =
   | "|";
 ```
 
-Defined in: key-sets/czech.ts:7
+Defined in: [key-sets/czech.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/czech.ts#L9)
 
 The printable keys of the Czech QWERTZ layout, other than A-Z and 0-9: what
-its keys type without a modifier and with Shift. Built from xkb `cz` and
-macOS `Czech`. Left out, because only one of the two platforms types them
-without AltGr or Option: `;`, `'`, `` ` ``, `<`, `>`.
+its keys type without a modifier and with Shift. Built from xkb `cz`, macOS
+`Czech`, and Windows `cs-t-k0-windows` from Unicode CLDR. Left out, because
+not every platform types them without AltGr or Option: `;` (Linux and Windows
+only), `'` (Linux and Windows only), `` ` `` (macOS only), `<` (macOS only),
+`>` (macOS only).

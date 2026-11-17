@@ -9,8 +9,8 @@ title: BelgianKeys
 type BelgianKeys = FrenchKeys;
 ```
 
-Defined in: key-sets/french.ts:43
+Defined in: [key-sets/french.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/french.ts#L45)
 
 The printable keys of the Belgian AZERTY layout, other than A-Z and 0-9. It
-types the same characters as French AZERTY. Built from xkb `be` and macOS
-`Belgian`.
+types the same characters as French AZERTY. Built from xkb `be`, macOS
+`Belgian`, and Windows `fr-BE-t-k0-windows` from Unicode CLDR.

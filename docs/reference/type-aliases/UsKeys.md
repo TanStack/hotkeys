@@ -9,7 +9,7 @@ title: UsKeys
 type UsKeys = PunctuationKey;
 ```
 
-Defined in: key-sets/us.ts:8
+Defined in: [key-sets/us.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/us.ts#L8)
 
 The printable keys of the US QWERTY layout, other than A-Z and 0-9. Hotkey
 strings accept these unless `Register['keys']` names other layouts. List

@@ -36,9 +36,14 @@ type PortugueseKeys =
   | ">";
 ```
 
-Defined in: key-sets/portuguese.ts:7
+Defined in: [key-sets/portuguese.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/portuguese.ts#L12)
 
 The printable keys of the Portuguese (Portugal) layout, other than A-Z and
 0-9: what its keys type without a modifier and with Shift. Built from xkb
-`pt` and macOS `Portuguese`. Left out, because only one of the two platforms
-types them without AltGr or Option: `«`, `»`, `§`, `±`.
+`pt`, macOS `Portuguese`, and Windows `pt-PT-t-k0-windows` from Unicode CLDR.
+Left out, because not every platform types them without AltGr or Option: `«`
+(Linux and Windows only), `»` (Linux and Windows only), `§` (macOS only), `±`
+(macOS only).
+
+This layout types `ª` with Shift. Letters match Shift exactly, so bind them
+with it, such as `Shift+ª`.

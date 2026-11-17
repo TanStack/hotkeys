@@ -34,9 +34,10 @@ type EstonianKeys =
   | ">";
 ```
 
-Defined in: key-sets/estonian.ts:7
+Defined in: [key-sets/estonian.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/estonian.ts#L8)
 
 The printable keys of the Estonian layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `ee` and macOS
-`Estonian`. Left out, because only one of the two platforms types them
-without AltGr or Option: `¤`, `€`.
+keys type without a modifier and with Shift. Built from xkb `ee`, macOS
+`Estonian`, and Windows `et-t-k0-windows` from Unicode CLDR. Left out,
+because not every platform types them without AltGr or Option: `¤` (Linux and
+Windows only), `€` (macOS only).

@@ -9,7 +9,8 @@ title: SlovenianKeys
 type SlovenianKeys = CroatianKeys;
 ```
 
-Defined in: key-sets/croatian.ts:40
+Defined in: [key-sets/croatian.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/croatian.ts#L43)
 
 The printable keys of the Slovenian layout, other than A-Z and 0-9. It types
-the same characters as Croatian. Built from xkb `si` and macOS `Slovenian`.
+the same characters as Croatian. Built from xkb `si`, macOS `Slovenian`, and
+Windows `sl-t-k0-windows` from Unicode CLDR.

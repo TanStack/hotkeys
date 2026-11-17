@@ -34,9 +34,10 @@ type DanishKeys =
   | ">";
 ```
 
-Defined in: key-sets/danish.ts:7
+Defined in: [key-sets/danish.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/danish.ts#L8)
 
 The printable keys of the Danish layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `dk` and macOS
-`Danish`. Left out, because only one of the two platforms types them without
-AltGr or Option: `¤`, `½`, `€`, `$`.
+keys type without a modifier and with Shift. Built from xkb `dk`, macOS
+`Danish`, and Windows `da-t-k0-windows` from Unicode CLDR. Left out, because
+not every platform types them without AltGr or Option: `¤` (Linux and Windows
+only), `½` (Linux and Windows only), `€` (macOS only), `$` (macOS only).

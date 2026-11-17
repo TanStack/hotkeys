@@ -9,7 +9,8 @@ title: FinnishKeys
 type FinnishKeys = SwedishKeys;
 ```
 
-Defined in: key-sets/swedish.ts:38
+Defined in: [key-sets/swedish.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/swedish.ts#L40)
 
 The printable keys of the Finnish layout, other than A-Z and 0-9. It types
-the same characters as Swedish. Built from xkb `fi` and macOS `Finnish`.
+the same characters as Swedish. Built from xkb `fi`, macOS `Finnish`, and
+Windows `fi-t-k0-windows` from Unicode CLDR.

@@ -37,8 +37,8 @@ type GermanKeys =
   | ">";
 ```
 
-Defined in: key-sets/german.ts:6
+Defined in: [key-sets/german.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/german.ts#L6)
 
 The printable keys of the German QWERTZ layout, other than A-Z and 0-9: what
-its keys type without a modifier and with Shift. Built from xkb `de` and
-macOS `German`.
+its keys type without a modifier and with Shift. Built from xkb `de`, macOS
+`German`, and Windows `de-t-k0-windows` from Unicode CLDR.

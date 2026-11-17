@@ -35,8 +35,8 @@ type IcelandicKeys =
   | ">";
 ```
 
-Defined in: key-sets/icelandic.ts:6
+Defined in: [key-sets/icelandic.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/icelandic.ts#L6)
 
 The printable keys of the Icelandic layout, other than A-Z and 0-9: what its
-keys type without a modifier and with Shift. Built from xkb `is` and macOS
-`Icelandic`.
+keys type without a modifier and with Shift. Built from xkb `is`, macOS
+`Icelandic`, and Windows `is-t-k0-windows` from Unicode CLDR.

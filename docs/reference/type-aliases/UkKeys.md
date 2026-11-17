@@ -41,9 +41,12 @@ type UkKeys =
   | "|";
 ```
 
-Defined in: key-sets/uk.ts:7
+Defined in: [key-sets/uk.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-sets/uk.ts#L10)
 
 The printable keys of the UK (British) QWERTY layout, other than A-Z and 0-9:
-what its keys type without a modifier and with Shift. Built from xkb `gb` and
-macOS `British` and `British-PC`. Left out, because only one of the two
-platforms types them without AltGr or Option: `¬`, `#`, `§`, `±`.
+what its keys type without a modifier and with Shift. Built from xkb `gb`,
+macOS `British` and `British-PC`, and Windows `en-GB-t-k0-windows` from
+Unicode CLDR. Left out, because not every platform types them without AltGr
+or Option: `¬` (Linux, macOS British-PC and Windows only), `#` (Linux, macOS
+British-PC and Windows only), `§` (macOS British only), `±` (macOS British
+only).
