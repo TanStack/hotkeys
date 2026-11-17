@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-svelte-keyboard-layouts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "test:types": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@tanstack/svelte-devtools": "^0.1.8",
+    "@tanstack/svelte-hotkeys": "0.25.1",
+    "@tanstack/svelte-hotkeys-devtools": "^0.5.12",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte-check": "^4.7.8",
+    "typescript": "6.0.3",
+    "vite": "^8.3.7"
+  }
+}

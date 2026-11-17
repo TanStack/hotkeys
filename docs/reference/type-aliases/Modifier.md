@@ -18,7 +18,7 @@ type Modifier =
   | "Mod";
 ```
 
-Defined in: [key.types.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L11)
+Defined in: [key.types.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L13)
 
 All supported modifier key names, including aliases.
 - Control/Ctrl: The Control key

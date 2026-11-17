@@ -1,4 +1,6 @@
 import type { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_named-keys'
+import type { UsKeys } from './key-sets/us'
+import type { Register } from './register'
 
 /**
  * All supported modifier key names, including aliases.
@@ -246,8 +248,28 @@ export type PhysicalKeyCode =
  */
 export type PhysicalKey = `[${PhysicalKeyCode}]`
 
+/**
+ * The printable keys, other than A-Z and 0-9, that hotkey strings accept:
+ * the keys of the layouts in `Register['keys']`, or the US QWERTY keys when
+ * none are registered.
+ *
+ * @example
+ * ```ts
+ * import type { FrenchKeys, GermanKeys } from '@tanstack/react-hotkeys'
+ *
+ * declare module '@tanstack/react-hotkeys' {
+ *   interface Register {
+ *     keys: GermanKeys | FrenchKeys
+ *   }
+ * }
+ * ```
+ */
+export type LayoutKey = Register extends { keys: infer TKeys extends string }
+  ? TKeys
+  : UsKeys
+
 /** Supported logical key names, excluding bracketed physical-code syntax. */
-export type LogicalKey = NonPunctuationKey | PunctuationKey
+export type LogicalKey = NonPunctuationKey | LayoutKey
 
 /** All supported logical keys and bracketed physical key tokens. */
 export type Key = LogicalKey | PhysicalKey

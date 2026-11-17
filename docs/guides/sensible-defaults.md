@@ -83,6 +83,35 @@ On a layout where the `KeyQ` position types `a`, `A` follows the character and `
 
 The [hotkey recorder](#recording-captures-what-the-user-pressed) records a physical binding for a press that has no portable name, such as Shift+/. Set `recordBy: 'code'` to record one for every key.
 
+### Type keys from other keyboard layouts
+
+Hotkey strings type-check against the keys of a US QWERTY keyboard. An app that targets other layouts can register them, so TypeScript also accepts keys such as `Ö` or `§`. Registering changes types only. Matching works the same with or without it. Most apps don't need it, because A to Z, 0 to 9, and US punctuation also match on other layouts, as described above. The Keyboard Layouts guide for your framework shows how to register layouts and when to.
+
+Each set lists what the layout's keys type without a modifier and with Shift, other than A to Z and 0 to 9. A set includes only characters that Windows, macOS, and Linux all type there, checked against the Windows layouts in Unicode CLDR, the macOS layouts, and the Linux xkb layouts. Dead keys and characters typed with AltGr or Option are left out. Each set's documentation lists the letters its layout types with Shift, which need `Shift+` in the hotkey.
+
+| Set | Layouts |
+| --- | --- |
+| `UsKeys` | US QWERTY, the default |
+| `UkKeys` | UK (British) |
+| `GermanKeys`, `AustrianKeys` | German and Austrian QWERTZ |
+| `SwissGermanKeys`, `SwissFrenchKeys` | Swiss German and Swiss French |
+| `FrenchKeys`, `BelgianKeys` | French and Belgian AZERTY |
+| `CanadianFrenchKeys` | Canadian French |
+| `SpanishKeys`, `LatinAmericanKeys` | Spanish (Spain) and Latin American |
+| `PortugueseKeys`, `BrazilianKeys` | Portuguese (Portugal) and Brazilian ABNT2 |
+| `ItalianKeys` | Italian |
+| `DanishKeys`, `NorwegianKeys` | Danish and Norwegian |
+| `SwedishKeys`, `FinnishKeys` | Swedish and Finnish |
+| `IcelandicKeys` | Icelandic |
+| `CzechKeys`, `SlovakKeys`, `HungarianKeys` | Czech, Slovak, and Hungarian QWERTZ |
+| `CroatianKeys`, `SlovenianKeys`, `SerbianLatinKeys` | Croatian, Slovenian, and Serbian (Latin) |
+| `EstonianKeys`, `LithuanianKeys` | Estonian and Lithuanian |
+| `TurkishKeys` | Turkish Q |
+| `RomanianKeys` | Romanian (standard) |
+| `GreekKeys`, `RussianKeys`, `UkrainianKeys`, `BulgarianKeys`, `HebrewKeys` | Greek, Russian, Ukrainian, Bulgarian (BDS), and Hebrew |
+
+Polish and Latvian layouts type the same keys as US QWERTY without AltGr, and most Dutch users type on US International, so they need no set.
+
 ## Modifiers must match exactly
 
 `Mod+S` does not fire for `Mod+Shift+S`, and `K` does not fire for `Shift+K`. Exact matching lets `Mod+Z` (undo) and `Mod+Shift+Z` (redo) coexist without one swallowing the other.

@@ -1,0 +1,66 @@
+/**
+ * The printable keys of the Bulgarian (BDS) layout, other than A-Z and 0-9:
+ * what its keys type without a modifier and with Shift. Built from xkb `bg`,
+ * macOS `Bulgarian`, and Windows `bg-t-k0-windows` from Unicode CLDR. Left out,
+ * because not every platform types them without AltGr or Option: `–` (Linux and
+ * Windows only), `$` (Linux and Windows only), `€` (Linux and Windows only),
+ * `„` (Linux and Windows only), `“` (Linux and Windows only), `~` (macOS only),
+ * `_` (macOS only), `±` (macOS only).
+ *
+ * This layout types `Ы` and `Ѝ` with Shift. Letters match Shift exactly, so
+ * bind them with it, such as `Shift+Ы`.
+ *
+ * For shortcuts, prefer the US letter names, such as `Mod+A`. They fire on the
+ * same keys on this layout, and keep working after the user switches to a Latin
+ * layout. A binding on a letter of this layout fires only while it is active.
+ */
+export type BulgarianKeys =
+  | '!'
+  | '?'
+  | '+'
+  | '"'
+  | '%'
+  | '='
+  | ':'
+  | '/'
+  | '№'
+  | '-'
+  | '.'
+  | ','
+  | 'Ы'
+  | 'У'
+  | 'Е'
+  | 'И'
+  | 'Ш'
+  | 'Щ'
+  | 'К'
+  | 'С'
+  | 'Д'
+  | 'З'
+  | 'Ц'
+  | ';'
+  | '§'
+  | 'Ь'
+  | 'Ѝ'
+  | 'Я'
+  | 'А'
+  | 'О'
+  | 'Ж'
+  | 'Г'
+  | 'Т'
+  | 'Н'
+  | 'В'
+  | 'М'
+  | 'Ч'
+  | '('
+  | ')'
+  | 'Ю'
+  | 'Й'
+  | 'Ъ'
+  | 'Э'
+  | 'Ф'
+  | 'Х'
+  | 'П'
+  | 'Р'
+  | 'Л'
+  | 'Б'
