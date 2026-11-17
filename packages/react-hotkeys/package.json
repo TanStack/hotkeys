@@ -28,7 +28,7 @@
     "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:coverage": "vitest --coverage",
-    "test:types": "tsc",
+    "test:types": "tsc && tsc -p tests/register-keys",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
   },

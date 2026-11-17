@@ -9,7 +9,7 @@ title: installAppHotkeysStore
 function installAppHotkeysStore(): void;
 ```
 
-Defined in: [app-hotkeys.ts:217](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L217)
+Defined in: [app-hotkeys.ts:206](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L206)
 
 Lets providers in this bundle create stores for app hotkeys.
 `defineAppHotkeys` calls it. Adapters call it where the declarations can

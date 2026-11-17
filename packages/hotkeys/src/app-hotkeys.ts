@@ -23,6 +23,7 @@ import type {
   HotkeySequence,
 } from './hotkey.types'
 import type { HotkeyPlatform } from './platform'
+import type { Register } from './register'
 
 type DeclaredOptionKeys =
   | 'capture'
@@ -143,19 +144,7 @@ export type DefinedAppHotkeys<T extends Record<string, AppHotkeyInput>> = {
   >
 }
 
-/**
- * Register your app hotkeys to type `useAppHotkeys()` and `CustomHotkeys`.
- *
- * @example
- * ```ts
- * declare module '@tanstack/react-hotkeys' {
- *   interface Register {
- *     appHotkeys: typeof appHotkeys
- *   }
- * }
- * ```
- */
-export interface Register {}
+export type { Register } from './register'
 
 /** The app hotkeys type from `Register`, or a generic map when none is registered. */
 export type RegisteredAppHotkeys = Register extends {

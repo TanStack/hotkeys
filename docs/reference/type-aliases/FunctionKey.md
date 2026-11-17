@@ -33,6 +33,6 @@ type FunctionKey =
   | "F24";
 ```
 
-Defined in: [key.types.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L79)
+Defined in: [key.types.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L81)
 
 Function keys F1-F24, supported as both logical keys and physical codes.

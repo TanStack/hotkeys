@@ -169,6 +169,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/react/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/react/guides/keyboard-layouts"
             }
           ]
         },
@@ -218,6 +222,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/preact/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/preact/guides/keyboard-layouts"
             }
           ]
         },
@@ -267,6 +275,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/solid/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/solid/guides/keyboard-layouts"
             }
           ]
         },
@@ -316,6 +328,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/angular/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/angular/guides/keyboard-layouts"
             }
           ]
         },
@@ -365,6 +381,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/vue/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/vue/guides/keyboard-layouts"
             }
           ]
         },
@@ -410,6 +430,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/lit/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/lit/guides/keyboard-layouts"
             }
           ]
         },
@@ -459,6 +483,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/svelte/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/svelte/guides/keyboard-layouts"
             }
           ]
         },
@@ -504,6 +532,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/alpine/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/alpine/guides/keyboard-layouts"
             }
           ]
         },
@@ -549,6 +581,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/ember/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/ember/guides/keyboard-layouts"
             }
           ]
         },
@@ -598,6 +634,10 @@
             {
               "label": "Hotkey Manager",
               "to": "framework/octane/guides/hotkey-manager"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/octane/guides/keyboard-layouts"
             }
           ]
         }
@@ -2532,6 +2572,10 @@
             {
               "label": "useFormatForDisplay (Astro)",
               "to": "framework/react/examples/useFormatForDisplay-astro"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/react/examples/keyboard-layouts"
             }
           ]
         },
@@ -2585,6 +2629,10 @@
             {
               "label": "useFormatForDisplay (Astro)",
               "to": "framework/preact/examples/useFormatForDisplay-astro"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/preact/examples/keyboard-layouts"
             }
           ]
         },
@@ -2642,6 +2690,10 @@
             {
               "label": "createFormatForDisplay (Astro)",
               "to": "framework/solid/examples/createFormatForDisplay-astro"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/solid/examples/keyboard-layouts"
             }
           ]
         },
@@ -2695,6 +2747,10 @@
             {
               "label": "injectFormatForDisplay (Analog)",
               "to": "framework/angular/examples/injectFormatForDisplay-analog"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/angular/examples/keyboard-layouts"
             }
           ]
         },
@@ -2756,6 +2812,10 @@
             {
               "label": "useFormatForDisplay (VitePress)",
               "to": "framework/vue/examples/useFormatForDisplay-vitepress"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/vue/examples/keyboard-layouts"
             }
           ]
         },
@@ -2789,6 +2849,10 @@
             {
               "label": "key-hold",
               "to": "framework/lit/examples/key-hold"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/lit/examples/keyboard-layouts"
             }
           ]
         },
@@ -2842,6 +2906,10 @@
             {
               "label": "getFormatForDisplay (Astro)",
               "to": "framework/svelte/examples/getFormatForDisplay-astro"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/svelte/examples/keyboard-layouts"
             }
           ]
         },
@@ -2883,6 +2951,10 @@
             {
               "label": "createKeyHold",
               "to": "framework/alpine/examples/createKeyHold"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/alpine/examples/keyboard-layouts"
             }
           ]
         },
@@ -2924,6 +2996,10 @@
             {
               "label": "useKeyHold",
               "to": "framework/ember/examples/useKeyHold"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/ember/examples/keyboard-layouts"
             }
           ]
         },
@@ -2977,6 +3053,10 @@
             {
               "label": "useFormatForDisplay (Astro)",
               "to": "framework/octane/examples/useFormatForDisplay-astro"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/octane/examples/keyboard-layouts"
             }
           ]
         }

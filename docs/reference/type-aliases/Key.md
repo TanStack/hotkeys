@@ -9,6 +9,6 @@ title: Key
 type Key = LogicalKey | PhysicalKey;
 ```
 
-Defined in: [key.types.ts:253](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L253)
+Defined in: [key.types.ts:275](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L275)
 
 All supported logical keys and bracketed physical key tokens.

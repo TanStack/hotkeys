@@ -9,6 +9,6 @@ title: ResolvableModifier
 type ResolvableModifier = CanonicalModifier | "Mod";
 ```
 
-Defined in: [key.types.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L28)
+Defined in: [key.types.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L30)
 
 A canonical modifier, or `Mod`, which resolves per platform.
