@@ -132,8 +132,10 @@ describe('createHotkey', () => {
         )
 
         return (
+          // A label around the count: happy-dom drops `textContent = 0` (browsers
+          // write "0"), and Solid 2 hands numbers to the DOM unconverted.
           <button type="button" onClick={() => setCount((c) => c + 5)}>
-            {count()}
+            Count: {count()}
           </button>
         )
       }
