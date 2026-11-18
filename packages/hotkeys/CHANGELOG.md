@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.33.0
+
+### Minor Changes
+
+- [#284](https://github.com/TanStack/hotkeys/pull/284) [`8e01130`](https://github.com/TanStack/hotkeys/commit/8e011301ac9a22e53b2b885b4cd5ed6f2737d889) - Hotkey strings can accept the keys of other keyboard layouts. Register the layouts your app targets with `keys` on the `Register` interface, such as `keys: UsKeys | GermanKeys`, and `Mod+Ö`, `ß`, and `§` type-check. The registered sets replace the US QWERTY punctuation. A-Z, 0-9, named keys, and physical codes are always accepted. 26 layout sets ship as types, from `UkKeys` and `GermanKeys` to `GreekKeys` and `HebrewKeys`, and add no code. This changes types only: hotkeys match the same way, and without a registration the types are unchanged.
+
 ## 0.32.0
 
 ### Minor Changes
