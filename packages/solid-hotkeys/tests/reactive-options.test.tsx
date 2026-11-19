@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
-import { createSignal, flush } from 'solid-js'
+import { Loading, createMemo, createSignal, flush } from 'solid-js'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { createHotkeys } from '../src/createHotkeys'
 import { createHotkey } from '../src/createHotkey'
@@ -138,4 +138,31 @@ it('refreshes all provider option groups without replacing registrations or acti
   )
   view.unmount()
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
+})
+
+it('waits for async recorder options instead of throwing', async () => {
+  let resolve!: (callback: () => void) => void
+  const onCancel = vi.fn()
+  let recorder!: ReturnType<typeof createHotkeyRecorder>
+  function Child() {
+    const cancel = createMemo(
+      () => new Promise<() => void>((r) => (resolve = r)),
+    )
+    recorder = createHotkeyRecorder(() => ({
+      onRecord() {},
+      onCancel: cancel(),
+    }))
+    return null
+  }
+  render(() => (
+    <Loading>
+      <Child />
+    </Loading>
+  ))
+  resolve(onCancel)
+  await new Promise((r) => setTimeout(r, 0))
+  flush()
+  recorder.startRecording()
+  recorder.cancelRecording()
+  expect(onCancel).toHaveBeenCalledOnce()
 })

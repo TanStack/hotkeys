@@ -1,4 +1,4 @@
-import { createEffect, onCleanup, untrack } from 'solid-js'
+import { createRenderEffect, onCleanup } from 'solid-js'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
@@ -70,8 +70,9 @@ export function createHotkeyRecorder(
       typeof options === 'function' ? options() : options,
     ) as HotkeySequenceRecorderOptions
 
-  // Create recorder once synchronously; overloads already checked the options.
-  const recorder = new HotkeyRecorder(untrack(resolve))
+  // Created without options, so nothing is read here (an option may still be
+  // loading). The render effect below reads them and applies every value.
+  const recorder = new HotkeyRecorder({} as HotkeySequenceRecorderOptions)
 
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)
   const steps = useSelector(recorder.store, (state) => state.steps)
@@ -80,8 +81,8 @@ export function createHotkeyRecorder(
     (state) => state.recordedHotkey,
   )
 
-  // Sync options whenever reactive options change
-  createEffect(resolve, (resolved) => {
+  // Apply the options, and again whenever they change
+  createRenderEffect(resolve, (resolved) => {
     recorder.setOptions(resolved)
   })
 
