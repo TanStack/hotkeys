@@ -4786,6 +4786,9 @@ importers:
       '@tanstack/hotkeys-test-utils':
         specifier: workspace:*
         version: link:../../test-utils
+      '@tanstack/oracles':
+        specifier: https://pkg.pr.new/TanStack/oracles/@tanstack/oracles@6d05f05
+        version: https://pkg.pr.new/TanStack/oracles/@tanstack/oracles@6d05f05(fast-check@4.10.2)(vitest@5.1.0)
       '@tanstack/store':
         specifier: ^0.11.2
         version: 0.11.2
@@ -11064,6 +11067,15 @@ packages:
     resolution: {integrity: sha512-9Ta/GMGPcqBIqlbrqeYyqBVKEP7XyAXy6nn90bPiE2oHB6KPgjEweUbHNXLQ6Pim01VtMMNf0dmUFMGKKHXmlw==}
     engines: {node: '>=20.12.0'}
     hasBin: true
+
+  '@tanstack/oracles@https://pkg.pr.new/TanStack/oracles/@tanstack/oracles@6d05f05':
+    resolution: {integrity: sha512-z1wvRtvWl9kKDJilHCnqQCzeNdwadlILsetIg0p1q/sb1egySsSKwW9CZhaRyunoSphmliPn1Ur0tW2T6PeL2w==, tarball: https://pkg.pr.new/TanStack/oracles/@tanstack/oracles@6d05f05}
+    version: 0.0.0
+    engines: {node: '>=20'}
+    hasBin: true
+    peerDependencies:
+      fast-check: ^4.0.0
+      vitest: ^4.1.0 || ^5.0.0
 
   '@tanstack/oxfmt-config@0.1.0':
     resolution: {integrity: sha512-sQCJszrQDMRBPXIPJA/+P48qkX7lTSqmPrrnHCr+CLHeeJprYzC4aiAa8oRsL77ttyz7aZgsRKlLvrxav35QYg==}
@@ -24929,6 +24941,12 @@ snapshots:
 
   '@tanstack/intent@0.5.6': {}
 
+  '@tanstack/oracles@https://pkg.pr.new/TanStack/oracles/@tanstack/oracles@6d05f05(fast-check@4.10.2)(vitest@5.1.0)':
+    dependencies:
+      fast-check: 4.10.2
+      typescript-for-tanstack-oracles: typescript@5.9.3
+      vitest: 5.1.0(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+
   '@tanstack/oxfmt-config@0.1.0(oxfmt@0.78.0(@astrojs/compiler-rs@0.5.2)(svelte@5.57.3(@typescript-eslint/types@8.72.1)))':
     dependencies:
       oxfmt: 0.78.0(@astrojs/compiler-rs@0.5.2)(svelte@5.57.3(@typescript-eslint/types@8.72.1))
@@ -31487,10 +31505,6 @@ snapshots:
       source-map-js: 1.2.2
 
   powershell-utils@0.2.1: {}
-
-  preact-render-to-string@6.8.2(preact@10.29.8):
-    dependencies:
-      preact: 10.29.8(preact-render-to-string@6.8.2)
 
   preact-render-to-string@6.8.2(preact@11.2.0):
     dependencies:

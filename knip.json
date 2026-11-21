@@ -30,6 +30,9 @@
     },
     "e2e": {
       "ignore": ["adapters/shared/**"]
+    },
+    "packages/hotkeys": {
+      "entry": ["vitest.oracle.config.ts", "tests/oracles/**/*.oracle.ts"]
     }
   }
 }
