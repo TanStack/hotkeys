@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
+        uses: TanStack/config/.github/setup@88949c60ce4973c0aea4395a6bafb37cd7390e3b # main
       - name: Install Browsers
         run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox webkit
       - name: Run Browser Tests
@@ -37,7 +37,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
+        uses: TanStack/config/.github/setup@88949c60ce4973c0aea4395a6bafb37cd7390e3b # main
       - name: Install Browsers
         run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox webkit
       - name: Run Adapter Tests
@@ -52,7 +52,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
+        uses: TanStack/config/.github/setup@88949c60ce4973c0aea4395a6bafb37cd7390e3b # main
       - name: Install X11 Tools
         run: |
           sudo apt-get update
@@ -72,7 +72,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
+        uses: TanStack/config/.github/setup@88949c60ce4973c0aea4395a6bafb37cd7390e3b # main
       - name: Install Browsers
         run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium
       - name: Run Server Rendering Tests

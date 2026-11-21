@@ -8672,14 +8672,14 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "ad41efe7b9637b87ccd967d47136b17f6030d593de1cd6a6fa99d67742c75fc8",
+      "fingerprint": "47a3a5cdabfd00a2c8ce0bee8a91530b93aff90b62ee3d66a92af1ba379f8626",
       "snapshot": {
-        ".github/workflows/e2e.yml": "ee1f7c14369363539bbfc207680cb7e7e2fe667e18d6b0e176272151c87171ca"
+        ".github/workflows/e2e.yml": "6d887cca3ca7ce1f0ee0b39167253bd26f7561f35996486f1084d6dcfe79ff28"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -18475,24 +18475,24 @@
       ]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "c8e0a2cb24bad36161763c3a29eed4f7e74bf2e0988714e459bc606f9697f978",
+      "fingerprint": "880cdfd2aecd78a81486333b8dd253c6809f11d58939b747ac2f180b88e47212",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "adb3a987d4ec71d4bdee29fa3a9aab2ff78993bc6607ee3bd6bda72f4d24d1a3"
+        ".github/workflows/e2e-flaky.yml": "d2cae18d3f2b43020d0fca89d9dd4ee9758f2c6615397548fb86ac8999bcfab1"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e-flaky.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/e2e-platforms.yml": {
-      "fingerprint": "407b246f55fdebe1083ee4fbb01e9a6f6f84949b1bab9f0e84625c954a899bb9",
+      "fingerprint": "c43cdef7e0aa4cf8fb88098a60901574b968c9368b37eda5382f0801d31402e9",
       "snapshot": {
-        ".github/workflows/e2e-platforms.yml": "012aa1894bf9568b0397ccac123b22eebbc15ff8e0ec7ac0e47a6c9c21d09b0f"
+        ".github/workflows/e2e-platforms.yml": "9ed96de10c113972d7cc383f68b19a4bafdd0cf9bcec3280090b68f4f564c29e"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e-platforms.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/adapters/adapters.spec.ts": {
       "fingerprint": "ff474bd1f24df0e3c14f27176cd19b1c9c9c4f97fa2e6e010ff656a22e8a946e",
@@ -19415,14 +19415,14 @@
       ]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "bf3e5242cdbb695cbd3c066f29770e6758cbbc7f6930baed766c9c31053004ef",
+      "fingerprint": "f591bfde7a79d514088bd947ac524d17dd5011f04e6cd9a76523ae6da80d997e",
       "snapshot": {
-        ".github/workflows/nightly.yml": "3b58c68cdc81080f484604abc71de7cedb95c4639495c881db9269e6b0732a35"
+        ".github/workflows/nightly.yml": "7ca3bf15e8cff7b23b0721e90e6cdd851ea5702ee2669dfe7b7c0688262fb49d"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/nightly.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/native/ibus.spec.ts": {
       "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
@@ -20060,34 +20060,34 @@
       "evidence": [".github/renovate.json"]
     },
     "source:.github/workflows/autofix.yml": {
-      "fingerprint": "440647d00462b905e501f540647e34b943f42f180faaa465d50b767add2efd51",
+      "fingerprint": "a4650fbdfe0e2d4d0e383ef0d84f04126cdcebdf8f3b7b0ac89560feaf6df046",
       "snapshot": {
-        ".github/workflows/autofix.yml": "c9a04a21bcdaf4a2c5906e05be629aae41dccf2fa1d76f81676a00fbd6bcd3bc"
+        ".github/workflows/autofix.yml": "7d4cae99bcc92aabccf679d0cb363654b5f6e28fc3deaf504b8f5520280ec6c4"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/autofix.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/pr.yml": {
-      "fingerprint": "5c94176e7de3e9b5408882833103b14ca9762a35bb90ad0c85d334fefb084662",
+      "fingerprint": "ff12dc3692e045e9c7b6c46545bf31323d9e3937a86cc0efc714bd0b98f1660f",
       "snapshot": {
-        ".github/workflows/pr.yml": "fabf643836d9243b5dd7ad445ba0025c3b7fcaf1d5e737fa7bb4e069a96ea93e"
+        ".github/workflows/pr.yml": "721bed692dfb3ecaa68d1490bcfec095e6a3ba80f12d7c67bb5d4fe94587cc54"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/pr.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/release.yml": {
-      "fingerprint": "86cb3a337d16c7d01cdb7511f2dd3a2aa7074f689897dd4e42f251411560e31a",
+      "fingerprint": "fbb39ec8c5ecafa223d42785517f803de26c234ed8cb163155e2398cc69dac4a",
       "snapshot": {
-        ".github/workflows/release.yml": "c04379bbf3a9eb156c2190b385918d4a92cd89a33b927a12d30ec3e12e993b11"
+        ".github/workflows/release.yml": "10263cbaf209ae47260c9901d2770cfe432cc11076c673f240f1b06b7d252432"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/release.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/zizmor.yml": {
       "fingerprint": "57b02f51f1dc89b02cf3f33acff8e5f3c5391bb97b8da216eee0cc8c3df2231d",
