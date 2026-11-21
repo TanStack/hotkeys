@@ -1,5 +1,6 @@
 import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { describe, expect, it, vi } from 'vitest'
+import { normalizeKeyName } from '../src/constants'
 import { HotkeyManager } from '../src/hotkey-manager'
 import {
   areHotkeysEqual,
@@ -1450,6 +1451,29 @@ describe('matchesKeyboardEvent', () => {
   })
 
   // On Turkish Q, the I position types ı and the US ' position types i
+  // `ſ` uppercases to S, so normalizing it made it an ASCII letter
+  describe('long s (ſ)', () => {
+    it('keeps ſ as its own key', () => {
+      expect(normalizeKeyName('ſ')).toBe('ſ')
+    })
+
+    it('does not fire ſ on the S key', () => {
+      const event = createKeyboardEvent('s', { code: 'KeyS' })
+      expect(matchesKeyboardEvent(event, 'ſ' as HotkeyChord, 'linux')).toBe(
+        false,
+      )
+    })
+
+    // German AltGr+W types ſ on Linux
+    it('fires ſ typed with AltGr, and not S', () => {
+      const event = createKeyboardEvent('ſ', { code: 'KeyW', altGraph: true })
+      expect(matchesKeyboardEvent(event, 'ſ' as HotkeyChord, 'linux')).toBe(
+        true,
+      )
+      expect(matchesKeyboardEvent(event, 'S', 'linux')).toBe(false)
+    })
+  })
+
   describe('Turkish dotless ı and dotted İ', () => {
     const dotless = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
       createKeyboardEvent('ı', { code: 'KeyI', ...options })

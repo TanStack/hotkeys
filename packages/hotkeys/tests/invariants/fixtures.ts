@@ -1,7 +1,9 @@
 import { keyEvent } from '@tanstack/hotkeys-test-utils'
 import { SHARED_NAMED_KEYS } from '../../src/_named-keys'
+import { findLayout, layoutPress, layoutsFor } from '../fixtures/layout-events'
 import { TYPED_KEYS } from '../typed-keys'
 import type { HotkeyPlatform } from '../../src'
+import type { LayoutModifiers } from '../fixtures/layout-events'
 
 // Chords and keyboard events shared by the invariant suites. The events model
 // what browsers report, so a failure points at the library, not the fixture.
@@ -382,7 +384,48 @@ export function realisticEvents(platform: Platform): Array<EventCase> {
     ...usLayoutEvents(platform),
     ...altGraphEvents(platform),
     ...otherLayoutEvents(platform),
+    ...realLayoutEvents(platform),
   ]
+}
+
+/**
+ * Presses on the real layouts in layout-table.json whose character differs
+ * from US QWERTY, one per distinct key, code, and modifiers.
+ */
+function realLayoutEvents(platform: Platform): Array<EventCase> {
+  const us = findLayout(
+    platform,
+    platform === 'linux' ? 'us' : platform === 'windows' ? 'en' : 'US',
+  )
+  const masks: Array<LayoutModifiers> = [
+    {},
+    { shift: true },
+    { ctrl: true },
+    { ctrl: true, shift: true },
+    { meta: true },
+    { meta: true, shift: true },
+    { alt: true },
+    { ctrl: true, alt: true },
+    ...(platform === 'mac'
+      ? []
+      : [{ altGraph: true }, { altGraph: true, shift: true }]),
+  ]
+  const seen = new Set<string>()
+  const cases: Array<EventCase> = []
+  for (const layout of layoutsFor(platform)) {
+    for (const code of layout.keys.keys()) {
+      for (const mods of masks) {
+        const press = layoutPress(layout, code, mods)
+        if (!press) continue
+        if (press.init.key === layoutPress(us, code, mods)?.init.key) continue
+        const id = JSON.stringify(press.init)
+        if (seen.has(id)) continue
+        seen.add(id)
+        cases.push(eventCase(press.init, `${layout.id}`))
+      }
+    }
+  }
+  return cases
 }
 
 /** A fresh event, so one dispatch can't change what the next sees. */

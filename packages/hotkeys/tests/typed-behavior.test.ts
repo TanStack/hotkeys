@@ -410,9 +410,9 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "events": "50e68c5a2f3fbac9",
+        "events": "1e5d1093be4ffca6",
         "keyCodeMatching": "034c28ecee30fcef",
-        "matching": "0e090d64ea3f3869",
+        "matching": "b2aa22828846319b",
       }
     `)
   })
@@ -489,8 +489,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
         "fired": "8a5a2d58a181e823",
-        "recorded": "0042bbe54f11dc42",
-        "recorders": "93a1a739dc38dd14",
+        "recorded": "04a4b63419fa9788",
+        "recorders": "bd90b69ba8a3b0ff",
       }
     `)
   })
@@ -518,7 +518,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
           for (const option of options)
             record(attempt(() => formatForDisplay({ key }, option)))
       }),
-    ).toMatchInlineSnapshot(`"2b2e959a905dfff0"`)
+    ).toMatchInlineSnapshot(`"ff1b40a570edb9a8"`)
     expect(formatForDisplay({ key: ' ' }, { platform: 'mac' })).toBe('␣')
     expect(formatForDisplay({ key: '\u00a0' }, { platform: 'mac' })).toBe(
       '\u00a0',

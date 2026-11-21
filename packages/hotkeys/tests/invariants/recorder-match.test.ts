@@ -128,7 +128,8 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
       if (recorderControlKey(init)) continue
       const result = record(init, platform, 'key')
       if (result.kind === 'recorded') continue
-      const whitespace = init.key === ' '
+      // The recorder rejects any whitespace, such as Arabic AltGr+Shift's U+202F
+      const whitespace = init.key !== '' && !init.key.trim()
       const unidentified = init.key === 'Unidentified'
       if (
         result.kind === 'rejected' &&

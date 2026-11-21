@@ -328,3 +328,189 @@ describe('sequence timing under random input', () => {
     )
   })
 })
+
+// Lock keys and dead keys between steps (#289): a CapsLock or dead-key event
+// counts only when it matches a step of some sequence. One that matches no
+// step leaves every sequence's progress alone; one that does is an ordinary
+// key for every sequence of its event type.
+describe('lock and dead keys under random input', () => {
+  // `[Quote]` is a step a dead key on the US apostrophe position can match
+  const STEP_KEYS = ['A', 'B', 'CapsLock', '[Quote]'] as const
+  type PressKey = 'A' | 'B' | 'CapsLock' | 'Dead' | 'Quote' | 'Shift'
+  type PassiveAction =
+    | { type: 'down'; key: PressKey; repeat: boolean }
+    | { type: 'up'; key: PressKey }
+    | { type: 'wait'; ms: number }
+  const INIT: Record<PressKey, { key: string; code: string }> = {
+    A: { key: 'a', code: 'KeyA' },
+    B: { key: 'b', code: 'KeyB' },
+    CapsLock: { key: 'CapsLock', code: 'CapsLock' },
+    Dead: { key: 'Dead', code: 'Quote' },
+    Quote: { key: "'", code: 'Quote' },
+    Shift: { key: 'Shift', code: 'ShiftLeft' },
+  }
+  /** The step a press matches, and whether it keeps progress when it matches none. */
+  const STEP: Record<Exclude<PressKey, 'Shift'>, [string, boolean]> = {
+    A: ['A', false],
+    B: ['B', false],
+    CapsLock: ['CapsLock', true],
+    Dead: ['[Quote]', true],
+    Quote: ['[Quote]', false],
+  }
+  const anyKey = fc.constantFrom<PressKey>(
+    'A',
+    'B',
+    'CapsLock',
+    'Dead',
+    'Quote',
+    'Shift',
+  )
+  const passiveAction: fc.Arbitrary<PassiveAction> = fc.oneof(
+    {
+      weight: 4,
+      arbitrary: fc.record({
+        type: fc.constant('down' as const),
+        key: anyKey,
+        repeat: fc.boolean(),
+      }),
+    },
+    {
+      weight: 3,
+      arbitrary: fc.record({ type: fc.constant('up' as const), key: anyKey }),
+    },
+    {
+      weight: 1,
+      arbitrary: fc.record({
+        type: fc.constant('wait' as const),
+        ms: fc.oneof(
+          fc.integer({ min: 0, max: 50 }),
+          fc.integer({ min: TIMEOUT - 2, max: TIMEOUT + 2 }),
+        ),
+      }),
+    },
+  )
+  const passiveSpecs = fc.array(
+    fc.record({
+      steps: fc.array(fc.constantFrom(...STEP_KEYS), {
+        minLength: 2,
+        maxLength: 3,
+      }),
+      eventType: fc.constantFrom('keydown' as const, 'keyup' as const),
+    }),
+    { minLength: 1, maxLength: 3 },
+  )
+
+  /** Steps every model of one event type through a key, as the manager does. */
+  function stepAll(
+    models: Array<Model>,
+    press: Exclude<PressKey, 'Shift'>,
+    now: number,
+  ): void {
+    const [key, passive] = STEP[press]
+    if (passive) {
+      const matchesAStep = models.some((model) => {
+        const index = model.progress(now)
+        return (
+          (model.steps[index] as string) === key ||
+          (index > 0 && (model.steps[0] as string) === key)
+        )
+      })
+      if (!matchesAStep) return
+    }
+    for (const model of models) model.step(key as Key, now)
+  }
+
+  it('the manager follows the model', () => {
+    fc.assert(
+      fc.property(
+        passiveSpecs,
+        // At least a few presses, so most runs reach a sequence in progress
+        fc.array(passiveAction, { minLength: 8, maxLength: 40 }),
+        (specs, actions) => {
+          HotkeyManager.resetInstance()
+          const manager = HotkeyManager.getInstance()
+          const live = specs.map(({ steps, eventType }) => {
+            const model = new Model(steps as never, eventType)
+            const callback = vi.fn()
+            const handle = manager.register(steps as never, callback, {
+              eventType,
+              timeout: TIMEOUT,
+              conflictBehavior: 'allow',
+            })
+            return { model, callback, handle }
+          })
+          for (const act of actions) {
+            if (act.type === 'wait') {
+              vi.advanceTimersByTime(act.ms)
+            } else {
+              const shift = act.key === 'Shift'
+              const init = {
+                ...INIT[act.key],
+                shiftKey: shift && act.type === 'down',
+              }
+              if (act.type === 'down') {
+                keydown({ ...init, repeat: act.repeat, target: document })
+              } else {
+                keyup({ ...init, target: document })
+              }
+              const eventType = act.type === 'down' ? 'keydown' : 'keyup'
+              if (act.key !== 'Shift' && !(act.type === 'down' && act.repeat)) {
+                stepAll(
+                  live
+                    .map(({ model }) => model)
+                    .filter((model) => model.eventType === eventType),
+                  act.key,
+                  Date.now(),
+                )
+              }
+            }
+            const now = Date.now()
+            for (const { model, callback, handle } of live) {
+              expect(callback).toHaveBeenCalledTimes(model.fired)
+              expect(view(handle.id).matchedStepCount).toBe(model.progress(now))
+            }
+          }
+          for (const { handle } of live) handle.unregister()
+        },
+      ),
+      // A lock or dead key that completes one sequence while another is in
+      // progress is rare
+      { ...RUNS, numRuns: Math.max(RUNS.numRuns, 1000) },
+    )
+  })
+
+  it('createSequenceMatcher follows the model', () => {
+    fc.assert(
+      fc.property(
+        fc.array(fc.constantFrom(...STEP_KEYS), { minLength: 2, maxLength: 3 }),
+        // At least a few presses, so most runs reach a sequence in progress
+        fc.array(passiveAction, { minLength: 8, maxLength: 40 }),
+        (steps, actions) => {
+          const matcher = createSequenceMatcher(steps as never, {
+            timeout: TIMEOUT,
+          })
+          const model = new Model(steps as never, 'keydown')
+          let fired = 0
+          for (const act of actions) {
+            if (act.type === 'wait') {
+              vi.advanceTimersByTime(act.ms)
+              continue
+            }
+            if (act.type === 'up') continue
+            const shift = act.key === 'Shift'
+            const event = keydown({
+              ...INIT[act.key],
+              shiftKey: shift,
+              repeat: act.repeat,
+            })
+            if (matcher.match(event)) fired++
+            if (act.key !== 'Shift' && !act.repeat)
+              stepAll([model], act.key, Date.now())
+            expect(fired).toBe(model.fired)
+          }
+        },
+      ),
+      RUNS,
+    )
+  })
+})
