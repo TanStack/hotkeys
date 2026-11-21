@@ -604,6 +604,21 @@ describe('HotkeyManager', () => {
       expect(physical).toHaveBeenCalledOnce()
     })
 
+    it('leaves AZERTY Control+- (zoom out) to the browser with Mod+6 registered', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register('Mod+6', callback, { platform: 'linux' })
+
+      const event = keydown({
+        key: '-',
+        ctrlKey: true,
+        code: 'Digit6',
+        target: document,
+      })
+      expect(callback).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
     it('prefers a physical binding over the fallback for an Unidentified key', () => {
       const manager = HotkeyManager.getInstance()
       const logical = vi.fn()

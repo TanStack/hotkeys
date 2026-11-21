@@ -101,6 +101,14 @@ export function isSequenceStep(event: KeyboardEvent): boolean {
 }
 
 /**
+ * Whether a key event that matches no step leaves a sequence's progress alone:
+ * a lock key, Fn, or a dead key, whose character comes with the next key.
+ */
+export function keepsSequenceProgress(event: KeyboardEvent): boolean {
+  return /^(CapsLock|NumLock|ScrollLock|Fn|FnLock|Dead)$/.test(event.key)
+}
+
+/**
  * Maps familiar positions to compatibility fallback keys for the logical matcher.
  * This assumes conventional positions, not the active layout; never use it to
  * turn recorded physical bindings into logical bindings or display labels.

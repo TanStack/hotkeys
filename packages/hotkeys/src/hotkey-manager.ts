@@ -7,7 +7,7 @@ import {
   targetHasFocus,
   yieldsEscape,
 } from './_event-target'
-import { isSequenceStep } from './_keyboard-event'
+import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
 import { keysEqual } from './_keys'
 import { managerRef } from './_manager-ref'
 import { matchKeyboardEvent } from './_match'
@@ -1577,8 +1577,12 @@ export class HotkeyManager {
           // Ctrl+K then Ctrl+C. Propagation stops only on the last step.
           this.#prevent(event)
         }
-      } else if (registration.currentIndex > 0) {
-        // A mismatched or weaker candidate cannot carry stale progress forward.
+      } else if (
+        registration.currentIndex > 0 &&
+        !(bestScore === 0 && keepsSequenceProgress(event))
+      ) {
+        // A mismatched or weaker candidate cannot carry stale progress
+        // forward. CapsLock or a dead key that matches no step leaves it alone.
         registration.currentIndex = 0
         changed = true
       }
@@ -1589,7 +1593,7 @@ export class HotkeyManager {
       if (registration.currentIndex > 0) {
         this.#scheduleSequenceReset(
           registration.id,
-          sequenceTimeout(registration) + 1,
+          registration.lastKeyTime + sequenceTimeout(registration) + 1 - now,
         )
       } else {
         this.#clearSequenceReset(registration.id)

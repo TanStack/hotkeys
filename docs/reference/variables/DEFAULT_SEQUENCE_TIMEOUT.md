@@ -9,6 +9,6 @@ title: DEFAULT_SEQUENCE_TIMEOUT
 const DEFAULT_SEQUENCE_TIMEOUT: 1000 = 1000;
 ```
 
-Defined in: [match.ts:216](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L216)
+Defined in: [match.ts:220](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L220)
 
 Default timeout between sequence steps (in milliseconds).

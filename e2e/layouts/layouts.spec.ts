@@ -33,6 +33,8 @@ describeLayouts('Layout', {
     '&',
     'Shift+1',
     'Mod+1',
+    'Mod+6',
+    'Mod+Shift+0',
     '/',
     'Mod+/',
     'Shift+7',
@@ -40,7 +42,7 @@ describeLayouts('Layout', {
     '^',
     '[Backquote]',
   ],
-  registered: ['A', 'Q', 'Mod+S', 'Mod+O', 'Mod+Z', '1', '/'],
+  registered: ['A', 'Q', 'Mod+S', 'Mod+O', 'Mod+Z', '1', 'Mod+6', '/'],
   layouts: {
     // French AZERTY: A and Q swap, digits need Shift.
     fr: [
@@ -84,6 +86,13 @@ describeLayouts('Layout', {
         parsed: 'Mod+&',
         recorded: 'Mod+&',
       },
+      // The 6 key types "-", so Control+- zooms out instead of firing Mod+6
+      { keys: 'Control+Digit6', matches: [], parsed: 'Mod+-' },
+      {
+        keys: 'Control+Shift+Digit6',
+        matches: ['Mod+6'],
+        parsed: 'Mod+Shift+6',
+      },
     ],
     // German QWERTZ: Y and Z swap, / is Shift+7, ^ is a dead key.
     de: [
@@ -114,6 +123,12 @@ describeLayouts('Layout', {
         matches: [],
         parsed: 'Mod+-',
         recorded: 'Mod+-',
+      },
+      // Shift+0 types "=", which isn't zoom, so the 0 position still fires
+      {
+        keys: 'Control+Shift+Digit0',
+        matches: ['Mod+Shift+0'],
+        parsed: 'Mod+Shift+=',
       },
       // NumLock off: the numpad 1 key is End
       { keys: 'Numpad1', matches: [], parsed: 'End', recorded: '[Numpad1]' },

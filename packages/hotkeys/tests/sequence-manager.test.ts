@@ -737,6 +737,97 @@ describe('HotkeyManager', () => {
       expect(callback).not.toHaveBeenCalled()
     })
 
+    describe.each([
+      ['CapsLock', 'CapsLock'],
+      ['NumLock', 'NumLock'],
+      ['ScrollLock', 'ScrollLock'],
+      ['Fn', 'Fn'],
+      ['FnLock', 'FnLock'],
+      ['Dead', 'Quote'],
+    ])('a %s keydown between steps', (key, code) => {
+      it('keeps the sequence going', () => {
+        const callback = vi.fn()
+        HotkeyManager.getInstance().register(['G', 'T'], callback)
+
+        keydown({ key: 'g', code: 'KeyG', target: document })
+        keydown({ key, code, target: document })
+        keydown({ key: 't', code: 'KeyT', target: document })
+
+        expect(callback).toHaveBeenCalledTimes(1)
+      })
+
+      it('keeps a standalone sequence matcher going', () => {
+        const matcher = createSequenceMatcher(['G', 'T'])
+
+        matcher.match(keydown({ key: 'g', code: 'KeyG' }))
+        expect(matcher.match(keydown({ key, code }))).toBe(false)
+        expect(matcher.getProgress()).toBe(1)
+        expect(matcher.match(keydown({ key: 't', code: 'KeyT' }))).toBe(true)
+      })
+    })
+
+    it('resets other sequences when a lock key completes one', () => {
+      const lock = vi.fn()
+      const letters = vi.fn()
+      const manager = HotkeyManager.getInstance()
+      manager.register(['G', 'CapsLock'], lock)
+      manager.register(['G', 'T'], letters)
+
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      keydown({ key: 'CapsLock', code: 'CapsLock', target: document })
+      keydown({ key: 't', code: 'KeyT', target: document })
+
+      expect(lock).toHaveBeenCalledTimes(1)
+      expect(letters).not.toHaveBeenCalled()
+    })
+
+    it('keeps a keyup sequence going across a CapsLock keyup', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['G', 'T'], callback, {
+        eventType: 'keyup',
+      })
+
+      keyup({ key: 'g', code: 'KeyG', target: document })
+      keyup({ key: 'CapsLock', code: 'CapsLock', target: document })
+      keyup({ key: 't', code: 'KeyT', target: document })
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('still advances on a lock key that is the next step', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['G', 'CapsLock'], callback)
+
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      keydown({ key: 'CapsLock', code: 'CapsLock', target: document })
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    // US International types é with a dead ' and then E
+    it('completes a step typed through a dead key', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['G', 'é'] as never, callback)
+
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      keydown({ key: 'Dead', code: 'Quote', target: document })
+      keydown({ key: 'é', code: 'KeyE', target: document })
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('resets when the key after a dead key does not continue the sequence', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['G', 'E'], callback)
+
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      keydown({ key: 'Dead', code: 'Quote', target: document })
+      keydown({ key: 'é', code: 'KeyE', target: document })
+      keydown({ key: 'e', code: 'KeyE', target: document })
+
+      expect(callback).not.toHaveBeenCalled()
+    })
+
     // German AltGr+Q types `@`. Windows sends a Control keydown before the
     // AltGraph keydown, and reports Control+Alt on the character.
     describe.each([
@@ -1339,6 +1430,24 @@ describe('sequence matching regressions', () => {
       handle.unregister()
       expect(vi.getTimerCount()).toBe(0)
       subscription.unsubscribe()
+    })
+
+    it('does not extend the timeout for a CapsLock keydown between steps', () => {
+      vi.useFakeTimers()
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register(['G', 'H'], () => {}, { timeout: 500 })
+      const progress = () => {
+        const registration = manager.registrations.state.get(handle.id)!
+        return registration.kind === 'sequence' ? registration.currentIndex : -1
+      }
+
+      keydown({ key: 'g', target: document })
+      vi.advanceTimersByTime(400)
+      keydown({ key: 'CapsLock', code: 'CapsLock', target: document })
+      expect(progress()).toBe(1)
+      vi.advanceTimersByTime(101)
+      expect(progress()).toBe(0)
+      handle.unregister()
     })
   })
 
