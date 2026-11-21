@@ -1,5 +1,5 @@
 import { chordHasKey, hotkeySteps, parsedChordsEqual } from './_chord'
-import { isSequenceStep } from './_keyboard-event'
+import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
 import { matchKeyboardEvent } from './_match'
 import { formatHotkey } from './format'
 import { parseHotkey } from './parse'
@@ -24,7 +24,11 @@ import type { HotkeyPlatform } from './platform'
  *
  * When `event.key` cannot name the shortcut, the key's conventional position
  * (`event.code`) stands in. That covers non-Latin letters, dead keys, the
- * digit row, symbols typed with Shift, and what macOS Option types. With
+ * digit row, symbols typed with Shift, and what macOS Option types. On the
+ * digit row, `-`, `+`, and `=` typed with Control alone, or Command alone on
+ * macOS, don't stand in, because those presses zoom the page: AZERTY Ctrl+-
+ * doesn't fire `Mod+6`.
+ * With
  * Option held on macOS, the letter comes from the keycap (`event.keyCode`)
  * when the browser reports one. A named key such as `End` and a character
  * typed with AltGr match only as themselves, and so does an ASCII letter
@@ -222,6 +226,10 @@ export const DEFAULT_SEQUENCE_TIMEOUT = 1000
  * or other HotkeyOptions. Callers must handle input filtering themselves
  * if attaching to document.
  *
+ * Modifier presses, auto-repeats, and keys an input method editor reads are
+ * not steps. Lock keys such as CapsLock and NumLock, Fn, and dead keys advance
+ * the sequence when they match the next step and otherwise keep its progress.
+ *
  * @param sequence - The sequence of hotkeys to match
  * @param options - Options including timeout
  * @returns An object with match() and reset() methods
@@ -279,7 +287,7 @@ export function createSequenceMatcher(
         if (matchesKeyboardEvent(event, parsedSequence[0]!, platform)) {
           currentIndex = 1
           lastKeyTime = now
-        } else {
+        } else if (!keepsSequenceProgress(event)) {
           currentIndex = 0
         }
       }

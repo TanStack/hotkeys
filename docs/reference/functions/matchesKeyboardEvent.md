@@ -13,7 +13,7 @@ function matchesKeyboardEvent(
 ): boolean;
 ```
 
-Defined in: [match.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L53)
+Defined in: [match.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L57)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -24,7 +24,11 @@ that typed a symbol, such as `?`, does not need to be written.
 
 When `event.key` cannot name the shortcut, the key's conventional position
 (`event.code`) stands in. That covers non-Latin letters, dead keys, the
-digit row, symbols typed with Shift, and what macOS Option types. With
+digit row, symbols typed with Shift, and what macOS Option types. On the
+digit row, `-`, `+`, and `=` typed with Control alone, or Command alone on
+macOS, don't stand in, because those presses zoom the page: AZERTY Ctrl+-
+doesn't fire `Mod+6`.
+With
 Option held on macOS, the letter comes from the keycap (`event.keyCode`)
 when the browser reports one. A named key such as `End` and a character
 typed with AltGr match only as themselves, and so does an ASCII letter

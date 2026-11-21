@@ -604,6 +604,21 @@ describe('HotkeyManager', () => {
       expect(physical).toHaveBeenCalledOnce()
     })
 
+    it('leaves AZERTY Control+- (zoom out) to the browser with Mod+6 registered', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register('Mod+6', callback, { platform: 'linux' })
+
+      const event = keydown({
+        key: '-',
+        ctrlKey: true,
+        code: 'Digit6',
+        target: document,
+      })
+      expect(callback).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
     it('prefers a physical binding over the fallback for an Unidentified key', () => {
       const manager = HotkeyManager.getInstance()
       const logical = vi.fn()
@@ -1957,6 +1972,40 @@ describe('HotkeyManager edge cases', () => {
   })
 
   describe('keyup chords', () => {
+    // AZERTY types 6 with Shift and - without it. With Shift released first,
+    // the 6 key's keyup reports Control+-, which alone would be zoom out.
+    it('fires on the release of the pressed key after its character changes', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+6', callback, {
+        platform: 'linux',
+        eventType: 'keyup',
+      })
+      const press = { code: 'Digit6', ctrlKey: true, target: document }
+      keydown({ ...press, key: '6', shiftKey: true })
+      keyup({
+        key: 'Shift',
+        code: 'ShiftLeft',
+        ctrlKey: true,
+        target: document,
+      })
+      expect(callback).not.toHaveBeenCalled()
+      keyup({ ...press, key: '-' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('fires a shifted symbol on its key release after Shift comes up first', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('?', callback, {
+        platform: 'linux',
+        eventType: 'keyup',
+      })
+      keydown({ key: '?', code: 'Slash', shiftKey: true, target: document })
+      keyup({ key: 'Shift', code: 'ShiftLeft', target: document })
+      expect(callback).not.toHaveBeenCalled()
+      keyup({ key: '/', code: 'Slash', target: document })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
     it('prevents the keydown so the browser does not act on it', () => {
       const save = vi.fn()
       HotkeyManager.getInstance().register('Mod+S', save, {

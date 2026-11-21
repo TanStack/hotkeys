@@ -53,6 +53,8 @@ export const KEYCODES = {
   NumLock: 77,
   Digit3: 12,
   Digit4: 13,
+  Digit6: 15,
+  Digit0: 19,
   KeyC: 54,
   Quote: 48,
   Semicolon: 47,

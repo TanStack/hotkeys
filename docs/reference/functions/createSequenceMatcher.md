@@ -9,13 +9,17 @@ title: createSequenceMatcher
 function createSequenceMatcher(sequence, options?): object;
 ```
 
-Defined in: [match.ts:240](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L240)
+Defined in: [match.ts:248](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L248)
 
 Creates a simple sequence matcher for one-off use.
 
 This is a low-level helper that does not support ignoreInputs, target,
 or other HotkeyOptions. Callers must handle input filtering themselves
 if attaching to document.
+
+Modifier presses, auto-repeats, and keys an input method editor reads are
+not steps. Lock keys such as CapsLock and NumLock, Fn, and dead keys advance
+the sequence when they match the next step and otherwise keep its progress.
 
 ## Parameters
 

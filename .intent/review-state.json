@@ -94,17 +94,17 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "329e12a2b33637aee3e32513dd8271bdd67a8eae691bd475faf1ec403edacb0c",
+      "fingerprint": "bdc3df1552fd8edf8c8bdfb09dd4e71026be4dba11c09b5246e38166e311b524",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
-        "docs/guides/sensible-defaults.md": "304a97befbe9307fccbf15c8b137b73f26640b356d7c93b3bf93e415a83bcc8e",
+        "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
+        "docs/guides/sensible-defaults.md": "0827154e9891a8cf78584a452934aa5a2a3caaedaa8063a45cd2456aa424ca71",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
-        "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
+        "packages/hotkeys/src/hotkey-manager.ts": "9d44cc5c5e6054e721af5d1ffa9d3526fed2b03fed1970353a81dde46c25a149",
+        "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
-      "outcome": "updated",
-      "reason": "Added a pitfall: keys of other layouts need a `keys` registration on Register, which changes types only; keep UsKeys, prefer US bindings for shared shortcuts.",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
+      "outcome": "no-change",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "c01766d18f4f5517172ccb8405b55ccfcf66397cbc475d196c1f1587eb205bec",
+      "fingerprint": "73ff29e87dad4cd77206ef256d15be34b362e5c14363bd89afac8bbee558eed0",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -299,7 +299,7 @@
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "43ca2c7dc69c19f840e0bafe05b86c8953dd0f7e0213b1f7231cbb69f53eaaf3",
+        "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
         "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "304a97befbe9307fccbf15c8b137b73f26640b356d7c93b3bf93e415a83bcc8e",
+        "docs/guides/sensible-defaults.md": "0827154e9891a8cf78584a452934aa5a2a3caaedaa8063a45cd2456aa424ca71",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -340,9 +340,9 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "8895b2113fc97aef525a15b0fb3f1a28816280b894c1b754c6141ad9ea7a73cd",
+        "packages/hotkeys/src/hotkey-manager.ts": "9d44cc5c5e6054e721af5d1ffa9d3526fed2b03fed1970353a81dde46c25a149",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
-        "packages/hotkeys/src/match.ts": "8aac0132981977ab03b52af1a0f3384c1808ab7d8f55a6d637aff2d353deac2e",
+        "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "b597a0682f4b4168794cef6a0f3f512649b01cd1796d059e220d73bee58968a4",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "no-change",
-      "reason": "The planning record covers app hotkeys and core guidance; the layout key types are covered by the hotkeys-core pitfall, so no planning change is needed.",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -685,28 +685,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "dccbd3d7287ecedb3d233bd0ec1991dac8588a8b5968e71690e8978a12b081fa",
+      "fingerprint": "c227435c61f577ee8fc3f9faa4c15e8d54e900044dbf17693c4b994c783474ab",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "81dbc0db123446fb5da43f1b5fb197a02549eeaa2fc09f81b2cc4051e89063f4"
+        "docs/reference/classes/HotkeyManager.md": "2bb71e51940daeaf1b201f5ad461254ed4a62a2508b3017e2154532311e2a4ba"
       },
-      "head": "efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb",
-      "outcome": "no-change",
-      "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
-      "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb"
-      ]
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "b437d4d522bbcf6b272db82d4dde23d68ac2e49f768c0070364081811d47bf13",
+      "fingerprint": "15bb18b1dacf8fe3bfde0cf40a02fc05805597ae8fe4195475bb58cd15e522c2",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "d0c1bbd7a470f3b059ff28522962dfcdbcbc924fe9a5c17ae1fcd1bd360290f0"
+        "docs/reference/functions/getHotkeyManager.md": "982c3ffc131873ed0ef647ecef6465ff532a4022b333c69306d2399b1f3d9cb1"
       },
-      "head": "efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb",
-      "outcome": "no-change",
-      "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
-      "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb"
-      ]
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1459,16 +1455,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "51b726825767eb17f5ef4f83605c3a71bbfe0f27eb5442923d726faf818e56c4",
+      "fingerprint": "58a3307cf48e6cb6cf6d09aa911b8731a5dbae538a922c5620498b72220ab698",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "aa116a8c66f3ed74be9442421f9eaaf714482e711fe985d7a92cd3b0a17be681"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "ba4377e7ecdf729cf09a987a8284e6a00063e3aaa5f27958ab7ff554be3f5ec8"
       },
-      "head": "efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb",
-      "outcome": "no-change",
-      "reason": "Core register now skips a null target. The hotkeys-core skill and its references do not describe the target option for direct register calls, so no guidance changes. Manager guides got one bullet each, and the reference pages changed only for the target JSDoc and shifted line numbers.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at efe7e236d81f4906c0bcd4d0a0ac7a7e9bf9d2bb"
-      ]
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
+      "outcome": "out-of-scope",
+      "reason": "Tests or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "6aaa3a1382d0c2e991962011a46c4f3078a4ccafec43e7b41d8dd9ed143fe15b",
@@ -4382,48 +4376,46 @@
       ]
     },
     "source:e2e/layouts/layouts.spec.ts": {
-      "fingerprint": "106b2ddb363a374b250ad6331a48dc5ae8061df355e2538c95b9d34f7de7dfd9",
+      "fingerprint": "b5773a69a45e025ca3bdd6e7150171312111834148aad44b17c24fa23dcc036e",
       "snapshot": {
-        "e2e/layouts/layouts.spec.ts": "40403f7a38bd0e95e447a2859ec39f77fdf3cae6bcc9d1650e75c3be63ce19dc"
+        "e2e/layouts/layouts.spec.ts": "d6abbca0129566558f0428f8711dcdcc0d9fc342d1e36aea18a362a2fb579f66"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
-      "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
-      "evidence": ["e2e/layouts/layouts.spec.ts"]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "e527cbaa738a27ba515464032beba72a7c0600d4ddc33271a19f2cbe888fb06c",
+      "fingerprint": "486f65af92474ee41478465f79bb981ecd6bac273ff4f25424c1aefee861d356",
       "snapshot": {
-        "e2e/support/x11.ts": "77592cb2653ab0cd417559e79b11e0b066b6e82f0d382ee9f3cbe036c8cf28c4"
+        "e2e/support/x11.ts": "76fe3c1917babec335ddad5dc199ace59a37d7a1f5ea0fd5b696d345b3ce3c6d"
       },
-      "head": "294209fa015daf110ab4812b333800a9cb0fb802",
-      "outcome": "no-change",
-      "reason": "Test support only: the layout suite closes its helper window when the wait for it fails. No library behavior or guidance changes.",
-      "evidence": ["e2e/support/x11.ts", "git diff HEAD -- e2e/support/x11.ts"]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "782d1638fb90d30c65f203051adf3a72d9b1bf2e7991ea217ef84d209cf51845",
+      "fingerprint": "6dc04fde671a3c14b49f5c25e38d2ba5fe1f4c0bbcfd12bff93361e9d17178a0",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "aefa582da72d237d70cbf3a7283f5898e4c752219f512d2ceb99f0c44c3273f9"
+        "packages/hotkeys/src/_match.ts": "48ff9b334e59d173b593f4ca90ef30e3bf734f8fca6490a432f745b03b8057a4"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "6e5b60c024a1901ed577a779b522eb0d015efe52fc17434bc403a702fc71393c",
+      "fingerprint": "ccd81b982c89f914f5fb17d20ceb6170434b8769465591f98dca40b85c1663a6",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "c2d8ea2cc7d8eb526bf5c40ead8ec3f722394eec22c3d03ff8da37a726a1b5ab"
+        "packages/hotkeys/tests/match.test.ts": "33c996cf6c2f386b255a8d97a4ce9ed9f7e7701a4c32e67501d39d0f9d54f29d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
+      "outcome": "out-of-scope",
+      "reason": "Tests or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
       "fingerprint": "7fc444c0c86d281425e7a71df8d2acce649d69e855bf0b3b43db276139528489",
@@ -6775,15 +6767,15 @@
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
-      "fingerprint": "7df1032396ae35c79ae9de93f66a47c52cc0d737a8bdf4b7159fe15dcda57fdd",
+      "fingerprint": "9ea4ec6b67926373f78804aeffdef35d216cf80b4564390f4e93b6a566442197",
       "snapshot": {
-        "packages/hotkeys/src/_keyboard-event.ts": "e0ff19bc5bd70752b6863229cf2b6e8b23031cbea4b96863944853b1072f59fa"
+        "packages/hotkeys/src/_keyboard-event.ts": "bffd1a390f7d519e0ffdad1a79d0bb702badcef3991fd3e395019189324f4a02"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
@@ -6924,16 +6916,14 @@
       ]
     },
     "source:packages/hotkeys/tests/sequence-manager.test.ts": {
-      "fingerprint": "141aadd925267f7bbdacc87ceb8763b9baa947e3da57b1c3da245fd9f21e7fb3",
+      "fingerprint": "94ce516c5e958f1db781fbb628c297a96509ad31125bbe07c397105c61e3dc29",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-manager.test.ts": "c60d308e49b796ddf0404317b76fe2fa6abcb6a67fd679cbbbb4ae5c75498735"
+        "packages/hotkeys/tests/sequence-manager.test.ts": "0eab2f5e8578ca445990cab0ef8f295bba09113cf49c85447cda45d67fd7c0f4"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "outcome": "out-of-scope",
+      "reason": "Tests for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
       "fingerprint": "6e39110df15f0273941a7678377e3d2abaf9ccb0cda405a74817b6f70bce98f3",
@@ -7196,52 +7186,44 @@
       "evidence": ["docs/reference/adapter/functions/withDefaults.md"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "1e82fdb64fece7efe28f7994fe9e424bc1d2a1b322e73c82a84125594c9ec7b4",
+      "fingerprint": "9900d5135178efa87e8eeca8fb5b4790f03907b24ec3d54879bd2fdf0a57cdab",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "4e6d5e229efafe4451f630ddc3fbe605af0ead9b9eacdf85a418dada9f444fc4"
+        "docs/reference/functions/areHotkeysEqual.md": "55835d04f40ba1e97f6d955faee8c2f87b0228d834e1bcad7b54c190c4be490c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "5bfda57671d37ffd4ed441ac7d3dd0d5a3527fe1c76543d3c22c2365eca25e05",
+      "fingerprint": "6c8cbc7edc149cfa45981ce042cf0524de497241ca26b93a0d84231249041b43",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "8c2b9cb90b8b923a1184e9b3cb6fa8d547c221f4edc054269c5ed3f8f4e976a5"
+        "docs/reference/functions/createHotkeyChordHandler.md": "22abde7b690d6ec8bd894efed99d48fcf9b0c2793df177e595f9e6d9b8323c72"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "57f08aad360b2559eb4895d82e9e01d27def421af492c6ceccdf860508bb12a3",
+      "fingerprint": "081cca92747866afbd1a1d1d73493a6b1a0100e1f7b2535c5a80da4c7359964a",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "1f40d896fb9d10318ccf749acedd25af787bfc08dd08eaedd9cb783c022c4370"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "4b22d071f5db70649a4f898d8bd7434d42286b70f41feecd6732f4c766a3c385"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "95a081713dd214e10daacc7b3fb67abd82ac2a8a60625e7d32a52a93a495b697",
+      "fingerprint": "0e5973e727a40bf06cfdd5268bd7843f0143279ffa047887cc88e5847ab22c3b",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "54a7230f9d454c3bec1c5488563b671f532e1e200bf2ba496dd4c331a6959d3f"
+        "docs/reference/functions/createSequenceMatcher.md": "b37bb5a42c372b8a955b5c3e99c89e9203e5860e7d4f3faadc77388dae2de116"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
       "fingerprint": "a70c6c565dd2cff22ec4cf8a99fe3df975e838587412de2f06c02bcf77d2fea9",
@@ -7256,28 +7238,24 @@
       ]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "ec16081004ba492b948653cea9555ca5e14e8f4c141c275ab01c380b786c7322",
+      "fingerprint": "bbc8a7c313e995f5f1b9fd949e8dca8b72e0f457efe51d7460825ecdbe7ce8b9",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "79ae378c248cfefba7d7a69abda19fc494510aee54cc2aa201e41a6f2367bab5"
+        "docs/reference/functions/matchesKeyboardEvent.md": "c7ad056f133268b60933eb2a37a6a331b6719e9d6fd33ac9ea8722f750e45e6f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "1c65bf9238c21ef44af6ac8cad43be672bdb2387ede4ac99433b3629063ce195",
+      "fingerprint": "6b6f4c64901e9e0ea8ddf1df7d9a77f0335a3d5f8f8d13223c23ae122597ce71",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "76860c54f0a26e931ed9506c04d041dc247417816c96182439be928b956c6f51"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "5e1538436e917f926d90eb34ad714b040ed73b6a5f3baf8bdcda477c4de823ad"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
       "fingerprint": "4a8764a1b65b56b9d147493ec86d100f492b1981ffc21ad7073179cc761fef8e",
@@ -7290,28 +7268,24 @@
       "evidence": ["docs/reference/interfaces/KeyboardEventMatch.md"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "92024d778d3b4b25e0b022a3c04bfd5c04978dd31b8e88533bbf0e5c43871945",
+      "fingerprint": "485525a05a62db9ff94e36a93ccbb47628c095bffd396897e0210ff187b0607c",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ba2e62138c2156c978f9d816f0799090a2fbb3dec6db2119757c8ed40ab42cd0"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ab8a1e0cbee608ee9f90c3b1f1355efb29b6d66596e2a34554ac2c09f19b289f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "5528d4a088f9ae56eb4abff2465a665f97ced1ee98bf7fc1d470edf0ce55fb5d",
+      "fingerprint": "83c561a9f62c8c6c38ed16e631349a9e9236352bd6cc220c8aa4bc4aaed27d4d",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "6271c4454280260c1d987be0299af41071e344f8fc0d1a150f61db90e92c1311"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "ad30530aa74db91b840251c7bf6ebe98109993ffa106f0696463fedead9ec8e8"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "outcome": "out-of-scope",
+      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "evidence": ["No skill references this file"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
       "fingerprint": "fa4414336c960632c262b4d13e54de02ef630c600024c1c5349285c4baf9546f",
@@ -7601,16 +7575,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "c0e9f316a4460604a3c27eaf9d5d6a34d61670e9870808dbcca8e19e1b2a6dfe",
+      "fingerprint": "8caaea197f8d0db3f374c154919462514a7da613942ab96a00bd6980fa6aeb69",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "63bdb1e0532dd9f1ac2b85d579b8aba3e137b03c52acda96a798cfe9a1ebef2b"
+        "docs/framework/alpine/guides/sequences.md": "99b9904d4b32dbbf84c0dd8bdcabaddf87c5780ddf7da67a9b8a93a82bdc012f"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/alpine/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/alpine/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
@@ -8699,14 +8672,14 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "ad41efe7b9637b87ccd967d47136b17f6030d593de1cd6a6fa99d67742c75fc8",
+      "fingerprint": "47a3a5cdabfd00a2c8ce0bee8a91530b93aff90b62ee3d66a92af1ba379f8626",
       "snapshot": {
-        ".github/workflows/e2e.yml": "ee1f7c14369363539bbfc207680cb7e7e2fe667e18d6b0e176272151c87171ca"
+        ".github/workflows/e2e.yml": "6d887cca3ca7ce1f0ee0b39167253bd26f7561f35996486f1084d6dcfe79ff28"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -11818,107 +11791,99 @@
       ]
     },
     "source:docs/framework/angular/guides/sequences.md": {
-      "fingerprint": "8ec0d10824a23dc39eb392daf5019c944edb64419c77f0d8969012d91e36e5c9",
+      "fingerprint": "bccec4efa3a06426bf6e3828e9081c85d60828fef4026978e3f4eb41c99b4469",
       "snapshot": {
-        "docs/framework/angular/guides/sequences.md": "459295dee684dac43f48e9e165fad676f846cd992fc6a29dc971659f4b21d645"
+        "docs/framework/angular/guides/sequences.md": "364892b4c265aa605f6fa5af696c7ab41d71f6e56b2460b2c0346dccd755cdfe"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/angular/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/angular/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/ember/guides/sequences.md": {
-      "fingerprint": "5b1a581bb025334bc7e9e3f7b60ddd2c2c580c6e5f816499bf11f46ebdb2aaf0",
+      "fingerprint": "1f2ad3d6f613fa23a590b7b72d1a62a8b1f29eecd3b5aa4628b08c4790e04c7c",
       "snapshot": {
-        "docs/framework/ember/guides/sequences.md": "85ce542b1b4e0ea17b6f056c356cb5c3c72dc4e6b30f0341a868d1f52cf6ff8e"
+        "docs/framework/ember/guides/sequences.md": "66469480ba2b65fc7d430c4f529ad31cf11b4d4f321c2545676fd762364cd7ed"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/ember/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/ember/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/lit/guides/sequences.md": {
-      "fingerprint": "1c5ff413c45a95efcfbf362ac9144268e361d250a836f622b87e7cf1ee8b0844",
+      "fingerprint": "7e611cfc9cdcd90b6a4b07d10ead7d8255b23887f090e2f784732afd35c29190",
       "snapshot": {
-        "docs/framework/lit/guides/sequences.md": "f9f84b21285bf452a1575da853027c150747a3cc494b72ed2c03c2107b7542a3"
+        "docs/framework/lit/guides/sequences.md": "fe5a0cb73e2e55ab18c4f881346e50bd76399a2b408f8d95963dfe74e985e54b"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/lit/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/lit/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/octane/guides/sequences.md": {
-      "fingerprint": "785d66403f87c2bcb65502ab49ef731cc7ecc6e2f3f97100ab38445710a9961b",
+      "fingerprint": "7df55466901cee38ed24bd9aad96f5c6a48838eb642ae8ec8c2b8e26d9ddb21e",
       "snapshot": {
-        "docs/framework/octane/guides/sequences.md": "595297b6ecac405ccf5123c1bd296649f703cbf557524c375124726e2e9c93c8"
+        "docs/framework/octane/guides/sequences.md": "51a133a0eaf55261beceac822d6ff13065a2df51ff282117d2ab3a00a0d53e62"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/octane/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/octane/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/preact/guides/sequences.md": {
-      "fingerprint": "dcbc0ebb2c132d533b0ba40b4613002df81b96c2c036949f161c142539aee78f",
+      "fingerprint": "56e0c2b27fbe31ffa3e2c7e477ea139809a262b5b9ad4b65fa893ae0d2656252",
       "snapshot": {
-        "docs/framework/preact/guides/sequences.md": "565be76fe3164322f61fbeffe9e775e0b1c143d82e4dcec3a66f53c82f4fce5e"
+        "docs/framework/preact/guides/sequences.md": "bbe9cb79363c4b0274bcc1abe1bcae6f7a781f61a4a18dfc306e85f44d5d6715"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/preact/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/preact/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/solid/guides/sequences.md": {
-      "fingerprint": "c98e597e51175c4e5f1dc85de133919bd6647ffab17d1bb27decf7cc74ae3573",
+      "fingerprint": "12c095a569f7d9f7938936967189e5688c8c306567d25fdf08ac4a5c92e1071a",
       "snapshot": {
-        "docs/framework/solid/guides/sequences.md": "30891622dc5d7de7dab698bedb34a76538d2afdfa94bad0b2ee160cfb1cc6da1"
+        "docs/framework/solid/guides/sequences.md": "55361eb8c5b5c2884b66ada573753e561b02b8950a2080df16925305aa199d57"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/solid/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/solid/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/svelte/guides/sequences.md": {
-      "fingerprint": "f9430e39c108c7f10af7985c41a7d5a212ee69056df82d6ce82509f676acfad1",
+      "fingerprint": "1a6168bf36811b04465fde39c6002e1b4b90685003320d24b098fa5aef3fa4d7",
       "snapshot": {
-        "docs/framework/svelte/guides/sequences.md": "7e0e0900f06ac08cbf02f3061dcb95d7cf379cf9ca4736c34b5d32036b7c36f0"
+        "docs/framework/svelte/guides/sequences.md": "bde6f77e8f11d359f094553aeabb7efcd2caf0c35dc23f69de98a3dc361cd6b1"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/svelte/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/svelte/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/vue/guides/sequences.md": {
-      "fingerprint": "4999e267ad75d14e628b861bdc9b71648f2f4b2417d05761e874985d56454a7e",
+      "fingerprint": "15c5e3a3508cd95374235539093207c7b1cc5c1e26eff658fb49297365b1f742",
       "snapshot": {
-        "docs/framework/vue/guides/sequences.md": "898a3e45c3edf866e1c99afc6bf4954cb49922360638b18434645baae917c554"
+        "docs/framework/vue/guides/sequences.md": "1a94c5c1e19274125a7cfceed76803a93faf2e8c7e837b9a5630343e2b0ac713"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "outcome": "no-change",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "docs/framework/vue/guides/sequences.md",
-        "git diff 7d9cccc3 -- docs/framework/vue/guides/sequences.md"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:e2e/browser/chords.spec.ts": {
@@ -18510,24 +18475,24 @@
       ]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "c8e0a2cb24bad36161763c3a29eed4f7e74bf2e0988714e459bc606f9697f978",
+      "fingerprint": "880cdfd2aecd78a81486333b8dd253c6809f11d58939b747ac2f180b88e47212",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "adb3a987d4ec71d4bdee29fa3a9aab2ff78993bc6607ee3bd6bda72f4d24d1a3"
+        ".github/workflows/e2e-flaky.yml": "d2cae18d3f2b43020d0fca89d9dd4ee9758f2c6615397548fb86ac8999bcfab1"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e-flaky.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/e2e-platforms.yml": {
-      "fingerprint": "407b246f55fdebe1083ee4fbb01e9a6f6f84949b1bab9f0e84625c954a899bb9",
+      "fingerprint": "c43cdef7e0aa4cf8fb88098a60901574b968c9368b37eda5382f0801d31402e9",
       "snapshot": {
-        ".github/workflows/e2e-platforms.yml": "012aa1894bf9568b0397ccac123b22eebbc15ff8e0ec7ac0e47a6c9c21d09b0f"
+        ".github/workflows/e2e-platforms.yml": "9ed96de10c113972d7cc383f68b19a4bafdd0cf9bcec3280090b68f4f564c29e"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/e2e-platforms.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/adapters/adapters.spec.ts": {
       "fingerprint": "ff474bd1f24df0e3c14f27176cd19b1c9c9c4f97fa2e6e010ff656a22e8a946e",
@@ -19450,14 +19415,14 @@
       ]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "bf3e5242cdbb695cbd3c066f29770e6758cbbc7f6930baed766c9c31053004ef",
+      "fingerprint": "f591bfde7a79d514088bd947ac524d17dd5011f04e6cd9a76523ae6da80d997e",
       "snapshot": {
-        ".github/workflows/nightly.yml": "3b58c68cdc81080f484604abc71de7cedb95c4639495c881db9269e6b0732a35"
+        ".github/workflows/nightly.yml": "7ca3bf15e8cff7b23b0721e90e6cdd851ea5702ee2669dfe7b7c0688262fb49d"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/nightly.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:e2e/native/ibus.spec.ts": {
       "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
@@ -20095,34 +20060,34 @@
       "evidence": [".github/renovate.json"]
     },
     "source:.github/workflows/autofix.yml": {
-      "fingerprint": "440647d00462b905e501f540647e34b943f42f180faaa465d50b767add2efd51",
+      "fingerprint": "a4650fbdfe0e2d4d0e383ef0d84f04126cdcebdf8f3b7b0ac89560feaf6df046",
       "snapshot": {
-        ".github/workflows/autofix.yml": "c9a04a21bcdaf4a2c5906e05be629aae41dccf2fa1d76f81676a00fbd6bcd3bc"
+        ".github/workflows/autofix.yml": "7d4cae99bcc92aabccf679d0cb363654b5f6e28fc3deaf504b8f5520280ec6c4"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/autofix.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/pr.yml": {
-      "fingerprint": "5c94176e7de3e9b5408882833103b14ca9762a35bb90ad0c85d334fefb084662",
+      "fingerprint": "ff12dc3692e045e9c7b6c46545bf31323d9e3937a86cc0efc714bd0b98f1660f",
       "snapshot": {
-        ".github/workflows/pr.yml": "fabf643836d9243b5dd7ad445ba0025c3b7fcaf1d5e737fa7bb4e069a96ea93e"
+        ".github/workflows/pr.yml": "721bed692dfb3ecaa68d1490bcfec095e6a3ba80f12d7c67bb5d4fe94587cc54"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/pr.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/release.yml": {
-      "fingerprint": "86cb3a337d16c7d01cdb7511f2dd3a2aa7074f689897dd4e42f251411560e31a",
+      "fingerprint": "fbb39ec8c5ecafa223d42785517f803de26c234ed8cb163155e2398cc69dac4a",
       "snapshot": {
-        ".github/workflows/release.yml": "c04379bbf3a9eb156c2190b385918d4a92cd89a33b927a12d30ec3e12e993b11"
+        ".github/workflows/release.yml": "10263cbaf209ae47260c9901d2770cfe432cc11076c673f240f1b06b7d252432"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
       "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": [".github/workflows/release.yml"]
+      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
+      "evidence": ["No skill references this file"]
     },
     "source:.github/workflows/zizmor.yml": {
       "fingerprint": "57b02f51f1dc89b02cf3f33acff8e5f3c5391bb97b8da216eee0cc8c3df2231d",

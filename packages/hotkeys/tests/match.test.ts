@@ -933,6 +933,139 @@ describe('matchesKeyboardEvent', () => {
       const event = createKeyboardEvent('4', { code: 'Digit4' })
       expect(matchesKeyboardEvent(event, '4')).toBe(true)
     })
+
+    describe('zoom keys with Control or Command', () => {
+      const platforms = ['linux', 'windows', 'mac'] as const
+      const mod = (platform: HotkeyPlatform) =>
+        platform === 'mac' ? { metaKey: true } : { ctrlKey: true }
+
+      it.each(platforms)(
+        'AZERTY Mod+- (zoom out) does not fire Mod+6 on %s',
+        (platform) => {
+          const event = createKeyboardEvent('-', {
+            ...mod(platform),
+            code: 'Digit6',
+          })
+          expect(matchesKeyboardEvent(event, 'Mod+6', platform)).toBe(false)
+        },
+      )
+
+      it.each(platforms)(
+        'Czech Mod++ (zoom in) does not fire Mod+1 on %s',
+        (platform) => {
+          const event = createKeyboardEvent('+', {
+            ...mod(platform),
+            code: 'Digit1',
+          })
+          expect(matchesKeyboardEvent(event, 'Mod+1', platform)).toBe(false)
+        },
+      )
+
+      it('Programmer Dvorak Control+= does not fire Control+6', () => {
+        const event = createKeyboardEvent('=', {
+          ctrlKey: true,
+          code: 'Digit6',
+        })
+        expect(matchesKeyboardEvent(event, 'Control+6', 'linux')).toBe(false)
+      })
+
+      it('still matches the zoom key by its character', () => {
+        const event = createKeyboardEvent('-', {
+          ctrlKey: true,
+          code: 'Digit6',
+        })
+        expect(matchesKeyboardEvent(event, 'Control+-', 'linux')).toBe(true)
+        expect(matchesKeyboardEvent(event, 'Control+[Digit6]', 'linux')).toBe(
+          true,
+        )
+      })
+
+      it('keeps the fallback without Control or Command', () => {
+        const event = createKeyboardEvent('-', { code: 'Digit6' })
+        expect(matchesKeyboardEvent(event, '6', 'linux')).toBe(true)
+      })
+
+      it.each(platforms)(
+        'AZERTY Mod+Shift+6 still fires Mod+6 on %s',
+        (platform) => {
+          const event = createKeyboardEvent('6', {
+            ...mod(platform),
+            shiftKey: true,
+            code: 'Digit6',
+          })
+          expect(matchesKeyboardEvent(event, 'Mod+6', platform)).toBe(true)
+        },
+      )
+
+      // German, Nordic, Spanish, and Italian layouts type = with Shift+0, and
+      // Swiss German types + with Shift+1. Those presses aren't zoom.
+      it.each(platforms)(
+        'German Mod+Shift+0 (=) still fires Mod+Shift+0 on %s',
+        (platform) => {
+          const event = createKeyboardEvent('=', {
+            ...mod(platform),
+            shiftKey: true,
+            code: 'Digit0',
+          })
+          expect(matchesKeyboardEvent(event, 'Mod+Shift+0', platform)).toBe(
+            true,
+          )
+        },
+      )
+
+      it('Swiss German Control+Shift+1 (+) still fires Control+Shift+1', () => {
+        const event = createKeyboardEvent('+', {
+          ctrlKey: true,
+          shiftKey: true,
+          code: 'Digit1',
+        })
+        expect(matchesKeyboardEvent(event, 'Control+Shift+1', 'windows')).toBe(
+          true,
+        )
+      })
+
+      it.each([
+        ['Meta on Linux', 'linux', { metaKey: true }, 'Meta+6'],
+        ['Control on macOS', 'mac', { ctrlKey: true }, 'Control+6'],
+        [
+          'Control and Meta',
+          'linux',
+          { ctrlKey: true, metaKey: true },
+          'Control+Meta+6',
+        ],
+      ] as const)(
+        'keeps the fallback for %s, which is not zoom',
+        (_, platform, modifiers, hotkey) => {
+          const event = createKeyboardEvent('-', {
+            ...modifiers,
+            code: 'Digit6',
+          })
+          expect(matchesKeyboardEvent(event, hotkey, platform)).toBe(true)
+        },
+      )
+
+      it('keeps Control+Alt (AltGr on Windows) on the digit row', () => {
+        const event = createKeyboardEvent('-', {
+          ctrlKey: true,
+          altKey: true,
+          code: 'Digit6',
+        })
+        expect(matchesKeyboardEvent(event, 'Control+Alt+6', 'windows')).toBe(
+          true,
+        )
+      })
+    })
+
+    // macOS Spanish Option+Shift+6 types a space
+    it('falls back for a space typed on the digit row', () => {
+      const event = createKeyboardEvent(' ', {
+        altKey: true,
+        shiftKey: true,
+        code: 'Digit6',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+6', 'mac')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+Space', 'mac')).toBe(true)
+    })
   })
 
   describe('Unicode normalization edge cases', () => {
