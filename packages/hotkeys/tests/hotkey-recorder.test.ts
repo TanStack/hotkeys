@@ -641,3 +641,18 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(callback).toHaveBeenCalledOnce()
   })
 })
+
+describe('HotkeyRecorder stopped during a key press', () => {
+  it('ignores the press when an earlier listener stopped it', () => {
+    const onRecord = vi.fn()
+    const recorder = createRecorder({ onRecord })
+    const stop = () => recorder.stop()
+    document.addEventListener('keydown', stop, true)
+    recorder.start()
+    const event = keydown({ key: 'a', code: 'KeyA', target: document })
+    document.removeEventListener('keydown', stop, true)
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(event.defaultPrevented).toBe(false)
+    expect(recorder.store.state.recordedHotkey).toBeNull()
+  })
+})

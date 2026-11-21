@@ -819,34 +819,25 @@ export class HotkeyManager {
     // The composed path includes targets inside open shadow roots, which
     // `event.target` hides from listeners outside them.
     const path = event.composedPath()
-    for (const registration of this.registrations.state.values()) {
-      if (
-        !this.#isLive(registration) ||
-        registration.options.eventType !== eventType ||
-        this.#skips(registration, event) ||
-        !path.includes(registration.target) ||
-        ignoredInInput(registration, event, registration.target)
-      ) {
-        continue
-      }
-      const steps =
-        registration.kind === 'chord'
+    return [...this.registrations.state.values()].some(
+      (registration) =>
+        this.#isLive(registration) &&
+        registration.options.eventType === eventType &&
+        !this.#skips(registration, event) &&
+        path.includes(registration.target) &&
+        !ignoredInInput(registration, event, registration.target) &&
+        (registration.kind === 'chord'
           ? [registration.parsedChord]
           : [
               registration.parsedSequence[registration.currentIndex]!,
               registration.parsedSequence[0]!,
             ]
-      if (
-        steps.some(
+        ).some(
           (step) =>
             matchKeyboardEvent(event, step, registration.options.platform)
               .matched,
-        )
-      ) {
-        return true
-      }
-    }
-    return false
+        ),
+    )
   }
 
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
@@ -1725,10 +1716,8 @@ export class HotkeyManager {
     const parsed = registration.parsedChord
     const releasedKey = normalizeKeyName(event.key)
 
-    if (
-      registration.activeMatch?.code &&
-      event.code === registration.activeMatch.code
-    ) {
+    const code = registration.activeMatch?.code
+    if (code && event.code === code) {
       return true
     }
 

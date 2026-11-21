@@ -296,8 +296,9 @@ export function createSequenceMatcher(
     },
 
     reset(): void {
+      // `lastKeyTime` is read only while a step is matched, and matching the
+      // first step sets it, so reset leaves it.
       currentIndex = 0
-      lastKeyTime = 0
     },
 
     getProgress(): number {

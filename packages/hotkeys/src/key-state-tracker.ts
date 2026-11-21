@@ -197,32 +197,27 @@ export class KeyStateTracker {
    * modifiers and would clear keys the user is still holding.
    */
   #reconcileModifiers(event: KeyboardEvent | MouseEvent): boolean {
-    if (!event.isTrusted) return false
-    let changed = false
-    for (const [identity, entry] of this.#heldEntries) {
-      const released =
-        (entry.key === 'Control' && !event.ctrlKey) ||
-        (entry.key === 'Alt' && !event.altKey) ||
-        (entry.key === 'Shift' && !event.shiftKey) ||
-        (entry.key === 'Meta' && !event.metaKey)
-      if (released) {
-        this.#heldEntries.delete(identity)
-        changed = true
+    const size = this.#heldEntries.size
+    if (event.isTrusted) {
+      for (const [identity, entry] of this.#heldEntries) {
+        const released =
+          (entry.key === 'Control' && !event.ctrlKey) ||
+          (entry.key === 'Alt' && !event.altKey) ||
+          (entry.key === 'Shift' && !event.shiftKey) ||
+          (entry.key === 'Meta' && !event.metaKey)
+        if (released) this.#heldEntries.delete(identity)
       }
     }
-    return changed
+    return this.#heldEntries.size !== size
   }
 
   /** Forgets every held key that isn't a modifier. Returns whether any was held. */
   #releaseNonModifiers(): boolean {
-    let changed = false
+    const size = this.#heldEntries.size
     for (const [identity, entry] of this.#heldEntries) {
-      if (!MODIFIER_KEYS.has(entry.key)) {
-        this.#heldEntries.delete(identity)
-        changed = true
-      }
+      if (!MODIFIER_KEYS.has(entry.key)) this.#heldEntries.delete(identity)
     }
-    return changed
+    return this.#heldEntries.size !== size
   }
 
   /**
