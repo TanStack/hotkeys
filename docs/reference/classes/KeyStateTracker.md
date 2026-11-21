@@ -62,7 +62,7 @@ Use this to subscribe to state changes or access current state.
 areAllKeysHeld(keys): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:298](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L298)
+Defined in: [key-state-tracker.ts:299](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L299)
 
 Checks if all of the given keys are currently held.
 
@@ -88,7 +88,7 @@ True if all of the keys are currently held
 destroy(): void;
 ```
 
-Defined in: [key-state-tracker.ts:305](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L305)
+Defined in: [key-state-tracker.ts:306](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L306)
 
 Destroys the tracker and removes all listeners.
 
@@ -104,7 +104,7 @@ Destroys the tracker and removes all listeners.
 getHeldKeys(): string[];
 ```
 
-Defined in: [key-state-tracker.ts:261](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L261)
+Defined in: [key-state-tracker.ts:262](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L262)
 
 Gets an array of currently held key names.
 
@@ -122,7 +122,7 @@ Array of key names currently being pressed
 isAnyKeyHeld(keys): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:288](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L288)
+Defined in: [key-state-tracker.ts:289](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L289)
 
 Checks if any of the given keys are currently held.
 
@@ -148,7 +148,7 @@ True if any of the keys are currently held
 isKeyHeld(key): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:275](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L275)
+Defined in: [key-state-tracker.ts:276](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L276)
 
 Checks if a specific key is currently being held.
 
