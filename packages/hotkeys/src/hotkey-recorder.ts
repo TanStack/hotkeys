@@ -302,10 +302,8 @@ export class HotkeyRecorder {
   }
 
   #clearIdleTimer(): void {
-    if (this.#idleTimer !== null) {
-      clearTimeout(this.#idleTimer)
-      this.#idleTimer = null
-    }
+    clearTimeout(this.#idleTimer ?? undefined)
+    this.#idleTimer = null
   }
 
   #scheduleIdleTimer(): void {
@@ -314,11 +312,11 @@ export class HotkeyRecorder {
     if (ms === undefined || ms <= 0 || this.store.state.steps.length === 0) {
       return
     }
+    // Ending a recording or emptying its steps clears the timer, so it only
+    // fires while steps are recorded
     this.#idleTimer = setTimeout(() => {
       this.#idleTimer = null
-      if (this.#keydownHandler && this.store.state.steps.length >= 1) {
-        this.commit()
-      }
+      this.commit()
     }, ms)
   }
 
@@ -335,13 +333,13 @@ export class HotkeyRecorder {
       return
     }
 
-    this.#clearIdleTimer()
-    this.#events = []
+    // Ending a recording cleared its idle timer and events
     beginRecording(this)
     this.store.setState(() => ({ ...initialState, isRecording: true }))
 
     const handler = (event: KeyboardEvent) => {
-      // Check if we're still recording (handler might be called after stop/cancel)
+      // Ending the recording removes this listener, but happy-dom still runs a
+      // listener that an earlier one removed during the same dispatch.
       if (!this.#keydownHandler) {
         return
       }
@@ -401,8 +399,8 @@ export class HotkeyRecorder {
         }
         this.#events.pop()
         this.store.setState((s) => ({ ...s, steps: s.steps.slice(0, -1) }))
-        if (this.store.state.steps.length === 0) this.#clearIdleTimer()
-        else this.#scheduleIdleTimer()
+        // Clears the timer when no steps are left
+        this.#scheduleIdleTimer()
         return
       }
 
@@ -413,7 +411,8 @@ export class HotkeyRecorder {
         event.key === 'Enter' &&
         unmodified
       if (enterCommits) {
-        if (this.store.state.steps.length >= 1) this.commit()
+        // Commits nothing without steps
+        this.commit()
         return
       }
 
@@ -445,7 +444,7 @@ export class HotkeyRecorder {
     }
 
     this.#keydownHandler = handler
-    this.#addListener(handler)
+    document.addEventListener('keydown', handler, true)
   }
 
   /**
@@ -520,9 +519,9 @@ export class HotkeyRecorder {
     endRecording(this)
     this.#events = []
     this.#clearIdleTimer()
-    // Remove listener FIRST to prevent any additional events
+    // Without a document, start() never added a listener
     if (this.#keydownHandler) {
-      this.#removeListener(this.#keydownHandler)
+      document.removeEventListener('keydown', this.#keydownHandler, true)
       this.#keydownHandler = null
     }
     this.store.setState(() => ({ ...initialState, recordedHotkey }))
@@ -546,22 +545,6 @@ export class HotkeyRecorder {
   cancel(): void {
     this.#finish(null)
     this.#options.onCancel?.()
-  }
-
-  #addListener(handler: (event: KeyboardEvent) => void): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
-    }
-
-    document.addEventListener('keydown', handler, true)
-  }
-
-  #removeListener(handler: (event: KeyboardEvent) => void): void {
-    if (typeof document === 'undefined') {
-      return
-    }
-
-    document.removeEventListener('keydown', handler, true)
   }
 
   /**

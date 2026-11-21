@@ -2546,6 +2546,23 @@ describe('requireReset release tracking', () => {
     expect(callback).toHaveBeenCalledTimes(2)
   })
 
+  // `registrations` is a public store, so a latch can be set from outside.
+  it('releases a latch set without a matched key on the key release', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+    const handle = manager.register('K', callback, { requireReset: true })
+    manager.registrations.state.get(handle.id)!.hasFired = true
+    const errors: Array<unknown> = []
+    const onError = (event: ErrorEvent) => errors.push(event.error)
+    window.addEventListener('error', onError)
+    keyup({ key: 'k', code: 'KeyK', target: document })
+    window.removeEventListener('error', onError)
+    expect(errors).toEqual([])
+    expect(manager.registrations.state.get(handle.id)!.hasFired).toBe(false)
+    keydown({ key: 'k', code: 'KeyK', target: document })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
   it('releases requireReset while a registration is disabled', () => {
     const callback = vi.fn()
     const handle = HotkeyManager.getInstance().register('[KeyS]', callback, {

@@ -12,9 +12,8 @@ import {
   keysEqual,
 } from './_keys'
 import { isSingleLetterKey } from './constants'
-import { parseHotkey } from './parse'
 import { detectPlatform } from './platform'
-import type { HotkeyChord, ParsedHotkeyChord } from './hotkey.types'
+import type { ParsedHotkeyChord } from './hotkey.types'
 import type { KeyIdentity, NormalizedKeyboardEvent } from './key.types'
 import type { HotkeyPlatform } from './platform'
 
@@ -30,18 +29,15 @@ import type { HotkeyPlatform } from './platform'
 export interface KeyboardEventMatch {
   matched: boolean
   score: 0 | 1 | 2 | 3
-  source?: 'key' | 'code' | 'fallback'
   identity?: KeyIdentity
 }
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: HotkeyChord | ParsedHotkeyChord,
+  parsed: ParsedHotkeyChord,
   platform: HotkeyPlatform = detectPlatform(),
 ): KeyboardEventMatch {
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
   const normalized = normalizeKeyboardEvent(event, platform)
   const noMatch: KeyboardEventMatch = { matched: false, score: 0 }
 
@@ -66,7 +62,7 @@ export function matchKeyboardEvent(
 
   if (parsed.code !== undefined) {
     return !altGraph && shiftMatches && normalized.code === parsed.code
-      ? matched('code', 3)
+      ? matched(3)
       : noMatch
   }
 
@@ -92,7 +88,7 @@ export function matchKeyboardEvent(
       !parsed.shift &&
       !shiftTypedNothing
     if (shiftMatches || (implicitShift && normalized.shift)) {
-      return matched('key', implicitShift ? 2 : 3)
+      return matched(implicitShift ? 2 : 3)
     }
   }
 
@@ -104,7 +100,7 @@ export function matchKeyboardEvent(
   // native Windows apps. An exact `ı` binding outranks it. With Alt, the
   // position decides instead: macOS Option+Shift+B types `ı` too.
   if (normalized.key === 'ı' && parsed.key === 'I' && !normalized.alt) {
-    return matched('key', 2)
+    return matched(2)
   }
 
   // macOS Option changes what a key types: French Option+A types `æ` on the
@@ -126,18 +122,14 @@ export function matchKeyboardEvent(
   }
   const fallbackKey = optionLetter ?? codeToLogicalKey(normalized.code)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)
-    ? matched('fallback', 1)
+    ? matched(1)
     : noMatch
 
   // Preserve the triggering code so keyup can reset a shortcut even if its character changes.
-  function matched(
-    source: NonNullable<KeyboardEventMatch['source']>,
-    score: 1 | 2 | 3,
-  ): KeyboardEventMatch {
+  function matched(score: 1 | 2 | 3): KeyboardEventMatch {
     return {
       matched: true,
       score,
-      source,
       identity: { key: normalized.key, code: normalized.code },
     }
   }
