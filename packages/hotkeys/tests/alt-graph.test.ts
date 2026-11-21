@@ -83,6 +83,12 @@ describe.each(shapes)('AltGr held (%s)', (_, platform, flags) => {
     expect(matches(altGr('µ', 'KeyM'), 'M')).toBe(false)
   })
 
+  // Two code points: a letter and its point
+  it('a letter with a mark typed with AltGr matches as a character', () => {
+    expect(matches(altGr('שׁ', 'KeyA'), 'שׁ')).toBe(true)
+    expect(matches(altGr('שׁ', 'KeyA'), 'Control+Alt+A')).toBe(false)
+  })
+
   it('characters typed with AltGr never fire Control+Alt chords', () => {
     expect(matches(altGr('@', 'KeyQ'), 'Control+Alt+Q')).toBe(false)
     expect(matches(altGr('@', 'KeyQ'), 'Control+Alt+[KeyQ]')).toBe(false)

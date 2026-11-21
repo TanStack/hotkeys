@@ -107,8 +107,10 @@ function keyName(
     return isAsciiLetter(key) ? key : macKeycapLetter(event)
   }
   if (!typed || !key.trim()) return undefined
-  if (isLatinLetter(key)) return key
-  if (isSingleLetterKey(key)) return codeToLogicalKey(event.code)
+  // A Latin-script symbol such as Spanish `·` is a symbol, not a letter
+  if (isSingleLetterKey(key)) {
+    return isLatinLetter(key) ? key : codeToLogicalKey(event.code)
+  }
   return shift ? undefined : key
 }
 

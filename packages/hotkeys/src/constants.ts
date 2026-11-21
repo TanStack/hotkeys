@@ -144,9 +144,10 @@ export function normalizeKeyName(key: string): string {
     if (key === 'ı' || key === 'ſ') return key
     const upper = key.toUpperCase()
     // Some Unicode letters (e.g., 'ß') uppercase to multi-character sequences
-    // ('SS'). Avoid changing the string length so the rest of the matching
-    // logic can rely on a stable single-character key value.
-    return upper.length === 1 ? upper : key
+    // ('SS'). Keep those as written, so a letter key stays one character.
+    // Count code points: letters outside the BMP, such as ADLaM '𞤢', take
+    // two UTF-16 units and uppercase to one character too.
+    return [...upper].length === 1 ? upper : key
   }
 
   return key === ' ' ? 'Space' : key

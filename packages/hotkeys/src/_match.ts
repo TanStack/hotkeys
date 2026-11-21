@@ -1,6 +1,7 @@
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
+  isTypedText,
   macKeycapLetter,
   normalizeKeyboardEvent,
 } from './_keyboard-event'
@@ -116,7 +117,7 @@ export function matchKeyboardEvent(
     platform === 'mac' &&
     normalized.alt &&
     (normalized.key === 'Dead' ||
-      (isPrintableKey(normalized.key) && !isAsciiLetter(normalized.key)))
+      (isTypedText(normalized.key) && !isAsciiLetter(normalized.key)))
       ? macKeycapLetter(event)
       : undefined
 
@@ -145,7 +146,8 @@ export function matchKeyboardEvent(
 /**
  * Whether a key's conventional position may stand in for what it typed. Only
  * output that can't name a shortcut falls back:
- * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`
+ * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`,
+ *   including text of several code points, such as macOS Hebrew `שׁ`
  * - dead keys
  * - `Unidentified` keys, except on letter positions, which layouts such as
  *   AZERTY rearrange, and numpad positions, whose output depends on NumLock.
@@ -179,13 +181,15 @@ function positionStandsIn(
       !shift && !alt && (platform === 'mac' ? meta && !ctrl : ctrl && !meta)
     return !zoom || !/^[-+=]$/.test(key)
   }
-  if (key !== 'Dead' && !isPrintableKey(key)) return false
+  if (key === 'Dead') return true
+  if (!isTypedText(key)) return false
   if (isAsciiLetter(key)) return false
   const letterKey = code.startsWith('Key')
   if (/^[!-~]$/.test(key)) {
     return shift || (alt && platform === 'mac' && letterKey)
   }
-  if (!isLatinLetter(key)) return true
+  // A letter with marks keeps its base letter's script
+  if (!isLatinLetter(Array.from(key)[0]!)) return true
   if (alt && !(letterKey && ctrl && platform === 'windows')) return true
   return (ctrl || meta) && !letterKey
 }

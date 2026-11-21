@@ -1,5 +1,5 @@
 import { isModifierCode, modifierAlias } from './_chord'
-import { isPrintableKey, ownValue } from './_keys'
+import { ownValue } from './_keys'
 import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
 import type { NormalizedKeyboardEvent } from './key.types'
 import type { HotkeyPlatform } from './platform'
@@ -134,6 +134,15 @@ export function codeToLogicalKey(code: string): string | undefined {
 }
 
 /**
+ * Whether a key value is text the key typed rather than a named key such as
+ * `End` or `Dead`. Text can take several code points: macOS Hebrew Shift+A
+ * types `שׁ`, a letter with a point.
+ */
+export function isTypedText(key: string): boolean {
+  return key !== '' && !/^[A-Z][A-Za-z0-9]+$/.test(key)
+}
+
+/**
  * Whether AltGr changed what a key typed, as in AltGr+Q typing `@`. False when
  * AltGr is not held, or when the key typed its plain value: a named key such
  * as Home, or an ASCII letter or digit (AltGr+F typing `f` on layouts with
@@ -145,5 +154,5 @@ export function altGraphTypedCharacter(
   if (!event.altGraph) return false
   // A dead key starts a composed character such as `ẽ`.
   if (event.key === 'Dead') return true
-  return isPrintableKey(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
+  return isTypedText(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
 }

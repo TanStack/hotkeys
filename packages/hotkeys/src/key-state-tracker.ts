@@ -180,8 +180,9 @@ export class KeyStateTracker {
       ['mousedown', onMouse as EventListener, true],
       ['blur', onBlur, false],
       ['contextmenu', onContextMenu as EventListener, false],
-      // Switching tabs or apps can hide the page without a window blur.
-      ['visibilitychange', () => document.hidden && onBlur(), false],
+      // Switching tabs or apps can hide the page without a window blur. The
+      // event bubbles from the document, so capture it like the key events.
+      ['visibilitychange', () => document.hidden && onBlur(), true],
     ]
     for (const [type, listener, capture] of this.#listeners) {
       window.addEventListener(type, listener, capture)

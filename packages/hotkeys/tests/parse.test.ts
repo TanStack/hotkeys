@@ -302,6 +302,16 @@ describe('normalizeKeyName', () => {
     expect(normalizeKeyName('i')).toBe('I')
     expect(normalizeKeyName('İ')).toBe('İ')
   })
+
+  // These letters take two UTF-16 units each
+  it('uppercases letters outside the Basic Multilingual Plane', () => {
+    expect(normalizeKeyName('𞤢')).toBe('𞤀') // ADLaM
+    expect(normalizeKeyName('𐐨')).toBe('𐐀') // Deseret
+    expect(normalizeKeyName('𐓘')).toBe('𐒰') // Osage
+    expect(normalizeHotkey('Mod+𞤢', 'windows')).toBe(
+      normalizeHotkey('Mod+𞤀', 'windows'),
+    )
+  })
 })
 
 describe('Turkish ı and İ in hotkeys', () => {

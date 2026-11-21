@@ -616,11 +616,13 @@ export class HotkeyManager {
   /**
    * Keyup chords whose keydown matched. Releasing one of the chord's
    * modifiers fires them, because the key's own keyup may come after the
-   * modifier's or, on macOS while Command is held, not at all. `null` marks a
-   * press that another key cancelled or that `ignoreDefaultPrevented`
-   * skipped, so its release doesn't fire.
+   * modifier's or, on macOS while Command is held, not at all. A press that
+   * another key cancelled, or that `ignoreDefaultPrevented` skipped, has no
+   * entry, so its release doesn't fire.
    */
-  #pendingReleases = new Map<string, KeyboardEventMatch | null>()
+  #pendingReleases = new Map<string, KeyboardEventMatch>()
+  /** The keyup chords' presses each release ended, by registration id. */
+  #endedPresses = new WeakMap<KeyboardEvent, Map<string, KeyboardEventMatch>>()
   /** Events this manager prevented, so its own prevention never skips a hotkey. */
   #prevented = new WeakSet<KeyboardEvent>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
@@ -1187,6 +1189,7 @@ export class HotkeyManager {
     // before the document's sequence advances.
     if (first) {
       this.#sequenceOwned.set(event, this.#isOwnedBySequence(event, eventType))
+      this.#endPresses(event, eventType)
     }
     if (capture) {
       // Capture listeners are always on the registrations' own target.
@@ -1282,13 +1285,6 @@ export class HotkeyManager {
       // Notify on release too, so they see it cleared.
       if (cleared) this.#notify()
     }
-    // A new press cancels a keyup chord's press in progress, so its release
-    // doesn't fire, even when the new press continues a sequence.
-    if (eventType === 'keydown' && !event.repeat) {
-      for (const { id } of registrations) {
-        if (this.#pendingReleases.get(id)) this.#pendingReleases.set(id, null)
-      }
-    }
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
     const matches = new Map<string, KeyboardEventMatch>()
@@ -1296,7 +1292,6 @@ export class HotkeyManager {
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
 
-    const eventKey = normalizeKeyName(event.key)
     // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       const live = this.#isLive(registration)
@@ -1306,40 +1301,19 @@ export class HotkeyManager {
       const skipped = this.#skips(registration, event)
       const { parsedChord, id } = registration
       const { platform } = registration.options
-      let result: KeyboardEventMatch | undefined
-      // A release ends a recorded press, even while the hotkey can't fire.
-      let released: KeyboardEventMatch | null | undefined
-      if (
-        eventType === 'keyup' &&
-        firesOn === 'keyup' &&
-        this.#pendingReleases.has(id)
-      ) {
-        result = matchKeyboardEvent(event, parsedChord, platform)
-        const pressed = this.#pendingReleases.get(id)?.identity?.code
-        if (
-          result.matched ||
-          // The pressed key's release, even if its character changed, such
-          // as AZERTY 6 with Shift released first, which then reports `-`
-          (pressed !== undefined && pressed !== '' && pressed === event.code) ||
-          // The other Control or Shift key may still hold the modifier down.
-          (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
-            !event.getModifierState(eventKey))
-        ) {
-          released = this.#pendingReleases.get(id)
-          this.#pendingReleases.delete(id)
-        }
-      }
+      // The press this release ended, even while the hotkey can't fire.
+      const released = this.#endedPresses.get(event)?.get(id)
       if (
         (firesOn !== eventType && !press) ||
         ignoredInInput(registration, event, target)
       ) {
         continue
       }
-      result ??= matchKeyboardEvent(event, parsedChord, platform)
+      let result = matchKeyboardEvent(event, parsedChord, platform)
       if (press) {
         if (result.matched) {
           if (skipped) {
-            this.#pendingReleases.set(id, null)
+            this.#pendingReleases.delete(id)
           } else {
             if (live && preventDefault) {
               this.#prevent(event)
@@ -1612,6 +1586,44 @@ export class HotkeyManager {
     }
   }
 
+  /**
+   * Ends keyup chords' presses at the first listener an event reaches, so a
+   * key that a chord's own listener never receives still counts. A new press
+   * cancels every press in progress, and a release of the pressed key or of
+   * one of the chord's modifiers ends that press. The chord's own listener
+   * then fires it, if the release reaches it.
+   */
+  #endPresses(event: KeyboardEvent, eventType: HotkeyEventType): void {
+    if (eventType === 'keydown') {
+      // Even when the new press continues a sequence
+      if (!event.repeat) this.#pendingReleases.clear()
+      return
+    }
+    const ended = new Map<string, KeyboardEventMatch>()
+    const eventKey = normalizeKeyName(event.key)
+    for (const [id, press] of this.#pendingReleases) {
+      // Unregistering and destroying remove the press, so its registration
+      // is a chord.
+      const { parsedChord, options } = this.registrations.state.get(
+        id,
+      ) as HotkeyChordRegistration
+      const pressed = press.identity!.code
+      if (
+        matchKeyboardEvent(event, parsedChord, options.platform).matched ||
+        // The pressed key's release, even if its character changed, such
+        // as AZERTY 6 with Shift released first, which then reports `-`
+        (pressed !== '' && pressed === event.code) ||
+        // The other Control or Shift key may still hold the modifier down.
+        (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
+          !event.getModifierState(eventKey))
+      ) {
+        ended.set(id, press)
+        this.#pendingReleases.delete(id)
+      }
+    }
+    this.#endedPresses.set(event, ended)
+  }
+
   #prevent(event: KeyboardEvent): void {
     // An event another listener prevented first stays theirs.
     if (!event.defaultPrevented) this.#prevented.add(event)
@@ -1819,6 +1831,7 @@ export class HotkeyManager {
     this.#sequenceResetTimers.clear()
     this.#listeners.destroy()
     this.#listenerTargets.clear()
+    this.#pendingReleases.clear()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)
   }
