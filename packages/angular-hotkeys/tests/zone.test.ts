@@ -78,6 +78,17 @@ describe('zone.js apps', () => {
     expect(counter.turns).toBeGreaterThan(0)
   })
 
+  it('leaves change detection after a callback to zone.js', async () => {
+    const { counter } = await setup()
+    // Zone.js calls Angular's internal `_tick`, so only the zoneless pass
+    // calls the public `tick`.
+    const tick = vi.spyOn(TestBed.inject(ApplicationRef), 'tick')
+    type('k')
+    await Promise.resolve()
+    expect(counter.turns).toBeGreaterThan(0)
+    expect(tick).not.toHaveBeenCalled()
+  })
+
   it('attaches the key state tracker outside the zone', async () => {
     // happy-dom's window listeners escape zone.js, so check where they attach.
     const attached: Array<boolean> = []

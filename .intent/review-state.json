@@ -25,10 +25,10 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "970de68e52a628bc43b599cd0aea2f74542afd0a0193678330f364b7bab08e44",
+      "fingerprint": "eaf619d827d363793dd2827684bdc1e5e0ac7fa31f895c04daa05255b9933962",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "eeb6082bcdb07cc21e1fe2c7e7849b260f7931d1c803a41333332e88f28b20b5",
-        "docs/framework/angular/quick-start.md": "759f4ea079af10bed94b9931ac73a05abd7b911a12e5bfe01fd42a674a7a9652",
+        "docs/framework/angular/quick-start.md": "d8f9a0d1723f9c64ad4b02ca11144279c0ff4f243f6e58d3fb777dd88781ccca",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2a623bf40bdffb6f1f2c64d7159d58ae25a6f8b4681f42e1b0274113ac2b0900",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "afe63a82c2e4b9269b0fece249317a1ad197481cb8d4ae434c5da48d64f0a2b5",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "9ba3e5c384a39ff3bbd3f163c61ee8f79e698d7f91c8cc35ff963cb80a12900d",
@@ -37,11 +37,11 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "1f1ab7d1e41e5dc39721945c9d9152706689990ec57d6b4d6dbc262975a6a13c",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111",
       "outcome": "no-change",
-      "reason": "The change shares type and helper definitions across packages and keeps every public name and behavior, so the skill text stays accurate.",
+      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
       "evidence": [
-        "Searched packages/*/skills for each replaced type spelling and changed API; none appear. Public export names and option shapes are unchanged."
+        "Changed: docs/framework/angular/quick-start.md at bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "7a3e410c78e12302953d78707d5e5549ebddccbffba71deba030ec184ec86a99",
+      "fingerprint": "6846876bec51eb827dcf5b19f19d1180763e727b52284d480e2273ecae71efb5",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -285,7 +285,7 @@
         "docs/framework/alpine/guides/app-hotkeys.md": "ba8566f13ea2dfe6d63ca80aa5456bb4729bcb8db0c082980171ea7900025def",
         "docs/framework/alpine/quick-start.md": "e6e78df61dc758f7e934ff157ab0f0207f34ef0159902039405d773efadfc04d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "eeb6082bcdb07cc21e1fe2c7e7849b260f7931d1c803a41333332e88f28b20b5",
-        "docs/framework/angular/quick-start.md": "759f4ea079af10bed94b9931ac73a05abd7b911a12e5bfe01fd42a674a7a9652",
+        "docs/framework/angular/quick-start.md": "d8f9a0d1723f9c64ad4b02ca11144279c0ff4f243f6e58d3fb777dd88781ccca",
         "docs/framework/ember/guides/app-hotkeys.md": "c5dc085875b85b01dcab947f844ac3ddf48e260e01b27665c0b78d33ec4cff0c",
         "docs/framework/ember/quick-start.md": "7646cf9b51aa85d5085cc6bdf91015655e5937cca6e1a3a152cf354fbf3ab6da",
         "docs/framework/lit/guides/app-hotkeys.md": "ccaffd075053937eb5ab6d49354c0609c6a103a5d11f92c6844b605085d12e4c",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "0840d8fe7630b3b76ee4d19618224c3ef2c1d27b",
+      "head": "bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111",
       "outcome": "no-change",
-      "reason": "Internal cleanup with no public behavior or guidance change.",
+      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts, packages/hotkeys/src/match.ts at 0840d8fe7630b3b76ee4d19618224c3ef2c1d27b"
+        "Changed: docs/framework/angular/quick-start.md at bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -7904,14 +7904,16 @@
       "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
     },
     "source:packages/angular-hotkeys/src/_zone.ts": {
-      "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
+      "fingerprint": "7f15a5156f166a7d330443156a94e868bec3b8f271b1dadd88446d06861ae527",
       "snapshot": {
-        "packages/angular-hotkeys/src/_zone.ts": "f19d61b093d6f0a20a0fc12c3dc95319d3df7317fa2cca8b9471dd80af7a9ea1"
+        "packages/angular-hotkeys/src/_zone.ts": "655a13f6673bd3869f103bb7ccaa6a6af761a832245031ced5ad8aec010eb777"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "afbafc9504561d910d209d0a02030b26b10be591",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks return and after async callbacks settle, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/src/_zone.ts at afbafc9504561d910d209d0a02030b26b10be591"
+      ]
     },
     "source:packages/angular-hotkeys/tests/targets.test.ts": {
       "fingerprint": "25343857852fb8aa0acf481e9c83ff623b4c959dc0b84acd5d85088fc2168728",
@@ -7924,14 +7926,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/zone.test.ts": {
-      "fingerprint": "26d06efb2fe0a664d7b1430f24c00cec752f3a4a845012c9a438ad337f69fb36",
+      "fingerprint": "9c73d17d4167ab16403eae476d02b0de24e81b4d1ad56438af39ec470d94b2ae",
       "snapshot": {
-        "packages/angular-hotkeys/tests/zone.test.ts": "393075c2e0de6fa4accc2cc1105762dfb7beebe3ee74a29fac8c454890141965"
+        "packages/angular-hotkeys/tests/zone.test.ts": "146f9a914b402949e2569a19aad320e95f7a028b901fede65072d357b7381591"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/angular-hotkeys/tests/zone.test.ts"]
+      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/tests/zone.test.ts at bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111"
+      ]
     },
     "source:packages/hotkeys/src/index.ts": {
       "fingerprint": "1215ef18da2d3d7e657a7e0632ddd09e7d210e391da19f5ce8f7a7e5ca81cf53",
@@ -20240,14 +20244,16 @@
       "evidence": ["packages/alpine-hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/angular-hotkeys/tests/change-detection.test.ts": {
-      "fingerprint": "8888b8943b533c44b8383c0564717582f34c7515ccb32cfed7ef01938b5c0c79",
+      "fingerprint": "580d80a005e7c481251b5e634d8ea7a0bb3117ff90ba2883f9d19ae0788bac6b",
       "snapshot": {
-        "packages/angular-hotkeys/tests/change-detection.test.ts": "c2be32ae76dda391ce727822e886e1c0033667c58e60a06ab80400f6f635a6b8"
+        "packages/angular-hotkeys/tests/change-detection.test.ts": "62194ca35009d45f7ce09ff1faf53862e04d4f125a47103fbca4907eaf52edc9"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "afbafc9504561d910d209d0a02030b26b10be591",
       "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
-      "evidence": ["packages/angular-hotkeys/tests/change-detection.test.ts"]
+      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks return and after async callbacks settle, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/tests/change-detection.test.ts at afbafc9504561d910d209d0a02030b26b10be591"
+      ]
     },
     "source:packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": {
       "fingerprint": "c0a09eca64d87cbf7e135eda6018b41a81e9a9652e78db71d21e5c9c07fdcf94",
