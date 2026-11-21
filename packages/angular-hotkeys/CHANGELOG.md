@@ -1,5 +1,13 @@
 # @tanstack/angular-hotkeys
 
+## 0.25.3
+
+### Patch Changes
+
+- [#294](https://github.com/TanStack/hotkeys/pull/294) [`a387887`](https://github.com/TanStack/hotkeys/commit/a38788786ec1032e51508c18df09304a522e236c) - In zoneless apps, a hotkey callback that changes a hotkey's or provider's `enabled` now takes effect before the browser sends the next key. Before, the change waited for Angular's next scheduled change detection, so a quick second press, such as from Playwright's `keyboard.press`, still matched the old value. Zoneless apps now run change detection in a microtask after a hotkey callback returns, and again when an async callback settles. Keys dispatched in one synchronous loop still see the value from before the loop.
+- Updated dependencies [[`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`571d921`](https://github.com/TanStack/hotkeys/commit/571d921d5302d58829ecbf13f2ba9674f97a391c), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`90db9ab`](https://github.com/TanStack/hotkeys/commit/90db9aba332faaca79d25c532e9b3809776588fc), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f)]:
+  - @tanstack/hotkeys@0.33.1
+
 ## 0.25.2
 
 ### Patch Changes
