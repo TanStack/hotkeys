@@ -1085,6 +1085,8 @@ export class HotkeyManager {
       return
     }
 
+    // Before subscribers run, since one may dispatch a key event
+    this.#pendingReleases.delete(id)
     // Remove registration
     this.registrations.setState((prev) => {
       const next = new Map(prev)
@@ -1098,7 +1100,6 @@ export class HotkeyManager {
       id,
     )
     this.#listenerTargets.delete(id)
-    this.#pendingReleases.delete(id)
     this.#clearSequenceReset(id)
   }
 

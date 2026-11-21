@@ -2250,6 +2250,25 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).not.toHaveBeenCalled()
     })
 
+    it('ends other presses on a release dispatched while a registration is removed', () => {
+      const manager = HotkeyManager.getInstance()
+      const removed = manager.register('K', () => {}, { eventType: 'keyup' })
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      const errors: Array<unknown> = []
+      const onError = (event: ErrorEvent) => errors.push(event.error)
+      window.addEventListener('error', onError)
+      const subscription = manager.registrations.subscribe(() => {
+        subscription.unsubscribe()
+        keyup({ key: 'k', code: 'KeyK', target: document })
+      })
+      removed.unregister()
+      window.removeEventListener('error', onError)
+      expect(errors).toEqual([])
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
     it('does not fire on a modifier release after its key was released outside its target', () => {
       const manager = HotkeyManager.getInstance()
       const panel = document.createElement('div')
