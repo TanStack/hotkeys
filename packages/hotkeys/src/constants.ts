@@ -139,7 +139,9 @@ export function normalizeKeyName(key: string): string {
   // (browser extensions synthesizing key events, accessibility tools, certain OS/browser combinations).
   if (!key) return ''
   if (isSingleLetterKey(key)) {
-    if (key === 'ı') return key
+    // Turkish `ı` and the long s `ſ` uppercase to the ASCII I and S, which
+    // would make them other keys
+    if (key === 'ı' || key === 'ſ') return key
     const upper = key.toUpperCase()
     // Some Unicode letters (e.g., 'ß') uppercase to multi-character sequences
     // ('SS'). Avoid changing the string length so the rest of the matching

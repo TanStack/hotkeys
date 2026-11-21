@@ -26,6 +26,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "generate-docs": "node scripts/generate-docs.ts && pnpm run copy:readme",
+    "generate:layout-table": "node scripts/layout-table/generate.ts",
     "lint": "nx affected --target=lint --exclude=examples/**",
     "lint:all": "pnpm run test:oxlint && pnpm run test:eslint && nx run-many --target=lint --projects=\"examples/**\"",
     "lint:fix": "nx affected --target=lint:fix --exclude=examples/**",
