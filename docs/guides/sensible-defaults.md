@@ -447,7 +447,7 @@ A sequence such as `['G', 'G']` completes when each step follows the previous on
 Sequences are forgiving in a few other ways:
 
 - **Pressing a modifier alone does not interrupt a sequence**, so steps can include modifiers: `['Shift+R', 'Shift+T']`.
-- **Lock keys such as CapsLock and NumLock, Fn, and dead keys do not interrupt a sequence.** They count only when they match a step. One that starts or completes another sequence restarts this one, as any other key does. A dead key types its character together with the next key, so the next key decides whether the sequence goes on.
+- **Lock keys such as CapsLock and NumLock, Fn, and dead keys do not interrupt a sequence.** They count only when they match a step. One that matches a step of another sequence restarts this one, as any other key does. A dead key types its character together with the next key, so the next key decides whether the sequence goes on.
 - **Automatic repeats are not steps.** Holding `G` does not complete `['G', 'G']`.
 - **A wrong key restarts the sequence.** If the wrong key is the sequence's first step, it begins a new attempt, so `G X G G` still completes `['G', 'G']`.
 - **Progress clears when the timeout passes**, without waiting for another key press, so a UI that shows the pressed steps clears on time.

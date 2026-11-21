@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "50785d63beda5e392d370c0e7be8ab4b35ad7c15b005310038147bf34f0c79f3",
+      "fingerprint": "27def63199e0492c98a0f793d4ea2d3611f5ca517aed8726c676563d7c6f75fa",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "c9f701cf1af38e278807154ee5dc4e73cd64a935a28519a584e2374fb51e419a",
-        "docs/guides/sensible-defaults.md": "9b1e79689246f032cf76c3b7b799074fec30e6d19609806cdd28a9f5d366caa0",
+        "docs/framework/react/guides/sequences.md": "8384fd3f48220a6cd267416beed07e85350531510c668ac388475d9b12755645",
+        "docs/guides/sensible-defaults.md": "d0188c68d3e56cf7fc1e59bd30894acb16e9425ae267fb15a56784bfafde2271",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "65fd6cd03fb339509b46289f3dda52061ce27aea7c7dc72234915a4a28fb0d6a",
+      "fingerprint": "d6bbe72f75fedbd82a51c5bea321a7747d61544dd3d28af2eae8a42e15d4b47b",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -299,7 +299,7 @@
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "c9f701cf1af38e278807154ee5dc4e73cd64a935a28519a584e2374fb51e419a",
+        "docs/framework/react/guides/sequences.md": "8384fd3f48220a6cd267416beed07e85350531510c668ac388475d9b12755645",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
         "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "9b1e79689246f032cf76c3b7b799074fec30e6d19609806cdd28a9f5d366caa0",
+        "docs/guides/sensible-defaults.md": "d0188c68d3e56cf7fc1e59bd30894acb16e9425ae267fb15a56784bfafde2271",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -6916,13 +6916,13 @@
       ]
     },
     "source:packages/hotkeys/tests/sequence-manager.test.ts": {
-      "fingerprint": "dec081a23e6618961bb232cc487273594deafe0bbabd84f73418f3bf18b401b2",
+      "fingerprint": "94ce516c5e958f1db781fbb628c297a96509ad31125bbe07c397105c61e3dc29",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-manager.test.ts": "91fa31f933e1ee333cdf36d353e2fb53d38494b48aa3a08a8fb7163990d1fc9b"
+        "packages/hotkeys/tests/sequence-manager.test.ts": "0eab2f5e8578ca445990cab0ef8f295bba09113cf49c85447cda45d67fd7c0f4"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "reason": "Tests for the matching fixes; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
@@ -7575,15 +7575,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "acca00b2e296017806590e0794f73697ca7e1d1ad751b9b66b378cc9e96ed3da",
+      "fingerprint": "a806f18e2e87a3398a39f72a86d114c7051f6930b34e7662e1203823c12d2b6e",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "1ceaa43dabdf148b8ee01c0180bf35505e66fcbe4c363b818b3082301aaadbb5"
+        "docs/framework/alpine/guides/sequences.md": "5d84358f41b35f02f0f2098f2128b1724ea74ce39cf0cec09ea4e9c8c91ab44f"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
@@ -11791,99 +11791,99 @@
       ]
     },
     "source:docs/framework/angular/guides/sequences.md": {
-      "fingerprint": "544d5747cab1f1a66e3a9e6acf9a2997e33af2fed908f0442e471c4d47897df2",
+      "fingerprint": "73e6a1911d92c3a0d0ce51615949f0fa0bdc45db59c0e975f737e5e2e4bd3cc2",
       "snapshot": {
-        "docs/framework/angular/guides/sequences.md": "6fe97373bfbf9d2a0e56f0c93326c994ca1a0bd880418ed70724b51dead6881e"
+        "docs/framework/angular/guides/sequences.md": "d31996fe5e24095e6448171b358ba7786ab1beea4a4b547602f45955a2faeb5a"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/ember/guides/sequences.md": {
-      "fingerprint": "94ea2ebec5acaa1c01faf92385f19f057136ca1038a94ec534277cfefa504dbf",
+      "fingerprint": "ca9f68f4306f015504ede62d2fb53b0a4140fab618b5b084eeb3a1932bcc5cec",
       "snapshot": {
-        "docs/framework/ember/guides/sequences.md": "b39855f742369d0a813c9edd4b3ca4915c924e5f156e4c22ab29a77be57a6877"
+        "docs/framework/ember/guides/sequences.md": "72dd38ead1c5b049d280421c08c0b6f2e754440effe1e2b60c41a7874c910dd5"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/lit/guides/sequences.md": {
-      "fingerprint": "86e5b9d3747f159b019280bba89b6003e30d95b227b702b01543ba24ac2510ea",
+      "fingerprint": "6e7fabb9499a797b4fd26ecce90604a3b20fcc44a9edecc00e629c54d655e594",
       "snapshot": {
-        "docs/framework/lit/guides/sequences.md": "e1718fef0f18d423c089a8dbafef8b2e06a85baa06f76879c5122eb51839394b"
+        "docs/framework/lit/guides/sequences.md": "d153392fe560b9b4a9cdce2873420c36c23a7435dfaf49a47b2499cf2f54669a"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/octane/guides/sequences.md": {
-      "fingerprint": "5aa06a403cc183433e2222000028c4f4e163f6adab14ce50cee6ccd99dbc0388",
+      "fingerprint": "727925770b01f40a02bd663bdc19b8f8a5f9096bffa591b405c5b0d63b1129f3",
       "snapshot": {
-        "docs/framework/octane/guides/sequences.md": "acdab1b6f001e8cbbe31207480117b8f4b113a5179e060a8f737ee6aaa97a922"
+        "docs/framework/octane/guides/sequences.md": "f63b4ef136a2fab93cd5af42c1228fa9d0520185503d8758e44594c3f6c0c309"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/preact/guides/sequences.md": {
-      "fingerprint": "6e46f56e91b0ddd58f26721763d90ee090a8ec3956d2aadd0ce7ecfb18c09921",
+      "fingerprint": "a9e96aa1ca7d2a518a51c90a3995cab6a6c5cc0dda76a12ad9ff0c2c69630f76",
       "snapshot": {
-        "docs/framework/preact/guides/sequences.md": "6a2f1ec259b304fbef33977bc8b8694b83cba3213b57f03203c85f24f5c13a4c"
+        "docs/framework/preact/guides/sequences.md": "0e7e2445fa09f4be9a310ab520f51d0ea36d6a68e87cfb36c4cb6cf95b7cc098"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/solid/guides/sequences.md": {
-      "fingerprint": "2b38e808631d1b4a4c5e05c5a0c430e13ff0b5f51b9011a38eb7ba2f746813cb",
+      "fingerprint": "52ae043524b385ec8a57f183ddd709512c1e6e1f36876a1ccdcf8319f5744963",
       "snapshot": {
-        "docs/framework/solid/guides/sequences.md": "e801b79f37347c924880ef4efd016930cad4bdb6e85c663e72128891a94515bd"
+        "docs/framework/solid/guides/sequences.md": "bce1514819c589c128c9567f1f33c2285d65bd4ad8aeb9e9d8339e10ba1abee4"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/svelte/guides/sequences.md": {
-      "fingerprint": "6e86c04742a674dd3713200457eb7ec28dc2288868eca46073fc2171ef19f849",
+      "fingerprint": "33f339b99c9ea3d38cc2d026d0370199c6998f45939118b8e0771e14607021d5",
       "snapshot": {
-        "docs/framework/svelte/guides/sequences.md": "c99ab842bcdf9beb23ed6c716736481fd82194224439589004023a2599338a91"
+        "docs/framework/svelte/guides/sequences.md": "d8dcf7824e46da764618a42779738022494ef8328d4110d3f18acdffd5f5be54"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/vue/guides/sequences.md": {
-      "fingerprint": "1930e2f39c6ae7340e7580545690e6df2128cc6cc81de260ca79e92b6153aa65",
+      "fingerprint": "15b6ce5d2067b2fc4f357e418e5fc96afefe618e9a00d9abca3387a16f56a5c4",
       "snapshot": {
-        "docs/framework/vue/guides/sequences.md": "eb0acdbe12c19995cd9e5e166e856e83199b8bbdff5def39068b3df493a11f1e"
+        "docs/framework/vue/guides/sequences.md": "93a4830120ce10783f6dfab28f96a54f5186a2e8852be702f7d8cf1c5cf7df18"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
+      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:e2e/browser/chords.spec.ts": {

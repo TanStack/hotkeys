@@ -781,6 +781,20 @@ describe('HotkeyManager', () => {
       expect(letters).not.toHaveBeenCalled()
     })
 
+    it('resets other sequences when a lock key advances one', () => {
+      const lock = vi.fn()
+      const letters = vi.fn()
+      const manager = HotkeyManager.getInstance()
+      manager.register(['G', 'CapsLock', 'X'], lock)
+      manager.register(['G', 'T'], letters)
+
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      keydown({ key: 'CapsLock', code: 'CapsLock', target: document })
+      keydown({ key: 't', code: 'KeyT', target: document })
+
+      expect(letters).not.toHaveBeenCalled()
+    })
+
     it('keeps a keyup sequence going across a CapsLock keyup', () => {
       const callback = vi.fn()
       HotkeyManager.getInstance().register(['G', 'T'], callback, {
