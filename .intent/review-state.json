@@ -685,27 +685,27 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "b0061bd630663d9b79dac632fe43120f15d7400faf1225cc66cc7c9e2497315c",
+      "fingerprint": "d4236352d207954649dcad75cc22a6e0149149749e50532aaa5cb56fb242a96f",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "039bb80ebd99e98f6a1ec9196969707acb3cee7134c1b03b106614ce4915c068"
+        "docs/reference/classes/HotkeyManager.md": "ed5c55bd10ff4c9b9e3f6b5fd3544a0520b178135edfe963a662176338321708"
       },
-      "head": "b1527c7d9acbb7e6fec815f89d2a2b83240786c0",
+      "head": "b48363cc19eede7f1ab006287ef2a3a8cc8b36a6",
       "outcome": "no-change",
       "reason": "Regenerated reference docs; only source line numbers changed.",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at b1527c7d9acbb7e6fec815f89d2a2b83240786c0"
+        "Changed: docs/reference/classes/HotkeyManager.md at b48363cc19eede7f1ab006287ef2a3a8cc8b36a6"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "c03b088631eb12fe9d9484ba8ece682b59f664ca97ac1de2bc90f83e12451377",
+      "fingerprint": "9c59b07a1d1c503f8190fb24e596dd0b2f391bc34de654d92d56861b4400ef7b",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "3e7366024ebd27403587c0d81ec598c0d2a41508b58dd87b415295f0e5ec4ec7"
+        "docs/reference/functions/getHotkeyManager.md": "c3db1b281f08c846df3f47aabb538a830fe49c8dde3f2cf96d9df0823db1a51a"
       },
-      "head": "b1527c7d9acbb7e6fec815f89d2a2b83240786c0",
+      "head": "b48363cc19eede7f1ab006287ef2a3a8cc8b36a6",
       "outcome": "no-change",
       "reason": "Regenerated reference docs; only source line numbers changed.",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at b1527c7d9acbb7e6fec815f89d2a2b83240786c0"
+        "Changed: docs/reference/functions/getHotkeyManager.md at b48363cc19eede7f1ab006287ef2a3a8cc8b36a6"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
