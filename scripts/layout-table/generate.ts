@@ -217,7 +217,7 @@ for (const id of WINDOWS) {
 }
 
 // macOS: UCKeyTranslate, levels [plain, Shift, Option, Option+Shift,
-// Command, Command+Shift, Command+Option]
+// Command, Command+Shift, Command+Option, Command+Option+Shift]
 const MAC = [
   'US',
   'British',
@@ -277,6 +277,7 @@ const MAC_LEVELS = [
   'cmd',
   'cmdShift',
   'cmdOption',
+  'cmdOptionShift',
 ]
 const mac = JSON.parse(
   readFileSync(join(sources, 'mac-layouts.json'), 'utf8'),

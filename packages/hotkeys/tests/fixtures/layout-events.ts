@@ -6,7 +6,7 @@ import type { HotkeyPlatform } from '../../src'
 // for macOS). `pnpm generate:layout-table <sources-dir>` regenerates it; see
 // scripts/layout-table/generate.ts for the sources. Linux and Windows levels: base, Shift,
 // AltGr, AltGr+Shift. macOS levels: plain, Shift, Option, Option+Shift,
-// Command, Command+Shift, Command+Option.
+// Command, Command+Shift, Command+Option, Command+Option+Shift.
 
 export interface LayoutModifiers {
   ctrl?: boolean
@@ -63,7 +63,7 @@ function layoutKey(
   if (layout.platform === 'mac') {
     // Layouts define their own Command layers: US Cmd+Shift+/ types `/`,
     // and French Cmd+Shift+& types `1`, as browsers report them
-    if (mods.meta && mods.alt) level = 6
+    if (mods.meta && mods.alt) level = mods.shift ? 7 : 6
     else if (mods.meta) level = mods.shift ? 5 : 4
     else if (mods.alt) level = mods.shift ? 3 : 2
     else level = mods.shift ? 1 : 0

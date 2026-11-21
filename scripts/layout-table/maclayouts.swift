@@ -13,7 +13,7 @@ let vk: [(String, UInt16)] = [
 // Carbon modifier state >> 8: cmd=1 shift=2 option=8. The keyboard type
 // (LMGetKbdType, recorded in the output) decides whether Backquote and
 // IntlBackslash follow the ANSI or the ISO keyboard.
-let levels: [(String, UInt32)] = [("plain",0),("shift",2),("option",8),("optionShift",10),("cmd",1),("cmdShift",3),("cmdOption",9)]
+let levels: [(String, UInt32)] = [("plain",0),("shift",2),("option",8),("optionShift",10),("cmd",1),("cmdShift",3),("cmdOption",9),("cmdOptionShift",11)]
 func translate(_ layout: UnsafePointer<UCKeyboardLayout>, _ code: UInt16, _ mods: UInt32) -> String {
   var dead: UInt32 = 0
   var len = 0

@@ -23520,23 +23520,23 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/fixtures/layout-events.ts": {
-      "fingerprint": "5daf8cb136af1b9d74b14d156255099d45de8e2801eccd568fa6d82553fb2aaa",
+      "fingerprint": "c5bc87e57485f18a595316c2b6f784bdd4186303cf252961e2c6c1b7c2094de9",
       "snapshot": {
-        "packages/hotkeys/tests/fixtures/layout-events.ts": "c726bcb3caee4109c905b16b18c3226d249f9ccfea56f238e2b5addafe6312e3"
+        "packages/hotkeys/tests/fixtures/layout-events.ts": "c8a95c561ba0df75652164a60782544108294f60538a3961163607c43312cae7"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "f34e89d37247ffb9b8e07fb79e8ed1dcdf9b7868",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
+      "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/fixtures/layout-table.json": {
-      "fingerprint": "6c0332a4e26479655ab97b115076b75dc19e4d5e870fe1dec506b6df0f6ce7a4",
+      "fingerprint": "16ae9fdf23b899025b8adc8deb129b821358b103c16dae548e55e583fb70f49f",
       "snapshot": {
-        "packages/hotkeys/tests/fixtures/layout-table.json": "fe9d6369ee3fdf385027270250d00a18c32a910f2451c082728e210bc8828055"
+        "packages/hotkeys/tests/fixtures/layout-table.json": "89e9298922d86451fdbb07acc3dc12c89b60f62cdd676966a90f18410a9a3cde"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "f34e89d37247ffb9b8e07fb79e8ed1dcdf9b7868",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
+      "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/layouts.test.ts": {
@@ -23570,23 +23570,23 @@
       "evidence": ["No skill references this file"]
     },
     "source:scripts/layout-table/generate.ts": {
-      "fingerprint": "5074b63a5e7dfd9604ed886f5496746dd469b7d0283354a672a2cc035737db5b",
+      "fingerprint": "340bf270d015facbfd37ce1c53453457569921eb72d3263d1c2f72f626dd3200",
       "snapshot": {
-        "scripts/layout-table/generate.ts": "cadf4746b27ea3228082757c0cdc69c8b27f2b2c51b73732625017697d17a4ec"
+        "scripts/layout-table/generate.ts": "7b8cde04243919fae56702dc3b8717aae5be0a55d244d64e1907698c83d6f30e"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "f34e89d37247ffb9b8e07fb79e8ed1dcdf9b7868",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
+      "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:scripts/layout-table/maclayouts.swift": {
-      "fingerprint": "92a9b10131cc1baf89fa226c9c21c7943175eebb90c455d67636de5f477305f6",
+      "fingerprint": "de8d1d519aea64fbc7fb8efb9c378d187beea9fbd89fcd19c934cc7e13640dd7",
       "snapshot": {
-        "scripts/layout-table/maclayouts.swift": "1d2f27fb89b27bb6bfba63397399ab7c29b6f346a4eb71638355f10c46288cfb"
+        "scripts/layout-table/maclayouts.swift": "7e072ae4fe29ea96855418b0fa0b2c019552b97172d44c3ae5c2c4df035553b4"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "f34e89d37247ffb9b8e07fb79e8ed1dcdf9b7868",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
+      "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     }
   }
