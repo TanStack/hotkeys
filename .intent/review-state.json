@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "27def63199e0492c98a0f793d4ea2d3611f5ca517aed8726c676563d7c6f75fa",
+      "fingerprint": "1b3401a1f8abdadf5f89d96e3585d3924c5bbcbbb27fc8fd45f4487c428efc61",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "8384fd3f48220a6cd267416beed07e85350531510c668ac388475d9b12755645",
-        "docs/guides/sensible-defaults.md": "d0188c68d3e56cf7fc1e59bd30894acb16e9425ae267fb15a56784bfafde2271",
+        "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
+        "docs/guides/sensible-defaults.md": "712c8ca0ecaa490c6dc0adefe9f1421aa965fc4464c433f34379b13ebec0cac4",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,9 +115,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "d6bbe72f75fedbd82a51c5bea321a7747d61544dd3d28af2eae8a42e15d4b47b",
+      "fingerprint": "11a2bf28f651293bce938128f5d3427dda1ab3efa95696297fe197384744156f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -299,7 +299,7 @@
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "8384fd3f48220a6cd267416beed07e85350531510c668ac388475d9b12755645",
+        "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
         "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "d0188c68d3e56cf7fc1e59bd30894acb16e9425ae267fb15a56784bfafde2271",
+        "docs/guides/sensible-defaults.md": "712c8ca0ecaa490c6dc0adefe9f1421aa965fc4464c433f34379b13ebec0cac4",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -408,9 +408,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
@@ -7575,13 +7575,13 @@
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "a806f18e2e87a3398a39f72a86d114c7051f6930b34e7662e1203823c12d2b6e",
+      "fingerprint": "8caaea197f8d0db3f374c154919462514a7da613942ab96a00bd6980fa6aeb69",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "5d84358f41b35f02f0f2098f2128b1724ea74ce39cf0cec09ea4e9c8c91ab44f"
+        "docs/framework/alpine/guides/sequences.md": "99b9904d4b32dbbf84c0dd8bdcabaddf87c5780ddf7da67a9b8a93a82bdc012f"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
@@ -11791,97 +11791,97 @@
       ]
     },
     "source:docs/framework/angular/guides/sequences.md": {
-      "fingerprint": "73e6a1911d92c3a0d0ce51615949f0fa0bdc45db59c0e975f737e5e2e4bd3cc2",
+      "fingerprint": "bccec4efa3a06426bf6e3828e9081c85d60828fef4026978e3f4eb41c99b4469",
       "snapshot": {
-        "docs/framework/angular/guides/sequences.md": "d31996fe5e24095e6448171b358ba7786ab1beea4a4b547602f45955a2faeb5a"
+        "docs/framework/angular/guides/sequences.md": "364892b4c265aa605f6fa5af696c7ab41d71f6e56b2460b2c0346dccd755cdfe"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/ember/guides/sequences.md": {
-      "fingerprint": "ca9f68f4306f015504ede62d2fb53b0a4140fab618b5b084eeb3a1932bcc5cec",
+      "fingerprint": "1f2ad3d6f613fa23a590b7b72d1a62a8b1f29eecd3b5aa4628b08c4790e04c7c",
       "snapshot": {
-        "docs/framework/ember/guides/sequences.md": "72dd38ead1c5b049d280421c08c0b6f2e754440effe1e2b60c41a7874c910dd5"
+        "docs/framework/ember/guides/sequences.md": "66469480ba2b65fc7d430c4f529ad31cf11b4d4f321c2545676fd762364cd7ed"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/lit/guides/sequences.md": {
-      "fingerprint": "6e7fabb9499a797b4fd26ecce90604a3b20fcc44a9edecc00e629c54d655e594",
+      "fingerprint": "7e611cfc9cdcd90b6a4b07d10ead7d8255b23887f090e2f784732afd35c29190",
       "snapshot": {
-        "docs/framework/lit/guides/sequences.md": "d153392fe560b9b4a9cdce2873420c36c23a7435dfaf49a47b2499cf2f54669a"
+        "docs/framework/lit/guides/sequences.md": "fe5a0cb73e2e55ab18c4f881346e50bd76399a2b408f8d95963dfe74e985e54b"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/octane/guides/sequences.md": {
-      "fingerprint": "727925770b01f40a02bd663bdc19b8f8a5f9096bffa591b405c5b0d63b1129f3",
+      "fingerprint": "7df55466901cee38ed24bd9aad96f5c6a48838eb642ae8ec8c2b8e26d9ddb21e",
       "snapshot": {
-        "docs/framework/octane/guides/sequences.md": "f63b4ef136a2fab93cd5af42c1228fa9d0520185503d8758e44594c3f6c0c309"
+        "docs/framework/octane/guides/sequences.md": "51a133a0eaf55261beceac822d6ff13065a2df51ff282117d2ab3a00a0d53e62"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/preact/guides/sequences.md": {
-      "fingerprint": "a9e96aa1ca7d2a518a51c90a3995cab6a6c5cc0dda76a12ad9ff0c2c69630f76",
+      "fingerprint": "56e0c2b27fbe31ffa3e2c7e477ea139809a262b5b9ad4b65fa893ae0d2656252",
       "snapshot": {
-        "docs/framework/preact/guides/sequences.md": "0e7e2445fa09f4be9a310ab520f51d0ea36d6a68e87cfb36c4cb6cf95b7cc098"
+        "docs/framework/preact/guides/sequences.md": "bbe9cb79363c4b0274bcc1abe1bcae6f7a781f61a4a18dfc306e85f44d5d6715"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/solid/guides/sequences.md": {
-      "fingerprint": "52ae043524b385ec8a57f183ddd709512c1e6e1f36876a1ccdcf8319f5744963",
+      "fingerprint": "12c095a569f7d9f7938936967189e5688c8c306567d25fdf08ac4a5c92e1071a",
       "snapshot": {
-        "docs/framework/solid/guides/sequences.md": "bce1514819c589c128c9567f1f33c2285d65bd4ad8aeb9e9d8339e10ba1abee4"
+        "docs/framework/solid/guides/sequences.md": "55361eb8c5b5c2884b66ada573753e561b02b8950a2080df16925305aa199d57"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/svelte/guides/sequences.md": {
-      "fingerprint": "33f339b99c9ea3d38cc2d026d0370199c6998f45939118b8e0771e14607021d5",
+      "fingerprint": "1a6168bf36811b04465fde39c6002e1b4b90685003320d24b098fa5aef3fa4d7",
       "snapshot": {
-        "docs/framework/svelte/guides/sequences.md": "d8dcf7824e46da764618a42779738022494ef8328d4110d3f18acdffd5f5be54"
+        "docs/framework/svelte/guides/sequences.md": "bde6f77e8f11d359f094553aeabb7efcd2caf0c35dc23f69de98a3dc361cd6b1"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
     },
     "source:docs/framework/vue/guides/sequences.md": {
-      "fingerprint": "15b6ce5d2067b2fc4f357e418e5fc96afefe618e9a00d9abca3387a16f56a5c4",
+      "fingerprint": "15c5e3a3508cd95374235539093207c7b1cc5c1e26eff658fb49297365b1f742",
       "snapshot": {
-        "docs/framework/vue/guides/sequences.md": "93a4830120ce10783f6dfab28f96a54f5186a2e8852be702f7d8cf1c5cf7df18"
+        "docs/framework/vue/guides/sequences.md": "1a94c5c1e19274125a7cfceed76803a93faf2e8c7e837b9a5630343e2b0ac713"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
+      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
       "outcome": "no-change",
-      "reason": "Wording of when lock or dead keys reset other sequences. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
       ]
