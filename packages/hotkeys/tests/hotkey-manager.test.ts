@@ -2558,6 +2558,7 @@ describe('requireReset release tracking', () => {
     keyup({ key: 'k', code: 'KeyK', target: document })
     window.removeEventListener('error', onError)
     expect(errors).toEqual([])
+    expect(manager.registrations.state.get(handle.id)!.hasFired).toBe(false)
     keydown({ key: 'k', code: 'KeyK', target: document })
     expect(callback).toHaveBeenCalledOnce()
   })
