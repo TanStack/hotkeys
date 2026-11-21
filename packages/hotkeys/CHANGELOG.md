@@ -1,5 +1,13 @@
 # @tanstack/hotkeys
 
+## 0.33.1
+
+### Patch Changes
+
+- [#289](https://github.com/TanStack/hotkeys/pull/289) [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f) - Control alone, or Command alone on macOS, with a digit-row key that types `-`, `+`, or `=` no longer fires the digit's hotkey. AZERTY types `-` on the 6 key, so Ctrl+- fired `Mod+6` and stopped the browser from zooming out. Czech and Slovak Ctrl++ on the 1 key fired `Mod+1` the same way. These presses now reach the browser. `Mod+6` still fires on AZERTY with Ctrl+Shift+6, which types `6`, and as `Mod+[Digit6]`. Presses with another modifier still fall back, so German Ctrl+Shift+0 (`=`) still fires `Mod+Shift+0`. A `keyup` hotkey now fires on the release of the key that started it, even when that key types something else by then, such as AZERTY 6 when Shift is released first. Before, a `keyup` hotkey for a symbol typed with Shift, such as `?`, never fired when Shift came up before the key. A space typed on the digit row, as macOS Spanish Option+Shift+6 does, now falls back to the digit too.
+
+- [#289](https://github.com/TanStack/hotkeys/pull/289) [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f) - CapsLock, NumLock, ScrollLock, Fn, FnLock, and dead keys no longer reset a sequence in progress. Each sends a keydown of its own, so pressing CapsLock or starting an accented letter between `G` and `T` broke `['G', 'T']`. These keys now count only when they match a step, in registered sequences and in `createSequenceMatcher`. One that matches a step of another registered sequence still resets the others. A dead key that matches no step leaves the sequence to the next key, which types its character.
+
 ## 0.33.0
 
 ### Minor Changes
