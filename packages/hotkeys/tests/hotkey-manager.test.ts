@@ -1993,6 +1993,19 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).toHaveBeenCalledOnce()
     })
 
+    it('fires a shifted symbol on its key release after Shift comes up first', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('?', callback, {
+        platform: 'linux',
+        eventType: 'keyup',
+      })
+      keydown({ key: '?', code: 'Slash', shiftKey: true, target: document })
+      keyup({ key: 'Shift', code: 'ShiftLeft', target: document })
+      expect(callback).not.toHaveBeenCalled()
+      keyup({ key: '/', code: 'Slash', target: document })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
     it('prevents the keydown so the browser does not act on it', () => {
       const save = vi.fn()
       HotkeyManager.getInstance().register('Mod+S', save, {

@@ -1055,6 +1055,17 @@ describe('matchesKeyboardEvent', () => {
         )
       })
     })
+
+    // macOS Spanish Option+Shift+6 types a space
+    it('falls back for a space typed on the digit row', () => {
+      const event = createKeyboardEvent(' ', {
+        altKey: true,
+        shiftKey: true,
+        code: 'Digit6',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+6', 'mac')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+Space', 'mac')).toBe(true)
+    })
   })
 
   describe('Unicode normalization edge cases', () => {

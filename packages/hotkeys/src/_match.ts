@@ -151,7 +151,8 @@ export function matchKeyboardEvent(
  *   AZERTY rearrange, and numpad positions, whose output depends on NumLock.
  *   Chrome on Linux Wayland reports Ctrl+` this way, and Firefox reports
  *   numpad 5 with NumLock off this way.
- * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2,
+ * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
+ *   and macOS Spanish Option+Shift+6 types a space,
  *   except `-`, `+` or `=` typed with only the platform's zoom modifier,
  *   Control or macOS Command: AZERTY Ctrl+- on the 6 key is zoom out
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
@@ -172,13 +173,13 @@ function positionStandsIn(
   platform: HotkeyPlatform,
 ): boolean {
   if (key === 'Unidentified') return !/^(Key|Numpad)/.test(code)
-  if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) {
     // AZERTY types `-` on the 6 key, so Ctrl+- is zoom out, not Ctrl+6
     const zoom =
       !shift && !alt && (platform === 'mac' ? meta && !ctrl : ctrl && !meta)
     return !zoom || !/^[-+=]$/.test(key)
   }
+  if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (isAsciiLetter(key)) return false
   const letterKey = code.startsWith('Key')
   if (/^[!-~]$/.test(key)) {

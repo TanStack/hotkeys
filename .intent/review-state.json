@@ -94,12 +94,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "1b3401a1f8abdadf5f89d96e3585d3924c5bbcbbb27fc8fd45f4487c428efc61",
+      "fingerprint": "bdc3df1552fd8edf8c8bdfb09dd4e71026be4dba11c09b5246e38166e311b524",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
         "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
-        "docs/guides/sensible-defaults.md": "712c8ca0ecaa490c6dc0adefe9f1421aa965fc4464c433f34379b13ebec0cac4",
+        "docs/guides/sensible-defaults.md": "0827154e9891a8cf78584a452934aa5a2a3caaedaa8063a45cd2456aa424ca71",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "no-change",
-      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "11a2bf28f651293bce938128f5d3427dda1ab3efa95696297fe197384744156f",
+      "fingerprint": "73ff29e87dad4cd77206ef256d15be34b362e5c14363bd89afac8bbee558eed0",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "712c8ca0ecaa490c6dc0adefe9f1421aa965fc4464c433f34379b13ebec0cac4",
+        "docs/guides/sensible-defaults.md": "0827154e9891a8cf78584a452934aa5a2a3caaedaa8063a45cd2456aa424ca71",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "dbc92d24d75b0799cd371a160c213d84e86c2757",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "no-change",
-      "reason": "Wording of how a dead key between sequence steps behaves. The core skill gives no guidance on keys between sequence steps.",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1455,13 +1455,13 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "dee6e307a697f11cdc15a04129d12e28f67cb87242709cf33ac5889db444b925",
+      "fingerprint": "58a3307cf48e6cb6cf6d09aa911b8731a5dbae538a922c5620498b72220ab698",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "bef14b954a4332c75b4271ee722a53d974e1bd972baf078124fbc3429512c516"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "ba4377e7ecdf729cf09a987a8284e6a00063e3aaa5f27958ab7ff554be3f5ec8"
       },
-      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
+      "reason": "Tests or generated reference docs for the matching fixes; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -4396,25 +4396,25 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "9d330caee48ffc68a8a395103d5f2bd2fabb4eadd66987b941c77da7399b9b23",
+      "fingerprint": "6dc04fde671a3c14b49f5c25e38d2ba5fe1f4c0bbcfd12bff93361e9d17178a0",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "8099305db8c69426c901a32e24ceefb7da4bb9756356025bafd1d1fc3885ab0b"
+        "packages/hotkeys/src/_match.ts": "48ff9b334e59d173b593f4ca90ef30e3bf734f8fca6490a432f745b03b8057a4"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row fallback for a typed space, keyup release of shifted symbols, and guide notes for the Thai zoom-key trade-off and AltGr-typed ASCII. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or AltGr-typed digits"
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "8ab197b2197b6cd2a340204abc01b7676548c5fa3324bed35cc88e9184ae7990",
+      "fingerprint": "ccd81b982c89f914f5fb17d20ceb6170434b8769465591f98dca40b85c1663a6",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "7e737eca223874b927d618760b9723445b4ff4595da80b15393e50cd475aa64a"
+        "packages/hotkeys/tests/match.test.ts": "33c996cf6c2f386b255a8d97a4ce9ed9f7e7701a4c32e67501d39d0f9d54f29d"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "133548f44becbcb8327b123ed4196256d0838a13",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "reason": "Tests or generated reference docs for the matching fixes; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
