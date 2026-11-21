@@ -1324,8 +1324,9 @@ export class HotkeyManager {
             }
             // Recorded even while the hotkey can't fire, so a callback that
             // enables it during this press, such as to end a mode, still
-            // gets the release.
-            this.#pendingReleases.set(id, result)
+            // gets the release. An auto-repeat continues a press and can't
+            // restart one that another key cancelled.
+            if (!event.repeat) this.#pendingReleases.set(id, result)
           }
         }
         continue

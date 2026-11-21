@@ -94,7 +94,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "d3a1690257f413e23307a1d4551bb5e9c1cee5f850b2423dc9b3f8f9abfe4589",
+      "fingerprint": "9d58eea068524febbcbed9c1064671f3d3968f64bd9b74fa348cc73812f71e9b",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
@@ -103,7 +103,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "2f1c3ae45a256466aedc3832fc243d28bbf1e7cbc7f5ea2e868fec1feba86262",
+        "packages/hotkeys/src/hotkey-manager.ts": "c745511e1182e3c5d25147255325532df80a0118c209c197d3b947f2ec2a1688",
         "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "7c13561745245e4b545c495a4fc6b59b50a8cd0c",
+      "head": "fc1da536902b03f428a51a2dde1d707f0e20c24d",
       "outcome": "no-change",
-      "reason": "Internal ordering fix in unregister; no public behavior or guidance changes.",
+      "reason": "Keyup chord press tracking fix; public behavior and guidance unchanged.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at 7c13561745245e4b545c495a4fc6b59b50a8cd0c"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at fc1da536902b03f428a51a2dde1d707f0e20c24d"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8564bbc577a2faaf36d796440785b45daaf512ea7bf644dd070ae19536aa1a4b",
+      "fingerprint": "592b40cde864619554b54cbc9f02ba75b37047bca1e1405f6b25a8a16378b1a8",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -340,7 +340,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "2f1c3ae45a256466aedc3832fc243d28bbf1e7cbc7f5ea2e868fec1feba86262",
+        "packages/hotkeys/src/hotkey-manager.ts": "c745511e1182e3c5d25147255325532df80a0118c209c197d3b947f2ec2a1688",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "7c13561745245e4b545c495a4fc6b59b50a8cd0c",
+      "head": "fc1da536902b03f428a51a2dde1d707f0e20c24d",
       "outcome": "no-change",
-      "reason": "Internal ordering fix in unregister; no public behavior or guidance changes.",
+      "reason": "Keyup chord press tracking fix; public behavior and guidance unchanged.",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at 7c13561745245e4b545c495a4fc6b59b50a8cd0c"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at fc1da536902b03f428a51a2dde1d707f0e20c24d"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1459,15 +1459,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "4f136dbaf5cfc3395ae4ff0424a22562e6036c17a56637719218ae2e15f692d4",
+      "fingerprint": "3bc2ed9e479fec382b28e82579596775cfeb428e76e8a2e67e1a1b425a348dd8",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "e8be2db441349c91942824fbf423ef935858822152a7cd72dc02462444562d4d"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "cfe6c2b6002e49f6e9bd53250f87003f39ad3553da5fe14d0914f0cf6b58d7e6"
       },
-      "head": "7c13561745245e4b545c495a4fc6b59b50a8cd0c",
+      "head": "fc1da536902b03f428a51a2dde1d707f0e20c24d",
       "outcome": "no-change",
-      "reason": "Internal ordering fix in unregister; no public behavior or guidance changes.",
+      "reason": "Keyup chord press tracking fix; public behavior and guidance unchanged.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 7c13561745245e4b545c495a4fc6b59b50a8cd0c"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at fc1da536902b03f428a51a2dde1d707f0e20c24d"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {

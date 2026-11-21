@@ -2250,6 +2250,20 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).not.toHaveBeenCalled()
     })
 
+    it('does not restart a cancelled press on an auto-repeat', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('K', callback, {
+        eventType: 'keyup',
+      })
+      const k = { key: 'k', code: 'KeyK', target: document }
+      keydown(k)
+      keydown({ key: 'j', code: 'KeyJ', target: document })
+      keyup({ key: 'j', code: 'KeyJ', target: document })
+      keydown({ ...k, repeat: true })
+      keyup(k)
+      expect(callback).not.toHaveBeenCalled()
+    })
+
     it('ends other presses on a release dispatched while a registration is removed', () => {
       const manager = HotkeyManager.getInstance()
       const removed = manager.register('K', () => {}, { eventType: 'keyup' })
