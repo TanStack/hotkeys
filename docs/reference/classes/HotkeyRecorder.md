@@ -98,7 +98,7 @@ Defined in: [hotkey-recorder.ts:265](https://github.com/TanStack/hotkeys/blob/ma
 cancel(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:546](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L546)
+Defined in: [hotkey-recorder.ts:545](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L545)
 
 Cancel recording without saving.
 
@@ -117,7 +117,7 @@ the onCancel callback if provided.
 commit(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:456](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L456)
+Defined in: [hotkey-recorder.ts:455](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L455)
 
 Commits the recorded steps after validation and conflict checks.
 Called automatically at `maxSteps`, on Enter, or after `idleTimeoutMs`.
@@ -135,7 +135,7 @@ A rejected commit leaves recording active with its steps intact.
 destroy(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:573](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L573)
+Defined in: [hotkey-recorder.ts:556](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L556)
 
 Clean up event listeners and reset state.
 
@@ -177,7 +177,7 @@ This allows framework adapters to sync callback changes without recreating the r
 start(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:331](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L331)
+Defined in: [hotkey-recorder.ts:329](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L329)
 
 Start recording a new hotkey.
 
@@ -196,7 +196,7 @@ and records chords according to `maxSteps`.
 stop(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:536](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L536)
+Defined in: [hotkey-recorder.ts:535](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L535)
 
 Stop recording (same as cancel, but doesn't call onCancel).
 
