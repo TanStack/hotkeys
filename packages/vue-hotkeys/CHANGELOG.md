@@ -1,5 +1,12 @@
 # @tanstack/vue-hotkeys
 
+## 0.25.3
+
+### Patch Changes
+
+- Updated dependencies [[`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f)]:
+  - @tanstack/hotkeys@0.33.1
+
 ## 0.25.2
 
 ### Patch Changes
