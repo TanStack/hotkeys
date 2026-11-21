@@ -4436,14 +4436,16 @@
       ]
     },
     "source:.gitignore": {
-      "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
+      "fingerprint": "2362c322fc9b2651fd2b158f775944ecd838ae5e3abb7bf24e84ecd4f71971c6",
       "snapshot": {
-        ".gitignore": "9bb08f48d6ff76283b48a0df3ef663250f937ef5497c16ceefd59a35c38a8842"
+        ".gitignore": "c38d3ddac82dce790729420c3e3cf6a9202cf8711c75677b8c997b8ec8e9458c"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "out-of-scope",
-      "reason": "Local ignore rules for untracked notes; not part of this change.",
-      "evidence": ["Not committed with this PR."]
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: .gitignore at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
       "fingerprint": "f9bff90986e9590053a846349592f99ce36353bbe3c199936db865d246962508",
@@ -7859,15 +7861,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "a62250a7d92e10c7e1d1e2dec55fd8bd512bda34f117fb463fe113605d706651",
+      "fingerprint": "dd48405d411cf54d2ce2b561fc974d04b8f2db66c7998f0adbca182446cfdb0b",
       "snapshot": {
-        "knip.json": "21632fa1e78cb846a87fb00fe37635a6ee7b2521e3543e3f5e7a6db008ab63ea"
+        "knip.json": "e75e4b7ec6bd52ab189929928476e27b38eaa8010fb90573f78ca51131aa0fb5"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
       "evidence": [
-        "Changed: knip.json at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Changed: knip.json at 0224d1b7e91c480c07548b9a686593487a0a73fa"
       ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
@@ -23582,6 +23584,90 @@
       "outcome": "out-of-scope",
       "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
+    },
+    "source:packages/hotkeys/tests/oracles/hotkey-grammar.oracle.ts": {
+      "fingerprint": "809f2229ad80a2618668243957118f63d0945b18eb3bde233a8c328457389e66",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/hotkey-grammar.oracle.ts": "d4554ef73a532245873334dfa42a90fd73023928e2f131411f59c4a216544112"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/hotkey-grammar.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/tests/oracles/key-matching.oracle.ts": {
+      "fingerprint": "48327180988852db9fada30c33c606c878899ea743071ac45aabdc3f657af571",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/key-matching.oracle.ts": "60655347597f497beba403bb26b14876e3f0ee32714ae2204731d35c3f42bb45"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/key-matching.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/tests/oracles/key-state.oracle.ts": {
+      "fingerprint": "fee700db8ddd0cfa22f5992dea700976a1991fbab09225e947d1910d1235f514",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/key-state.oracle.ts": "0f91bf57e0f41589055cdfafce840aa1c278b3db61e106aac8d0960e54bd5177"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/key-state.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/tests/oracles/manager-chords.oracle.ts": {
+      "fingerprint": "2ddf2e771cadf98d34bb34cd23247a88a70c0ae809f1ac5b0d2b64f8ee0854c3",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/manager-chords.oracle.ts": "f36c6e3c00af1cb0a2129ed3b7898ce083904d82ae2e4a044d7a52d93a89006f"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/manager-chords.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/tests/oracles/recorder.oracle.ts": {
+      "fingerprint": "d859bcef68d5acf90d3f6cb9fd117c82cc72a43590ba445d4fe6f1cc84c07568",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/recorder.oracle.ts": "9938b11de5cdce8ebbc970a5ae951cc7ab9bd8239b5f57ba69eaf5ebed34a1e0"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/recorder.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/tests/oracles/sequences.oracle.ts": {
+      "fingerprint": "34419e55a1f071f4aba5fb88938c3f1cb915d96166882a8f93aa54a5882972fb",
+      "snapshot": {
+        "packages/hotkeys/tests/oracles/sequences.oracle.ts": "ea7870bb75222a9d03aa1d96301693503a79e34379581d365a5823ec841881ca"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/oracles/sequences.oracle.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
+    },
+    "source:packages/hotkeys/vitest.oracle.config.ts": {
+      "fingerprint": "c03d80c05779456f16d95ccdd6153b0a7fee6573d0911d2eeded02f2d5c880a3",
+      "snapshot": {
+        "packages/hotkeys/vitest.oracle.config.ts": "702cadd60637b95d8a5c908431a8809cc2d71e1761971cb63e652883c083c21a"
+      },
+      "head": "0224d1b7e91c480c07548b9a686593487a0a73fa",
+      "outcome": "no-change",
+      "reason": "Test-only oracle suite and its config; no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/vitest.oracle.config.ts at 0224d1b7e91c480c07548b9a686593487a0a73fa"
+      ]
     }
   }
 }
