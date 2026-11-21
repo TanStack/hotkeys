@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "e45a5358aaf5266892afa4be7c170ce79e38a01d55f32b01d6cb46f4d7b87e3e",
+      "fingerprint": "50785d63beda5e392d370c0e7be8ab4b35ad7c15b005310038147bf34f0c79f3",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "d7bc646a409fa803dde08c6a51a10423e938bea6430c6b9fad454f7efa3f750c",
-        "docs/guides/sensible-defaults.md": "1018366d533d139324f6119cfe15c9bbab164912a63f4eb94dd0da3123189891",
+        "docs/framework/react/guides/sequences.md": "c9f701cf1af38e278807154ee5dc4e73cd64a935a28519a584e2374fb51e419a",
+        "docs/guides/sensible-defaults.md": "9b1e79689246f032cf76c3b7b799074fec30e6d19609806cdd28a9f5d366caa0",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "3fb485c2c73a32ebca611e2c05aeb4bb6d9ff245ef8f9dec9c7b1304ae7e4c57",
+        "packages/hotkeys/src/hotkey-manager.ts": "9d44cc5c5e6054e721af5d1ffa9d3526fed2b03fed1970353a81dde46c25a149",
         "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "0662a509e6fb6345753fa72913c94e1969f594d6d2bdcc7fa6b25b2398d869f2",
+      "fingerprint": "65fd6cd03fb339509b46289f3dda52061ce27aea7c7dc72234915a4a28fb0d6a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -299,7 +299,7 @@
         "docs/framework/react/guides/custom-hotkey-recording.md": "b391a5b8f4186abb861e55d4ac592cd63d290d8f38f6f2efdae2bab07f34f4a0",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "afbf6da761c5c22b1daf919046fed679c2d35ac571f287c558aa66881c31f891",
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
-        "docs/framework/react/guides/sequences.md": "d7bc646a409fa803dde08c6a51a10423e938bea6430c6b9fad454f7efa3f750c",
+        "docs/framework/react/guides/sequences.md": "c9f701cf1af38e278807154ee5dc4e73cd64a935a28519a584e2374fb51e419a",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
         "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
@@ -307,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
         "docs/framework/vue/quick-start.md": "36f2dd86551b0a08b33f7c439720027241a76d6e73aed60602fbee3f5c3d2782",
-        "docs/guides/sensible-defaults.md": "1018366d533d139324f6119cfe15c9bbab164912a63f4eb94dd0da3123189891",
+        "docs/guides/sensible-defaults.md": "9b1e79689246f032cf76c3b7b799074fec30e6d19609806cdd28a9f5d366caa0",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -340,7 +340,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "3fb485c2c73a32ebca611e2c05aeb4bb6d9ff245ef8f9dec9c7b1304ae7e4c57",
+        "packages/hotkeys/src/hotkey-manager.ts": "9d44cc5c5e6054e721af5d1ffa9d3526fed2b03fed1970353a81dde46c25a149",
         "packages/hotkeys/src/hotkey-recorder.ts": "dc53d33da84311cf851a8c51721fb5be892b008942a084c5ef301c9797f17d11",
         "packages/hotkeys/src/match.ts": "6526a4efc625764a43b05db7df035e7fe38711f3e07ebd45be06c0d5dcc29786",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -408,11 +408,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -685,23 +685,23 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "72723af77e2b7cdad65f5da3a609f1467d02b129b141a1dbf5e861918779c87a",
+      "fingerprint": "c227435c61f577ee8fc3f9faa4c15e8d54e900044dbf17693c4b994c783474ab",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "6537cb6f57a95ae056d043e8b853fa572238a1161b3fb526ea07d5c815f563d4"
+        "docs/reference/classes/HotkeyManager.md": "2bb71e51940daeaf1b201f5ad461254ed4a62a2508b3017e2154532311e2a4ba"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "d31e773ff6917694746d562aa9b86dfab6a9bb481c935ef2beeaaa900ab80934",
+      "fingerprint": "15bb18b1dacf8fe3bfde0cf40a02fc05805597ae8fe4195475bb58cd15e522c2",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "7e4a7d870d5837241c65057953482f9bcfe4538e369dd60dc7a94b68b82ae0a5"
+        "docs/reference/functions/getHotkeyManager.md": "982c3ffc131873ed0ef647ecef6465ff532a4022b333c69306d2399b1f3d9cb1"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1455,13 +1455,13 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "4ec2e463ee11b9182fc4fd9a6fa708d4122c7085b62be8d8fb139eac0016cd53",
+      "fingerprint": "dee6e307a697f11cdc15a04129d12e28f67cb87242709cf33ac5889db444b925",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "99b178a91ede18895c6fb623668629a5172c461d66bfc343e03a7b5a8435a9ca"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "bef14b954a4332c75b4271ee722a53d974e1bd972baf078124fbc3429512c516"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
+      "reason": "Tests, real-layout cases, CI pins, or generated reference docs; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -7575,15 +7575,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "5b57ff638e7e513142c3b4510ef53062a515a8e465e3fe7ca5ae42ff57dce227",
+      "fingerprint": "acca00b2e296017806590e0794f73697ca7e1d1ad751b9b66b378cc9e96ed3da",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "5d613abb67a3d2724f2139e48060d764228a27748f13f77d51b5796063dbc42b"
+        "docs/framework/alpine/guides/sequences.md": "1ceaa43dabdf148b8ee01c0180bf35505e66fcbe4c363b818b3082301aaadbb5"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
@@ -11791,99 +11791,99 @@
       ]
     },
     "source:docs/framework/angular/guides/sequences.md": {
-      "fingerprint": "db89e250ee5c0eb053a96c088c0e77a793cacb22096d8691562a895192531c2d",
+      "fingerprint": "544d5747cab1f1a66e3a9e6acf9a2997e33af2fed908f0442e471c4d47897df2",
       "snapshot": {
-        "docs/framework/angular/guides/sequences.md": "52eaae5c6e4c62ee70a656d146eaaf33c16b00f48efdd1da771e963552a21f3a"
+        "docs/framework/angular/guides/sequences.md": "6fe97373bfbf9d2a0e56f0c93326c994ca1a0bd880418ed70724b51dead6881e"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/ember/guides/sequences.md": {
-      "fingerprint": "0145a8ebdc43a0f5e3d8df7bff389797efead4b86a29d9f48e3a1a1f17224692",
+      "fingerprint": "94ea2ebec5acaa1c01faf92385f19f057136ca1038a94ec534277cfefa504dbf",
       "snapshot": {
-        "docs/framework/ember/guides/sequences.md": "4427bd3afe797ed9997e63b2e24de7649b2508030843e98fcd1ad71c391ed57b"
+        "docs/framework/ember/guides/sequences.md": "b39855f742369d0a813c9edd4b3ca4915c924e5f156e4c22ab29a77be57a6877"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/lit/guides/sequences.md": {
-      "fingerprint": "4eb4eab90ad84d416bbf5f424631c309a163389fbb0a658dddd2e7a41ba7167e",
+      "fingerprint": "86e5b9d3747f159b019280bba89b6003e30d95b227b702b01543ba24ac2510ea",
       "snapshot": {
-        "docs/framework/lit/guides/sequences.md": "48fbb717b87194117be47be06cc320faae23d52e69fe41755276796433d74e09"
+        "docs/framework/lit/guides/sequences.md": "e1718fef0f18d423c089a8dbafef8b2e06a85baa06f76879c5122eb51839394b"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/octane/guides/sequences.md": {
-      "fingerprint": "65c785f2da697a77551538e0eb21fb56639011c6da63c5d6cb2127ab22417060",
+      "fingerprint": "5aa06a403cc183433e2222000028c4f4e163f6adab14ce50cee6ccd99dbc0388",
       "snapshot": {
-        "docs/framework/octane/guides/sequences.md": "0dafd58975dc5454a3f744606b2330d0109810c7bfa42d9acd93015d8c77e4bb"
+        "docs/framework/octane/guides/sequences.md": "acdab1b6f001e8cbbe31207480117b8f4b113a5179e060a8f737ee6aaa97a922"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/preact/guides/sequences.md": {
-      "fingerprint": "a399765c3406549cfb6bc1d97f7ed36d45206d593bb5a4119ffd14e4883aafe1",
+      "fingerprint": "6e46f56e91b0ddd58f26721763d90ee090a8ec3956d2aadd0ce7ecfb18c09921",
       "snapshot": {
-        "docs/framework/preact/guides/sequences.md": "fb2a8d14e239ac1cedb39b177defb35779120fa345845e15091e871b1d9c67c4"
+        "docs/framework/preact/guides/sequences.md": "6a2f1ec259b304fbef33977bc8b8694b83cba3213b57f03203c85f24f5c13a4c"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/solid/guides/sequences.md": {
-      "fingerprint": "f251a9fe0ea429910c5a47d8e5074d18bb45017015759ae57f9af85e8a5e494f",
+      "fingerprint": "2b38e808631d1b4a4c5e05c5a0c430e13ff0b5f51b9011a38eb7ba2f746813cb",
       "snapshot": {
-        "docs/framework/solid/guides/sequences.md": "c6b06fd8bfc54523b4667fbe4d3f4e944e48039c2b840409f51ad15a1f6f3c25"
+        "docs/framework/solid/guides/sequences.md": "e801b79f37347c924880ef4efd016930cad4bdb6e85c663e72128891a94515bd"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/svelte/guides/sequences.md": {
-      "fingerprint": "8857736d0cf5ebd8e5a936730989857130bcfabb1adc4d77ee4ea36186781c2e",
+      "fingerprint": "6e86c04742a674dd3713200457eb7ec28dc2288868eca46073fc2171ef19f849",
       "snapshot": {
-        "docs/framework/svelte/guides/sequences.md": "9eda0669ce4f39fd08ea052bfaab2ecedd5044d1f0f2f1818ccab319ee9b88c6"
+        "docs/framework/svelte/guides/sequences.md": "c99ab842bcdf9beb23ed6c716736481fd82194224439589004023a2599338a91"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:docs/framework/vue/guides/sequences.md": {
-      "fingerprint": "e80e06438e959c21e8048847134f646fd03e66d8a2545d119e1acbbc75482942",
+      "fingerprint": "1930e2f39c6ae7340e7580545690e6df2128cc6cc81de260ca79e92b6153aa65",
       "snapshot": {
-        "docs/framework/vue/guides/sequences.md": "df43413823ef26b7fd87c593bc0546b5d19db87d393b506d9651913bcc0a234f"
+        "docs/framework/vue/guides/sequences.md": "eb0acdbe12c19995cd9e5e166e856e83199b8bbdff5def39068b3df493a11f1e"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
+      "head": "9037f6ef21aa3659b534474b93c24eb24ff5e9f0",
       "outcome": "no-change",
-      "reason": "Digit-row zoom keys and lock or dead keys between sequence steps. The core skill gives no guidance on either, and an agent writes the same hotkeys before and after.",
+      "reason": "Digit-row zoom keys, keyup release by key position, and lock or dead keys between sequence steps. The core skill gives no guidance on these, and an agent writes the same hotkeys before and after.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback or keys between sequence steps"
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md: no pitfall covers digit-row fallback, keyup release, or keys between sequence steps"
       ]
     },
     "source:e2e/browser/chords.spec.ts": {

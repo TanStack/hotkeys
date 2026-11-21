@@ -1315,8 +1315,12 @@ export class HotkeyManager {
         this.#pendingReleases.has(id)
       ) {
         result = matchKeyboardEvent(event, parsedChord, platform)
+        const pressed = this.#pendingReleases.get(id)?.identity?.code
         if (
           result.matched ||
+          // The pressed key's release, even if its character changed, such
+          // as AZERTY 6 with Shift released first, which then reports `-`
+          (pressed !== undefined && pressed !== '' && pressed === event.code) ||
           // The other Control or Shift key may still hold the modifier down.
           (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
             !event.getModifierState(eventKey))
