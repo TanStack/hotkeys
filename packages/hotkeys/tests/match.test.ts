@@ -1474,6 +1474,24 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  // macOS Hebrew types some letters with a point, two code points each
+  describe('letters of several code points', () => {
+    it('fires the position of a pointed letter, as for other non-Latin letters', () => {
+      const shiftA = createKeyboardEvent('שׁ', { code: 'KeyA', shiftKey: true })
+      expect(matchesKeyboardEvent(shiftA, 'Shift+A', 'mac')).toBe(true)
+      const optionH = createKeyboardEvent('ײַ', { code: 'KeyH', altKey: true })
+      expect(matchesKeyboardEvent(optionH, 'Alt+H', 'mac')).toBe(true)
+    })
+
+    // Shift is written, as it is for other letters
+    it('still fires the pointed letter itself', () => {
+      const shiftA = createKeyboardEvent('שׁ', { code: 'KeyA', shiftKey: true })
+      expect(
+        matchesKeyboardEvent(shiftA, 'Shift+שׁ' as HotkeyChord, 'mac'),
+      ).toBe(true)
+    })
+  })
+
   describe('Turkish dotless ı and dotted İ', () => {
     const dotless = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
       createKeyboardEvent('ı', { code: 'KeyI', ...options })

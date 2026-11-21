@@ -356,6 +356,23 @@ describe('recordBy: auto', () => {
     )
   })
 
+  // `·` belongs to the Latin script but is a symbol, not a letter
+  it('records Shift with a Latin-script symbol by position', () => {
+    // Spanish Control+Shift+3 types `·` on Windows, and macOS reports `3`
+    const onWindows = record(
+      { key: '·', code: 'Digit3', ctrlKey: true, shiftKey: true },
+      'windows',
+    )
+    const onMac = record(
+      { key: '3', code: 'Digit3', metaKey: true, shiftKey: true },
+      'mac',
+    )
+    expect(onWindows.hotkey).toBe('Mod+Shift+[Digit3]')
+    expect(matchesKeyboardEvent(onMac.event, onWindows.hotkey!, 'mac')).toBe(
+      true,
+    )
+  })
+
   it('records what the press typed when the event has no code', () => {
     const noCode = (press: Omit<Press, 'code'>) =>
       record({ ...press, code: '' }, 'windows')

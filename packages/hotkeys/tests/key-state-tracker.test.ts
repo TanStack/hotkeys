@@ -556,5 +556,16 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
       expect(tracker.getHeldKeys()).toEqual([])
     })
+
+    it('forgets held keys when the page is hidden, even if a page listener stops the event', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'k', 'KeyK')
+      const stop = (event: Event) => event.stopPropagation()
+      document.addEventListener('visibilitychange', stop)
+      vi.spyOn(document, 'hidden', 'get').mockReturnValue(true)
+      document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
+      document.removeEventListener('visibilitychange', stop)
+      expect(tracker.getHeldKeys()).toEqual([])
+    })
   })
 })

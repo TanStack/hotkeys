@@ -2200,6 +2200,114 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).not.toHaveBeenCalled()
     })
 
+    it('does not fire after a key that a hotkey on an inner element stopped', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      const inner = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      // Stops propagation by default, so the document never sees the J press
+      manager.register('J', inner, { target: panel })
+      keydown({ key: 'k', code: 'KeyK', target: panel })
+      keydown({ key: 'j', code: 'KeyJ', target: panel })
+      keyup({ key: 'j', code: 'KeyJ', target: panel })
+      keyup({ key: 'k', code: 'KeyK', target: panel })
+      expect(inner).toHaveBeenCalledOnce()
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
+    })
+
+    it('does not fire after a key pressed while focus is outside its target', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup', target: panel })
+      // Another hotkey's listener on the document hears the J press
+      manager.register('Escape', () => {})
+      keydown({ key: 'k', code: 'KeyK', target: panel })
+      keydown({ key: 'j', code: 'KeyJ', target: document.body })
+      keyup({ key: 'j', code: 'KeyJ', target: document.body })
+      keyup({ key: 'k', code: 'KeyK', target: panel })
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
+    })
+
+    it('forgets a press in progress when the manager is destroyed', () => {
+      const manager = HotkeyManager.getInstance()
+      manager.register('K', () => {}, { eventType: 'keyup' })
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      manager.destroy()
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      const errors: Array<unknown> = []
+      const onError = (event: ErrorEvent) => errors.push(event.error)
+      window.addEventListener('error', onError)
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      window.removeEventListener('error', onError)
+      expect(errors).toEqual([])
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not restart a cancelled press on an auto-repeat', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('K', callback, {
+        eventType: 'keyup',
+      })
+      const k = { key: 'k', code: 'KeyK', target: document }
+      keydown(k)
+      keydown({ key: 'j', code: 'KeyJ', target: document })
+      keyup({ key: 'j', code: 'KeyJ', target: document })
+      keydown({ ...k, repeat: true })
+      keyup(k)
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('ends other presses on a release dispatched while a registration is removed', () => {
+      const manager = HotkeyManager.getInstance()
+      const removed = manager.register('K', () => {}, { eventType: 'keyup' })
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      const errors: Array<unknown> = []
+      const onError = (event: ErrorEvent) => errors.push(event.error)
+      window.addEventListener('error', onError)
+      const subscription = manager.registrations.subscribe(() => {
+        subscription.unsubscribe()
+        keyup({ key: 'k', code: 'KeyK', target: document })
+      })
+      removed.unregister()
+      window.removeEventListener('error', onError)
+      expect(errors).toEqual([])
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on a modifier release after its key was released outside its target', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      manager.register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+        target: panel,
+      })
+      // Another hotkey's listener on the document hears the K release
+      manager.register('Escape', () => {})
+      keydown({
+        key: 'Control',
+        code: 'ControlLeft',
+        ctrlKey: true,
+        target: panel,
+      })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: panel })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
+      keyup({ key: 'Control', code: 'ControlLeft', target: panel })
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
+    })
+
     it('does not fire after a key that continues a sequence', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
