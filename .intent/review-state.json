@@ -1459,15 +1459,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "e30df9636472c65ae783a42433466438227ff2d52709cff72d8cd1ed070a1468",
+      "fingerprint": "924181f3ced1c66a3c49eab432b052615a895a216f376f16069c63a3faccee1a",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "68a3b2549625072be3dcd65d01898c1a5f2cd551a4fb64cb72b56af413cdafb7"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "8cfa0db43e7018735a7aaf7d0615a6336ab012e30b1a1050d6db97e0abfa5882"
       },
-      "head": "0840d8fe7630b3b76ee4d19618224c3ef2c1d27b",
+      "head": "afe08fa39a25a18c9b3a770133fd6e196d673351",
       "outcome": "no-change",
-      "reason": "Internal cleanup with no public behavior or guidance change.",
+      "reason": "Test assertion only; no guidance change.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 0840d8fe7630b3b76ee4d19618224c3ef2c1d27b"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at afe08fa39a25a18c9b3a770133fd6e196d673351"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
