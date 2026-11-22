@@ -51,15 +51,23 @@ export function withDefaults<T extends object>(
 }
 
 /**
+ * Function keys (`F1` to `F24`) and media keys: the audio, browser, launch,
+ * and playback keys. They type nothing, and a text field does nothing with them.
+ */
+const NON_TYPING_KEY = /^(F\d|Audio|Browser|Launch|Media)/
+
+/**
  * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).
- * Ctrl/Meta shortcuts and Escape fire in inputs; single keys and Shift/Alt combos are ignored.
+ * Ctrl/Meta shortcuts, Escape, function keys, and media keys fire in inputs,
+ * with any modifiers. Other single keys and Shift/Alt combos are ignored.
  */
 export function getDefaultIgnoreInputs(
   parsedChord: ParsedHotkeyChord,
 ): boolean {
   if (parsedChord.ctrl || parsedChord.meta) return false // Mod+S, Ctrl+C, etc.
-  if (parsedChord.key === 'Escape' || parsedChord.code === 'Escape')
-    return false // Close modal, etc.
+  const key = parsedChord.key ?? parsedChord.code
+  if (key === 'Escape') return false // Close modal, etc.
+  if (NON_TYPING_KEY.test(key)) return false // F5, Shift+F10, MediaPlayPause
   return true // Single keys, Shift+key, Alt+key
 }
 

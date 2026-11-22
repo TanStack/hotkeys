@@ -203,11 +203,11 @@ class MyEditor extends LitElement {
   @hotkey('Mod+S')
   save() {}
 
-  @hotkey('Mod+Z')
-  undo() {}
+  @hotkey('Mod+Enter')
+  publish() {}
 
-  @hotkey('Mod+Shift+Z')
-  redo() {}
+  @hotkey('Mod+D')
+  duplicate() {}
 
   @hotkey(['G', 'G'], { timeout: 500 })
   scrollToTop() {}

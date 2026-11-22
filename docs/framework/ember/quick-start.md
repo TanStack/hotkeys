@@ -42,8 +42,8 @@ import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
 export default class Editor extends Component {
   shortcuts: Array<EmberHotkeyDefinition> = [
     { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
-    { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+    { hotkey: 'Mod+Enter', callback: () => publish() },
+    { hotkey: 'Mod+D', callback: () => duplicate() },
   ]
 
   <template>

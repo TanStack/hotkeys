@@ -197,8 +197,8 @@ import { useHotkeys } from '@tanstack/vue-hotkeys'
 
 useHotkeys([
   { hotkey: 'Mod+S', callback: () => save() },
-  { hotkey: 'Mod+Z', callback: () => undo() },
-  { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+  { hotkey: 'Mod+Enter', callback: () => publish() },
+  { hotkey: 'Mod+D', callback: () => duplicate() },
   { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
 ])
 </script>

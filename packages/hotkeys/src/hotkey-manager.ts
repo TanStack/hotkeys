@@ -94,8 +94,13 @@ export interface HotkeyOptions {
    * such as menus, listboxes, tabs, and grids. A hotkey targeted at the control
    * itself still receives them. Defaults to `'auto'`, which chooses from the
    * hotkey (the first step of a sequence): true for single keys and Shift/Alt
-   * combos; false for Ctrl/Meta shortcuts and Escape. Set false to handle keys
-   * even in these controls.
+   * combos; false for Ctrl/Meta shortcuts, Escape, function keys (F1 to F24),
+   * and media keys, which type nothing. Set false to handle keys even in
+   * these controls.
+   *
+   * With `'auto'`, a Ctrl/Meta shortcut also fires in text fields when the
+   * browser uses the same shortcut to edit text, such as `Mod+Z`, `Mod+A`,
+   * and `Mod+C`. Set true on such a hotkey to leave the shortcut to the field.
    */
   ignoreInputs?: boolean | 'auto'
   /** The target platform for resolving 'Mod' */

@@ -149,6 +149,101 @@ describe('registration and event-target helpers', () => {
       ).toBe(false)
     })
 
+    it.each(['F1', 'F5', 'F12', 'F24'])(
+      'should return false for the function key %s',
+      (key) => {
+        const modifiers = { ctrl: false, alt: false, meta: false }
+        expect(
+          getDefaultIgnoreInputs({
+            key,
+            ...modifiers,
+            shift: false,
+            modifiers: [],
+          }),
+        ).toBe(false)
+        expect(
+          getDefaultIgnoreInputs({
+            key,
+            ...modifiers,
+            shift: true,
+            modifiers: ['Shift'],
+          }),
+        ).toBe(false)
+        expect(
+          getDefaultIgnoreInputs({
+            code: key,
+            ...modifiers,
+            shift: false,
+            modifiers: [],
+          }),
+        ).toBe(false)
+      },
+    )
+
+    it.each([
+      'MediaPlayPause',
+      'MediaStop',
+      'MediaTrackNext',
+      'MediaTrackPrevious',
+      'AudioVolumeDown',
+      'AudioVolumeMute',
+      'AudioVolumeUp',
+      'BrowserBack',
+      'BrowserRefresh',
+      'LaunchMail',
+      'LaunchApplication1',
+      'LaunchMediaPlayer',
+    ])('should return false for the media key %s', (key) => {
+      expect(
+        getDefaultIgnoreInputs({
+          key,
+          ctrl: false,
+          shift: false,
+          alt: false,
+          meta: false,
+          modifiers: [],
+        }),
+      ).toBe(false)
+    })
+
+    it.each(['MediaSelect', 'LaunchApp1'])(
+      'should return false for the physical media key [%s]',
+      (code) => {
+        expect(
+          getDefaultIgnoreInputs({
+            code,
+            ctrl: false,
+            shift: false,
+            alt: false,
+            meta: false,
+            modifiers: [],
+          }),
+        ).toBe(false)
+      },
+    )
+
+    it.each([
+      'F',
+      'Fn',
+      'Find',
+      'Home',
+      'Insert',
+      'Enter',
+      'Convert',
+      'ContextMenu',
+    ])('should return true for %s, which is not a function key', (key) => {
+      expect(
+        getDefaultIgnoreInputs({
+          key,
+          ctrl: false,
+          shift: false,
+          alt: false,
+          meta: false,
+          modifiers: [],
+        }),
+      ).toBe(true)
+    })
+
     it('should return true for single keys', () => {
       expect(
         getDefaultIgnoreInputs({
