@@ -1,14 +1,25 @@
-import {
-  MODIFIER_ALIASES,
-  PUNCTUATION_CODE_MAP,
-  normalizeKeyName,
-} from './constants'
-import type { CanonicalModifier, NormalizedKeyboardEvent } from './key.types'
+import { isModifierCode, modifierAlias } from './_chord'
+import { ownValue } from './_keys'
+import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
+import type { NormalizedKeyboardEvent } from './key.types'
+import type { HotkeyPlatform } from './platform'
+
+// Reads keyboard events: what was pressed, and whether a hotkey may use it.
+
+/**
+ * The letter printed on the key for a macOS Option press, from the legacy
+ * `keyCode`, or undefined when `keyCode` isn't a letter (A to Z).
+ */
+export function macKeycapLetter(event: KeyboardEvent): string | undefined {
+  return event.keyCode > 64 && event.keyCode < 91
+    ? String.fromCharCode(event.keyCode)
+    : undefined
+}
 
 /** Normalizes Unicode key names and modifier flags while retaining physical code and IME state. */
 export function normalizeKeyboardEvent(
   event: KeyboardEvent,
-  platform?: 'mac' | 'windows' | 'linux',
+  platform?: HotkeyPlatform,
 ): NormalizedKeyboardEvent {
   let altGraph = false
   try {
@@ -40,14 +51,61 @@ export function normalizeKeyboardEvent(
     meta: Boolean(event.metaKey),
     altGraph: altGraph && !controlAlt,
     location: event.location,
-    // Safari sends the Enter that commits a composition after compositionend,
-    // with isComposing false but keyCode 229.
-    isComposing:
-      Boolean(event.isComposing) ||
-      event.keyCode === 229 ||
-      key === 'Process' ||
-      key === 'Unidentified',
+    isComposing: isComposingEvent(event),
   }
+}
+
+/**
+ * Whether a key press belongs to an input method editor, so no hotkey reads it.
+ *
+ * Safari sends the Enter that commits a composition after compositionend,
+ * with isComposing false but keyCode 229. An `Unidentified` key counts only
+ * without a usable code: Chrome on Linux Wayland sends Ctrl+Backquote as an
+ * `Unidentified` key with its code. One on a modifier key, such as
+ * `ControlLeft`, is ignored like a modifier press.
+ */
+function isComposingEvent(event: KeyboardEvent): boolean {
+  return (
+    Boolean(event.isComposing) ||
+    event.keyCode === 229 ||
+    event.key === 'Process' ||
+    (event.key === 'Unidentified' &&
+      (!event.code ||
+        event.code === 'Unidentified' ||
+        isModifierCode(event.code)))
+  )
+}
+
+/**
+ * Whether the event is the press or release of a modifier key itself:
+ * Control, Shift, Alt, Meta, or AltGraph. The key can be missing on events
+ * that autofill and browser extensions send.
+ */
+export function isModifierPress(event: KeyboardEvent): boolean {
+  return (
+    event.key === 'AltGraph' || modifierAlias(event.key || '') !== undefined
+  )
+}
+
+/**
+ * Whether a key event can be a step of a sequence. Auto-repeats, keys an
+ * input method editor reads, and modifier presses are not steps: they neither
+ * advance a sequence nor reset it.
+ */
+export function isSequenceStep(event: KeyboardEvent): boolean {
+  return (
+    !(event.type === 'keydown' && event.repeat) &&
+    !isComposingEvent(event) &&
+    !isModifierPress(event)
+  )
+}
+
+/**
+ * Whether a key event that matches no step leaves a sequence's progress alone:
+ * a lock key, Fn, or a dead key, whose character comes with the next key.
+ */
+export function keepsSequenceProgress(event: KeyboardEvent): boolean {
+  return /^(CapsLock|NumLock|ScrollLock|Fn|FnLock|Dead)$/.test(event.key)
 }
 
 /**
@@ -60,9 +118,8 @@ export function codeToLogicalKey(code: string): string | undefined {
   if (/^Digit[0-9]$/i.test(code)) return code.slice(5)
   if (/^Numpad[0-9]$/i.test(code)) return code.slice(6)
 
-  // Own properties only, so codes such as `toString` never read Object.prototype
-  if (Object.hasOwn(PUNCTUATION_CODE_MAP, code))
-    return PUNCTUATION_CODE_MAP[code]
+  const punctuation = ownValue(PUNCTUATION_CODE_MAP, code)
+  if (punctuation !== undefined) return punctuation
 
   const named: Record<string, string> = {
     NumpadAdd: '+',
@@ -73,7 +130,16 @@ export function codeToLogicalKey(code: string): string | undefined {
     NumpadEnter: 'Enter',
     Space: 'Space',
   }
-  return Object.hasOwn(named, code) ? named[code] : undefined
+  return ownValue(named, code)
+}
+
+/**
+ * Whether a key value is text the key typed rather than a named key such as
+ * `End` or `Dead`. Text can take several code points: macOS Hebrew Shift+A
+ * types `שׁ`, a letter with a point.
+ */
+export function isTypedText(key: string): boolean {
+  return key !== '' && !/^[A-Z][A-Za-z0-9]+$/.test(key)
 }
 
 /**
@@ -88,88 +154,5 @@ export function altGraphTypedCharacter(
   if (!event.altGraph) return false
   // A dead key starts a composed character such as `ẽ`.
   if (event.key === 'Dead') return true
-  return isPrintableKey(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
-}
-
-/** Tests for one Unicode code point, including characters represented by a surrogate pair. */
-export function isPrintableKey(key: string): boolean {
-  return key !== '' && Array.from(key).length === 1
-}
-
-/**
- * Resolves a modifier token or alias case-insensitively: `ctrl` → `Control`,
- * `cmd` → `Meta`, `mod` → `Mod`. Returns undefined for anything else.
- */
-export function modifierAlias(
-  token: string,
-): CanonicalModifier | 'Mod' | undefined {
-  // Every alias has a lowercase entry. hasOwn keeps out names like 'constructor'.
-  const lower = token.toLowerCase()
-  return Object.hasOwn(MODIFIER_ALIASES, lower)
-    ? MODIFIER_ALIASES[lower]
-    : undefined
-}
-
-/** Whether a string has the shape of a `KeyboardEvent.code`, such as `KeyS`. */
-export function isCodeName(code: string): boolean {
-  return /^[A-Za-z][A-Za-z0-9]*$/.test(code)
-}
-
-/** The code inside a physical token: `[KeyS]` → `KeyS`. Undefined for anything else. */
-export function physicalCodeOf(token: string): string | undefined {
-  return token.startsWith('[') &&
-    token.endsWith(']') &&
-    isCodeName(token.slice(1, -1))
-    ? token.slice(1, -1)
-    : undefined
-}
-
-/** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
-export function splitChordParts(hotkey: string): Array<string> {
-  if (!hotkey.endsWith('+')) return hotkey.split('+')
-  const parts = hotkey.slice(0, -1).split('+')
-  if (parts.at(-1) === '') parts.pop()
-  parts.push('+')
-  return parts
-}
-
-/** Identifies ASCII letters whose layout-produced value takes precedence over positional fallbacks. */
-export function isAsciiLetter(key: string): boolean {
-  return /^[A-Za-z]$/.test(key)
-}
-
-/** Identifies a single Latin-script character, including accented letters. */
-export function isLatinLetter(key: string): boolean {
-  return /^\p{Script_Extensions=Latin}$/u.test(key)
-}
-
-let collator: Intl.Collator | undefined
-
-/** Compares letters without case, preserving accents and avoiding expansions such as ß → SS. */
-export function keysEqual(left: string, right: string): boolean {
-  if (left === right) return true
-  if (/^\p{Letter}$/u.test(left) && /^\p{Letter}$/u.test(right)) {
-    // One collator is much cheaper than localeCompare on every key press.
-    collator ??= new Intl.Collator(undefined, { sensitivity: 'accent' })
-    return collator.compare(left, right) === 0
-  }
-  return false
-}
-
-/** Rejects reserved physical-token syntax in logical object fields while allowing Unicode characters. */
-export function assertLogicalKey(key: string): void {
-  if (/^\[.*\]$/s.test(key.trim())) {
-    throw new Error(
-      'Logical key must not contain a bracketed physical code. Use the code field instead.',
-    )
-  }
-}
-
-/**
- * Whether a key is written like a key the library knows: one character,
- * F1-F24, or a capitalized name such as `Escape`. Key names are
- * case-sensitive, so `escape` and `f1` don't qualify.
- */
-export function isKeyNameShape(key: string): boolean {
-  return /^(?:.|F(?:[1-9]|1\d|2[0-4])|[A-Z][a-z][A-Za-z\d]*)$/su.test(key)
+  return isTypedText(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
 }

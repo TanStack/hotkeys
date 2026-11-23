@@ -2,10 +2,9 @@
   import { onMount } from 'svelte'
   import HotkeysProvider from '../src/HotkeysProvider.svelte'
   import PlatformChild from './PlatformChild.svelte'
-  import type { Hotkey } from '@tanstack/hotkeys'
+  import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
   import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
 
-  type Platform = 'mac' | 'windows' | 'linux'
   let {
     initial,
     hotkeyPlatform,
@@ -14,14 +13,14 @@
     onRecord,
     ready,
   }: {
-    initial: Platform
-    hotkeyPlatform?: Platform
-    labelPlatform?: Platform
+    initial: HotkeyPlatform
+    hotkeyPlatform?: HotkeyPlatform
+    labelPlatform?: HotkeyPlatform
     onHotkey: () => void
     onRecord: (hotkey: Hotkey) => void
     ready: (
       recorder: SvelteHotkeyRecorder,
-      setPlatform: (platform: Platform) => void,
+      setPlatform: (platform: HotkeyPlatform) => void,
     ) => void
   } = $props()
   // svelte-ignore state_referenced_locally

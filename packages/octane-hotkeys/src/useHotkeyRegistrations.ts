@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { select, subSlot } from './internal'
 import type { HotkeyRegistrationsResult } from './types'
 
@@ -9,7 +10,7 @@ export function useHotkeyRegistrations(
 ): HotkeyRegistrationsResult {
   const hotkeys = select(
     getHotkeyManager().registrations,
-    (state) => Array.from(state.values()).map(toHotkeyRegistrationView),
+    getHotkeyRegistrationViews,
     subSlot(slot, 'hotkeys'),
   )
   return { hotkeys }

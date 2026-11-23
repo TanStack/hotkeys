@@ -8,20 +8,27 @@
     appHotkeys,
     customHotkeys,
     onCustomHotkeysChange,
+    platform: initialPlatform,
+    setPlatform,
     ready,
   }: {
     appHotkeys: AppHotkeys
     customHotkeys?: CustomHotkeys
     onCustomHotkeysChange?: (custom: CustomHotkeys) => void
+    platform?: 'mac' | 'windows'
+    setPlatform?: (set: (next: 'mac' | 'windows') => void) => void
     ready: (api: ChildApi) => void
   } = $props()
+
+  let platform = $state(initialPlatform)
+  setPlatform?.((next) => (platform = next))
 </script>
 
 <HotkeysProvider
   {appHotkeys}
   {customHotkeys}
   {onCustomHotkeysChange}
-  defaultOptions={{ hotkey: { platform: 'mac' } }}
+  defaultOptions={{ hotkey: { platform: 'mac' }, platform }}
 >
   <AppHotkeysChild {appHotkeys} {ready} />
 </HotkeysProvider>

@@ -1,6 +1,8 @@
 import { expect, test } from '../support/fixtures'
 
 const DIALOG = '<dialog id="dialog"><button id="ok">OK</button></dialog>'
+const STACKED =
+  '<dialog id="lower"><button>Lower</button></dialog><dialog id="upper"><button>Upper</button></dialog>'
 const POPOVERS =
   '<button id="outside">Outside</button><div id="auto" popover>Auto</div><div id="manual" popover="manual">Manual</div>'
 
@@ -43,6 +45,66 @@ test.describe('native overlays', () => {
     ).toBe(true)
   })
 
+  test('a hotkey on the top modal dialog receives Escape while a lower one is open', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(STACKED)
+    await page.evaluate(() => {
+      ;(document.getElementById('lower') as HTMLDialogElement).showModal()
+      ;(document.getElementById('upper') as HTMLDialogElement).showModal()
+    })
+    await hk.register('upper', 'Escape', { target: '#upper' })
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['upper'])
+    expect(
+      await page.evaluate(() =>
+        ['lower', 'upper'].map(
+          (id) => (document.getElementById(id) as HTMLDialogElement).open,
+        ),
+      ),
+    ).toEqual([true, true])
+  })
+
+  test('a hotkey on a lower modal dialog leaves Escape to the dialog above it', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(STACKED)
+    await page.evaluate(() => {
+      ;(document.getElementById('lower') as HTMLDialogElement).showModal()
+      ;(document.getElementById('upper') as HTMLDialogElement).showModal()
+    })
+    await hk.register('lower', 'Escape', { target: '#lower' })
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual([])
+    expect(
+      await page.evaluate(
+        () => (document.getElementById('upper') as HTMLDialogElement).open,
+      ),
+    ).toBe(false)
+    // Focus returns to the lower dialog, which is now on top
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['lower'])
+  })
+
+  test('a global hotkey leaves Escape to stacked modal dialogs', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(STACKED)
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      ;(document.getElementById('lower') as HTMLDialogElement).showModal()
+      ;(document.getElementById('upper') as HTMLDialogElement).showModal()
+    })
+    await page.keyboard.press('Escape')
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual([])
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['escape'])
+  })
+
   test('a keyup Escape hotkey skips the release of the Escape that closed the dialog', async ({
     page,
     harness,
@@ -72,6 +134,123 @@ test.describe('native overlays', () => {
     expect(await hk.firedNames()).toEqual([])
   })
 
+  // Component libraries such as Material Web keep their `<dialog>` in a shadow
+  // root, where a document search doesn't find it.
+  test('a modal dialog in a shadow root closes on Escape instead of running a global hotkey', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<dialog><button>OK</button></dialog>'
+      root.querySelector('dialog')!.showModal()
+    })
+    const open = () =>
+      page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      )
+    await page.keyboard.press('Escape')
+    expect(await open()).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['escape'])
+  })
+
+  test('a shadow root dialog with slotted content closes on Escape', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<div id="host"><button id="slotted">OK</button></div>',
+    )
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<dialog><slot></slot></dialog>'
+      root.querySelector('dialog')!.showModal()
+      document.getElementById('slotted')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+  })
+
+  // The host is outside the dialog, like an element around a dialog in the
+  // document.
+  test('a hotkey on the host of a shadow root dialog leaves Escape to the dialog', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML =
+        '<button id="inside">Inside</button><dialog><button>OK</button></dialog>'
+      root.querySelector('dialog')!.showModal()
+    })
+    await hk.register('host', 'Escape', { target: '#host' })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(
+        () =>
+          document.getElementById('host')!.shadowRoot!.querySelector('dialog')!
+            .open,
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+    // With the dialog closed, the host's hotkey gets Escape from inside it.
+    await page.evaluate(() =>
+      document
+        .getElementById('host')!
+        .shadowRoot!.querySelector<HTMLElement>('#inside')!
+        .focus(),
+    )
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['host'])
+  })
+
+  test('an open popover in a shadow root closes on Escape while focus is inside it', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<div id="host"></div>')
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      const root = document
+        .getElementById('host')!
+        .attachShadow({ mode: 'open' })
+      root.innerHTML = '<div popover><button>Item</button></div>'
+      root.querySelector<HTMLElement>('[popover]')!.showPopover()
+      root.querySelector('button')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(() =>
+        document
+          .getElementById('host')!
+          .shadowRoot!.querySelector('[popover]')!
+          .matches(':popover-open'),
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+  })
+
   test('a manual popover leaves Escape to the hotkey', async ({
     page,
     harness,
@@ -79,6 +258,138 @@ test.describe('native overlays', () => {
     const hk = await harness(POPOVERS)
     await hk.register('escape', 'Escape')
     await page.evaluate(() => document.getElementById('manual')!.showPopover())
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['escape'])
+  })
+
+  for (const role of ['', ' role="alertdialog"']) {
+    test(`a modal dialog${role} with closedby="none" leaves Escape to the hotkey`, async ({
+      page,
+      harness,
+    }) => {
+      const hk = await harness(
+        `<dialog id="dialog"${role} closedby="none"><button>OK</button></dialog>`,
+      )
+      test.skip(
+        !(await page.evaluate(() => 'closedBy' in HTMLDialogElement.prototype)),
+        'closedby is not supported',
+      )
+      await hk.register('escape', 'Escape')
+      await page.evaluate(() =>
+        (document.getElementById('dialog') as HTMLDialogElement).showModal(),
+      )
+      await page.keyboard.press('Escape')
+      expect(await hk.firedNames()).toEqual(['escape'])
+    })
+  }
+
+  test('a non-modal dialog with closedby="any" closes on Escape instead of running a global hotkey', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<dialog id="dialog" closedby="any"><button id="ok">OK</button></dialog>',
+    )
+    test.skip(
+      !(await page.evaluate(() => 'closedBy' in HTMLDialogElement.prototype)),
+      'closedby is not supported',
+    )
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => {
+      ;(document.getElementById('dialog') as HTMLDialogElement).show()
+      document.getElementById('ok')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(
+      await page.evaluate(
+        () => (document.getElementById('dialog') as HTMLDialogElement).open,
+      ),
+    ).toBe(false)
+    expect(await hk.firedNames()).toEqual([])
+  })
+})
+
+// Component libraries render their dialogs as elements with ARIA roles and
+// close them from their own listeners.
+const ARIA_DIALOG =
+  '<button id="page">Page</button><div id="dialog" role="dialog" aria-modal="true"><input id="field"></div>'
+
+test.describe('ARIA dialogs', () => {
+  test('a dialog that closes from a window listener gets Escape instead of a global hotkey', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(ARIA_DIALOG)
+    await hk.register('escape', 'Escape')
+    // Like Headless UI and Reka UI: a window listener that skips a prevented key.
+    await page.evaluate(() => {
+      window.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || event.defaultPrevented) return
+        document.getElementById('dialog')?.remove()
+        document.getElementById('page')!.focus()
+      })
+      document.getElementById('field')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(await page.locator('#dialog').count()).toBe(0)
+    expect(await hk.firedNames()).toEqual([])
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['escape'])
+  })
+
+  test('a dialog that closes before the hotkey runs still gets Escape alone', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(ARIA_DIALOG)
+    await hk.register('escape', 'Escape')
+    // Like Radix UI: a document capture listener that closes the dialog and
+    // moves focus before the hotkey's listener runs.
+    await page.evaluate(() => {
+      document.addEventListener(
+        'keydown',
+        (event) => {
+          if (event.key !== 'Escape' || !document.getElementById('dialog')) {
+            return
+          }
+          event.preventDefault()
+          document.getElementById('dialog')!.remove()
+          document.getElementById('page')!.focus()
+        },
+        { capture: true },
+      )
+      document.getElementById('field')!.focus()
+    })
+    await page.keyboard.press('Escape')
+    expect(await page.locator('#dialog').count()).toBe(0)
+    expect(await hk.firedNames()).toEqual([])
+  })
+
+  test('a hotkey targeted inside the dialog keeps Escape', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(ARIA_DIALOG)
+    await hk.register('dialog', 'Escape', { target: '#dialog' })
+    await page.evaluate(() => document.getElementById('field')!.focus())
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['dialog'])
+  })
+
+  test('an expanded combobox gets Escape instead of a global hotkey', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<input id="combo" role="combobox" aria-expanded="true">',
+    )
+    await hk.register('escape', 'Escape')
+    await page.evaluate(() => document.getElementById('combo')!.focus())
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual([])
+    await page.evaluate(() =>
+      document.getElementById('combo')!.setAttribute('aria-expanded', 'false'),
+    )
     await page.keyboard.press('Escape')
     expect(await hk.firedNames()).toEqual(['escape'])
   })

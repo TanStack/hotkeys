@@ -1,9 +1,11 @@
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { injectHotkeys } from './injectHotkeys'
 import type { ElementRef, Signal } from '@angular/core'
 import type {
   AppHotkey,
   HotkeyCallback,
   HotkeyCallbackContextFor,
+  MaybeGetter,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -18,8 +20,9 @@ import type {
 
 /**
  * The element to listen on: an element, an `ElementRef`, or a signal of
- * either, such as `viewChild<ElementRef>('panel')`. A `null` target, or a
- * signal of `undefined`, skips registration until the element exists.
+ * either, such as `viewChild<ElementRef>('panel')`. A `null` or `undefined`
+ * target, or a signal of either, skips registration until the element exists.
+ * Omit `target` for the document.
  */
 export type InjectHotkeyTarget =
   | Target
@@ -47,8 +50,6 @@ export type InjectHotkeyOptionsFor<T extends RegisterableHotkey> =
 /** Call-site options for an app hotkey, typed by its declared default kind. */
 export type InjectAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
   AdapterAppHotkeyOptions<T, InjectHotkeyTarget>
-
-type MaybeGetter<T> = T | (() => T)
 
 /**
  * Angular inject-based API for registering a hotkey: a chord such as
@@ -93,9 +94,9 @@ export function injectHotkey(
     () =>
       [
         {
-          hotkey: typeof hotkey === 'function' ? hotkey() : hotkey,
+          hotkey: resolveMaybeGetter(hotkey),
           callback,
-          options: typeof options === 'function' ? options() : options,
+          options: resolveMaybeGetter(options),
         },
       ] as never,
   )

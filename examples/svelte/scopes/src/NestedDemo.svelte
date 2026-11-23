@@ -1,9 +1,9 @@
 <script lang="ts">
   import { HotkeysProvider, createHotkey } from '@tanstack/svelte-hotkeys'
-  import { getActivity } from './activity.svelte'
   import CommentBox from './CommentBox.svelte'
   import Key from './Key.svelte'
   import ScopeFrame from './ScopeFrame.svelte'
+  import { getActivity } from './activity.svelte'
 
   const activity = getActivity()
   let showComments = $state(true)

@@ -1,10 +1,5 @@
-import {
-  getHotkeyManager,
-  getKeyStateTracker,
-  isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
+import { isHotkeyHintVisible } from '@tanstack/hotkeys/adapter'
 import { useHotkeysContext } from './HotkeysProvider'
 import { select, splitSlot, subSlot, useAppHotkeysStore } from './internal'
 import type {
@@ -34,25 +29,24 @@ export function useHotkeyHint(
     useHotkeysContext()?.appHotkeysStore ?? null,
     subSlot(slot, 'app-hotkeys'),
   )
-  const resolved = isAppHotkey(hotkey)
-    ? resolveAppHotkey(hotkey, store).hotkey
-    : hotkey
   const manager = getHotkeyManager()
+  // Both selections are booleans, so a registration or held key change
+  // re-renders only when the hint flips.
   const active = select(
     manager.registrations,
-    () => resolved !== null && manager.hasActiveRegistration(hotkey),
+    () => manager.hasActiveRegistration(hotkey),
     subSlot(slot, 'hint-active'),
   )
-  const held = select(
+  const visible = select(
     getKeyStateTracker().store,
     (state) =>
-      resolved !== null &&
-      matchesHeldModifiers(
-        resolved,
+      isHotkeyHintVisible(
+        hotkey,
         state.heldKeys,
         args[0] as HeldModifierOptions | undefined,
+        store,
       ),
     subSlot(slot, 'hint'),
   )
-  return active && held
+  return active && visible
 }

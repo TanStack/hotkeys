@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/hotkeys-devtools",
-  "version": "1.8.1",
+  "version": "1.11.4",
   "description": "Devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -23,11 +23,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -41,7 +42,7 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "files": [
     "dist"
@@ -50,14 +51,16 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "dependencies": {
-    "@tanstack/devtools-ui": "^0.7.2",
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@solidjs/web": "^2.0.3",
+    "@tanstack/devtools-ui": "^0.8.0",
+    "@tanstack/devtools-utils": "^0.8.0",
     "clsx": "^2.1.1",
     "goober": "^2.1.19",
-    "match-sorter": "^8.3.0",
-    "solid-js": "^1.9.15"
+    "match-sorter": "^8.3.1",
+    "solid-js": "^2.0.3"
   },
   "devDependencies": {
-    "vite-plugin-solid": "^2.11.14"
+    "@solidjs/vite-plugin": "^3.0.1",
+    "@tanstack/hotkeys-test-utils": "workspace:*"
   }
 }

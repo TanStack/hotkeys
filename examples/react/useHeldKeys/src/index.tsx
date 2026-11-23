@@ -1,19 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
   const heldCodes = useHeldKeyCodes()
 
@@ -33,7 +33,7 @@ function App() {
         return h
       })
     }
-  }, [heldKeys])
+  }, [heldKeys, formatForDisplay])
 
   console.log('heldKeys', heldKeys)
 

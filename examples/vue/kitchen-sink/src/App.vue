@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, onUnmounted, provide, ref } from 'vue'
+import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -10,14 +10,16 @@ import {
   useHotkeys,
   useKeyHold,
 } from '@tanstack/vue-hotkeys'
-import { TanStackDevtools } from '@tanstack/vue-devtools'
 import { hotkeysDevtoolsPlugin } from '@tanstack/vue-hotkeys-devtools'
-import Tickets from './Tickets.vue'
+import { computed, onUnmounted, provide, ref } from 'vue'
 import Editor from './Editor.vue'
-import Sequences from './Sequences.vue'
-import Recording from './Recording.vue'
 import Formatting from './Formatting.vue'
 import Hint from './Hint.vue'
+import Recording from './Recording.vue'
+import Sequences from './Sequences.vue'
+import Tickets from './Tickets.vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const pages = [
   { path: '/', name: 'Tickets', component: Tickets, hotkey: 'Alt+[Digit1]' },

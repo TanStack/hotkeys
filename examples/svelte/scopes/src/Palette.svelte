@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
-  import { getActivity } from './activity.svelte'
   import Key from './Key.svelte'
+  import { getActivity } from './activity.svelte'
 
   // In its own scope, so a dialog can allow just this hotkey.
   const activity = getActivity()

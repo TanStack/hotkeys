@@ -1,10 +1,11 @@
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import {
   HotkeyManager,
   KeyStateTracker,
   getKeyStateTracker,
 } from '@tanstack/hotkeys'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { KeyHoldController } from '../src/controllers/key-hold'
 import type { IndividualKey } from '@tanstack/hotkeys'
 

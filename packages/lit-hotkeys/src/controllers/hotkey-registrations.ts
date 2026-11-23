@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { isServer } from './_server'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
@@ -12,11 +13,12 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
  * ```ts
  * class ShortcutPalette extends LitElement {
  *   private registrations = new HotkeyRegistrationsController(this)
+ *   private formatForDisplay = new FormatForDisplayController(this)
  *
  *   render() {
  *     return html`<ul>
  *       ${this.registrations.hotkeys.map(
- *         (reg) => html`<li>${reg.options.meta?.name}: ${formatForDisplay(reg.hotkey)}</li>`,
+ *         (reg) => html`<li>${reg.options.meta?.name}: ${this.formatForDisplay.format(reg.hotkey)}</li>`,
  *       )}
  *     </ul>`
  *   }
@@ -40,10 +42,7 @@ export class HotkeyRegistrationsController implements ReactiveController {
     // Adding the controller again while connected calls this twice.
     if (this._unsubscribe) return
     const manager = getHotkeyManager()
-    const read = () =>
-      Array.from(manager.registrations.state.values()).map(
-        toHotkeyRegistrationView,
-      )
+    const read = () => getHotkeyRegistrationViews(manager.registrations.state)
     this._hotkeys = read()
     if (isServer()) return
     const subscription = manager.registrations.subscribe(() => {
@@ -57,5 +56,14 @@ export class HotkeyRegistrationsController implements ReactiveController {
     this._unsubscribe?.()
     this._unsubscribe = undefined
     this._hotkeys = []
+  }
+
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
   }
 }

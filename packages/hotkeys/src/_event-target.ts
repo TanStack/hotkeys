@@ -1,6 +1,6 @@
+import { codeToLogicalKey } from './_keyboard-event'
 import { normalizeKeyName } from './constants'
-
-type Target = HTMLElement | Document | Window
+import type { Target } from './hotkey.types'
 
 // Nodes and windows can come from another frame (a same-origin iframe or a
 // popup window), whose DOM classes differ from this window's. These helpers
@@ -272,14 +272,19 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
  * are never owned; Enter and Space are owned only without modifiers, while
  * navigation and typeahead keys allow Shift (for example, to extend a selection).
  */
-function ownsKey(element: Element, event: KeyboardEvent, key: string): boolean {
+function ownsKey(
+  element: Element,
+  event: KeyboardEvent,
+  key: string,
+  produced: string,
+): boolean {
   if (event.ctrlKey || event.metaKey || event.altKey) return false
   const owned = getOwnedKeys(element)
   if (key === 'Enter' || key === 'Space') {
     return !event.shiftKey && owned.includes(key)
   }
   return (
-    owned.includes(key) || (owned.includes(TYPEAHEAD) && /^.$/u.test(event.key))
+    owned.includes(key) || (owned.includes(TYPEAHEAD) && /^.$/u.test(produced))
   )
 }
 
@@ -331,45 +336,132 @@ function blocks({ elements, index }: Blocker, target: Target): boolean {
   )
 }
 
-// Native layers
+// Escape layers
 
-/** Open modal dialogs and popovers that close on Escape, per event. */
-const layerCache = new WeakMap<KeyboardEvent, ReadonlyArray<Element>>()
+/** What one Escape press closes. */
+interface EscapeLayers {
+  /** Open dialogs and popovers that the browser closes on Escape. */
+  native: ReadonlyArray<Element>
+  /** The innermost element around focus that closes on Escape in the WAI-ARIA patterns. */
+  aria: Element | null
+}
+
+const layerCache = new WeakMap<KeyboardEvent, EscapeLayers>()
+
+/** Whether `node` is `layer` or inside it, across shadow roots. */
+function isInside(node: Node | null, layer: Element): boolean {
+  for (; node; node = composedParent(node)) if (node === layer) return true
+  return false
+}
 
 /**
- * Returns whether Escape will close a modal `<dialog>` or an open popover that
- * `target` isn't inside. The browser closes it only when Escape's keydown
- * isn't prevented, so hotkeys outside it leave Escape alone.
+ * Whether the browser closes an open dialog on Escape: a modal one, unless
+ * `closedby="none"`, or a non-modal one with `closedby="any"` or
+ * `"closerequest"`. `closedBy` reports the resolved value, and browsers
+ * without it close modal dialogs only.
  */
-export function closesNativeLayer(
+function closesNatively(dialog: Element): boolean {
+  const closedBy = (dialog as { closedBy?: string }).closedBy
+  if (closedBy) return closedBy !== 'none'
+  // Browsers without `:modal` reject the selector.
+  try {
+    return dialog.matches(':modal')
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Whether an element around focus closes on Escape in the WAI-ARIA patterns:
+ * dialogs and menus, and a combobox or a popup button whose popup is open,
+ * which keep focus while it is. A `<dialog>` closes only as the browser
+ * decides, whatever its role.
+ */
+function closesOnEscape(element: Element, focused: Element | null): boolean {
+  if (element.localName === 'dialog') return false
+  const role = getRole(element)
+  if (role === 'dialog' || role === 'alertdialog' || role === 'menu') {
+    return true
+  }
+  if (element.getAttribute('aria-expanded') !== 'true') return false
+  const popup = element.getAttribute('aria-haspopup')
+  return (
+    role === 'combobox' ||
+    (element === focused && popup !== null && popup !== 'false')
+  )
+}
+
+/**
+ * Finds what Escape closes for this event, once. The manager calls this from
+ * a `window` capture listener as well, so the layers are read before a
+ * listener on the page closes one.
+ */
+export function getEscapeLayers(
+  event: KeyboardEvent,
+  doc: Document,
+): EscapeLayers {
+  let layers = layerCache.get(event)
+  if (layers) return layers
+  const focused = getDeepActiveElement(doc)
+  // A document search doesn't reach into shadow roots, where component
+  // libraries keep their dialogs. The event's path does, for the layers
+  // that hold focus.
+  const path = event.composedPath().filter(isElement)
+  const query = (selector: string): Array<Element> => {
+    // Browsers without popovers reject the selector.
+    try {
+      const found = [...doc.querySelectorAll(selector)]
+      return found.concat(
+        path.filter(
+          (element) => element.matches(selector) && !found.includes(element),
+        ),
+      )
+    } catch {
+      return []
+    }
+  }
+  const dialogs = query('dialog[open]').filter(closesNatively)
+  // Focus can't leave the topmost modal dialog. So while focus is inside a
+  // dialog, the ones that don't contain it are underneath, and Escape
+  // doesn't close them.
+  const holding = dialogs.filter((dialog) => isInside(focused, dialog))
+  let aria: Element | null = null
+  for (let node: Node | null = focused; node && !aria;) {
+    if (isElement(node) && closesOnEscape(node, focused)) aria = node
+    node = composedParent(node)
+  }
+  layers = {
+    native: [
+      ...(holding.length ? holding : dialogs),
+      ...query(':popover-open').filter(
+        (layer) => (layer as HTMLElement).popover !== 'manual',
+      ),
+    ],
+    aria,
+  }
+  layerCache.set(event, layers)
+  return layers
+}
+
+/**
+ * Whether a hotkey on `target` leaves an Escape keydown to a layer. A hotkey
+ * keeps Escape when its target is inside every layer. For an ARIA layer, a
+ * hotkey in a named scope keeps it from an ARIA dialog too: such a hotkey
+ * usually closes the dialog it belongs to. A combobox or menu inside that
+ * dialog still closes first.
+ */
+export function yieldsEscape(
   event: KeyboardEvent,
   target: Target,
+  scoped: boolean,
 ): boolean {
   if (event.type !== 'keydown' || event.key !== 'Escape') return false
-  let layers = layerCache.get(event)
-  if (!layers) {
-    const found: Array<Element> = []
-    for (const selector of ['dialog:modal', ':popover-open']) {
-      // Browsers without popovers reject the selector.
-      try {
-        found.push(...getTargetDocument(target).querySelectorAll(selector))
-      } catch {}
-    }
-    layers = found.filter(
-      (layer) => (layer as HTMLElement).popover !== 'manual',
-    )
-    layerCache.set(event, layers)
-  }
-  return layers.some((layer) => {
-    for (
-      let node: Node | null = isDocumentLevel(target) ? null : target;
-      node;
-      node = composedParent(node)
-    ) {
-      if (node === layer) return false
-    }
-    return true
-  })
+  const { native, aria } = getEscapeLayers(event, getTargetDocument(target))
+  const outside = (layer: Element) =>
+    isDocumentLevel(target) || !isInside(target, layer)
+  const role = aria && getRole(aria)
+  const owned = scoped && (role === 'dialog' || role === 'alertdialog')
+  return native.some(outside) || (!!aria && !owned && outside(aria))
 }
 
 // Every registration the event reaches asks about the same event.
@@ -391,11 +483,18 @@ export function shouldIgnoreInputEvent(
 ): boolean {
   let blocker = ignoreCache.get(event)
   if (!blocker) {
-    const key = normalizeKeyName(event.key)
+    // Read an Unidentified key from its position, as the matcher does. A
+    // named code such as `Enter` or `ArrowDown` is also its key name.
+    const produced =
+      event.key === 'Unidentified'
+        ? (codeToLogicalKey(event.code) ?? event.code)
+        : event.key
+    const key = normalizeKeyName(produced)
     blocker = findBlocker(
       event,
       getTargetDocument(target),
-      (element) => isInputElement(element) || ownsKey(element, event, key),
+      (element) =>
+        isInputElement(element) || ownsKey(element, event, key, produced),
     )
     ignoreCache.set(event, blocker)
   }

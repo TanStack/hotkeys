@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHeldKeys,
   injectHotkeyRecorder,
   injectHotkeyRegistrations,
@@ -72,7 +72,7 @@ export class AppComponent {
   draftName = signal('')
   draftDescription = signal('')
 
-  formatForDisplay = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   heldKeys = injectHeldKeys()
 
   private readonly recorder = injectHotkeyRecorder({
@@ -214,6 +214,6 @@ export class AppComponent {
   }
 
   recordingStepsLabel(): string {
-    return formatForDisplay(this.recorder.steps())
+    return this.formatForDisplay(this.recorder.steps())
   }
 }

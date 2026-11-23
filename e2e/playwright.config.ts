@@ -10,7 +10,9 @@ export default defineConfig({
   globalSetup: './support/bundle.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
+  // A retry reports a flaky test, and the run still fails on it.
   retries: process.env.CI ? 1 : 0,
+  failOnFlakyTests: !!process.env.CI,
   reporter: process.env.CI ? [['list'], ['github']] : 'list',
   timeout: 15_000,
   use: { trace: 'retain-on-failure' },
@@ -20,5 +22,14 @@ export default defineConfig({
     { name: 'chromium', use: { browserName: 'chromium' } },
     { name: 'firefox', use: { browserName: 'firefox' } },
     { name: 'webkit', use: { browserName: 'webkit' } },
+    // Edge comes with Windows; Playwright doesn't install it on other systems.
+    ...(process.platform === 'win32'
+      ? [
+          {
+            name: 'msedge',
+            use: { browserName: 'chromium' as const, channel: 'msedge' },
+          },
+        ]
+      : []),
   ],
 })

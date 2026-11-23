@@ -45,9 +45,6 @@ import type { IndividualKey } from '@tanstack/hotkeys'
  */
 export function useKeyHold(key: IndividualKey): boolean {
   const tracker = getKeyStateTracker()
-  const normalizedKey = key.toLowerCase()
 
-  return useSelector(tracker.store, (state) =>
-    state.heldKeys.some((heldKey) => heldKey.toLowerCase() === normalizedKey),
-  )
+  return useSelector(tracker.store, () => tracker.isKeyHeld(key))
 }

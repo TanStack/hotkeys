@@ -19,3 +19,15 @@ export type HotkeysDevtoolsCoreClass = new () => {
   mount: (el: HTMLElement, props: HotkeysDevtoolsPanelProps) => Promise<void>
   unmount: () => void
 }
+
+/**
+ * A plugin for a devtools host that renders the panel with a `render`
+ * function, such as `TanStackDevtools` from `@tanstack/react-devtools`.
+ * `TElement` is what the framework's render function returns.
+ */
+export interface HotkeysDevtoolsRenderPlugin<TElement> {
+  name: string
+  id?: string
+  defaultOpen?: boolean
+  render: (el: HTMLElement, props: HotkeysDevtoolsPanelProps) => TElement
+}

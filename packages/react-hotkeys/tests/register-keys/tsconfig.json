@@ -1,0 +1,11 @@
+{
+  // Registered keys apply to the whole program, so this check runs on its own
+  // and the package's other files keep the default US keys.
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // Check the source, not a built dist that may be stale or missing.
+    "paths": { "@tanstack/react-hotkeys": ["../../src/index.ts"] }
+  },
+  "include": ["."],
+  "exclude": []
+}

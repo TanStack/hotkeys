@@ -33,6 +33,7 @@ function Root() {
 
 - `hotkey` defaults apply to every `useHotkey` and `useHotkeys` inside the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a hook override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
 - `hotkeyRecorder` defaults apply to every `useHotkeyRecorder` inside the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
+- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A nested provider merges its defaults over its parent's, so a provider deeper in the tree can change the defaults for one part of your app.
 
@@ -51,6 +52,8 @@ Pass your [app hotkeys](./app-hotkeys) to the root provider, along with the user
 ```
 
 Nested providers use the app hotkeys and custom hotkeys of the provider above them, so pass these only once, at the root.
+
+To pass `appHotkeys` from a React Server Component, such as a Next.js `app/layout.tsx`, render `AppHotkeysProvider` instead of `HotkeysProvider`. See [App hotkeys with Server Components](./app-hotkeys#app-hotkeys-with-server-components).
 
 ## Group hotkeys into scopes
 

@@ -1,12 +1,12 @@
 ---
-'@tanstack/solid-hotkeys': major
+'@tanstack/solid-hotkeys': minor
 ---
 
-Support Solid 2. `@tanstack/solid-hotkeys` now requires `solid-js` 2 (`^2.0.0`); stay on 1.x for Solid 1.
+Move to Solid 2 and drop Solid 1. `@tanstack/solid-hotkeys` now needs `solid-js` 2 and Node 22.12 or newer. Solid 1 apps can stay on `@tanstack/solid-hotkeys@0.25`, the last release for Solid 1.
 
-- The primitives keep their API. Reactive options are tracked by split effects (compute reads the options, the effect applies them), `HotkeysProvider` publishes its store in `onSettled`, and provider props read once at creation are read untracked.
-- `HotkeysProvider` renders the Solid 2 context without JSX, so the adapter depends on `solid-js` only.
-- The internal store selector writes with `ownedWrite`, since store updates arrive from outside the owner.
+- The primitives keep their API. Effects that track reactive options read them in the compute half and apply them in the effect half.
+- `HotkeysProvider` renders its context without JSX, so the adapter imports only `solid-js`, not `@solidjs/web`.
 - `createHotkeyRegistrations` returns a store reconciled by registration `id`, so `<For>` rows keep their identity when registrations change.
-- As with every Solid 2 signal, values read right after a write outside a reactive scope update after the next flush (`flush()` from `solid-js`, or the next microtask).
-- `@tanstack/solid-hotkeys-devtools` stays on Solid 1 until TanStack Devtools has a Solid 2 entry.
+- The internal store selector works like `useSelector` from `@tanstack/solid-store` 1.0: the store state is held in a signal and the selection is derived from it, so a selector that reads other signals tracks them for the current state.
+- As with every Solid 2 signal, a value read right after a write outside a reactive scope updates after the next flush (`flush()` from `solid-js`, or the next microtask).
+- Don't call `createHotkey` in a `ref` callback. Solid 2 runs ref callbacks outside the component's owner. Give the element its own component with a signal `target` instead.

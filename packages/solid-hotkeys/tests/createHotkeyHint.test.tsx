@@ -1,7 +1,7 @@
+import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 // @vitest-environment happy-dom
 import { createRoot, createSignal, flush } from 'solid-js'
 import { afterEach, expect, it } from 'vitest'
-import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { createHotkeyHint } from '../src/createHotkeyHint'
 import type { Hotkey } from '@tanstack/hotkeys'
 

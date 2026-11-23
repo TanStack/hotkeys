@@ -1,15 +1,15 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
-import { createPortal } from 'react-dom'
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import type { ReactNode } from 'react'
+import React, { createContext, useCallback, useContext, useState } from 'react'
+import { createPortal } from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import type { Hotkey } from '@tanstack/react-hotkeys'
+import type { ReactNode } from 'react'
 import './index.css'
 
 const plugins = [hotkeysDevtoolsPlugin()]
@@ -441,6 +441,8 @@ function ActivityLog() {
 }
 
 function Key({ hotkey }: { hotkey: Hotkey }) {
+  const formatForDisplay = useFormatForDisplay()
+
   return <kbd>{formatForDisplay(hotkey)}</kbd>
 }
 

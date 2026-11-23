@@ -30,7 +30,7 @@ Each framework package re-exports everything from the core `@tanstack/hotkeys` p
 
 # React
 
-Use React 18 or newer. The hooks and `HotkeysProvider` are client components, so a server component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` directly.
+Use React 18 or newer. The hooks and `HotkeysProvider` are client components, so a server component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` directly. To pass `appHotkeys` from a server component, render `AppHotkeysProvider` instead. See [App hotkeys with Server Components](./framework/react/guides/app-hotkeys#app-hotkeys-with-server-components).
 
 Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
 
@@ -42,7 +42,9 @@ Start with the [Quick Start](./framework/preact/quick-start) guide and the Preac
 
 # Solid
 
-`@tanstack/solid-hotkeys` 2 and later work with Solid 2; for Solid 1 (1.7 or newer), install `@tanstack/solid-hotkeys@1`. The devtools panel still runs on Solid 1 (1.9.15 or newer) and isn't available for Solid 2 apps yet.
+Use Solid 2. `@tanstack/solid-hotkeys` 0.26 and `@tanstack/solid-hotkeys-devtools` 0.14 and newer need Solid 2, which needs Node 22.12 or newer.
+
+For Solid 1 (1.7 or newer), install the last releases that support it: `@tanstack/solid-hotkeys@0.25` and, for the devtools panel (Solid 1.9.15 or newer), `@tanstack/solid-hotkeys-devtools@0.13`.
 
 Start with the [Quick Start](./framework/solid/quick-start) guide and the Solid-specific [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
 

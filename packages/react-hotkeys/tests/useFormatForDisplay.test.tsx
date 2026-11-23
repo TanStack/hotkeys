@@ -1,17 +1,20 @@
 // @vitest-environment happy-dom
+
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { act, render, renderHook } from '@testing-library/react'
-import { HotkeyManager } from '@tanstack/hotkeys'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import * as adapter from '../src'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import type { Hotkey } from '@tanstack/hotkeys'
+import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
 import type { ReactNode } from 'react'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 const SERVER = { userAgent: 'Node.js/26', platform: '' }
 const MAC = {
@@ -25,12 +28,15 @@ const WINDOWS = {
 // Detection would pick the other platform, so a pass means the provider's won.
 const OTHER = { mac: WINDOWS, windows: MAC }
 
-function Label({ platform }: { platform?: Platform }) {
-  const format = useFormatForDisplay()
-  return <kbd>{format('Mod+S', { platform })}</kbd>
+function Label({ platform }: { platform?: HotkeyPlatform }) {
+  const formatForDisplay = useFormatForDisplay()
+  return <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
-function withPlatform(platform: Platform | undefined, children: ReactNode) {
+function withPlatform(
+  platform: HotkeyPlatform | undefined,
+  children: ReactNode,
+) {
   return (
     <HotkeysProvider defaultOptions={{ platform }}>{children}</HotkeysProvider>
   )
@@ -147,6 +153,12 @@ describe('provider platform', () => {
     )
     act(() => result.current.startRecording())
     press('s', { code: 'KeyS', ...init })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

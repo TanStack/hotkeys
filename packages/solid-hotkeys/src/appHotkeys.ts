@@ -1,24 +1,25 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { createMemo } from 'solid-js'
-import { useAppHotkeysStoreSource } from './defaultOptions'
 import { createHotkeyRegistrations } from './createHotkeyRegistrations'
+import { useAppHotkeysStoreSource } from './defaultOptions'
 import type {
-  AppHotkey,
-  AppHotkeyListItem,
-  AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
-  Hotkey,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
 
 function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()
-  if (!source.store) {
-    throw new Error(
-      `${name} requires a HotkeysProvider with an appHotkeys prop`,
-    )
-  }
+  const message = `${name} requires a HotkeysProvider with an appHotkeys prop`
+  const initial = requireAppHotkeysStore(source.store, message)
   return {
-    store: source.store as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    // The nearest provider's store, which changes if a nested provider gets
+    // its app hotkeys later.
+    store: () => requireAppHotkeysStore(source.store ?? initial, message),
     state: source.state,
   }
 }
@@ -37,7 +38,7 @@ export function useAppHotkeys(): () => RegisteredAppHotkeys {
   const { store, state } = useRequiredStore('useAppHotkeys')
   return createMemo(() => {
     state()
-    return store.appHotkeys
+    return store().appHotkeys
   })
 }
 
@@ -46,38 +47,19 @@ export function useAppHotkeys(): () => RegisteredAppHotkeys {
  * cheat sheets and settings screens. App hotkeys whose components have not
  * mounted are `'inactive'`; those without a hotkey are `'unbound'`.
  */
-export function createAppHotkeyList(): () => Array<
-  AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>
-> {
+export function createAppHotkeyList(): () => Array<RegisteredAppHotkeyListItem> {
   const { store, state } = useRequiredStore('createAppHotkeyList')
   const registrations = createHotkeyRegistrations()
   return createMemo(() => {
     state()
-    return store.getList(registrations())
+    return store().getList(registrations())
   })
 }
 
 /** Custom hotkey state and actions returned by `useCustomHotkeys`. */
-export interface UseCustomHotkeysResult {
+export interface UseCustomHotkeysResult extends CustomHotkeyActions {
   /** The user's hotkeys that differ from the defaults. */
   customHotkeys: () => CustomHotkeys
-  /**
-   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
-   */
-  setCustomHotkey: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey | null,
-  ) => Array<AppHotkey>
-  /** Restores the default hotkey for an app hotkey. */
-  resetCustomHotkey: (id: keyof RegisteredAppHotkeys & string) => void
-  /** Restores every default hotkey. */
-  resetCustomHotkeys: () => void
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
-  findConflicts: (
-    id: keyof RegisteredAppHotkeys & string,
-    hotkey: Hotkey,
-  ) => Array<AppHotkey>
 }
 
 /**
@@ -90,11 +72,8 @@ export function useCustomHotkeys(): UseCustomHotkeysResult {
   return {
     customHotkeys: createMemo(() => {
       state()
-      return store.customHotkeys
+      return store().customHotkeys
     }),
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    ...bindCustomHotkeyActions(store),
   }
 }

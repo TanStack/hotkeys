@@ -1,5 +1,106 @@
 # @tanstack/solid-hotkeys-devtools
 
+## 0.13.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.11.4
+
+## 0.13.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.11.3
+
+## 0.13.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.11.2
+
+## 0.13.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.11.1
+
+## 0.13.10
+
+### Patch Changes
+
+- [#276](https://github.com/TanStack/hotkeys/pull/276) [`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd) - Types that every adapter wrote out for itself now come from one place in `@tanstack/hotkeys`.
+
+  - New types: `MaybeGetter`, `HotkeyEventType`, `KeyIdentity`, `ResolvableModifier`, `HotkeyCommonOptions`, `HotkeyRegistrationsResult`, `RegisteredAppHotkeyListItem`, `CustomHotkeyActions` and `HotkeyRecorderActions`. `HotkeyRecorderState` takes the recorded hotkey type as an optional type argument.
+  - Each adapter's types, such as `UseCustomHotkeysResult` and `ReactHotkeyRecorder`, now extend these, and keep their names.
+  - `@tanstack/hotkeys/adapter` adds helpers that the adapters shared by copy: hint visibility, the label formatter, keyboard layout following, the app hotkeys store lookup and custom hotkey actions.
+  - `@tanstack/hotkeys-devtools` exports `HOTKEYS_DEVTOOLS_PLUGIN_NAME`, `HOTKEYS_DEVTOOLS_DEFAULT_PROPS` and `HotkeysDevtoolsRenderPlugin`, which the framework devtools plugins extend.
+
+  Behavior is unchanged.
+
+- Updated dependencies [[`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd)]:
+  - @tanstack/hotkeys-devtools@1.11.0
+
+## 0.13.9
+
+### Patch Changes
+
+- Updated dependencies [[`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f)]:
+  - @tanstack/hotkeys-devtools@1.10.0
+
+## 0.13.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.6
+
+## 0.13.7
+
+### Patch Changes
+
+- Updated dependencies [[`e70d4d4`](https://github.com/TanStack/hotkeys/commit/e70d4d43c1e29b80c46ffe6fdd93e3233e470ade)]:
+  - @tanstack/hotkeys-devtools@1.9.5
+
+## 0.13.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.4
+
+## 0.13.5
+
+### Patch Changes
+
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys-devtools@1.9.3
+
+## 0.13.4
+
+### Patch Changes
+
+- [#236](https://github.com/TanStack/hotkeys/pull/236) [`90d000d`](https://github.com/TanStack/hotkeys/commit/90d000d06162dae0787366c830216c810b8d49bc) - The `/production` entry now renders the devtools panel in production builds. Its panel loaded the core from the root `@tanstack/hotkeys-devtools` entry, which switches to a no-op outside development, so the panel rendered nothing. It now loads the core from `@tanstack/hotkeys-devtools/production`, as the Angular and Svelte adapters do. The default entry still returns no-ops outside development.
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.2
+
+## 0.13.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.1
+
+## 0.13.2
+
+### Patch Changes
+
+- Updated dependencies [[`ef29e7b`](https://github.com/TanStack/hotkeys/commit/ef29e7bc99848712d469d7bc0195db99f25f401b), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114)]:
+  - @tanstack/hotkeys-devtools@1.9.0
+
 ## 0.13.1
 
 ### Patch Changes

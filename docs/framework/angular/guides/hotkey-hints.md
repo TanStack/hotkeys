@@ -11,7 +11,7 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 ```ts
 import { Component } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkey,
   injectHotkeyHint,
 } from '@tanstack/angular-hotkeys'
@@ -24,13 +24,14 @@ const saveHotkey = 'Mod+S'
     <button (click)="save()">
       Save
       @if (showHint()) {
-        <kbd>{{ label }}</kbd>
+        <kbd>{{ formatForDisplay(saveHotkey) }}</kbd>
       }
     </button>
   `,
 })
 export class SaveButtonComponent {
-  readonly label = formatForDisplay(saveHotkey)
+  readonly saveHotkey = saveHotkey
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly showHint = injectHotkeyHint(saveHotkey)
 
   constructor() {
@@ -79,8 +80,8 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 ```ts
 import { Component, computed, input } from '@angular/core'
 import {
-  formatForDisplay,
   injectAppHotkeys,
+  injectFormatForDisplay,
   injectHotkeyHint,
 } from '@tanstack/angular-hotkeys'
 import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
@@ -89,7 +90,7 @@ import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
   selector: 'app-hint',
   template: `
     @if (showHint() && appHotkey().hotkey; as hotkey) {
-      <kbd>{{ format(hotkey) }}</kbd>
+      <kbd>{{ formatForDisplay(hotkey) }}</kbd>
     }
   `,
 })
@@ -98,7 +99,7 @@ export class HintComponent {
   readonly appHotkeys = injectAppHotkeys()
   readonly appHotkey = computed(() => this.appHotkeys()[this.id()])
   readonly showHint = injectHotkeyHint(() => this.appHotkey())
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 }
 ```
 

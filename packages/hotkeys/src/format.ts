@@ -1,4 +1,14 @@
 import {
+  assertLogicalKey,
+  modifierAlias,
+  physicalCodeOf,
+  splitChordParts,
+} from './_chord'
+import { codeToLogicalKey } from './_keyboard-event'
+import { ownValue } from './_keys'
+import { warnServerPlatform } from './_server'
+import { MODIFIER_ORDER, normalizeKeyName } from './constants'
+import {
   KEY_DISPLAY_SYMBOLS,
   LINUX_MODIFIER_LABELS,
   MAC_MODIFIER_LABELS,
@@ -6,19 +16,11 @@ import {
   PUNCTUATION_KEY_DISPLAY_LABELS,
   WINDOWS_MODIFIER_LABELS,
 } from './display-labels'
-import { MODIFIER_ORDER, normalizeKeyName } from './constants'
-import { warnServerPlatform } from './_server'
-import { detectPlatform } from './platform'
-import {
-  assertLogicalKey,
-  codeToLogicalKey,
-  modifierAlias,
-  physicalCodeOf,
-  splitChordParts,
-} from './_keyboard-event'
 import { normalizeHotkey } from './parse'
-import type { CanonicalModifier } from './key.types'
+import { detectPlatform } from './platform'
 import type { ParsedHotkeyChord, RegisterableHotkeyChord } from './hotkey.types'
+import type { CanonicalModifier } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 /**
  * Converts a parsed hotkey back to a string, with each platform modifier
@@ -71,23 +73,34 @@ function formatParsedChord(parsed: ParsedHotkeyChord): string {
  * modifier on its own, a raw object such as `{ key }`, or a parsed hotkey.
  */
 export type DisplayHotkeyChord =
-  RegisterableHotkeyChord | ParsedHotkeyChord | CanonicalModifier
+  | RegisterableHotkeyChord
+  | ParsedHotkeyChord
+  | CanonicalModifier
 
 /** A hotkey to display: a chord or a sequence of chords. */
 export type DisplayHotkey =
-  DisplayHotkeyChord | ReadonlyArray<DisplayHotkeyChord>
+  | DisplayHotkeyChord
+  | ReadonlyArray<DisplayHotkeyChord>
 
 /**
  * Formats a hotkey for display in a user interface.
+ *
+ * In a server-rendered app, format labels with your adapter's formatter,
+ * such as `useFormatForDisplay`, or pass `platform`. Called directly,
+ * `formatForDisplay` never reads a provider's `platform`. Without a
+ * `platform` option, it renders Linux labels on the server, so Mac users get
+ * a different label after hydration.
  *
  * On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
  * Display ordering does not change the normalized hotkey used for registration.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  * The separator can be customized with `separatorToken`.
  * Physical codes use conventional display labels: `[KeyS]` becomes `S` and
- * `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
- * or change matching. Supply a resolved `layoutMap` for layout-aware labels;
- * `keyLabels` overrides both layout entries and fallback labels.
+ * `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+ * `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+ * These labels do not infer the active keyboard layout or change matching.
+ * Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+ * overrides both layout entries and fallback labels.
  * Sequence steps are formatted individually and joined with `sequenceSeparator`
  * (a space by default).
  *
@@ -154,7 +167,7 @@ export function formatForDisplay(
 }
 
 /** Detects the platform for a label, warning in development on a server. */
-function detectDisplayPlatform(): 'mac' | 'windows' | 'linux' {
+function detectDisplayPlatform(): HotkeyPlatform {
   warnServerPlatform()
   return detectPlatform()
 }
@@ -198,17 +211,20 @@ function formatChordParts(
   )
 }
 
-/** Own properties only, so names such as `toString` never read Object.prototype. */
-function lookup(
-  table: Readonly<Record<string, string>> | undefined,
-  name: string,
-): string | undefined {
-  return table && Object.hasOwn(table, name) ? table[name] : undefined
+/**
+ * Fallback labels for keys with no US equivalent, from the legends the UI
+ * Events code spec gives: `\` on UK ISO keyboards, and `\` (ろ) and `¥` on
+ * Japanese keyboards. Display only; matching never uses them.
+ */
+const INTL_KEY_LABELS: Readonly<Record<string, string>> = {
+  IntlBackslash: '\\',
+  IntlRo: '\\',
+  IntlYen: '¥',
 }
 
 function formatKey(
   segment: string,
-  platform: 'mac' | 'windows' | 'linux',
+  platform: HotkeyPlatform,
   modifierSymbols: boolean,
   keySymbols: boolean,
   options: FormatDisplayOptions,
@@ -224,7 +240,7 @@ function formatKey(
         : LINUX_MODIFIER_LABELS[modifier]
   }
   const code = physicalCodeOf(segment)
-  const label = lookup(options.keyLabels, code ?? segment)
+  const label = ownValue(options.keyLabels, code ?? segment)
   if (label !== undefined) return label
   // Shorten conventional position labels for display only; stored identity is unchanged.
   const numpad = code?.startsWith('Numpad') ?? false
@@ -234,11 +250,14 @@ function formatKey(
     // Layout entries are logical labels; normalize their case and whitespace names.
     displayKey = normalizeKeyName(mappedKey)
   } else if (code) {
+    // The extra ISO and JIS keys have no US key: use their keycap legends.
+    const intl = ownValue(INTL_KEY_LABELS, code)
+    if (intl !== undefined) return intl
     // Numpad keys keep their names (Add, not +) and gain a prefix below.
     displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
   }
   const display =
-    lookup(
+    ownValue(
       keySymbols ? KEY_DISPLAY_SYMBOLS : PUNCTUATION_KEY_DISPLAY_LABELS,
       displayKey,
     ) ?? displayKey
@@ -252,8 +271,11 @@ function formatKey(
  * Options for formatting hotkeys for display.
  */
 export interface FormatDisplayOptions {
-  /** The target platform. Defaults to auto-detection. */
-  platform?: 'mac' | 'windows' | 'linux'
+  /**
+   * The target platform. Without it, `formatForDisplay` detects the platform
+   * in the browser and uses `'linux'` on a server.
+   */
+  platform?: HotkeyPlatform
   /** Whether to use symbols for the display. Defaults to true. */
   useSymbols?: boolean | { modifiers?: boolean; keys?: boolean }
   /** Return individual key labels instead of a joined string. Default: false. */

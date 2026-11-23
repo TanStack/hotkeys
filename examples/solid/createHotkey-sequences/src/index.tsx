@@ -1,7 +1,10 @@
 /* @refresh reload */
+
 import { render } from '@solidjs/web'
-import { Show, createSignal } from 'solid-js'
-import { HotkeysProvider, createHotkey } from '@tanstack/solid-hotkeys'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { createHotkey, HotkeysProvider } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import { createSignal, Show } from 'solid-js'
 import './index.css'
 
 function App() {
@@ -241,6 +244,8 @@ function VimEditor() {
           Press <kbd>Escape</kbd> to clear history
         </p>
       </main>
+
+      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

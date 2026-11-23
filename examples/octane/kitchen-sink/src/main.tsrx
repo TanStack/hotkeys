@@ -2,7 +2,7 @@ import { createRoot, createContext, useCallback, useContext, useEffect, useState
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -16,11 +16,24 @@ import {
 
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/octane-hotkeys'
 
 import './index.css'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
 
@@ -33,11 +46,13 @@ const pages = [
 ] as const
 
 function Hint({ hotkey }: { hotkey: RegisterableHotkey }) @{
+  const formatForDisplay = useFormatForDisplay()
   const visible = useHotkeyHint(hotkey)
   @if (visible) { <kbd>{formatForDisplay(hotkey)}</kbd> } @else {  }
 }
 
 function Layout() @{
+  const formatForDisplay = useFormatForDisplay()
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
   useEffect(() => {
     const onPopState = () => setCurrentPath(window.location.pathname)
@@ -211,6 +226,7 @@ function Tickets() @{
 }
 
 function EditorPane({ name }: { name: string }) @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [target, setTarget] = useState<HTMLFieldSetElement | null>(null)
   const [text, setText] = useState('One shortcut, two independent editors.')
@@ -258,6 +274,7 @@ function EditorPane({ name }: { name: string }) @{
 }
 
 function Editor() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = useState(false)
   const [count, setCount] = useState(0)
@@ -316,6 +333,7 @@ function Editor() @{
 }
 
 function Sequences() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = useState(1000)
   // An array of chords registers a sequence.
@@ -381,10 +399,11 @@ function Sequences() @{
 }
 
 function Recording() @{
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = useState<Hotkey>(initial)
-  const [mode, setMode] = useState<RecorderKeyMode>('code')
+  const [mode, setMode] = useState<RecorderKeyMode>('auto')
   const [problem, setProblem] = useState('')
   const [sequence, setSequence] = useState<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = useState('')
@@ -405,7 +424,7 @@ function Recording() @{
     validate: (_, { parsedChord }) =>
       parsedChord.modifiers.length > 0 ||
       'Include a modifier for this action.',
-    onReject: ({ message }) => setProblem(message),
+    onReject: (rejection) => setProblem(rejectionText(rejection)),
     onRecord: (value) => {
       setHotkey(value)
       setProblem('')
@@ -438,7 +457,7 @@ function Recording() @{
         `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
-    onReject: (reason) => setSequenceProblem(reason.message),
+    onReject: (rejection) => setSequenceProblem(rejectionText(rejection)),
     onClear: () => {
       setSequence(['[KeyX]', '[KeyY]'])
       setSequenceProblem('Restored default sequence.')
@@ -454,7 +473,8 @@ function Recording() @{
         <label>
           Record by{' '}
           <select value={mode} disabled={recorder.isRecording || sequenceRecorder.isRecording} onInput={(e) => setMode(e.currentTarget.value as RecorderKeyMode)}>
-            <option value="code">Physical code (default)</option>
+            <option value="auto">By name, or position where needed (default)</option>
+            <option value="code">Physical code</option>
             <option value="key">Logical character</option>
           </select>
         </label>
@@ -519,7 +539,8 @@ function Recording() @{
 }
 
 function Formatting() @{
-  const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
+  const formatForDisplay = useFormatForDisplay()
+  const [platform, setPlatform] = useState<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)
   const options = {

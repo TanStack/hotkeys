@@ -1,4 +1,7 @@
 /// <reference types="vite/client" />
+
+import { HydrationScript } from '@solidjs/web'
+import { HotkeysProvider, detectPlatform } from '@tanstack/solid-hotkeys'
 import {
   HeadContent,
   Outlet,
@@ -7,8 +10,6 @@ import {
 } from '@tanstack/solid-router'
 import { createIsomorphicFn } from '@tanstack/solid-start'
 import { getRequestHeader } from '@tanstack/solid-start/server'
-import { HydrationScript } from '@solidjs/web'
-import { HotkeysProvider, detectPlatform } from '@tanstack/solid-hotkeys'
 import stylesUrl from '../styles.css?url'
 import type { JSX } from '@solidjs/web'
 

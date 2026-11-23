@@ -1,5 +1,5 @@
-import { headers } from 'next/headers'
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import '../src/styles.css'

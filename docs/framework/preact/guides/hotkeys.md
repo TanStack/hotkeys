@@ -88,6 +88,8 @@ useHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod comes first
 useHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
 ```
 
+TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
+
 Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
 
 ```tsx
@@ -307,7 +309,7 @@ function Panel() {
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabIndex` if it isn't focusable already.
 
-A `null` target, or a ref whose `current` is still `null`, registers nothing until the element exists. To listen on `document`, omit `target`.
+A `null` or `undefined` target, or a ref whose `current` is still unset, registers nothing until the element exists. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 

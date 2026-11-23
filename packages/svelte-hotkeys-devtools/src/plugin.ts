@@ -1,4 +1,5 @@
 import { createSveltePlugin } from '@tanstack/devtools-utils/svelte'
+import { HOTKEYS_DEVTOOLS_PLUGIN_NAME } from '@tanstack/hotkeys-devtools/production'
 import { HotkeysDevtoolsPanel } from './SvelteHotkeysDevtools.js'
 import type { Component } from 'svelte'
 import type { HotkeysDevtoolsSvelteInit } from './SvelteHotkeysDevtools.js'
@@ -17,7 +18,7 @@ type HotkeysDevtoolsPluginFactory = (
 ) => HotkeysDevtoolsSveltePlugin
 
 const plugins = createSveltePlugin({
-  name: 'TanStack Hotkeys',
+  name: HOTKEYS_DEVTOOLS_PLUGIN_NAME,
   Component: HotkeysDevtoolsPanel,
 })
 

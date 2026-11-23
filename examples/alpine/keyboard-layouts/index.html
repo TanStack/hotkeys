@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine Keyboard Layouts</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>Keyboard Layouts</h1>
+          <p>
+            Registering a layout lets hotkey strings accept the keys it types,
+            such as Ö and ß. It changes types only: these hotkeys match the same
+            way without it.
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>German keys</h2>
+            <p class="note">
+              Switch your keyboard layout to German to press these.
+            </p>
+            <div class="hotkey-list">
+              <template
+                x-for="shortcut in germanShortcuts"
+                :key="shortcut.name"
+              >
+                <div
+                  class="hotkey-row"
+                  :class="{ fired: lastFired === shortcut.hotkey }"
+                >
+                  <span>
+                    <kbd x-text="label(shortcut.hotkey)"></kbd>
+                    <span x-text="shortcut.name"></span>
+                  </span>
+                  <span
+                    class="count"
+                    x-text="`${counts[shortcut.name]}×`"
+                  ></span>
+                </div>
+              </template>
+            </div>
+          </section>
+
+          <section class="demo-section">
+            <h2>Keys on every layout</h2>
+            <div class="hotkey-list">
+              <template
+                x-for="shortcut in everyLayoutShortcuts"
+                :key="shortcut.name"
+              >
+                <div
+                  class="hotkey-row"
+                  :class="{ fired: lastFired === shortcut.hotkey }"
+                >
+                  <span>
+                    <kbd x-text="label(shortcut.hotkey)"></kbd>
+                    <span x-text="shortcut.name"></span>
+                  </span>
+                  <span
+                    class="count"
+                    x-text="`${counts[shortcut.name]}×`"
+                  ></span>
+                </div>
+              </template>
+            </div>
+          </section>
+
+          <section class="demo-section">
+            <h2>Usage</h2>
+            <pre class="code-block" x-text="usage"></pre>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

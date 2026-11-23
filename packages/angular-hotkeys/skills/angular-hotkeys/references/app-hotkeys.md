@@ -20,8 +20,8 @@ declare module '@tanstack/angular-hotkeys' {
 
 ```ts
 import { provideHotkeys } from '@tanstack/angular-hotkeys'
-import type { CustomHotkeys } from '@tanstack/angular-hotkeys'
 import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/angular-hotkeys'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 
@@ -44,9 +44,9 @@ A settings row records with `injectHotkeyRecorder` and saves through `injectCust
 ```ts
 import { Component, computed, input } from '@angular/core'
 import {
-  formatForDisplay,
   injectAppHotkeys,
   injectCustomHotkeys,
+  injectFormatForDisplay,
   injectHotkeyRecorder,
 } from '@tanstack/angular-hotkeys'
 import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
@@ -55,7 +55,9 @@ import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
   selector: 'app-shortcut-row',
   template: `
     {{ appHotkey().meta?.name }}:
-    {{ appHotkey().hotkey ? format(appHotkey().hotkey!) : 'Unassigned' }}
+    {{
+      appHotkey().hotkey ? formatForDisplay(appHotkey().hotkey!) : 'Unassigned'
+    }}
     <button (click)="recorder.startRecording()">Change</button>
     <button (click)="custom.resetCustomHotkey(id())">Reset</button>
   `,
@@ -65,15 +67,16 @@ export class ShortcutRowComponent {
   readonly appHotkeys = injectAppHotkeys()
   readonly appHotkey = computed(() => this.appHotkeys()[this.id()])
   readonly custom = injectCustomHotkeys()
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 
   readonly recorder = injectHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.custom.findConflicts(this.id(), hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.custom.findConflicts(this.id(), hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.id(), hotkey),
+    onRecord: (hotkey, context) =>
+      this.custom.setCustomHotkey(this.id(), hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.id(), null),
   }))
 }

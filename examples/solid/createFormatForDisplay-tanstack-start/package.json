@@ -6,20 +6,20 @@
     "dev": "vite dev --port=3069",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "test:types": "tsc"
   },
   "dependencies": {
-    "@solidjs/web": "^2.0.0",
-    "@tanstack/solid-hotkeys": "^0.21.0",
-    "@tanstack/solid-router": "^2.0.0-rc.10",
-    "@tanstack/solid-start": "^2.0.0-rc.10",
-    "solid-js": "^2.0.0"
+    "@solidjs/web": "^2.0.3",
+    "@tanstack/solid-hotkeys": "^0.25.3",
+    "@tanstack/solid-router": "2.0.0-rc.10",
+    "@tanstack/solid-start": "2.0.0-rc.10",
+    "solid-js": "^2.0.3"
   },
   "devDependencies": {
-    "@solidjs/vite-plugin": "^3.0.0",
+    "@solidjs/vite-plugin": "^3.0.1",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.7"
   }
 }

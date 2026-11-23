@@ -1,6 +1,8 @@
 import { createStore } from './_store'
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
+import { detectPlatform } from './platform'
 import type { Store } from './_store'
+import type { KeyIdentity } from './key.types'
 
 /**
  * State interface for the KeyStateTracker.
@@ -72,7 +74,7 @@ export class KeyStateTracker {
     getDefaultKeyStateTrackerState(),
   )
 
-  #heldEntries: Map<string, { key: string; code: string }> = new Map()
+  #heldEntries: Map<string, KeyIdentity> = new Map()
   /** Window listeners as `[type, listener, capture]`, removed together on destroy. */
   #listeners: Array<[string, EventListener, boolean]> = []
 
@@ -104,8 +106,10 @@ export class KeyStateTracker {
    * Sets up the keyboard event listeners.
    */
   #setupListeners(): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
+    // SSR safety. The listeners go on the window, and some server DOM shims
+    // define a `document` without one.
+    if (typeof window === 'undefined') {
+      return
     }
 
     const onKeydown = (event: KeyboardEvent) => {
@@ -133,11 +137,13 @@ export class KeyStateTracker {
 
       this.#reconcileModifiers(event)
 
-      // When a modifier key is released, clear any non-modifier keys still
-      // marked as held. On macOS, the OS intercepts modifier+key combos
-      // (e.g. Cmd+S) and swallows the keyup event for the non-modifier key,
-      // leaving it permanently stuck in the held set.
-      if (MODIFIER_KEYS.has(key)) this.#releaseNonModifiers()
+      // macOS swallows the keyup of a key released while Command is held,
+      // such as S after Cmd+S, so releasing Command clears non-modifier keys
+      // that would otherwise stay held. Other modifiers and platforms keep
+      // their keyups, so a key held while Shift is tapped stays held.
+      if (key === 'Meta' && detectPlatform() === 'mac') {
+        this.#releaseNonModifiers()
+      }
 
       this.#syncState()
     }
@@ -174,8 +180,9 @@ export class KeyStateTracker {
       ['mousedown', onMouse as EventListener, true],
       ['blur', onBlur, false],
       ['contextmenu', onContextMenu as EventListener, false],
-      // Switching tabs or apps can hide the page without a window blur.
-      ['visibilitychange', () => document.hidden && onBlur(), false],
+      // Switching tabs or apps can hide the page without a window blur. The
+      // event bubbles from the document, so capture it like the key events.
+      ['visibilitychange', () => document.hidden && onBlur(), true],
     ]
     for (const [type, listener, capture] of this.#listeners) {
       window.addEventListener(type, listener, capture)
@@ -190,32 +197,27 @@ export class KeyStateTracker {
    * modifiers and would clear keys the user is still holding.
    */
   #reconcileModifiers(event: KeyboardEvent | MouseEvent): boolean {
-    if (!event.isTrusted) return false
-    let changed = false
-    for (const [identity, entry] of this.#heldEntries) {
-      const released =
-        (entry.key === 'Control' && !event.ctrlKey) ||
-        (entry.key === 'Alt' && !event.altKey) ||
-        (entry.key === 'Shift' && !event.shiftKey) ||
-        (entry.key === 'Meta' && !event.metaKey)
-      if (released) {
-        this.#heldEntries.delete(identity)
-        changed = true
+    const size = this.#heldEntries.size
+    if (event.isTrusted) {
+      for (const [identity, entry] of this.#heldEntries) {
+        const released =
+          (entry.key === 'Control' && !event.ctrlKey) ||
+          (entry.key === 'Alt' && !event.altKey) ||
+          (entry.key === 'Shift' && !event.shiftKey) ||
+          (entry.key === 'Meta' && !event.metaKey)
+        if (released) this.#heldEntries.delete(identity)
       }
     }
-    return changed
+    return this.#heldEntries.size !== size
   }
 
   /** Forgets every held key that isn't a modifier. Returns whether any was held. */
   #releaseNonModifiers(): boolean {
-    let changed = false
+    const size = this.#heldEntries.size
     for (const [identity, entry] of this.#heldEntries) {
-      if (!MODIFIER_KEYS.has(entry.key)) {
-        this.#heldEntries.delete(identity)
-        changed = true
-      }
+      if (!MODIFIER_KEYS.has(entry.key)) this.#heldEntries.delete(identity)
     }
-    return changed
+    return this.#heldEntries.size !== size
   }
 
   /**
@@ -259,7 +261,11 @@ export class KeyStateTracker {
   /**
    * Checks if a specific key is currently being held.
    *
-   * @param key - The key name to check (case-insensitive)
+   * Letters match in any case. Other key names are case-sensitive, so
+   * `'escape'` doesn't match `Escape`. Every adapter's key-hold helper uses
+   * this rule.
+   *
+   * @param key - The key name to check, such as `'A'`, `'Shift'`, or `'Escape'`
    * @returns True if the key is currently held
    */
   isKeyHeld(key: string): boolean {

@@ -13,7 +13,10 @@ import {
   useHotkey,
   useHotkeys,
 } from '@tanstack/ember-hotkeys'
-import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type {
+  EmberHotkeyDefinition,
+  HotkeyPlatform,
+} from '@tanstack/ember-hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Control+S', meta: { name: 'Save' } },
@@ -22,7 +25,7 @@ const appHotkeys = defineAppHotkeys({
 })
 
 let instance: AppExample
-let currentPlatform: 'mac' | 'windows' | 'linux'
+let currentPlatform: HotkeyPlatform
 
 class AppExample extends Component {
   @tracked count = 0
@@ -97,6 +100,16 @@ module('App hotkeys', (hooks) => {
       )
       await key('s', { ctrlKey: true })
       assert.dom('#count').hasText('1')
+
+      // A recorded position conflicts through the key press that recorded it
+      const recordedWith = {
+        event: new KeyboardEvent('keydown', { key: 's', code: 'KeyS', ctrlKey: true }),
+      }
+      assert.deepEqual(instance.custom.findConflicts('palette.open', 'Control+[KeyS]'), [])
+      assert.deepEqual(
+        instance.custom.setCustomHotkey('palette.open', 'Control+[KeyS]', recordedWith).map((a) => a.id),
+        ['doc.save'],
+      )
 
       instance.custom.setCustomHotkey('doc.save', ['G', 'S'])
       instance.custom.setCustomHotkey('palette.open', 'Control+K')

@@ -1,13 +1,14 @@
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
   HotkeyCallback,
+  MaybeGetter,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -19,8 +20,12 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-/** The element to listen on. A `null` target skips registration until it is set. */
+/**
+ * The element to listen on. A `null` or `undefined` target skips registration
+ * until it is set. Omit `target` for the document.
+ */
 export type HotkeyControllerTarget = Target | null
 
 /** Options shared by chords and sequences. */
@@ -46,8 +51,6 @@ export type HotkeyControllerOptionsFor<T extends RegisterableHotkey> =
 /** Call-site options for an app hotkey, typed by its declared default kind. */
 export type AppHotkeyControllerOptions<T extends AppHotkey = AppHotkey> =
   AdapterAppHotkeyOptions<T, HotkeyControllerTarget>
-
-type MaybeGetter<T> = T | (() => T)
 
 /**
  * A Lit ReactiveController that registers a hotkey when the host element is
@@ -119,23 +122,19 @@ export class HotkeyController implements ReactiveController {
   }
 
   private _sync(): void {
-    const options =
-      typeof this._options === 'function' ? this._options() : this._options
+    const options = resolveMaybeGetter(this._options)
     this._bindings.update(
       prepareHotkeyDefinitions<HotkeyControllerTarget>(
         [
           {
-            hotkey:
-              typeof this._hotkey === 'function'
-                ? this._hotkey()
-                : this._hotkey,
+            hotkey: resolveMaybeGetter(this._hotkey),
             callback: this._boundCallback,
             options,
           } as never,
         ],
         {
           appHotkeysStore: getAppHotkeysStore(),
-          // A null target skips registration until the element exists.
+          // An unset target skips registration until the element exists.
           resolveTarget: (target) => target,
         },
       ),
@@ -148,5 +147,14 @@ export class HotkeyController implements ReactiveController {
     this._unsubscribe?.()
     this._unsubscribe = undefined
     this._bindings.destroy()
+  }
+
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
   }
 }

@@ -117,7 +117,7 @@ provideAppHotkeys(appHotkeys, {
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- To apply saved data that loads later, such as from a server, call `store.setOptions({ customHotkeys })` on the store that `provideAppHotkeys` returns. It replaces the current custom hotkeys without calling `onCustomHotkeysChange`. `undefined` leaves them unchanged, and `null` clears them. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
+- To apply saved data that loads later, such as from a server, call `store.setOptions({ customHotkeys })` on the store that `provideAppHotkeys` returns. It replaces the current custom hotkeys without calling `onCustomHotkeysChange`. `undefined` leaves them unchanged, and `null` clears them. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
@@ -128,24 +128,21 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 
 ```ts
 import Alpine from 'alpinejs'
-import {
-  createHotkeyRecorder,
-  createHotkeysScope,
-  formatForDisplay,
-} from '@tanstack/alpine-hotkeys'
+import { createHotkeyRecorder, createHotkeysScope } from '@tanstack/alpine-hotkeys'
 import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRow', (id: AppHotkeyId) => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const appHotkeys = hotkeys.createAppHotkeys()
   const custom = hotkeys.createCustomHotkeys()
   const recorder = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = custom.findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = custom.findConflicts(id, hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => custom.setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => custom.setCustomHotkey(id, hotkey, context),
     onClear: () => custom.setCustomHotkey(id, null),
   })
 
@@ -176,11 +173,13 @@ Alpine.data('shortcutRow', (id: AppHotkeyId) => {
 </div>
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `value` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

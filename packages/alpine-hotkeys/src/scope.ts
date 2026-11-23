@@ -1,9 +1,13 @@
-import { getHotkeyManager } from '@tanstack/hotkeys'
-import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
-import type Alpine from 'alpinejs'
-import type { AppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  getPublishedAppHotkeysStore,
+  mergeHotkeysProviderDefaults,
+  resolveMaybeGetter,
+  subscribePublishedAppHotkeys,
+} from '@tanstack/hotkeys/adapter'
+import type { AppHotkeysStore, MaybeGetter } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
-import type { DefaultHotkeysOptions, MaybeGetter } from './types'
+import type Alpine from 'alpinejs'
+import type { DefaultHotkeysOptions } from './types'
 
 type AlpineInstance = typeof Alpine
 
@@ -22,7 +26,7 @@ function getAlpine(): AlpineInstance {
     pluginAlpine ?? (globalThis as { Alpine?: AlpineInstance }).Alpine
   if (!alpine) {
     throw new Error(
-      '[TanStack Hotkeys] Alpine was not found. Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine.',
+      '[hotkeys] Alpine not found. Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine',
     )
   }
   return alpine
@@ -39,10 +43,6 @@ export function scopeOf(owner: object): HotkeysScope {
   return ownerScopes.get(getAlpine().raw(owner))!
 }
 
-export function read<T>(value: MaybeGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : value
-}
-
 export function createScope(
   defaultOptions: MaybeGetter<DefaultHotkeysOptions>,
 ) {
@@ -50,7 +50,8 @@ export function createScope(
   let destroyed = false
 
   function assertActive() {
-    if (destroyed) throw new Error('Cannot use a destroyed hotkeys scope')
+    if (destroyed)
+      throw new Error('[hotkeys] Cannot use a destroyed hotkeys scope')
   }
 
   function effect(callback: () => void) {
@@ -107,7 +108,7 @@ export function createScope(
       cleanups.add(subscribePublishedAppHotkeys(() => state.version++))
     }
     void appHotkeysState.version
-    return getHotkeyManager().appHotkeys.state
+    return getPublishedAppHotkeysStore()
   }
 
   return {
@@ -115,7 +116,13 @@ export function createScope(
     effect,
     select,
     appHotkeys,
-    defaultOptions: () => read(defaultOptions),
+    // Puts `platform` into the hotkey and recorder defaults.
+    defaultOptions: () =>
+      mergeHotkeysProviderDefaults(
+        undefined,
+        resolveMaybeGetter(defaultOptions),
+        undefined,
+      ),
     addCleanup: (cleanup: () => void) => cleanups.add(cleanup),
     get destroyed() {
       return destroyed

@@ -1,22 +1,28 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import {
+  getHotkeyRegistrationViews,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
-  AppHotkeyListItem,
+  AppHotkeyId,
   AppHotkeysStore,
+  CustomHotkeyActions,
   CustomHotkeys,
   Hotkey,
+  RecordedKeyPresses,
+  RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
-  const store = getAppHotkeysStore()
-  if (!store) {
-    throw new Error('AppHotkeysController requires provideAppHotkeys()')
-  }
-  return store
+  return requireAppHotkeysStore(
+    getAppHotkeysStore(),
+    'AppHotkeysController requires provideAppHotkeys()',
+  )
 }
 
 /**
@@ -39,7 +45,9 @@ function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
  * }
  * ```
  */
-export class AppHotkeysController implements ReactiveController {
+export class AppHotkeysController
+  implements ReactiveController, CustomHotkeyActions
+{
   private _unsubscribe: (() => void) | undefined
 
   constructor(private _host: ReactiveControllerHost) {
@@ -52,14 +60,8 @@ export class AppHotkeysController implements ReactiveController {
   }
 
   /** Every app hotkey with its live status, in declaration order. */
-  public get list(): Array<
-    AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>
-  > {
-    return requireStore().getList(
-      Array.from(getHotkeyManager().registrations.state.values()).map(
-        toHotkeyRegistrationView,
-      ),
-    )
+  public get list(): Array<RegisteredAppHotkeyListItem> {
+    return requireStore().getList(getHotkeyRegistrationViews())
   }
 
   /** The user's hotkeys that differ from the defaults. */
@@ -69,17 +71,19 @@ export class AppHotkeysController implements ReactiveController {
 
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it.
-   * Returns conflicting app hotkeys; when any exist, nothing changes.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
    */
   public setCustomHotkey(
-    id: keyof RegisteredAppHotkeys & string,
+    id: AppHotkeyId,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
-    return requireStore().setCustomHotkey(id, hotkey)
+    return requireStore().setCustomHotkey(id, hotkey, recordedWith)
   }
 
   /** Restores the default hotkey for an app hotkey. */
-  public resetCustomHotkey(id: keyof RegisteredAppHotkeys & string): void {
+  public resetCustomHotkey(id: AppHotkeyId): void {
     requireStore().resetCustomHotkey(id)
   }
 
@@ -88,12 +92,17 @@ export class AppHotkeysController implements ReactiveController {
     requireStore().resetCustomHotkeys()
   }
 
-  /** Other app hotkeys that would collide if `id` used `hotkey`. */
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
   public findConflicts(
-    id: keyof RegisteredAppHotkeys & string,
+    id: AppHotkeyId,
     hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
-    return requireStore().findConflicts(id, hotkey)
+    return requireStore().findConflicts(id, hotkey, recordedWith)
   }
 
   public hostConnected(): void {
@@ -112,5 +121,14 @@ export class AppHotkeysController implements ReactiveController {
   public hostDisconnected(): void {
     this._unsubscribe?.()
     this._unsubscribe = undefined
+  }
+
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
   }
 }

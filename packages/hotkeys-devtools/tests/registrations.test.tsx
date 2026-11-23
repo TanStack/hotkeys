@@ -1,18 +1,18 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
 import {
   AppHotkeysStore,
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
+import { createSignal, flush } from 'solid-js'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeysContextProvider,
   useHotkeysDevtoolsState,
 } from '../src/HotkeysContextProvider'
-import { HotkeyList } from '../src/components/HotkeyList'
 import { DetailsPanel } from '../src/components/DetailsPanel'
+import { HotkeyList } from '../src/components/HotkeyList'
 
 // Stable class names let these tests inspect the real UI without coupling to CSS generation.
 vi.mock('../src/styles/use-styles', () => ({
@@ -53,6 +53,7 @@ function mount(selectedId?: string) {
     ),
     container,
   )
+  flush()
   return container
 }
 
@@ -90,11 +91,13 @@ describe('shared devtools registrations', () => {
       options,
     )
     await Promise.resolve()
+    flush()
     expect(ui.querySelectorAll('.conflictList > div')).toHaveLength(2)
     expect(ui.querySelectorAll('.hotkeyBadges .badgeConflict')).toHaveLength(3)
     hotkey.setOptions({ enabled: false })
     longer.unregister()
     await Promise.resolve()
+    flush()
     expect(ui.querySelector('.conflictList')).toBeNull()
   })
 
@@ -162,9 +165,11 @@ describe('shared devtools registrations', () => {
       const input = ui.querySelector('input')!
       input.value = 'Documents'
       input.dispatchEvent(new Event('input', { bubbles: true }))
+      flush()
       expect(ui.querySelectorAll('.hotkeyRow')).toHaveLength(1)
       handle.setOptions({ meta: { name: 'Save', group: 'Editor' } })
       await Promise.resolve()
+      flush()
       expect(ui.querySelectorAll('.hotkeyRow')).toHaveLength(0)
     },
   )
@@ -219,6 +224,21 @@ describe('shared devtools registrations', () => {
     },
   )
 
+  it('describes validation warnings in the details', () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const manager = HotkeyManager.getInstance()
+    const typo = manager.register(['G', 'escape'] as never, () => {}, options)
+    const clean = manager.register('Mod+S', () => {}, options)
+    const issues = (id: string) =>
+      Array.from(mount(id).querySelectorAll('.issueItem'), (n) => n.textContent)
+    expect(issues(typo.id)).toEqual([
+      "Step 2: 'escape' isn't a known key name, so the hotkey may never fire. Key names are case-sensitive, such as Escape and F1.",
+    ])
+    dispose?.()
+    expect(issues(clean.id)).toEqual([])
+    vi.restoreAllMocks()
+  })
+
   it('distinguishes logical, physical, and mixed registrations', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('Mod+S', () => {}, options)
@@ -264,6 +284,7 @@ describe('shared devtools registrations', () => {
 
     store.setCustomHotkey('palette.open', 'Mod+P')
     await Promise.resolve()
+    flush()
     expect(declared()[1]).not.toContain('Unassigned')
   })
 
@@ -298,6 +319,7 @@ describe('shared devtools registrations', () => {
     )
     for (const handle of [save, top, find]) {
       setSelectedId(handle.id)
+      flush()
       expect(container.textContent).toContain(handle.id)
     }
   })

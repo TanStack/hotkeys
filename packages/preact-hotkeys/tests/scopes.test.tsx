@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { act, cleanup, render } from '@testing-library/preact'
+
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { act, cleanup, render } from '@testing-library/preact'
 import { useState } from 'preact/hooks'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'

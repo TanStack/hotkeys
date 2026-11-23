@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { formatForDisplay, formatHotkey } from '../src/format'
-import { normalizeHotkey } from '../src/parse'
+import { normalizeHotkey, parseHotkey } from '../src/parse'
+import { validateHotkey } from '../src/validate'
 import type { DisplayHotkeyChord } from '../src/format'
 import type {
   HotkeyChord,
@@ -351,6 +352,36 @@ describe('physical display labels', () => {
     expect(formatForDisplay('[NumpadMemoryAdd]')).toBe('Numpad Memory Add')
   })
 
+  // These keys have no US key, so they used to show their code names
+  it.each([
+    ['IntlBackslash', '\\'],
+    ['IntlRo', '\\'],
+    ['IntlYen', '¥'],
+  ] as const)('labels %s with its keycap legend %s', (code, label) => {
+    for (const useSymbols of [true, false]) {
+      expect(
+        formatForDisplay(`[${code}]`, { platform: 'linux', useSymbols }),
+      ).toBe(label)
+    }
+    expect(formatForDisplay(`Shift+[${code}]`, { platform: 'windows' })).toBe(
+      `Shift+${label}`,
+    )
+    expect(formatForDisplay({ code, mod: true }, { platform: 'mac' })).toBe(
+      `⌘ ${label}`,
+    )
+    // A layout map entry and keyLabels still win
+    expect(
+      formatForDisplay(`[${code}]`, {
+        layoutMap: new Map<string, string>([[code, '<']]),
+      }),
+    ).toBe('<')
+    expect(
+      formatForDisplay(`[${code}]`, { keyLabels: { [code]: 'ISO' } }),
+    ).toBe('ISO')
+    // Display only: the hotkey keeps its code
+    expect(normalizeHotkey(`[${code}]`)).toBe(`[${code}]`)
+  })
+
   it('only strips exact letter and digit code patterns', () => {
     // Not valid typed hotkeys: checks how untyped input is displayed
     expect(formatForDisplay('[Keyboard]' as HotkeyChord)).toBe('Keyboard')
@@ -382,6 +413,30 @@ describe('physical display labels', () => {
     expect(formatForDisplay(physical, { platform: 'mac' })).toBe('⌥ Q')
     expect(formatHotkey(physical)).toBe('Alt+[KeyQ]')
     expect(physical).not.toHaveProperty('key')
+  })
+})
+
+// Turkish ı and i are different letters, so they get different labels
+describe('Turkish ı labels', () => {
+  it('labels ı as ı, not I', () => {
+    expect(formatForDisplay(hk('ı'), { platform: 'linux' })).toBe('ı')
+    expect(formatForDisplay(hk('Mod+ı'), { platform: 'windows' })).toBe(
+      'Ctrl+ı',
+    )
+    expect(formatForDisplay({ key: 'ı' }, { platform: 'linux' })).toBe('ı')
+    expect(formatForDisplay(hk('Shift+İ'), { platform: 'linux' })).toBe(
+      'Shift+İ',
+    )
+  })
+
+  it('labels the Turkish I position from the layout map as ı', () => {
+    const turkish = new Map([
+      ['KeyI', 'ı'],
+      ['Quote', 'i'],
+    ])
+    expect(formatForDisplay('[KeyI]', { layoutMap: turkish })).toBe('ı')
+    expect(formatForDisplay('[Quote]', { layoutMap: turkish })).toBe('I')
+    expect(formatForDisplay('[KeyI]', { platform: 'linux' })).toBe('I')
   })
 })
 
@@ -494,5 +549,45 @@ describe('formatForDisplay with single keys', () => {
         keyLabels: { Shift: 'Sh' },
       }),
     ).toBe('⇧')
+  })
+})
+
+describe('literal plus and split symbol options', () => {
+  it('formats literal plus as one token and separates symbol options', () => {
+    expect(
+      formatForDisplay('Control++', { platform: 'windows', parts: true }),
+    ).toEqual(['Ctrl', '+'])
+    expect(
+      formatForDisplay('Control++', {
+        platform: 'windows',
+        separatorToken: ' | ',
+      }),
+    ).toBe('Ctrl | +')
+    expect(
+      formatForDisplay('Shift+ArrowUp', {
+        platform: 'mac',
+        parts: true,
+        useSymbols: { modifiers: false, keys: true },
+      }),
+    ).toEqual(['Shift', '↑'])
+    expect(
+      formatForDisplay('Shift+ArrowUp', {
+        platform: 'mac',
+        useSymbols: { modifiers: true, keys: false },
+      }),
+    ).toBe('⇧ ArrowUp')
+    expect(
+      formatForDisplay({ code: 'KeyQ', alt: true }, { platform: 'mac' }),
+    ).toBe('⌥ Q')
+    expect(
+      formatForDisplay(parseHotkey('Alt+[KeyQ]'), {
+        platform: 'mac',
+        keyLabels: { KeyQ: 'A' },
+        parts: true,
+      }),
+    ).toEqual(['⌥', 'A'])
+    expect(validateHotkey('Control++').valid).toBe(true)
+    expect(validateHotkey('Alt+[KeyQ]').valid).toBe(true)
+    expect(validateHotkey('Alt+[Key Q]').valid).toBe(false)
   })
 })

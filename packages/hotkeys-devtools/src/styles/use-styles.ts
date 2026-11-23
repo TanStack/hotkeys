@@ -1,9 +1,10 @@
-import * as goober from 'goober'
-import { createEffect, createSignal } from 'solid-js'
 import { createTheme } from '@tanstack/devtools-ui'
+import * as goober from 'goober'
+import { createMemo } from 'solid-js'
 import { tokens } from './tokens'
+import type { HotkeysDevtoolsTheme } from '../types'
 
-const stylesFactory = (theme: 'light' | 'dark') => {
+const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
   const { colors, font, size, alpha, border } = tokens
   const { fontFamily, size: fontSize } = font
   const css = goober.css
@@ -139,6 +140,58 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       text-transform: none;
       line-height: 1;
       margin-top: 2px;
+    `,
+    layoutChip: css`
+      /* !important: host page button styles outrank one class */
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      flex-shrink: 0;
+      margin: 0 !important;
+      padding: ${size[1]} ${size[2]} !important;
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])} !important;
+      border-radius: ${border.radius.md} !important;
+      background: ${t(colors.white, colors.darkGray[700])} !important;
+      color: ${t(colors.gray[800], colors.gray[100])} !important;
+      font-family: inherit;
+      font-size: ${fontSize.xs} !important;
+      cursor: pointer;
+
+      &:hover {
+        border-color: ${t(colors.blue[600], colors.blue[500])} !important;
+      }
+    `,
+    layoutChipSelected: css`
+      border-color: ${t(colors.blue[600], colors.blue[500])} !important;
+      background: ${t(colors.blue[100], colors.blue[900] + alpha[20])} !important;
+    `,
+    layoutChipLabel: css`
+      font-size: ${fontSize['2xs']};
+      font-weight: ${font.weight.bold};
+      color: ${t(colors.gray[600], colors.gray[400])};
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    `,
+    layoutRows: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${size[1]};
+      overflow-x: auto;
+    `,
+    layoutRow: css`
+      display: flex;
+      gap: ${size[1]};
+    `,
+    layoutKeyChanged: css`
+      border-color: ${t(colors.blue[600], colors.blue[500])};
+      background: ${t(colors.blue[100], colors.blue[900] + alpha[20])};
+    `,
+    layoutNote: css`
+      font-size: ${fontSize.xs};
+      color: ${t(colors.gray[600], colors.gray[400])};
+      line-height: 1.5;
+      margin-top: ${size[1]};
     `,
     noKeysHeld: css`
       font-size: ${fontSize.sm};
@@ -656,6 +709,14 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       border-radius: ${border.radius.sm};
       border: 1px solid ${t(colors.blue[200], colors.blue[800] + alpha[30])};
     `,
+    issueItem: css`
+      font-size: ${fontSize.xs};
+      color: ${t(colors.yellow[700], colors.yellow[400])};
+      padding: ${size[1]} ${size[2]};
+      background: ${t(colors.yellow[50], colors.yellow[900] + alpha[20])};
+      border-radius: ${border.radius.sm};
+      border: 1px solid ${t(colors.yellow[200], colors.yellow[800] + alpha[30])};
+    `,
     optionRow: css`
       display: flex;
       justify-content: space-between;
@@ -748,9 +809,5 @@ const stylesFactory = (theme: 'light' | 'dark') => {
 
 export function useStyles() {
   const { theme } = createTheme()
-  const [styles, setStyles] = createSignal(stylesFactory(theme()))
-  createEffect(() => {
-    setStyles(stylesFactory(theme()))
-  })
-  return styles
+  return createMemo(() => stylesFactory(theme()))
 }

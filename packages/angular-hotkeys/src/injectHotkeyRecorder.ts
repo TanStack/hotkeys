@@ -8,34 +8,31 @@ import {
   untracked,
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { injectDefaultHotkeysOptions } from './hotkeys-provider'
-import type { Store } from '@tanstack/hotkeys/adapter'
+import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
+import { injectWrapCallback } from './_zone'
+import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
+import type { Store } from '@tanstack/hotkeys/adapter'
 
-export interface AngularHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
+export interface AngularHotkeyRecorder<
+  THotkey extends Hotkey = Hotkey,
+> extends Readonly<HotkeyRecorderActions> {
   /** Whether recording is currently active */
   readonly isRecording: () => boolean
   /** Chords recorded so far in a multi-step recording (for live preview) */
   readonly steps: () => HotkeySequence
   /** The last committed hotkey */
   readonly recordedHotkey: () => THotkey | null
-  /** Start recording a new hotkey */
-  readonly startRecording: () => void
-  /** Stop recording without calling onCancel */
-  readonly stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  readonly cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  readonly commitRecording: () => void
 }
 
 /**
@@ -44,8 +41,9 @@ export interface AngularHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * With the default `maxSteps: 1`, the first valid chord is recorded. With a
  * larger `maxSteps`, each chord adds a step; the recording commits on Enter
  * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
- * `onRecord` receives a chord (one step) or a sequence. Escape cancels;
- * Backspace/Delete removes the last step or clears.
+ * `onRecord` receives a chord (one step) or a sequence. Escape cancels, and
+ * so do Tab and Shift+Tab unless `recordTab` is set; Backspace/Delete removes
+ * the last step or clears.
  *
  * @param options - Configuration options for the recorder (or getter)
  * @returns Object with recording state signals and control functions
@@ -87,30 +85,41 @@ export function injectHotkeyRecorder(
   options: () => HotkeyRecorderOptions,
 ): AngularHotkeyRecorder
 export function injectHotkeyRecorder(
-  options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
+  options: MaybeGetter<HotkeyRecorderOptions>,
 ): AngularHotkeyRecorder {
-  const defaultOptions = injectDefaultHotkeysOptions()
+  const context = injectHotkeysContext()
   const destroyRef = inject(DestroyRef)
   const zone = inject(NgZone)
+  const wrapCallback = injectWrapCallback()
 
-  // Callbacks run in the zone, so their changes update the view.
+  // Reads the provider defaults on each call, so the sync effect tracks them.
+  // Callbacks run in the zone and mark the component for check, so their
+  // changes update the view.
   const resolve = (): HotkeySequenceRecorderOptions => {
     const resolved: Record<string, any> = withDefaults(
-      defaultOptions.hotkeyRecorder,
-      typeof options === 'function' ? options() : options,
+      context.defaultOptions.hotkeyRecorder,
+      resolveMaybeGetter(options),
     )
     for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
       const callback = resolved[key]
-      if (callback)
-        resolved[key] = (...args: Array<any>) => zone.run(callback, null, args)
+      if (callback) resolved[key] = wrapCallback(callback)
     }
     // Overloads already checked the options; either shape is valid here.
     return resolved as never
   }
 
+  // Keys sent to the recorder last time. A key that disappears from the
+  // options is sent as `undefined`, which restores the recorder's default
+  // instead of keeping the old value.
+  let syncedKeys: Array<string> = []
+
   // Stable signal to lazy initialize the recorder
   const recorderSignal = computed(() =>
-    untracked(() => new HotkeyRecorder(resolve())),
+    untracked(() => {
+      const initial = resolve()
+      syncedKeys = Object.keys(initial)
+      return new HotkeyRecorder(initial)
+    }),
   )
 
   // Subscribe to recorder state
@@ -127,7 +136,10 @@ export function injectHotkeyRecorder(
 
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
-    recorderSignal().setOptions(resolve())
+    const next: Record<string, unknown> = { ...resolve() }
+    for (const key of syncedKeys) if (!(key in next)) next[key] = undefined
+    syncedKeys = Object.keys(next)
+    recorderSignal().setOptions(next)
   })
 
   destroyRef.onDestroy(() => {

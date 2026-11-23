@@ -3,6 +3,7 @@ export * from '@tanstack/hotkeys'
 
 // provider
 export * from './HotkeysProvider'
+export * from './AppHotkeysProvider'
 
 // React-specific exports
 export * from './useHotkey'
@@ -12,6 +13,9 @@ export * from './useHotkeyRegistrations'
 export * from './useHotkeyScopesState'
 export * from './useHotkeyHint'
 export * from './useFormatForDisplay'
+// Replaces the core export, to point components to the hook
+export { formatForDisplay } from './formatForDisplay'
+export * from './useKeyboardLayout'
 export * from './useAppHotkeys'
 export * from './useHeldKeys'
 export * from './useHeldKeyCodes'

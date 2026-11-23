@@ -1,8 +1,9 @@
-import { useLayoutEffect, useRef } from 'octane'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
+import { useLayoutEffect, useRef } from 'octane'
 import { useHotkeysContext } from './HotkeysProvider'
 import { splitSlot, subSlot, useAppHotkeysStore } from './internal'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
@@ -49,8 +50,9 @@ export function useHotkeys(
           appHotkeysStore,
           defaults: context?.defaultOptions.hotkey,
           commonOptions,
-          // A null target skips registration until it is set.
-          resolveTarget: (target) => target,
+          // Reads a ref object after each render. An unset target skips
+          // registration until it is set.
+          resolveTarget: resolveRefTarget,
         }),
       )
     },

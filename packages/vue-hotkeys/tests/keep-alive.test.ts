@@ -1,7 +1,7 @@
-import { KeepAlive, defineComponent, h, nextTick, onActivated, ref } from 'vue'
-import { mount } from '@vue/test-utils'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { KeepAlive, defineComponent, h, nextTick, onActivated, ref } from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
@@ -158,11 +158,11 @@ describe('<KeepAlive>', () => {
     await nextTick()
     recorder.startRecording()
     press('k')
-    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+    expect(recorder.recordedHotkey.value).toBe('K')
 
     await show('b')
     await show('a')
-    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+    expect(recorder.recordedHotkey.value).toBe('K')
   })
 
   it('starts recording from an onActivated hook in a cached page', async () => {

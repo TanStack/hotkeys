@@ -1,9 +1,9 @@
-import { afterEach, expect, it, vi } from 'vitest'
-import { act, renderHook } from '@testing-library/react'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { act, renderHook } from '@testing-library/react'
+import React from 'react'
+import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
-import React from 'react'
 import type { RegisterableHotkey } from '@tanstack/hotkeys'
 import type { ReactNode } from 'react'
 

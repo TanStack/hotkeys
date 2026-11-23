@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
-  import { getActivity } from './activity.svelte'
   import Key from './Key.svelte'
+  import { getActivity } from './activity.svelte'
 
   // Nested in the exclusive scope, so it stays active without being allowed.
   const activity = getActivity()

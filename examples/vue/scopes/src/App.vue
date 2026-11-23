@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 import { TanStackDevtools } from '@tanstack/vue-devtools'
+import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/vue-hotkeys-devtools'
-import { provideActivity } from './activity'
 import ActivityLog from './ActivityLog.vue'
 import DialogDemo from './DialogDemo.vue'
 import NestedDemo from './NestedDemo.vue'
 import Palette from './Palette.vue'
 import ScopeFrame from './ScopeFrame.vue'
 import TabsDemo from './TabsDemo.vue'
+import { provideActivity } from './activity'
 
 // Every hotkey in this example is a plain `useHotkey` call with no `scope`
 // option. It registers in the scope of the nearest `HotkeysProvider` that

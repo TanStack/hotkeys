@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/angular-hotkeys-devtools",
-  "version": "0.5.1",
+  "version": "0.5.14",
   "description": "Angular devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -24,11 +24,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -57,10 +58,14 @@
     }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.8.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^22.2.1"
+    "@angular/common": "^22.2.5",
+    "@angular/core": "^22.2.5",
+    "@angular/platform-browser-dynamic": "^22.2.5",
+    "@tanstack/angular-hotkeys": "workspace:*",
+    "@tanstack/hotkeys-test-utils": "workspace:*"
   }
 }

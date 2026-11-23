@@ -17,13 +17,13 @@
     </p>
     <div class="hotkey-grid">
       <div>
-        <kbd>{{ fd('Shift+S') }}</kbd> Save ({{ saveCount() }})
+        <kbd>{{ formatForDisplay('Shift+S') }}</kbd> Save ({{ saveCount() }})
       </div>
       <div>
-        <kbd>{{ fd('Shift+U') }}</kbd> Undo ({{ undoCount() }})
+        <kbd>{{ formatForDisplay('Shift+U') }}</kbd> Undo ({{ undoCount() }})
       </div>
       <div>
-        <kbd>{{ fd('Shift+R') }}</kbd> Redo ({{ redoCount() }})
+        <kbd>{{ formatForDisplay('Shift+R') }}</kbd> Redo ({{ redoCount() }})
       </div>
     </div>
     @if (log().length > 0) {
@@ -56,8 +56,9 @@ injectHotkeys([
   <div class="demo-section">
     <h2>Common Options with Per-Hotkey Overrides</h2>
     <p>
-      <kbd>{{ fd('Alt+J') }}</kbd> and <kbd>{{ fd('Alt+K') }}</kbd> respect the
-      global toggle. <kbd>{{ fd('Alt+L') }}</kbd> overrides
+      <kbd>{{ formatForDisplay('Alt+J') }}</kbd> and
+      <kbd>{{ formatForDisplay('Alt+K') }}</kbd> respect the global toggle.
+      <kbd>{{ formatForDisplay('Alt+L') }}</kbd> overrides
       <code>enabled: true</code> so it always works.
     </p>
     <div style="margin-bottom: 12px">
@@ -67,13 +68,13 @@ injectHotkeys([
     </div>
     <div class="hotkey-grid">
       <div>
-        <kbd>{{ fd('Alt+J') }}</kbd> Action A ({{ counts().a }})
+        <kbd>{{ formatForDisplay('Alt+J') }}</kbd> Action A ({{ counts().a }})
       </div>
       <div>
-        <kbd>{{ fd('Alt+K') }}</kbd> Action B ({{ counts().b }})
+        <kbd>{{ formatForDisplay('Alt+K') }}</kbd> Action B ({{ counts().b }})
       </div>
       <div>
-        <kbd>{{ fd('Alt+L') }}</kbd> Action C ({{ counts().c }})
+        <kbd>{{ formatForDisplay('Alt+L') }}</kbd> Action C ({{ counts().c }})
         <span class="hint"> (always on)</span>
       </div>
     </div>
@@ -103,7 +104,7 @@ injectHotkeys(
     <div class="dynamic-list">
       @for (s of shortcuts(); track s.id) {
         <div class="dynamic-item">
-          <kbd>{{ fd(s.hotkey) }}</kbd>
+          <kbd>{{ formatForDisplay(s.hotkey) }}</kbd>
           <span>{{ s.label }}</span>
           <span class="count">{{ s.count }}</span>
           <button (click)="removeShortcut(s.id)">Remove</button>
@@ -177,7 +178,7 @@ injectHotkeys(
         @for (reg of registrations(); track reg.id) {
           <tr>
             <td>
-              <kbd>{{ fd(reg.hotkey) }}</kbd>
+              <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
             </td>
             <td>{{ reg.options.meta?.name ?? '—' }}</td>
             <td class="description-cell">

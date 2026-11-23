@@ -13,7 +13,11 @@ import type {
  * - `'inactive'`: not activated, such as a provider that is not mounted
  */
 export type ScopeStatus =
-  'exclusive' | 'allowed' | 'active' | 'suspended' | 'inactive'
+  | 'exclusive'
+  | 'allowed'
+  | 'active'
+  | 'suspended'
+  | 'inactive'
 
 export const scopeStatusDescriptions: Record<ScopeStatus, string> = {
   exclusive:

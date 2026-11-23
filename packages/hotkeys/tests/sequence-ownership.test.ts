@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 
@@ -15,23 +16,9 @@ function press(
   target: EventTarget = document,
   init: KeyboardEventInit = {},
 ) {
-  const down = new KeyboardEvent('keydown', {
-    key,
-    code: /^[a-z]$/i.test(key) ? `Key${key.toUpperCase()}` : key,
-    bubbles: true,
-    cancelable: true,
-    ...init,
-  })
-  target.dispatchEvent(down)
-  target.dispatchEvent(
-    new KeyboardEvent('keyup', {
-      key,
-      code: down.code,
-      bubbles: true,
-      cancelable: true,
-      ...init,
-    }),
-  )
+  const code = /^[a-z]$/i.test(key) ? `Key${key.toUpperCase()}` : key
+  const down = keydown({ key, code, ...init, target })
+  keyup({ key, code, ...init, target })
   return down
 }
 
@@ -113,17 +100,8 @@ describe('a sequence owns the keys after its first step', () => {
     manager.register(['G', 'C'], sequence)
 
     press('g')
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'c', code: 'KeyC', bubbles: true }),
-    )
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key: 'c',
-        code: 'KeyC',
-        repeat: true,
-        bubbles: true,
-      }),
-    )
+    keydown({ key: 'c', code: 'KeyC', target: document })
+    keydown({ key: 'c', code: 'KeyC', repeat: true, target: document })
     expect(sequence).toHaveBeenCalledOnce()
     expect(chord).not.toHaveBeenCalled()
   })
@@ -255,9 +233,7 @@ describe('a sequence owns the keys after its first step', () => {
 
     press('g')
     // The keyup for C never arrives, for example after the window loses focus
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'c', code: 'KeyC', bubbles: true }),
-    )
+    keydown({ key: 'c', code: 'KeyC', target: document })
     expect(sequence).toHaveBeenCalledOnce()
 
     press('c')

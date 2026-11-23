@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { HotkeysProvider, useHotkey } from '@tanstack/vue-hotkeys'
-import { useActivity } from './activity'
+import { ref } from 'vue'
 import CommentBox from './CommentBox.vue'
 import Key from './Key.vue'
 import ScopeFrame from './ScopeFrame.vue'
+import { useActivity } from './activity'
 
 const { log } = useActivity()
 const showComments = ref(true)

@@ -1,7 +1,8 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { isServer } from './_server'
+import type { IndividualKey, MaybeGetter } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
-import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * A Lit ReactiveController that tracks whether a specific key is currently held.
@@ -60,7 +61,7 @@ export class KeyHoldController implements ReactiveController {
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _key: IndividualKey | (() => IndividualKey),
+    private _key: MaybeGetter<IndividualKey>,
   ) {
     this._host.addController(this)
   }
@@ -87,14 +88,18 @@ export class KeyHoldController implements ReactiveController {
     this._value = false
   }
 
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
+  }
+
   /** Recomputes the held state and reports whether it changed. */
   private _refresh(): boolean {
-    const key = (
-      typeof this._key === 'function' ? this._key() : this._key
-    ).toLowerCase()
-    const next = getKeyStateTracker().store.state.heldKeys.some(
-      (heldKey) => heldKey.toLowerCase() === key,
-    )
+    const next = getKeyStateTracker().isKeyHeld(resolveMaybeGetter(this._key))
     const changed = next !== this._value
     this._value = next
     return changed

@@ -23,6 +23,6 @@ import type { Ref } from 'vue'
  * </template>
  * ```
  */
-export function useHotkeyScopesState(): Ref<HotkeyScopesState> {
+export function useHotkeyScopesState(): Readonly<Ref<HotkeyScopesState>> {
   return useStoreSelector(getHotkeyManager().scopes, (state) => state)
 }

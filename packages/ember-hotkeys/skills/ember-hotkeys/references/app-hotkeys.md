@@ -37,25 +37,26 @@ A settings row records with `useHotkeyRecorder` and saves through `useCustomHotk
 ```gts
 import Component from '@glimmer/component'
 import { on } from '@ember/modifier'
-import { formatForDisplay, useAppHotkeys, useCustomHotkeys, useHotkeyRecorder } from '@tanstack/ember-hotkeys'
+import { useAppHotkeys, useCustomHotkeys, useFormatForDisplay, useHotkeyRecorder } from '@tanstack/ember-hotkeys'
 import type { AppHotkeyId } from '@tanstack/ember-hotkeys'
 
 export default class ShortcutRow extends Component<{ Args: { id: AppHotkeyId } }> {
+  formatForDisplay = useFormatForDisplay()
   appHotkeys = useAppHotkeys(this)
   custom = useCustomHotkeys(this)
   recorder = useHotkeyRecorder(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.custom.findConflicts(this.args.id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.custom.findConflicts(this.args.id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.args.id, hotkey),
+    onRecord: (hotkey, context) => this.custom.setCustomHotkey(this.args.id, hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.args.id, null),
   }))
 
   get label() {
     const { meta, hotkey } = this.appHotkeys.value[this.args.id]
-    return `${meta?.name}: ${hotkey ? formatForDisplay(hotkey) : 'Unassigned'}`
+    return `${meta?.name}: ${hotkey ? this.formatForDisplay(hotkey) : 'Unassigned'}`
   }
   reset = () => this.custom.resetCustomHotkey(this.args.id)
 

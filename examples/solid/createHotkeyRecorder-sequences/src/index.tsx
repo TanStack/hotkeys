@@ -1,14 +1,17 @@
 /* @refresh reload */
+
 import { render } from '@solidjs/web'
-import { For, Show, createSignal } from 'solid-js'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
-  HotkeysProvider,
+  createFormatForDisplay,
   createHeldKeys,
-  createHotkeyRecorder,
   createHotkeyRegistrations,
   createHotkeys,
-  formatForDisplay,
+  createHotkeyRecorder,
+  HotkeysProvider,
 } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import { createSignal, Show, For } from 'solid-js'
 import type { Hotkey, HotkeySequence } from '@tanstack/solid-hotkeys'
 import './index.css'
 
@@ -65,6 +68,7 @@ const INITIAL_SHORTCUTS: Array<Shortcut> = [
 ]
 
 function App() {
+  const formatForDisplay = createFormatForDisplay()
   const [shortcuts, setShortcuts] =
     createSignal<Array<Shortcut>>(INITIAL_SHORTCUTS)
 
@@ -297,6 +301,7 @@ const registrations = createHotkeyRegistrations()
 // registrations()[0].triggerCount → 3`}</pre>
         </section>
       </main>
+      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }
@@ -306,6 +311,7 @@ const registrations = createHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = createFormatForDisplay()
   const registrations = createHotkeyRegistrations()
 
   return (
@@ -386,6 +392,7 @@ function ShortcutListItem(props: {
   onCancel: () => void
   onDelete: () => void
 }) {
+  const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
 
   return (

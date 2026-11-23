@@ -1,8 +1,14 @@
 // @vitest-environment node
+
+import {
+  getHotkeyManager,
+  getKeyStateTracker,
+  getKeyboardLayoutStore,
+} from '@tanstack/hotkeys'
 import { describe, expect, it, vi } from 'vitest'
-import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
   HotkeyController,
@@ -11,6 +17,7 @@ import {
   HotkeyRegistrationsController,
   HotkeyScopesStateController,
   KeyHoldController,
+  KeyboardLayoutController,
 } from '../src/controllers'
 
 /** Live subscribers on each store, counted from when tracking starts. */
@@ -44,6 +51,7 @@ for (const store of [
   getHotkeyManager().registrations,
   getHotkeyManager().scopes,
   getHotkeyManager().appHotkeys,
+  getKeyboardLayoutStore(),
 ]) {
   trackSubscribers(store)
 }
@@ -55,6 +63,7 @@ function snapshot() {
     registrations: subscriberCount(manager.registrations),
     scopes: subscriberCount(manager.scopes),
     appHotkeys: subscriberCount(manager.appHotkeys),
+    keyboardLayout: subscriberCount(getKeyboardLayoutStore()),
   }
 }
 
@@ -84,6 +93,8 @@ describe('server rendering', () => {
         new HotkeyRegistrationsController(host),
         new HotkeyScopesStateController(host),
         new KeyHoldController(host, 'Shift'),
+        new KeyboardLayoutController(host),
+        new FormatForDisplayController(host),
       ]
       for (const controller of controllers) controller.hostConnected()
     }

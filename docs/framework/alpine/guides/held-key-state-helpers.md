@@ -33,7 +33,7 @@ Alpine.data('keyDisplay', () => {
 })
 ```
 
-To label each held key the way hotkeys are labeled, pass it to `formatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+To label each held key the way hotkeys are labeled, pass it to the function from `createFormatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
 
 ```html
 <div x-data="keyDisplay" x-text="label"></div>
@@ -41,7 +41,7 @@ To label each held key the way hotkeys are labeled, pass it to `formatForDisplay
 
 ## Check whether a key is held
 
-`createKeyHold` tracks whether one key is held. Its value changes only when that key is pressed or released, and it accepts a getter for a key that changes:
+`createKeyHold` tracks whether one key is held, and it accepts a getter for a key that changes. An effect that reads its value runs again whenever any key is pressed or released:
 
 ```ts
 Alpine.data('fileItem', (file: File) => {
@@ -67,6 +67,8 @@ Alpine.data('fileItem', (file: File) => {
   <button x-show="!isShiftHeld" @click="moveToTrash(file)">Move to trash</button>
 </div>
 ```
+
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`. Alpine expressions have no types to catch a misspelled name, so a wrong name is never held.
 
 ## Tell left and right modifiers apart
 

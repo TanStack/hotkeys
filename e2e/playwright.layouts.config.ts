@@ -15,7 +15,9 @@ export default defineConfig({
   workers: 1,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
+  // A retry reports a flaky test, and the run still fails on it.
   retries: process.env.CI ? 1 : 0,
+  failOnFlakyTests: !!process.env.CI,
   reporter: process.env.CI ? [['list'], ['github']] : 'list',
   timeout: 20_000,
   use: {

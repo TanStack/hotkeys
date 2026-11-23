@@ -1,11 +1,11 @@
-import { afterEach, expect, it } from 'vitest'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import {
   createRoot,
   delegateEvents,
   drainPassiveEffects,
   flushSync,
 } from 'octane'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, expect, it } from 'vitest'
 import { ElementOrderFixture, elementOrderLog } from './element-order.tsrx'
 import type { Root } from 'octane'
 

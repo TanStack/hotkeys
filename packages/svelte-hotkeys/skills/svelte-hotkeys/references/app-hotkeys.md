@@ -49,24 +49,25 @@ A settings row records with `createHotkeyRecorder` and saves through `getCustomH
 <script lang="ts">
   import {
     createHotkeyRecorder,
-    formatForDisplay,
     getAppHotkeys,
     getCustomHotkeys,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { AppHotkeyId } from '@tanstack/svelte-hotkeys'
 
   let { id }: { id: AppHotkeyId } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const appHotkeys = getAppHotkeys()
   const custom = getCustomHotkeys()
   const appHotkey = $derived(appHotkeys.current[id])
 
   const recorder = createHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = custom.findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = custom.findConflicts(id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => custom.setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => custom.setCustomHotkey(id, hotkey, context),
     onClear: () => custom.setCustomHotkey(id, null),
   }))
 </script>

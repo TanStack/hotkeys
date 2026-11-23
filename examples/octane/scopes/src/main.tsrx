@@ -2,7 +2,7 @@ import { createContext, createRoot, useCallback, useContext, useState } from 'oc
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/octane-hotkeys'
 
@@ -368,6 +368,8 @@ function ActivityLog() @{
 }
 
 function Key({ hotkey }: { hotkey: Hotkey }) @{
+  const formatForDisplay = useFormatForDisplay()
+
   <kbd>{formatForDisplay(hotkey)}</kbd>
 }
 

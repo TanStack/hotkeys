@@ -1,9 +1,9 @@
 <script lang="ts">
   import { TanStackDevtools } from '@tanstack/svelte-devtools'
-  import { hotkeysDevtoolsPlugin } from '@tanstack/svelte-hotkeys-devtools'
   import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
-  import { setActivity } from './activity.svelte'
+  import { hotkeysDevtoolsPlugin } from '@tanstack/svelte-hotkeys-devtools'
   import App from './App.svelte'
+  import { setActivity } from './activity.svelte'
 
   setActivity()
 </script>

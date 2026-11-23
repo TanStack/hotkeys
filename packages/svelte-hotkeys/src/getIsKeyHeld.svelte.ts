@@ -8,18 +8,16 @@ export interface SvelteHeldKeyState {
 
 class HeldKeyState implements SvelteHeldKeyState {
   #tracker = getKeyStateTracker()
-  #normalizedKey: string
+  #key: IndividualKey
   #subscribe = createStoreSubscriber(this.#tracker.store)
 
   constructor(key: IndividualKey) {
-    this.#normalizedKey = key.toLowerCase()
+    this.#key = key
   }
 
   get held(): boolean {
     this.#subscribe()
-    return this.#tracker.store.state.heldKeys.some(
-      (heldKey) => heldKey.toLowerCase() === this.#normalizedKey,
-    )
+    return this.#tracker.isKeyHeld(this.#key)
   }
 }
 

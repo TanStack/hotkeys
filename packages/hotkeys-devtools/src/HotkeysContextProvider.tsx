@@ -1,24 +1,27 @@
 import {
+  HotkeyManager,
+  KeyStateTracker,
+  getKeyboardLayoutStore,
+  loadKeyboardLayout,
+  toHotkeyRegistrationView,
+} from '@tanstack/hotkeys'
+import {
   createContext,
   createEffect,
   createMemo,
   createSignal,
-  onCleanup,
+  onSettled,
   useContext,
 } from 'solid-js'
-import {
-  HotkeyManager,
-  KeyStateTracker,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
 import { needsSequenceProgressClock } from './sequence-progress'
-import type { Accessor } from 'solid-js'
 import type {
   AppHotkeyListItem,
   AppHotkeysStore,
   HotkeyRegistrationView,
   HotkeyScopesState,
+  KeyboardLayoutMap,
 } from '@tanstack/hotkeys'
+import type { Accessor } from 'solid-js'
 
 interface HotkeysDevtoolsContextType {
   /** Every registration, chords and sequences. */
@@ -31,6 +34,8 @@ interface HotkeysDevtoolsContextType {
   heldCodes: Accessor<Record<string, string>>
   /** Monotonic clock for sequence in-progress UI (updates while a sequence match is active). */
   sequenceProgressNow: Accessor<number>
+  /** The browser's keyboard layout, or null where it reports none. */
+  keyboardLayout: Accessor<KeyboardLayoutMap | null>
 }
 
 const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
@@ -40,6 +45,7 @@ const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   heldKeys: () => [],
   heldCodes: () => ({}),
   sequenceProgressNow: () => Date.now(),
+  keyboardLayout: () => null,
 })
 
 function readRegistrations(
@@ -72,81 +78,90 @@ export function HotkeysContextProvider(props: { children: any }) {
   )
 
   // Subscribe to HotkeyManager registrations store
-  createEffect(() => {
-    const unsubscribe = manager.registrations.subscribe(() => {
-      setRegistrations(readRegistrations(manager))
-    }).unsubscribe
-    onCleanup(() => unsubscribe())
-  })
+  onSettled(
+    () =>
+      manager.registrations.subscribe(() => {
+        setRegistrations(readRegistrations(manager))
+      }).unsubscribe,
+  )
 
-  createEffect(() => {
-    const unsubscribe = manager.scopes.subscribe(() => {
-      setScopes(manager.scopes.state)
+  onSettled(
+    () =>
+      manager.scopes.subscribe(() => {
+        setScopes(manager.scopes.state)
+      }).unsubscribe,
+  )
+
+  // Load the keyboard layout, as labels in the app do, so the panel shows it
+  // even when no label is on screen. An app that turned the layout off for
+  // its labels ignores the store.
+  const layoutStore = getKeyboardLayoutStore()
+  const [keyboardLayout, setKeyboardLayout] = createSignal(layoutStore.state)
+  onSettled(() => {
+    const unsubscribe = layoutStore.subscribe(() => {
+      setKeyboardLayout(() => layoutStore.state)
     }).unsubscribe
-    onCleanup(() => unsubscribe())
+    const stop = loadKeyboardLayout()
+    return () => {
+      unsubscribe()
+      stop()
+    }
   })
 
   // Follow the app hotkeys store a provider publishes, and its changes
-  createEffect(() => {
-    const unsubscribe = manager.appHotkeys.subscribe(() => {
-      setAppHotkeysStore(manager.appHotkeys.state)
-    }).unsubscribe
-    onCleanup(() => unsubscribe())
-  })
-  createEffect(() => {
-    const store = appHotkeysStore()
-    if (!store) return
-    const unsubscribe = store.store.subscribe(() => {
-      setAppHotkeysVersion((version) => version + 1)
-    }).unsubscribe
-    onCleanup(() => unsubscribe())
-  })
+  onSettled(
+    () =>
+      manager.appHotkeys.subscribe(() => {
+        setAppHotkeysStore(manager.appHotkeys.state)
+      }).unsubscribe,
+  )
+  createEffect(
+    () => appHotkeysStore(),
+    (store) => {
+      if (!store) return
+      return store.store.subscribe(() => {
+        setAppHotkeysVersion((version) => version + 1)
+      }).unsubscribe
+    },
+  )
   const appHotkeys = createMemo(() => {
     appHotkeysVersion()
     return appHotkeysStore()?.getList(registrations()) ?? []
   })
 
   // Subscribe to KeyStateTracker store
-  createEffect(() => {
-    const unsubscribe = tracker.store.subscribe(() => {
-      setHeldKeys(tracker.store.state.heldKeys)
-      setHeldCodes(tracker.store.state.heldCodes)
-    }).unsubscribe
-    onCleanup(() => unsubscribe())
+  onSettled(
+    () =>
+      tracker.store.subscribe(() => {
+        setHeldKeys(tracker.store.state.heldKeys)
+        setHeldCodes(tracker.store.state.heldCodes)
+      }).unsubscribe,
+  )
+
+  // The time that sequence progress is measured at. Derived, so a
+  // registration change and the time it is measured at land in the same
+  // flush. The interval only ticks it while a sequence is in progress.
+  const [clock, setClock] = createSignal(0)
+  const sequenceProgressNow = createMemo(() => {
+    registrations()
+    clock()
+    return Date.now()
   })
 
-  const [sequenceProgressNow, setSequenceProgressNow] = createSignal(Date.now())
-
-  createEffect(() => {
-    const regs = registrations()
-    let id: ReturnType<typeof setInterval> | undefined
-
-    const tick = () => {
-      const t = Date.now()
-      setSequenceProgressNow(t)
-      if (!needsSequenceProgressClock(registrations(), t)) {
-        if (id !== undefined) {
-          clearInterval(id)
-          id = undefined
-        }
-      }
-    }
-
-    if (needsSequenceProgressClock(regs, Date.now())) {
-      id = setInterval(tick, 50)
-    } else {
-      setSequenceProgressNow(Date.now())
-    }
-
-    onCleanup(() => {
-      if (id !== undefined) {
-        clearInterval(id)
-      }
-    })
-  })
+  createEffect(
+    () => registrations(),
+    (regs) => {
+      if (!needsSequenceProgressClock(regs, Date.now())) return
+      const id = setInterval(() => {
+        setClock((tick) => tick + 1)
+        if (!needsSequenceProgressClock(regs, Date.now())) clearInterval(id)
+      }, 50)
+      return () => clearInterval(id)
+    },
+  )
 
   return (
-    <HotkeysDevtoolsContext.Provider
+    <HotkeysDevtoolsContext
       value={{
         registrations,
         appHotkeys,
@@ -154,10 +169,11 @@ export function HotkeysContextProvider(props: { children: any }) {
         heldKeys,
         heldCodes,
         sequenceProgressNow,
+        keyboardLayout,
       }}
     >
       {props.children}
-    </HotkeysDevtoolsContext.Provider>
+    </HotkeysDevtoolsContext>
   )
 }
 

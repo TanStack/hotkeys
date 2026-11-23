@@ -5,9 +5,10 @@ import type { IndividualKey } from '@tanstack/hotkeys'
 /** Reports whether a logical key is held. */
 export function useKeyHold(key: IndividualKey): boolean
 export function useKeyHold(key: IndividualKey, slot?: symbol): boolean {
+  const tracker = getKeyStateTracker()
   return select(
-    getKeyStateTracker().store,
-    (state) => state.heldKeys.includes(key),
+    tracker.store,
+    () => tracker.isKeyHeld(key),
     subSlot(slot, 'key-hold'),
   )
 }

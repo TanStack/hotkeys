@@ -1,6 +1,6 @@
 import { createStore } from '@tanstack/hotkeys/adapter'
-import { useSelector } from './_useSelector'
 import { useHotkeysContext } from './HotkeysProvider'
+import { useSelector } from './_useSelector'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 
 const NO_APP_HOTKEYS = createStore<AppHotkeysState | null>(null)

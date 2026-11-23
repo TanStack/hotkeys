@@ -1,11 +1,11 @@
-import { afterEach, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
-import { Loading, createMemo, createSignal, flush } from 'solid-js'
 import { HotkeyManager } from '@tanstack/hotkeys'
-import { createHotkeys } from '../src/createHotkeys'
+import { Loading, createMemo, createSignal, flush } from 'solid-js'
+import { afterEach, expect, it, vi } from 'vitest'
+import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
-import { HotkeysProvider } from '../src/HotkeysProvider'
+import { createHotkeys } from '../src/createHotkeys'
 
 const press = () =>
   document.dispatchEvent(

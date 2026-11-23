@@ -1,17 +1,33 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import {
-    formatForDisplay,
     createHotkey,
     createHotkeyRecorder,
+    getFormatForDisplay,
     isHotkeySequence,
   } from '@tanstack/svelte-hotkeys'
-  import type { Hotkey, RecorderKeyMode } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
+  import type {
+    Hotkey,
+    RecorderKeyMode,
+    RecorderRejection,
+  } from '@tanstack/svelte-hotkeys'
+
+  // The recorder sends a reason code, so the app writes the text
+  const rejectionText = ({ reason, message }: RecorderRejection) =>
+    message ??
+    {
+      'alt-graph': 'AltGr types characters. Record by key to use them.',
+      'missing-code': 'This key has no physical key code.',
+      whitespace: "Whitespace keys can't be recorded.",
+      validation: 'This hotkey is not allowed.',
+      conflict: 'This hotkey is already in use.',
+    }[reason]
   const log = getContext<(message: string) => void>('log')
+  const formatForDisplay = getFormatForDisplay()
   const initial: Hotkey = 'Alt+[KeyR]'
   let hotkey = $state<Hotkey>(initial),
     sequence = $state<Hotkey>(['[KeyX]', '[KeyY]'])
-  let mode = $state<RecorderKeyMode>('code'),
+  let mode = $state<RecorderKeyMode>('auto'),
     problem = $state(''),
     idle = $state(false),
     enter = $state(true)
@@ -31,8 +47,10 @@
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedChord }) =>
-      parsedChord.modifiers.length > 0 || 'Include a modifier.',
+    // A getter gets the sequence types, so narrow to a chord first.
+    validate: (_, context) =>
+      (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
+      'Include a modifier.',
     onRecord: (value) => {
       hotkey = value
       problem = ''
@@ -41,7 +59,7 @@
       hotkey = initial
     },
     onReject: (r) => {
-      problem = r.message
+      problem = rejectionText(r)
     },
     onCancel: () => {
       problem = 'Cancelled'
@@ -68,7 +86,7 @@
       sequence = ['[KeyX]', '[KeyY]']
     },
     onReject: (r) => {
-      problem = r.message
+      problem = rejectionText(r)
     },
     onCancel: () => {
       problem = 'Cancelled'
@@ -83,6 +101,7 @@
     >Record by <select
       bind:value={mode}
       disabled={recorder.isRecording || seq.isRecording}
+      ><option value="auto">By name, or position where needed (default)</option
       ><option value="code">Physical code</option><option value="key"
         >Logical key</option
       ></select

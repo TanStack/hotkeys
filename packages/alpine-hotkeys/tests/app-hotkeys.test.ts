@@ -67,6 +67,22 @@ describe('app hotkeys', () => {
     press('s', { metaKey: true })
     expect(save).toHaveBeenCalledOnce()
 
+    // A recorded position conflicts through the key press that recorded it.
+    // The store compares on the detected platform, where Mod is Control.
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        ctrlKey: true,
+      }),
+    }
+    expect(custom.findConflicts('palette.open', 'Control+[KeyS]')).toEqual([])
+    expect(
+      custom
+        .setCustomHotkey('palette.open', 'Control+[KeyS]', recordedWith)
+        .map((a) => a.id),
+    ).toEqual(['doc.save'])
+
     custom.setCustomHotkey('doc.save', ['G', 'S'])
     custom.setCustomHotkey('palette.open', 'Mod+K')
     await flush()

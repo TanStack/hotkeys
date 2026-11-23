@@ -1,43 +1,36 @@
-import { createStore } from './_store'
-import { TargetListeners } from './_target-listeners'
+import { chordHasKey, isKeyNameShape, parsedStepsEqual } from './_chord'
+import { canWarn } from './_dev'
+import {
+  getTargetDocument,
+  isDocumentLevel,
+  shouldIgnoreInputEvent,
+  targetHasFocus,
+  yieldsEscape,
+} from './_event-target'
+import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
+import { keysEqual } from './_keys'
 import { managerRef } from './_manager-ref'
+import { matchKeyboardEvent } from './_match'
 import { isRecordingEvent } from './_recording-guard'
-import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
-import { detectPlatform } from './platform'
-import { normalizeKeyName } from './constants'
-import { formatHotkey } from './format'
-import {
-  isHotkeySequence,
-  isModifierKey,
-  parseHotkey,
-  simplifyHotkey,
-} from './parse'
-import { matchKeyboardEvent, parsedChordsEqual } from './_match'
-import {
-  isKeyNameShape,
-  keysEqual,
-  normalizeKeyboardEvent,
-} from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
-  chordHasKey,
   defaultHotkeyOptions,
   definedOptions,
   getDefaultIgnoreInputs,
   handleConflict,
   optionsEqual,
 } from './_registration'
-import {
-  closesNativeLayer,
-  getTargetDocument,
-  isDocumentLevel,
-  shouldIgnoreInputEvent,
-  targetHasFocus,
-} from './_event-target'
+import { createStore } from './_store'
+import { TargetListeners } from './_target-listeners'
+import { normalizeKeyName } from './constants'
+import { formatHotkey } from './format'
+import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
+import { isHotkeySequence, parseHotkey, simplifyHotkey } from './parse'
+import { detectPlatform } from './platform'
+import type { KeyboardEventMatch } from './_match'
 import type { Store } from './_store'
-import type { KeyboardEventMatch } from './match'
+import type { ListenerTarget } from './_target-listeners'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
-import type { CanonicalModifier } from './key.types'
 import type {
   ConflictBehavior,
   Hotkey,
@@ -45,18 +38,19 @@ import type {
   HotkeyCallbackContext,
   HotkeyCallbackContextFor,
   HotkeyChord,
+  HotkeyEventType,
   HotkeyMeta,
   HotkeySequence,
   ParsedHotkeyChord,
   RegisterableHotkey,
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
+  Target,
 } from './hotkey.types'
+import type { CanonicalModifier, KeyIdentity } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 export type { ConflictBehavior }
-
-/** An element, document, or window that hotkeys can listen on. */
-export type Target = HTMLElement | Document | Window
 
 /**
  * Options shared by chords and sequences.
@@ -81,10 +75,12 @@ export interface HotkeyOptions {
   /**
    * The event type to listen for. Defaults to 'keydown'. A 'keyup' chord fires
    * when its key or one of its modifiers is released, whichever comes first,
-   * unless another key was pressed in between. `preventDefault` applies to
-   * its keydown too.
+   * unless another key was pressed in between. It fires only for the release
+   * of a press that matched it, so a release alone, or a key pressed before
+   * its modifiers, doesn't fire it. `preventDefault` applies to its keydown
+   * too.
    */
-  eventType?: 'keydown' | 'keyup'
+  eventType?: HotkeyEventType
   /**
    * Skip a key press that a listener outside TanStack Hotkeys already handled
    * by calling `preventDefault()`, such as a component library's dialog that
@@ -103,7 +99,7 @@ export interface HotkeyOptions {
    */
   ignoreInputs?: boolean | 'auto'
   /** The target platform for resolving 'Mod' */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /**
    * Prevent the default browser action when the hotkey matches. For a
    * sequence, every step that advances it does. Defaults to true.
@@ -119,9 +115,21 @@ export interface HotkeyOptions {
    * last step does, so earlier steps reach other listeners. Defaults to true
    */
   stopPropagation?: boolean
-  /** The DOM element to attach the event listener to. Defaults to document. */
+  /**
+   * The DOM element to attach the event listener to. Defaults to document.
+   * In `register`, `null`, such as a `querySelector` that found nothing,
+   * registers nothing and returns an inactive handle, while an omitted or
+   * `undefined` target listens on document. `setOptions` does not move a
+   * registration to another target.
+   */
   target?: Target | null
-  /** Optional metadata (name, description, custom fields via declaration merging) */
+  /**
+   * Optional metadata (name, description, custom fields via declaration
+   * merging). It can be written inline. A new `meta` with a changed string,
+   * number, or boolean field re-renders registration lists. Editing the object
+   * in place does not. A new array, object, element, or function replaces the
+   * old one but does not re-render them on its own.
+   */
   meta?: HotkeyMeta
   /**
    * Scope this hotkey belongs to. Defaults to `'global'`, which is always
@@ -160,11 +168,17 @@ export interface HotkeySequenceOptions extends HotkeyOptions {
 }
 
 /**
+ * Chord and sequence options together, for options applied to hotkeys of
+ * either kind. Each option applies only to the kinds that support it.
+ */
+export type HotkeyCommonOptions = HotkeyChordOptions & HotkeySequenceOptions
+
+/**
  * The options type for a hotkey: chord options for chords (including one-step
  * tuples), sequence options for sequences.
  */
 export type HotkeyOptionsFor<T extends RegisterableHotkey> = [T] extends [never]
-  ? HotkeyChordOptions & HotkeySequenceOptions
+  ? HotkeyCommonOptions
   : T extends readonly [RegisterableHotkeyChord]
     ? HotkeyChordOptions
     : T extends RegisterableHotkeySequence
@@ -192,7 +206,7 @@ export interface HotkeyChordRegistration extends RegistrationBase<HotkeyChordOpt
   hotkey: HotkeyChord
   parsedChord: ParsedHotkeyChord
   /** The concrete key/code that activated a requireReset registration. */
-  activeMatch?: { key: string; code: string }
+  activeMatch?: KeyIdentity
 }
 
 /** A registered sequence in the HotkeyManager. */
@@ -208,7 +222,8 @@ export interface HotkeySequenceRegistration extends RegistrationBase<HotkeySeque
 
 /** A registered hotkey in the HotkeyManager. */
 export type HotkeyRegistration =
-  HotkeyChordRegistration | HotkeySequenceRegistration
+  | HotkeyChordRegistration
+  | HotkeySequenceRegistration
 
 /**
  * Whether a registration is on. Focus isn't checked: a registration on an
@@ -253,7 +268,14 @@ export interface HotkeySequenceRegistrationView extends RegistrationViewBase {
  * Narrow with `kind` to read chord- or sequence-specific fields.
  */
 export type HotkeyRegistrationView =
-  HotkeyChordRegistrationView | HotkeySequenceRegistrationView
+  | HotkeyChordRegistrationView
+  | HotkeySequenceRegistrationView
+
+/** The registrations an adapter reports, chords and sequences. */
+export interface HotkeyRegistrationsResult {
+  /** Every registration, chords and sequences. Narrow each view with `kind`. */
+  readonly hotkeys: Array<HotkeyRegistrationView>
+}
 
 /** Whether a registration can fire now. Without a manager, scopes don't apply. */
 function getRegistrationStatus(
@@ -382,7 +404,7 @@ function inactiveHandle(callback: HotkeyCallback): HotkeyRegistrationHandle {
 /** Defaults for a registration of the given kind. */
 function registrationDefaults(
   kind: HotkeyRegistration['kind'],
-): Partial<HotkeyChordOptions & HotkeySequenceOptions> {
+): Partial<HotkeyCommonOptions> {
   return {
     ...defaultHotkeyOptions,
     ...(kind === 'sequence'
@@ -394,8 +416,8 @@ function registrationDefaults(
 /** Drops options that do not apply to a registration's kind. */
 function optionsForKind(
   kind: HotkeyRegistration['kind'],
-  options: Partial<HotkeyChordOptions & HotkeySequenceOptions>,
-): Partial<HotkeyChordOptions & HotkeySequenceOptions> {
+  options: Partial<HotkeyCommonOptions>,
+): Partial<HotkeyCommonOptions> {
   if (kind === 'chord') {
     const { timeout: _timeout, ...rest } = options
     return rest
@@ -403,9 +425,6 @@ function optionsForKind(
   const { requireReset: _requireReset, ...rest } = options
   return rest
 }
-
-/** A node a registration's listener can attach to. */
-type ListenerTarget = Target | ShadowRoot
 
 /**
  * Where a registration listens: its target, or for an element target that
@@ -454,14 +473,18 @@ function ignoresInputs(registration: HotkeyRegistration): boolean {
     : ignoreInputs
 }
 
-function sameResolvedSteps(
-  left: ReadonlyArray<ParsedHotkeyChord>,
-  right: ReadonlyArray<ParsedHotkeyChord>,
+/** Whether the registration leaves the key to a focused control inside `target`. */
+function ignoredInInput(
+  registration: HotkeyRegistration,
+  event: KeyboardEvent,
+  target: Target,
 ): boolean {
-  return (
-    left.length === right.length &&
-    left.every((step, index) => parsedChordsEqual(step, right[index]!))
-  )
+  return ignoresInputs(registration) && shouldIgnoreInputEvent(event, target)
+}
+
+/** The longest pause a sequence allows between two steps, in milliseconds. */
+function sequenceTimeout(registration: HotkeySequenceRegistration): number {
+  return registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
 }
 
 function formatForMessage(hotkey: Hotkey): string {
@@ -576,7 +599,7 @@ export class HotkeyManager {
     allowed: [],
     suspended: [],
   })
-  #platform: 'mac' | 'windows' | 'linux'
+  #platform: HotkeyPlatform
   #scopeActivations = new Set<ScopeActivation>()
   #scopeActivationCount = 0
   /** Active scopes, lowest precedence first, derived from activations. */
@@ -593,11 +616,13 @@ export class HotkeyManager {
   /**
    * Keyup chords whose keydown matched. Releasing one of the chord's
    * modifiers fires them, because the key's own keyup may come after the
-   * modifier's or, on macOS while Command is held, not at all. `null` marks a
-   * press that another key cancelled or that `ignoreDefaultPrevented`
-   * skipped, so its release doesn't fire.
+   * modifier's or, on macOS while Command is held, not at all. A press that
+   * another key cancelled, or that `ignoreDefaultPrevented` skipped, has no
+   * entry, so its release doesn't fire.
    */
-  #pendingReleases = new Map<string, KeyboardEventMatch | null>()
+  #pendingReleases = new Map<string, KeyboardEventMatch>()
+  /** The keyup chords' presses each release ended, by registration id. */
+  #endedPresses = new WeakMap<KeyboardEvent, Map<string, KeyboardEventMatch>>()
   /** Events this manager prevented, so its own prevention never skips a hotkey. */
   #prevented = new WeakSet<KeyboardEvent>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
@@ -651,16 +676,16 @@ export class HotkeyManager {
     if (scope === GLOBAL_SCOPE) return () => {}
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
+    // Dev-only guard: see `canWarn`
     if (
+      canWarn &&
       process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
         (other) => other.allow && other.scope === scope,
       )
     ) {
-      console.warn(
-        `Exclusive hotkey scope '${scope}' is already active. Hotkeys from both activations will fire; give each a unique scope.`,
-      )
+      console.warn(`[hotkeys] Exclusive scope '${scope}' is already active`)
     }
     const activation: ScopeActivation = {
       scope,
@@ -789,40 +814,30 @@ export class HotkeyManager {
    */
   #handledByLiveHotkey(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
     // The composed path includes targets inside open shadow roots, which
     // `event.target` hides from listeners outside them.
     const path = event.composedPath()
-    for (const registration of this.registrations.state.values()) {
-      if (
-        !this.#isLive(registration) ||
-        registration.options.eventType !== eventType ||
-        this.#skips(registration, event) ||
-        !path.includes(registration.target) ||
-        (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, registration.target))
-      ) {
-        continue
-      }
-      const steps =
-        registration.kind === 'chord'
+    return [...this.registrations.state.values()].some(
+      (registration) =>
+        this.#isLive(registration) &&
+        registration.options.eventType === eventType &&
+        !this.#skips(registration, event) &&
+        path.includes(registration.target) &&
+        !ignoredInInput(registration, event, registration.target) &&
+        (registration.kind === 'chord'
           ? [registration.parsedChord]
           : [
               registration.parsedSequence[registration.currentIndex]!,
               registration.parsedSequence[0]!,
             ]
-      if (
-        steps.some(
+        ).some(
           (step) =>
             matchKeyboardEvent(event, step, registration.options.platform)
               .matched,
-        )
-      ) {
-        return true
-      }
-    }
-    return false
+        ),
+    )
   }
 
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
@@ -867,14 +882,16 @@ export class HotkeyManager {
   register(
     input: RegisterableHotkey,
     callback: HotkeyCallback,
-    options: HotkeyChordOptions & HotkeySequenceOptions = {},
+    options: HotkeyCommonOptions = {},
   ): HotkeyRegistrationHandle {
     const hotkey = simplifyHotkey(input)
-    // Nothing to listen for: no hotkey, an empty sequence, or no DOM during
-    // server rendering. The handle stays inactive.
+    // Nothing to listen for: no hotkey, an empty sequence, a `null` target
+    // (such as a selector that found nothing), or no DOM during server
+    // rendering. The handle stays inactive.
     if (
       (hotkey as RegisterableHotkey | null | undefined) == null ||
       (isHotkeySequence(hotkey) && hotkey.length === 0) ||
+      options.target === null ||
       (typeof document === 'undefined' && !options.target)
     ) {
       return inactiveHandle(callback)
@@ -925,19 +942,30 @@ export class HotkeyManager {
       }
     }
 
-    const steps =
-      registration.kind === 'sequence'
-        ? registration.parsedSequence
-        : [registration.parsedChord]
-    // An empty key would match key-less events, such as autofill's, so a
-    // hotkey with an empty step registers nothing.
-    if (!steps.every(chordHasKey)) return inactiveHandle(callback)
+    const steps = resolvedSteps(registration)
+    // A step without a usable key registers nothing: an empty key would match
+    // key-less events, such as autofill's, and modifier-only steps and unknown
+    // modifiers aren't supported.
+    if (!steps.every(chordHasKey)) {
+      // Dev-only guard: see `canWarn`. An empty string means "no hotkey".
+      if (
+        canWarn &&
+        process.env.NODE_ENV !== 'production' &&
+        (hotkey as unknown) !== ''
+      ) {
+        console.warn(
+          `[hotkeys] Invalid hotkey ${JSON.stringify(hotkey)} was not registered`,
+        )
+      }
+      return inactiveHandle(callback)
+    }
 
-    if (process.env.NODE_ENV !== 'production') {
+    // Dev-only guard: see `canWarn`
+    if (canWarn && process.env.NODE_ENV !== 'production') {
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
-            `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
+            `[hotkeys] Unknown key '${key}' in '${formatForMessage(registration.hotkey)}' (names are case-sensitive)`,
           )
         }
       }
@@ -1002,7 +1030,16 @@ export class HotkeyManager {
             else if (key in defaults) options[key] = defaults[key]
             else delete options[key]
           }
-          if (optionsEqual(reg.options, options)) return prev
+          if (optionsEqual(reg.options, options)) {
+            // Keep the newest callbacks and elements in `meta` without
+            // publishing them. Write into the same options object, which
+            // registration views already hold. Equal options both have or
+            // both lack a `meta` key, so a lacking one stays absent.
+            if ('meta' in options) {
+              reg.options.meta = options.meta as HotkeyMeta | undefined
+            }
+            return prev
+          }
           const capture = !!reg.options.capture
           const from = manager.#listenerTargets.get(id) ?? reg.target
           const to = listenerTarget({ target: reg.target, options })
@@ -1039,6 +1076,8 @@ export class HotkeyManager {
       return
     }
 
+    // Before subscribers run, since one may dispatch a key event
+    this.#pendingReleases.delete(id)
     // Remove registration
     this.registrations.setState((prev) => {
       const next = new Map(prev)
@@ -1052,7 +1091,6 @@ export class HotkeyManager {
       id,
     )
     this.#listenerTargets.delete(id)
-    this.#pendingReleases.delete(id)
     this.#clearSequenceReset(id)
   }
 
@@ -1074,8 +1112,8 @@ export class HotkeyManager {
         ) {
           return
         }
-        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-        const remaining = registration.lastKeyTime + timeout - Date.now()
+        const remaining =
+          registration.lastKeyTime + sequenceTimeout(registration) - Date.now()
         if (remaining >= 0) {
           this.#scheduleSequenceReset(id, remaining + 1)
           return
@@ -1134,7 +1172,7 @@ export class HotkeyManager {
   #processTargetEvent(
     event: KeyboardEvent,
     target: ListenerTarget,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     ids: Set<string>,
     first: boolean,
@@ -1143,6 +1181,7 @@ export class HotkeyManager {
     // before the document's sequence advances.
     if (first) {
       this.#sequenceOwned.set(event, this.#isOwnedBySequence(event, eventType))
+      this.#endPresses(event, eventType)
     }
     if (capture) {
       // Capture listeners are always on the registrations' own target.
@@ -1194,7 +1233,7 @@ export class HotkeyManager {
   #processRound(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     ids: Set<string>,
   ): void {
@@ -1217,12 +1256,13 @@ export class HotkeyManager {
   #processChords(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     registrations: Array<HotkeyChordRegistration>,
   ): void {
     // Releases clear latches even when focus or enabled state now prevents callbacks.
     if (eventType === 'keyup') {
+      let cleared = false
       for (const registration of registrations) {
         if (
           registration.hasFired &&
@@ -1230,24 +1270,20 @@ export class HotkeyManager {
         ) {
           registration.hasFired = false
           registration.activeMatch = undefined
+          cleared = true
         }
       }
-    }
-    // A new press cancels a keyup chord's press in progress, so its release
-    // doesn't fire, even when the new press continues a sequence.
-    if (eventType === 'keydown' && !event.repeat) {
-      for (const { id } of registrations) {
-        if (this.#pendingReleases.get(id)) this.#pendingReleases.set(id, null)
-      }
+      // Firing notifies, so subscribers such as devtools see the latch set.
+      // Notify on release too, so they see it cleared.
+      if (cleared) this.#notify()
     }
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
-    const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
+    const matches = new Map<string, KeyboardEventMatch>()
     let bestScore = 0
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
 
-    const eventKey = normalizeKeyName(event.key)
     // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       const live = this.#isLive(registration)
@@ -1257,46 +1293,39 @@ export class HotkeyManager {
       const skipped = this.#skips(registration, event)
       const { parsedChord, id } = registration
       const { platform } = registration.options
-      let result: KeyboardEventMatch | undefined
-      // A release ends a recorded press, even while the hotkey can't fire.
-      let released: KeyboardEventMatch | null | undefined
+      // The press this release ended, even while the hotkey can't fire.
+      const released = this.#endedPresses.get(event)?.get(id)
       if (
-        eventType === 'keyup' &&
-        firesOn === 'keyup' &&
-        this.#pendingReleases.has(id)
-      ) {
-        result = matchKeyboardEvent(event, parsedChord, platform)
-        if (
-          result.matched ||
-          // The other Control or Shift key may still hold the modifier down.
-          (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
-            !event.getModifierState(eventKey))
-        ) {
-          released = this.#pendingReleases.get(id)
-          this.#pendingReleases.delete(id)
-        }
-      }
-      if (
-        (!live && preventDefault !== 'always') ||
         (firesOn !== eventType && !press) ||
-        (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
+        ignoredInInput(registration, event, target)
       ) {
         continue
       }
-      result ??= matchKeyboardEvent(event, parsedChord, platform)
+      let result = matchKeyboardEvent(event, parsedChord, platform)
       if (press) {
         if (result.matched) {
           if (skipped) {
-            this.#pendingReleases.set(id, null)
+            this.#pendingReleases.delete(id)
           } else {
-            if (preventDefault) this.#prevent(event)
-            if (live) this.#pendingReleases.set(id, result)
+            if (live && preventDefault) {
+              this.#prevent(event)
+            } else if (!live && preventDefault === 'always') {
+              // Like any reserved key, prevented only if no live hotkey handles it
+              reserved = true
+            }
+            // Recorded even while the hotkey can't fire, so a callback that
+            // enables it during this press, such as to end a mode, still
+            // gets the release. An auto-repeat continues a press and can't
+            // restart one that another key cancelled.
+            if (!event.repeat) this.#pendingReleases.set(id, result)
           }
         }
         continue
       }
-      if (released !== undefined) {
-        // A release that another listener handled ends the press too.
+      if (!live && preventDefault !== 'always') continue
+      if (eventType === 'keyup') {
+        // A keyup chord fires only for the release of a press it matched. A
+        // release that another listener handled ends the press too.
         if (!released || skipped) continue
         if (!result.matched) result = released
       }
@@ -1375,7 +1404,7 @@ export class HotkeyManager {
    */
   #isOwnedBySequence(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
     const key = event.code || normalizeKeyName(event.key)
     if (eventType === 'keyup') {
@@ -1393,15 +1422,9 @@ export class HotkeyManager {
 
   #continuesSequence(
     event: KeyboardEvent,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
   ): boolean {
-    if (
-      isRecordingEvent(event) ||
-      normalizeKeyboardEvent(event).isComposing ||
-      isModifierKey(normalizeKeyName(event.key))
-    ) {
-      return false
-    }
+    if (isRecordingEvent(event) || !isSequenceStep(event)) return false
     const path = event.composedPath()
     const now = Date.now()
     for (const registration of this.registrations.state.values()) {
@@ -1411,8 +1434,7 @@ export class HotkeyManager {
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
         this.#skips(registration, event) ||
-        now - registration.lastKeyTime >
-          (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
+        now - registration.lastKeyTime > sequenceTimeout(registration)
       ) {
         continue
       }
@@ -1423,9 +1445,7 @@ export class HotkeyManager {
       )
       if (
         reached &&
-        !(
-          ignoresInputs(registration) && shouldIgnoreInputEvent(event, target)
-        ) &&
+        !ignoredInInput(registration, event, target) &&
         matchKeyboardEvent(
           event,
           registration.parsedSequence[registration.currentIndex]!,
@@ -1441,7 +1461,7 @@ export class HotkeyManager {
   #processSequences(
     event: KeyboardEvent,
     target: Target,
-    eventType: 'keydown' | 'keyup',
+    eventType: HotkeyEventType,
     capture: boolean,
     registrations: Array<HotkeySequenceRegistration>,
   ): void {
@@ -1459,16 +1479,8 @@ export class HotkeyManager {
       if (changed) this.#notify()
       return
     }
-    if (
-      (event.type === 'keydown' && event.repeat) ||
-      normalizeKeyboardEvent(event).isComposing
-    ) {
-      return
-    }
-    // Skip modifier-only events so pressing e.g. Shift before Shift+C does not reset the sequence.
-    if (isModifierKey(normalizeKeyName(event.key))) {
-      return
-    }
+    // Pressing Shift before Shift+C, for example, does not reset the sequence.
+    if (!isSequenceStep(event)) return
 
     const now = Date.now()
     let changed = false
@@ -1479,20 +1491,17 @@ export class HotkeyManager {
     for (const registration of registrations) {
       if (
         !this.#isLive(registration) ||
-        (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, target)) ||
+        ignoredInInput(registration, event, target) ||
         registration.options.eventType !== eventType ||
         this.#skips(registration, event)
       ) {
         continue
       }
 
-      const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-
       // Check if sequence has timed out
       if (
         registration.currentIndex > 0 &&
-        now - registration.lastKeyTime > timeout
+        now - registration.lastKeyTime > sequenceTimeout(registration)
       ) {
         registration.currentIndex = 0
         changed = true
@@ -1539,8 +1548,12 @@ export class HotkeyManager {
           // Ctrl+K then Ctrl+C. Propagation stops only on the last step.
           this.#prevent(event)
         }
-      } else if (registration.currentIndex > 0) {
-        // A mismatched or weaker candidate cannot carry stale progress forward.
+      } else if (
+        registration.currentIndex > 0 &&
+        !(bestScore === 0 && keepsSequenceProgress(event))
+      ) {
+        // A mismatched or weaker candidate cannot carry stale progress
+        // forward. CapsLock or a dead key that matches no step leaves it alone.
         registration.currentIndex = 0
         changed = true
       }
@@ -1549,8 +1562,10 @@ export class HotkeyManager {
     for (const registration of registrations) {
       if (!candidates.has(registration.id)) continue
       if (registration.currentIndex > 0) {
-        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-        this.#scheduleSequenceReset(registration.id, timeout + 1)
+        this.#scheduleSequenceReset(
+          registration.id,
+          registration.lastKeyTime + sequenceTimeout(registration) + 1 - now,
+        )
       } else {
         this.#clearSequenceReset(registration.id)
       }
@@ -1564,6 +1579,44 @@ export class HotkeyManager {
     }
   }
 
+  /**
+   * Ends keyup chords' presses at the first listener an event reaches, so a
+   * key that a chord's own listener never receives still counts. A new press
+   * cancels every press in progress, and a release of the pressed key or of
+   * one of the chord's modifiers ends that press. The chord's own listener
+   * then fires it, if the release reaches it.
+   */
+  #endPresses(event: KeyboardEvent, eventType: HotkeyEventType): void {
+    if (eventType === 'keydown') {
+      // Even when the new press continues a sequence
+      if (!event.repeat) this.#pendingReleases.clear()
+      return
+    }
+    const ended = new Map<string, KeyboardEventMatch>()
+    const eventKey = normalizeKeyName(event.key)
+    for (const [id, press] of this.#pendingReleases) {
+      // Unregistering and destroying remove the press, so its registration
+      // is a chord.
+      const { parsedChord, options } = this.registrations.state.get(
+        id,
+      ) as HotkeyChordRegistration
+      const pressed = press.identity!.code
+      if (
+        matchKeyboardEvent(event, parsedChord, options.platform).matched ||
+        // The pressed key's release, even if its character changed, such
+        // as AZERTY 6 with Shift released first, which then reports `-`
+        (pressed !== '' && pressed === event.code) ||
+        // The other Control or Shift key may still hold the modifier down.
+        (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
+          !event.getModifierState(eventKey))
+      ) {
+        ended.set(id, press)
+        this.#pendingReleases.delete(id)
+      }
+    }
+    this.#endedPresses.set(event, ended)
+  }
+
   #prevent(event: KeyboardEvent): void {
     // An event another listener prevented first stays theirs.
     if (!event.defaultPrevented) this.#prevented.add(event)
@@ -1571,13 +1624,17 @@ export class HotkeyManager {
   }
 
   /**
-   * Whether the registration skips the event: Escape belongs to an open modal
-   * dialog or popover outside its target, or another listener prevented the
+   * Whether the registration skips the event: Escape belongs to a dialog,
+   * popover, or menu outside its target, or another listener prevented the
    * event and the registration skips such events.
    */
   #skips(registration: HotkeyRegistration, event: KeyboardEvent): boolean {
     return (
-      closesNativeLayer(event, registration.target) ||
+      yieldsEscape(
+        event,
+        registration.target,
+        registration.options.scope !== GLOBAL_SCOPE,
+      ) ||
       (!!registration.options.ignoreDefaultPrevented &&
         event.defaultPrevented &&
         !this.#prevented.has(event))
@@ -1641,7 +1698,7 @@ export class HotkeyManager {
         registration.target === candidate.target &&
         registration.options.scope === candidate.options.scope &&
         registration.options.eventType === candidate.options.eventType &&
-        sameResolvedSteps(resolvedSteps(registration), steps)
+        parsedStepsEqual(resolvedSteps(registration), steps)
       ) {
         return registration
       }
@@ -1659,10 +1716,8 @@ export class HotkeyManager {
     const parsed = registration.parsedChord
     const releasedKey = normalizeKeyName(event.key)
 
-    if (
-      registration.activeMatch?.code &&
-      event.code === registration.activeMatch.code
-    ) {
+    const code = registration.activeMatch?.code
+    if (code && event.code === code) {
       return true
     }
 
@@ -1767,6 +1822,7 @@ export class HotkeyManager {
     this.#sequenceResetTimers.clear()
     this.#listeners.destroy()
     this.#listenerTargets.clear()
+    this.#pendingReleases.clear()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)
   }

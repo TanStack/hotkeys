@@ -1,5 +1,124 @@
 # @tanstack/hotkeys-devtools
 
+## 1.11.4
+
+### Patch Changes
+
+- Updated dependencies [[`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`571d921`](https://github.com/TanStack/hotkeys/commit/571d921d5302d58829ecbf13f2ba9674f97a391c), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`90db9ab`](https://github.com/TanStack/hotkeys/commit/90db9aba332faaca79d25c532e9b3809776588fc), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f)]:
+  - @tanstack/hotkeys@0.33.1
+
+## 1.11.3
+
+### Patch Changes
+
+- Updated dependencies [[`8e01130`](https://github.com/TanStack/hotkeys/commit/8e011301ac9a22e53b2b885b4cd5ed6f2737d889)]:
+  - @tanstack/hotkeys@0.33.0
+
+## 1.11.2
+
+### Patch Changes
+
+- Updated dependencies [[`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a), [`24d4182`](https://github.com/TanStack/hotkeys/commit/24d41826ef464f6298810d4352429936327f6b8d)]:
+  - @tanstack/hotkeys@0.32.0
+
+## 1.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`82727f5`](https://github.com/TanStack/hotkeys/commit/82727f52cd4ac44af999bd664a66586760fdd959)]:
+  - @tanstack/hotkeys@0.31.0
+
+## 1.11.0
+
+### Minor Changes
+
+- [#276](https://github.com/TanStack/hotkeys/pull/276) [`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd) - Types that every adapter wrote out for itself now come from one place in `@tanstack/hotkeys`.
+
+  - New types: `MaybeGetter`, `HotkeyEventType`, `KeyIdentity`, `ResolvableModifier`, `HotkeyCommonOptions`, `HotkeyRegistrationsResult`, `RegisteredAppHotkeyListItem`, `CustomHotkeyActions` and `HotkeyRecorderActions`. `HotkeyRecorderState` takes the recorded hotkey type as an optional type argument.
+  - Each adapter's types, such as `UseCustomHotkeysResult` and `ReactHotkeyRecorder`, now extend these, and keep their names.
+  - `@tanstack/hotkeys/adapter` adds helpers that the adapters shared by copy: hint visibility, the label formatter, keyboard layout following, the app hotkeys store lookup and custom hotkey actions.
+  - `@tanstack/hotkeys-devtools` exports `HOTKEYS_DEVTOOLS_PLUGIN_NAME`, `HOTKEYS_DEVTOOLS_DEFAULT_PROPS` and `HotkeysDevtoolsRenderPlugin`, which the framework devtools plugins extend.
+
+  Behavior is unchanged.
+
+### Patch Changes
+
+- Updated dependencies [[`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd)]:
+  - @tanstack/hotkeys@0.30.0
+
+## 1.10.0
+
+### Minor Changes
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Labels of physical bindings now follow the user's keyboard layout where the browser reports it. `[KeyQ]` displayed as `Q`, the key's US character. It now displays as `A` on a French AZERTY keyboard in Chromium browsers. Firefox and Safari report no layout, so labels keep their US form there.
+
+  - Each adapter's label primitive, such as `useFormatForDisplay`, loads the layout after the first label mounts and uses it. Server-rendered labels hydrate with the US form and update when the layout arrives. `formatForDisplay` called directly is unchanged: it uses only a `layoutMap` you pass.
+  - A new layout primitive in every adapter, such as `useKeyboardLayout`, returns the layout for labels you draw yourself.
+  - `loadKeyboardLayout()` loads the layout with `navigator.keyboard.getLayoutMap()` and reads it again when the window regains focus. `getKeyboardLayoutStore()` holds the result. Use them without an adapter.
+  - To never ask the browser for the layout, set `keyboardLayout: false` in the provider's default options, or in the scope's options in Alpine and Ember.
+  - Devtools show the loaded layout, and mark the keys it relabels.
+
+  Matching and recording never use the layout. Providers don't import the loader, so an app that registers hotkeys and never formats a label or reads the layout doesn't bundle it. Alpine scopes carry every primitive, the layout one included.
+
+### Patch Changes
+
+- Updated dependencies [[`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044), [`94358d5`](https://github.com/TanStack/hotkeys/commit/94358d54fd72a38952b6fb68560b48043a3f8277), [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f), [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044)]:
+  - @tanstack/hotkeys@0.29.0
+
+## 1.9.6
+
+### Patch Changes
+
+- Updated dependencies [[`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`e7b1af6`](https://github.com/TanStack/hotkeys/commit/e7b1af6c1210dd93623200378d2aaf8e357dd9a6), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`f8a1f08`](https://github.com/TanStack/hotkeys/commit/f8a1f08596e7712addb6d514c7771fa61b78ca7e)]:
+  - @tanstack/hotkeys@0.28.0
+
+## 1.9.5
+
+### Patch Changes
+
+- [#264](https://github.com/TanStack/hotkeys/pull/264) [`e70d4d4`](https://github.com/TanStack/hotkeys/commit/e70d4d43c1e29b80c46ffe6fdd93e3233e470ade) - Raise the `match-sorter` dependency floor to ^8.3.1
+
+## 1.9.4
+
+### Patch Changes
+
+- Updated dependencies [[`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a), [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a)]:
+  - @tanstack/hotkeys@0.27.1
+
+## 1.9.3
+
+### Patch Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Rows in the devtools hotkey list now keep their place when registrations change, so a row flashes when its hotkey fires.
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys@0.27.0
+
+## 1.9.2
+
+### Patch Changes
+
+- Updated dependencies [[`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d), [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f), [`0d28f6a`](https://github.com/TanStack/hotkeys/commit/0d28f6ab5e4b47d86b3f60eb9a5e2cf6a47d0beb)]:
+  - @tanstack/hotkeys@0.26.0
+
+## 1.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`32727ea`](https://github.com/TanStack/hotkeys/commit/32727ea6b761671d6717cd9c8e4e7f78f514d98f)]:
+  - @tanstack/hotkeys@0.25.1
+
+## 1.9.0
+
+### Minor Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - `validateHotkey` and the recorder now return reason codes instead of English text, so apps write their own messages. Each error and warning from `validateHotkey` is a `HotkeyIssue` such as `{ reason: 'unknown-modifier', part: 'Ctl' }`, and issues in a sequence carry the index of their `step` instead of a `Step 2:` prefix. A `RecorderRejection` keeps its `reason` but no longer has a built-in `message`. It has a `message` only when your `validate` callback returns one. The `'invalid'` rejection reason is now `'whitespace'`. The devtools panel lists each problem in a hotkey's details, in plain words. Console warnings and thrown errors are now one short line that starts with `[hotkeys]`. App hotkeys no longer warn about saved custom hotkeys with an unknown id or an invalid value; they're still dropped. `setCustomHotkey` with an unknown id no longer warns either. Development warnings no longer throw a `ReferenceError` where `process` is undefined, such as plain ESM loaded from a CDN.
+
+### Patch Changes
+
+- [#233](https://github.com/TanStack/hotkeys/pull/233) [`ef29e7b`](https://github.com/TanStack/hotkeys/commit/ef29e7bc99848712d469d7bc0195db99f25f401b) - Raise dependency floors: `@embroider/addon-shim` to ^1.11.0 in `@tanstack/ember-hotkeys`, and `solid-js` to ^1.9.18 in `@tanstack/hotkeys-devtools`
+- Updated dependencies [[`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`846509d`](https://github.com/TanStack/hotkeys/commit/846509d2366c7c47a00b4f35eb6fdda8d3b43632)]:
+  - @tanstack/hotkeys@0.25.0
+
 ## 1.8.1
 
 ### Patch Changes

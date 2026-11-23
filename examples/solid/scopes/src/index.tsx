@@ -1,13 +1,17 @@
-import { For, Show, createContext, createSignal, useContext } from 'solid-js'
 import { Portal, render } from '@solidjs/web'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHotkey,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import { For, Show, createContext, createSignal, useContext } from 'solid-js'
 import type { JSX } from '@solidjs/web'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
+
+const plugins = [hotkeysDevtoolsPlugin()]
 
 // Every hotkey below is a plain `createHotkey` call with no `scope` option. It
 // registers in the scope of the nearest `HotkeysProvider` that sets one.
@@ -23,7 +27,8 @@ function App() {
               <p>
                 Each nested <code>HotkeysProvider</code> with a{' '}
                 <code>scope</code> is a scope. Its hotkeys fire while it is
-                mounted and enabled.
+                mounted and enabled. Open the hotkeys devtools to see which
+                scopes are active, suspended, or allowed.
               </p>
             </header>
             <ScopeFrame>
@@ -52,6 +57,7 @@ function App() {
           </div>
         </ActivityProvider>
       </HotkeysProvider>
+      <TanStackDevtools plugins={plugins} />
     </>
   )
 }
@@ -84,8 +90,8 @@ function ScopeFrame(props: Partial<ScopeProps>) {
   return (
     <fieldset
       class="scope-frame"
-      data-exclusive={!!props.exclusive}
-      data-enabled={props.enabled !== false}
+      data-exclusive={props.exclusive ? 'true' : 'false'}
+      data-enabled={props.enabled === false ? 'false' : 'true'}
     >
       <legend>
         <code>{label()}</code>
@@ -232,7 +238,7 @@ function FolderPane(props: {
   return (
     <button
       class="panel folder"
-      data-current={props.current}
+      data-current={props.current ? 'true' : 'false'}
       onClick={() => props.onSelect()}
     >
       <strong>{props.name}</strong>
@@ -440,6 +446,7 @@ function ActivityLog() {
 }
 
 function Key(props: { hotkey: Hotkey }) {
+  const formatForDisplay = createFormatForDisplay()
   return <kbd>{formatForDisplay(props.hotkey)}</kbd>
 }
 

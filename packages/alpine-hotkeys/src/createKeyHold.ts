@@ -1,14 +1,14 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { read } from './scope'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
+import type { IndividualKey, MaybeGetter } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type { MaybeGetter } from './types'
-import type { IndividualKey } from '@tanstack/hotkeys'
 
 export function createKeyHold(
   scope: HotkeysScope,
   key: MaybeGetter<IndividualKey>,
 ) {
-  return scope.select(getKeyStateTracker().store, (state) =>
-    state.heldKeys.includes(read(key)),
+  const tracker = getKeyStateTracker()
+  return scope.select(tracker.store, () =>
+    tracker.isKeyHeld(resolveMaybeGetter(key)),
   )
 }

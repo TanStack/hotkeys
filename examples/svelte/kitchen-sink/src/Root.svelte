@@ -1,7 +1,7 @@
 <script lang="ts">
   import { TanStackDevtools } from '@tanstack/svelte-devtools'
-  import { hotkeysDevtoolsPlugin } from '@tanstack/svelte-hotkeys-devtools'
   import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
+  import { hotkeysDevtoolsPlugin } from '@tanstack/svelte-hotkeys-devtools'
   import App from './App.svelte'
 </script>
 

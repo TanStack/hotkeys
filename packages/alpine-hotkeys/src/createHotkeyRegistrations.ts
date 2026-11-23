@@ -1,12 +1,13 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
+import type { HotkeyRegistrationsResult } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
-import type { HotkeyRegistrationsResult } from './types'
 
 export function createHotkeyRegistrations(
   scope: HotkeysScope,
 ): HotkeyRegistrationsResult {
   const state = scope.select(getHotkeyManager().registrations, (value) =>
-    Array.from(value.values()).map(toHotkeyRegistrationView),
+    getHotkeyRegistrationViews(value),
   )
   return {
     get hotkeys() {

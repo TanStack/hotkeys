@@ -1,12 +1,12 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest'
-import { gradeEditor } from './grade'
 import { Editor as Fixture } from './fixture'
-import { Editor as Solution } from './solution'
-import { Editor as KeydownListener } from './mistakes/keydown-listener'
+import { gradeEditor } from './grade'
 import { Editor as EnabledFlag } from './mistakes/enabled-flag'
 import { Editor as HotkeyAboveProvider } from './mistakes/hotkey-above-provider'
+import { Editor as KeydownListener } from './mistakes/keydown-listener'
 import { Editor as RefCurrent } from './mistakes/ref-current'
+import { Editor as Solution } from './solution'
 import type { ComponentType } from 'react'
 import type { EditorProps } from './fixture'
 

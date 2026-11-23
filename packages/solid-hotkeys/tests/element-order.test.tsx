@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
-import { afterEach, expect, it } from 'vitest'
+
 import { render } from '@solidjs/testing-library'
 import { delegateEvents } from '@solidjs/web'
-import { createSignal } from 'solid-js'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { createSignal } from 'solid-js'
+import { afterEach, expect, it } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 
 // Solid 2 runs onKeyDown from one listener on the render root, which a key
@@ -35,7 +36,7 @@ function Panel(props: { childStops?: boolean }) {
     <div ref={setPanel} tabindex={0} onKeyDown={() => log.push('panel')}>
       <input
         role="combobox"
-        aria-expanded="true"
+        aria-expanded="false"
         data-testid="child"
         onKeyDown={(event) => {
           log.push('child')

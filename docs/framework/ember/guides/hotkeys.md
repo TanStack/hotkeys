@@ -131,6 +131,8 @@ Write most chords as strings. Your editor autocompletes them, and Glint rejects 
 {{useHotkey 'Shift+Mod+S' this.saveAs}}
 ```
 
+TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
+
 Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier. Build it in the template with the `hash` helper from `@ember/helper`, or in a component property:
 
 ```gts
@@ -351,7 +353,7 @@ export default class Panel extends Component {
 }
 ```
 
-The modifier registers the hotkey when the element renders and unregisters it when the element is removed. `onHotkeys` does the same for an array of hotkeys. The `useHotkey` and `useHotkeys` helpers also accept a `target` named argument, such as `window` from a component property.
+The modifier registers the hotkey when the element renders and unregisters it when the element is removed. `onHotkeys` does the same for an array of hotkeys. The `useHotkey` and `useHotkeys` helpers also accept a `target` named argument, such as `window` from a component property. A `target` that is `null` or `undefined` registers nothing until it is set. Leave the argument out to listen on `document`.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

@@ -16,6 +16,24 @@ test.describe('held keys', () => {
     expect(await hk.call('heldKeys')).toEqual([])
   })
 
+  // The tracker counts on the letter's own keyup arriving after a modifier
+  // tap. Only Command on macOS swallows it.
+  test('keeps a held letter while a modifier is tapped', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.call('heldKeys')
+    await page.keyboard.down('KeyW')
+    for (const modifier of ['Shift', 'Control', 'Alt']) {
+      await page.keyboard.down(modifier)
+      await page.keyboard.up(modifier)
+      expect(await hk.call('heldKeys')).toEqual(['W'])
+    }
+    await page.keyboard.up('KeyW')
+    expect(await hk.call('heldKeys')).toEqual([])
+  })
+
   test('clears held keys when the window loses focus', async ({
     page,
     harness,
@@ -31,7 +49,7 @@ test.describe('held keys', () => {
 })
 
 test.describe('recorder', () => {
-  test('records a chord by physical key and the result fires', async ({
+  test('records a chord by name and the result fires', async ({
     page,
     harness,
   }) => {
@@ -39,11 +57,32 @@ test.describe('recorder', () => {
     await hk.call('startRecorder')
     await page.keyboard.press(`${hk.mod}+Shift+k`)
     const { recorded, isRecording } = await hk.call('recorderState')
-    expect(recorded).toBe('Mod+Shift+[KeyK]')
+    expect(recorded).toBe('Mod+Shift+K')
     expect(isRecording).toBe(false)
-    await hk.register('recorded', recorded as 'Mod+Shift+[KeyK]')
+    await hk.register('recorded', recorded as 'Mod+Shift+K')
     await page.keyboard.press(`${hk.mod}+Shift+k`)
     expect(await hk.firedNames()).toEqual(['recorded'])
+  })
+
+  test('records Shift with a symbol by physical key and the result fires', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.call('startRecorder')
+    await page.keyboard.press('Shift+Slash')
+    const { recorded } = await hk.call('recorderState')
+    expect(recorded).toBe('Shift+[Slash]')
+    await hk.register('recorded', recorded as 'Shift+[Slash]')
+    await page.keyboard.press('Shift+Slash')
+    expect(await hk.firedNames()).toEqual(['recorded'])
+  })
+
+  test('records the physical key in code mode', async ({ page, harness }) => {
+    const hk = await harness()
+    await hk.call('startRecorder', { recordBy: 'code' })
+    await page.keyboard.press(`${hk.mod}+Shift+k`)
+    expect((await hk.call('recorderState')).recorded).toBe('Mod+Shift+[KeyK]')
   })
 
   test('records the typed character in key mode', async ({ page, harness }) => {
@@ -58,15 +97,9 @@ test.describe('recorder', () => {
     await hk.call('startRecorder', { maxSteps: Infinity })
     await page.keyboard.press('g')
     await page.keyboard.press(`${hk.mod}+k`)
-    expect((await hk.call('recorderState')).steps).toEqual([
-      '[KeyG]',
-      'Mod+[KeyK]',
-    ])
+    expect((await hk.call('recorderState')).steps).toEqual(['G', 'Mod+K'])
     await page.keyboard.press('Enter')
-    expect((await hk.call('recorderState')).recorded).toEqual([
-      '[KeyG]',
-      'Mod+[KeyK]',
-    ])
+    expect((await hk.call('recorderState')).recorded).toEqual(['G', 'Mod+K'])
   })
 
   test('Escape cancels and Backspace clears', async ({ page, harness }) => {
@@ -80,6 +113,60 @@ test.describe('recorder', () => {
     await hk.call('startRecorder')
     await page.keyboard.press('Backspace')
     expect((await hk.call('recorderState')).recorded).toBe('cleared')
+  })
+
+  test('Tab and Shift+Tab cancel and move focus', async ({ page, harness }) => {
+    // Inputs, because WebKit skips buttons when tabbing by default
+    const hk = await harness(
+      '<input id="before"><button id="start">Record</button><input id="after">',
+    )
+    await hk.register('tab', 'Tab')
+    for (const [key, next] of [
+      ['Tab', 'after'],
+      ['Shift+Tab', 'before'],
+    ] as const) {
+      await page.focus('#start')
+      await hk.call('startRecorder')
+      await page.keyboard.press(key)
+      await expect(page.locator(`#${next}`)).toBeFocused()
+      expect(await hk.call('recorderState')).toMatchObject({
+        recorded: 'cancelled',
+        isRecording: false,
+      })
+    }
+    expect(await hk.firedNames()).toEqual([])
+  })
+
+  test('Tab moves focus when cancelling removes the focused control', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<input id="before"><button id="start">Record</button><input id="after">',
+    )
+    await page.focus('#start')
+    await hk.call('startRecorder')
+    // Runs right after the recorder's listener, as an onCancel that unmounts would
+    await page.evaluate(() =>
+      document.addEventListener(
+        'keydown',
+        () => document.getElementById('start')?.remove(),
+        { capture: true, once: true },
+      ),
+    )
+    await page.keyboard.press('Tab')
+    await expect(page.locator('#after')).toBeFocused()
+  })
+
+  test('recordTab records Tab and keeps focus', async ({ page, harness }) => {
+    const hk = await harness(
+      '<button id="start">Record</button><input id="after">',
+    )
+    await page.focus('#start')
+    await hk.call('startRecorder', { recordTab: true })
+    await page.keyboard.press('Tab')
+    await expect(page.locator('#start')).toBeFocused()
+    expect((await hk.call('recorderState')).recorded).toBe('Tab')
   })
 
   test('keys pressed while recording do not fire hotkeys', async ({

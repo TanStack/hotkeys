@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
   HotkeysProvider,
   useAppHotkeys,
   useHotkey,
 } from '@tanstack/react-hotkeys'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { Hint, useActivity } from '../shared'
 
 export const Route = createLazyRoute('/')({ component: TicketsRoute })

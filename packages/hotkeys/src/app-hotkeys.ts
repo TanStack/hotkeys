@@ -1,26 +1,29 @@
+import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
+import { hotkeySteps } from './_chord'
+import { ownValue } from './_keys'
+import { GLOBAL_SCOPE } from './_registration'
+import { stepsOverlap } from './_steps'
+import { createStore } from './_store'
 import { getHotkeyManager } from './hotkey-manager'
 import { areHotkeysEqual } from './match'
+import { simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
-import { isHotkeySequence, simplifyHotkey } from './parse'
 import { validateHotkey } from './validate'
-import { GLOBAL_SCOPE } from './_registration'
-import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
-import { createStore } from './_store'
 import type { Store } from './_store'
-import type {
-  Hotkey,
-  HotkeyChord,
-  HotkeyMeta,
-  HotkeySequence,
-} from './hotkey.types'
 import type {
   HotkeyChordOptions,
   HotkeyRegistrationStatus,
   HotkeyRegistrationView,
   HotkeySequenceOptions,
 } from './hotkey-manager'
-
-type Platform = 'mac' | 'windows' | 'linux'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyMeta,
+  HotkeySequence,
+} from './hotkey.types'
+import type { HotkeyPlatform } from './platform'
+import type { Register } from './register'
 
 type DeclaredOptionKeys =
   | 'capture'
@@ -75,7 +78,9 @@ export interface AppHotkeyInput {
 export interface AppHotkey<
   TId extends string = string,
   TDefault extends HotkeyChord | HotkeySequence | null =
-    HotkeyChord | HotkeySequence | null,
+    | HotkeyChord
+    | HotkeySequence
+    | null,
 > {
   /** Brand that distinguishes app hotkeys from raw hotkey objects. */
   readonly '~appHotkey': true
@@ -103,10 +108,17 @@ type StrictOptions<TOptions, TAllowed> = TOptions extends object
   ? { [P in Exclude<keyof TOptions, keyof TAllowed>]: never } & TAllowed
   : TAllowed
 
-/** Rejects options that do not apply to each declaration's default kind. */
+/**
+ * Rejects options that do not apply to each declaration's default kind.
+ *
+ * Each entry holds only `options`. `defineAppHotkeys` intersects this with
+ * the declarations, and repeating a declaration's `hotkey` here makes
+ * TypeScript 5.7 and later intersect two copies of the hotkey unions, which
+ * takes seconds and gigabytes for a few dozen entries.
+ */
 type ValidatedAppHotkeyInputs<T> = {
   [K in keyof T]: T[K] extends { hotkey: infer THotkey }
-    ? Omit<T[K], 'options'> & {
+    ? {
         options?: StrictOptions<
           T[K] extends { options: infer TOptions } ? TOptions : {},
           AllowedOptions<THotkey>
@@ -132,19 +144,7 @@ export type DefinedAppHotkeys<T extends Record<string, AppHotkeyInput>> = {
   >
 }
 
-/**
- * Register your app hotkeys to type `useAppHotkeys()` and `CustomHotkeys`.
- *
- * @example
- * ```ts
- * declare module '@tanstack/react-hotkeys' {
- *   interface Register {
- *     appHotkeys: typeof appHotkeys
- *   }
- * }
- * ```
- */
-export interface Register {}
+export type { Register } from './register'
 
 /** The app hotkeys type from `Register`, or a generic map when none is registered. */
 export type RegisteredAppHotkeys = Register extends {
@@ -181,9 +181,7 @@ export type CustomHotkeys<T extends AppHotkeys = RegisteredAppHotkeys> = {
 export function defineAppHotkeys<
   const T extends Record<string, AppHotkeyInput>,
 >(definitions: T & ValidatedAppHotkeyInputs<T>): DefinedAppHotkeys<T> {
-  setAppHotkeysStoreFactory(
-    (appHotkeys, options) => new AppHotkeysStore(appHotkeys, options),
-  )
+  installAppHotkeysStore()
   const result: Record<string, AppHotkey> = {}
   for (const [id, input] of Object.entries(definitions as T)) {
     const hotkey = input.hotkey === null ? null : simplifyHotkey(input.hotkey)
@@ -200,6 +198,17 @@ export function defineAppHotkeys<
   return result as DefinedAppHotkeys<T>
 }
 
+/**
+ * Lets providers in this bundle create stores for app hotkeys.
+ * `defineAppHotkeys` calls it. Adapters call it where the declarations can
+ * arrive from another bundle, such as from a React Server Component.
+ */
+export function installAppHotkeysStore(): void {
+  setAppHotkeysStoreFactory(
+    (appHotkeys, options) => new AppHotkeysStore(appHotkeys, options),
+  )
+}
+
 /** Whether a value is an app hotkey created by `defineAppHotkeys`. */
 export function isAppHotkey(value: unknown): value is AppHotkey {
   return (
@@ -212,7 +221,7 @@ export function isAppHotkey(value: unknown): value is AppHotkey {
 function hotkeysEqual(
   left: Hotkey | null,
   right: Hotkey | null,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): boolean {
   if (left === null || right === null) return left === right
   return areHotkeysEqual(left, right, platform)
@@ -221,7 +230,7 @@ function hotkeysEqual(
 /** Whether an app hotkey's effective hotkey differs from its default. */
 export function isCustomHotkey(
   appHotkey: AppHotkey,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): boolean {
   return !hotkeysEqual(appHotkey.hotkey, appHotkey.defaultHotkey, platform)
 }
@@ -253,7 +262,7 @@ function applyCustomHotkeys<T extends AppHotkeys>(
   return result as T
 }
 
-/** Keeps only valid custom hotkeys for known ids, warning about the rest. */
+/** Keeps only valid custom hotkeys for known ids and silently drops the rest. */
 function sanitizeCustomHotkeys<T extends AppHotkeys>(
   appHotkeys: T,
   saved: unknown,
@@ -263,23 +272,9 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
   for (const [id, value] of Object.entries(saved)) {
     if (value === undefined) continue
     // Own ids only: saved data can hold names such as toString or __proto__
-    if (!Object.hasOwn(appHotkeys, id)) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(`Ignoring custom hotkey for unknown app hotkey '${id}'`)
-      }
-      continue
-    }
+    if (!Object.hasOwn(appHotkeys, id)) continue
     const hotkey = parseCustomHotkey(value)
-    if (hotkey === undefined) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(
-          `Ignoring invalid custom hotkey for app hotkey '${id}':`,
-          value,
-        )
-      }
-      continue
-    }
-    result[id] = hotkey
+    if (hotkey !== undefined) result[id] = hotkey
   }
   return result
 }
@@ -330,23 +325,6 @@ function sameSavedCustomHotkeys(left: unknown, right: unknown): boolean {
   )
 }
 
-/** Whether two sanitized custom hotkeys objects bind the same hotkeys. */
-function sameCustomHotkeys(
-  left: Record<string, Hotkey | null>,
-  right: Record<string, Hotkey | null>,
-  platform: Platform,
-): boolean {
-  const keys = Object.keys(left)
-  return (
-    keys.length === Object.keys(right).length &&
-    keys.every(
-      (key) =>
-        Object.hasOwn(right, key) &&
-        hotkeysEqual(left[key] ?? null, right[key] ?? null, platform),
-    )
-  )
-}
-
 /** Whether two app hotkeys can apply at the same time. */
 function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   const left = a.scope ?? GLOBAL_SCOPE
@@ -354,19 +332,34 @@ function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   return left === GLOBAL_SCOPE || right === GLOBAL_SCOPE || left === right
 }
 
-/** Whether two hotkeys collide: equal chords, or one sequence starts with the other. */
+/**
+ * The key presses that recorded a hotkey. A recorder passes them to `validate`
+ * and `onRecord` as its context, which can be passed on as is.
+ */
+export interface RecordedKeyPresses {
+  /** The key press that recorded a chord. */
+  event?: KeyboardEvent
+  /** The key press that recorded each step of a sequence. */
+  events?: ReadonlyArray<KeyboardEvent>
+}
+
+/**
+ * Whether two hotkeys collide: at every step they share, the chords are equal
+ * or the key press that recorded the left one fires both. One sequence that
+ * starts with the other collides too.
+ */
 function hotkeysOverlap(
   left: Hotkey,
   right: Hotkey,
-  platform: Platform,
+  platform: HotkeyPlatform,
+  events?: ReadonlyArray<KeyboardEvent>,
 ): boolean {
-  const a = isHotkeySequence(left) ? left : [left]
-  const b = isHotkeySequence(right) ? right : [right]
-  const length = Math.min(a.length, b.length)
-  for (let i = 0; i < length; i++) {
-    if (!areHotkeysEqual(a[i]!, b[i]!, platform)) return false
-  }
-  return true
+  return stepsOverlap(
+    hotkeySteps(left),
+    hotkeySteps(right),
+    [platform, platform],
+    events,
+  )
 }
 
 /**
@@ -377,8 +370,7 @@ function hotkeysOverlap(
  * - `'inactive'`: has a hotkey, but nothing has registered it
  * - `'unbound'`: no hotkey assigned
  */
-export type AppHotkeyStatus =
-  'active' | 'suspended' | 'disabled' | 'inactive' | 'unbound'
+export type AppHotkeyStatus = HotkeyRegistrationStatus | 'inactive' | 'unbound'
 
 /** One row of an app hotkey cheat sheet. */
 export interface AppHotkeyListItem<T extends AppHotkey = AppHotkey> {
@@ -398,11 +390,44 @@ export interface AppHotkeysState<T extends AppHotkeys = AppHotkeys> {
   customHotkeys: CustomHotkeys<T>
 }
 
+/** A cheat sheet row for one of the registered app hotkeys. */
+export type RegisteredAppHotkeyListItem = AppHotkeyListItem<
+  RegisteredAppHotkeys[keyof RegisteredAppHotkeys]
+>
+
+/** Actions that change the user's custom hotkeys, as adapters return them. */
+export interface CustomHotkeyActions {
+  /**
+   * Sets the user's hotkey for an app hotkey. `null` unbinds it.
+   * Returns conflicting app hotkeys; when any exist, nothing changes. Pass
+   * the recorder's `context` for a recorded hotkey, as for `findConflicts`.
+   */
+  setCustomHotkey: (
+    id: AppHotkeyId,
+    hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
+  ) => Array<AppHotkey>
+  /** Restores the default hotkey for an app hotkey. */
+  resetCustomHotkey: (id: AppHotkeyId) => void
+  /** Restores every default hotkey. */
+  resetCustomHotkeys: () => void
+  /**
+   * Other app hotkeys that would collide if `id` used `hotkey`. Pass the
+   * recorder's `context` for a recorded hotkey: it has the key press, which
+   * also finds a hotkey written differently that the same press fires.
+   */
+  findConflicts: (
+    id: AppHotkeyId,
+    hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
+  ) => Array<AppHotkey>
+}
+
 /** Options for `AppHotkeysStore`. */
 export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
   /**
-   * The user's saved custom hotkeys. Invalid entries are ignored with a
-   * warning. Passing a different value to `setOptions` later, such as data
+   * The user's saved custom hotkeys. Unknown ids and invalid entries are
+   * ignored. Passing a different value to `setOptions` later, such as data
    * that finished loading or another user's data, replaces the current
    * custom hotkeys. `undefined` leaves them unchanged; a change to `null`
    * clears them.
@@ -411,7 +436,7 @@ export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys<T>) => void
   /** Platform used to compare hotkeys. Defaults to detection. */
-  platform?: Platform
+  platform?: HotkeyPlatform
 }
 
 /**
@@ -450,7 +475,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     })
   }
 
-  get #platform(): Platform {
+  get #platform(): HotkeyPlatform {
     return this.#options.platform ?? detectPlatform()
   }
 
@@ -476,24 +501,34 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
    */
   setOptions(options: AppHotkeysStoreOptions<T>): void {
     const { customHotkeys, ...rest } = options
+    const platformChanged =
+      'platform' in rest && rest.platform !== this.#options.platform
     this.#options = { ...this.#options, ...rest }
-    if (customHotkeys === undefined) return
-    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) return
+    // `isCustom` in `getList` depends on the platform, so notify subscribers
+    // once, after any saved custom hotkeys are applied.
+    if (!this.#applySavedCustomHotkeys(customHotkeys) && platformChanged) {
+      this.store.setState((state) => ({ ...state }))
+    }
+  }
+
+  /** Replaces the custom hotkeys with saved data. Returns whether they changed. */
+  #applySavedCustomHotkeys(
+    customHotkeys: CustomHotkeys<T> | null | undefined,
+  ): boolean {
+    if (customHotkeys === undefined) return false
+    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) {
+      return false
+    }
     this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)
     const next = sanitizeCustomHotkeys(this.#declarations, customHotkeys)
-    if (
-      sameCustomHotkeys(
-        next as Record<string, Hotkey | null>,
-        this.store.state.customHotkeys as Record<string, Hotkey | null>,
-        this.#platform,
-      )
-    ) {
-      return
-    }
+    // Compared exactly, not on the current platform, so a binding such as
+    // Meta+S stays as saved if the platform changes later.
+    if (sameSavedValue(next, this.store.state.customHotkeys)) return false
     this.store.setState(() => ({
       appHotkeys: applyCustomHotkeys(this.#declarations, next),
       customHotkeys: next,
     }))
+    return true
   }
 
   /**
@@ -516,49 +551,65 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
   /** Effective app hotkey for an id, or `undefined` when it is not declared. */
   get(id: string): AppHotkey | undefined {
     const { appHotkeys } = this.store.state
-    return Object.hasOwn(appHotkeys, id) ? appHotkeys[id] : undefined
+    return ownValue(appHotkeys, id)
   }
 
   /**
    * Other app hotkeys that would collide if `id` used `hotkey`. App hotkeys
    * collide when their scopes match or either is `'global'`, and their
    * hotkeys are equal or one sequence starts with the other.
+   *
+   * Pass the recorder's `context` for a recorded hotkey. Two hotkeys written
+   * differently can fire for one key press, such as a recorded `Shift+[Slash]`
+   * and a declared `?` on a US keyboard. Only the key press shows that.
+   *
+   * @example
+   * ```ts
+   * const recorder = new HotkeyRecorder({
+   *   validate: (hotkey, context) =>
+   *     store.findConflicts('doc.save', hotkey, context).length === 0 ||
+   *     'Already in use',
+   *   onRecord: (hotkey, context) =>
+   *     store.setCustomHotkey('doc.save', hotkey, context),
+   * })
+   * ```
    */
-  findConflicts(id: keyof T & string, hotkey: Hotkey): Array<AppHotkey> {
+  findConflicts(
+    id: keyof T & string,
+    hotkey: Hotkey,
+    recordedWith?: RecordedKeyPresses,
+  ): Array<AppHotkey> {
     const self = this.get(id)
     if (!self) return []
     const candidate = simplifyHotkey(hotkey)
+    const events =
+      recordedWith?.events ?? (recordedWith?.event && [recordedWith.event])
     return Object.values(this.store.state.appHotkeys).filter(
       (other) =>
         other.id !== id &&
         other.hotkey !== null &&
         scopesOverlap(self, other) &&
-        hotkeysOverlap(candidate, other.hotkey, this.#platform),
+        hotkeysOverlap(candidate, other.hotkey, this.#platform, events),
     )
   }
 
   /**
    * Sets the user's hotkey for an app hotkey. `null` unbinds it. A hotkey
-   * equal to the default removes the customization.
+   * equal to the default removes the customization. Pass the recorder's
+   * `context` for a recorded hotkey, as for `findConflicts`.
    *
    * @returns Conflicting app hotkeys. When any exist, nothing changes.
    */
   setCustomHotkey(
     id: keyof T & string,
     hotkey: Hotkey | null,
+    recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
     const appHotkey = this.get(id)
-    if (!appHotkey) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(
-          `Cannot set a custom hotkey for unknown app hotkey '${id}'`,
-        )
-      }
-      return []
-    }
+    if (!appHotkey) return []
     const next = hotkey === null ? null : simplifyHotkey(hotkey)
     if (next !== null) {
-      const conflicts = this.findConflicts(id, next)
+      const conflicts = this.findConflicts(id, next, recordedWith)
       if (conflicts.length > 0) return conflicts
     }
     const { [id]: _previous, ...rest } = this.store.state

@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useId, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import {
   HotkeysProvider,
-  formatForDisplay,
   useAppHotkeys,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/react-hotkeys'
-import type { ReactNode } from 'react'
+import { createContext, useContext, useEffect, useId, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import type { AppHotkeyId, Hotkey } from '@tanstack/react-hotkeys'
+import type { ReactNode } from 'react'
 
 export const ActivityContext = createContext<(message: string) => void>(
   () => {},
@@ -18,11 +18,16 @@ export function useActivity() {
   return useContext(ActivityContext)
 }
 
-/** Formats a chord or sequence, or reports that none is assigned. */
-export function formatHotkey(hotkey: Hotkey | null): string {
-  return hotkey
-    ? formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
-    : 'Unassigned'
+/**
+ * Returns a function that formats a chord or sequence, or reports that none
+ * is assigned.
+ */
+export function useFormatHotkey(): (hotkey: Hotkey | null) => string {
+  const formatForDisplay = useFormatForDisplay()
+  return (hotkey) =>
+    hotkey
+      ? formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+      : 'Unassigned'
 }
 
 /**
@@ -31,6 +36,7 @@ export function formatHotkey(hotkey: Hotkey | null): string {
  * rebinding. Disabled and suspended hotkeys show no hint.
  */
 export function Hint({ id }: { id: AppHotkeyId }) {
+  const formatHotkey = useFormatHotkey()
   const appHotkey = useAppHotkeys()[id]
   const visible = useHotkeyHint(appHotkey)
   return visible && appHotkey.hotkey ? (

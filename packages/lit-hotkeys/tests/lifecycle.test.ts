@@ -1,14 +1,16 @@
-import { afterEach, expect, it, vi } from 'vitest'
-import { LitElement } from 'lit'
 import {
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
   getHotkeyManager,
   getKeyStateTracker,
+  getKeyboardLayoutStore,
   provideAppHotkeys,
 } from '@tanstack/hotkeys'
+import { LitElement } from 'lit'
+import { afterEach, expect, it, vi } from 'vitest'
 import { AppHotkeysController } from '../src/controllers/app-hotkeys'
+import { FormatForDisplayController } from '../src/controllers/format-for-display'
 import { HeldKeyCodesController } from '../src/controllers/held-key-codes'
 import { HeldKeysController } from '../src/controllers/held-keys'
 import { HotkeyController } from '../src/controllers/hotkey'
@@ -48,6 +50,7 @@ afterEach(() => {
   document.body.replaceChildren()
   HotkeyManager.resetInstance()
   KeyStateTracker.resetInstance()
+  getKeyboardLayoutStore().setState(() => null)
 })
 
 it('reads keys already held when the host connects and after it moves', async () => {
@@ -103,6 +106,23 @@ it('ignores an extra addController for a HotkeyController on a connected host', 
   expect(registrations()).toEqual([])
 })
 
+it('dispose() unregisters a HotkeyController and removes it from its host', async () => {
+  const host = new PlainHost()
+  document.body.append(host)
+  await host.updateComplete
+  const controller = new HotkeyController(host, 'X', () => {})
+  expect(registrations()).toEqual(['X'])
+
+  controller.dispose()
+  expect(registrations()).toEqual([])
+  // Lit's removeController alone would leave X registered after this.
+  host.remove()
+  document.body.append(host)
+  await host.updateComplete
+  getHotkeyManager().appHotkeys.setState(() => null)
+  expect(registrations()).toEqual([])
+})
+
 const readControllers: Array<
   [string, (host: LitElement) => ReactiveController, () => void]
 > = [
@@ -141,6 +161,11 @@ const readControllers: Array<
     },
     () => afterRemove(),
   ],
+  [
+    'FormatForDisplayController',
+    (h) => new FormatForDisplayController(h),
+    () => getKeyboardLayoutStore().setState(() => new Map([['KeyQ', 'a']])),
+  ],
 ]
 let afterRemove = () => {}
 
@@ -156,6 +181,26 @@ it.each(readControllers)(
     await host.updateComplete
     host.addController(create(host))
     host.remove()
+    const requestUpdate = vi.spyOn(host, 'requestUpdate')
+    change()
+    expect(requestUpdate).not.toHaveBeenCalled()
+  },
+)
+
+it.each(readControllers)(
+  '%s dispose() unsubscribes and removes it from its host',
+  async (_name, create, change) => {
+    const host = new PlainHost()
+    document.body.append(host)
+    await host.updateComplete
+    const controller = create(host) as ReactiveController & {
+      dispose(): void
+    }
+    controller.dispose()
+    // Reconnecting must not subscribe it again.
+    host.remove()
+    document.body.append(host)
+    await host.updateComplete
     const requestUpdate = vi.spyOn(host, 'requestUpdate')
     change()
     expect(requestUpdate).not.toHaveBeenCalled()

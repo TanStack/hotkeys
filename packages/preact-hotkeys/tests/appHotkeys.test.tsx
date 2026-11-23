@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { act, cleanup, renderHook } from '@testing-library/preact'
+
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { act, cleanup, renderHook } from '@testing-library/preact'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
@@ -36,7 +37,7 @@ function wrapperWith(
     onCustomHotkeysChange?: (custom: CustomHotkeys<typeof appHotkeys>) => void
   } = {},
 ) {
-  return ({ children }: { children: ComponentChildren }) => (
+  return ({ children }: { children?: ComponentChildren }) => (
     <HotkeysProvider
       appHotkeys={appHotkeys}
       defaultOptions={{ hotkey: { platform: 'mac' } }}
@@ -218,7 +219,7 @@ describe('useHotkey with chords and sequences', () => {
         useHotkey(['G', 'G'], () => {})
       },
       {
-        wrapper: ({ children }: { children: ComponentChildren }) => (
+        wrapper: ({ children }: { children?: ComponentChildren }) => (
           <HotkeysProvider
             defaultOptions={{ hotkey: { requireReset: true, timeout: 250 } }}
           >
@@ -280,7 +281,7 @@ describe('HotkeysProvider customHotkeys prop', () => {
     let current = saved
     const onCustomHotkeysChange = vi.fn()
     const view = renderHook(() => useCustomHotkeys(), {
-      wrapper: ({ children }: { children: ComponentChildren }) => (
+      wrapper: ({ children }: { children?: ComponentChildren }) => (
         <HotkeysProvider
           appHotkeys={appHotkeys}
           // A new object on every render, like an inline JSON.parse.
@@ -409,7 +410,7 @@ describe('useHotkeyRecorder', () => {
     )
     act(() => result.current.startRecording())
     press('s', { metaKey: true, code: 'KeyS' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     expect(result.current.recordedHotkey).toBe('Mod+S')
   })
 
@@ -422,7 +423,10 @@ describe('useHotkeyRecorder', () => {
     press('g', { code: 'KeyG' })
     expect(result.current.steps).toEqual(['G'])
     press('h', { code: 'KeyH' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
     expect(result.current.isRecording).toBe(false)
   })
 
@@ -432,5 +436,55 @@ describe('useHotkeyRecorder', () => {
       // @ts-expect-error idleTimeoutMs needs maxSteps above 1
       useHotkeyRecorder({ idleTimeoutMs: 500, onRecord: () => {} })
     })
+  })
+})
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', () => {
+    let platform: 'mac' | 'windows' = 'mac'
+    const wrapper = ({ children }: { children?: ComponentChildren }) => (
+      <HotkeysProvider
+        appHotkeys={appHotkeys}
+        customHotkeys={{ 'doc.save': 'Meta+S' }}
+        defaultOptions={{ platform }}
+      >
+        {children}
+      </HotkeysProvider>
+    )
+    const { result, rerender } = renderWithCustom(
+      () => useAppHotkeyList(),
+      wrapper,
+    )
+    const isSaveCustom = () =>
+      result.current.value.find((item) => item.appHotkey.id === 'doc.save')!
+        .isCustom
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(isSaveCustom()).toBe(false)
+    expect(
+      result.current.custom
+        .findConflicts('palette.open', 'Meta+F')
+        .map((appHotkey) => appHotkey.id),
+    ).toEqual(['doc.find'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 'f',
+        code: 'KeyF',
+        metaKey: true,
+      }),
+    }
+    expect(
+      result.current.custom.findConflicts('palette.open', 'Meta+[KeyF]'),
+    ).toEqual([])
+    expect(
+      result.current.custom
+        .findConflicts('palette.open', 'Meta+[KeyF]', recordedWith)
+        .map((a) => a.id),
+    ).toEqual(['doc.find'])
+
+    platform = 'windows'
+    rerender()
+    expect(isSaveCustom()).toBe(true)
   })
 })

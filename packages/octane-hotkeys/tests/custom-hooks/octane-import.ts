@@ -1,5 +1,5 @@
-import { useState } from 'octane'
 import { useHotkey } from '@tanstack/octane-hotkeys'
+import { useState } from 'octane'
 
 export function useImportShortcuts(log: Array<string>) {
   const [count, setCount] = useState(0)

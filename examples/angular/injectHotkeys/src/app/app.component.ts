@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkeyRegistrations,
   injectHotkeys,
 } from '@tanstack/angular-hotkeys'
@@ -20,7 +20,7 @@ interface DynamicShortcut {
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  fd = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 
   // Basic demo
   log = signal<string[]>([])

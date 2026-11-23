@@ -2,7 +2,7 @@ import { createRoot, useEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/octane-hotkeys'
@@ -10,6 +10,7 @@ import {
 import './index.css'
 
 function App() @{
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
   const heldCodes = useHeldKeyCodes()
   const [history, setHistory] = useState<Array<string>>([])
@@ -26,7 +27,7 @@ function App() @{
         return h
       })
     }
-  }, [heldKeys])
+  }, [heldKeys, formatForDisplay])
   <div className="app">
         <header>
           <h1>useHeldKeys</h1>

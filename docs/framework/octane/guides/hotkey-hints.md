@@ -10,7 +10,7 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 
 ```tsx
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/octane-hotkeys'
@@ -18,6 +18,7 @@ import {
 const saveHotkey = 'Mod+S'
 
 function SaveButton() @{
+  const formatForDisplay = useFormatForDisplay()
   useHotkey(saveHotkey, save)
   const showHint = useHotkeyHint(saveHotkey)
 
@@ -65,14 +66,15 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 
 ```tsx
 import {
-  formatForDisplay,
   useAppHotkeys,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/octane-hotkeys'
 import type { AppHotkeyId } from '@tanstack/octane-hotkeys'
 
 function Hint({ id }: { id: AppHotkeyId }) @{
+  const formatForDisplay = useFormatForDisplay()
   const appHotkey = useAppHotkeys()[id]
   const showHint = useHotkeyHint(appHotkey)
 

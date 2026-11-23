@@ -1,13 +1,17 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   Hotkey,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
+  HotkeyRecorderState,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 /**
  * A Lit ReactiveController that records keyboard shortcuts.
@@ -15,8 +19,9 @@ import type {
  * With the default `maxSteps: 1`, the first valid chord is recorded. With a
  * larger `maxSteps`, each chord adds a step; the recording commits on Enter
  * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
- * `onRecord` receives a chord (one step) or a sequence. Escape cancels;
- * Backspace/Delete removes the last step or clears.
+ * `onRecord` receives a chord (one step) or a sequence. Escape cancels, and
+ * so do Tab and Shift+Tab unless `recordTab` is set; Backspace/Delete removes
+ * the last step or clears.
  *
  * @example
  * ```ts
@@ -46,7 +51,9 @@ import type {
  * }
  * ```
  */
-export class HotkeyRecorderController implements ReactiveController {
+export class HotkeyRecorderController
+  implements ReactiveController, HotkeyRecorderState, HotkeyRecorderActions
+{
   /** The recorder instance. */
   private _recorder: HotkeyRecorder
   private _optionOverrides: Partial<HotkeyRecorderOptions> = {}
@@ -100,15 +107,13 @@ export class HotkeyRecorderController implements ReactiveController {
   )
   constructor(
     private _host: ReactiveControllerHost,
-    private _options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
+    private _options: MaybeGetter<HotkeyRecorderOptions>,
   ) {
     // Overloads already checked the options; either shape is valid here.
     this._recorder = new HotkeyRecorder(
       () =>
         ({
-          ...(typeof this._options === 'function'
-            ? this._options()
-            : this._options),
+          ...resolveMaybeGetter(this._options),
           ...this._optionOverrides,
         }) as HotkeySequenceRecorderOptions,
     )
@@ -147,6 +152,15 @@ export class HotkeyRecorderController implements ReactiveController {
     this._isRecording = false
     this._recordedHotkey = null
     this._steps = []
+  }
+
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
   }
 
   /** Updates the recorder options (e.g. callbacks). */

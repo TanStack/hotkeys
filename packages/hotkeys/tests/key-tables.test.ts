@@ -1,20 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import {
-  ALL_KEYS,
-  EDITING_KEYS,
-  FUNCTION_KEYS,
-  LETTER_KEYS,
   MODIFIER_ALIASES,
   MODIFIER_KEYS,
   MODIFIER_ORDER,
-  NAVIGATION_KEYS,
-  NUMBER_KEYS,
   PUNCTUATION_CODE_MAP,
-  PUNCTUATION_KEYS,
   normalizeKeyName,
   validateHotkey,
 } from '../src'
-import { isKeyNameShape } from '../src/_keyboard-event'
+import { isKeyNameShape } from '../src/_chord'
+import { TYPED_KEYS } from './typed-keys'
 
 // The exported key tables are public API: their contents and order must not
 // change when the code that builds them does.
@@ -24,18 +18,9 @@ describe('exported key tables', () => {
       MODIFIER_ORDER,
       MODIFIER_KEYS: [...MODIFIER_KEYS],
       MODIFIER_ALIASES: Object.entries(MODIFIER_ALIASES).sort(),
-      LETTER_KEYS: [...LETTER_KEYS].join(''),
-      NUMBER_KEYS: [...NUMBER_KEYS].join(''),
-      FUNCTION_KEYS: [...FUNCTION_KEYS].join(' '),
-      NAVIGATION_KEYS: [...NAVIGATION_KEYS].join(' '),
-      EDITING_KEYS: [...EDITING_KEYS].join(' '),
-      PUNCTUATION_KEYS: [...PUNCTUATION_KEYS].join(''),
       PUNCTUATION_CODE_MAP,
     }).toMatchInlineSnapshot(`
       {
-        "EDITING_KEYS": "Enter Escape Space Tab Backspace Delete",
-        "FUNCTION_KEYS": "F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 F16 F17 F18 F19 F20 F21 F22 F23 F24",
-        "LETTER_KEYS": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         "MODIFIER_ALIASES": [
           [
             "Alt",
@@ -146,8 +131,6 @@ describe('exported key tables', () => {
           "Shift",
           "Meta",
         ],
-        "NAVIGATION_KEYS": "ArrowUp ArrowDown ArrowLeft ArrowRight Home End PageUp PageDown",
-        "NUMBER_KEYS": "0123456789",
         "PUNCTUATION_CODE_MAP": {
           "Backquote": "\`",
           "Backslash": "\\",
@@ -161,28 +144,28 @@ describe('exported key tables', () => {
           "Semicolon": ";",
           "Slash": "/",
         },
-        "PUNCTUATION_KEYS": "/[]\\=-,.;\`'+?!@#$%^&*()_{}|:"<>~",
       }
     `)
-  })
-
-  it('combine every key group, named key, and nothing else in ALL_KEYS', () => {
-    expect([...ALL_KEYS].join(' ')).toMatchInlineSnapshot(
-      `"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9 F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 F16 F17 F18 F19 F20 F21 F22 F23 F24 ArrowUp ArrowDown ArrowLeft ArrowRight Home End PageUp PageDown Enter Escape Space Tab Backspace Delete / [ ] \\ = - , . ; \` ' + ? ! @ # $ % ^ & * ( ) _ { } | : " < > ~ CapsLock ContextMenu Convert KanaMode NonConvert Help Insert NumLock Fn FnLock PrintScreen ScrollLock Pause BrowserBack BrowserFavorites BrowserForward BrowserHome BrowserRefresh BrowserSearch BrowserStop Eject LaunchMail MediaPlayPause MediaStop MediaTrackNext MediaTrackPrevious Power AudioVolumeDown AudioVolumeMute AudioVolumeUp WakeUp Hyper Super Again Copy Cut Find Open Paste Props Select Undo Hiragana Katakana Clear Cancel Standby LaunchApplication1 LaunchApplication2 LaunchMediaPlayer HangulMode HanjaMode Zenkaku Hankaku ZenkakuHankaku"`,
-    )
   })
 })
 
 describe('key names', () => {
+  // typed-keys.ts ties each group to its type. This pins the order.
+  it('are listed for the tests in a stable order', () => {
+    expect(TYPED_KEYS.join(' ')).toMatchInlineSnapshot(
+      `"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9 F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 F16 F17 F18 F19 F20 F21 F22 F23 F24 ArrowUp ArrowDown ArrowLeft ArrowRight Home End PageUp PageDown Enter Escape Space Tab Backspace Delete / [ ] \\ = - , . ; \` ' + ? ! @ # $ % ^ & * ( ) _ { } | : " < > ~ CapsLock ContextMenu Convert KanaMode NonConvert Help Insert NumLock Fn FnLock PrintScreen ScrollLock Pause BrowserBack BrowserFavorites BrowserForward BrowserHome BrowserRefresh BrowserSearch BrowserStop Eject LaunchMail MediaPlayPause MediaStop MediaTrackNext MediaTrackPrevious Power AudioVolumeDown AudioVolumeMute AudioVolumeUp WakeUp Hyper Super Again Copy Cut Find Open Paste Props Select Undo Hiragana Katakana Clear Cancel Standby LaunchApplication1 LaunchApplication2 LaunchMediaPlayer HangulMode HanjaMode Zenkaku Hankaku ZenkakuHankaku"`,
+    )
+  })
+
   it('pass the shape check for every typed key, so typed hotkeys never warn', () => {
-    const failing = [...ALL_KEYS].filter((key) => !isKeyNameShape(key))
+    const failing = TYPED_KEYS.filter((key) => !isKeyNameShape(key))
     expect(failing).toEqual([])
-    for (const key of ALL_KEYS)
+    for (const key of TYPED_KEYS)
       expect(validateHotkey(`Mod+${key}` as never).warnings).toEqual([])
   })
 
   it('warn for spellings that differ from a known key only by case', () => {
-    const named = [...ALL_KEYS].filter((key) => key.length > 1)
+    const named = TYPED_KEYS.filter((key) => key.length > 1)
     for (const key of named) {
       for (const spelling of [key.toLowerCase(), key.toUpperCase()]) {
         if (spelling === key) continue
@@ -198,7 +181,7 @@ describe('key names', () => {
       if (normalizeKeyName(key) !== key)
         changed.push([key, normalizeKeyName(key)])
     }
-    for (const key of ALL_KEYS) expect(normalizeKeyName(key)).toBe(key)
+    for (const key of TYPED_KEYS) expect(normalizeKeyName(key)).toBe(key)
     expect(
       changed.every(
         ([key, normalized]) =>

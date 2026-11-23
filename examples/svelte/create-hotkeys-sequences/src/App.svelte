@@ -2,9 +2,11 @@
   import {
     createHotkey,
     createHotkeys,
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
+
+  const formatForDisplay = getFormatForDisplay()
 
   let lastSequence = $state<string | null>(null)
   let history = $state<Array<string>>([])

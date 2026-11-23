@@ -1,7 +1,7 @@
-import { provideBrowserGlobalErrorListeners } from '@angular/core'
-import { provideClientHydration } from '@angular/platform-browser'
 import { provideFileRouter } from '@analogjs/router'
 import { injectRequest } from '@analogjs/router/tokens'
+import { provideBrowserGlobalErrorListeners } from '@angular/core'
+import { provideClientHydration } from '@angular/platform-browser'
 import { detectPlatform, provideHotkeys } from '@tanstack/angular-hotkeys'
 import type { ApplicationConfig } from '@angular/core'
 

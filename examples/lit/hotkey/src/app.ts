@@ -1,20 +1,18 @@
-import { LitElement, css, html, unsafeCSS } from 'lit'
-import { createRef, ref } from 'lit/directives/ref.js'
-import { customElement, state } from 'lit/decorators.js'
-
 import {
+  FormatForDisplayController,
   HotkeyController,
-  formatForDisplay,
   hotkey,
 } from '@tanstack/lit-hotkeys'
-
+import { LitElement, css, html, unsafeCSS } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
+import { createRef, ref } from 'lit/directives/ref.js'
 import appStyles from './index.css?raw'
-import type { Ref } from 'lit/directives/ref.js'
 import type {
   Hotkey,
   HotkeyCallbackContext,
   HotkeyChordCallbackContext,
 } from '@tanstack/lit-hotkeys'
+import type { Ref } from 'lit/directives/ref.js'
 
 @customElement('my-app')
 export class MyApp extends LitElement {
@@ -23,10 +21,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;
@@ -61,15 +56,17 @@ export class MyApp extends LitElement {
   private modalRef: Ref<HTMLDivElement> = createRef()
   private editorRef: Ref<HTMLTextAreaElement> = createRef()
 
+  private formatForDisplay = new FormatForDisplayController(this)
+
   constructor() {
     super()
 
     // Scoped hotkeys read their target from a ref. A null target skips
     // registration until the element renders.
-    const sidebar = () => ({ target: this.sidebarRef.value ?? null })
-    const editor = () => ({ target: this.editorRef.value ?? null })
+    const sidebar = () => ({ target: this.sidebarRef.value })
+    const editor = () => ({ target: this.editorRef.value })
     const modal = () => ({
-      target: this.modalOpen ? (this.modalRef.value ?? null) : null,
+      target: this.modalOpen ? this.modalRef.value : null,
     })
 
     this.addController(
@@ -189,6 +186,8 @@ export class MyApp extends LitElement {
   }
 
   render() {
+    const formatForDisplay = this.formatForDisplay.format
+
     return html` <div class="app">
       <header>
         <h1>@hotkey</h1>
@@ -535,7 +534,7 @@ this.addController(
     this,
     'Mod+B',
     () => console.log('Sidebar shortcut!'),
-    () => ({ target: this.sidebarRef.value ?? null }),
+    () => ({ target: this.sidebarRef.value }),
   ),
 )
 
@@ -545,7 +544,7 @@ this.addController(
     this,
     'Escape',
     () => (this.modalOpen = false),
-    () => ({ target: this.modalOpen ? (this.modalRef.value ?? null) : null }),
+    () => ({ target: this.modalOpen ? this.modalRef.value : null }),
   ),
 )
 
@@ -555,7 +554,7 @@ this.addController(
     this,
     'Mod+S',
     () => saveEditorContent(),
-    () => ({ target: this.editorRef.value ?? null }),
+    () => ({ target: this.editorRef.value }),
   ),
 )`}</pre>
         </section>

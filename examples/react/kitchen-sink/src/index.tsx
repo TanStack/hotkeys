@@ -1,16 +1,4 @@
-import { useCallback, useState } from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  Link,
-  Outlet,
-  RouterProvider,
-  createRootRoute,
-  createRoute,
-  createRouter,
-  useNavigate,
-} from '@tanstack/react-router'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import {
   HotkeysProvider,
   useAppHotkeyList,
@@ -22,12 +10,23 @@ import {
   useHotkeys,
   useKeyHold,
 } from '@tanstack/react-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
+import {
+  Link,
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  useNavigate,
+} from '@tanstack/react-router'
+import { useCallback, useState } from 'react'
+import { createRoot } from 'react-dom/client'
 import { appHotkeys } from './app-hotkeys'
-import { ActivityContext, Hint, Modal, formatHotkey } from './shared'
+import { ActivityContext, Hint, Modal, useFormatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 const pages = [
@@ -70,6 +69,7 @@ function ShortcutPanel({ onClose }: { onClose: () => void }) {
  * loaded, followed by undeclared registrations on the current page.
  */
 function ShortcutList({ onClose }: { onClose: () => void }) {
+  const formatHotkey = useFormatHotkey()
   const appHotkeys = useAppHotkeys()
   // The panel's scope is newer than 'global', so this handles the toggle
   // hotkey while the panel is open instead of the layout's registration.

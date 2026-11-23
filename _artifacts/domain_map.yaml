@@ -156,6 +156,13 @@ skills:
         source: docs/guides/sensible-defaults.md#modifiers-must-match-exactly; probe on 2026-10-18
         priority: MEDIUM
         status: active
+      - mistake: Binding a shifted symbol with Mod
+        mechanism: With Command held, macOS browsers report the unshifted character, so Cmd+Shift+/ arrives as `/` with Shift. Mod+? never matches it, and Mod+/ does not fire for it either.
+        wrong_pattern: register('Mod+?', showHelp); register('Mod+=', zoomIn)
+        correct_pattern: register('Mod+Shift+/', showHelp); register('Mod+=', zoomIn); register('Mod+Shift+=', zoomIn)
+        source: docs/guides/sensible-defaults.md#keys-match-the-character-the-user-types; src/_match.ts
+        priority: MEDIUM
+        status: active
       - mistake: Targeting an element that cannot take focus
         mechanism: Element targets receive keys only while they or a descendant has focus.
         wrong_pattern: "register('Escape', close, { target: divWithoutTabIndex })"
@@ -274,7 +281,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Rewriting recorded physical bindings
-        mechanism: Replacing [KeyS] with S changes a position binding into a character binding.
+        mechanism: The recorder writes a position only where the character can't name the press, such as Shift+[Slash]. Replacing it with a character changes which key presses fire it.
         wrong_pattern: "onRecord: (h) => save(String(h).replace(/\\[Key(\\w)\\]/, '$1'))"
         correct_pattern: 'onRecord: (h) => setCustomHotkey(id, h)'
         source: docs/guides/sensible-defaults.md#recording-captures-what-the-user-pressed
@@ -300,7 +307,7 @@ skills:
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
       - mistake: Passing ref.current as target
-        mechanism: ref.current is null during the first render and a null target means document, so the hotkey listens page-wide until a later render.
+        mechanism: ref.current is null or undefined during the first render, and an unset target waits, so the hotkey registers only at a later render.
         wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
         correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
         source: src/utils.ts (resolveTarget); tests/skills/editor-shortcuts
@@ -333,7 +340,7 @@ skills:
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
       - mistake: Passing ref.current as target
-        mechanism: 'Same as React: a null target on the first render means document.'
+        mechanism: 'Same as React: an unset target on the first render waits until a later render.'
         wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
         correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
         source: src/utils.ts
@@ -373,7 +380,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Passing an unassigned element variable as target
-        mechanism: An undefined target means document.
+        mechanism: An undefined target waits, and nothing re-reads a plain variable, so the hotkey never registers.
         wrong_pattern: "let el; createHotkey('Delete', remove, { target: el })"
         correct_pattern: "const [el, setEl] = createSignal(null); createHotkey('Delete', remove, () => ({ target: el() }))"
         source: packages/hotkeys/src/adapter.ts
@@ -404,6 +411,13 @@ skills:
         correct_pattern: "useHotkey('Mod+S', save, { enabled: isDirty, target: panel })"
         source: src/useHotkeys.ts
         priority: HIGH
+        status: active
+      - mistake: Targeting a component ref whose component has no single root element
+        mechanism: A component target listens on its root element when the ref is set; a fragment or text root has none, and a root added or swapped later (v-if) isn't followed, so the hotkey registers nothing or stays on the old element.
+        wrong_pattern: '<MultiRootPanel ref="panel" /> with useHotkey(''Escape'', close, { target: panel })'
+        correct_pattern: Put the ref on an element inside the component, or give the component one root element
+        source: src/useHotkeys.ts; docs/framework/vue/guides/hotkeys.md
+        priority: MEDIUM
         status: active
       - mistake: Using nested recorder refs in templates
         mechanism: Templates unwrap only top-level refs, so v-if="recorder.isRecording" is always truthy.
@@ -486,7 +500,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Passing a plain options object that reads signals
-        mechanism: The object is read once in the constructor; a viewChild target is undefined there and means document.
+        mechanism: The object is read once in the constructor; a viewChild target is undefined there, so the hotkey waits and never registers.
         wrong_pattern: "injectHotkey('Mod+S', save, { enabled: this.isDirty() })"
         correct_pattern: "injectHotkey('Mod+S', save, () => ({ enabled: this.isDirty() }))"
         source: src/injectHotkey.ts
@@ -504,6 +518,20 @@ skills:
         wrong_pattern: ngOnInit() { injectHotkey('Mod+S', save) }
         correct_pattern: injectHotkeys(() => this.items().map(...)) in the constructor
         source: src/injectHotkeys.ts
+        priority: MEDIUM
+        status: active
+      - mistake: Changing plain fields from hotkeys in a root service
+        mechanism: Callbacks mark the registering component for check; a root service has no component, so OnPush and zoneless views don't refresh.
+        wrong_pattern: "@Injectable({ providedIn: 'root' }) class Shortcuts { open = false; constructor() { injectHotkey('Mod+K', () => (this.open = true)) } }"
+        correct_pattern: "readonly open = signal(false); injectHotkey('Mod+K', () => this.open.set(true))"
+        source: src/_zone.ts
+        priority: MEDIUM
+        status: active
+      - mistake: Providing a scope in Route.providers
+        mechanism: By default, the router keeps a route's environment injector after navigation (withAutoCleanupInjectors(), Angular 22.2+, destroys it when the reuse strategy's shouldDestroyInjector returns true, except for pages the strategy stores, whose scopes must be disabled on detach), so the scope stays active on the next page and an exclusive one suspends every other hotkey.
+        wrong_pattern: "{ path: 'edit', component: EditPage, providers: [provideHotkeys({ scope: 'edit', exclusive: true })] }"
+        correct_pattern: "@Component({ providers: [provideHotkeys({ scope: 'edit', exclusive: true })] }) class EditPage {}"
+        source: src/hotkeys-provider.ts
         priority: MEDIUM
         status: active
   - name: lit-hotkeys
@@ -555,6 +583,13 @@ skills:
         wrong_pattern: "@hotkey('Mod+S', { enabled: this.dirty })"
         correct_pattern: HotkeyController with an options function
         source: src/decorators/hotkey.ts
+        priority: MEDIUM
+        status: active
+      - mistake: Removing a HotkeyController with removeController
+        mechanism: Lit's removeController doesn't call hostDisconnected, so the hotkey stays registered after the host disconnects.
+        wrong_pattern: this.removeController(this.tools.get(id))
+        correct_pattern: this.tools.get(id).dispose()
+        source: src/controllers/hotkey.ts; packages/lit-hotkeys/tests/lifecycle.test.ts
         priority: MEDIUM
         status: active
   - name: alpine-hotkeys
@@ -656,11 +691,11 @@ skills:
       - topic: app hotkeys in Octane
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
-      - mistake: Passing a ref object as target
-        mechanism: Octane targets must be elements; keep the element in state with a callback ref.
-        wrong_pattern: "useHotkey('Escape', close, { target: panelRef })"
+      - mistake: Using a ref object for an element that mounts later
+        mechanism: The hook reads ref.current only after its component renders, so it misses an element a child shows from its own state. Ref objects work for elements the component always renders.
+        wrong_pattern: "useHotkey('Escape', close, { target: panelRef }) with <Child panelRef={panelRef} /> showing the element later"
         correct_pattern: 'const [panel, setPanel] = useState(null); ref={setPanel}; { target: panel }'
-        source: src/useHotkey.ts
+        source: src/useHotkeys.ts; docs/framework/octane/guides/hotkeys.md
         priority: HIGH
         status: active
       - mistake: Calling hooks in loops or conditions
@@ -677,11 +712,11 @@ tensions:
       - app-hotkeys
     description: Hotkeys belong in the components that own their actions, while cheat sheets and settings need every shortcut up front.
     implication: Agents either move callbacks into a central registry or build cheat sheets from live registrations; declarations hold no callbacks, and components still register them.
-  - name: Logical declarations versus physical recordings
+  - name: Hotkeys written differently that one key press fires
     skills:
       - app-hotkeys
-    description: Declarations are usually logical (Mod+P) while the recorder records positions (Mod+[KeyP]), and conflict checks compare them as different hotkeys.
-    implication: A rebinding to Command+P passes conflict checks and then runs two actions.
+    description: The recorder writes most presses by name (Mod+P), but Shift with a symbol and a few other presses by position (Shift+[Slash]), and a declared ? fires for the same press. Conflict checks compare how hotkeys are written unless they get the key press.
+    implication: Without the recorder's context, a rebinding to Shift+/ passes findConflicts and then overrides the action on ?. Pass the context from validate or onRecord.
 cross_references:
   - from: react-hotkeys
     to: hotkeys-core

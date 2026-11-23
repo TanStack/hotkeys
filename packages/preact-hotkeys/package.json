@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/preact-hotkeys",
-  "version": "0.20.1",
+  "version": "0.24.3",
   "description": "Preact adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -22,11 +22,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -50,8 +51,9 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
-    "@testing-library/preact": "^3.2.4",
-    "preact": "^11.0.1"
+    "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@testing-library/preact": "^3.2.6",
+    "preact": "^11.2.0"
   },
   "peerDependencies": {
     "preact": ">=10.5.2"

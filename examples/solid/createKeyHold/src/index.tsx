@@ -1,6 +1,9 @@
 /* @refresh reload */
+
 import { render } from '@solidjs/web'
-import { HotkeysProvider, createKeyHold } from '@tanstack/solid-hotkeys'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { createKeyHold, HotkeysProvider } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import './index.css'
 
 function App() {
@@ -94,6 +97,8 @@ function ShiftIndicator() {
           </ul>
         </section>
       </main>
+
+      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

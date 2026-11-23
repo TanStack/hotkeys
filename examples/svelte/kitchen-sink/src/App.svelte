@@ -1,21 +1,22 @@
 <script lang="ts">
-  import { onMount, setContext } from 'svelte'
   import {
     HotkeysProvider,
-    createHotkeys,
     createHotkey,
-    formatForDisplay,
-    getHeldKeys,
+    createHotkeys,
+    getFormatForDisplay,
     getHeldKeyCodesMap,
-    getIsKeyHeld,
+    getHeldKeys,
     getHotkeyRegistrations,
+    getIsKeyHeld,
   } from '@tanstack/svelte-hotkeys'
-  import Tickets from './Tickets.svelte'
+  import { onMount, setContext } from 'svelte'
   import Editor from './Editor.svelte'
-  import Sequences from './Sequences.svelte'
-  import Recording from './Recording.svelte'
   import Formatting from './Formatting.svelte'
   import Hint from './Hint.svelte'
+  import Recording from './Recording.svelte'
+  import Sequences from './Sequences.svelte'
+  import Tickets from './Tickets.svelte'
+
   const pages = [
     { path: '/', name: 'Tickets', component: Tickets, hotkey: 'Alt+[Digit1]' },
     {
@@ -43,6 +44,7 @@
       hotkey: 'Alt+[Digit5]',
     },
   ] as const
+  const formatForDisplay = getFormatForDisplay()
   let path = $state(location.hash.slice(1) || '/'),
     show = $state(false),
     activity = $state<Array<string>>([])

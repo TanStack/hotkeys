@@ -1,38 +1,32 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import {
-  createRoot,
-  delegateEvents,
-  drainPassiveEffects,
-  flushSync,
-} from 'octane'
 import {
   HotkeyManager,
   KeyStateTracker,
   getHotkeyManager,
 } from '@tanstack/hotkeys'
+import { createRoot, delegateEvents, flushSync } from 'octane'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import {
   AppHotkeysFixture,
   Fixture,
   ForwardedOptionsFixture,
+  InlineMetaFixture,
   OptionalHotkeyFixture,
+  PlatformAppHotkeysFixture,
   ProviderFixture,
   SavedHotkeysFixture,
   ScopesFixture,
   appCapture,
   capture,
+  inlineMetaCapture,
   optionalCapture,
   scopeCapture,
 } from './fixture.tsrx'
+import { flush } from './utils'
 import type { Root } from 'octane'
 
 delegateEvents(['click'])
 let root: Root
 let container: HTMLDivElement
-function flush() {
-  drainPassiveEffects()
-  flushSync(() => {})
-  drainPassiveEffects()
-}
 function key(key: string, type = 'keydown', options: KeyboardEventInit = {}) {
   flushSync(() => {
     document.dispatchEvent(
@@ -221,6 +215,23 @@ it('registers app hotkeys, lists status, and follows custom hotkeys', () => {
   key('s', 'keydown', { ctrlKey: true })
   expect(value('#app-count')).toBe('1')
 
+  // A recorded position conflicts through the key press that recorded it
+  const recordedWith = {
+    event: new KeyboardEvent('keydown', {
+      key: 's',
+      code: 'KeyS',
+      ctrlKey: true,
+    }),
+  }
+  expect(
+    appCapture.custom!.findConflicts('palette.open', 'Control+[KeyS]'),
+  ).toEqual([])
+  expect(
+    appCapture
+      .custom!.setCustomHotkey('palette.open', 'Control+[KeyS]', recordedWith)
+      .map((a) => a.id),
+  ).toEqual(['doc.save'])
+
   flushSync(() => {
     appCapture.custom!.setCustomHotkey('doc.save', ['G', 'S'])
     appCapture.custom!.setCustomHotkey('palette.open', 'Control+K')
@@ -260,6 +271,17 @@ it('applies saved custom hotkeys that load after the first render', () => {
 
   click('#saved-switch')
   expect(value('#saved-custom')).toBe('{"nav.home":["G","G"]}')
+})
+
+it('compares app hotkeys on the provider platform', () => {
+  flushSync(() => root.render(PlatformAppHotkeysFixture))
+  flush()
+  // Meta+S is Mod+S only on macOS, which the test environment never detects
+  expect(value('#platform-custom')).toBe('false')
+
+  click('#platform-windows')
+  flush()
+  expect(value('#platform-custom')).toBe('true')
 })
 
 it('scopes hotkeys through nested, exclusive, and disabled providers', () => {
@@ -350,4 +372,12 @@ it('options forwarded as undefined keep their defaults', () => {
     defaultPrevented: true,
     reachedWindow: false,
   })
+})
+
+it('settles when inline meta holds an array, an element and a function', () => {
+  inlineMetaCapture.renders = 0
+  flushSync(() => root.render(InlineMetaFixture))
+  flush()
+  expect(container.querySelector('#inline-meta')!.textContent).toBe('Save')
+  expect(inlineMetaCapture.renders).toBeLessThanOrEqual(3)
 })

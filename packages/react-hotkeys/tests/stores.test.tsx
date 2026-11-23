@@ -1,12 +1,12 @@
-import { afterEach, describe, expect, it } from 'vitest'
-import { act, cleanup, renderHook } from '@testing-library/react'
-import { useSelector } from '@tanstack/react-store'
 import {
   HotkeyManager,
   KeyStateTracker,
   getHotkeyManager,
   getKeyStateTracker,
 } from '@tanstack/hotkeys'
+import { useSelector } from '@tanstack/react-store'
+import { act, cleanup, renderHook } from '@testing-library/react'
+import { afterEach, describe, expect, it } from 'vitest'
 import { useHotkeyRegistrations, useKeyHold } from '../src'
 
 function press(type: 'keydown' | 'keyup', key: string) {

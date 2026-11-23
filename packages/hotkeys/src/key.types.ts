@@ -1,4 +1,6 @@
 import type { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_named-keys'
+import type { UsKeys } from './key-sets/us'
+import type { Register } from './register'
 
 /**
  * All supported modifier key names, including aliases.
@@ -23,6 +25,9 @@ export type Modifier =
  * Canonical modifier names that map to KeyboardEvent properties.
  */
 export type CanonicalModifier = 'Control' | 'Shift' | 'Alt' | 'Meta'
+
+/** A canonical modifier, or `Mod`, which resolves per platform. */
+export type ResolvableModifier = CanonicalModifier | 'Mod'
 
 /**
  * Letter keys A-Z (case-insensitive in matching).
@@ -59,7 +64,16 @@ export type LetterKey =
  * Number keys 0-9.
  */
 export type NumberKey =
-  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
 
 /**
  * Function keys F1-F24, supported as both logical keys and physical codes.
@@ -107,7 +121,12 @@ export type NavigationKey =
  * Editing and special keys.
  */
 export type EditingKey =
-  'Enter' | 'Escape' | 'Space' | 'Tab' | 'Backspace' | 'Delete'
+  | 'Enter'
+  | 'Escape'
+  | 'Space'
+  | 'Tab'
+  | 'Backspace'
+  | 'Delete'
 
 /**
  * Printable punctuation glyphs used in keyboard shortcuts. Matching uses the
@@ -149,16 +168,23 @@ export type PunctuationKey =
 
 /** Additional named logical keys, including media, browser, lock, and input-mode keys. */
 export type NamedKey =
-  (typeof SHARED_NAMED_KEYS)[number] | (typeof LOGICAL_ONLY_NAMED_KEYS)[number]
+  | (typeof SHARED_NAMED_KEYS)[number]
+  | (typeof LOGICAL_ONLY_NAMED_KEYS)[number]
 
 /** Supported logical key names other than printable punctuation. */
 export type NonPunctuationKey =
-  LetterKey | NumberKey | EditingKey | NavigationKey | FunctionKey | NamedKey
+  | LetterKey
+  | NumberKey
+  | EditingKey
+  | NavigationKey
+  | FunctionKey
+  | NamedKey
 
 /**
  * Supported physical KeyboardEvent.code names, independent of keyboard layout.
- * Letter, digit, numpad, and sided modifier names use finite template unions.
- * `Unidentified` is excluded because it cannot identify a physical key.
+ * Letter, digit, and numpad names use finite template unions. Modifier codes
+ * such as `ShiftLeft` are excluded, because modifier-only hotkeys aren't
+ * supported. `Unidentified` is excluded because it cannot identify a physical key.
  *
  * @see https://www.w3.org/TR/uievents-code/
  */
@@ -166,7 +192,6 @@ export type PhysicalKeyCode =
   | `Key${LetterKey}`
   | `Digit${NumberKey}`
   | `Numpad${NumberKey}`
-  | `${'Alt' | 'Control' | 'Meta' | 'Shift'}${'Left' | 'Right'}`
   | EditingKey
   | NavigationKey
   | FunctionKey
@@ -223,8 +248,28 @@ export type PhysicalKeyCode =
  */
 export type PhysicalKey = `[${PhysicalKeyCode}]`
 
+/**
+ * The printable keys, other than A-Z and 0-9, that hotkey strings accept:
+ * the keys of the layouts in `Register['keys']`, or the US QWERTY keys when
+ * none are registered.
+ *
+ * @example
+ * ```ts
+ * import type { FrenchKeys, GermanKeys } from '@tanstack/react-hotkeys'
+ *
+ * declare module '@tanstack/react-hotkeys' {
+ *   interface Register {
+ *     keys: GermanKeys | FrenchKeys
+ *   }
+ * }
+ * ```
+ */
+export type LayoutKey = Register extends { keys: infer TKeys extends string }
+  ? TKeys
+  : UsKeys
+
 /** Supported logical key names, excluding bracketed physical-code syntax. */
-export type LogicalKey = NonPunctuationKey | PunctuationKey
+export type LogicalKey = NonPunctuationKey | LayoutKey
 
 /** All supported logical keys and bracketed physical key tokens. */
 export type Key = LogicalKey | PhysicalKey
@@ -233,6 +278,12 @@ export type Key = LogicalKey | PhysicalKey
  * Includes both modifier keys and regular keys.
  */
 export type IndividualKey = CanonicalModifier | Key
+
+/** The key name and physical code of one key press. */
+export interface KeyIdentity {
+  key: string
+  code: string
+}
 
 /** Keyboard event properties normalized for internal matching and recording. */
 export interface NormalizedKeyboardEvent {

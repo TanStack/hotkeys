@@ -1,10 +1,10 @@
-import EmberApp from 'ember-strict-application-resolver'
 import EmberRouter from '@ember/routing/router'
-import * as QUnit from 'qunit'
 import { setApplication } from '@ember/test-helpers'
-import { setup } from 'qunit-dom'
-import { start as qunitStart, setupEmberOnerrorValidation } from 'ember-qunit'
 import { setTesting } from '@embroider/macros'
+import { start as qunitStart, setupEmberOnerrorValidation } from 'ember-qunit'
+import EmberApp from 'ember-strict-application-resolver'
+import * as QUnit from 'qunit'
+import { setup } from 'qunit-dom'
 
 class Router extends EmberRouter {
   location = 'none'
@@ -22,6 +22,12 @@ class TestApp extends EmberApp {
 Router.map(function () {})
 
 export function start() {
+  // Labels load the keyboard layout from the browser. Tests that don't stub
+  // one must not depend on the layout of the machine that runs them.
+  Object.defineProperty(navigator, 'keyboard', {
+    value: undefined,
+    configurable: true,
+  })
   setTesting(true)
   setApplication(
     TestApp.create({

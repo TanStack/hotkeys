@@ -1,40 +1,80 @@
-import { createStore } from './_store'
-import { findHotkeyConflicts } from './conflicts'
+import { splitChordParts } from './_chord'
+import { isTypingEvent } from './_event-target'
+import { resolveMaybeGetter } from './_getter'
+import { isModifierPress, normalizeKeyboardEvent } from './_keyboard-event'
+import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
 import {
   beginRecording,
   captureRecordingEvent,
   endRecording,
 } from './_recording-guard'
-import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
-import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
-import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
+import { createStore } from './_store'
+import { findHotkeyConflicts } from './conflicts'
+import { parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
-import { isTypingEvent } from './_event-target'
 import type { Store } from './_store'
 import type { HotkeyConflict, HotkeyConflictOptions } from './conflicts'
 import type {
   Hotkey,
   HotkeyChord,
   HotkeySequence,
+  MaybeGetter,
   ParsedHotkeyChord,
 } from './hotkey.types'
+import type { HotkeyPlatform } from './platform'
 
-/** Event property used to record a binding. Physical codes are the default. */
-export type RecorderKeyMode = 'code' | 'key'
+/**
+ * How the recorder writes the pressed key:
+ *
+ * - `'auto'` (default): by name when the press has one, such as `Mod+S` or
+ *   `Shift+Enter`, and by physical code otherwise, such as `Alt+[Digit1]` for
+ *   macOS Option+1. The result reads like a hotkey written by hand, so it
+ *   compares equal to one, and its label follows the user's keyboard layout.
+ *   Recorded by code: Shift or macOS Option with a digit or a symbol, dead
+ *   keys and the numpad.
+ * - `'code'`: always by physical code, such as `Mod+[KeyS]`. The hotkey names
+ *   a position on the keyboard, whatever that key types.
+ * - `'key'`: always by the character or key name the press produced, such as
+ *   `Alt+ß` for macOS Option+S.
+ */
+export type RecorderKeyMode = 'auto' | 'code' | 'key'
+
+/**
+ * Why the recorder rejected a key press or a recording:
+ *
+ * - `'alt-graph'`: AltGr was held. Only `recordBy: 'key'` records AltGr
+ *   presses, as the characters AltGr types. It still rejects AltGr that typed
+ *   nothing new, such as AltGr+Home on Linux, because no hotkey matches that
+ *   press.
+ * - `'missing-code'`: the event has no usable physical key code. Recording by
+ *   code always needs one. `recordBy: 'auto'` records what the press typed
+ *   instead, and rejects only a press that typed nothing it can record.
+ * - `'whitespace'`: the key is a whitespace character, which a hotkey can't
+ *   hold.
+ * - `'validation'`: your `validate` callback rejected the recording.
+ * - `'conflict'`: the recording conflicts with registered hotkeys.
+ */
+export type RecorderRejectionReason =
+  | 'alt-graph'
+  | 'missing-code'
+  | 'whitespace'
+  | 'validation'
+  | 'conflict'
 
 export interface RecorderRejection {
-  reason: 'missing-code' | 'alt-graph' | 'invalid' | 'conflict' | 'validation'
-  message: string
+  reason: RecorderRejectionReason
+  /** The message your `validate` callback returned, when it returned one. */
+  message?: string
   /** The rejected chord or sequence, when one was recorded. */
   hotkey?: Hotkey
   conflicts?: Array<HotkeyConflict>
 }
 
 export interface RecorderOptions {
-  /** Physical code recording is the default. Choose key to record logical characters. */
+  /** How the pressed key is written. Default: `'auto'`. */
   recordBy?: RecorderKeyMode
   /** Platform used for Mod and AltGraph handling. Defaults to platform detection. */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /** Opt in to live-registry conflicts, including sequence prefixes. Default: false. */
   detectConflicts?: boolean | HotkeyConflictOptions
   /** Rejected candidates leave recording active. */
@@ -64,25 +104,39 @@ export interface HotkeySequenceRecorderValidationContext {
  * read `parsedChord` or `parsedSequence`.
  */
 export type HotkeyRecorderValidationContext =
-  HotkeyChordRecorderValidationContext | HotkeySequenceRecorderValidationContext
+  | HotkeyChordRecorderValidationContext
+  | HotkeySequenceRecorderValidationContext
 
 /**
- * State interface for the HotkeyRecorder.
+ * State interface for the HotkeyRecorder. Adapters narrow `THotkey` to the
+ * kind their recorder records.
  */
-export interface HotkeyRecorderState {
+export interface HotkeyRecorderState<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
   isRecording: boolean
   /** Chords recorded so far in a multi-step recording (empty for `maxSteps: 1`) */
   steps: HotkeySequence
   /** The last committed hotkey: a chord, or a sequence of two or more steps */
-  recordedHotkey: Hotkey | null
+  recordedHotkey: THotkey | null
+}
+
+/** The recorder controls that framework adapters return. */
+export interface HotkeyRecorderActions {
+  /** Start recording a new hotkey */
+  startRecording: () => void
+  /** Stop recording without calling onCancel */
+  stopRecording: () => void
+  /** Cancel recording and call onCancel */
+  cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  commitRecording: () => void
 }
 
 /** Which keys commit a multi-step recording before it reaches `maxSteps`. */
 export type HotkeyRecorderCommitKeys = 'enter' | 'none'
 
 interface HotkeyRecorderBaseOptions extends RecorderOptions {
-  /** Optional callback when recording is cancelled (Escape pressed) */
+  /** Optional callback when recording is cancelled: Escape, or Tab without `recordTab` */
   onCancel?: () => void
   /**
    * Optional callback when the recording is cleared: Backspace/Delete with no
@@ -95,19 +149,32 @@ interface HotkeyRecorderBaseOptions extends RecorderOptions {
    * inputs passes through normally (Escape still cancels). Defaults to true.
    */
   ignoreInputs?: boolean
+  /**
+   * Whether to record Tab and Shift+Tab. By default they cancel recording and
+   * move focus, so keyboard users can leave the recorder. Tab with Control,
+   * Alt, or Meta isn't affected. When true, tell users that Escape cancels.
+   * Default: false
+   */
+  recordTab?: boolean
 }
 
 /** Options for recording a single chord. This is the default (`maxSteps: 1`). */
 export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
   /** Maximum number of chords to record. Default: 1 */
   maxSteps?: 1
-  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  /** Return true to accept, or false or a message to reject while staying in recording mode. The message is passed to `onReject`. */
   validate?: (
     hotkey: HotkeyChord,
     context: HotkeyChordRecorderValidationContext,
   ) => boolean | string
-  /** Callback when a chord is successfully recorded */
-  onRecord: (hotkey: HotkeyChord) => void
+  /**
+   * Callback when a chord is successfully recorded. `context` is the one
+   * `validate` received, with the key press that recorded the chord.
+   */
+  onRecord: (
+    hotkey: HotkeyChord,
+    context: HotkeyChordRecorderValidationContext,
+  ) => void
 }
 
 /**
@@ -117,13 +184,16 @@ export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
 export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions {
   /** Maximum number of chords to record. Reaching it commits automatically. Use `Infinity` for no limit. */
   maxSteps: number
-  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  /** Return true to accept, or false or a message to reject while staying in recording mode. The message is passed to `onReject`. */
   validate?: (
     hotkey: Hotkey,
     context: HotkeyRecorderValidationContext,
   ) => boolean | string
-  /** Callback when a hotkey is successfully recorded */
-  onRecord: (hotkey: Hotkey) => void
+  /**
+   * Callback when a hotkey is successfully recorded. `context` is the one
+   * `validate` received, with the key press that recorded each step.
+   */
+  onRecord: (hotkey: Hotkey, context: HotkeyRecorderValidationContext) => void
   /** Whether plain Enter commits the recorded steps. Default: 'enter' */
   commitKeys?: HotkeyRecorderCommitKeys
   /** Commit automatically after this many milliseconds without a new step. Disabled when unset or 0. */
@@ -135,7 +205,8 @@ export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions
  * a single chord and recording a sequence.
  */
 export type HotkeyRecorderOptions =
-  HotkeyChordRecorderOptions | HotkeySequenceRecorderOptions
+  | HotkeyChordRecorderOptions
+  | HotkeySequenceRecorderOptions
 
 /** Internal view of either options shape. */
 type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
@@ -144,7 +215,7 @@ type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
     hotkey: Hotkey,
     context: HotkeyRecorderValidationContext,
   ) => boolean | string
-  onRecord: (hotkey: Hotkey) => void
+  onRecord: (hotkey: Hotkey, context: HotkeyRecorderValidationContext) => void
   commitKeys?: HotkeyRecorderCommitKeys
   idleTimeoutMs?: number
 }
@@ -162,7 +233,8 @@ const initialState: HotkeyRecorderState = {
  * `maxSteps`, each chord adds a step; the recording commits on Enter (unless
  * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`.
  * Backspace/Delete removes the last step, and on an empty recording calls
- * `onClear`. Escape cancels. A one-step result is a chord string.
+ * `onClear`. Escape cancels. Tab and Shift+Tab cancel and move focus unless
+ * `recordTab` is true. A one-step result is a chord string.
  *
  * State Management:
  * - Uses TanStack Store for reactive state management
@@ -194,17 +266,15 @@ export class HotkeyRecorder {
     createStore<HotkeyRecorderState>(initialState)
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
-  #optionsSource: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)
+  #optionsSource: MaybeGetter<HotkeyRecorderOptions>
   #optionOverrides: Partial<ResolvedRecorderOptions> = {}
-  #platform: 'mac' | 'windows' | 'linux'
+  #platform: HotkeyPlatform
   #events: Array<KeyboardEvent> = []
   #idleTimer: ReturnType<typeof setTimeout> | null = null
 
   get #options(): ResolvedRecorderOptions {
     return {
-      ...((typeof this.#optionsSource === 'function'
-        ? this.#optionsSource()
-        : this.#optionsSource) as ResolvedRecorderOptions),
+      ...(resolveMaybeGetter(this.#optionsSource) as ResolvedRecorderOptions),
       ...this.#optionOverrides,
     }
   }
@@ -213,14 +283,9 @@ export class HotkeyRecorder {
     return Math.max(1, this.#options.maxSteps ?? 1)
   }
 
-  constructor(
-    options: HotkeyChordRecorderOptions | (() => HotkeyChordRecorderOptions),
-  )
-  constructor(
-    options:
-      HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
-  )
-  constructor(options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)) {
+  constructor(options: MaybeGetter<HotkeyChordRecorderOptions>)
+  constructor(options: MaybeGetter<HotkeySequenceRecorderOptions>)
+  constructor(options: MaybeGetter<HotkeyRecorderOptions>) {
     this.#optionsSource = options
     this.#platform = detectPlatform()
   }
@@ -237,10 +302,8 @@ export class HotkeyRecorder {
   }
 
   #clearIdleTimer(): void {
-    if (this.#idleTimer !== null) {
-      clearTimeout(this.#idleTimer)
-      this.#idleTimer = null
-    }
+    clearTimeout(this.#idleTimer ?? undefined)
+    this.#idleTimer = null
   }
 
   #scheduleIdleTimer(): void {
@@ -249,11 +312,11 @@ export class HotkeyRecorder {
     if (ms === undefined || ms <= 0 || this.store.state.steps.length === 0) {
       return
     }
+    // Ending a recording or emptying its steps clears the timer, so it only
+    // fires while steps are recorded
     this.#idleTimer = setTimeout(() => {
       this.#idleTimer = null
-      if (this.#keydownHandler && this.store.state.steps.length >= 1) {
-        this.commit()
-      }
+      this.commit()
     }, ms)
   }
 
@@ -270,13 +333,13 @@ export class HotkeyRecorder {
       return
     }
 
-    this.#clearIdleTimer()
-    this.#events = []
+    // Ending a recording cleared its idle timer and events
     beginRecording(this)
     this.store.setState(() => ({ ...initialState, isRecording: true }))
 
     const handler = (event: KeyboardEvent) => {
-      // Check if we're still recording (handler might be called after stop/cancel)
+      // Ending the recording removes this listener, but happy-dom still runs a
+      // listener that an earlier one removed during the same dispatch.
       if (!this.#keydownHandler) {
         return
       }
@@ -296,6 +359,19 @@ export class HotkeyRecorder {
       const normalized = normalizeKeyboardEvent(event, platform)
       if (normalized.isComposing) return
       captureRecordingEvent(event)
+      // Tab and Shift+Tab leave the recorder: the browser moves focus, and
+      // registered hotkeys still skip the press.
+      if (
+        event.key === 'Tab' &&
+        !this.#options.recordTab &&
+        !normalized.ctrl &&
+        !normalized.alt &&
+        !normalized.meta &&
+        !normalized.altGraph
+      ) {
+        this.cancel()
+        return
+      }
       event.preventDefault()
       event.stopPropagation()
       if (event.repeat) return
@@ -323,8 +399,8 @@ export class HotkeyRecorder {
         }
         this.#events.pop()
         this.store.setState((s) => ({ ...s, steps: s.steps.slice(0, -1) }))
-        if (this.store.state.steps.length === 0) this.#clearIdleTimer()
-        else this.#scheduleIdleTimer()
+        // Clears the timer when no steps are left
+        this.#scheduleIdleTimer()
         return
       }
 
@@ -335,12 +411,13 @@ export class HotkeyRecorder {
         event.key === 'Enter' &&
         unmodified
       if (enterCommits) {
-        if (this.store.state.steps.length >= 1) this.commit()
+        // Commits nothing without steps
+        this.commit()
         return
       }
 
-      if (isModifierKey(event.key) || event.key === 'AltGraph') return
-      const rejection = chordRejection(event, { ...options, platform })
+      if (isModifierPress(event)) return
+      const rejection = chordRejection(event, platform, options.recordBy)
       if (rejection) {
         options.onReject?.(rejection)
         return
@@ -353,11 +430,7 @@ export class HotkeyRecorder {
       // Whitespace characters, such as the non-breaking space from Option+Space
       // on macOS, can't be written in a hotkey
       if (splitChordParts(chord).some((part) => !part.trim())) {
-        options.onReject?.({
-          reason: 'invalid',
-          message: 'Whitespace keys cannot be recorded',
-          hotkey: chord,
-        })
+        options.onReject?.({ reason: 'whitespace', hotkey: chord })
         return
       }
 
@@ -371,7 +444,7 @@ export class HotkeyRecorder {
     }
 
     this.#keydownHandler = handler
-    this.#addListener(handler)
+    document.addEventListener('keydown', handler, true)
   }
 
   /**
@@ -413,10 +486,7 @@ export class HotkeyRecorder {
     if (accepted !== undefined && accepted !== true) {
       rejectAndKeepRecording({
         reason: 'validation',
-        message:
-          typeof accepted === 'string'
-            ? accepted
-            : `This ${single ? 'shortcut' : 'sequence'} is not allowed.`,
+        ...(typeof accepted === 'string' && { message: accepted }),
         hotkey,
       })
       return
@@ -433,7 +503,6 @@ export class HotkeyRecorder {
       if (conflicts.length) {
         rejectAndKeepRecording({
           reason: 'conflict',
-          message: `This ${single ? 'shortcut' : 'sequence'} conflicts with a registered hotkey.`,
           hotkey,
           conflicts,
         })
@@ -442,7 +511,7 @@ export class HotkeyRecorder {
     }
 
     this.#finish(hotkey)
-    options.onRecord(hotkey)
+    options.onRecord(hotkey, context)
   }
 
   /** Stops listening and stores the final state. */
@@ -450,9 +519,9 @@ export class HotkeyRecorder {
     endRecording(this)
     this.#events = []
     this.#clearIdleTimer()
-    // Remove listener FIRST to prevent any additional events
+    // Without a document, start() never added a listener
     if (this.#keydownHandler) {
-      this.#removeListener(this.#keydownHandler)
+      document.removeEventListener('keydown', this.#keydownHandler, true)
       this.#keydownHandler = null
     }
     this.store.setState(() => ({ ...initialState, recordedHotkey }))
@@ -476,22 +545,6 @@ export class HotkeyRecorder {
   cancel(): void {
     this.#finish(null)
     this.#options.onCancel?.()
-  }
-
-  #addListener(handler: (event: KeyboardEvent) => void): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
-    }
-
-    document.addEventListener('keydown', handler, true)
-  }
-
-  #removeListener(handler: (event: KeyboardEvent) => void): void {
-    if (typeof document === 'undefined') {
-      return
-    }
-
-    document.removeEventListener('keydown', handler, true)
   }
 
   /**

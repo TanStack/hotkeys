@@ -42,7 +42,7 @@ npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
 
 # Solid
 
-Requires Solid 1.9.15 or newer within version 1.
+Requires Solid 2 and `@tanstack/solid-devtools` 0.9 or newer. For Solid 1 (1.9.15 or newer), install `@tanstack/solid-hotkeys-devtools@0.13`, the last release for Solid 1.
 
 ```sh
 npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools
@@ -105,8 +105,6 @@ function App() {
 }
 ```
 
-Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
-
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
 # Preact
@@ -121,8 +119,6 @@ export function App() {
   return <TanStackDevtools plugins={devtoolsPlugins} />
 }
 ```
-
-Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
 
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
@@ -327,7 +323,13 @@ This entry point also exports the active `HotkeysDevtoolsPanel` for standalone u
 
 # Preact
 
-The Preact adapter does not currently provide a production entry point.
+To include the devtools in a production build, import from the production entry point:
+
+```tsx
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools/production'
+```
+
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
 
 # Solid
 

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alpine adapter fixture</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <template x-if="shown">
+        <div id="hotkey-host" x-data="hotkeyHost"></div>
+      </template>
+      <div id="recording" x-text="recorder.isRecording ? 'yes' : 'no'"></div>
+      <div id="shift-held" x-text="shiftHeld.value ? 'held' : 'released'"></div>
+      <div id="held-keys" x-text="heldKeys.value.join('+')"></div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

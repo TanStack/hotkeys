@@ -4,5 +4,6 @@
     "jsx": "react"
   },
   "include": ["src", "vitest.config.ts", "tests"],
-  "exclude": ["eslint.config.js"]
+  // Checked on its own: it registers layout keys for the whole program
+  "exclude": ["tests/register-keys"]
 }

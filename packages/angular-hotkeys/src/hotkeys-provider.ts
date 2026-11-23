@@ -17,37 +17,42 @@ import {
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { Provider, Signal } from '@angular/core'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type {
   AppHotkeys,
   AppHotkeysState,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
+  MaybeGetter,
 } from '@tanstack/hotkeys'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {
   /**
    * The user's platform, for labels from `injectFormatForDisplay`, hotkeys,
-   * and recorders. Detected when unset. On a server, set it from the request
-   * with `detectPlatform(userAgent)`.
+   * recorders, and app hotkey checks such as conflicts. Detected when unset. On
+   * a server, set it from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
+  /**
+   * Whether labels from `injectFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser after the first label renders. Only Chromium
+   * browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /**
    * Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */
   hotkey?: InjectHotkeyCommonOptions
   /** Defaults for every `injectHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
 /** Options for `provideHotkeys`. */
@@ -77,8 +82,8 @@ export interface ProvideHotkeysOptions {
   /**
    * The user's saved custom hotkeys. When the value changes, such as after
    * saved data loads or the user signs in, it replaces the current custom
-   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
-   * entries are ignored with a warning.
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Unknown
+   * ids and invalid entries are ignored.
    */
   customHotkeys?: MaybeGetter<CustomHotkeys | null | undefined>
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -86,7 +91,10 @@ export interface ProvideHotkeysOptions {
 }
 
 export interface HotkeysContextValue {
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
+  /**
+   * Merged with every ancestor provider's defaults, including `hotkey.scope`.
+   * Reading it in a `computed` or `effect` tracks changes to the defaults.
+   */
   readonly defaultOptions: HotkeysProviderOptions
   /** Whether this provider and every ancestor are enabled. */
   readonly enabled: Signal<boolean>
@@ -111,9 +119,6 @@ export const HOTKEYS_INJECTION_TOKEN = new InjectionToken<HotkeysContextValue>(
   },
 )
 
-/** A value, or a signal or getter that returns it. */
-export type MaybeGetter<T> = T | (() => T)
-
 /** Creates a provider's context. Runs in an injection context. */
 function createHotkeysContext(
   options: ProvideHotkeysOptions,
@@ -135,16 +140,12 @@ function createHotkeysContext(
     const owned = createAppHotkeysStore(appHotkeys, {
       customHotkeys: read(customHotkeys),
       onCustomHotkeysChange,
+      // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+      platform:
+        read(options.defaultOptions)?.platform ??
+        parent.defaultOptions.platform,
     })
     store = owned
-    // Apply saved custom hotkeys whose value changes, such as data that
-    // loads after the app starts.
-    if (typeof customHotkeys === 'function') {
-      effect(() => {
-        const next = read(customHotkeys)
-        untracked(() => owned.setOptions({ customHotkeys: next }))
-      })
-    }
     const state = signal<AppHotkeysState | null>(store.store.state)
     const subscription = store.store.subscribe(() =>
       state.set(store!.store.state),
@@ -167,6 +168,17 @@ function createHotkeysContext(
       read(options.scope),
     ),
   )
+  if (store) {
+    const owned = store
+    // Apply the platform and saved custom hotkeys whose value changes, such as
+    // data that loads after the app starts. One call applies both together.
+    effect(() => {
+      const next =
+        typeof customHotkeys === 'function' ? read(customHotkeys) : undefined
+      const platform = defaultOptions().platform
+      untracked(() => owned.setOptions({ customHotkeys: next, platform }))
+    })
+  }
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = computed(() =>
@@ -207,6 +219,10 @@ function createHotkeysContext(
  * first hotkey in it is injected. Angular creates the provider lazily, so a
  * component with no hotkeys of its own calls `injectHotkeysContext()` to
  * activate its scope.
+ *
+ * Put a scoped provider in a component's `providers`, not `Route.providers`.
+ * By default, the router keeps a route's injector after navigation, so the
+ * scope would stay active.
  *
  * @example
  * ```ts
@@ -285,6 +301,12 @@ export function injectHotkeysContext(): HotkeysContextValue {
   return inject(HOTKEYS_INJECTION_TOKEN)
 }
 
+/**
+ * Returns the nearest provider's default options as they are when injected.
+ * The value doesn't update when signal-driven defaults change. To follow
+ * changes, keep `injectHotkeysContext()` and read its `defaultOptions` in a
+ * `computed` or `effect`.
+ */
 export function injectDefaultHotkeysOptions(): HotkeysProviderOptions {
   return injectHotkeysContext().defaultOptions
 }

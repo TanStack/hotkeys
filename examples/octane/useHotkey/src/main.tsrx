@@ -2,7 +2,7 @@ import { createRoot, useLayoutEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/octane-hotkeys'
 
@@ -11,6 +11,7 @@ import type { Hotkey } from '@tanstack/octane-hotkeys'
 import './index.css'
 
 function App() @{
+  const formatForDisplay = useFormatForDisplay()
   const [lastHotkey, setLastHotkey] = useState<Hotkey | null>(null)
   const [saveCount, setSaveCount] = useState(0)
   const [incrementCount, setIncrementCount] = useState(0)

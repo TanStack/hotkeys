@@ -1,30 +1,14 @@
+import { keyEvent, keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
-import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 import type { HotkeyChord, HotkeyOptions } from '../src'
+import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 
 function focusControl(markup = '<button>Action</button>') {
   document.body.innerHTML = markup
   const element = document.body.firstElementChild as HTMLElement
   element.focus()
   return element
-}
-
-function dispatchKey(
-  element: EventTarget,
-  key: string,
-  options: KeyboardEventInit = {},
-  type = 'keydown',
-) {
-  const event = new KeyboardEvent(type, {
-    key,
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-    ...options,
-  })
-  element.dispatchEvent(event)
-  return event
 }
 
 afterEach(() => {
@@ -51,10 +35,22 @@ describe.each(['hotkey', 'sequence'] as const)(
       element: EventTarget,
       key: string,
       options: KeyboardEventInit = {},
-      type = 'keydown',
+      type: 'keydown' | 'keyup' = 'keydown',
     ) {
-      if (kind === 'sequence') dispatchKey(element, 'g', {}, type)
-      return dispatchKey(element, key, options, type)
+      // A keyup hotkey fires only for the release of a press it saw.
+      const types = type === 'keyup' ? (['keydown', 'keyup'] as const) : [type]
+      let event!: KeyboardEvent
+      for (const step of kind === 'sequence' ? ['g', key] : [key]) {
+        for (const eventType of types) {
+          event = keyEvent(eventType, {
+            key: step,
+            composed: true,
+            ...(step === key ? options : {}),
+            target: element,
+          })
+        }
+      }
+      return event
     }
 
     it.each([
@@ -191,13 +187,13 @@ it('does not consume native activation as a sequence step', () => {
   const callback = vi.fn()
   const manager = HotkeyManager.getInstance()
   const handle = manager.register(['Space', 'G'], callback)
-  dispatchKey(element, ' ')
+  keydown({ key: ' ', target: element })
   const view = toHotkeyRegistrationView(
     manager.registrations.state.get(handle.id)!,
   ) as HotkeySequenceRegistrationView
   expect(view.matchedStepCount).toBe(0)
   element.blur()
-  dispatchKey(document.body, 'g')
+  keydown({ key: 'g', target: document.body })
   expect(callback).not.toHaveBeenCalled()
 })
 
@@ -206,9 +202,52 @@ it('preserves native activation for a physical-code binding', () => {
   const callback = vi.fn()
   HotkeyManager.getInstance().register({ code: 'NumpadEnter' }, callback)
   expect(
-    dispatchKey(element, 'Enter', { code: 'NumpadEnter' }).defaultPrevented,
+    keydown({ key: 'Enter', code: 'NumpadEnter', target: element })
+      .defaultPrevented,
   ).toBe(false)
   expect(callback).not.toHaveBeenCalled()
+})
+
+// Keys the browser reports as Unidentified still match by position (#229)
+it('preserves native activation for an Unidentified key', () => {
+  const element = focusControl()
+  const space = vi.fn()
+  const physical = vi.fn()
+  const enter = vi.fn()
+  HotkeyManager.getInstance().register('Space', space)
+  HotkeyManager.getInstance().register('Shift+[Space]', physical)
+  HotkeyManager.getInstance().register('Enter', enter)
+  keydown({ key: 'Unidentified', code: 'Space', target: element })
+  keydown({
+    key: 'Unidentified',
+    code: 'Space',
+    shiftKey: true,
+    target: element,
+  })
+  keydown({ key: 'Unidentified', code: 'NumpadEnter', target: element })
+  expect(space).not.toHaveBeenCalled()
+  expect(enter).not.toHaveBeenCalled()
+
+  // Shift+Space isn't activation, so the hotkey still fires
+  expect(physical).toHaveBeenCalledOnce()
+
+  // Named codes are read as their key names
+  const enterCode = vi.fn()
+  HotkeyManager.getInstance().register('[Enter]', enterCode)
+  keydown({ key: 'Unidentified', code: 'Enter', target: element })
+  expect(enterCode).not.toHaveBeenCalled()
+})
+
+it('lets a focused widget keep Unidentified navigation and typeahead keys', () => {
+  const element = focusControl('<div role="listbox" tabindex="0"></div>')
+  const arrow = vi.fn()
+  const digit = vi.fn()
+  HotkeyManager.getInstance().register('[ArrowDown]', arrow)
+  HotkeyManager.getInstance().register('1', digit)
+  keydown({ key: 'Unidentified', code: 'ArrowDown', target: element })
+  keydown({ key: 'Unidentified', code: 'Digit1', target: element })
+  expect(arrow).not.toHaveBeenCalled()
+  expect(digit).not.toHaveBeenCalled()
 })
 
 it('preserves native activation in an iframe for an iframe document target', () => {
@@ -229,12 +268,14 @@ it('preserves native activation in an iframe for an iframe document target', () 
     })
     const button = frameDocument.querySelector('button')!
     button.focus()
-    expect(dispatchKey(button, 'Enter').defaultPrevented).toBe(false)
+    expect(keydown({ key: 'Enter', target: button }).defaultPrevented).toBe(
+      false,
+    )
     expect(callback).not.toHaveBeenCalled()
 
     const panel = frameDocument.querySelector('div')!
     panel.focus()
-    dispatchKey(panel, 'Enter')
+    keydown({ key: 'Enter', target: panel })
     expect(callback).toHaveBeenCalledOnce()
   } finally {
     vi.unstubAllGlobals()

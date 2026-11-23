@@ -1,5 +1,3 @@
-import { createContext } from 'preact'
-import { useContext, useLayoutEffect, useMemo, useState } from 'preact/hooks'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -7,46 +5,48 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
-import type { ComponentChildren } from 'preact'
+import { createContext } from 'preact'
+import { useContext, useLayoutEffect, useMemo, useRef } from 'preact/hooks'
 import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysProviderScopeProps,
+  HotkeysContextValue as SharedHotkeysContextValue,
+} from '@tanstack/hotkeys/adapter'
+import type { ComponentChildren } from 'preact'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
   /**
-   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-   * recorders. Defaults to detection. When server rendering, set it from the
-   * request with `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. Defaults to detection.
+   * When server rendering, set it from the request with
+   * `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
+  /**
+   * Whether labels from `useFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first label mounts. Only Chromium
+   * browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /**
    * Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */
   hotkey?: UseHotkeyCommonOptions
   /** Defaults for every `useHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
-  defaultOptions: HotkeysProviderOptions
-  /** Whether this provider and every ancestor are enabled. */
-  enabled: boolean
-}
+type HotkeysContextValue = SharedHotkeysContextValue<HotkeysProviderOptions>
 
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
@@ -56,14 +56,15 @@ export interface HotkeysProviderProps<
   children: ComponentChildren
   /**
    * Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
-   * whether or not their components have mounted.
+   * whether or not their components have mounted. It can start as `undefined`
+   * and arrive later, such as from a lazy import.
    */
   appHotkeys?: T
   /**
    * The user's saved custom hotkeys. When the value changes, such as after
    * saved data loads or the user signs in, it replaces the current custom
-   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
-   * entries are ignored with a warning.
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Unknown
+   * ids and invalid entries are ignored.
    */
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -121,14 +122,19 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   enabled = true,
 }: HotkeysProviderProps<T>) {
   const parent = useContext(HotkeysContext) ?? NO_PARENT
-  const [store] = useState(() =>
-    appHotkeys
-      ? createAppHotkeysStore(appHotkeys, {
-          customHotkeys,
-          onCustomHotkeysChange,
-        })
-      : null,
-  )
+  // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+  const platform = defaultOptions.platform ?? parent.defaultOptions.platform
+  // Created on the first render that has app hotkeys. That can be a later
+  // render, such as after a lazy import loads the declarations.
+  const storeRef = useRef<AppHotkeysStore | null>(null)
+  if (!storeRef.current && appHotkeys) {
+    storeRef.current = createAppHotkeysStore(appHotkeys, {
+      customHotkeys,
+      onCustomHotkeysChange,
+      platform,
+    })
+  }
+  const store = storeRef.current
   const active = parent.enabled && enabled
   // Compared by value, so an inline `exclusive` object does not reactivate
   // the scope, and lose its precedence, on every render.
@@ -145,11 +151,12 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
-  // Keep the latest callback and saved custom hotkeys. Saved data with the
-  // same value, such as an inline JSON.parse, keeps the user's changes.
+  // Keep the latest callback, platform, and saved custom hotkeys. Saved data
+  // with the same value, such as an inline JSON.parse, keeps the user's
+  // changes.
   useLayoutEffect(() => {
-    store?.setOptions({ customHotkeys, onCustomHotkeysChange })
-  }, [store, customHotkeys, onCustomHotkeysChange])
+    store?.setOptions({ customHotkeys, onCustomHotkeysChange, platform })
+  }, [store, customHotkeys, onCustomHotkeysChange, platform])
   useLayoutEffect(() => {
     if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   }, [store, appHotkeys])

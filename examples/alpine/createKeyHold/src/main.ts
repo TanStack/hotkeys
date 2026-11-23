@@ -1,5 +1,5 @@
-import Alpine from 'alpinejs'
 import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import type { AlpineHotkeyState } from '@tanstack/alpine-hotkeys'
 import './index.css'
 

@@ -1,8 +1,9 @@
-import { flush } from 'solid-js'
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { createSignal, flush } from 'solid-js'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
   createAppHotkeyList,
@@ -10,11 +11,10 @@ import {
   useCustomHotkeys,
 } from '../src/appHotkeys'
 import { createHotkey } from '../src/createHotkey'
-import { createHotkeys } from '../src/createHotkeys'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
-import { createSignal } from 'solid-js'
-import type { Element } from 'solid-js'
-import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
+import { createHotkeys } from '../src/createHotkeys'
+import type { JSX } from '@solidjs/web'
+import type { AppHotkeys, CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
@@ -36,7 +36,7 @@ function registrations() {
 }
 
 function withProvider(
-  children: () => Element,
+  children: () => JSX.Element,
   props: {
     customHotkeys?: CustomHotkeys<typeof appHotkeys>
     onCustomHotkeysChange?: (custom: CustomHotkeys) => void
@@ -157,7 +157,6 @@ describe('HotkeysProvider customHotkeys prop', () => {
     ))
 
     setSaved({ 'doc.save': 'Mod+Shift+S' })
-
     flush()
     expect(custom.customHotkeys()).toEqual({ 'doc.save': 'Mod+Shift+S' })
     expect(onCustomHotkeysChange).not.toHaveBeenCalled()
@@ -196,7 +195,84 @@ describe('createHotkeyRecorder', () => {
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
     flush()
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
     expect(recorder.recordedHotkey()).toEqual(['G', 'H'])
+  })
+})
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', () => {
+    const [platform, setPlatform] = createSignal<'mac' | 'windows'>('mac')
+    let list!: ReturnType<typeof createAppHotkeyList>
+    let custom!: ReturnType<typeof useCustomHotkeys>
+    render(() => (
+      <HotkeysProvider
+        appHotkeys={appHotkeys}
+        customHotkeys={{ 'doc.save': 'Meta+S' }}
+        defaultOptions={{ platform: platform() }}
+      >
+        {(() => {
+          list = createAppHotkeyList()
+          custom = useCustomHotkeys()
+          return null
+        })()}
+      </HotkeysProvider>
+    ))
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(list()[0]!.isCustom).toBe(false)
+    expect(
+      custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+    ).toEqual(['doc.save'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        metaKey: true,
+      }),
+    }
+    expect(custom.findConflicts('palette.open', 'Meta+[KeyS]')).toEqual([])
+    expect(
+      custom
+        .findConflicts('palette.open', 'Meta+[KeyS]', recordedWith)
+        .map((a) => a.id),
+    ).toEqual(['doc.save'])
+
+    setPlatform('windows')
+    flush()
+    expect(list()[0]!.isCustom).toBe(true)
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", () => {
+    const nestedHotkeys = defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } })
+    const [nested, setNested] = createSignal<AppHotkeys>()
+    const lists: Record<string, ReturnType<typeof createAppHotkeyList>> = {}
+    function List(props: { name: string }) {
+      lists[props.name] = createAppHotkeyList()
+      return null
+    }
+    render(() => (
+      <HotkeysProvider appHotkeys={appHotkeys}>
+        <List name="root" />
+        <HotkeysProvider appHotkeys={nested()}>
+          <List name="nested" />
+        </HotkeysProvider>
+      </HotkeysProvider>
+    ))
+    const ids = (name: string) =>
+      lists[name]!().map((item) => item.appHotkey.id)
+    const rootIds = Object.keys(appHotkeys)
+    // Until its own declarations arrive, it shares its parent's store.
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, rootIds])
+
+    setNested(nestedHotkeys)
+    flush()
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, ['file.open']])
   })
 })

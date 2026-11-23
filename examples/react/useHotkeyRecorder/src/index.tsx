@@ -1,19 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 interface Shortcut {
@@ -281,6 +280,7 @@ const hotkeys = useHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const hotkeys = useHotkeyRegistrations()
 
   return (
@@ -365,6 +365,7 @@ function ShortcutListItem({
   onCancel,
   onDelete,
 }: ShortcutListItemProps) {
+  const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
 
   return (

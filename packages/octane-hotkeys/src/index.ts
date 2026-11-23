@@ -17,9 +17,14 @@ export * from './useHeldKeyCodes'
 export * from './useKeyHold'
 export * from './useHotkeyHint'
 export * from './useFormatForDisplay'
+// Replaces the core export, to point components to the hook
+export { formatForDisplay } from './formatForDisplay'
+export * from './useKeyboardLayout'
 export * from './useHotkeyRegistrations'
 export * from './useHotkeyScopesState'
 export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 
 export * from './types'
+// Same type as core's; named here so the two `export *` don't collide.
+export type { HotkeyRegistrationsResult } from './types'

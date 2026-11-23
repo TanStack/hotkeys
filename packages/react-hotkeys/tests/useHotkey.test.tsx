@@ -1,4 +1,8 @@
 // @vitest-environment happy-dom
+
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { renderHook, render, act, fireEvent } from '@testing-library/react'
+import React, { useState, useRef } from 'react'
 import {
   describe,
   expect,
@@ -8,8 +12,6 @@ import {
   beforeEach,
   afterEach,
 } from 'vitest'
-import { renderHook, render, act, fireEvent } from '@testing-library/react'
-import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeys } from '../src/useHotkeys'
 import type {
@@ -18,7 +20,6 @@ import type {
   HotkeyChordCallbackContext,
   HotkeySequenceCallbackContext,
 } from '@tanstack/hotkeys'
-import React, { useState, useRef } from 'react'
 
 describe('useHotkey', () => {
   // Reset the HotkeyManager singleton between tests

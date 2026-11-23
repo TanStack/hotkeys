@@ -1,12 +1,14 @@
-import { createEffect, onCleanup } from 'solid-js'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
+  resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
+import { createEffect, onCleanup } from 'solid-js'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
 } from './defaultOptions'
+import type { MaybeGetter } from '@tanstack/hotkeys'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type {
   CreateHotkeyCommonOptions,
@@ -25,8 +27,9 @@ export type CreateHotkeyDefinition = AdapterHotkeyDefinition<CreateHotkeyTarget>
  *
  * Options merge in this order: provider defaults, app hotkey declaration,
  * commonOptions, per-hotkey options. Each option applies only to the kinds
- * that support it. Unbound app hotkeys and empty sequences register nothing.
- * A `null` target skips registration until it is set.
+ * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
+ * `null`, or `''` hotkeys register nothing.
+ * A `null` or `undefined` target skips registration until it is set.
  *
  * @example
  * ```tsx
@@ -37,11 +40,8 @@ export type CreateHotkeyDefinition = AdapterHotkeyDefinition<CreateHotkeyTarget>
  * ```
  */
 export function createHotkeys(
-  hotkeys:
-    | ReadonlyArray<CreateHotkeyDefinition>
-    | (() => ReadonlyArray<CreateHotkeyDefinition>),
-  commonOptions:
-    CreateHotkeyCommonOptions | (() => CreateHotkeyCommonOptions) = {},
+  hotkeys: MaybeGetter<ReadonlyArray<CreateHotkeyDefinition>>,
+  commonOptions: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
@@ -54,19 +54,13 @@ export function createHotkeys(
     () => {
       // Track app hotkeys so registrations move with custom hotkeys.
       appHotkeys.state()
-      return prepareHotkeyDefinitions(
-        typeof hotkeys === 'function' ? hotkeys() : hotkeys,
-        {
-          appHotkeysStore: appHotkeys.store,
-          defaults: defaultOptions().hotkey,
-          commonOptions:
-            typeof commonOptions === 'function'
-              ? commonOptions()
-              : commonOptions,
-          // A null target skips registration until the element exists.
-          resolveTarget: (target) => target,
-        },
-      )
+      return prepareHotkeyDefinitions(resolveMaybeGetter(hotkeys), {
+        appHotkeysStore: appHotkeys.store,
+        defaults: defaultOptions().hotkey,
+        commonOptions: resolveMaybeGetter(commonOptions),
+        // An unset target skips registration until the element exists.
+        resolveTarget: (target) => target,
+      })
     },
     // The effect half is untracked, so registration writes do not re-run it.
     (definitions) => bindings.update(definitions),

@@ -1,18 +1,35 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
 import {
-  formatForDisplay,
   isHotkeySequence,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
-import type { Hotkey, RecorderKeyMode } from '@tanstack/vue-hotkeys'
+import { inject, ref } from 'vue'
+import type {
+  Hotkey,
+  RecorderKeyMode,
+  RecorderRejection,
+} from '@tanstack/vue-hotkeys'
+
+const formatForDisplay = useFormatForDisplay()
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 const log = inject<(message: string) => void>('log')!
 const initial: Hotkey = 'Alt+[KeyR]'
 const hotkey = ref<Hotkey>(initial),
   sequence = ref<Hotkey>(['[KeyX]', '[KeyY]'])
-const mode = ref<RecorderKeyMode>('code'),
+const mode = ref<RecorderKeyMode>('auto'),
   problem = ref(''),
   idle = ref(false),
   enter = ref(true)
@@ -28,8 +45,10 @@ const recorder = useHotkeyRecorder(() => ({
   detectConflicts: {
     exclude: (reg) => reg.options.meta?.name === 'Recorded action',
   },
-  validate: (_, { parsedChord }) =>
-    parsedChord.modifiers.length > 0 || 'Include a modifier.',
+  // A getter gets the sequence types, so narrow to a chord first.
+  validate: (_, context) =>
+    (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
+    'Include a modifier.',
   onRecord: (value) => {
     hotkey.value = value
     problem.value = ''
@@ -38,7 +57,7 @@ const recorder = useHotkeyRecorder(() => ({
     hotkey.value = initial
   },
   onReject: (r) => {
-    problem.value = r.message
+    problem.value = rejectionText(r)
   },
   onCancel: () => {
     problem.value = 'Cancelled'
@@ -65,7 +84,7 @@ const seq = useHotkeyRecorder(() => ({
     sequence.value = ['[KeyX]', '[KeyY]']
   },
   onReject: (r) => {
-    problem.value = r.message
+    problem.value = rejectionText(r)
   },
   onCancel: () => {
     problem.value = 'Cancelled'
@@ -86,14 +105,15 @@ function resetShortcut() {
         v-model="mode"
         :disabled="recorder.isRecording.value || seq.isRecording.value"
       >
+        <option value="auto">
+          By name, or position where needed (default)
+        </option>
         <option value="code">Physical code</option>
         <option value="key">Logical key</option>
       </select></label
     >
     <h3>Single shortcut</h3>
-    <p>
-      <kbd>{{ formatForDisplay(hotkey) }}</kbd> — <code>{{ hotkey }}</code>
-    </p>
+    <p><kbd>{{ formatForDisplay(hotkey) }}</kbd> — <code>{{ hotkey }}</code></p>
     <button
       :disabled="recorder.isRecording.value || seq.isRecording.value"
       @click="recorder.startRecording"

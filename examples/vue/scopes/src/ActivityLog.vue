@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useHotkey } from '@tanstack/vue-hotkeys'
-import { useActivity } from './activity'
 import Key from './Key.vue'
+import { useActivity } from './activity'
 
 // Registered under the root provider, so it is in the `global` scope.
 const { entries, clear } = useActivity()

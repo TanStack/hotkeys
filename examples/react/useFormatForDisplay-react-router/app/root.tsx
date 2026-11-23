@@ -1,5 +1,5 @@
-import { Links, Meta, Outlet, Scripts } from 'react-router'
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
+import { Links, Meta, Outlet, Scripts } from 'react-router'
 import stylesUrl from './styles.css?url'
 import type { ReactNode } from 'react'
 import type { Route } from './+types/root'

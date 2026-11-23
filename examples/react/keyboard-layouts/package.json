@@ -1,0 +1,27 @@
+{
+  "name": "@tanstack/hotkeys-example-react-keyboard-layouts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/react-hotkeys": "^0.27.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tanstack/react-devtools": "0.10.15",
+    "@tanstack/react-hotkeys-devtools": "^0.14.14",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "6.0.3",
+    "vite": "^8.3.7"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/vue-hotkeys-devtools",
-  "version": "0.13.1",
+  "version": "0.13.14",
   "description": "Vue devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -25,11 +25,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -61,7 +62,9 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.9",
-    "vue": "^3.5.43"
+    "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@tanstack/vue-hotkeys": "workspace:*",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vue": "^3.5.45"
   }
 }

@@ -1,18 +1,30 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
-  formatForDisplay,
   isHotkeySequence,
   useAppHotkeyList,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/react-hotkeys'
-import { formatHotkey, useActivity } from '../shared'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
+import { useActivity, useFormatHotkey } from '../shared'
 import type {
   AppHotkeyId,
   Hotkey,
   RecorderKeyMode,
+  RecorderRejection,
 } from '@tanstack/react-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 export const Route = createLazyRoute('/shortcuts')({ component: Shortcuts })
 
@@ -30,6 +42,8 @@ const statusLabels = {
  * `onCustomHotkeysChange`; this route only calls `useCustomHotkeys`.
  */
 function Shortcuts() {
+  const formatHotkey = useFormatHotkey()
+  const formatForDisplay = useFormatForDisplay()
   const log = useActivity()
   const items = useAppHotkeyList()
   const {
@@ -44,7 +58,7 @@ function Shortcuts() {
     message: string
     tone: 'error' | 'info'
   } | null>(null)
-  const [mode, setMode] = useState<RecorderKeyMode>('code')
+  const [mode, setMode] = useState<RecorderKeyMode>('auto')
   const [idle, setIdle] = useState(false)
 
   const nameOf = (id: AppHotkeyId) =>
@@ -63,7 +77,7 @@ function Shortcuts() {
     recordBy: mode,
     ignoreInputs: false,
     idleTimeoutMs: idle ? 1500 : undefined,
-    validate: (hotkey: Hotkey) => {
+    validate: (hotkey: Hotkey, context) => {
       if (!editing) return true
       if (
         !isHotkeySequence(hotkey) &&
@@ -71,16 +85,17 @@ function Shortcuts() {
       ) {
         return 'Include a modifier, or record a sequence of two or more chords.'
       }
-      const conflicts = findConflicts(editing, hotkey)
+      const conflicts = findConflicts(editing, hotkey, context)
       return (
         conflicts.length === 0 ||
         `Conflicts with ${conflicts.map((c) => c.meta?.name ?? c.id).join(', ')}.`
       )
     },
-    onReject: ({ message }) => setNotice({ message, tone: 'error' }),
-    onRecord: (hotkey) => {
+    onReject: (rejection) =>
+      setNotice({ message: rejectionText(rejection), tone: 'error' }),
+    onRecord: (hotkey, context) => {
       if (!editing) return
-      setCustomHotkey(editing, hotkey)
+      setCustomHotkey(editing, hotkey, context)
       finish(editing, formatHotkey(hotkey))
     },
     onClear: () => {
@@ -121,7 +136,10 @@ function Shortcuts() {
             disabled={recorder.isRecording}
             onChange={(e) => setMode(e.target.value as RecorderKeyMode)}
           >
-            <option value="code">Physical code (default)</option>
+            <option value="auto">
+              By name, or position where needed (default)
+            </option>
+            <option value="code">Physical code</option>
             <option value="key">Logical character</option>
           </select>
         </label>{' '}

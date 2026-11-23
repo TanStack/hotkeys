@@ -1,13 +1,13 @@
 // @ts-check
 
+// Oxlint lints this package, including `<script>` blocks. ESLint runs only
+// the Svelte template rules, which need `svelte-eslint-parser`.
 import tsParser from '@typescript-eslint/parser'
 import pluginSvelte from 'eslint-plugin-svelte'
-import rootConfig from '../../eslint.config.js'
 import svelteConfig from './svelte.config.js'
 
 /** @type {import('eslint').Linter.Config[]} */
 const config = [
-  ...rootConfig,
   ...pluginSvelte.configs['recommended'],
   {
     files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],

@@ -1,10 +1,10 @@
-import { For, Show, createSignal, onSettled } from 'solid-js'
 import {
   createFormatForDisplay,
   createHotkeys,
   detectPlatform,
   useHotkeysContext,
 } from '@tanstack/solid-hotkeys'
+import { For, Show, createSignal, onSettled } from 'solid-js'
 import { commands } from './commands'
 import {
   defaultChoices,
@@ -131,7 +131,7 @@ function FormatOptions(props: {
 
 function CheatSheet(props: { choices: FormatChoices }) {
   // Formats with the provider's platform, so the server renders the user's labels
-  const format = createFormatForDisplay()
+  const formatForDisplay = createFormatForDisplay()
   const options = () => toFormatOptions(props.choices)
 
   return (
@@ -145,7 +145,7 @@ function CheatSheet(props: { choices: FormatChoices }) {
                 <th scope="row">{command.name}</th>
                 <td class="label">
                   <HotkeyLabel
-                    label={format(command.hotkey, options())}
+                    label={formatForDisplay(command.hotkey, options())}
                     sequenceSeparator={options().sequenceSeparator ?? ' '}
                   />
                 </td>

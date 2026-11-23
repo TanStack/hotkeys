@@ -1,0 +1,7 @@
+{
+  // Registered keys apply to the whole program, so this check runs on its own
+  // and the package's other files keep the default US keys.
+  "extends": "../../tsconfig.json",
+  "include": ["."],
+  "exclude": []
+}

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { useFormatForDisplay, useHotkeys } from '@tanstack/vue-hotkeys'
 import { inject, ref } from 'vue'
-import { formatForDisplay, useHotkeys } from '@tanstack/vue-hotkeys'
 
 const props = defineProps<{ name: string }>()
+const formatForDisplay = useFormatForDisplay()
 const log = inject<(message: string) => void>('log')!
 const target = ref<HTMLElement | null>(null),
   text = ref('One shortcut, two independent editors.'),

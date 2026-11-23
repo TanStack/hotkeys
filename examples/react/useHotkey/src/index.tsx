@@ -1,19 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 import './index.css'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 function App() {
+  const formatForDisplay = useFormatForDisplay()
   const [lastHotkey, setLastHotkey] = React.useState<Hotkey | null>(null)
   const [saveCount, setSaveCount] = React.useState(0)
   const [incrementCount, setIncrementCount] = React.useState(0)

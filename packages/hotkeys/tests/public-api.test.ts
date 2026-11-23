@@ -1,18 +1,16 @@
 import { expect, expectTypeOf, it } from 'vitest'
 import * as hotkeys from '../src'
 import type {
-  KeyboardEventMatch,
-  NormalizedKeyboardEvent,
-  NonPunctuationKey,
-  SingleModifierHotkeyChord,
   DisplayHotkey,
-  MultiHotkeyChordHandler,
   HotkeySequenceRegistration,
+  MultiHotkeyChordHandler,
+  NonPunctuationKey,
+  NormalizedKeyboardEvent,
+  SingleModifierHotkeyChord,
   Target,
 } from '../src'
 
 it('exports shared types without exposing internal runtime helpers', () => {
-  expectTypeOf<KeyboardEventMatch['score']>().toEqualTypeOf<0 | 1 | 2 | 3>()
   expectTypeOf<NormalizedKeyboardEvent['code']>().toBeString()
   expectTypeOf<'F24'>().toExtend<NonPunctuationKey>()
   expectTypeOf<'Mod+[KeyS]'>().toExtend<SingleModifierHotkeyChord>()

@@ -12,12 +12,13 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 <script lang="ts">
   import {
     createHotkey,
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyHint,
   } from '@tanstack/svelte-hotkeys'
 
   const saveHotkey = 'Mod+S'
 
+  const formatForDisplay = getFormatForDisplay()
   createHotkey(saveHotkey, save)
   const hint = getHotkeyHint(saveHotkey)
 </script>
@@ -65,13 +66,14 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 <!-- Hint.svelte -->
 <script lang="ts">
   import {
-    formatForDisplay,
     getAppHotkeys,
+    getFormatForDisplay,
     getHotkeyHint,
   } from '@tanstack/svelte-hotkeys'
   import type { AppHotkeyId } from '@tanstack/svelte-hotkeys'
 
   let { id }: { id: AppHotkeyId } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const appHotkeys = getAppHotkeys()
   const appHotkey = $derived(appHotkeys.current[id])
   const hint = getHotkeyHint(() => appHotkey)

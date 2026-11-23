@@ -9,7 +9,7 @@ import {
   viewChild,
 } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHeldKeyCodes,
   injectHeldKeys,
   injectHotkey,
@@ -22,7 +22,23 @@ import {
   provideHotkeys,
 } from '@tanstack/angular-hotkeys'
 import type { ElementRef } from '@angular/core'
-import type { Hotkey, RecorderKeyMode } from '@tanstack/angular-hotkeys'
+import type {
+  Hotkey,
+  HotkeyPlatform,
+  RecorderKeyMode,
+  RecorderRejection,
+} from '@tanstack/angular-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 @Injectable({ providedIn: 'root' })
 export class Activity {
@@ -36,13 +52,13 @@ export class Activity {
   selector: 'shortcut-hint',
   standalone: true,
   template: `@if (visible()) {
-    <kbd>{{ format(hotkey()) }}</kbd>
+    <kbd>{{ formatForDisplay(hotkey()) }}</kbd>
   }`,
 })
 export class Hint {
   readonly hotkey = input<Hotkey>('Escape')
   readonly visible = injectHotkeyHint(() => this.hotkey())
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 }
 
 @Component({
@@ -112,8 +128,8 @@ export class Tickets {
       ></textarea>
     </label>
     <p>
-      <kbd>{{ format('Mod+[KeyS]') }}</kbd> Save;
-      <kbd>{{ format('Alt+[Backspace]') }}</kbd> Clear
+      <kbd>{{ formatForDisplay('Mod+[KeyS]') }}</kbd> Save;
+      <kbd>{{ formatForDisplay('Alt+[Backspace]') }}</kbd> Clear
     </p>
   </fieldset>`,
 })
@@ -123,7 +139,7 @@ export class EditorPane {
   readonly text = signal('One shortcut, two independent editors.')
   readonly saves = signal(0)
   readonly activity = inject(Activity)
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   constructor() {
     injectHotkeys(
       () => [
@@ -264,8 +280,9 @@ export class Sequences {
   readonly sequences = computed(() =>
     this.registrations().filter((reg) => reg.kind === 'sequence'),
   )
+  readonly formatForDisplay = injectFormatForDisplay()
   label = (hotkey: Hotkey) =>
-    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   constructor() {
     // An array of chords registers a sequence.
     injectHotkey(
@@ -310,13 +327,16 @@ export class Sequences {
         [disabled]="recorder.isRecording() || seq.isRecording()"
         (change)="setMode(modeInput.value)"
       >
+        <option value="auto">
+          By name, or position where needed (default)
+        </option>
         <option value="code">Physical code</option>
         <option value="key">Logical key</option>
       </select></label
     >
     <h3>Single shortcut</h3>
     <p>
-      <kbd>{{ format(hotkey()) }}</kbd> — <code>{{ hotkey() }}</code>
+      <kbd>{{ formatForDisplay(hotkey()) }}</kbd> — <code>{{ hotkey() }}</code>
     </p>
     <button
       [disabled]="recorder.isRecording() || seq.isRecording()"
@@ -373,16 +393,16 @@ export class Recording {
   readonly initial: Hotkey = 'Alt+[KeyR]'
   readonly hotkey = signal<Hotkey>(this.initial)
   readonly sequence = signal<Hotkey>(['[KeyX]', '[KeyY]'])
-  readonly mode = signal<RecorderKeyMode>('code')
+  readonly mode = signal<RecorderKeyMode>('auto')
   readonly problem = signal('')
   readonly idle = signal(false)
   readonly enter = signal(true)
   readonly activity = inject(Activity)
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   label = (hotkey: Hotkey) =>
-    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   setMode(value: string) {
-    this.mode.set(value === 'key' ? 'key' : 'code')
+    this.mode.set(value === 'key' || value === 'code' ? value : 'auto')
   }
   readonly recorder = injectHotkeyRecorder(() => ({
     recordBy: this.mode(),
@@ -398,7 +418,7 @@ export class Recording {
       this.problem.set('')
     },
     onClear: () => this.hotkey.set(this.initial),
-    onReject: (r) => this.problem.set(r.message),
+    onReject: (r) => this.problem.set(rejectionText(r)),
     onCancel: () => this.problem.set('Cancelled'),
   }))
   // maxSteps above 1 records sequences; one step records a chord.
@@ -419,7 +439,7 @@ export class Recording {
       this.problem.set('')
     },
     onClear: () => this.sequence.set(['[KeyX]', '[KeyY]']),
-    onReject: (r) => this.problem.set(r.message),
+    onReject: (r) => this.problem.set(rejectionText(r)),
     onCancel: () => this.problem.set('Cancelled'),
   }))
   constructor() {
@@ -486,7 +506,7 @@ export class Recording {
             <td>
               <code>{{ binding }}</code>
             </td>
-            <td>{{ format(binding, options()) }}</td>
+            <td>{{ formatForDisplay(binding, options()) }}</td>
             <td>
               @for (part of parts(binding); track $index) {
                 <kbd>{{ part }}</kbd>
@@ -503,7 +523,7 @@ export class Recording {
   </section>`,
 })
 export class Formatting {
-  readonly platform = signal<'mac' | 'windows' | 'linux'>('mac')
+  readonly platform = signal<HotkeyPlatform>('mac')
   readonly modifiers = signal(false)
   readonly keys = signal(true)
   readonly options = computed(() => ({
@@ -516,9 +536,9 @@ export class Formatting {
     'Alt+[KeyS]',
     'Mod+[NumpadAdd]',
   ] as const
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   parts = (binding: Hotkey) =>
-    formatForDisplay(binding, { ...this.options(), parts: true })
+    this.formatForDisplay(binding, { ...this.options(), parts: true })
   setPlatform(value: string) {
     this.platform.set(value === 'mac' || value === 'linux' ? value : 'windows')
   }
@@ -630,8 +650,9 @@ export class AppComponent {
     () => Object.values(this.codes()).join(' + ') || 'None',
   )
   readonly registrations = injectHotkeyRegistrations()
+  readonly formatForDisplay = injectFormatForDisplay()
   bindingLabel = (reg: ReturnType<typeof this.registrations>[number]) =>
-    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
+    this.formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   constructor() {
     const update = () => this.path.set(location.hash.slice(1) || '/')
     window.addEventListener('hashchange', update)

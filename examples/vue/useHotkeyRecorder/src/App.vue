@@ -2,7 +2,7 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkeyRecorder,
   useHotkeyRegistrations,
   useHotkeys,
@@ -11,13 +11,9 @@ import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { ref } from 'vue'
 import ShortcutListItem from './ShortcutListItem.vue'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
+import type { Shortcut } from './types'
 
-interface Shortcut {
-  id: string
-  name: string
-  description: string
-  hotkey: Hotkey | ''
-}
+const formatForDisplay = useFormatForDisplay()
 
 let nextId = 0
 function createId(): string {

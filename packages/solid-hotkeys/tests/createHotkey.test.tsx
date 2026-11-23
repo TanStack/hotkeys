@@ -1,10 +1,10 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
-import { Show, createSignal, flush } from 'solid-js'
+import { Show, createSignal, flush, type Component } from 'solid-js'
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
-import type { Component } from 'solid-js'
 
 describe('createHotkey', () => {
   beforeEach(() => {
@@ -132,8 +132,8 @@ describe('createHotkey', () => {
         )
 
         return (
-          // A label around the count: happy-dom drops `textContent = 0` (browsers
-          // write "0"), and Solid 2 hands numbers to the DOM unconverted.
+          // A label around the count: happy-dom drops `textContent = 0`
+          // (browsers write "0"), and Solid 2 hands numbers to the DOM as is.
           <button type="button" onClick={() => setCount((c) => c + 5)}>
             Count: {count()}
           </button>
@@ -310,6 +310,8 @@ describe('createHotkey', () => {
       const callback = vi.fn()
       const [open, setOpen] = createSignal(false)
 
+      // Solid 2 runs ref callbacks outside the owner, so the element gets its
+      // own component with a signal ref.
       const Panel: Component = () => {
         const [panel, setPanel] = createSignal<HTMLDivElement | null>(null)
         createHotkey('K', callback, () => ({ target: panel() }))
@@ -335,14 +337,12 @@ describe('createHotkey', () => {
       expect(registrations()).toBe(0)
 
       setOpen(true)
-
       flush()
       expect(registrations()).toBe(1)
       pressK()
       expect(callback).toHaveBeenCalledTimes(1)
 
       setOpen(false)
-
       flush()
       expect(registrations()).toBe(0)
 

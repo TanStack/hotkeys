@@ -1,33 +1,21 @@
-import { useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { useSelector } from './_useSelector'
+import { useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useSelector } from './_useSelector'
 import type {
   Hotkey,
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
-  HotkeySequence,
+  HotkeyRecorderState,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 
-export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
-  /** Whether recording is currently active */
-  isRecording: boolean
-  /** Chords recorded so far in a multi-step recording (for live preview) */
-  steps: HotkeySequence
-  /** The last committed hotkey */
-  recordedHotkey: THotkey | null
-  /** Start recording a new hotkey */
-  startRecording: () => void
-  /** Stop recording without calling onCancel */
-  stopRecording: () => void
-  /** Cancel recording and call onCancel */
-  cancelRecording: () => void
-  /** Commit the recorded steps now (multi-step recordings) */
-  commitRecording: () => void
-}
+/** The recorder state and controls returned by `useHotkeyRecorder`. */
+export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey>
+  extends HotkeyRecorderState<THotkey>, HotkeyRecorderActions {}
 
 /**
  * Preact hook for recording keyboard shortcuts.
@@ -38,8 +26,9 @@ export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`,
  * and `onRecord` receives a chord (one step) or a sequence.
  *
- * Escape cancels. Backspace/Delete removes the last step, or calls `onClear`
- * when nothing is recorded.
+ * Escape cancels, and so do Tab and Shift+Tab unless `recordTab` is set.
+ * Backspace/Delete removes the last step, or calls `onClear` when nothing is
+ * recorded.
  *
  * @param options - Configuration options for the recorder
  * @returns The recorder state and controls
@@ -47,6 +36,7 @@ export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * @example
  * ```tsx
  * function ShortcutInput() {
+ *   const formatForDisplay = useFormatForDisplay()
  *   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
  *   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
  *

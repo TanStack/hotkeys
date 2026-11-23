@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/svelte-hotkeys-devtools",
-  "version": "0.5.1",
+  "version": "0.5.14",
   "description": "Svelte devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -24,11 +24,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "svelte-package --input ./src --output ./dist",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -65,15 +66,15 @@
     }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.8.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@sveltejs/package": "^3.0.0",
+    "@sveltejs/package": "^3.0.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
-    "@typescript-eslint/parser": "^8.71.0",
-    "eslint-plugin-svelte": "^3.23.0",
-    "svelte": "^5.57.1"
+    "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@tanstack/svelte-hotkeys": "workspace:*",
+    "svelte": "^5.57.3"
   },
   "module": "dist/index.js",
   "svelte": "./dist/index.js"

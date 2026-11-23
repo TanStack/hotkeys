@@ -1,5 +1,5 @@
-import { createApp, h, nextTick, ref } from 'vue'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { createApp, h, nextTick, ref } from 'vue'
 import {
   HotkeysDevtoolsPanel,
   HotkeysDevtoolsPanelNoOp,
@@ -11,7 +11,10 @@ const core = vi.hoisted(() => ({
   mount: vi.fn(async (_el: HTMLElement, _props: object) => {}),
   unmount: vi.fn(),
 }))
-vi.mock('@tanstack/hotkeys-devtools', () => ({
+vi.mock('@tanstack/hotkeys-devtools/production', async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import('@tanstack/hotkeys-devtools/production')
+  >()),
   HotkeysDevtoolsCore: class {
     mount = core.mount
     unmount = core.unmount

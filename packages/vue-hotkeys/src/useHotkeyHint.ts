@@ -1,19 +1,14 @@
+import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
+import { isHotkeyHintVisible } from '@tanstack/hotkeys/adapter'
 import { computed, toValue } from 'vue'
-import {
-  getHotkeyManager,
-  getKeyStateTracker,
-  isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
-} from '@tanstack/hotkeys'
 import { useAppHotkeysStoreSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
-import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 
 /**
  * Returns a computed ref indicating whether held modifiers reveal this shortcut.
@@ -29,10 +24,9 @@ export function useHotkeyHint(
   options: MaybeRefOrGetter<HeldModifierOptions> = {},
 ): ComputedRef<boolean> {
   const appHotkeys = useAppHotkeysStoreSource()
-  const manager = getHotkeyManager()
   // Tracks registration, enabled, and scope changes.
   const registrations = useStoreSelector(
-    manager.registrations,
+    getHotkeyManager().registrations,
     (state) => state,
   )
   const held = useStoreSelector(
@@ -41,15 +35,12 @@ export function useHotkeyHint(
   )
   return computed(() => {
     void appHotkeys.state.value
-    const value = toValue(hotkey)
-    const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, appHotkeys.store).hotkey
-      : value
-    return (
-      resolved !== null &&
-      matchesHeldModifiers(resolved, held.value, toValue(options)) &&
-      registrations.value.size > 0 &&
-      manager.hasActiveRegistration(value)
+    void registrations.value
+    return isHotkeyHintVisible(
+      toValue(hotkey),
+      held.value,
+      toValue(options),
+      appHotkeys.store,
     )
   })
 }

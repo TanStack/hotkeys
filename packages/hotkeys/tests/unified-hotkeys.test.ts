@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import {
   HotkeyManager,
@@ -21,20 +22,16 @@ import type {
   HotkeyChordOptions,
   HotkeyOptionsFor,
   HotkeyRegistrationHandle,
-  HotkeySequenceCallbackContext,
   HotkeySequence,
+  HotkeySequenceCallbackContext,
   HotkeySequenceOptions,
   RegisterableHotkey,
   RegisterableHotkeySequence,
 } from '../src'
 
 function press(key: string, init: KeyboardEventInit = {}) {
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key, bubbles: true, ...init }),
-  )
-  document.dispatchEvent(
-    new KeyboardEvent('keyup', { key, bubbles: true, ...init }),
-  )
+  keydown({ key, ...init, target: document })
+  keyup({ key, ...init, target: document })
 }
 
 afterEach(() => {
@@ -230,8 +227,8 @@ describe('sequence steps written as objects', () => {
       true,
     )
     const matcher = createSequenceMatcher([{ key: 'G' }, { key: 'H' }])
-    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
-    expect(matcher.match(new KeyboardEvent('keydown', { key: 'h' }))).toBe(true)
+    matcher.match(keydown({ key: 'g' }))
+    expect(matcher.match(keydown({ key: 'h' }))).toBe(true)
   })
 
   it('types object-step sequences as sequences', () => {
@@ -286,7 +283,9 @@ describe('hotkey utilities accept sequences', () => {
   it('validateHotkey names the failing step', () => {
     expect(validateHotkey(['G', 'H']).valid).toBe(true)
     expect(validateHotkey([])).toMatchObject({ valid: false })
-    expect(validateHotkey(['G', 'Hyper+H']).errors[0]).toMatch(/^Step 2: /)
+    expect(validateHotkey(['G', 'Hyper+H']).errors[0]).toMatchObject({
+      step: 1,
+    })
   })
 
   it('formatForDisplay and matchesHeldModifiers accept sequences', () => {

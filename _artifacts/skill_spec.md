@@ -21,13 +21,13 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 | react-hotkeys   | framework | framework-bindings | Hooks, refs, providers, dialog scopes, app hotkey wiring                                                           | 2 + shared    |
 | preact-hotkeys  | framework | framework-bindings | Same as React with Preact imports                                                                                  | 2 + shared    |
 | solid-hotkeys   | framework | framework-bindings | Primitives, accessor options, signal targets                                                                       | 2 + shared    |
-| vue-hotkeys     | framework | framework-bindings | Composables, refs and getters, provideHotkeysContext, recorder refs                                                | 3 + shared    |
+| vue-hotkeys     | framework | framework-bindings | Composables, refs and getters, component-ref targets, provideHotkeysContext, recorder refs                         | 4 + shared    |
 | svelte-hotkeys  | framework | framework-bindings | Getter options, attachments, setHotkeysContext, reactive getters                                                   | 3 + shared    |
 | angular-hotkeys | framework | framework-bindings | Inject functions, signal options, provideHotkeys scopes, per-instance scope tokens                                 | 4 + shared    |
 | lit-hotkeys     | framework | framework-bindings | Decorator, controllers, manager scopes, decorator mode                                                             | 4 + shared    |
 | alpine-hotkeys  | framework | framework-bindings | Owners, $hotkeys magic, getter options, manager scopes                                                             | 3 + shared    |
 | ember-hotkeys   | framework | framework-bindings | Template helpers, modifiers, owner-bound readers, manager scopes                                                   | 3 + shared    |
-| octane-hotkeys  | framework | framework-bindings | Hooks in .tsrx, element-state targets, providers                                                                   | 2 + shared    |
+| octane-hotkeys  | framework | framework-bindings | Hooks in .tsrx, ref and element-state targets, providers                                                           | 2 + shared    |
 
 "Shared" failure modes are listed under hotkeys-core, app-hotkeys, and lit-hotkeys with a `skills` list in `domain_map.yaml`: hand-written listeners, facades, topmost-dialog tracking, reused exclusive scope names, registering an app hotkey's value, and loading custom hotkeys late.
 
@@ -64,25 +64,25 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 
 ### Framework skills
 
-| Skill           | Mistakes                                                                                                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| react-hotkeys   | ref.current as target (HIGH, task check); hotkey above its own provider (HIGH, task check)                                                                                                 |
-| preact-hotkeys  | ref.current as target (HIGH); hotkey above its own provider (HIGH)                                                                                                                         |
-| solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                  |
-| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                     |
-| svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                |
-| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM)                                                   |
-| lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM) |
-| alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                  |
-| ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                     |
-| octane-hotkeys  | ref object as target (HIGH); hooks in loops (MEDIUM)                                                                                                                                       |
+| Skill           | Mistakes                                                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| react-hotkeys   | ref.current as target (HIGH, task check); hotkey above its own provider (HIGH, task check)                                                                                                                                                 |
+| preact-hotkeys  | ref.current as target (HIGH); hotkey above its own provider (HIGH)                                                                                                                                                                         |
+| solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                                                                  |
+| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM); component ref without a single root (MEDIUM)                                                                       |
+| svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                                                                |
+| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM); plain fields in a root-service callback (MEDIUM); scope in Route.providers (MEDIUM)              |
+| lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM); removeController instead of dispose() (MEDIUM) |
+| alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                                                                  |
+| ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                                                                     |
+| octane-hotkeys  | ref object for an element that mounts later (HIGH); hooks in loops (MEDIUM)                                                                                                                                                                |
 
 ## Tensions
 
-| Tension                                         | Skills                     | Agent implication                                                                            |
-| ----------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------- |
-| Component lifetime versus one catalog           | hotkeys-core ↔ app-hotkeys | Agents move callbacks into a central registry, or build cheat sheets from live registrations |
-| Logical declarations versus physical recordings | app-hotkeys                | A rebinding to Command+P passes conflict checks and then runs two actions                    |
+| Tension                                          | Skills                     | Agent implication                                                                               |
+| ------------------------------------------------ | -------------------------- | ----------------------------------------------------------------------------------------------- |
+| Component lifetime versus one catalog            | hotkeys-core ↔ app-hotkeys | Agents move callbacks into a central registry, or build cheat sheets from live registrations    |
+| Hotkeys written differently that one press fires | app-hotkeys                | Without the recorder's context, a rebinding to Shift+/ passes `findConflicts` and overrides `?` |
 
 ## Cross-References
 
@@ -161,3 +161,45 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Changes:** the short task-to-API table in each of the 10 framework skills became an `## API` table with one row per export, 127 in all. Lit, Alpine, and Ember also list the two core calls they need, `provideAppHotkeys` and `getHotkeyManager().activateScope`; Alpine lists its 12 owner methods separately. Each table ends with a note that the adapter re-exports `@tanstack/hotkeys`. Core functions aren't repeated in each skill.
 - **Source sync:** the AltGr fix (#193) changed `hotkey-recorder.ts` and the AltGr notes in `docs/guides/sensible-defaults.md`. No skill covers AltGr, so `hotkeys-core` and `app-hotkeys` are unchanged.
 - **Checks:** a TypeScript export listing confirmed every adapter export appears in its skill; `intent validate` passes.
+
+### Batch 1 revision 3 — 2026-11-08 — Lit controller cleanup
+
+- **Source change:** every Lit controller gained `dispose()`, which runs `hostDisconnected()` and removes the controller from its host. `@hotkey` on a subclass override now replaces the parent's hotkeys for that method instead of registering a second time.
+- **Changes:** `lit-hotkeys` gained two pitfalls: remove a controller with `dispose()`, not `removeController`; and decorating an override replaces the parent's hotkeys. `domain_map.yaml` records the `removeController` failure mode.
+- **Checks:** both pitfalls are covered by `packages/lit-hotkeys/tests/lifecycle.test.ts` and `decorators.test.ts`.
+
+### Batch 1 revision 4 — 2026-11-08 — Angular change detection
+
+- **Source sync:** `injectHotkeys` and `injectHotkeyRecorder` now mark the registering component for check after each callback (`src/_zone.ts`), so plain field changes render in OnPush components and zoneless apps. Keys that fire no hotkey still don't run change detection.
+- **Changes:** `angular-hotkeys` gained one pitfall: a service outside any component, such as a root service, has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
+- **Checks:** `packages/angular-hotkeys/tests/change-detection.test.ts` and `tests/zone.test.ts` cover zone and zoneless, Default and OnPush, field and signal callbacks, the recorder, and a root service. `intent validate` passes. Not run: fresh-consumer sessions.
+
+### Source sync — 2026-11-08 — element targets that aren't ready yet
+
+- **Source:** branch `fix/unset-element-targets` from `06ce5e34`. `prepareHotkeyDefinitions` now treats a `target` that is set to `undefined`, or a `resolveTarget` result of `undefined`, like `null`: the hotkey waits. Only an omitted `target` listens on `document`. Vue unwraps a component ref to its root element when the ref is set (a fragment or text root waits; a root added later is not followed). Octane accepts ref objects as `target`, like React.
+- **Changes:** the Angular, Solid, and Octane skills no longer say an undefined target means `document`; Octane drops "targets are elements, not ref objects" for a mounts-later pitfall; Vue gains a component-ref pitfall. `domain_map.yaml` mechanisms for React, Preact, Solid, Angular, and Octane follow the new rule, and Vue gains one failure mode. React, Preact, Lit, and core skills were reviewed with no change: their target guidance still holds.
+- **Checks:** `intent validate` passes; adapter tests cover each case (core, React, Preact, Vue, Solid, Angular, Octane). Not run: fresh-consumer sessions.
+
+### Batch 1 revision 5 — 2026-11-08 — Angular recorder defaults and route scopes
+
+- **Source sync:** `injectHotkeyRecorder` now reads the provider's `hotkeyRecorder` defaults on each options sync instead of copying them at injection, so signal-driven defaults reach the recorder. `injectDefaultHotkeysOptions()` still returns the defaults at injection time; its JSDoc now says so and points to `injectHotkeysContext().defaultOptions` for tracked reads. Changing its return type to a signal was left as an API decision.
+- **Changes:** `angular-hotkeys` gained one pitfall: a scoped `provideHotkeys` in `Route.providers` outlives navigation, because by default the router keeps route injectors. The pitfall and the guide name `withAutoCleanupInjectors()` as an alternative, with its Angular 22.2 floor and its `shouldDestroyInjector` requirement. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
+- **Checks:** `packages/angular-hotkeys/tests/reactive-options.test.ts` covers a signal-driven provider recorder default. A scratch router test on `@angular/router` 22.2.5 (not committed, because the package has no router dependency) showed the route scope suspending another page's hotkey after navigation, and `withAutoCleanupInjectors()` ending it. `intent validate` passes. Not run: fresh-consumer sessions.
+
+### Source sync — 2026-11-11 — recorded hotkeys and conflict checks
+
+- **Source:** branch `fix/recorder-logical-conflicts` from `94358d54`. The recorder's default is now `recordBy: 'auto'`: it writes a press by name where it has one (`Mod+S`) and by position otherwise (Shift with a symbol, macOS Option with a digit or symbol, dead keys, the numpad). `AppHotkeysStore.findConflicts` and `setCustomHotkey`, and every adapter's wrappers, take the recorder's `context` and then also check with the key press that made the recording. `onRecord` receives that context as its second argument.
+- **Changes:** `app-hotkeys` replaces the pitfall "conflict checks treat physical and logical bindings as different" with "conflict checks need the recorder's `context`", and its recording reference describes the new default. Every framework skill's settings row passes `context` to `findConflicts`. The tension above and its `domain_map.yaml` entry now describe hotkeys written differently that one key press fires. The React `shortcut-settings` task no longer says conflicts can't be compared, and its solution passes `context`. `skill_tree.yaml` is unchanged. The runtime probes listed under batch 1 predate this change: the recorder no longer records `Mod+[KeyS]` for Control+S, and app hotkey checks match `Mod+[KeyP]` against `Mod+P` when they get the key press.
+- **Checks:** `packages/hotkeys/tests/recorder-auto.test.ts` covers the default, the context, and the conflict checks; each adapter's app hotkey test covers the pass-through. `intent validate` passes. Not run: fresh-consumer sessions.
+
+### Source sync — 2026-11-12 — keyboard layout labels
+
+- **Source:** branch `feat/keyboard-layout-labels` from `fix/recorder-logical-conflicts`. Each adapter's label primitive, such as `useFormatForDisplay`, now loads the browser's keyboard layout after the first label mounts and labels physical bindings with it, so `[KeyQ]` reads `A` on a French AZERTY keyboard in Chromium browsers. Every adapter has a layout primitive, such as `useKeyboardLayout`. Core adds `loadKeyboardLayout()` and `getKeyboardLayoutStore()`. `keyboardLayout: false` in a provider's default options, or in an Alpine or Ember scope's options, turns loading off. `formatForDisplay` called directly is unchanged.
+- **Changes:** the label primitive's row in each of the eight framework skills that have one now says it also labels physical keys for the user's layout, which plain `formatForDisplay` does not. Core skills, `domain_map.yaml` and `skill_tree.yaml` are unchanged: no failure mode or scope decision moved.
+- **Checks:** each adapter has a layout test file; `e2e/ssr/cheat-sheet.spec.ts` checks every server-rendered example hydrates with the US label and then follows a stubbed layout. `intent validate` passes. Not run: fresh-consumer sessions.
+
+### Source sync — 2026-11-12 — label primitive for every label
+
+- **Source:** branch `feat/keyboard-layout-labels`. Each adapter's label primitive is now the documented way to format every label in component code, not only in server-rendered apps, because it fills in both the provider's platform and the user's keyboard layout. Each adapter exports a deprecated `formatForDisplay`, the core function, that points to the primitive. Lit gains `FormatForDisplayController` and Alpine gains a scope's `createFormatForDisplay()` and a scope `platform` option. Examples name the primitive's result `formatForDisplay`.
+- **Changes:** every framework skill's opening snippet and app hotkeys reference use the label primitive, its API table row says to use it for every label and that layout labels work only in Chromium browsers, the re-export sentence says the plain export is deprecated and is still the function to call outside a component, and the server rendering pitfall no longer recommends the plain function. `hotkeys-core` points label maps to the adapter's label primitive. The Angular skill's scope pitfall now says a label also activates a lazily created provider. `domain_map.yaml` and `skill_tree.yaml` are unchanged.
+- **Checks:** each adapter tests that its deprecated export is the core function; Lit and Alpine have a label primitive test file. `intent validate` passes. Not run: fresh-consumer sessions.

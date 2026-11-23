@@ -1,5 +1,5 @@
-import { expect, it } from 'vitest'
 import { LitElement } from 'lit'
+import { expect, it } from 'vitest'
 import { hotkey } from '../src/decorators/hotkey'
 import type {
   HotkeyCallbackContext,

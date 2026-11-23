@@ -1,40 +1,47 @@
-import { For, Show, createMemo } from 'solid-js'
-import clsx from 'clsx'
 import {
+  DEFAULT_SEQUENCE_TIMEOUT,
   detectPlatform,
   formatForDisplay,
   normalizeHotkey,
   parseHotkey,
 } from '@tanstack/hotkeys'
-import { useStyles } from '../styles/use-styles'
+import clsx from 'clsx'
+import { For, Show, createMemo } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
-import { effectiveSequenceMatchedSteps } from '../sequence-progress'
-import { getScopeStatus } from '../_scopes'
+import { describeHotkeyIssues } from '../_issues'
 import {
   formatRegistration,
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
+import { getScopeStatus } from '../_scopes'
+import { getTargetSelector } from '../_targets'
+import { effectiveSequenceMatchedSteps } from '../sequence-progress'
+import { useStyles } from '../styles/use-styles'
 import { ActionButtons } from './ActionButtons'
+import { KeyboardLayoutDetails } from './KeyboardLayoutDetails'
 import type {
   AppHotkeyListItem,
   ConflictBehavior,
+  Hotkey,
   HotkeyChordRegistrationView,
+  HotkeyPlatform,
   HotkeyRegistrationView,
   HotkeySequenceRegistrationView,
   ParsedHotkeyChord,
+  Target,
 } from '@tanstack/hotkeys'
 
-const PLATFORM_ROWS = [
-  { id: 'mac' as const, label: 'macOS' },
-  { id: 'windows' as const, label: 'Windows' },
-  { id: 'linux' as const, label: 'Linux' },
+const PLATFORM_ROWS: ReadonlyArray<{ id: HotkeyPlatform; label: string }> = [
+  { id: 'mac', label: 'macOS' },
+  { id: 'windows', label: 'Windows' },
+  { id: 'linux', label: 'Linux' },
 ]
 
 function KeyBreakdownPlatformTable(props: {
   getParsed: () => ParsedHotkeyChord
   /** Platform used when the parsed hotkey was produced (registration `options.platform`). */
-  getCanonicalPlatform: () => 'mac' | 'windows' | 'linux'
+  getCanonicalPlatform: () => HotkeyPlatform
   styles: ReturnType<typeof useStyles>
 }) {
   const st = () => props.styles()
@@ -62,36 +69,41 @@ function KeyBreakdownPlatformTable(props: {
   )
 }
 
-/** What the details panel shows: a live registration or a declared app hotkey. */
+/** Readable validation problems, such as a key name in the wrong case. */
+function IssuesSection(props: {
+  hotkey: Hotkey
+  styles: ReturnType<typeof useStyles>
+}) {
+  const issues = createMemo(() => describeHotkeyIssues(props.hotkey))
+  return (
+    <Show when={issues().length > 0}>
+      <div class={props.styles().detailSection}>
+        <div class={props.styles().detailSectionHeader}>
+          Issues ({issues().length})
+        </div>
+        <div class={props.styles().conflictList}>
+          <For each={issues()}>
+            {(issue) => <div class={props.styles().issueItem}>{issue}</div>}
+          </For>
+        </div>
+      </div>
+    </Show>
+  )
+}
+
+/** What the details panel shows: a live registration, a declared app hotkey, or the keyboard layout. */
 export type DetailsSelection =
   | { type: 'registration'; registration: HotkeyRegistrationView }
   | { type: 'appHotkey'; item: AppHotkeyListItem }
+  | { type: 'keyboardLayout' }
 
 type DetailsPanelProps = {
   selection: () => DetailsSelection | null
 }
 
-function getTargetDescription(target: HTMLElement | Document | Window): string {
-  if (typeof document !== 'undefined' && target === document) {
-    return 'document'
-  }
-  if (typeof window !== 'undefined' && target === window) {
-    return 'window'
-  }
-  if (target instanceof HTMLElement) {
-    const tag = target.tagName.toLowerCase()
-    const id = target.id ? `#${target.id}` : ''
-    const cls = target.className
-      ? `.${target.className.split(' ').join('.')}`
-      : ''
-    return `${tag}${id}${cls}`
-  }
-  return 'element'
-}
-
 function HotkeyDetails(props: {
   registration: HotkeyChordRegistrationView
-  getTargetDescription: (t: HTMLElement | Document | Window) => string
+  getTargetDescription: (t: Target) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const state = useHotkeysDevtoolsState()
@@ -309,6 +321,8 @@ function HotkeyDetails(props: {
           </div>
         </div>
 
+        <IssuesSection hotkey={reg().hotkey} styles={styles} />
+
         <Show when={allConflicts().length > 0}>
           <div class={styles().detailSection}>
             <div class={styles().detailSectionHeader}>
@@ -348,7 +362,7 @@ function HotkeyDetails(props: {
 function SequenceDetails(props: {
   registration: HotkeySequenceRegistrationView
   state: ReturnType<typeof useHotkeysDevtoolsState>
-  getTargetDescription: (t: HTMLElement | Document | Window) => string
+  getTargetDescription: (t: Target) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
@@ -587,7 +601,7 @@ function SequenceDetails(props: {
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>timeout</span>
               <span class={styles().optionValue}>
-                {liveReg().options.timeout ?? 1000}ms
+                {liveReg().options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT}ms
               </span>
             </div>
             <div class={styles().optionRow}>
@@ -634,6 +648,8 @@ function SequenceDetails(props: {
             </div>
           </div>
         </div>
+
+        <IssuesSection hotkey={liveReg().hotkey} styles={styles} />
 
         <Show when={allConflicts().length > 0}>
           <div class={styles().detailSection}>
@@ -709,6 +725,9 @@ function AppHotkeyDetails(props: {
         </div>
       </div>
       <div class={styles().detailsGrid}>
+        <Show when={appHotkey().hotkey}>
+          {(hotkey) => <IssuesSection hotkey={hotkey()} styles={styles} />}
+        </Show>
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Meta</div>
           <div>
@@ -741,6 +760,7 @@ export function DetailsPanel(props: DetailsPanelProps) {
   const selectionKey = createMemo(() => {
     const selection = props.selection()
     if (!selection) return null
+    if (selection.type === 'keyboardLayout') return 'layout'
     return selection.type === 'appHotkey'
       ? `app:${selection.item.appHotkey.id}`
       : `${selection.registration.kind}:${selection.registration.id}`
@@ -768,19 +788,21 @@ export function DetailsPanel(props: DetailsPanelProps) {
         }
       >
         {(key) =>
-          key.startsWith('app:') ? (
+          key === 'layout' ? (
+            <KeyboardLayoutDetails />
+          ) : key.startsWith('app:') ? (
             <AppHotkeyDetails item={appHotkeyItem()!} styles={styles} />
           ) : key.startsWith('sequence:') ? (
             <SequenceDetails
               registration={registration() as HotkeySequenceRegistrationView}
               state={state}
-              getTargetDescription={getTargetDescription}
+              getTargetDescription={getTargetSelector}
               styles={styles}
             />
           ) : (
             <HotkeyDetails
               registration={registration() as HotkeyChordRegistrationView}
-              getTargetDescription={getTargetDescription}
+              getTargetDescription={getTargetSelector}
               styles={styles}
             />
           )

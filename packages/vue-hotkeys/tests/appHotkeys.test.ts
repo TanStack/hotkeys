@@ -1,7 +1,7 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
-import { mount } from '@vue/test-utils'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { defineComponent, h, nextTick, ref, shallowRef } from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
   useAppHotkeyList,
@@ -9,9 +9,9 @@ import {
   useCustomHotkeys,
 } from '../src/useAppHotkeys'
 import { useHotkey } from '../src/useHotkey'
-import { useHotkeys } from '../src/useHotkeys'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
+import { useHotkeys } from '../src/useHotkeys'
+import type { AppHotkeys, CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
@@ -248,7 +248,102 @@ describe('useHotkeyRecorder', () => {
     press('g', { code: 'KeyG' })
     expect(recorder.steps.value).toEqual(['G'])
     press('h', { code: 'KeyH' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
+    wrapper.unmount()
+  })
+})
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', async () => {
+    const platform = ref<'mac' | 'windows'>('mac')
+    let list!: ReturnType<typeof useAppHotkeyList>
+    let custom!: ReturnType<typeof useCustomHotkeys>
+    const Child = defineComponent({
+      setup() {
+        list = useAppHotkeyList()
+        custom = useCustomHotkeys()
+        return () => h('div')
+      },
+    })
+    const wrapper = mount(
+      defineComponent({
+        setup() {
+          return () =>
+            h(
+              HotkeysProvider,
+              {
+                appHotkeys,
+                customHotkeys: { 'doc.save': 'Meta+S' },
+                defaultOptions: { platform: platform.value },
+              },
+              () => h(Child),
+            )
+        },
+      }),
+    )
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(list.value[0]!.isCustom).toBe(false)
+    expect(
+      custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+    ).toEqual(['doc.save'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        metaKey: true,
+      }),
+    }
+    expect(custom.findConflicts('palette.open', 'Meta+[KeyS]')).toEqual([])
+    expect(
+      custom
+        .findConflicts('palette.open', 'Meta+[KeyS]', recordedWith)
+        .map((a) => a.id),
+    ).toEqual(['doc.save'])
+
+    platform.value = 'windows'
+    await nextTick()
+    expect(list.value[0]!.isCustom).toBe(true)
+    wrapper.unmount()
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", async () => {
+    const nestedHotkeys = defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } })
+    const nested = shallowRef<AppHotkeys>()
+    const lists: Record<string, ReturnType<typeof useAppHotkeyList>> = {}
+    const List = defineComponent({
+      props: { name: { type: String, required: true } },
+      setup(props) {
+        lists[props.name] = useAppHotkeyList()
+        return () => h('div')
+      },
+    })
+    const wrapper = mount(
+      defineComponent({
+        setup: () => () =>
+          h(HotkeysProvider, { appHotkeys }, () => [
+            h(List, { name: 'root' }),
+            h(HotkeysProvider, { appHotkeys: nested.value }, () =>
+              h(List, { name: 'nested' }),
+            ),
+          ]),
+      }),
+    )
+    const ids = (name: string) =>
+      lists[name]!.value.map((item) => item.appHotkey.id)
+    const rootIds = Object.keys(appHotkeys)
+    // Until its own declarations arrive, it shares its parent's store.
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, rootIds])
+
+    nested.value = nestedHotkeys
+    await nextTick()
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, ['file.open']])
     wrapper.unmount()
   })
 })

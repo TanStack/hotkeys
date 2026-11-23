@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkey,
   injectHotkeyRegistrations,
   injectHotkeys,
@@ -17,7 +17,7 @@ export class AppComponent {
   history = signal<Array<string>>([])
   readonly helloSequenceEnabled = signal(true)
 
-  formatForDisplay = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
   readonly registrations = injectHotkeyRegistrations()
 
   constructor() {

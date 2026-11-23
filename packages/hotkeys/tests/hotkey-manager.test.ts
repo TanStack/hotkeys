@@ -1,32 +1,7 @@
+import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
-
-/**
- * Helper to create a mock KeyboardEvent
- */
-function createKeyboardEvent(
-  type: 'keydown' | 'keyup',
-  key: string,
-  options: {
-    ctrlKey?: boolean
-    shiftKey?: boolean
-    altKey?: boolean
-    metaKey?: boolean
-    code?: string
-    repeat?: boolean
-  } = {},
-): KeyboardEvent {
-  return new KeyboardEvent(type, {
-    key,
-    repeat: options.repeat ?? false,
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    code: options.code,
-    bubbles: true,
-  })
-}
+import type { HotkeyEventType } from '../src/hotkey.types'
 
 describe('HotkeyManager', () => {
   beforeEach(() => {
@@ -98,9 +73,7 @@ describe('HotkeyManager', () => {
       expect(manager.isRegistered('Control+Shift+S')).toBe(true)
 
       // Trigger the hotkey
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { ctrlKey: true, shiftKey: true }),
-      )
+      keydown({ key: 's', ctrlKey: true, shiftKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -111,7 +84,7 @@ describe('HotkeyManager', () => {
       manager.register({ key: 'Escape' }, callback)
 
       expect(manager.getRegistrationCount()).toBe(1)
-      document.dispatchEvent(createKeyboardEvent('keydown', 'Escape'))
+      keydown({ key: 'Escape', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -123,9 +96,7 @@ describe('HotkeyManager', () => {
 
       expect(manager.getRegistrationCount()).toBe(1)
       expect(manager.isRegistered('Meta+S')).toBe(true)
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
   })
@@ -149,7 +120,7 @@ describe('HotkeyManager', () => {
       const handle = manager.register('Mod+S', callback1, { platform: 'mac' })
 
       // Trigger with first callback
-      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event1 = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(event1)
       expect(callback1).toHaveBeenCalledTimes(1)
       expect(callback2).not.toHaveBeenCalled()
@@ -158,7 +129,7 @@ describe('HotkeyManager', () => {
       handle.callback = callback2
 
       // Trigger again - should call new callback
-      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event2 = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(event2)
       expect(callback1).toHaveBeenCalledTimes(1) // unchanged
       expect(callback2).toHaveBeenCalledTimes(1) // now called
@@ -171,27 +142,21 @@ describe('HotkeyManager', () => {
       const handle = manager.register('Mod+S', callback, { platform: 'mac' })
 
       // Should trigger initially
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Disable via setOptions
       handle.setOptions({ enabled: false })
 
       // Should not trigger when disabled
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1) // unchanged
 
       // Re-enable
       handle.setOptions({ enabled: true })
 
       // Should trigger again
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(2)
     })
 
@@ -281,7 +246,7 @@ describe('HotkeyManager', () => {
 
       manager.register('Mod+S', callback, { platform: 'mac' })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(event)
 
       expect(callback).toHaveBeenCalledWith(
@@ -299,7 +264,7 @@ describe('HotkeyManager', () => {
 
       manager.register('Mod+S', callback, { platform: 'mac' })
 
-      const event = createKeyboardEvent('keydown', 'z', { metaKey: true })
+      const event = keydown({ key: 'z', metaKey: true })
       document.dispatchEvent(event)
 
       expect(callback).not.toHaveBeenCalled()
@@ -311,7 +276,7 @@ describe('HotkeyManager', () => {
 
       manager.register('Mod+S', callback, { platform: 'mac', enabled: false })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(event)
 
       expect(callback).not.toHaveBeenCalled()
@@ -327,14 +292,12 @@ describe('HotkeyManager', () => {
       })
 
       // keydown should not trigger
-      const keydownEvent = createKeyboardEvent('keydown', 's', {
-        metaKey: true,
-      })
+      const keydownEvent = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(keydownEvent)
       expect(callback).not.toHaveBeenCalled()
 
       // keyup should trigger
-      const keyupEvent = createKeyboardEvent('keyup', 's', { metaKey: true })
+      const keyupEvent = keyup({ key: 's', metaKey: true })
       document.dispatchEvent(keyupEvent)
       expect(callback).toHaveBeenCalled()
     })
@@ -347,7 +310,7 @@ describe('HotkeyManager', () => {
      * a listener is attached to document.
      */
     function createBraveLikeEvent(
-      type: 'keydown' | 'keyup',
+      type: HotkeyEventType,
       key: string,
       options: {
         ctrlKey?: boolean
@@ -356,7 +319,7 @@ describe('HotkeyManager', () => {
         metaKey?: boolean
       } = {},
     ): KeyboardEvent {
-      const event = createKeyboardEvent(type, key, options)
+      const event = keyEvent(type, { key, ...options })
       return new Proxy(event, {
         get(target, prop) {
           if (prop === 'currentTarget') {
@@ -411,15 +374,12 @@ describe('HotkeyManager', () => {
         requireReset: true,
       })
 
-      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event1 = keydown({ key: 's', metaKey: true })
       document.dispatchEvent(event1)
       expect(callback).toHaveBeenCalledTimes(1)
 
       // An auto-repeat should not fire (keys still held)
-      const event2 = createKeyboardEvent('keydown', 's', {
-        metaKey: true,
-        repeat: true,
-      })
+      const event2 = keydown({ key: 's', metaKey: true, repeat: true })
       document.dispatchEvent(event2)
       expect(callback).toHaveBeenCalledTimes(1)
     })
@@ -434,21 +394,37 @@ describe('HotkeyManager', () => {
       })
 
       // First press
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Release the key
-      document.dispatchEvent(
-        createKeyboardEvent('keyup', 's', { metaKey: true }),
-      )
+      keyup({ key: 's', metaKey: true, target: document })
 
       // Second press should fire
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    // The devtools used to show hasFired: true until an unrelated change
+    it('notifies subscribers once when a release clears the latch', () => {
+      const manager = HotkeyManager.getInstance()
+      manager.register('K', () => {}, { requireReset: true })
+      manager.register('J', () => {}, { requireReset: true })
+      const seen: Array<Array<boolean>> = []
+      const subscription = manager.registrations.subscribe(() =>
+        seen.push(
+          [...manager.registrations.state.values()].map((r) => r.hasFired),
+        ),
+      )
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      // A release that clears no latch doesn't notify
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      subscription.unsubscribe()
+      expect(seen).toEqual([
+        [true, false],
+        [false, false],
+      ])
     })
 
     it('should call preventDefault even when requireReset is active and has already fired', () => {
@@ -462,7 +438,7 @@ describe('HotkeyManager', () => {
       })
 
       // First keydown - should call preventDefault and callback
-      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event1 = keydown({ key: 's', metaKey: true })
       const preventDefaultSpy1 = vi.spyOn(event1, 'preventDefault')
       document.dispatchEvent(event1)
 
@@ -470,10 +446,7 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Second keydown while keys still held - should call preventDefault but NOT callback
-      const event2 = createKeyboardEvent('keydown', 's', {
-        metaKey: true,
-        repeat: true,
-      })
+      const event2 = keydown({ key: 's', metaKey: true, repeat: true })
       const preventDefaultSpy2 = vi.spyOn(event2, 'preventDefault')
       document.dispatchEvent(event2)
 
@@ -492,7 +465,7 @@ describe('HotkeyManager', () => {
       })
 
       // First keydown - should call stopPropagation and callback
-      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event1 = keydown({ key: 's', metaKey: true })
       const stopPropagationSpy1 = vi.spyOn(event1, 'stopPropagation')
       document.dispatchEvent(event1)
 
@@ -500,10 +473,7 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Second keydown while keys still held - should call stopPropagation but NOT callback
-      const event2 = createKeyboardEvent('keydown', 's', {
-        metaKey: true,
-        repeat: true,
-      })
+      const event2 = keydown({ key: 's', metaKey: true, repeat: true })
       const stopPropagationSpy2 = vi.spyOn(event2, 'stopPropagation')
       document.dispatchEvent(event2)
 
@@ -521,20 +491,14 @@ describe('HotkeyManager', () => {
       })
 
       // First press
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { ctrlKey: true }),
-      )
+      keydown({ key: 's', ctrlKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Release Control key (using normalized key name 'Control')
-      document.dispatchEvent(
-        createKeyboardEvent('keyup', 'Control', { ctrlKey: false }),
-      )
+      keyup({ key: 'Control', ctrlKey: false, target: document })
 
       // Second press should fire after reset
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { ctrlKey: true }),
-      )
+      keydown({ key: 's', ctrlKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(2)
     })
 
@@ -548,20 +512,14 @@ describe('HotkeyManager', () => {
       })
 
       // First press
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Release the main key
-      document.dispatchEvent(
-        createKeyboardEvent('keyup', 's', { metaKey: true }),
-      )
+      keyup({ key: 's', metaKey: true, target: document })
 
       // Second press should fire after reset
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
       expect(callback).toHaveBeenCalledTimes(2)
     })
 
@@ -573,15 +531,9 @@ describe('HotkeyManager', () => {
         requireReset: true,
       })
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
-      )
-      document.dispatchEvent(
-        createKeyboardEvent('keyup', 'a', { ctrlKey: true, code: 'KeyA' }),
-      )
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
-      )
+      keydown({ key: 'ф', ctrlKey: true, code: 'KeyA', target: document })
+      keyup({ key: 'a', ctrlKey: true, code: 'KeyA', target: document })
+      keydown({ key: 'ф', ctrlKey: true, code: 'KeyA', target: document })
       expect(callback).toHaveBeenCalledTimes(2)
     })
   })
@@ -594,9 +546,7 @@ describe('HotkeyManager', () => {
       manager.register('Control+ф' as never, logical, { platform: 'windows' })
       manager.register('Control+A', fallback, { platform: 'windows' })
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
-      )
+      keydown({ key: 'ф', ctrlKey: true, code: 'KeyA', target: document })
       expect(logical).toHaveBeenCalledOnce()
       expect(fallback).not.toHaveBeenCalled()
     })
@@ -608,9 +558,7 @@ describe('HotkeyManager', () => {
         platform: 'windows',
       })
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 'ц', { ctrlKey: true, code: 'KeyW' }),
-      )
+      keydown({ key: 'ц', ctrlKey: true, code: 'KeyW', target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -621,15 +569,71 @@ describe('HotkeyManager', () => {
       manager.register('Control+1', implicit, { platform: 'windows' })
       manager.register('Control+Shift+1', explicit, { platform: 'windows' })
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', '1', {
-          ctrlKey: true,
-          shiftKey: true,
-          code: 'Digit1',
-        }),
-      )
+      keydown({
+        key: '1',
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'Digit1',
+        target: document,
+      })
       expect(explicit).toHaveBeenCalledOnce()
       expect(implicit).not.toHaveBeenCalled()
+    })
+
+    // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+    it('fires logical and physical hotkeys for an Unidentified key', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const physical = vi.fn()
+      manager.register('Control+`', logical, { platform: 'linux' })
+      manager.register('Meta+[Backquote]', physical, { platform: 'linux' })
+
+      keydown({
+        key: 'Unidentified',
+        ctrlKey: true,
+        code: 'Backquote',
+        target: document,
+      })
+      keydown({
+        key: 'Unidentified',
+        metaKey: true,
+        code: 'Backquote',
+        target: document,
+      })
+      expect(logical).toHaveBeenCalledOnce()
+      expect(physical).toHaveBeenCalledOnce()
+    })
+
+    it('leaves AZERTY Control+- (zoom out) to the browser with Mod+6 registered', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register('Mod+6', callback, { platform: 'linux' })
+
+      const event = keydown({
+        key: '-',
+        ctrlKey: true,
+        code: 'Digit6',
+        target: document,
+      })
+      expect(callback).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
+    it('prefers a physical binding over the fallback for an Unidentified key', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const physical = vi.fn()
+      manager.register('Control+`', logical, { platform: 'linux' })
+      manager.register('Control+[Backquote]', physical, { platform: 'linux' })
+
+      keydown({
+        key: 'Unidentified',
+        ctrlKey: true,
+        code: 'Backquote',
+        target: document,
+      })
+      expect(physical).toHaveBeenCalledOnce()
+      expect(logical).not.toHaveBeenCalled()
     })
   })
 
@@ -640,7 +644,7 @@ describe('HotkeyManager', () => {
 
       manager.register('Mod+S', callback, { platform: 'mac' })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       const preventDefaultSpy = vi.spyOn(event, 'preventDefault')
 
       document.dispatchEvent(event)
@@ -657,7 +661,7 @@ describe('HotkeyManager', () => {
         preventDefault: false,
       })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       const preventDefaultSpy = vi.spyOn(event, 'preventDefault')
 
       document.dispatchEvent(event)
@@ -671,7 +675,7 @@ describe('HotkeyManager', () => {
 
       manager.register('Mod+S', callback, { platform: 'mac' })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       const stopPropagationSpy = vi.spyOn(event, 'stopPropagation')
 
       document.dispatchEvent(event)
@@ -688,7 +692,7 @@ describe('HotkeyManager', () => {
         stopPropagation: false,
       })
 
-      const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event = keydown({ key: 's', metaKey: true })
       const stopPropagationSpy = vi.spyOn(event, 'stopPropagation')
 
       document.dispatchEvent(event)
@@ -698,7 +702,7 @@ describe('HotkeyManager', () => {
 
     describe("preventDefault: 'always'", () => {
       function pressModS() {
-        const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+        const event = keydown({ key: 's', metaKey: true })
         const preventDefault = vi.spyOn(event, 'preventDefault')
         const stopPropagation = vi.spyOn(event, 'stopPropagation')
         document.dispatchEvent(event)
@@ -797,7 +801,7 @@ describe('HotkeyManager', () => {
         })
 
         for (const key of ['s', 'k']) {
-          const event = createKeyboardEvent('keydown', key, { metaKey: true })
+          const event = keydown({ key, metaKey: true })
           const preventDefault = vi.spyOn(event, 'preventDefault')
           button.dispatchEvent(event)
           expect(preventDefault).not.toHaveBeenCalled()
@@ -829,12 +833,7 @@ describe('HotkeyManager', () => {
           preventDefault: false,
         })
 
-        const event = new KeyboardEvent('keydown', {
-          key: 's',
-          metaKey: true,
-          bubbles: true,
-          composed: true,
-        })
+        const event = keydown({ key: 's', metaKey: true, composed: true })
         // Browsers retarget events leaving a shadow root: listeners outside it
         // see the host as event.target. happy-dom doesn't, so mimic it.
         Object.defineProperty(event, 'target', {
@@ -864,7 +863,7 @@ describe('HotkeyManager', () => {
           preventDefault: false,
         })
 
-        const event = createKeyboardEvent('keydown', 'k', { metaKey: true })
+        const event = keydown({ key: 'k', metaKey: true })
         const preventDefault = vi.spyOn(event, 'preventDefault')
         document.dispatchEvent(event)
         expect(preventDefault).not.toHaveBeenCalled()
@@ -879,7 +878,7 @@ describe('HotkeyManager', () => {
         const input = document.createElement('input')
         document.body.appendChild(input)
 
-        const event = createKeyboardEvent('keydown', 'k')
+        const event = keydown({ key: 'k' })
         const preventDefault = vi.spyOn(event, 'preventDefault')
         input.dispatchEvent(event)
 
@@ -898,7 +897,7 @@ describe('HotkeyManager', () => {
     function dispatchKeyboardEventFromElement(
       target: HTMLElement | Document,
       element: HTMLElement,
-      type: 'keydown' | 'keyup',
+      type: HotkeyEventType,
       key: string,
       options: {
         ctrlKey?: boolean
@@ -910,14 +909,7 @@ describe('HotkeyManager', () => {
       // Focus the element so document.activeElement is set
       element.focus()
 
-      const event = new KeyboardEvent(type, {
-        key,
-        ctrlKey: options.ctrlKey ?? false,
-        shiftKey: options.shiftKey ?? false,
-        altKey: options.altKey ?? false,
-        metaKey: options.metaKey ?? false,
-        bubbles: true,
-      })
+      const event = keyEvent(type, { key, ...options })
       // Set currentTarget to the target (where the listener is attached)
       Object.defineProperty(event, 'currentTarget', {
         value: target,
@@ -1193,13 +1185,7 @@ describe('HotkeyManager', () => {
       document.body.appendChild(host)
 
       textarea.focus()
-      textarea.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'k',
-          bubbles: true,
-          composed: true,
-        }),
-      )
+      keydown({ key: 'k', composed: true, target: textarea })
 
       expect(callback).not.toHaveBeenCalled()
 
@@ -1423,10 +1409,7 @@ describe('HotkeyManager', () => {
 
       input.focus()
 
-      const event = new KeyboardEvent('keydown', {
-        key: 'q',
-        bubbles: true,
-      })
+      const event = keydown({ key: 'q' })
       Object.defineProperty(event, 'target', {
         value: listItem,
         writable: false,
@@ -1459,11 +1442,7 @@ describe('HotkeyManager', () => {
 
       input.focus()
 
-      const event = new KeyboardEvent('keydown', {
-        key: 's',
-        metaKey: true,
-        bubbles: true,
-      })
+      const event = keydown({ key: 's', metaKey: true })
       Object.defineProperty(event, 'target', {
         value: listItem,
         writable: false,
@@ -1551,9 +1530,7 @@ describe('HotkeyManager', () => {
 
     function pressK(element: Element) {
       ;(element as HTMLElement).focus()
-      element.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'k', code: 'KeyK', bubbles: true }),
-      )
+      keydown({ key: 'k', code: 'KeyK', target: element })
     }
 
     it.each([
@@ -1638,9 +1615,7 @@ describe('HotkeyManager', () => {
       })
       expect(manager.getRegistrationCount()).toBe(1)
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
 
       expect(callback1).not.toHaveBeenCalled()
       expect(callback2).toHaveBeenCalledOnce()
@@ -1661,9 +1636,7 @@ describe('HotkeyManager', () => {
       expect(warnSpy).not.toHaveBeenCalled()
       expect(manager.getRegistrationCount()).toBe(2)
 
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
 
       expect(callback1).toHaveBeenCalledOnce()
       expect(callback2).toHaveBeenCalledOnce()
@@ -1768,6 +1741,126 @@ describe('HotkeyManager', () => {
       })
       expect(reg.options.enabled).toBe(false)
     })
+
+    it('does not publish when a fresh meta has the same content', () => {
+      const manager = HotkeyManager.getInstance()
+      const meta = () => ({
+        name: 'Save',
+        ...({
+          keywords: ['file', 'write'],
+          section: { id: 'document', order: [1, 2] },
+        } as object),
+      })
+      const handle = manager.register('Mod+S', vi.fn(), { meta: meta() })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: meta() })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+    })
+
+    it('keeps the latest function and element values without publishing', () => {
+      const manager = HotkeyManager.getInstance()
+      // React rebuilds elements on every render. Preact vnodes carry an own
+      // `constructor: undefined` and a per-vnode id.
+      const reactIcon = () => ({
+        $$typeof: Symbol.for('react.transitional.element'),
+        type: 'svg',
+        props: {},
+        _owner: new (class Fiber {})(),
+      })
+      const preactIcon = (id: number) => ({
+        type: 'svg',
+        constructor: undefined,
+        __v: id,
+      })
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: {
+          name: 'Save',
+          ...({ icon: reactIcon(), badge: preactIcon(1), run: () => 1 } as any),
+        },
+      })
+      // A list rendered before the update holds this view.
+      const view = toHotkeyRegistrationView(
+        Array.from(manager.registrations.state.values())[0]!,
+      )
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      const run = () => 2
+      const icon = reactIcon()
+      handle.setOptions({
+        meta: { name: 'Save', ...({ icon, badge: preactIcon(2), run } as any) },
+      })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).run).toBe(run)
+      expect((reg.options.meta as any).icon).toBe(icon)
+      expect((view.options.meta as any).run).toBe(run)
+      expect((view.options.meta as any).icon).toBe(icon)
+    })
+
+    it('does not publish repeated meta resets on a hotkey without meta', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn())
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+      handle.setOptions({ meta: undefined })
+
+      subscription.unsubscribe()
+      expect(listener).not.toHaveBeenCalled()
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect('meta' in reg.options).toBe(false)
+    })
+
+    it('publishes when a primitive meta field changes', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: { name: 'Mute' },
+      })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({ meta: { name: 'Unmute' } })
+      handle.setOptions({ meta: { name: 'Unmute', description: 'Sound' } })
+
+      subscription.unsubscribe()
+      expect(listener).toHaveBeenCalledTimes(2)
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({ name: 'Unmute', description: 'Sound' })
+    })
+
+    it('keeps a changed array without publishing until its kind changes', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), {
+        meta: { name: 'Save', ...({ keywords: ['file'] } as object) },
+      })
+      const listener = vi.fn()
+      const subscription = manager.registrations.subscribe(listener)
+
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: ['file', 'write'] } as object) },
+      })
+      expect(listener).not.toHaveBeenCalled()
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: { file: true } } as object) },
+      })
+      handle.setOptions({
+        meta: { name: 'Save', ...({ keywords: 'file' } as object) },
+      })
+
+      subscription.unsubscribe()
+      expect(listener).toHaveBeenCalledTimes(2)
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).keywords).toBe('file')
+    })
   })
 
   describe('toHotkeyRegistrationView', () => {
@@ -1824,9 +1917,7 @@ describe('HotkeyManager', () => {
       expect(toHotkeyRegistrationView(regBefore).hasFired).toBe(false)
 
       // Trigger the hotkey
-      document.dispatchEvent(
-        createKeyboardEvent('keydown', 's', { metaKey: true }),
-      )
+      keydown({ key: 's', metaKey: true, target: document })
 
       const regAfter = Array.from(manager.registrations.state.values())[0]!
       expect(toHotkeyRegistrationView(regAfter).hasFired).toBe(true)
@@ -1873,32 +1964,47 @@ describe('HotkeyManager edge cases', () => {
       })
       // macOS drops K's keyup while Command is held.
       for (let press = 0; press < 3; press++) {
-        document.dispatchEvent(
-          createKeyboardEvent('keydown', 'k', { metaKey: true }),
-        )
-        document.dispatchEvent(
-          createKeyboardEvent('keydown', 'k', { metaKey: true, repeat: true }),
-        )
+        keydown({ key: 'k', metaKey: true, target: document })
+        keydown({ key: 'k', metaKey: true, repeat: true, target: document })
       }
       expect(callback).toHaveBeenCalledTimes(3)
     })
   })
 
   describe('keyup chords', () => {
-    function key(
-      type: 'keydown' | 'keyup',
-      key: string,
-      init: KeyboardEventInit = {},
-    ): KeyboardEvent {
-      const event = new KeyboardEvent(type, {
-        key,
-        bubbles: true,
-        cancelable: true,
-        ...init,
+    // AZERTY types 6 with Shift and - without it. With Shift released first,
+    // the 6 key's keyup reports Control+-, which alone would be zoom out.
+    it('fires on the release of the pressed key after its character changes', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+6', callback, {
+        platform: 'linux',
+        eventType: 'keyup',
       })
-      document.dispatchEvent(event)
-      return event
-    }
+      const press = { code: 'Digit6', ctrlKey: true, target: document }
+      keydown({ ...press, key: '6', shiftKey: true })
+      keyup({
+        key: 'Shift',
+        code: 'ShiftLeft',
+        ctrlKey: true,
+        target: document,
+      })
+      expect(callback).not.toHaveBeenCalled()
+      keyup({ ...press, key: '-' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('fires a shifted symbol on its key release after Shift comes up first', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('?', callback, {
+        platform: 'linux',
+        eventType: 'keyup',
+      })
+      keydown({ key: '?', code: 'Slash', shiftKey: true, target: document })
+      keyup({ key: 'Shift', code: 'ShiftLeft', target: document })
+      expect(callback).not.toHaveBeenCalled()
+      keyup({ key: '/', code: 'Slash', target: document })
+      expect(callback).toHaveBeenCalledOnce()
+    })
 
     it('prevents the keydown so the browser does not act on it', () => {
       const save = vi.fn()
@@ -1906,10 +2012,15 @@ describe('HotkeyManager edge cases', () => {
         platform: 'windows',
         eventType: 'keyup',
       })
-      const down = key('keydown', 's', { code: 'KeyS', ctrlKey: true })
+      const down = keydown({
+        key: 's',
+        code: 'KeyS',
+        ctrlKey: true,
+        target: document,
+      })
       expect(down.defaultPrevented).toBe(true)
       expect(save).not.toHaveBeenCalled()
-      key('keyup', 's', { code: 'KeyS', ctrlKey: true })
+      keyup({ key: 's', code: 'KeyS', ctrlKey: true, target: document })
       expect(save).toHaveBeenCalledOnce()
     })
 
@@ -1919,7 +2030,12 @@ describe('HotkeyManager edge cases', () => {
         eventType: 'keyup',
         preventDefault: false,
       })
-      const down = key('keydown', 's', { code: 'KeyS', ctrlKey: true })
+      const down = keydown({
+        key: 's',
+        code: 'KeyS',
+        ctrlKey: true,
+        target: document,
+      })
       expect(down.defaultPrevented).toBe(false)
     })
 
@@ -1929,9 +2045,14 @@ describe('HotkeyManager edge cases', () => {
         platform: 'mac',
         eventType: 'keyup',
       })
-      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
-      key('keydown', 'k', { code: 'KeyK', metaKey: true })
-      key('keyup', 'Meta', { code: 'MetaLeft' })
+      keydown({
+        key: 'Meta',
+        code: 'MetaLeft',
+        metaKey: true,
+        target: document,
+      })
+      keydown({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keyup({ key: 'Meta', code: 'MetaLeft', target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -1941,10 +2062,15 @@ describe('HotkeyManager edge cases', () => {
         platform: 'windows',
         eventType: 'keyup',
       })
-      key('keydown', 'Control', { code: 'ControlLeft', ctrlKey: true })
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', { code: 'ControlLeft' })
-      key('keyup', 'k', { code: 'KeyK' })
+      keydown({
+        key: 'Control',
+        code: 'ControlLeft',
+        ctrlKey: true,
+        target: document,
+      })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
+      keyup({ key: 'k', code: 'KeyK', target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -1954,9 +2080,9 @@ describe('HotkeyManager edge cases', () => {
         platform: 'mac',
         eventType: 'keyup',
       })
-      key('keydown', 'k', { code: 'KeyK', metaKey: true })
-      key('keyup', 'k', { code: 'KeyK', metaKey: true })
-      key('keyup', 'Meta', { code: 'MetaLeft' })
+      keydown({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keyup({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keyup({ key: 'Meta', code: 'MetaLeft', target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -1966,9 +2092,9 @@ describe('HotkeyManager edge cases', () => {
         platform: 'mac',
         eventType: 'keyup',
       })
-      key('keydown', 'k', { code: 'KeyK', metaKey: true })
-      key('keydown', 'j', { code: 'KeyJ', metaKey: true })
-      key('keyup', 'Meta', { code: 'MetaLeft' })
+      keydown({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keydown({ key: 'j', code: 'KeyJ', metaKey: true, target: document })
+      keyup({ key: 'Meta', code: 'MetaLeft', target: document })
       expect(callback).not.toHaveBeenCalled()
     })
 
@@ -1979,10 +2105,20 @@ describe('HotkeyManager edge cases', () => {
         eventType: 'keyup',
       })
       // The window loses focus before either key is released.
-      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
-      key('keydown', 'k', { code: 'KeyK', metaKey: true })
-      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
-      key('keyup', 'Meta', { code: 'MetaLeft' })
+      keydown({
+        key: 'Meta',
+        code: 'MetaLeft',
+        metaKey: true,
+        target: document,
+      })
+      keydown({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keydown({
+        key: 'Meta',
+        code: 'MetaLeft',
+        metaKey: true,
+        target: document,
+      })
+      keyup({ key: 'Meta', code: 'MetaLeft', target: document })
       expect(callback).not.toHaveBeenCalled()
     })
 
@@ -1992,16 +2128,30 @@ describe('HotkeyManager edge cases', () => {
         platform: 'windows',
         eventType: 'keyup',
       })
-      key('keydown', 'Control', { code: 'ControlLeft', ctrlKey: true })
-      key('keydown', 'Control', { code: 'ControlRight', ctrlKey: true })
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', {
+      keydown({
+        key: 'Control',
         code: 'ControlLeft',
         ctrlKey: true,
-        modifierControl: true,
-      } as KeyboardEventInit)
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', { code: 'ControlRight' })
+        target: document,
+      })
+      keydown({
+        key: 'Control',
+        code: 'ControlRight',
+        ctrlKey: true,
+        target: document,
+      })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({
+        key: 'Control',
+        ...({
+          code: 'ControlLeft',
+          ctrlKey: true,
+          modifierControl: true,
+        } as KeyboardEventInit),
+        target: document,
+      })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlRight', target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -2011,10 +2161,10 @@ describe('HotkeyManager edge cases', () => {
         platform: 'windows',
         eventType: 'keyup',
       })
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', { code: 'ControlLeft' })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keydown({ key: 'j', code: 'KeyJ', ctrlKey: true, target: document })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
       expect(callback).not.toHaveBeenCalled()
     })
 
@@ -2024,14 +2174,14 @@ describe('HotkeyManager edge cases', () => {
         platform: 'windows',
         eventType: 'keyup',
       })
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
-      key('keydown', 'l', { code: 'KeyL', ctrlKey: true })
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', { code: 'ControlLeft' })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keydown({ key: 'j', code: 'KeyJ', ctrlKey: true, target: document })
+      keydown({ key: 'l', code: 'KeyL', ctrlKey: true, target: document })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
       expect(callback).not.toHaveBeenCalled()
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -2042,12 +2192,120 @@ describe('HotkeyManager edge cases', () => {
         callback,
         { platform: 'windows', eventType: 'keyup' },
       )
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
       handle.setOptions({ enabled: false })
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
       handle.setOptions({ enabled: true })
-      key('keyup', 'Control', { code: 'ControlLeft' })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
       expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire after a key that a hotkey on an inner element stopped', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      const inner = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      // Stops propagation by default, so the document never sees the J press
+      manager.register('J', inner, { target: panel })
+      keydown({ key: 'k', code: 'KeyK', target: panel })
+      keydown({ key: 'j', code: 'KeyJ', target: panel })
+      keyup({ key: 'j', code: 'KeyJ', target: panel })
+      keyup({ key: 'k', code: 'KeyK', target: panel })
+      expect(inner).toHaveBeenCalledOnce()
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
+    })
+
+    it('does not fire after a key pressed while focus is outside its target', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup', target: panel })
+      // Another hotkey's listener on the document hears the J press
+      manager.register('Escape', () => {})
+      keydown({ key: 'k', code: 'KeyK', target: panel })
+      keydown({ key: 'j', code: 'KeyJ', target: document.body })
+      keyup({ key: 'j', code: 'KeyJ', target: document.body })
+      keyup({ key: 'k', code: 'KeyK', target: panel })
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
+    })
+
+    it('forgets a press in progress when the manager is destroyed', () => {
+      const manager = HotkeyManager.getInstance()
+      manager.register('K', () => {}, { eventType: 'keyup' })
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      manager.destroy()
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      const errors: Array<unknown> = []
+      const onError = (event: ErrorEvent) => errors.push(event.error)
+      window.addEventListener('error', onError)
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      window.removeEventListener('error', onError)
+      expect(errors).toEqual([])
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not restart a cancelled press on an auto-repeat', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('K', callback, {
+        eventType: 'keyup',
+      })
+      const k = { key: 'k', code: 'KeyK', target: document }
+      keydown(k)
+      keydown({ key: 'j', code: 'KeyJ', target: document })
+      keyup({ key: 'j', code: 'KeyJ', target: document })
+      keydown({ ...k, repeat: true })
+      keyup(k)
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('ends other presses on a release dispatched while a registration is removed', () => {
+      const manager = HotkeyManager.getInstance()
+      const removed = manager.register('K', () => {}, { eventType: 'keyup' })
+      const callback = vi.fn()
+      manager.register('K', callback, { eventType: 'keyup' })
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      const errors: Array<unknown> = []
+      const onError = (event: ErrorEvent) => errors.push(event.error)
+      window.addEventListener('error', onError)
+      const subscription = manager.registrations.subscribe(() => {
+        subscription.unsubscribe()
+        keyup({ key: 'k', code: 'KeyK', target: document })
+      })
+      removed.unregister()
+      window.removeEventListener('error', onError)
+      expect(errors).toEqual([])
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on a modifier release after its key was released outside its target', () => {
+      const manager = HotkeyManager.getInstance()
+      const panel = document.createElement('div')
+      document.body.appendChild(panel)
+      const callback = vi.fn()
+      manager.register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+        target: panel,
+      })
+      // Another hotkey's listener on the document hears the K release
+      manager.register('Escape', () => {})
+      keydown({
+        key: 'Control',
+        code: 'ControlLeft',
+        ctrlKey: true,
+        target: panel,
+      })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: panel })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
+      keyup({ key: 'Control', code: 'ControlLeft', target: panel })
+      expect(callback).not.toHaveBeenCalled()
+      panel.remove()
     })
 
     it('does not fire after a key that continues a sequence', () => {
@@ -2061,10 +2319,10 @@ describe('HotkeyManager edge cases', () => {
       manager.register(['Control+K', 'Control+J'], sequence, {
         platform: 'windows',
       })
-      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
-      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
-      key('keyup', 'Control', { code: 'ControlLeft' })
+      keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keydown({ key: 'j', code: 'KeyJ', ctrlKey: true, target: document })
+      keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
       expect(sequence).toHaveBeenCalledOnce()
       expect(callback).not.toHaveBeenCalled()
     })
@@ -2077,9 +2335,75 @@ describe('HotkeyManager edge cases', () => {
         enabled: false,
       })
       manager.register('Space', () => release.setOptions({ enabled: true }))
-      key('keydown', ' ', { code: 'Space' })
-      key('keyup', ' ', { code: 'Space' })
+      keydown({ key: ' ', code: 'Space', target: document })
+      keyup({ key: ' ', code: 'Space', target: document })
       expect(end).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on a release whose press it never saw', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+S', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      keyup({ key: 's', code: 'KeyS', ctrlKey: true, target: document })
+      keyup({ key: 'Control', code: 'ControlLeft', target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire when the key was pressed before its modifier', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+A', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      keydown({ key: 'a', code: 'KeyA', target: document })
+      keydown({
+        key: 'Control',
+        code: 'ControlLeft',
+        ctrlKey: true,
+        target: document,
+      })
+      keyup({ key: 'a', code: 'KeyA', ctrlKey: true, target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire on a release while it stays disabled', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Escape', callback, {
+        eventType: 'keyup',
+        enabled: false,
+      })
+      keydown({ key: 'Escape', code: 'Escape', target: document })
+      keyup({ key: 'Escape', code: 'Escape', target: document })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it("still prevents a disabled chord's press and release with preventDefault: 'always'", () => {
+      HotkeyManager.getInstance().register('Escape', vi.fn(), {
+        eventType: 'keyup',
+        enabled: false,
+        preventDefault: 'always',
+      })
+      const down = keydown({ key: 'Escape', code: 'Escape', target: document })
+      const up = keyup({ key: 'Escape', code: 'Escape', target: document })
+      expect(down.defaultPrevented).toBe(true)
+      expect(up.defaultPrevented).toBe(true)
+    })
+
+    it("lets a live keydown hotkey keep a disabled keyup chord's 'always' from preventing its press", () => {
+      const onKeydown = vi.fn()
+      HotkeyManager.getInstance().register('Escape', vi.fn(), {
+        eventType: 'keyup',
+        enabled: false,
+        preventDefault: 'always',
+      })
+      HotkeyManager.getInstance().register('Escape', onKeydown, {
+        preventDefault: false,
+      })
+      const down = keydown({ key: 'Escape', code: 'Escape', target: document })
+      expect(onKeydown).toHaveBeenCalledTimes(1)
+      expect(down.defaultPrevented).toBe(false)
     })
 
     it('does not fire on the release of a press another key cancelled', () => {
@@ -2087,9 +2411,9 @@ describe('HotkeyManager edge cases', () => {
       HotkeyManager.getInstance().register('Escape', callback, {
         eventType: 'keyup',
       })
-      key('keydown', 'Escape', { code: 'Escape' })
-      key('keydown', 'j', { code: 'KeyJ' })
-      key('keyup', 'Escape', { code: 'Escape' })
+      keydown({ key: 'Escape', code: 'Escape', target: document })
+      keydown({ key: 'j', code: 'KeyJ', target: document })
+      keyup({ key: 'Escape', code: 'Escape', target: document })
       expect(callback).not.toHaveBeenCalled()
     })
 
@@ -2099,8 +2423,13 @@ describe('HotkeyManager edge cases', () => {
         platform: 'mac',
         eventType: 'keyup',
       })
-      key('keydown', 'k', { code: 'KeyK', metaKey: true })
-      key('keyup', 'Shift', { code: 'ShiftLeft', metaKey: true })
+      keydown({ key: 'k', code: 'KeyK', metaKey: true, target: document })
+      keyup({
+        key: 'Shift',
+        code: 'ShiftLeft',
+        metaKey: true,
+        target: document,
+      })
       expect(callback).not.toHaveBeenCalled()
     })
   })
@@ -2115,6 +2444,37 @@ describe('HotkeyManager edge cases', () => {
       ).toThrow()
       expect(manager.registrations.state.size).toBe(0)
       expect(() => HotkeyManager.resetInstance()).not.toThrow()
+    })
+  })
+
+  describe('a null target', () => {
+    it('registers nothing, like a selector that found no element', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const addListener = vi.spyOn(document, 'addEventListener')
+      const handle = manager.register('K', callback, {
+        target: document.querySelector('#missing') as HTMLElement | null,
+      })
+      expect(handle.isActive).toBe(false)
+      expect(manager.registrations.state.size).toBe(0)
+      expect(addListener).not.toHaveBeenCalled()
+
+      const event = keydown({ key: 'k', target: document.body })
+      expect(callback).not.toHaveBeenCalled()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
+    it('differs from an omitted or undefined target, which listen on the document', () => {
+      const manager = HotkeyManager.getInstance()
+      const omitted = vi.fn()
+      const unset = vi.fn()
+      manager.register('K', omitted)
+      manager.register('J', unset, { target: undefined })
+
+      keydown({ key: 'k', target: document.body })
+      keydown({ key: 'j', target: document.body })
+      expect(omitted).toHaveBeenCalledOnce()
+      expect(unset).toHaveBeenCalledOnce()
     })
   })
 
@@ -2146,8 +2506,8 @@ describe('HotkeyManager edge cases', () => {
       ).not.toThrow()
       expect(warn).not.toHaveBeenCalled()
 
-      document.dispatchEvent(createKeyboardEvent('keydown', 'k'))
-      document.dispatchEvent(createKeyboardEvent('keyup', 'k'))
+      keydown({ key: 'k', target: document })
+      keyup({ key: 'k', target: document })
       expect(down).toHaveBeenCalledOnce()
       expect(up).toHaveBeenCalledOnce()
     })
@@ -2162,5 +2522,76 @@ describe('HotkeyManager edge cases', () => {
         }),
       ).toThrow()
     })
+  })
+})
+
+describe('requireReset release tracking', () => {
+  afterEach(() => {
+    window.dispatchEvent(new Event('blur'))
+    HotkeyManager.resetInstance()
+    document.body.replaceChildren()
+  })
+
+  it('releases requireReset after a callback focuses an input', () => {
+    const input = document.createElement('input')
+    document.body.append(input)
+    const callback = vi.fn(() => input.focus())
+    HotkeyManager.getInstance().register('[KeyS]', callback, {
+      requireReset: true,
+    })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    keyup({ key: 's', code: 'KeyS', composed: true, target: input })
+    input.blur()
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
+  // `registrations` is a public store, so a latch can be set from outside.
+  it('releases a latch set without a matched key on the key release', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+    const handle = manager.register('K', callback, { requireReset: true })
+    manager.registrations.state.get(handle.id)!.hasFired = true
+    const errors: Array<unknown> = []
+    const onError = (event: ErrorEvent) => errors.push(event.error)
+    window.addEventListener('error', onError)
+    keyup({ key: 'k', code: 'KeyK', target: document })
+    window.removeEventListener('error', onError)
+    expect(errors).toEqual([])
+    expect(manager.registrations.state.get(handle.id)!.hasFired).toBe(false)
+    keydown({ key: 'k', code: 'KeyK', target: document })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
+  it('releases requireReset while a registration is disabled', () => {
+    const callback = vi.fn()
+    const handle = HotkeyManager.getInstance().register('[KeyS]', callback, {
+      requireReset: true,
+    })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    handle.setOptions({ enabled: false })
+    keyup({ key: 's', code: 'KeyS', composed: true, target: document })
+    handle.setOptions({ enabled: true })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+})
+
+describe('setOptions change detection', () => {
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  it('skips unchanged options, including fresh equivalent metadata', () => {
+    const manager = HotkeyManager.getInstance()
+    const handle = manager.register('Alt+S', vi.fn(), {
+        meta: { name: 'Save', group: 'Editor' },
+      }),
+      notify = vi.fn()
+    manager.registrations.subscribe(notify)
+    handle.setOptions({ meta: { name: 'Save', group: 'Editor' } })
+    expect(notify).not.toHaveBeenCalled()
+    handle.setOptions({ meta: { name: 'Save', group: 'Other' } })
+    expect(notify).toHaveBeenCalledOnce()
   })
 })

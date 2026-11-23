@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { HotkeysProvider, useHotkey } from '@tanstack/vue-hotkeys'
-import { useActivity } from './activity'
+import { computed, ref } from 'vue'
 import ExclusiveDialog from './ExclusiveDialog.vue'
 import Key from './Key.vue'
+import { useActivity } from './activity'
 import type { ExclusiveOption } from './activity'
 
 // `exclusive` suspends every other scope, except the ones it allows.

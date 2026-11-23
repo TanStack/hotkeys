@@ -1,4 +1,7 @@
-import type { FormatDisplayOptions } from '@tanstack/octane-hotkeys'
+import type {
+  FormatDisplayOptions,
+  HotkeyPlatform,
+} from '@tanstack/octane-hotkeys'
 
 /**
  * The format option toggles, with no framework code, so every example can
@@ -141,13 +144,13 @@ export function toFormatOptions(choices: FormatChoices): FormatDisplayOptions {
 /** The formatter call for the selected choices, as code. */
 export function toFormatCode(choices: FormatChoices): string {
   const entries = toEntries(choices)
-  if (entries.length === 0) return 'format(hotkey)'
+  if (entries.length === 0) return 'formatForDisplay(hotkey)'
   const fields = entries.map(([key, , code]) => `${key}: ${code}`)
-  return `format(hotkey, { ${fields.join(', ')} })`
+  return `formatForDisplay(hotkey, { ${fields.join(', ')} })`
 }
 
 const platformNames = { mac: 'macOS', windows: 'Windows', linux: 'Linux' }
 
-export function platformName(platform: 'mac' | 'windows' | 'linux'): string {
+export function platformName(platform: HotkeyPlatform): string {
   return platformNames[platform]
 }

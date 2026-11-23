@@ -34,7 +34,7 @@ function harnessFor(page: Page) {
   }
 }
 
-type LoadedHarness = ReturnType<typeof harnessFor> & {
+export type LoadedHarness = ReturnType<typeof harnessFor> & {
   /**
    * The key `Mod` resolves to in this page. Use it instead of Playwright's
    * ControlOrMeta, which follows the host OS: Playwright's WebKit reports a

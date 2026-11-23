@@ -1,5 +1,6 @@
-import { createStore } from 'solid-js'
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
+import { createProjection } from 'solid-js'
 import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
@@ -14,18 +15,20 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * @example
  * ```tsx
  * const registrations = createHotkeyRegistrations()
+ * const formatForDisplay = createFormatForDisplay()
  * <For each={registrations()}>
  *   {(reg) => <li>{reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}</li>}
  * </For>
  * ```
  */
 export function createHotkeyRegistrations(): () => Array<HotkeyRegistrationView> {
-  const views = useSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+  const views = useSelector(
+    getHotkeyManager().registrations,
+    getHotkeyRegistrationViews,
   )
-  // Views are rebuilt on every change; reconciling them by id keeps each
+  // Views are rebuilt on every change. Reconciling them by id keeps each
   // registration's identity, so `<For>` rows update in place.
-  const [registrations] = createStore<Array<HotkeyRegistrationView>>(
+  const registrations = createProjection<Array<HotkeyRegistrationView>>(
     () => views(),
     [],
     { key: 'id' },

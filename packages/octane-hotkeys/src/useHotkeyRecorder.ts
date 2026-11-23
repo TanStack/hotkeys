@@ -1,20 +1,16 @@
-import { useLayoutEffect, useRef } from 'octane'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { useLayoutEffect, useRef } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { select, subSlot } from './internal'
-import type { OctaneHotkeyRecorder } from './types'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
+  HotkeyRecorderActions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-
-type RecorderActions = Omit<
-  OctaneHotkeyRecorder,
-  'isRecording' | 'steps' | 'recordedHotkey'
->
+import type { OctaneHotkeyRecorder } from './types'
 
 /**
  * Records a shortcut and destroys the recorder on unmount. With the default
@@ -41,7 +37,7 @@ export function useHotkeyRecorder(
   ) as HotkeySequenceRecorderOptions
   // The actions are created with the recorder, so they keep their identity
   // across renders.
-  const ref = useRef<[HotkeyRecorder, RecorderActions] | null>(
+  const ref = useRef<[HotkeyRecorder, HotkeyRecorderActions] | null>(
     null,
     subSlot(slot, 'recorder'),
   )

@@ -62,6 +62,29 @@ function Root() {
 }
 ```
 
+### App hotkeys with Server Components
+
+In React Server Components frameworks such as the Next.js App Router, a server component can't pass `appHotkeys` to `HotkeysProvider`. `HotkeysProvider` loads the store for app hotkeys only in a bundle where `defineAppHotkeys` ran, and here it ran only on the server. Render `AppHotkeysProvider` instead. It takes the same props and loads the store itself:
+
+```tsx
+// app/layout.tsx
+import { AppHotkeysProvider } from '@tanstack/react-hotkeys'
+import { appHotkeys } from './app-hotkeys'
+import type { ReactNode } from 'react'
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html>
+      <body>
+        <AppHotkeysProvider appHotkeys={appHotkeys}>{children}</AppHotkeysProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+A server component can also pass the user's saved `customHotkeys`, such as from a cookie or a database. Functions can't come from a server component: not `onCustomHotkeysChange`, and not a function in the `meta` of a declaration. To pass one, render the provider from a `'use client'` module that imports the declarations.
+
 ## Register app hotkeys
 
 Pass an app hotkey wherever you pass a hotkey. Read it from `useAppHotkeys()`, or import it directly:
@@ -122,7 +145,7 @@ function Root() {
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
+- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
@@ -133,24 +156,25 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 
 ```tsx
 import {
-  formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
+  useFormatForDisplay,
   useHotkeyRecorder,
 } from '@tanstack/react-hotkeys'
 import type { AppHotkeyId } from '@tanstack/react-hotkeys'
 
 function ShortcutRow({ id }: { id: AppHotkeyId }) {
+  const formatForDisplay = useFormatForDisplay()
   const appHotkey = useAppHotkeys()[id]
   const { setCustomHotkey, resetCustomHotkey, findConflicts } = useCustomHotkeys()
 
   const recorder = useHotkeyRecorder({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = findConflicts(id, hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => setCustomHotkey(id, hotkey, context),
     onClear: () => setCustomHotkey(id, null),
   })
 
@@ -165,11 +189,13 @@ function ShortcutRow({ id }: { id: AppHotkeyId }) {
 }
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `customHotkeys` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

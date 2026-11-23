@@ -1,6 +1,5 @@
 import {
   createHotkeysScope,
-  formatForDisplay,
   hotkeysPlugin,
   normalizeHotkey,
   validateHotkey,
@@ -9,9 +8,21 @@ import Alpine from 'alpinejs'
 import type {
   AlpineHotkeyDefinition,
   Hotkey,
+  HotkeyIssue,
   HotkeyRegistrationsResult,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// validateHotkey sends reason codes, so the app writes the text
+const issueText = ({ reason, part }: HotkeyIssue) =>
+  ({
+    empty: 'Enter a hotkey.',
+    'empty-part': 'Remove the empty part between + signs.',
+    'unknown-modifier': `Unknown modifier ${part}.`,
+    'invalid-physical-key': `${part} isn't a physical key code.`,
+    'modifier-only': `Add a key after ${part}.`,
+    'unknown-key': `Unknown key ${part}. Key names are case-sensitive.`,
+  })[reason]
 
 // Gives every hotkeys scope the app's Alpine instance.
 Alpine.plugin(hotkeysPlugin)
@@ -55,7 +66,7 @@ class App {}
 class BasicMultiHotkeys {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     "scope.createHotkeys([\n  { hotkey: 'Shift+S', callback: save,\n    options: { meta: { name: 'Save', description: 'Save the document' } } },\n  { hotkey: 'Shift+U', callback: undo,\n    options: { meta: { name: 'Undo' } } },\n])"
   log: Array<string> = []
@@ -105,7 +116,7 @@ class BasicMultiHotkeys {
 class CommonOptionsDemo {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     "scope.createHotkeys(\n  [\n    { hotkey: 'Alt+J', callback: actionA },\n    { hotkey: 'Alt+L', callback: actionC, options: { enabled: true } },\n  ],\n  () => ({ enabled: this.enabled }),\n)"
   enabled = true
@@ -160,7 +171,7 @@ class CommonOptionsDemo {
 class DynamicHotkeysDemo {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     'scope.createHotkeys(() => this.shortcuts.map((shortcut) => ({\n  hotkey: shortcut.hotkey,\n  callback: () => this.runShortcut(shortcut.id),\n  options: { meta: { name: shortcut.label, description: shortcut.description } },\n})))'
   shortcuts: Array<DynamicShortcut> = DEFAULT_SHORTCUTS
@@ -186,7 +197,9 @@ class DynamicHotkeysDemo {
     if (!this.newLabel.trim()) return
     const validation = validateHotkey(trimmed)
     if (!validation.valid || validation.warnings.length > 0) {
-      this.error = [...validation.errors, ...validation.warnings].join(' ')
+      this.error = [...validation.errors, ...validation.warnings]
+        .map(issueText)
+        .join(' ')
       return
     }
     this.error = ''
@@ -221,7 +234,7 @@ class DynamicHotkeysDemo {
 class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   usage0 =
     'const registrations = scope.createHotkeyRegistrations()\n\n// Alpine reads registrations.hotkeys, chords and sequences, reactively.\n// <template x-for="reg in registrations.hotkeys" :key="reg.id">\n//   <p x-text="reg.options.meta?.name + \': \' + reg.triggerCount"></p>\n// </template>'
   registrationState0!: HotkeyRegistrationsResult

@@ -1,8 +1,8 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
 import { detectPlatform } from '@tanstack/hotkeys'
 import { getServerPlatformSnapshot } from '@tanstack/hotkeys/adapter'
+import { useSyncExternalStore } from 'react'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { HotkeyPlatform } from '@tanstack/hotkeys'
 

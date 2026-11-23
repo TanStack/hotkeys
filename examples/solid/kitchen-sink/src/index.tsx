@@ -1,13 +1,8 @@
-import {
-  Show,
-  createContext,
-  createSignal,
-  onSettled,
-  useContext,
-} from 'solid-js'
 import { Dynamic, render } from '@solidjs/web'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
   createHotkey,
@@ -16,16 +11,36 @@ import {
   createHotkeyRegistrations,
   createHotkeys,
   createKeyHold,
-  formatForDisplay,
   isHotkeySequence,
 } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import {
+  Show,
+  createContext,
+  createSignal,
+  onSettled,
+  useContext,
+} from 'solid-js'
+import type { JSX } from '@solidjs/web'
+import './styles.css'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
-import './styles.css'
-import type { JSX } from '@solidjs/web'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
 const pages = [
@@ -37,6 +52,7 @@ const pages = [
 ] as const
 /** A separate component lets each navigation link or button subscribe to its hint. */
 function Hint(props: { hotkey: RegisterableHotkey }) {
+  const formatForDisplay = createFormatForDisplay()
   const visible = createHotkeyHint(() => props.hotkey)
   return (
     <Show when={visible()}>
@@ -46,6 +62,7 @@ function Hint(props: { hotkey: RegisterableHotkey }) {
 }
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
+  const formatForDisplay = createFormatForDisplay()
   const [path, setPath] = createSignal(location.hash.slice(1) || '/')
   onSettled(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
@@ -184,6 +201,7 @@ function Layout() {
           ))}
         </ul>
       </section>
+      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </ActivityContext>
   )
 }
@@ -245,9 +263,10 @@ function Tickets() {
   )
 }
 /** Each editor owns a target ref, so the same shortcuts can be reused independently. */
-function EditorPane({ name }: { name: string }) {
+function EditorPane(props: { name: string }) {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
-  let target: HTMLFieldSetElement | undefined
+  const [target, setTarget] = createSignal<HTMLFieldSetElement>()
   const [text, setText] = createSignal('One shortcut, two independent editors.')
   const [saves, setSaves] = createSignal(0)
   createHotkeys(
@@ -256,11 +275,11 @@ function EditorPane({ name }: { name: string }) {
         hotkey: 'Mod+[KeyS]',
         callback: () => {
           setSaves((n) => n + 1)
-          log(`${name} saved`)
+          log(`${props.name} saved`)
         },
         options: {
           meta: {
-            name: `Save ${name}`,
+            name: `Save ${props.name}`,
             group: 'Editor',
             description: 'Limited to this editor',
           },
@@ -270,17 +289,17 @@ function EditorPane({ name }: { name: string }) {
         hotkey: 'Alt+[Backspace]',
         callback: () => {
           setText('')
-          log(`${name} cleared`)
+          log(`${props.name} cleared`)
         },
-        options: { meta: { name: `Clear ${name}`, group: 'Editor' } },
+        options: { meta: { name: `Clear ${props.name}`, group: 'Editor' } },
       },
     ],
-    () => ({ target, ignoreInputs: false }),
+    () => ({ target: target(), ignoreInputs: false }),
   )
   return (
-    <fieldset ref={target}>
+    <fieldset ref={setTarget}>
       <legend>
-        {name} — {saves()} saves
+        {props.name} — {saves()} saves
       </legend>
       <label>
         Editor content
@@ -299,6 +318,7 @@ function EditorPane({ name }: { name: string }) {
 }
 /** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = createSignal(false)
   const [count, setCount] = createSignal(0)
@@ -311,12 +331,12 @@ function Editor() {
       meta: { name: 'Advance counter', group: 'Editor' },
     }),
   )
-  let scope: HTMLFieldSetElement | undefined
+  const [scope, setScope] = createSignal<HTMLFieldSetElement>()
   createHotkey(
     'Alt+[KeyB]',
     () => log('Target B handler'),
     () => ({
-      target: scope,
+      target: scope(),
       stopPropagation: !bubble(),
       preventDefault: !bubble(),
       meta: { name: 'Target propagation demo', group: 'Editor' },
@@ -358,7 +378,7 @@ function Editor() {
         {count()}. Release <kbd>{formatForDisplay('Alt+[KeyU]')}</kbd> to log a
         keyup event.
       </p>
-      <fieldset ref={scope} tabindex={0}>
+      <fieldset ref={setScope} tabindex={0}>
         <legend>Propagation</legend>
         <label>
           <input
@@ -372,13 +392,14 @@ function Editor() {
           Focus this area and press <kbd>{formatForDisplay('Alt+[KeyB]')}</kbd>.
           Activity shows whether the document handler also receives the event.
         </p>
-        <button onClick={() => scope?.focus()}>Focus this area</button>
+        <button onClick={() => scope()?.focus()}>Focus this area</button>
       </fieldset>
     </section>
   )
 }
 /** Single and bulk sequences share a timeout and expose progress through the registry. */
 function Sequences() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = createSignal(1000)
   createHotkey(
@@ -457,10 +478,11 @@ function Sequences() {
 }
 /** Recorder output feeds local state; reset and validation are application policy. */
 function Recording() {
+  const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = createSignal<Hotkey>(initial)
-  const [mode, setMode] = createSignal<RecorderKeyMode>('code')
+  const [mode, setMode] = createSignal<RecorderKeyMode>('auto')
   const [problem, setProblem] = createSignal('')
   const [sequence, setSequence] = createSignal<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = createSignal('')
@@ -489,7 +511,7 @@ function Recording() {
     validate: (_, context) =>
       (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
       'Include a modifier for this action.',
-    onReject: ({ message }) => setProblem(message),
+    onReject: (rejection) => setProblem(rejectionText(rejection)),
     onRecord: (value) => {
       setHotkey(value)
       setProblem('')
@@ -522,7 +544,7 @@ function Recording() {
         `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
-    onReject: (reason) => setSequenceProblem(reason.message),
+    onReject: (rejection) => setSequenceProblem(rejectionText(rejection)),
     onClear: () => {
       setSequence(['[KeyX]', '[KeyY]'])
       setSequenceProblem('Restored default sequence.')
@@ -543,7 +565,10 @@ function Recording() {
           disabled={recorder.isRecording() || sequenceRecorder.isRecording()}
           onChange={(e) => setMode(e.currentTarget.value as RecorderKeyMode)}
         >
-          <option value="code">Physical code (default)</option>
+          <option value="auto">
+            By name, or position where needed (default)
+          </option>
+          <option value="code">Physical code</option>
           <option value="key">Logical character</option>
         </select>
       </label>
@@ -634,9 +659,8 @@ function Recording() {
 }
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
-  const [platform, setPlatform] = createSignal<'mac' | 'windows' | 'linux'>(
-    'mac',
-  )
+  const formatForDisplay = createFormatForDisplay()
+  const [platform, setPlatform] = createSignal<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = createSignal(false)
   const [keySymbols, setKeySymbols] = createSignal(true)
   const options = () => ({
@@ -650,9 +674,7 @@ function Formatting() {
         Platform{' '}
         <select
           value={platform()}
-          onChange={(e) =>
-            setPlatform(e.currentTarget.value as 'mac' | 'windows' | 'linux')
-          }
+          onChange={(e) => setPlatform(e.currentTarget.value as HotkeyPlatform)}
         >
           <option value="mac">macOS</option>
           <option value="windows">Windows</option>

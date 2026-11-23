@@ -1,4 +1,6 @@
+import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { HotkeyManager } from '../src/hotkey-manager'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
 import type { HotkeySequenceRecorderOptions } from '../src/hotkey-recorder'
 
@@ -42,15 +44,7 @@ function createKeyboardEvent(
     metaKey?: boolean
   } = {},
 ): KeyboardEvent {
-  return new KeyboardEvent(type, {
-    key,
-    code: fixtureCodes[key],
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    bubbles: true,
-  })
+  return keyEvent(type, { ...options, key, code: fixtureCodes[key] })
 }
 
 describe.each(['key', 'code', undefined] as const)(
@@ -77,7 +71,8 @@ describe.each(['key', 'code', undefined] as const)(
       document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
       expect(onRecord).toHaveBeenCalledTimes(1)
       expect(onRecord).toHaveBeenCalledWith(
-        recordBy === 'key' ? ['G', 'G'] : ['[KeyG]', '[KeyG]'],
+        recordBy !== 'code' ? ['G', 'G'] : ['[KeyG]', '[KeyG]'],
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
       const [recorded] = onRecord.mock.calls[0] ?? []
@@ -97,7 +92,8 @@ describe.each(['key', 'code', undefined] as const)(
       button.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
 
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? 'G' : '[KeyG]',
+        recordBy !== 'code' ? 'G' : '[KeyG]',
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
     })
@@ -157,7 +153,7 @@ describe.each(['key', 'code', undefined] as const)(
 
       document.dispatchEvent(createKeyboardEvent('keydown', 'Backspace'))
       expect(r.store.state.steps).toEqual(
-        recordBy === 'key' ? ['A'] : ['[KeyA]'],
+        recordBy !== 'code' ? ['A'] : ['[KeyA]'],
       )
       expect(onRecord).not.toHaveBeenCalled()
     })
@@ -195,7 +191,7 @@ describe.each(['key', 'code', undefined] as const)(
       const [idleRecorded] = onRecord.mock.calls[0] ?? []
       expect(idleRecorded).toBeDefined()
       // A one-step recording commits as a chord string.
-      expect(idleRecorded).toEqual(recordBy === 'key' ? 'G' : '[KeyG]')
+      expect(idleRecorded).toEqual(recordBy !== 'code' ? 'G' : '[KeyG]')
     })
 
     it('stop does not call onRecord or onCancel', () => {
@@ -224,7 +220,8 @@ describe.each(['key', 'code', undefined] as const)(
       expect(r.store.state.steps.length).toBe(2)
       r.commit()
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? ['A', 'Enter'] : ['[KeyA]', '[Enter]'],
+        recordBy !== 'code' ? ['A', 'Enter'] : ['[KeyA]', '[Enter]'],
+        expect.anything(),
       )
     })
 
@@ -236,7 +233,8 @@ describe.each(['key', 'code', undefined] as const)(
       expect(onRecord).not.toHaveBeenCalled()
       document.dispatchEvent(createKeyboardEvent('keydown', 's'))
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? ['G', 'S'] : ['[KeyG]', '[KeyS]'],
+        recordBy !== 'code' ? ['G', 'S'] : ['[KeyG]', '[KeyS]'],
+        expect.anything(),
       )
       expect(r.store.state.isRecording).toBe(false)
     })
@@ -250,7 +248,8 @@ describe.each(['key', 'code', undefined] as const)(
       )
       document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
       expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recordBy === 'key' ? 'Mod+S' : 'Mod+[KeyS]',
+        recordBy !== 'code' ? 'Mod+S' : 'Mod+[KeyS]',
+        expect.anything(),
       )
     })
 
@@ -342,3 +341,81 @@ describe.each(['key', 'code', undefined] as const)(
     })
   },
 )
+
+describe('HotkeyRecorder with maxSteps: rejection and conflicts', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+    HotkeyManager.resetInstance()
+    document.body.replaceChildren()
+  })
+
+  /** Presses and releases a key on the document. */
+  const tap = (key: string, code: string) => {
+    keydown({ key, code, target: document })
+    keyup({ key, code, target: document })
+  }
+
+  it('retains rejected sequence steps, allows editing, and clears without onRecord', () => {
+    const onRecord = vi.fn(),
+      onReject = vi.fn(),
+      onClear = vi.fn()
+    const r = new HotkeyRecorder({
+      maxSteps: Infinity,
+      onRecord,
+      onReject,
+      onClear,
+      validate: (hotkey) =>
+        (Array.isArray(hotkey) && hotkey.length >= 2) || 'Two steps required',
+    })
+    instances.push(r)
+    r.start()
+    tap('g', 'KeyG')
+    r.commit()
+    expect(onReject).toHaveBeenCalledWith(
+      expect.objectContaining({ reason: 'validation' }),
+    )
+    expect(r.store.state.steps).toEqual(['G'])
+    tap('g', 'KeyG')
+    r.commit()
+    expect(onRecord).toHaveBeenCalledWith(['G', 'G'], expect.anything())
+    r.start()
+    tap('x', 'KeyX')
+    tap('Backspace', 'Backspace')
+    expect(r.store.state.steps).toEqual([])
+    keydown({ key: 'Backspace', code: 'Backspace', target: document })
+    expect(onClear).toHaveBeenCalledOnce()
+    expect(onRecord).toHaveBeenCalledTimes(1)
+  })
+
+  it('rejects a sequence-prefix conflict at commit without executing registered sequences', () => {
+    const callback = vi.fn(),
+      onRecord = vi.fn(),
+      onReject = vi.fn()
+    HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
+    const r = new HotkeyRecorder({
+      maxSteps: Infinity,
+      onRecord,
+      onReject,
+      detectConflicts: true,
+    })
+    instances.push(r)
+    r.start()
+    tap('g', 'KeyG')
+    r.commit()
+    expect(onReject).toHaveBeenCalledWith(
+      expect.objectContaining({
+        reason: 'conflict',
+        conflicts: [
+          {
+            registration: expect.objectContaining({ kind: 'sequence' }),
+          },
+        ],
+      }),
+    )
+    expect(r.store.state.steps).toEqual(['G'])
+    tap('g', 'KeyG')
+    expect(callback).not.toHaveBeenCalled()
+    expect(onRecord).not.toHaveBeenCalled()
+  })
+})

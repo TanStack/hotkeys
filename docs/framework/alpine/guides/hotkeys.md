@@ -112,6 +112,8 @@ this.hotkeys.createHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod come
 this.hotkeys.createHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
 ```
 
+TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
+
 Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
 
 ```ts
@@ -340,7 +342,7 @@ Alpine.data('panel', () => ({
 </div>
 ```
 
-`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` target waits until the element exists.
+`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` or `undefined` target waits until the element exists. Only an omitted `target` listens on `document`; set `target: document` to choose it explicitly.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

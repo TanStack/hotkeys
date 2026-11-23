@@ -1,13 +1,13 @@
 import {
   assertLogicalKey,
+  chordHasKey,
   modifierAlias,
-  normalizeKeyboardEvent,
   physicalCodeOf,
   splitChordParts,
-} from './_keyboard-event'
+} from './_chord'
+import { normalizeKeyboardEvent } from './_keyboard-event'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import { detectPlatform, resolveModifier } from './platform'
-import type { CanonicalModifier, Key } from './key.types'
 import type {
   Hotkey,
   HotkeyChord,
@@ -18,8 +18,8 @@ import type {
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
 } from './hotkey.types'
-
-type Platform = 'mac' | 'windows' | 'linux'
+import type { CanonicalModifier, Key } from './key.types'
+import type { HotkeyPlatform } from './platform'
 
 /** A chord in any form: a string, a chord object, or an already-parsed chord. */
 type AnyChord = RegisterableHotkeyChord | ParsedHotkeyChord | (string & {})
@@ -70,38 +70,19 @@ export function simplifyHotkey(hotkey: RegisterableHotkey): RegisterableHotkey {
 
 function parseChordString(
   chord: string,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): ParsedHotkeyChord {
-  const parts = splitChordParts(chord)
+  const parts = splitChordParts(chord).map((part) => part.trim())
+  // The last part is the key, and every other part is a modifier
+  const key = normalizeKeyName(parts.pop()!)
   const modifiers: Set<CanonicalModifier> = new Set()
-  let key = ''
 
-  for (let i = 0; i < parts.length; i++) {
-    const part = parts[i]!.trim()
-
-    if (i === parts.length - 1) {
-      // Last part is always the key
-      key = normalizeKeyName(part)
-    } else {
-      // All other parts are modifiers
-      const alias = modifierAlias(part)
-
-      if (alias) {
-        const resolved = resolveModifier(alias, platform)
-        modifiers.add(resolved)
-      } else {
-        // Unknown modifier, treat as part of the key if it's the only part
-        // or ignore if there are more parts
-        if (parts.length === 1) {
-          key = normalizeKeyName(part)
-        }
-      }
-    }
-  }
-
-  // If no key was found (empty string), use the last part as-is
-  if (!key && parts.length > 0) {
-    key = normalizeKeyName(parts[parts.length - 1]!.trim())
+  for (const part of parts) {
+    const alias = modifierAlias(part)
+    // An unknown modifier leaves the chord without a key, so it registers
+    // nothing instead of firing on the bare key.
+    if (!alias) return toParsedChord({ key: '' }, false, false, false, false)
+    modifiers.add(resolveModifier(alias, platform))
   }
 
   const code = physicalCodeOf(key)
@@ -117,7 +98,7 @@ function parseChordString(
 /** Resolves a chord object's modifiers. Omitted modifiers are false. */
 function parseChordObject(
   chord: RawHotkeyChord,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): ParsedHotkeyChord {
   if (chord.code === undefined) assertLogicalKey(chord.key)
   let ctrl = chord.ctrl ?? false
@@ -145,7 +126,10 @@ function parseChordObject(
   )
 }
 
-function parseChord(chord: AnyChord, platform: Platform): ParsedHotkeyChord {
+function parseChord(
+  chord: AnyChord,
+  platform: HotkeyPlatform,
+): ParsedHotkeyChord {
   return typeof chord === 'string'
     ? parseChordString(chord, platform)
     : parseChordObject(chord, platform)
@@ -158,7 +142,7 @@ function parseChord(chord: AnyChord, platform: Platform): ParsedHotkeyChord {
  */
 function normalizeParsedChord(
   parsed: ParsedHotkeyChord,
-  platform: Platform,
+  platform: HotkeyPlatform,
 ): HotkeyChord {
   if (parsed.code === undefined) assertLogicalKey(parsed.key)
   const canUseMod =
@@ -210,19 +194,19 @@ function normalizeParsedChord(
  */
 export function parseHotkey(
   hotkey: AnyChord,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord
 export function parseHotkey(
   hotkey: ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): Array<ParsedHotkeyChord>
 export function parseHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord | Array<ParsedHotkeyChord>
 export function parseHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): ParsedHotkeyChord | Array<ParsedHotkeyChord> {
   return Array.isArray(hotkey)
     ? hotkey.map((step: AnyChord) => parseChord(step, platform))
@@ -238,7 +222,8 @@ export function parseHotkey(
  *   Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
  *   then the key (e.g. `Mod+Shift+E`, `Mod+S`).
  * - Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
- * - Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
+ * - Resolves modifier aliases and uppercases single letters (e.g. `ctrl` → `Control`,
+ *   `a` → `A`). Other key names are case-sensitive and stay as written.
  *
  * @param hotkey - The hotkey to normalize
  * @param platform - The target platform for resolving `Mod` (defaults to auto-detection)
@@ -254,15 +239,15 @@ export function parseHotkey(
  */
 export function normalizeHotkey(
   hotkey: AnyChord,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): HotkeyChord
 export function normalizeHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): Hotkey
 export function normalizeHotkey(
   hotkey: AnyChord | ReadonlyArray<AnyChord>,
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): Hotkey {
   if (Array.isArray(hotkey)) {
     const steps = hotkey.map((step: AnyChord) =>
@@ -279,8 +264,9 @@ export function normalizeHotkey(
 /**
  * Checks if a string is a recognized modifier token (including aliases).
  *
- * For a `KeyboardEvent`, use `isModifier(normalizeKeyName(event.key))` so DOM
- * spellings like `OS` / `Win` match the same alias table.
+ * For a `KeyboardEvent`, use `isModifierKey(normalizeKeyName(event.key))`:
+ * `event.key` can be missing on events that autofill and extensions send. DOM
+ * spellings like `OS` and `Win` are in the same alias table. `AltGraph` is not.
  *
  * @param key - Key name or alias (e.g. from a hotkey string or `event.key`)
  * @returns True if the string is a recognized modifier
@@ -307,7 +293,7 @@ export function isModifierKey(key: Key | (string & {})): boolean {
  */
 export function parseKeyboardEvent(
   event: KeyboardEvent,
-  platform?: Platform,
+  platform?: HotkeyPlatform,
 ): ParsedHotkeyChord {
   const normalized = normalizeKeyboardEvent(event, platform)
   // AltGraph is a character-production modifier, not an ordinary Control+Alt
@@ -345,22 +331,9 @@ export function parseKeyboardEvent(
  */
 export function hasNonModifierKey(
   chord: HotkeyChord | ParsedHotkeyChord | (string & {}),
-  platform: Platform = detectPlatform(),
+  platform: HotkeyPlatform = detectPlatform(),
 ): boolean {
-  const parsed =
-    typeof chord === 'string' ? parseChordString(chord, platform) : chord
-
-  if (parsed.code !== undefined) {
-    // Physical modifier codes identify a side, but still are not action keys.
-    return (
-      parsed.code.length > 0 &&
-      !/^(Control|Shift|Alt|Meta)(Left|Right)$/.test(parsed.code)
-    )
-  }
-
-  // Check if the key part is actually a modifier
-  const keyIsModifier = isModifierKey(parsed.key)
-
-  // A valid hotkey must have a non-modifier key
-  return !keyIsModifier && parsed.key.length > 0
+  return chordHasKey(
+    typeof chord === 'string' ? parseChordString(chord, platform) : chord,
+  )
 }

@@ -39,3 +39,43 @@ export class DecoratedSub extends DecoratedBase {
     this.calls.push('sub')
   }
 }
+
+// Re-decorating an override replaces the parent's hotkey for that method.
+export class DecoratedSameKey extends DecoratedBase {
+  @hotkey('K')
+  override onK() {
+    this.calls.push('same key')
+  }
+}
+
+export class DecoratedNewKey extends DecoratedBase {
+  @hotkey('J')
+  override onK() {
+    this.calls.push('new key')
+  }
+}
+
+// An undecorated override keeps the nearest decorated hotkey.
+export class DecoratedGrandchild extends DecoratedNewKey {
+  override onK() {
+    this.calls.push('grandchild')
+  }
+}
+
+export class DecoratedStacked extends LitElement {
+  calls: Array<string> = []
+
+  @hotkey('A')
+  @hotkey('B')
+  both() {
+    this.calls.push('both')
+  }
+}
+
+export class DecoratedRestacked extends DecoratedStacked {
+  @hotkey('C')
+  @hotkey('D')
+  override both() {
+    this.calls.push('restacked')
+  }
+}

@@ -30,7 +30,7 @@ class KeyDisplay extends LitElement {
 }
 ```
 
-To label each held key the way hotkeys are labeled, pass it to `formatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+To label each held key the way hotkeys are labeled, pass it to the `format` function of a `FormatForDisplayController` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
 
 ## Check whether a key is held
 
@@ -58,6 +58,8 @@ class FileItem extends LitElement {
 ```
 
 To track a key that changes, pass a getter, such as `new KeyHoldController(this, () => this.key)`. The controller reads it again on each update.
+
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
 
 ## Tell left and right modifiers apart
 

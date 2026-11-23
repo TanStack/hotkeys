@@ -1,5 +1,5 @@
-import { createMemo } from 'solid-js'
 import { findHotkeyConflicts, formatForDisplay } from '@tanstack/hotkeys'
+import { createMemo } from 'solid-js'
 import { useHotkeysDevtoolsState } from './HotkeysContextProvider'
 import type { HotkeyConflict } from '@tanstack/hotkeys'
 

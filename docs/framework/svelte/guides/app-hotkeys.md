@@ -120,7 +120,7 @@ TanStack Hotkeys does not store anything. Pass the user's saved custom hotkeys t
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
+- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
 `setHotkeysContext` accepts the same `appHotkeys`, `customHotkeys`, and `onCustomHotkeysChange` options.
@@ -135,24 +135,25 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 <script lang="ts">
   import {
     createHotkeyRecorder,
-    formatForDisplay,
     getAppHotkeys,
     getCustomHotkeys,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { AppHotkeyId } from '@tanstack/svelte-hotkeys'
 
   let { id }: { id: AppHotkeyId } = $props()
+  const formatForDisplay = getFormatForDisplay()
   const appHotkeys = getAppHotkeys()
   const custom = getCustomHotkeys()
   const appHotkey = $derived(appHotkeys.current[id])
 
   const recorder = createHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = custom.findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = custom.findConflicts(id, hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => custom.setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => custom.setCustomHotkey(id, hotkey, context),
     onClear: () => custom.setCustomHotkey(id, null),
   }))
 </script>
@@ -165,11 +166,13 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 </div>
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `current` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

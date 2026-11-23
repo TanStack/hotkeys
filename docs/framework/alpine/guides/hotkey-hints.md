@@ -10,17 +10,20 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 const saveHotkey = 'Mod+S'
 
 Alpine.data('saveButton', () => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   hotkeys.createHotkey(saveHotkey, () => save())
   const hint = hotkeys.createHotkeyHint(saveHotkey)
 
   return {
-    label: formatForDisplay(saveHotkey),
+    get label() {
+      return formatForDisplay(saveHotkey)
+    },
     get showHint() {
       return hint.value
     },
@@ -76,6 +79,7 @@ import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('hint', (id: AppHotkeyId) => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const appHotkeys = hotkeys.createAppHotkeys()
   const hint = hotkeys.createHotkeyHint(() => appHotkeys.value[id])
 

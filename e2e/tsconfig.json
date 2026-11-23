@@ -6,5 +6,10 @@
     "types": ["node"]
   },
   "include": ["**/*.ts"],
-  "exclude": [".cache", "test-results", "playwright-report"]
+  "exclude": [
+    ".cache",
+    "test-results",
+    "playwright-report",
+    "adapters/apps/*/**"
+  ]
 }

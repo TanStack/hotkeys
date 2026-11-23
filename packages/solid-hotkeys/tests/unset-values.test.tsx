@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+
 import { render } from '@solidjs/testing-library'
-import { createSignal, flush } from 'solid-js'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { Show, createSignal, flush } from 'solid-js'
+import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyHint } from '../src/createHotkeyHint'
 import { createHotkeys } from '../src/createHotkeys'
@@ -89,4 +90,33 @@ it('keeps the defaults when getter options forward unset props', () => {
   expect(onRun).toHaveBeenCalledOnce()
   expect(event.defaultPrevented).toBe(true)
   expect(reachedWindow).toBe(false)
+})
+
+it('a target signal that is still undefined waits, then registers on its element', () => {
+  const onRun = vi.fn()
+  const [visible, setVisible] = createSignal(false)
+  const [panel, setPanel] = createSignal<HTMLElement>()
+  const { unmount } = render(() => {
+    createHotkey('K', onRun, () => ({ target: panel() }))
+    return (
+      <Show when={visible()}>
+        <div ref={setPanel} tabindex={0} />
+      </Show>
+    )
+  })
+  expect(registrationCount()).toBe(0)
+  press()
+  expect(onRun).not.toHaveBeenCalled()
+  setVisible(true)
+  flush()
+  expect(
+    [...getHotkeyManager().registrations.state.values()].map(
+      (registration) => registration.target,
+    ),
+  ).toEqual([panel()])
+  panel()!.dispatchEvent(
+    new KeyboardEvent('keydown', { key: 'k', bubbles: true }),
+  )
+  expect(onRun).toHaveBeenCalledOnce()
+  unmount()
 })

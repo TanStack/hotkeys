@@ -3,10 +3,10 @@ import { provideZonelessChangeDetection, signal } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { provideHotkeys } from '../src/hotkeys-provider'
 import { injectHotkey } from '../src/injectHotkey'
 import { injectHotkeyHint } from '../src/injectHotkeyHint'
 import { injectHotkeys } from '../src/injectHotkeys'
-import { provideHotkeys } from '../src/hotkeys-provider'
 import type { Hotkey } from '@tanstack/hotkeys'
 
 const count = () => getHotkeyManager().registrations.state.size

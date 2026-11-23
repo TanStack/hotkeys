@@ -35,32 +35,35 @@ provideAppHotkeys(appHotkeys, {
 A settings row records with `HotkeyRecorderController`:
 
 ```ts no-check
-import { LitElement, html } from 'lit'
-import { property } from 'lit/decorators.js'
 import {
   AppHotkeysController,
+  FormatForDisplayController,
   HotkeyRecorderController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
+import { LitElement, html } from 'lit'
+import { property } from 'lit/decorators.js'
 import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 
 export class ShortcutRow extends LitElement {
   @property() hotkeyId!: AppHotkeyId
   private app = new AppHotkeysController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
   private recorder = new HotkeyRecorderController(this, () => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = this.app.findConflicts(this.hotkeyId, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = this.app.findConflicts(this.hotkeyId, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => this.app.setCustomHotkey(this.hotkeyId, hotkey),
+    onRecord: (hotkey, context) =>
+      this.app.setCustomHotkey(this.hotkeyId, hotkey, context),
     onClear: () => this.app.setCustomHotkey(this.hotkeyId, null),
   }))
 
   render() {
     const { meta, hotkey } = this.app.appHotkeys[this.hotkeyId]
     return html`
-      ${meta?.name}: ${hotkey ? formatForDisplay(hotkey) : 'Unassigned'}
+      ${meta?.name}:
+      ${hotkey ? this.formatForDisplay.format(hotkey) : 'Unassigned'}
       <button @click=${() => this.recorder.startRecording()}>Change</button>
       <button @click=${() => this.app.resetCustomHotkey(this.hotkeyId)}>
         Reset

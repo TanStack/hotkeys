@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/solid-hotkeys-devtools",
-  "version": "0.13.1",
+  "version": "0.13.14",
   "description": "SolidJS devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -25,11 +25,12 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -43,14 +44,15 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "files": [
     "dist"
   ],
   "peerDependencies": {
-    "@tanstack/solid-devtools": ">=0.8.14",
-    "solid-js": "^1.9.15"
+    "@solidjs/web": "^2.0.0",
+    "@tanstack/solid-devtools": ">=0.9.0",
+    "solid-js": "^2.0.0"
   },
   "peerDependenciesMeta": {
     "@tanstack/solid-devtools": {
@@ -58,11 +60,14 @@
     }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.8.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.9.15",
-    "vite-plugin-solid": "^2.11.14"
+    "@solidjs/vite-plugin": "^3.0.1",
+    "@solidjs/web": "^2.0.3",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@tanstack/solid-hotkeys": "workspace:*",
+    "solid-js": "^2.0.3"
   }
 }

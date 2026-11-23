@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyController } from '../src/controllers/hotkey'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -140,6 +141,8 @@ describe('HotkeyController', () => {
 
     expect(addSpy).toHaveBeenCalledWith('keyup', expect.any(Function), false)
 
+    dispatchKeydown(document, { key: 'Escape' })
+    expect(callback).not.toHaveBeenCalled()
     dispatchKeyup(document, { key: 'Escape' })
     expect(callback).toHaveBeenCalled()
 

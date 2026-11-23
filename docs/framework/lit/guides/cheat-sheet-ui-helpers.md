@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `HotkeyRegistrationsController` holds the hotkeys registered right now. It works with plain `@hotkey` and `HotkeyController`, but it only knows about connected elements.
 - `AppHotkeysController` lists every [app hotkey](./app-hotkeys) you declared, including hotkeys on pages that haven't rendered, with the status of each.
 
-Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `FormatForDisplayController`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -40,6 +40,8 @@ declare module '@tanstack/hotkeys' {
 }
 ```
 
+Lists re-render when a new `meta` changes a string, number, or boolean field. Editing a `meta` object you already passed doesn't re-render them. A new array, object, element, or function in `meta` replaces the old one, so callbacks stay current, but it doesn't re-render lists on its own. That's what lets you write `meta` inline in a component. To show a changed array or element, also change a primitive field, such as `name`.
+
 ## List the hotkeys on screen
 
 `HotkeyRegistrationsController` holds every registered hotkey in its `hotkeys` property, and updates its element when hotkeys register, unregister, or change. Show the ones with a name:
@@ -48,13 +50,14 @@ declare module '@tanstack/hotkeys' {
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import {
+  FormatForDisplayController,
   HotkeyRegistrationsController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
 
 @customElement('shortcut-list')
 class ShortcutList extends LitElement {
   private registrations = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
     const named = this.registrations.hotkeys.filter(
@@ -66,7 +69,7 @@ class ShortcutList extends LitElement {
         (reg) => html`
           <div>
             <dt>${reg.options.meta?.name}</dt>
-            <dd><kbd>${formatForDisplay(reg.hotkey)}</kbd></dd>
+            <dd><kbd>${this.formatForDisplay.format(reg.hotkey)}</kbd></dd>
           </div>
         `,
       )}
@@ -92,11 +95,15 @@ Registrations exist only while their elements are connected, so this list can't 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { AppHotkeysController, formatForDisplay } from '@tanstack/lit-hotkeys'
+import {
+  AppHotkeysController,
+  FormatForDisplayController,
+} from '@tanstack/lit-hotkeys'
 
 @customElement('cheat-sheet')
 class CheatSheet extends LitElement {
   private app = new AppHotkeysController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
     return html`<ul>
@@ -104,7 +111,7 @@ class CheatSheet extends LitElement {
         ({ appHotkey, status, isCustom }) => html`
           <li data-status=${status}>
             ${appHotkey.meta?.name}:
-            ${appHotkey.hotkey ? formatForDisplay(appHotkey.hotkey) : 'Unassigned'}
+            ${appHotkey.hotkey ? this.formatForDisplay.format(appHotkey.hotkey) : 'Unassigned'}
             ${isCustom ? '(custom)' : ''}
           </li>
         `,
@@ -156,7 +163,7 @@ render() {
 }
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the controller's `format` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

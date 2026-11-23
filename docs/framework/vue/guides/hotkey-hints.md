@@ -11,13 +11,14 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 ```vue
 <script setup lang="ts">
 import {
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/vue-hotkeys'
 
 const saveHotkey = 'Mod+S'
 
+const formatForDisplay = useFormatForDisplay()
 useHotkey(saveHotkey, save)
 const showHint = useHotkeyHint(saveHotkey)
 </script>
@@ -67,13 +68,14 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 <script setup lang="ts">
 import { computed } from 'vue'
 import {
-  formatForDisplay,
   useAppHotkeys,
+  useFormatForDisplay,
   useHotkeyHint,
 } from '@tanstack/vue-hotkeys'
 import type { AppHotkeyId } from '@tanstack/vue-hotkeys'
 
 const props = defineProps<{ id: AppHotkeyId }>()
+const formatForDisplay = useFormatForDisplay()
 const appHotkeys = useAppHotkeys()
 const appHotkey = computed(() => appHotkeys.value[props.id])
 const showHint = useHotkeyHint(appHotkey)

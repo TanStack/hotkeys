@@ -1,7 +1,8 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { useStoreSelector } from './useStoreSelector'
-import type { Ref } from 'vue'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
+import type { Ref } from 'vue'
 
 /**
  * Vue composable that reactively reads every hotkey registration, chords and
@@ -15,6 +16,7 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * ```vue
  * <script setup>
  * const registrations = useHotkeyRegistrations()
+ * const formatForDisplay = useFormatForDisplay()
  * </script>
  * <template>
  *   <li v-for="reg in registrations" :key="reg.id">
@@ -26,7 +28,8 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 export function useHotkeyRegistrations(): Readonly<
   Ref<Array<HotkeyRegistrationView>>
 > {
-  return useStoreSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+  return useStoreSelector(
+    getHotkeyManager().registrations,
+    getHotkeyRegistrationViews,
   )
 }

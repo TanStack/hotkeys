@@ -127,6 +127,8 @@ injectHotkey('Shift+Mod+S', () => this.saveAs()) // Type error: Mod comes first
 injectHotkey('Mod+Meta+S', () => this.saveAs()) // Type error: Mod is already Meta on macOS
 ```
 
+TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
+
 Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
 
 ```ts
@@ -371,7 +373,7 @@ export class PanelComponent {
 }
 ```
 
-The hotkey reads the signal, so it registers once the element renders and moves if the element changes. A `null` target, or a signal of `undefined`, registers nothing until the element exists.
+The hotkey reads the signal, so it registers once the element renders and moves if the element changes. A `null` or `undefined` target, or a signal of either, registers nothing until the element exists, including a value read in an options function, such as `() => ({ target: this.panel()?.nativeElement })`. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it } from 'vitest'
-import { act, cleanup, render } from '@testing-library/preact'
+
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { act, cleanup, render } from '@testing-library/preact'
+import { afterEach, describe, expect, it } from 'vitest'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import type { PreactHotkeyRecorder } from '../src/useHotkeyRecorder'
 

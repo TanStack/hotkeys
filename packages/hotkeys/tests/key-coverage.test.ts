@@ -1,7 +1,6 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { expect, expectTypeOf, it } from 'vitest'
 import {
-  ALL_KEYS,
-  FUNCTION_KEYS,
   formatForDisplay,
   matchesKeyboardEvent,
   normalizeKeyName,
@@ -10,6 +9,7 @@ import {
 } from '../src'
 import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
+import { FUNCTION_KEY_NAMES } from './typed-keys'
 import type {
   FunctionKey,
   HotkeyChord,
@@ -30,13 +30,12 @@ it('types corresponding logical and physical names without conflating their spel
   >().toBeNever()
 })
 
-it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
+it.each([...FUNCTION_KEY_NAMES, ...SHARED_NAMED_KEYS])(
   'validates, records, and matches both identities for %s',
   (key) => {
     const logical: HotkeyChord = `Alt+${key}`
     const physical: HotkeyChord = `Alt+[${key}]`
-    const event = new KeyboardEvent('keydown', { key, code: key, altKey: true })
-    expect(ALL_KEYS.has(key)).toBe(true)
+    const event = keydown({ key, code: key, altKey: true })
     expect(normalizeKeyName(key)).toBe(key)
     expect(parseHotkey(logical).key).toBe(key)
     expect(validateHotkey(logical)).toEqual({
@@ -47,7 +46,7 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
     // Key names are case-sensitive: other spellings stay as written and warn
     expect(normalizeKeyName(key.toLowerCase())).toBe(key.toLowerCase())
     expect(validateHotkey(logical.toLowerCase()).warnings).toEqual([
-      `Unknown key: '${key.toLowerCase()}'. Key names are case-sensitive, such as 'Escape' and 'F1'.`,
+      { reason: 'unknown-key', part: key.toLowerCase() },
     ])
     expect(validateHotkey(physical)).toEqual({
       valid: true,
@@ -60,7 +59,7 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
     expect(matchesKeyboardEvent(event, physical, 'mac')).toBe(true)
     expect(
       matchesKeyboardEvent(
-        new KeyboardEvent('keydown', { key, code: 'KeyA', altKey: true }),
+        keydown({ key, code: 'KeyA', altKey: true }),
         physical,
         'windows',
       ),
@@ -85,10 +84,7 @@ it.each(LOGICAL_ONLY_NAMED_KEYS)(
 )
 
 it('keeps differently named logical and physical bindings distinct', () => {
-  const event = new KeyboardEvent('keydown', {
-    key: 'LaunchApplication1',
-    code: 'LaunchApp1',
-  })
+  const event = keydown({ key: 'LaunchApplication1', code: 'LaunchApp1' })
   expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe('LaunchApplication1')
   expect(hotkeyChordFromKeydown(event, 'mac', 'code')).toBe('[LaunchApp1]')
   expect(matchesKeyboardEvent(event, 'LaunchApplication1')).toBe(true)

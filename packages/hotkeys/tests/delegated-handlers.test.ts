@@ -1,6 +1,8 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
-import type { HotkeyChordOptions, Target } from '../src/hotkey-manager'
+import type { HotkeyChordOptions } from '../src/hotkey-manager'
+import type { Target } from '../src/hotkey.types'
 
 // React, Svelte and Octane run declarative key handlers from one listener on
 // the app's root container, and Solid from one on the document. These tests
@@ -52,18 +54,6 @@ function panelWithChild(listenOn?: Document) {
   return { root, panel, child, on }
 }
 
-function press(element: Element, key = 'k', init: KeyboardEventInit = {}) {
-  element.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      key,
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-      ...init,
-    }),
-  )
-}
-
 function register(
   name: string,
   target: Target,
@@ -85,7 +75,7 @@ describe('afterDelegatedHandlers', () => {
     register('hotkey', panel)
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['child', 'panel', 'hotkey'])
   })
@@ -99,7 +89,7 @@ describe('afterDelegatedHandlers', () => {
     register('hotkey', panel)
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['child'])
   })
@@ -115,8 +105,8 @@ describe('afterDelegatedHandlers', () => {
     register('document hotkey', document, {}, 'J')
 
     child.focus()
-    press(child)
-    press(child, 'j')
+    keydown({ key: 'k', target: child })
+    keydown({ key: 'j', target: child })
 
     expect(log).toEqual(['child', 'child'])
   })
@@ -128,7 +118,7 @@ describe('afterDelegatedHandlers', () => {
     register('hotkey', panel)
 
     outside.focus()
-    press(outside)
+    keydown({ key: 'k', target: outside })
 
     expect(log).toEqual([])
   })
@@ -139,7 +129,7 @@ describe('afterDelegatedHandlers', () => {
     register('panel hotkey', panel, { conflictBehavior: 'allow' })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['panel hotkey'])
   })
@@ -153,7 +143,7 @@ describe('afterDelegatedHandlers', () => {
     })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['panel hotkey', 'document hotkey'])
   })
@@ -164,14 +154,14 @@ describe('afterDelegatedHandlers', () => {
     register('inner', child, { conflictBehavior: 'allow' })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
     expect(log).toEqual(['inner'])
 
     log.length = 0
     HotkeyManager.resetInstance()
     register('outer', panel, { stopPropagation: false })
     register('inner', child, { stopPropagation: false })
-    press(child)
+    keydown({ key: 'k', target: child })
     expect(log).toEqual(['inner', 'outer'])
   })
 
@@ -182,7 +172,7 @@ describe('afterDelegatedHandlers', () => {
     register('hotkey', panel)
 
     input.focus()
-    press(input)
+    keydown({ key: 'k', target: input })
 
     expect(log).toEqual([])
   })
@@ -193,7 +183,7 @@ describe('afterDelegatedHandlers', () => {
     register('hotkey', panel, { capture: true, stopPropagation: false })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['hotkey', 'child'])
   })
@@ -204,15 +194,15 @@ describe('afterDelegatedHandlers', () => {
     const handle = register('hotkey', panel, { stopPropagation: false })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
     handle.setOptions({ capture: true })
-    press(child)
+    keydown({ key: 'k', target: child })
     handle.setOptions({ capture: false })
-    press(child)
+    keydown({ key: 'k', target: child })
     handle.setOptions({ afterDelegatedHandlers: false })
-    press(child)
+    keydown({ key: 'k', target: child })
     handle.unregister()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual([
       'child',
@@ -236,7 +226,7 @@ describe('afterDelegatedHandlers', () => {
     })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['hotkey', 'child'])
   })
@@ -272,7 +262,7 @@ describe('afterDelegatedHandlers listener bookkeeping', () => {
     register('hotkey', panel)
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['delegated'])
   })
@@ -285,7 +275,7 @@ describe('afterDelegatedHandlers listener placement', () => {
     panel.append(child)
     register('hotkey', panel)
 
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['hotkey'])
   })
@@ -298,7 +288,7 @@ describe('afterDelegatedHandlers listener placement', () => {
     cleanups.push(() => document.removeEventListener('keydown', later, true))
     register('hotkey', document, { capture: true, stopPropagation: false })
 
-    press(document.body)
+    keydown({ key: 'k', target: document.body })
 
     expect(log).toEqual(['hotkey', 'later capture listener'])
   })
@@ -317,7 +307,7 @@ describe('afterDelegatedHandlers listener placement', () => {
     handle.setOptions({ afterDelegatedHandlers: true })
 
     child.focus()
-    press(child)
+    keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['delegated'])
   })

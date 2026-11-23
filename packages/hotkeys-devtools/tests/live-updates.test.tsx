@@ -1,5 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
 import {
   AppHotkeysStore,
   HotkeyManager,
@@ -7,6 +6,8 @@ import {
   defineAppHotkeys,
   publishAppHotkeysStore,
 } from '@tanstack/hotkeys'
+import { flush } from 'solid-js'
+import { afterEach, describe, expect, it } from 'vitest'
 import {
   HotkeysContextProvider,
   useHotkeysDevtoolsState,
@@ -28,6 +29,7 @@ function mountState() {
     ),
     document.createElement('div'),
   )
+  flush()
   return state
 }
 
@@ -45,23 +47,29 @@ describe('devtools live updates', () => {
     const state = mountState()
 
     const handle = manager.register('Mod+K', () => {})
+    flush()
     expect(state.registrations().map((r) => r.hotkey)).toEqual(['Mod+K'])
     handle.unregister()
+    flush()
     expect(state.registrations()).toEqual([])
 
     const release = manager.activateScope('dialog')
+    flush()
     expect(state.scopes().active).toContain('dialog')
     release()
+    flush()
     expect(state.scopes().active).not.toContain('dialog')
 
     document.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Shift', code: 'ShiftLeft' }),
     )
+    flush()
     expect(state.heldKeys()).toEqual(['Shift'])
     expect(state.heldCodes()).toEqual({ Shift: 'ShiftLeft' })
     document.dispatchEvent(
       new KeyboardEvent('keyup', { key: 'Shift', code: 'ShiftLeft' }),
     )
+    flush()
     expect(state.heldKeys()).toEqual([])
 
     const appHotkeys = defineAppHotkeys({
@@ -69,14 +77,17 @@ describe('devtools live updates', () => {
     })
     const store = new AppHotkeysStore(appHotkeys)
     const unpublish = publishAppHotkeysStore(store)
+    flush()
     expect(state.appHotkeys().map((item) => item.appHotkey.hotkey)).toEqual([
       'Mod+S',
     ])
     store.setCustomHotkey('doc.save', 'Mod+Shift+S')
+    flush()
     expect(state.appHotkeys().map((item) => item.appHotkey.hotkey)).toEqual([
       'Mod+Shift+S',
     ])
     unpublish()
+    flush()
     expect(state.appHotkeys()).toEqual([])
   })
 })

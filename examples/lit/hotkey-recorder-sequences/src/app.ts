@@ -1,12 +1,12 @@
-import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
 import {
+  FormatForDisplayController,
   HeldKeysController,
   HotkeyRecorderController,
   HotkeyRegistrationsController,
-  formatForDisplay,
   getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
+import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
 import appStyles from './index.css?raw'
 import type {
   Hotkey,
@@ -73,10 +73,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;
@@ -92,6 +89,7 @@ export class MyApp extends LitElement {
 
   private heldKeys = new HeldKeysController(this)
   private registrations = new HotkeyRegistrationsController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   private recorder = new HotkeyRecorderController(this, {
     // Record up to four chords; Enter or the fourth chord commits.
@@ -240,6 +238,8 @@ export class MyApp extends LitElement {
   }
 
   render() {
+    const formatForDisplay = this.formatForDisplay.format
+
     return html`
       <div class="app">
         <header>

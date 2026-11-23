@@ -1,0 +1,17 @@
+{
+  "name": "@tanstack/hotkeys-e2e-app-solid",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@solidjs/web": "^2.0.3",
+    "@tanstack/solid-hotkeys": "workspace:*",
+    "solid-js": "^2.0.3"
+  },
+  "devDependencies": {
+    "@solidjs/vite-plugin": "^3.0.1",
+    "vite": "^8.3.7"
+  }
+}

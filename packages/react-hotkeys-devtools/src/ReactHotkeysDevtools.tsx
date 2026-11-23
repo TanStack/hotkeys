@@ -1,8 +1,11 @@
-import { createElement } from 'react'
 import { createReactPanel } from '@tanstack/devtools-utils/react'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import {
+  HOTKEYS_DEVTOOLS_DEFAULT_PROPS,
+  HotkeysDevtoolsCore,
+} from '@tanstack/hotkeys-devtools/production'
+import { createElement, memo } from 'react'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { ReactElement } from 'react'
-import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 
 export interface HotkeysDevtoolsReactInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
@@ -12,16 +15,21 @@ type HotkeysDevtoolsPanelComponent = (
 
 const panels = createReactPanel(HotkeysDevtoolsCore)
 
-function withDefaults(
-  Panel: (typeof panels)[number],
+function withPanelDefaults(
+  CorePanel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
+  // `CorePanel` remounts the devtools whenever it renders with a new props
+  // object. Skip renders that don't change the props, so the panel keeps its
+  // search, selection and width when the parent re-renders.
+  const Panel = memo(CorePanel)
   return (props = {}) =>
     createElement(Panel, {
       ...props,
-      theme: props.theme ?? 'dark',
-      devtoolsOpen: props.devtoolsOpen ?? true,
+      theme: props.theme ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.theme,
+      devtoolsOpen:
+        props.devtoolsOpen ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.devtoolsOpen,
     })
 }
 
-export const HotkeysDevtoolsPanel = withDefaults(panels[0])
-export const HotkeysDevtoolsPanelNoOp = withDefaults(panels[1])
+export const HotkeysDevtoolsPanel = withPanelDefaults(panels[0])
+export const HotkeysDevtoolsPanelNoOp = withPanelDefaults(panels[1])

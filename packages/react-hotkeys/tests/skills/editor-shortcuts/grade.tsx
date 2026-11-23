@@ -1,7 +1,7 @@
-import React from 'react'
-import { act, cleanup, render } from '@testing-library/react'
-import { vi } from 'vitest'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { act, cleanup, render } from '@testing-library/react'
+import React from 'react'
+import { vi } from 'vitest'
 import type { ComponentType } from 'react'
 import type { EditorProps } from './fixture'
 

@@ -1,17 +1,32 @@
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
   normalizeHotkey,
+  useFormatForDisplay,
   useHotkeyRegistrations,
   useHotkeys,
   validateHotkey,
 } from '@tanstack/react-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import type { Hotkey, UseHotkeyDefinition } from '@tanstack/react-hotkeys'
+import type {
+  Hotkey,
+  HotkeyIssue,
+  UseHotkeyDefinition,
+} from '@tanstack/react-hotkeys'
 import './index.css'
+
+// validateHotkey sends reason codes, so the app writes the text
+const issueText = ({ reason, part }: HotkeyIssue) =>
+  ({
+    empty: 'Enter a hotkey.',
+    'empty-part': 'Remove the empty part between + signs.',
+    'unknown-modifier': `Unknown modifier ${part}.`,
+    'invalid-physical-key': `${part} isn't a physical key code.`,
+    'modifier-only': `Add a key after ${part}.`,
+    'unknown-key': `Unknown key ${part}. Key names are case-sensitive.`,
+  })[reason]
 
 const plugins = [hotkeysDevtoolsPlugin()]
 
@@ -43,6 +58,7 @@ function App() {
 // ---------------------------------------------------------------------------
 
 function BasicMultiHotkeys() {
+  const formatForDisplay = useFormatForDisplay()
   const [log, setLog] = React.useState<Array<string>>([])
   const [saveCount, setSaveCount] = React.useState(0)
   const [undoCount, setUndoCount] = React.useState(0)
@@ -129,6 +145,7 @@ function BasicMultiHotkeys() {
 // ---------------------------------------------------------------------------
 
 function CommonOptionsDemo() {
+  const formatForDisplay = useFormatForDisplay()
   const [enabled, setEnabled] = React.useState(true)
   const [counts, setCounts] = React.useState({ a: 0, b: 0, c: 0 })
 
@@ -247,6 +264,7 @@ const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
 ]
 
 function DynamicHotkeysDemo() {
+  const formatForDisplay = useFormatForDisplay()
   const [shortcuts, setShortcuts] =
     React.useState<Array<DynamicShortcut>>(DEFAULT_SHORTCUTS)
   const [newHotkey, setNewHotkey] = React.useState('')
@@ -275,7 +293,9 @@ function DynamicHotkeysDemo() {
     if (!newLabel.trim()) return
     const validation = validateHotkey(trimmed)
     if (!validation.valid || validation.warnings.length > 0) {
-      setError([...validation.errors, ...validation.warnings].join(' '))
+      setError(
+        [...validation.errors, ...validation.warnings].map(issueText).join(' '),
+      )
       return
     }
     setError('')
@@ -370,6 +390,7 @@ useHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
+  const formatForDisplay = useFormatForDisplay()
   const registrations = useHotkeyRegistrations()
 
   return (

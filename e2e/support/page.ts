@@ -3,6 +3,7 @@
 import * as Hotkeys from '../../packages/hotkeys/src'
 import type {
   HotkeyOptions,
+  HotkeyPlatform,
   HotkeyRecorderOptions,
   HotkeyRegistrationHandle,
   RegisterableHotkey,
@@ -28,6 +29,8 @@ export interface ObservedKeydown {
   shiftKey: boolean
   metaKey: boolean
   altGraph: boolean
+  /** `getModifierState('NumLock')`. */
+  numLock: boolean
   repeat: boolean
   /** Bindings from `observe()` that `matchesKeyboardEvent` accepts. */
   matches: Array<string>
@@ -42,6 +45,8 @@ export type HarnessOptions = Omit<HotkeyOptions, 'target'> & {
   timeout?: number
 }
 
+type FormatLayoutMap = NonNullable<Hotkeys.FormatDisplayOptions['layoutMap']>
+
 const MODIFIER_KEYS = ['Control', 'Alt', 'AltGraph', 'Shift', 'Meta']
 
 function createHarness() {
@@ -49,7 +54,7 @@ function createHarness() {
   const keydowns: Array<ObservedKeydown> = []
   const handles = new Map<string, HotkeyRegistrationHandle>()
   let observed: Array<string> = []
-  let platform: 'mac' | 'windows' | 'linux' | undefined
+  let platform: HotkeyPlatform | undefined
   let recorder: Hotkeys.HotkeyRecorder | undefined
   let recorded: unknown
 
@@ -66,6 +71,7 @@ function createHarness() {
         shiftKey: event.shiftKey,
         metaKey: event.metaKey,
         altGraph: event.getModifierState('AltGraph'),
+        numLock: event.getModifierState('NumLock'),
         repeat: event.repeat,
         matches: observed.filter((binding) =>
           Hotkeys.matchesKeyboardEvent(
@@ -87,7 +93,7 @@ function createHarness() {
     fired,
     keydowns,
     /** Platform passed to matching, parsing and registration. Defaults to detection. */
-    setPlatform(value: 'mac' | 'windows' | 'linux' | undefined) {
+    setPlatform(value: HotkeyPlatform | undefined) {
       platform = value
     },
     /** Bindings to check against every keydown with `matchesKeyboardEvent`. */
@@ -175,6 +181,41 @@ function createHarness() {
     stopRecorder() {
       recorder?.destroy()
       recorder = undefined
+    },
+    /**
+     * Loads the browser's keyboard layout through the library, as an app
+     * does, and returns its entries. Returns null where the browser reports
+     * no layout (Firefox and WebKit have no `navigator.keyboard`).
+     */
+    async loadLayout(): Promise<Array<[string, string]> | null> {
+      const store = Hotkeys.getKeyboardLayoutStore()
+      const stop = Hotkeys.loadKeyboardLayout()
+      const keyboard = (
+        navigator as { keyboard?: { getLayoutMap: () => Promise<unknown> } }
+      ).keyboard
+      // The library's read started first, so it has settled once this one
+      // has and its handlers have run.
+      await keyboard?.getLayoutMap().catch(() => {})
+      await new Promise((resolve) => setTimeout(resolve))
+      stop()
+      return store.state ? [...store.state] : null
+    },
+    /**
+     * Linux display labels for a binding: `label` with conventional labels,
+     * and `layoutLabel` with the keyboard layout the library loads (Chromium
+     * only; undefined where the browser reports no layout).
+     */
+    async formatLabels(binding: string) {
+      const format = (layoutMap?: FormatLayoutMap) =>
+        Hotkeys.formatForDisplay(binding as Hotkeys.Hotkey, {
+          platform: 'linux',
+          ...(layoutMap && { layoutMap }),
+        })
+      const entries = await this.loadLayout()
+      return {
+        label: format(),
+        layoutLabel: entries ? format(new Map(entries)) : undefined,
+      }
     },
     /** Clears logs between steps of one test. Registrations stay. */
     clear() {

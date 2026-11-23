@@ -2,7 +2,6 @@ import {
   createHotkeys,
   createHotkeysAttachment,
 } from './createHotkeys.svelte.js'
-import type { Attachment } from 'svelte/attachments'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -17,6 +16,7 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
+import type { Attachment } from 'svelte/attachments'
 import type { MaybeGetter } from './internal.svelte.js'
 
 /** The document or window to listen on. Use an attachment for elements. */

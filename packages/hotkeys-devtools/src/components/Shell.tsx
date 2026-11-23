@@ -1,16 +1,11 @@
-import {
-  createEffect,
-  createMemo,
-  createSignal,
-  onCleanup,
-  onMount,
-} from 'solid-js'
 import { Header, HeaderLogo, MainPanel } from '@tanstack/devtools-ui'
-import { useStyles } from '../styles/use-styles'
+import { createMemo, createSignal, onSettled } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
+import { useStyles } from '../styles/use-styles'
+import { DetailsPanel } from './DetailsPanel'
 import { HeldKeysBar } from './HeldKeysTopbar'
 import { HotkeyList, appHotkeySelectionId } from './HotkeyList'
-import { DetailsPanel } from './DetailsPanel'
+import { KEYBOARD_LAYOUT_SELECTION_ID } from './KeyboardLayoutDetails'
 import type { DetailsSelection } from './DetailsPanel'
 
 function readResizeObserverBlockSize(entry: ResizeObserverEntry): number {
@@ -36,7 +31,7 @@ export function Shell() {
   const [selectedId, setSelectedId] = createSignal<string | null>(null)
   const [leftPanelWidth, setLeftPanelWidth] = createSignal(440)
   const [isDragging, setIsDragging] = createSignal(false)
-  const [shellRootEl, setShellRootEl] = createSignal<HTMLElement | null>(null)
+  let shellRootEl: HTMLDivElement | undefined
   const [slotHeightPx, setSlotHeightPx] = createSignal<number | undefined>(
     undefined,
   )
@@ -44,6 +39,7 @@ export function Shell() {
   const selection = createMemo((): DetailsSelection | null => {
     const id = selectedId()
     if (!id) return null
+    if (id === KEYBOARD_LAYOUT_SELECTION_ID) return { type: 'keyboardLayout' }
     const registration = state.registrations().find((r) => r.id === id)
     if (registration) return { type: 'registration', registration }
     const item = state
@@ -80,18 +76,17 @@ export function Shell() {
     document.body.style.userSelect = ''
   }
 
-  onMount(() => {
+  onSettled(() => {
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
   })
 
-  onCleanup(() => {
-    document.removeEventListener('mousemove', handleMouseMove)
-    document.removeEventListener('mouseup', handleMouseUp)
-  })
-
-  createEffect(() => {
-    const el = shellRootEl()
+  onSettled(() => {
+    const el = shellRootEl
     if (!el || typeof ResizeObserver === 'undefined') return
     const pluginHost = resolvePluginHost(el)
     if (!pluginHost) return
@@ -109,12 +104,12 @@ export function Shell() {
       applyHeight(entries[0])
     })
     ro.observe(pluginHost)
-    onCleanup(() => ro.disconnect())
+    return () => ro.disconnect()
   })
 
   return (
     <div
-      ref={(el) => setShellRootEl(el)}
+      ref={shellRootEl}
       class={styles().shellRoot}
       style={{
         ...(slotHeightPx() !== undefined
@@ -138,7 +133,7 @@ export function Shell() {
         </Header>
 
         <div class={styles().mainContainer}>
-          <HeldKeysBar />
+          <HeldKeysBar selectedId={selectedId} setSelectedId={setSelectedId} />
 
           <div class={styles().panelsContainer}>
             <div
@@ -158,7 +153,7 @@ export function Shell() {
             </div>
 
             <div
-              class={`${styles().dragHandle} ${isDragging() ? 'dragging' : ''}`}
+              class={[styles().dragHandle, { dragging: isDragging() }]}
               onMouseDown={handleMouseDown}
             />
 

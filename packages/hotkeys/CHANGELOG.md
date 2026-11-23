@@ -1,5 +1,207 @@
 # @tanstack/hotkeys
 
+## 0.33.1
+
+### Patch Changes
+
+- [#292](https://github.com/TanStack/hotkeys/pull/292) [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b) - Letters outside the Basic Multilingual Plane now uppercase like other letters, so `Mod+𞤢` and `Mod+𞤀` are the same hotkey. ADLaM, which Windows has a keyboard layout for, and other scripts such as Deseret and Osage store each letter in two UTF-16 units, and `normalizeKeyName` left them lowercase. `normalizeHotkey` then gave the two spellings of one letter different canonical strings, and the recorder and labels showed the lowercase letter.
+
+- [#289](https://github.com/TanStack/hotkeys/pull/289) [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f) - Control alone, or Command alone on macOS, with a digit-row key that types `-`, `+`, or `=` no longer fires the digit's hotkey. AZERTY types `-` on the 6 key, so Ctrl+- fired `Mod+6` and stopped the browser from zooming out. Czech and Slovak Ctrl++ on the 1 key fired `Mod+1` the same way. These presses now reach the browser. `Mod+6` still fires on AZERTY with Ctrl+Shift+6, which types `6`, and as `Mod+[Digit6]`. Presses with another modifier still fall back, so German Ctrl+Shift+0 (`=`) still fires `Mod+Shift+0`. A `keyup` hotkey now fires on the release of the key that started it, even when that key types something else by then, such as AZERTY 6 when Shift is released first. Before, a `keyup` hotkey for a symbol typed with Shift, such as `?`, never fired when Shift came up before the key. A space typed on the digit row, as macOS Spanish Option+Shift+6 does, now falls back to the digit too.
+
+- [#292](https://github.com/TanStack/hotkeys/pull/292) [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b) - A key that types a letter with a mark, such as `שׁ` on macOS Hebrew Shift+A, now fires the hotkey for its position, as other non-Latin letters do. The matcher treated any key value longer than one code point as a named key like `End`, so `Shift+A`, `Shift+C`, `Alt+H` and the other pointed-letter presses on the macOS Hebrew layouts fired nothing. AltGr typing such a letter now counts as typing a character too.
+
+- [#292](https://github.com/TanStack/hotkeys/pull/292) [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b) - Held keys now clear when the page is hidden, even when a page listener stops the `visibilitychange` event. Before, a listener on the document that called `stopPropagation()` kept the event from the key state tracker, so a key held while the user switched tabs stayed held in `getHeldKeys()` and every adapter's held-key helpers until its next keyup.
+
+- [#292](https://github.com/TanStack/hotkeys/pull/292) [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b) - A keyup chord no longer fires after another key was pressed in between when that key never reached the chord's own listener. One case is a key that a hotkey on an inner element stopped. Another is a key pressed while focus was outside the chord's target, which another hotkey's listener heard. A keyup chord also no longer fires on a later modifier release after its key was released outside its target. A press now ends at the first release of its key or one of its modifiers, and any other key press cancels it, at whichever of the hotkey manager's listeners hears that key first. An auto-repeat of the chord's key no longer restarts a press that another key cancelled.
+
+- [#291](https://github.com/TanStack/hotkeys/pull/291) [`571d921`](https://github.com/TanStack/hotkeys/commit/571d921d5302d58829ecbf13f2ba9674f97a391c) - The long s (`ſ`) is now a key of its own, as Turkish `ı` is. It uppercases to `S`, so a `ſ` hotkey fired on the S key, and the `ſ` that AltGr+W types on German and other Linux layouts counted as AltGr typing nothing new, so it fired nothing. Now a `ſ` hotkey fires only on a key that types `ſ`.
+
+- [#292](https://github.com/TanStack/hotkeys/pull/292) [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b) - The hotkey recorder now records Shift with a symbol such as the Spanish middle dot (`·`) by position, as it records Shift+/. On a Spanish keyboard, Control+Shift+3 types `·` on Windows and recorded `Mod+Shift+·`, which never fired on a Mac, where Command+Shift+3 reports `3`. It now records `Mod+Shift+[Digit3]`, which fires on both. The recorder counted `·` as a letter because it belongs to the Latin script, and the same applied to other Latin-script symbols and combining marks.
+
+- [#293](https://github.com/TanStack/hotkeys/pull/293) [`90db9ab`](https://github.com/TanStack/hotkeys/commit/90db9aba332faaca79d25c532e9b3809776588fc) - The hotkey manager and recorder bundles are slightly smaller. Checks that could never fail and an unused internal match field were removed, with no change in behavior.
+
+- [#289](https://github.com/TanStack/hotkeys/pull/289) [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f) - CapsLock, NumLock, ScrollLock, Fn, FnLock, and dead keys no longer reset a sequence in progress. Each sends a keydown of its own, so pressing CapsLock or starting an accented letter between `G` and `T` broke `['G', 'T']`. These keys now count only when they match a step, in registered sequences and in `createSequenceMatcher`. One that matches a step of another registered sequence still resets the others. A dead key that matches no step leaves the sequence to the next key, which types its character.
+
+## 0.33.0
+
+### Minor Changes
+
+- [#284](https://github.com/TanStack/hotkeys/pull/284) [`8e01130`](https://github.com/TanStack/hotkeys/commit/8e011301ac9a22e53b2b885b4cd5ed6f2737d889) - Hotkey strings can accept the keys of other keyboard layouts. Register the layouts your app targets with `keys` on the `Register` interface, such as `keys: UsKeys | GermanKeys`, and `Mod+Ö`, `ß`, and `§` type-check. The registered sets replace the US QWERTY punctuation. A-Z, 0-9, named keys, and physical codes are always accepted. 26 layout sets ship as types, from `UkKeys` and `GermanKeys` to `GreekKeys` and `HebrewKeys`, and add no code. This changes types only: hotkeys match the same way, and without a registration the types are unchanged.
+
+## 0.32.0
+
+### Minor Changes
+
+- [#281](https://github.com/TanStack/hotkeys/pull/281) [`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a) - Inline `meta` with arrays, objects, elements, or functions no longer re-renders forever next to `useHotkeyRegistrations`. React threw "Maximum update depth exceeded", and Preact froze the tab. A changed string, number, or boolean field of `meta` still re-renders registration lists. A new array, object, element, or function replaces the old one but doesn't re-render them on its own.
+
+  Add `AppHotkeysProvider` to `@tanstack/react-hotkeys`. A React Server Component, such as a Next.js `app/layout.tsx`, can render it with `appHotkeys` from a server module. `HotkeysProvider` threw there, because `defineAppHotkeys` ran only on the server, and it now says to use `AppHotkeysProvider`. `HotkeysProvider` bundles without app hotkeys stay the same size.
+
+- [#282](https://github.com/TanStack/hotkeys/pull/282) [`24d4182`](https://github.com/TanStack/hotkeys/commit/24d41826ef464f6298810d4352429936327f6b8d) - Behavior change: `HotkeyManager.register` with `target: null` now registers nothing and returns an inactive handle. Before, it listened on `document`, so a `querySelector` that found no element turned an element hotkey into a page-wide one that also prevented the key's default action. The framework adapters already skipped a `null` target. To listen on `document`, omit `target` or pass `document`.
+
+## 0.31.0
+
+### Minor Changes
+
+- [#279](https://github.com/TanStack/hotkeys/pull/279) [`82727f5`](https://github.com/TanStack/hotkeys/commit/82727f52cd4ac44af999bd664a66586760fdd959) - Escape goes to the innermost open overlay, not only to native dialogs and popovers. While focus is inside an element with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, or on an expanded combobox or popup button (`aria-expanded="true"`, with `aria-haspopup` on the button), hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay closes. This changes what one Escape press does:
+
+  - Dialogs that stayed open now close, and the page hotkey doesn't run: Reka UI (shadcn-vue, Nuxt UI), Headless UI, Vuetify, Bits UI (shadcn-svelte), Kobalte (solid-ui, shadcn-solid), Corvu, and Shoelace.
+  - Dialogs that closed and also ran the page hotkey now only close: Radix UI (shadcn/ui), PrimeVue, and the Angular CDK and Angular Material. The first Escape in an open React Aria `ComboBox` closes its list without running the page hotkey.
+  - A hotkey targeted inside the overlay keeps Escape. Inside a `role="dialog"` or `role="alertdialog"` element, any hotkey in a named scope keeps it too, whatever its target, so a dialog that registers its own `Escape` hotkey in its scope still closes itself. An open combobox or menu inside that dialog still closes first. A global `Escape` hotkey that closes an app's own `role="dialog"` element now skips it. Give that hotkey the dialog's scope or target the dialog.
+  - Native dialogs follow `closedby`: a modal dialog with `closedby="none"` no longer takes Escape from hotkeys, and a non-modal dialog with `closedby="any"` or `closedby="closerequest"` gets it.
+
+  The overlays are read once per key press, from a `window` capture listener, before listeners on the document and its elements can close one.
+
+## 0.30.0
+
+### Minor Changes
+
+- [#276](https://github.com/TanStack/hotkeys/pull/276) [`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd) - Types that every adapter wrote out for itself now come from one place in `@tanstack/hotkeys`.
+
+  - New types: `MaybeGetter`, `HotkeyEventType`, `KeyIdentity`, `ResolvableModifier`, `HotkeyCommonOptions`, `HotkeyRegistrationsResult`, `RegisteredAppHotkeyListItem`, `CustomHotkeyActions` and `HotkeyRecorderActions`. `HotkeyRecorderState` takes the recorded hotkey type as an optional type argument.
+  - Each adapter's types, such as `UseCustomHotkeysResult` and `ReactHotkeyRecorder`, now extend these, and keep their names.
+  - `@tanstack/hotkeys/adapter` adds helpers that the adapters shared by copy: hint visibility, the label formatter, keyboard layout following, the app hotkeys store lookup and custom hotkey actions.
+  - `@tanstack/hotkeys-devtools` exports `HOTKEYS_DEVTOOLS_PLUGIN_NAME`, `HOTKEYS_DEVTOOLS_DEFAULT_PROPS` and `HotkeysDevtoolsRenderPlugin`, which the framework devtools plugins extend.
+
+  Behavior is unchanged.
+
+## 0.29.0
+
+### Minor Changes
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - App hotkey conflict checks can now use the key press that recorded a hotkey. `findConflicts(id, hotkey, context)` and `setCustomHotkey(id, hotkey, context)` take the `context` that a recorder passes to `validate`, on `AppHotkeysStore` and in every adapter.
+
+  Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press, and so are a recorded `Mod+[KeyS]` and a declared `Mod+S`. Without the key press, the check compares how the hotkeys are written and misses these. Pass the context in a shortcut settings screen:
+
+  ```ts
+  validate: (hotkey, context) =>
+    findConflicts(id, hotkey, context).length === 0 || 'Already in use',
+  ```
+
+  The recorder's `onRecord` callback now receives the same context as its second argument. If a test asserts the exact arguments of your `onRecord` callback, add the second argument to the assertion.
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Labels of physical bindings now follow the user's keyboard layout where the browser reports it. `[KeyQ]` displayed as `Q`, the key's US character. It now displays as `A` on a French AZERTY keyboard in Chromium browsers. Firefox and Safari report no layout, so labels keep their US form there.
+
+  - Each adapter's label primitive, such as `useFormatForDisplay`, loads the layout after the first label mounts and uses it. Server-rendered labels hydrate with the US form and update when the layout arrives. `formatForDisplay` called directly is unchanged: it uses only a `layoutMap` you pass.
+  - A new layout primitive in every adapter, such as `useKeyboardLayout`, returns the layout for labels you draw yourself.
+  - `loadKeyboardLayout()` loads the layout with `navigator.keyboard.getLayoutMap()` and reads it again when the window regains focus. `getKeyboardLayoutStore()` holds the result. Use them without an adapter.
+  - To never ask the browser for the layout, set `keyboardLayout: false` in the provider's default options, or in the scope's options in Alpine and Ember.
+  - Devtools show the loaded layout, and mark the keys it relabels.
+
+  Matching and recording never use the layout. Providers don't import the loader, so an app that registers hotkeys and never formats a label or reads the layout doesn't bundle it. Alpine scopes carry every primitive, the layout one included.
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - Breaking: the hotkey recorder now records a key by name where it has one. Control+S on Windows, or Command+S on macOS, records `Mod+S`, where it recorded `Mod+[KeyS]`. The new default is `recordBy: 'auto'`. Set `recordBy: 'code'` to keep recording every key by position. Saved hotkeys in the old form keep working.
+
+  Recording by name fixes three problems with recorded hotkeys:
+
+  - **Labels follow the keyboard layout.** On Windows with a French AZERTY keyboard, Control and the key labeled A recorded `Mod+[KeyQ]`, which displayed as Ctrl+Q. It now records `Mod+A`.
+  - **A recorded hotkey equals the same hotkey written by hand.** A recorded `Mod+[KeyS]` and a declared `Mod+S` both fired for Control+S on Windows, but compared as different hotkeys. Conflict checks missed the pair, and no duplicate warning was logged.
+  - **Recording a hotkey's own default no longer marks it as custom**, where the recorder writes the press the way the default is written.
+
+  A press with no name that means the same thing on every platform still records by position:
+
+  - Shift with a digit or a symbol, such as `Shift+[Slash]`. Windows reports `?` for Control+Shift+/ and macOS reports `/` for Command+Shift+/, so a recorded `?` would not fire on a Mac.
+  - macOS Option with a digit or a symbol, such as `Alt+[Digit1]`. Option with a letter records the letter on the keycap, such as `Alt+S`.
+  - Dead keys and the numpad.
+
+  A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it matches: on Windows with a Russian layout, Control+ы records `Mod+S`. A key press with no physical code is now recorded by what it typed. It was rejected with `'missing-code'`.
+
+### Patch Changes
+
+- [#270](https://github.com/TanStack/hotkeys/pull/270) [`94358d5`](https://github.com/TanStack/hotkeys/commit/94358d54fd72a38952b6fb68560b48043a3f8277) - `defineAppHotkeys` type-checks quickly again on TypeScript 5.7 and later. A call with a few dozen entries took seconds and gigabytes there, and 50 sequence entries ran `tsc` out of memory, because the parameter type intersected each declaration with a copy of itself. 50 sequence entries now check in about a tenth of a second. The accepted declarations and the returned types are unchanged.
+
+## 0.28.0
+
+### Minor Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Fix which hotkey fires for two kinds of macOS key press.
+
+  **Option with a letter.** Option changes the character a key types, so the matcher used the key's US position to find the letter. On layouts that move letters, that fired the wrong hotkey: on a French AZERTY Mac, Option and the key labeled A fired `Alt+Q`. The matcher now reads the letter on the keycap from `event.keyCode` when Option is held on macOS, and falls back to the position when `keyCode` names no letter. `Alt+A` fires on the key labeled A on AZERTY, Dvorak, Colemak, and QWERTZ. A letter hotkey also fires when Option types an ASCII symbol, such as `Alt+L` for German Option+L (`@`) and `Mod+Alt+N` for US Cmd+Option+N (`~`). A hotkey with Alt and no Control or Command still does not fire in a text field by default, so Option keeps typing its character there.
+
+  **Command and Shift with a symbol key.** With Command held, macOS browsers report the unshifted character, so Cmd+Shift+/ arrives as `/`. That press fired `Mod+/`. It now fires only a hotkey that names Shift, such as `Mod+Shift+/`. This applies to the `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, and `/` keys where they sit in their US positions. Breaking: if your Mac users reach a hotkey with Command and Shift through a binding without Shift, such as zooming in with Cmd++ through `Mod+=`, add the Shift binding (`Mod+Shift+=`). The digit row and the numpad are unchanged.
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Breaking: these exports are removed from the core package and from every adapter, which re-exports the core. The library never read them.
+
+  - The `KeyboardEventMatch` type. It described the matcher's internal result, and no public function returned it.
+  - The key Sets `LETTER_KEYS`, `NUMBER_KEYS`, `FUNCTION_KEYS`, `NAVIGATION_KEYS`, `EDITING_KEYS`, `PUNCTUATION_KEYS`, and `ALL_KEYS`. The key types, such as `LetterKey` and `FunctionKey`, are unchanged. If you listed keys from one of these Sets, keep your own list.
+
+### Patch Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - A sequence step typed with AltGr now completes. Pressing AltGr sends a keydown of its own, and that keydown reset any sequence in progress, so `['G', '@']` could never finish on a German keyboard, where AltGr+Q types `@`. An AltGr press is now skipped like a Control, Shift, Alt, or Meta press, in registered sequences and in `createSequenceMatcher`.
+
+- [#266](https://github.com/TanStack/hotkeys/pull/266) [`e7b1af6`](https://github.com/TanStack/hotkeys/commit/e7b1af6c1210dd93623200378d2aaf8e357dd9a6) - Development warnings now print in apps built with a bundler. Vite, webpack and others replace `process.env.NODE_ENV` and give the browser no `process` global, and the library checked for that global first. In those apps the browser console never showed a duplicate registration, an unknown key name such as `escape`, a repeated exclusive scope, or `checkHotkey` output. Production builds still drop the warning code. A page that loads the library with no bundler still logs nothing, and no longer throws when `process` exists without `env`.
+
+- [#268](https://github.com/TanStack/hotkeys/pull/268) [`f8a1f08`](https://github.com/TanStack/hotkeys/commit/f8a1f08596e7712addb6d514c7771fa61b78ca7e) - Registering an invalid hotkey now logs a console warning in development, from `HotkeyManager.register` and from every framework adapter. A hotkey with an unknown modifier, such as `Ctl+K`, or with no key that isn't a modifier, such as `Shift`, registers nothing, and it did so silently. An adapter logs once for each invalid hotkey, however often it renders. An empty string, `null`, `undefined`, and an empty sequence still mean "no hotkey" and log nothing. Production builds drop the warning.
+
+## 0.27.1
+
+### Patch Changes
+
+- [#262](https://github.com/TanStack/hotkeys/pull/262) [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a) - A global `Escape` hotkey now leaves Escape to a modal `<dialog>` or an open popover inside a shadow root while focus is in it, as it already did for ones in the document. Component libraries such as Material Web keep their dialog there. Before, the hotkey ran and the dialog stayed open.
+
+- [#262](https://github.com/TanStack/hotkeys/pull/262) [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a) - Lit controllers no longer register hotkeys or subscribe to stores during server rendering when `@lit-labs/ssr`'s global DOM shim is loaded. Before, with the `connectedCallback: true` render option, every server render left its hotkey registrations behind, and reading held keys threw. The core key state tracker now sets up no listeners where a `document` exists without a `window`.
+
+## 0.27.0
+
+### Minor Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The held-key tracker no longer forgets held keys when a modifier is tapped. Before, releasing Shift, Control, Alt, or Meta cleared every held non-modifier key, so holding W and tapping Shift dropped W from `getHeldKeys()` and every adapter's held-key helpers. Now only releasing Command on macOS clears them, because macOS swallows the keyup of a key pressed with Command, such as S after Cmd+S.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - A chord hotkey with `eventType: 'keyup'` now fires only for the release of a press that matched it. Before, any matching keyup fired it: a release whose press happened before the page had focus, or pressing A, then Control, then releasing A for a `Control+A` keyup hotkey. A hotkey that a callback enables during its own keydown, such as to end a mode, still fires on that release. Keyup sequences are unchanged.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Turkish dotless `ı` is now its own key instead of turning into `I`. A hotkey for `ı` no longer fires on the key that types `i`, and `recordBy: 'key'` records `ı`, which displays as `ı`. `I` still fires on the key that types `ı`, as in native Windows apps. macOS Option+Shift+B, which also types `ı`, now fires `Alt+Shift+B` only, not `Alt+Shift+I`.
+
+### Patch Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - `formatForDisplay` now labels the extra ISO and JIS keys with their keycap legends when no layout map is passed: `[IntlBackslash]` and `[IntlRo]` show `\` and `[IntlYen]` shows `¥`, instead of their code names. A layout map entry still wins.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The recorder with `recordBy: 'key'` now rejects an AltGr press that types nothing new, such as AltGr+Home on Linux, with `reason: 'alt-graph'`. Before, it recorded `Home`, which that press never fires. AltGr presses that type a character, such as `@`, still record that character.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - The recorder with `recordBy: 'code'` now ignores a key on a modifier position, as it ignores modifier keys. Before, with Control and Caps Lock swapped, pressing Caps Lock recorded `[ControlLeft]`, a hotkey that registers nothing.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Releasing a `requireReset` hotkey now notifies `manager.registrations` subscribers that `hasFired` is `false` again. Before, the devtools kept showing `hasFired: true` after the key was released.
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - A numpad key that the browser reports as `Unidentified` no longer fires its digit or operator. In Firefox, numpad 5 with NumLock off fired a `5` hotkey; now only `[Numpad5]` matches, as in Chromium.
+
+## 0.26.0
+
+### Minor Changes
+
+- [#240](https://github.com/TanStack/hotkeys/pull/240) [`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d) - The recorder no longer traps keyboard users. While recording, Tab and Shift+Tab cancel the recording, call `onCancel`, and move focus as usual. Before, Tab was recorded and its default prevented, so Escape was the only way to leave without a mouse. Registered hotkeys still skip that press, so an app's own `Tab` hotkey can't block focus. Tab with Control, Alt, or Meta is handled as before, and so is Tab from a text field while `ignoreInputs` is on (the default): focus moves, but the recording continues and `onCancel` isn't called. Set the new `recordTab: true` option to record Tab and Shift+Tab as before, for example in an editor, and tell users that Escape cancels.
+
+### Patch Changes
+
+- [#241](https://github.com/TanStack/hotkeys/pull/241) [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f) - A hotkey whose element target isn't there yet now waits for it in every adapter. Before, a target of `undefined` listened on `document`, so the hotkey fired anywhere on the page until its element mounted. `undefined` is what an unset element usually is: a `useRef()` in React or Preact, a `ref()` in Vue, `createSignal<HTMLElement>()` in Solid, or a `viewChild()` value read in an Angular options function. Now a `target` that is `null` or `undefined`, or a ref that is still unset, registers nothing until the element exists. Only an omitted `target` listens on `document`.
+
+  This changes one case: a wrapper that forwards an optional target, such as `{ target: props.target }`, used to listen on `document` while the prop was unset and now waits. Pass `target: document` to listen on the document explicitly.
+
+  Vue: a template ref on a component, such as `useTemplateRef<InstanceType<typeof Panel>>('panel')`, now works as a `target` and listens on the component's root element. Before, it threw `target.addEventListener is not a function`. A component without a single root element registers nothing.
+
+  Octane: `useHotkey` and `useHotkeys` now accept a ref object, such as `useRef<HTMLDivElement | null>(null)`, as `target`, like the React adapter. The hook reads `current` after each render.
+
+- [#238](https://github.com/TanStack/hotkeys/pull/238) [`0d28f6a`](https://github.com/TanStack/hotkeys/commit/0d28f6ab5e4b47d86b3f60eb9a5e2cf6a47d0beb) - On Windows, a Latin letter typed with Ctrl+Alt on a letter key, such as Polish Ctrl+Alt+A typing `ą`, no longer falls back to the key's position. `Control+Alt+A` doesn't fire, and the character reaches the text field. Windows treats Ctrl+Alt as AltGr, so this applies when the browser doesn't report AltGraph. Non-Latin letters, symbols such as German Ctrl+Alt+E typing `€`, and the digit row still fall back.
+
+## 0.25.1
+
+### Patch Changes
+
+- [#234](https://github.com/TanStack/hotkeys/pull/234) [`32727ea`](https://github.com/TanStack/hotkeys/commit/32727ea6b761671d6717cd9c8e4e7f78f514d98f) - App hotkeys now compare hotkeys on the provider's `platform`. Before, providers didn't pass it to the app hotkeys store, which used the detected platform instead. On a server that meant `'linux'`, so `isCustom` from the app hotkey list could differ after hydration when a saved hotkey and its default differ only in how they name the modifier, such as `Meta+S` and `Mod+S`. `findConflicts` and `setCustomHotkey` also compared on the detected platform. The store follows changes to the provider's `platform`, and `AppHotkeysStore.setOptions` notifies subscribers once when the platform changes, after applying any new saved custom hotkeys. Saved custom hotkeys are now compared exactly, so new saved data such as `Meta+S` replaces `Mod+S` even where the two match, and stays correct if the platform changes later.
+
+  The formatting guides and `formatForDisplay`'s JSDoc now warn more clearly against using `formatForDisplay` for server-rendered labels. Use your adapter's formatter, such as `useFormatForDisplay`, instead, and set the provider's `platform`, or in Ember the scope's, from the request. Where you can't use one, such as in a React Server Component, or with Lit, Alpine, or `@tanstack/hotkeys` alone, pass `platform` to `formatForDisplay`.
+
+## 0.25.0
+
+### Minor Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - `validateHotkey` and the recorder now return reason codes instead of English text, so apps write their own messages. Each error and warning from `validateHotkey` is a `HotkeyIssue` such as `{ reason: 'unknown-modifier', part: 'Ctl' }`, and issues in a sequence carry the index of their `step` instead of a `Step 2:` prefix. A `RecorderRejection` keeps its `reason` but no longer has a built-in `message`. It has a `message` only when your `validate` callback returns one. The `'invalid'` rejection reason is now `'whitespace'`. The devtools panel lists each problem in a hotkey's details, in plain words. Console warnings and thrown errors are now one short line that starts with `[hotkeys]`. App hotkeys no longer warn about saved custom hotkeys with an unknown id or an invalid value; they're still dropped. `setCustomHotkey` with an unknown id no longer warns either. Development warnings no longer throw a `ReferenceError` where `process` is undefined, such as plain ESM loaded from a CDN.
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - A hotkey with an unknown modifier or no key besides modifiers now registers nothing, and `validateHotkey` reports both as errors. Before, an unknown modifier was dropped, so `Ctl+K` from plain JavaScript or saved data fired on a bare K. `parseHotkey` now returns an empty key for it, so `normalizeHotkey` and `formatForDisplay` return an empty string. Modifier-only hotkeys such as `Shift+Alt+Mod` never fired, and a modifier code such as `[ShiftLeft]` fired on every Shift release. The types no longer accept modifier codes such as `[ShiftLeft]` as a key. Use the held-key APIs to act while modifiers are held.
+
+### Patch Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - When modal dialogs stack, a hotkey targeted inside the top one receives Escape again. Before, the dialog underneath also counted, so the hotkey skipped Escape and the browser closed the top dialog instead.
+
+- [#232](https://github.com/TanStack/hotkeys/pull/232) [`846509d`](https://github.com/TanStack/hotkeys/commit/846509d2366c7c47a00b4f35eb6fdda8d3b43632) - A key press that the browser reports as `Unidentified` but with a usable `event.code` now fires hotkeys. Chrome on Linux Wayland reports Ctrl+Backquote this way, so ``Control+` `` and `Control+[Backquote]` never fired there. Such a press was treated as IME composition. It now counts as a normal key press: physical bindings match its code, and logical bindings fall back to its position as they do for dead keys, except on letter keys, which layouts such as AZERTY rearrange. `Unidentified` presses without a usable code, or with `keyCode` 229 as Android keyboards send while composing, are still ignored. The recorder records such a press by its code, and skips it in key mode.
+
 ## 0.24.0
 
 ### Minor Changes

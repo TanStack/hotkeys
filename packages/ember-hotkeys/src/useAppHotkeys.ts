@@ -1,3 +1,7 @@
+import {
+  bindCustomHotkeyActions,
+  requireAppHotkeysStore,
+} from '@tanstack/hotkeys/adapter'
 import { useHotkeyRegistrations } from './useHotkeyRegistrations'
 import { trackPublishedAppHotkeys } from './utils'
 import type { AppHotkeysStore, RegisteredAppHotkeys } from '@tanstack/hotkeys'
@@ -10,9 +14,10 @@ import type {
 function requireStore(
   store: () => AppHotkeysStore | null,
 ): AppHotkeysStore<RegisteredAppHotkeys> {
-  const current = store()
-  if (!current) throw new Error('App hotkeys require provideAppHotkeys()')
-  return current
+  return requireAppHotkeysStore(
+    store(),
+    'App hotkeys require provideAppHotkeys()',
+  )
 }
 
 /** Reads the effective app hotkeys from `provideAppHotkeys`, typed by `Register`. */
@@ -53,11 +58,6 @@ export function useCustomHotkeys(owner: object): EmberCustomHotkeys {
     get value() {
       return requireStore(store).customHotkeys
     },
-    setCustomHotkey: (id, hotkey) =>
-      requireStore(store).setCustomHotkey(id, hotkey),
-    resetCustomHotkey: (id) => requireStore(store).resetCustomHotkey(id),
-    resetCustomHotkeys: () => requireStore(store).resetCustomHotkeys(),
-    findConflicts: (id, hotkey) =>
-      requireStore(store).findConflicts(id, hotkey),
+    ...bindCustomHotkeyActions(() => requireStore(store)),
   }
 }

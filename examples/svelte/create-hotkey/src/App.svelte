@@ -2,9 +2,11 @@
   import {
     createHotkey,
     createHotkeyAttachment,
-    formatForDisplay,
+    getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
+
+  const formatForDisplay = getFormatForDisplay()
 
   let lastHotkey = $state<Hotkey | null>(null)
   let saveCount = $state(0)

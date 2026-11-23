@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from, both created on an owner fro
 - `createHotkeyRegistrations` returns the hotkeys registered right now, in its `hotkeys` property. It works with plain `createHotkey` and `createHotkeys`, but it only knows about owners that exist.
 - `createAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, in its `value` property, including hotkeys on pages that haven't rendered, with the status of each.
 
-Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `createFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -49,16 +49,19 @@ declare module '@tanstack/hotkeys' {
 }
 ```
 
+Lists re-render when a new `meta` changes a string, number, or boolean field. Editing a `meta` object you already passed doesn't re-render them. A new array, object, element, or function in `meta` replaces the old one, so callbacks stay current, but it doesn't re-render lists on its own. That's what lets you write `meta` inline in a component. To show a changed array or element, also change a primitive field, such as `name`.
+
 ## List the hotkeys on screen
 
 `createHotkeyRegistrations` returns every registered hotkey, and updates when hotkeys register, unregister, or change. Show the ones with a name:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutList', () => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const registrations = hotkeys.createHotkeyRegistrations()
 
   return {
@@ -103,6 +106,7 @@ Registrations exist only while their owners exist, so this list can't show short
 ```ts
 Alpine.data('cheatSheet', () => {
   const hotkeys = createHotkeysScope()
+  const formatForDisplay = hotkeys.createFormatForDisplay()
   const items = hotkeys.createAppHotkeyList()
 
   return {
@@ -176,7 +180,7 @@ get groups() {
 </template>
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `createFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

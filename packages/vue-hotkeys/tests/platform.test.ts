@@ -1,15 +1,18 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
+import {
+  HotkeyManager,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import { mount } from '@vue/test-utils'
-import { HotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { defineComponent, h, nextTick, ref } from 'vue'
+import * as adapter from '../src'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
+import type { HotkeyPlatform } from '@tanstack/hotkeys'
 import type { Component } from 'vue'
 import type { HotkeysProviderOptions } from '../src/HotkeysProviderContext'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 function mountIn(
   defaultOptions: () => HotkeysProviderOptions,
@@ -36,13 +39,13 @@ afterEach(() => {
 
 describe('provider platform', () => {
   it('formats labels and updates when the platform changes', async () => {
-    const platform = ref<Platform>('mac')
+    const platform = ref<HotkeyPlatform>('mac')
     const wrapper = mountIn(
       () => ({ platform: platform.value }),
       defineComponent({
         setup() {
-          const format = useFormatForDisplay()
-          return () => h('kbd', format('Mod+S'))
+          const formatForDisplay = useFormatForDisplay()
+          return () => h('kbd', formatForDisplay('Mod+S'))
         },
       }),
     )
@@ -58,8 +61,9 @@ describe('provider platform', () => {
       () => ({ platform: 'mac' }),
       defineComponent({
         setup() {
-          const format = useFormatForDisplay()
-          return () => h('kbd', format('Mod+S', { platform: 'windows' }))
+          const formatForDisplay = useFormatForDisplay()
+          return () =>
+            h('kbd', formatForDisplay('Mod+S', { platform: 'windows' }))
         },
       }),
     )
@@ -123,7 +127,13 @@ describe('provider platform', () => {
     )
     recorder.startRecording()
     press(mod)
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S')
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith('Mod+S', expect.anything())
     wrapper.unmount()
+  })
+})
+
+describe('the deprecated formatForDisplay export', () => {
+  it('is the core function', () => {
+    expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
   })
 })

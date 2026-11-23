@@ -2,12 +2,14 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { ref, watch } from 'vue'
+
+const formatForDisplay = useFormatForDisplay()
 
 const heldKeys = useHeldKeys()
 const heldCodes = useHeldKeyCodes()

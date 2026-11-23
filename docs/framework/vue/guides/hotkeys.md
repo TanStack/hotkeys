@@ -82,6 +82,8 @@ useHotkey(
 
 A plain options object is read once, so `{ enabled: !props.readOnly }` keeps the value from when `setup` ran. A ref also works for a single option, such as `{ enabled: isEditing }`.
 
+Give a ref that holds a hotkey the `Hotkey` type: `const saveHotkey = ref<Hotkey>('Mod+S')`. Without it, the ref is a `Ref<string>`, and `useHotkey` accepts only valid hotkeys.
+
 That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
 ### Optional hotkeys
@@ -103,6 +105,8 @@ useHotkey('[KeyW]', () => moveUp()) // The W position, whatever the layout types
 useHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod comes first
 useHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
 ```
+
+TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
 
 Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
 
@@ -332,7 +336,27 @@ useHotkey('Escape', () => closePanel(), { target: panel })
 </template>
 ```
 
-A `null` target waits until the element is mounted.
+A target that is `null` or `undefined` waits until the element is mounted. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
+
+A template ref on a component listens on the component's root element:
+
+```vue
+<script setup lang="ts">
+import { useTemplateRef } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+import PanelCard from './PanelCard.vue'
+
+const card = useTemplateRef<InstanceType<typeof PanelCard>>('card')
+
+useHotkey('Escape', () => closePanel(), { target: card })
+</script>
+
+<template>
+  <PanelCard ref="card" tabindex="0" />
+</template>
+```
+
+The hotkey reads the root element when the ref is set and doesn't follow later changes inside the component. A component whose template has more than one root node, or only text, has no root element, so its hotkey registers nothing. A root element that the component adds or replaces later, such as one behind `v-if`, isn't picked up. Put the ref on an element instead.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

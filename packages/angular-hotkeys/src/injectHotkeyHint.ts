@@ -1,11 +1,9 @@
 import { computed } from '@angular/core'
+import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
 import {
-  getHotkeyManager,
-  getKeyStateTracker,
-  isAppHotkey,
-  matchesHeldModifiers,
-  resolveAppHotkey,
-} from '@tanstack/hotkeys'
+  isHotkeyHintVisible,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
 import { injectSelector } from './_injectSelector'
 import { runOutsideZone } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
@@ -13,6 +11,7 @@ import type { Signal } from '@angular/core'
 import type {
   AppHotkey,
   HeldModifierOptions,
+  MaybeGetter,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
@@ -26,13 +25,8 @@ import type {
  * helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function injectHotkeyHint(
-  hotkey:
-    | RegisterableHotkey
-    | AppHotkey
-    | null
-    | undefined
-    | (() => RegisterableHotkey | AppHotkey | null | undefined),
-  options: HeldModifierOptions | (() => HeldModifierOptions) = {},
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
+  options: MaybeGetter<HeldModifierOptions> = {},
 ): Signal<boolean> {
   const context = injectHotkeysContext()
   const manager = getHotkeyManager()
@@ -44,19 +38,12 @@ export function injectHotkeyHint(
   )
   return computed(() => {
     context.appHotkeysState()
-    const value = typeof hotkey === 'function' ? hotkey() : hotkey
-    const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, context.appHotkeysStore).hotkey
-      : value
-    return (
-      resolved !== null &&
-      matchesHeldModifiers(
-        resolved,
-        held(),
-        typeof options === 'function' ? options() : options,
-      ) &&
-      registrations().size > 0 &&
-      manager.hasActiveRegistration(value)
+    registrations()
+    return isHotkeyHintVisible(
+      resolveMaybeGetter(hotkey),
+      held(),
+      resolveMaybeGetter(options),
+      context.appHotkeysStore,
     )
   })
 }

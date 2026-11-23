@@ -1,4 +1,5 @@
-import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
@@ -14,6 +15,7 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * @example
  * ```tsx
  * function ShortcutPalette() {
+ *   const formatForDisplay = useFormatForDisplay()
  *   const registrations = useHotkeyRegistrations()
  *
  *   return (
@@ -30,6 +32,6 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  */
 export function useHotkeyRegistrations(): Array<HotkeyRegistrationView> {
   return useSelector(getHotkeyManager().registrations, (state) =>
-    Array.from(state.values()).map(toHotkeyRegistrationView),
+    getHotkeyRegistrationViews(state),
   )
 }

@@ -1,12 +1,10 @@
-import { LitElement, css, html, unsafeCSS } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
-
 import {
+  FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
-  formatForDisplay,
 } from '@tanstack/lit-hotkeys'
-
+import { LitElement, css, html, unsafeCSS } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
 import appStyles from './index.css?raw'
 
 @customElement('my-app')
@@ -16,10 +14,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;
@@ -35,6 +30,7 @@ export class MyApp extends LitElement {
 
   private heldKeys = new HeldKeysController(this)
   private heldCodes = new HeldKeyCodesController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
 
   @state() private history: Array<string> = []
 
@@ -42,7 +38,9 @@ export class MyApp extends LitElement {
     const keys = this.heldKeys.value
     if (keys.length > 0) {
       const combo = keys
-        .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
+        .map((k) =>
+          this.formatForDisplay.format({ key: k }, { useSymbols: true }),
+        )
         .join(' + ')
       const last = this.history[this.history.length - 1]
       if (last !== combo) {
@@ -76,7 +74,10 @@ export class MyApp extends LitElement {
                       return html`
                         ${index > 0 ? html`<span class="plus">+</span>` : null}
                         <kbd class="large">
-                          ${formatForDisplay({ key }, { useSymbols: true })}
+                          ${this.formatForDisplay.format(
+                            { key },
+                            { useSymbols: true },
+                          )}
                           ${
                             code && code !== key
                               ? html`<small class="code-label">

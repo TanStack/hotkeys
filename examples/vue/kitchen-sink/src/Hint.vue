@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { formatForDisplay, useHotkeyHint } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHotkeyHint } from '@tanstack/vue-hotkeys'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
 const props = defineProps<{ hotkey: Hotkey }>()
+const formatForDisplay = useFormatForDisplay()
 const visible = useHotkeyHint(() => props.hotkey)
 </script>
 <template>

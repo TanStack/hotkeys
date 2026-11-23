@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
-  import { getActivity } from './activity.svelte'
   import Key from './Key.svelte'
+  import { getActivity } from './activity.svelte'
 
   // Registered under the root provider, so it is in the `global` scope.
   const activity = getActivity()

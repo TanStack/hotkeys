@@ -1,20 +1,32 @@
-import Alpine from 'alpinejs'
 import {
   createHotkeyRecorder,
   createHotkeysScope,
-  formatForDisplay,
   hotkeysPlugin,
   isHotkeySequence,
 } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import type {
   AlpineHotkeyRecorder,
   AlpineHotkeyState,
   Hotkey,
+  HotkeyPlatform,
   HotkeyRegistrationsResult,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 // Gives every hotkeys scope the app's Alpine instance.
 Alpine.plugin(hotkeysPlugin)
@@ -30,7 +42,7 @@ const pages = [
 class Hint {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   visible!: AlpineHotkeyState<boolean>
   constructor(
     public props: () => {
@@ -48,7 +60,7 @@ class Hint {
 class Layout {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
   private cleanups: Array<() => void> = []
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   pages = pages
   currentPath: string = window.location.pathname
   showShortcuts = false
@@ -155,7 +167,7 @@ class Tickets {
 class EditorPane {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   target: HTMLFieldSetElement | null = null
   text = 'One shortcut, two independent editors.'
   saves = 0
@@ -205,7 +217,7 @@ class EditorPane {
 class Editor {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   repeat = false
   count = 0
   bubble = false
@@ -255,7 +267,7 @@ class Editor {
 class Sequences {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   timeout = 1000
   registrationState2!: HotkeyRegistrationsResult
   get sequences() {
@@ -299,9 +311,9 @@ class Sequences {
 class Recording {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   hotkey: Hotkey = this.initial
-  mode: RecorderKeyMode = 'code'
+  mode: RecorderKeyMode = 'auto'
   problem = ''
   sequence: Hotkey = ['[KeyX]', '[KeyY]']
   sequenceProblem = ''
@@ -351,7 +363,7 @@ class Recording {
         (context.kind === 'chord' &&
           context.parsedChord.modifiers.length > 0) ||
         'Include a modifier for this action.',
-      onReject: ({ message }) => (this.problem = message),
+      onReject: (rejection) => (this.problem = rejectionText(rejection)),
       onRecord: (value) => {
         this.hotkey = value
         this.problem = ''
@@ -382,10 +394,11 @@ class Recording {
         this.sequence = value
         this.sequenceProblem = ''
         this.props().log(
-          `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+          `Recorded sequence ${this.formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
         )
       },
-      onReject: (reason) => (this.sequenceProblem = reason.message),
+      onReject: (rejection) =>
+        (this.sequenceProblem = rejectionText(rejection)),
       onClear: () => {
         this.sequence = ['[KeyX]', '[KeyY]']
         this.sequenceProblem = 'Restored default sequence.'
@@ -399,8 +412,10 @@ class Recording {
 }
 
 class Formatting {
-  formatForDisplay = formatForDisplay
-  platform: 'mac' | 'windows' | 'linux' = 'mac'
+  private hotkeysScope = createHotkeysScope()
+
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
+  platform: HotkeyPlatform = 'mac'
   modifierSymbols = false
   keySymbols = true
   get options() {
@@ -408,6 +423,9 @@ class Formatting {
       platform: this.platform,
       useSymbols: { modifiers: this.modifierSymbols, keys: this.keySymbols },
     }
+  }
+  destroy() {
+    this.hotkeysScope.destroy()
   }
 }
 Alpine.data(

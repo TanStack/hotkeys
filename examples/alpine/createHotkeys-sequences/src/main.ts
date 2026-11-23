@@ -1,9 +1,5 @@
+import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
-import {
-  createHotkeysScope,
-  formatForDisplay,
-  hotkeysPlugin,
-} from '@tanstack/alpine-hotkeys'
 import type { HotkeyRegistrationsResult } from '@tanstack/alpine-hotkeys'
 import './index.css'
 
@@ -138,7 +134,7 @@ class App {
 class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
-  formatForDisplay = formatForDisplay
+  formatForDisplay = this.hotkeysScope.createFormatForDisplay()
   registrationState0!: HotkeyRegistrationsResult
   get hotkeys() {
     return this.registrationState0.hotkeys

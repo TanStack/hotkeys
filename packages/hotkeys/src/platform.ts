@@ -1,5 +1,5 @@
 import { isServerRuntime } from './_server'
-import type { CanonicalModifier } from './key.types'
+import type { CanonicalModifier, ResolvableModifier } from './key.types'
 
 /** A platform for resolving `Mod` and formatting labels. */
 export type HotkeyPlatform = 'mac' | 'windows' | 'linux'
@@ -72,8 +72,8 @@ export function detectPlatform(userAgent?: string | null): HotkeyPlatform {
  * ```
  */
 export function resolveModifier(
-  modifier: CanonicalModifier | 'Mod',
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+  modifier: ResolvableModifier,
+  platform: HotkeyPlatform = detectPlatform(),
 ): CanonicalModifier {
   if (modifier === 'Mod') {
     return platform === 'mac' ? 'Meta' : 'Control'

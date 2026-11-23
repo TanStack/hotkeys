@@ -1,20 +1,23 @@
-import { createScope, ownerScopes } from './scope'
-import { createHotkey } from './createHotkey'
-import { createHotkeys } from './createHotkeys'
-import { createHeldKeys } from './createHeldKeys'
-import { createHeldKeyCodes } from './createHeldKeyCodes'
-import { createKeyHold } from './createKeyHold'
-import { createHotkeyHint } from './createHotkeyHint'
-import { createHotkeyRegistrations } from './createHotkeyRegistrations'
-import { createHotkeyScopesState } from './createHotkeyScopesState'
 import {
   createAppHotkeyList,
   createAppHotkeys,
   createCustomHotkeys,
 } from './createAppHotkeys'
-import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
+import { createFormatForDisplay } from './createFormatForDisplay'
+import { createHeldKeyCodes } from './createHeldKeyCodes'
+import { createHeldKeys } from './createHeldKeys'
+import { createHotkey } from './createHotkey'
+import { createHotkeyHint } from './createHotkeyHint'
+import { createHotkeyRegistrations } from './createHotkeyRegistrations'
+import { createHotkeyScopesState } from './createHotkeyScopesState'
+import { createHotkeys } from './createHotkeys'
+import { createKeyHold } from './createKeyHold'
+import { createKeyboardLayout } from './createKeyboardLayout'
+import { createScope, ownerScopes } from './scope'
+import type { MaybeGetter } from '@tanstack/hotkeys'
+import type { AlpineHotkeys, DefaultHotkeysOptions } from './types'
 
-export type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
+export type { AlpineHotkeys, DefaultHotkeysOptions } from './types'
 
 /**
  * Owns Alpine effects and Store subscriptions, with optional shared defaults.
@@ -39,6 +42,8 @@ export function createHotkeysScope(
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),
     createHotkeyScopesState: () => createHotkeyScopesState(scope),
+    createFormatForDisplay: () => createFormatForDisplay(scope),
+    createKeyboardLayout: () => createKeyboardLayout(scope),
     createAppHotkeys: () => createAppHotkeys(scope),
     createAppHotkeyList: () => createAppHotkeyList(scope),
     createCustomHotkeys: () => createCustomHotkeys(scope),

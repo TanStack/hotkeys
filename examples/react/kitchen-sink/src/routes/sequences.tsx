@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
   HotkeysProvider,
   useAppHotkeyList,
   useAppHotkeys,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
-import { formatHotkey, useActivity } from '../shared'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
+import { useActivity, useFormatHotkey } from '../shared'
 
 export const Route = createLazyRoute('/sequences')({
   component: SequencesRoute,
@@ -23,6 +23,7 @@ function SequencesRoute() {
 
 /** App sequences share a timeout and expose progress through their registrations. */
 function Sequences() {
+  const formatHotkey = useFormatHotkey()
   const log = useActivity()
   const appHotkeys = useAppHotkeys()
   const [timeout, setTimeoutValue] = useState(1000)

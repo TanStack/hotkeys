@@ -1,32 +1,40 @@
 /* @refresh reload */
+
 import { render } from '@solidjs/web'
-import { createEffect, createSignal } from 'solid-js'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import { createEffect, createSignal } from 'solid-js'
 import './index.css'
 
 function App() {
+  const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
   const heldCodes = createHeldKeyCodes()
   const [history, setHistory] = createSignal<Array<string>>([])
 
-  createEffect(heldKeys, (keys) => {
-    if (keys.length > 0) {
-      const combo = keys
+  createEffect(
+    // Format here so the labels follow the provider's options
+    () =>
+      heldKeys()
         .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
-        .join(' + ')
-      setHistory((h) => {
-        if (h[h.length - 1] !== combo) {
-          return [...h.slice(-9), combo]
-        }
-        return h
-      })
-    }
-  })
+        .join(' + '),
+    (combo) => {
+      if (combo) {
+        setHistory((h) => {
+          if (h[h.length - 1] !== combo) {
+            return [...h.slice(-9), combo]
+          }
+          return h
+        })
+      }
+    },
+  )
 
   return (
     <div class="app">
@@ -117,6 +125,8 @@ function KeyDisplay() {
           </ul>
         </section>
       </main>
+
+      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

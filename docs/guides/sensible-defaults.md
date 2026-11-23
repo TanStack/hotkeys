@@ -24,8 +24,8 @@ This guide describes each default, why it was chosen, and how to change it.
 | Keys another listener prevented | Hotkeys still fire | `ignoreDefaultPrevented` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
-| Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
-| Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | `formatForDisplay` options |
+| Recording | Records a key by name, or by position where it has no portable name; Escape, Tab, and Shift+Tab cancel | `recordBy`, `recordTab`, recorder options |
+| Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | Options of your framework's label primitive, such as `useFormatForDisplay` |
 
 ## `Mod` follows the platform
 
@@ -42,21 +42,26 @@ A logical binding such as `Mod+S` or `?` matches `event.key`, the character the 
 `event.key` is not always useful, so the matcher falls back to the key's conventional position when the character cannot identify the shortcut:
 
 - **Non-Latin layouts.** On a Russian layout, the S position types `ы`. `Mod+S` still matches there, so shortcuts work without switching layouts.
-- **macOS Option.** Option changes the character, so Option+S types `ß`. `Alt+S` still matches.
-- **Dead keys and the digit row.** A dead key reports `Dead`, and AZERTY's digit row types `&` and `é` for `1` and `2`. The key's position resolves the shortcut, so `Mod+1` works on AZERTY.
+- **macOS Option.** Option changes the character, so Option+S types `ß`. `Alt+S` still matches. It follows the letter printed on the key: on a French AZERTY Mac, `Alt+A` fires on the key labeled A, which sits in the US Q position. The matcher reads that letter from `event.keyCode`, and falls back to the key's position when `keyCode` names no letter. Option can also type an ASCII symbol on a letter key, such as `@` for German Option+L, and `Alt+L` still matches.
+- **Dead keys and the digit row.** A dead key reports `Dead`, and AZERTY's digit row types `&` and `é` for `1` and `2`. The key's position resolves the shortcut, so `Mod+1` works on AZERTY. The exception is `-`, `+`, and `=` typed with Control alone, or Command alone on macOS, because those presses zoom the page. AZERTY types `-` on the 6 key, so Ctrl+- zooms out instead of firing `Mod+6`, and Ctrl+Shift+6 still fires `Mod+6`. A few layouts type no digit there with Shift either, such as Thai on the 3 key and Programmer Dvorak on the 6 and 9 keys. To keep that shortcut, also bind the key's position, such as `Mod+[Digit3]`.
 - **Symbols typed with Shift.** Shift+1 types `!` on a US layout, and `Shift+1` still matches.
 
 Otherwise, the character the key reports wins, wherever the key sits:
 
-- ASCII letters never fall back, and ASCII symbols fall back only on the digit row or with Shift. On AZERTY, the key in the US `/` position types `+`, so Cmd++ zooms the page instead of firing `Mod+/`. On Dvorak, the key that types `'` does not fire `Q`.
+- Outside the digit row, ASCII letters never fall back. ASCII symbols fall back only on the digit row, with Shift, or when macOS Option typed them on a letter key. On AZERTY, the key in the US `/` position types `+`, so Cmd++ zooms the page instead of firing `Mod+/`. On Dvorak, the key that types `'` does not fire `Q`.
 - Latin letters such as `ü`, `ö`, and `ø` match only themselves when typed on their own. With Control or Command held on a punctuation key they fall back, so German Cmd+ü still fires `Mod+[` (German types `[` with Option).
-- Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`.
+- On Windows, Control+Alt works like AltGr. On a layout with AltGr, browsers report Left Ctrl + Left Alt as AltGr, so a character it types matches only itself. German Ctrl+Alt+E types `€` and fires `€`, not `Control+Alt+E`. Polish Ctrl+Alt+A types `ą` and does not fire `Control+Alt+A`. Avoid `Control+Alt` with letters, digits, and symbols on Windows when users type in other languages.
+- Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`. Numpad 5 has no navigation key, so with NumLock off it fires no digit, even in Firefox, which reports it as `Unidentified`.
 
 When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
 
 A symbol that needs Shift on some layouts, such as `/` on German QWERTZ (Shift+7), matches when typed on its own. With Command held, macOS browsers report the unshifted character instead (`7`), so `Mod+/` can't match there. Register the per-layout combination as well, such as `Mod+Shift+7`.
 
+The same report affects US keyboards. Cmd+Shift+/ arrives as `/` with Shift held, not as `?`. Shift is then a modifier of its own, so `Mod+/` does not fire for it, and `Mod+?` cannot match. Write the Shift the user presses: `Mod+Shift+/` for Cmd+?, and `Mod+Shift+=` next to `Mod+=` for zooming in with Cmd++. These bindings also fire on Windows and Linux, where the browser reports `?` and `+`. On a layout that types `/` with Shift, such as German QWERTZ, the same press is both: Ctrl+Shift+7 fires `Mod+Shift+/` when that is registered, and `Mod+/` otherwise. The digit row is the exception: Cmd+Shift+1 still fires `Mod+1`, because a French AZERTY Mac, which types digits with Shift, sends the same event.
+
 Letters match without regard to case: `S` and `s` are the same binding.
+
+Turkish dotless `ı` and dotted `İ` are letters of their own, not other cases of `I` and `i`. A binding for `ı` fires only on the key that types `ı`, and a binding for `İ` only on the key that types `İ`. `I` fires on the key that types `i`, and also on the key that types `ı`, as in native Windows apps, where that key is the I key. An `ı` binding takes priority there. The recorder records `ı` for the key that types it, and labels show `ı`.
 
 ### Match a key's position instead
 
@@ -74,9 +79,38 @@ On a layout where the `KeyQ` position types `a`, `A` follows the character and `
 - In strings, every physical code goes in brackets, including codes that share a name with a logical key, such as `[Enter]` and `[F13]`. Codes are type-checked and autocomplete in your editor.
 - In objects, use the `code` field for a physical binding and `key` for a logical one. A binding has one or the other, never both, and `key` never takes brackets.
 - In a chord's callback, `context.parsedChord.code` is set only for physical bindings. The same goes for each step in a sequence's `context.parsedSequence`. Check `code !== undefined` before reading it.
-- `formatForDisplay` labels physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets.
+- Labels show physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets. Your framework's label primitive, such as `useFormatForDisplay`, labels a position with the character it types on the user's keyboard. That works only in Chromium browsers, such as Chrome and Edge, which report the layout. In Firefox and Safari, the label is the key's US character. Your framework's Formatting & Display guide has the details.
 
-The [hotkey recorder](#recording-captures-what-the-user-pressed) records positions by default, so recorded hotkeys are physical bindings.
+The [hotkey recorder](#recording-captures-what-the-user-pressed) records a physical binding for a press that has no portable name, such as Shift+/. Set `recordBy: 'code'` to record one for every key.
+
+### Type keys from other keyboard layouts
+
+Hotkey strings type-check against the keys of a US QWERTY keyboard. An app that targets other layouts can register them, so TypeScript also accepts keys such as `Ö` or `§`. Registering changes types only. Matching works the same with or without it. Most apps don't need it, because A to Z, 0 to 9, and US punctuation also match on other layouts, as described above. The Keyboard Layouts guide for your framework shows how to register layouts and when to.
+
+Each set lists what the layout's keys type without a modifier and with Shift, other than A to Z and 0 to 9. A set includes only characters that Windows, macOS, and Linux all type there, checked against the Windows layouts in Unicode CLDR, the macOS layouts, and the Linux xkb layouts. Dead keys and characters typed with AltGr or Option are left out. Each set's documentation lists the letters its layout types with Shift, which need `Shift+` in the hotkey.
+
+| Set | Layouts |
+| --- | --- |
+| `UsKeys` | US QWERTY, the default |
+| `UkKeys` | UK (British) |
+| `GermanKeys`, `AustrianKeys` | German and Austrian QWERTZ |
+| `SwissGermanKeys`, `SwissFrenchKeys` | Swiss German and Swiss French |
+| `FrenchKeys`, `BelgianKeys` | French and Belgian AZERTY |
+| `CanadianFrenchKeys` | Canadian French |
+| `SpanishKeys`, `LatinAmericanKeys` | Spanish (Spain) and Latin American |
+| `PortugueseKeys`, `BrazilianKeys` | Portuguese (Portugal) and Brazilian ABNT2 |
+| `ItalianKeys` | Italian |
+| `DanishKeys`, `NorwegianKeys` | Danish and Norwegian |
+| `SwedishKeys`, `FinnishKeys` | Swedish and Finnish |
+| `IcelandicKeys` | Icelandic |
+| `CzechKeys`, `SlovakKeys`, `HungarianKeys` | Czech, Slovak, and Hungarian QWERTZ |
+| `CroatianKeys`, `SlovenianKeys`, `SerbianLatinKeys` | Croatian, Slovenian, and Serbian (Latin) |
+| `EstonianKeys`, `LithuanianKeys` | Estonian and Lithuanian |
+| `TurkishKeys` | Turkish Q |
+| `RomanianKeys` | Romanian (standard) |
+| `GreekKeys`, `RussianKeys`, `UkrainianKeys`, `BulgarianKeys`, `HebrewKeys` | Greek, Russian, Ukrainian, Bulgarian (BDS), and Hebrew |
+
+Polish and Latvian layouts type the same keys as US QWERTY without AltGr, and most Dutch users type on US International, so they need no set.
 
 ## Modifiers must match exactly
 
@@ -84,9 +118,13 @@ The [hotkey recorder](#recording-captures-what-the-user-pressed) records positio
 
 The exception is Shift that is needed to type a symbol. On a US layout, `?` is typed with Shift+/, so `?` matches without listing `Shift`. This applies to printable symbols, not letters, so `K` and `Shift+K` remain different bindings.
 
+The iOS on-screen keyboard can report Return as Shift+Enter while auto-capitalization is on, such as at the start of a sentence. If an `Enter` hotkey must fire there, such as in an editor that registers it with `ignoreInputs: false`, register `Shift+Enter` for the same action too.
+
+Every hotkey needs a key that isn't a modifier. TypeScript rejects modifier-only hotkey strings such as `Shift+Alt+Mod` or `[ShiftLeft]`, and strings with an unknown modifier such as `Ctl+K`. A hotkey that does either anyway, such as one from plain JavaScript, saved data, or a chord object like `{ key: 'Shift' }`, registers nothing and logs a console warning in development. To act while keys are held, use the held-key APIs instead.
+
 Two kinds of key events never match ordinary shortcuts:
 
-- **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts. A character it types matches a binding for that character, but never a `Control+Alt` shortcut, so typing an email address does not run a command. When AltGr+key types nothing new, such as AltGr+Home, or AltGr+F on a layout with nothing on that key, it does not fire `Home` or `F`. Windows reports AltGr as Control+Alt, so there it fires `Control+Alt` shortcuts instead: AltGr+Home triggers `Control+Alt+Home`, as in native Windows apps.
+- **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts. A character it types matches a binding for that character, but never a `Control+Alt` shortcut, so typing an email address does not run a command. When AltGr+key types nothing new, such as AltGr+Home, or AltGr+F on a layout with nothing on that key, it does not fire `Home` or `F`. An ASCII letter or digit always counts as nothing new, because the event can't tell it apart from that AltGr+F. So on Lithuanian, which types digits with AltGr, AltGr+1 doesn't fire `1`, and the 1 key on its own does. Windows reports AltGr as Control+Alt, so there it fires `Control+Alt` shortcuts instead: AltGr+Home triggers `Control+Alt+Home`, as in native Windows apps.
 - **IME composition.** While the user composes text with an input method editor, such as for Japanese, Chinese, or Korean, no hotkey fires, because the editor uses those keys: Enter commits the text, Escape cancels it, and the arrow keys pick a candidate. This includes the Enter that Safari sends right after composition ends.
 
 ## Typing in inputs does not trigger shortcuts
@@ -155,6 +193,8 @@ Both apply only when a hotkey matches; every other key press is left alone. For 
 
 Some browser and operating system shortcuts never reach the page and cannot be overridden. Browsers keep `Mod+T`, `Mod+N`, and `Mod+W` for opening and closing tabs and windows, and the operating system keeps shortcuts such as `Alt+Tab` and `Command+Tab`. Pick other keys for your app.
 
+A `Tab`, `Shift+Tab`, or `F6` hotkey on the document also fires while a button or link has focus, and its `preventDefault` keeps focus from moving. Give it an element `target`, such as an editor or a component that manages focus itself.
+
 ## Hotkeys that can't fire leave the key alone
 
 A hotkey that can't fire, because it's disabled or its scope is inactive or suspended, doesn't call `preventDefault`, so the browser acts on the key. Pressing `Mod+S` while a save hotkey is disabled opens the browser's Save Page dialog.
@@ -192,7 +232,7 @@ Chords fire on `keydown`, when the user presses the key, rather than on release.
 
 For a toggle, such as opening and closing a panel, repeating is usually wrong: holding the key would make the panel flicker. Set `requireReset: true` to fire once per press. Releasing the key or any of its modifiers allows the chord to fire again. So does a new press that isn't an automatic repeat, so a lost keyup, such as the one macOS drops while Command is held, never blocks the chord.
 
-Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down. A keyup chord fires when the user releases its key or one of its modifiers, whichever comes first, unless another key was pressed in between. So `Mod+K` on keyup works on macOS, which sends no keyup for a key released while Command is held. A keyup chord also prevents its keydown, so the browser doesn't act on it, such as opening the Save dialog for `Mod+S`. Set `preventDefault: false` to let the browser act.
+Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down. A keyup chord fires when the user releases its key or one of its modifiers, whichever comes first, unless another key was pressed in between. It fires only for the release of a press that matched it, so a release whose press happened before the page had focus, or a key pressed before its modifiers, doesn't fire it. So `Mod+K` on keyup works on macOS, which sends no keyup for a key released while Command is held. A keyup chord also prevents its keydown, so the browser doesn't act on it, such as opening the Save dialog for `Mod+S`. Set `preventDefault: false` to let the browser act.
 
 ## Listeners attach to the document
 
@@ -250,7 +290,7 @@ Component libraries reach Preact through `preact/compat` and behave as they do i
 
 Turn it on if you use Ark UI.
 
-Kobalte, and solid-ui and shadcn-solid built on it, call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. Corvu doesn't call `preventDefault()`. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Kobalte, and solid-ui and shadcn-solid built on it, and Corvu handle Escape after your hotkeys, so the option can't help with them. Their dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Angular
 
@@ -270,13 +310,13 @@ Turn it on if you use:
 - Tiptap or ProseMirror, or CodeMirror
 - PrimeVue's CascadeSelect, TreeSelect, ContextMenu, TieredMenu, or DatePicker
 
-Reka UI, and shadcn-vue and Nuxt UI built on it, don't call `preventDefault()` on Escape, unlike Radix UI in React. Neither do most other Vue overlay libraries. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Reka UI, and shadcn-vue and Nuxt UI built on it, don't call `preventDefault()` on Escape, unlike Radix UI in React. Neither do most other Vue overlay libraries, so the option can't help with them. Their dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Svelte
 
 Turn it on if you use Skeleton or Ark UI.
 
-Bits UI, and shadcn-svelte built on it, and Melt UI call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+Bits UI, and shadcn-svelte built on it, and Melt UI call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys and the option can't help. Bits UI dialogs get Escape anyway. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
 
 # Lit
 
@@ -298,107 +338,103 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
+Escape closes one thing at a time: the innermost dialog, popover, or menu. While one is open, hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay gets the key press and closes. A hotkey targeted at the overlay, or at an element inside it, still receives Escape. These count as overlays:
 
-For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
+- A native modal `<dialog>`, unless it has `closedby="none"`, and a non-modal `<dialog>` with `closedby="any"` or `closedby="closerequest"`. When modal dialogs stack, only the top one counts.
+- An open popover, except a `popover="manual"` popover, which doesn't close on Escape.
+- The innermost element around focus, other than a `<dialog>`, with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, an expanded combobox (`aria-expanded="true"`) that has focus or contains it, and a focused element with `aria-expanded="true"` and any `aria-haspopup` value other than `"false"`, such as a menu or listbox button. Most component libraries render their dialogs, popovers, and menus this way.
 
-- With the default `preventDefault` and `stopPropagation`, the hotkey takes the key press. A library that listens on `window` never receives a key that stopped propagating at the document, so the overlay stays open and your hotkey runs.
-- A library that closes without calling `preventDefault()`, or after your hotkeys run, closes the overlay, and your hotkey runs too.
+TanStack Hotkeys finds native dialogs and popovers in the document, and the ones inside a shadow root that hold focus. It finds the other overlays from focus only, so a closed dialog that a library leaves in the page doesn't count. It looks when the key press reaches `window`, before listeners on the document and its elements run, so a library that closes its overlay from one of those still gets the key press alone.
 
-Give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
+Follow these rules for your own `Escape` hotkeys:
+
+1. **Let the browser close your own overlays.** Build them on `<dialog>` with `showModal()` and on `popover` or `popover="auto"`, and don't register an `Escape` hotkey to close them. A `popover="manual"` popover doesn't close on Escape, so close it with an `Escape` hotkey targeted at it. For a dialog that users can't dismiss, use `<dialog closedby="none">`, not an element with `role="dialog"`. Browsers without `closedby` still close it on Escape, so also call `preventDefault()` on its `cancel` event.
+2. **Register an overlay's `Escape` on the overlay.** When your code closes an overlay, such as an ARIA dialog you built, target its `Escape` hotkey at the overlay element. A global `Escape` hotkey skips the overlay it means to close, and nothing reports it.
+3. **Use a global `Escape` only when nothing is open.** It fits actions such as clearing a selection. Turn it off with `enabled: !open`, or give the overlay an exclusive scope, while an overlay that TanStack Hotkeys can't find is open. The overlays it can't find are listed below. Keep the default `preventDefault` on that hotkey: with `'always'`, it still prevents Escape while it's off, and an overlay that checks `defaultPrevented` stays open.
+4. **Keep `Escape` out of page sections and sequences.** Inside an ARIA dialog, a hotkey in any named scope keeps Escape, so a page section's `Escape` hotkey takes it from a library's dialog. Users press Escape to back out of what's open, so a sequence step on `Escape` competes with every overlay.
+
+While focus is inside a `role="dialog"` or `role="alertdialog"` element, any hotkey in a named scope keeps Escape, whatever its target. So a dialog component that activates its own scope and registers an `Escape` hotkey to close itself still closes. While a combobox or menu inside that dialog is open, the first Escape closes it, and the next one closes the dialog. The exemption doesn't apply to native overlays: an open native dialog or popover gets Escape before any hotkey outside it, whatever its scope. While a popover is open, the first Escape closes it, and the next one reaches the dialog's hotkey. If other named scopes can be active while the dialog is open, make the dialog's scope exclusive so their `Escape` hotkeys don't run.
+
+Some overlays don't get Escape this way:
+
+- An overlay without focus inside it, such as a popover in a shadow root while its trigger has focus, or a dialog after a click on its plain text moved focus to the page.
+- An overlay without one of these roles, such as an Alpine component that closes with `@keydown.escape.window`.
+- An overlay inside a closed shadow root, which hides it from the page.
+- An overlay that a `window` capture listener closes, when that listener was added before your first hotkey.
+
+For these, give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
 
 <!-- ::start:framework -->
 
 # React
 
-These overlays stay open:
+Tested: Radix UI and shadcn/ui dialogs and Headless UI's `Dialog` close on Escape and your hotkey doesn't run. The first Escape in an open React Aria `ComboBox` closes its list, and the next one runs your hotkey.
 
-- Headless UI's `Dialog`
-- Ant Design's modals, drawers, dropdowns, and popovers
-
-Mantine's modals, drawers, popovers, menus, and comboboxes close on Escape without calling `preventDefault()`, so they close and your hotkey runs too.
+Not yet tested with this rule: Ant Design and Mantine.
 
 See [scopes](../framework/react/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Preact
 
-These overlays stay open:
-
-- Headless UI's `Dialog`
-- Ant Design's modals, drawers, dropdowns, and popovers
-
-Mantine's overlays close on Escape and your hotkey runs too.
+Component libraries reach Preact through `preact/compat` and behave as they do in React: Radix UI dialogs and Headless UI's `Dialog` get Escape.
 
 See [scopes](../framework/preact/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Solid
 
-Kobalte, solid-ui, shadcn-solid, and Corvu overlays close on Escape and your hotkey runs too.
+Tested: Kobalte and Corvu dialogs, and solid-ui and shadcn-solid built on Kobalte, close on Escape and your hotkey doesn't run.
 
 See [scopes](../framework/solid/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Angular
 
-These overlays stay open:
+Tested: Angular CDK dialogs, and Angular Material's built on them, close on Escape and your hotkey doesn't run.
 
-- ng-bootstrap's modals and offcanvas
-
-PrimeNG's dialogs, drawers, and popovers, and ng-bootstrap's dropdowns and typeaheads, close on Escape and your hotkey runs too.
+Not yet tested with this rule: ng-bootstrap and PrimeNG.
 
 See [scopes](../framework/angular/guides/provide-hotkeys-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Vue
 
-These overlays stay open:
+Tested: Reka UI dialogs, and shadcn-vue and Nuxt UI built on Reka UI, Headless UI's `Dialog`, Vuetify's dialogs, and PrimeVue's dialogs close on Escape and your hotkey doesn't run.
 
-- Reka UI, shadcn-vue, and Nuxt UI: dialogs, popovers, selects, and menus
-- Headless UI's `Dialog`
-- Vuetify's dialogs and menus
-- Naive UI's modals, drawers, and dropdowns
-- Quasar's dialogs and menus
-
-PrimeVue's dialogs, drawers, and popovers, and Element Plus's dialogs, drawers, and dropdowns, close on Escape and your hotkey runs too.
+Not yet tested with this rule: Naive UI, Quasar, and Element Plus.
 
 See [scopes](../framework/vue/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Svelte
 
-Bits UI, shadcn-svelte, Melt UI, and Flowbite Svelte overlays close on Escape and your hotkey runs too.
+Tested: Bits UI dialogs, and shadcn-svelte built on Bits UI, close on Escape and your hotkey doesn't run.
+
+Not yet tested with this rule: Melt UI and Flowbite Svelte.
 
 See [scopes](../framework/svelte/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
 # Lit
 
-These overlays stay open:
+Tested: Shoelace dialogs, Web Awesome dialogs, and Material Web dialogs close on Escape and your hotkey doesn't run.
 
-- Material Web dialogs, which keep their native `<dialog>` inside a shadow root
-- Shoelace dialogs, drawers, and dropdowns, in browsers with `CloseWatcher`
-- Vaadin overlays
-
-Web Awesome and Ionic overlays close on Escape and your hotkey runs too.
+Not yet tested with this rule: Vaadin and Ionic.
 
 See [scopes](../framework/lit/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Alpine
 
-These overlays stay open:
+Pines and Penguin UI modals, and other components that close with `@keydown.escape.window`, get Escape only when they render one of the roles above and focus is inside them.
 
-- Pines and Penguin UI modals, slide-overs, and dropdowns
-- Any component that closes with `@keydown.escape.window`
-
-Flowbite's modals, drawers, and popovers close on Escape and your hotkey runs too.
+Not yet tested with this rule: Flowbite.
 
 See [scopes](../framework/alpine/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Ember
 
-ember-power-select, ember-basic-dropdown, and ember-bootstrap close on Escape and your hotkey runs too.
+ember-power-select, ember-basic-dropdown, and ember-bootstrap haven't been tested with this rule.
 
 See [scopes](../framework/ember/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
 
 # Octane
 
-No component library for Octane is widespread yet. Native modal dialogs and popovers that close on Escape get it on their own, as in every framework.
+No component library for Octane is widespread yet. Overlays get Escape as in every framework.
 
 See [scopes](../framework/octane/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
@@ -411,6 +447,7 @@ A sequence such as `['G', 'G']` completes when each step follows the previous on
 Sequences are forgiving in a few other ways:
 
 - **Pressing a modifier alone does not interrupt a sequence**, so steps can include modifiers: `['Shift+R', 'Shift+T']`.
+- **Lock keys such as CapsLock and NumLock, Fn, and dead keys do not interrupt a sequence.** They count only when they match a step. One that matches a step of another sequence restarts this one, as any other key does. A dead key that matches no step leaves the sequence to the next key, which types its character.
 - **Automatic repeats are not steps.** Holding `G` does not complete `['G', 'G']`.
 - **A wrong key restarts the sequence.** If the wrong key is the sequence's first step, it begins a new attempt, so `G X G G` still completes `['G', 'G']`.
 - **Progress clears when the timeout passes**, without waiting for another key press, so a UI that shows the pressed steps clears on time.
@@ -421,32 +458,48 @@ Registering a hotkey that is already registered on the same target logs a consol
 
 Set `conflictBehavior` to `'replace'` to replace the existing registration, `'error'` to throw, or `'allow'` to silence the warning.
 
-TanStack Hotkeys logs warnings only in development. Production builds, where bundlers set `process.env.NODE_ENV` to `'production'`, skip them and drop the warning code.
+TanStack Hotkeys logs warnings only in development, and it reads `process.env.NODE_ENV` to tell. A bundler's development build logs them. A production build, where the bundler sets `process.env.NODE_ENV` to `'production'`, skips them and drops the warning code.
+
+A page that loads the library's files as published, with no bundler, has no `process` global. The library can't read `process.env.NODE_ENV` there, so it logs no warnings. There, check a hotkey with `validateHotkey`, which returns its problems, or `assertValidHotkey`, which throws for an invalid one. To find duplicates, set `conflictBehavior` to `'error'`, which throws in every build.
 
 ## Recording captures what the user pressed
 
-The hotkey recorder records physical key positions by default (`recordBy: 'code'`). A modifier can change which character a key types (Option+S types `ß`, and Shift+1 types `!`), but its position does not change. Recording the position saves the key the user pressed, regardless of what it typed. Set `recordBy: 'key'` to record characters instead.
+The hotkey recorder writes a hotkey the way you would write it by hand (`recordBy: 'auto'`). Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S`. On a French AZERTY keyboard, the same modifier with the key labeled A records `Mod+A`, so the label shows the keycap, and the hotkey equals a `Mod+A` in your code.
+
+Some presses have no name that means the same thing everywhere. The recorder records those by position, in brackets:
+
+- **Shift with a digit or a symbol.** Shift+/ records `Shift+[Slash]`, and Shift+1 records `Shift+[Digit1]`. For Control+Shift+/, Windows reports `?`, and for Command+Shift+/, macOS reports `/`, so a recorded `?` would not fire on a Mac. Shift with a letter or a named key records it by name, such as `Shift+A` and `Shift+Enter`.
+- **Option on macOS with a digit or a symbol.** Option+1 types `¡` and records `Alt+[Digit1]`. Option with a letter records the letter on the keycap: Option+S records `Alt+S`, not `ß`. Option with a named key records it by name, such as `Alt+Enter`.
+- **Dead keys**, which type nothing until the next key. Option with a letter that starts an accent is the exception: Option+E on a US Mac records `Alt+E`.
+- **The numpad**, where one key types `1` or End depending on NumLock.
+
+A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it [matches](#keys-match-the-character-the-user-types). On Windows with a Russian layout, Control+ы records `Mod+S`, and Control+х records `Mod+[`.
+
+Set `recordBy: 'code'` to record every key by position, such as for game controls. Set `recordBy: 'key'` to record the character every press types, which records `Alt+ß` for Option+S and `Shift+?` for Shift+/.
+
+A recorded hotkey and one written by hand can differ and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press. The recorder's `detectConflicts` option checks with the key presses that made the recording. For app hotkeys, pass the recorder's `context` to `findConflicts`, which does the same.
 
 While recording:
 
 - **Escape** cancels.
+- **Tab** and **Shift+Tab** cancel and move focus, so keyboard users can leave the recorder. Set `recordTab: true` to record them instead, and tell users that Escape cancels.
 - **Backspace** or **Delete** removes the last step, or clears an empty recording.
 - **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.
 - **Typing in inputs passes through**, so other fields on the page keep working. Escape still cancels.
-- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt.
+- **AltGr is rejected** unless you set `recordBy: 'key'`, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt. Character recordings (`recordBy: 'key'`) accept the characters AltGr types, but on Linux they reject AltGr with a key it does not change, because that press fires no hotkey.
 
 ## Held keys reset when the window loses focus
 
 Key state tracking marks a key as held on keydown and releases it on keyup. If the window loses focus while a key is down, such as when the user switches apps with Command+Tab, the browser never delivers the keyup. Held keys are therefore cleared when the window loses focus, and when the page is hidden, such as when the user switches tabs. A native context menu also takes the keyup, so opening one, with the ContextMenu key or a right-click, clears every held key except the modifiers the event still reports. A context menu the page shows itself, by calling `preventDefault()` on the `contextmenu` event, keeps focus and clears nothing.
 
-On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing a modifier clears any other keys still marked as held, so no key is stuck.
+On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing Command on macOS clears any other keys still marked as held, so no key is stuck. Other modifiers, and Command on other platforms, keep their keyups, so a key held while Shift, Control, or Alt is tapped stays held.
 
 Some system shortcuts swallow a modifier's own keyup without taking focus from the page, such as Command+Shift+4 for a screenshot on macOS, or the DevTools inspect shortcut. Every keyboard and mouse event reports which modifiers are down, so the next key press, mouse movement, or click releases any modifier it reports as up. Only real user input counts: events that page code dispatches report no modifiers, so the tracker ignores them for this. Until such an event arrives, the modifier stays held, because nothing distinguishes a missed release from a long hold.
 
 ## Display matches the platform
 
-`formatForDisplay` uses each platform's conventions. On macOS, `Mod+Shift+S` displays as `⇧ ⌘ S`. On Windows and Linux, it displays as `Ctrl+Shift+S`. Sequence steps are separated by a space: `G G`.
+Your framework's label primitive, such as `useFormatForDisplay`, uses each platform's conventions. On macOS, `Mod+Shift+S` displays as `⇧ ⌘ S`. On Windows and Linux, it displays as `Ctrl+Shift+S`. Sequence steps are separated by a space: `G G`.
 
 Pass `useSymbols: false` for text labels on macOS, or `keyLabels` to rename individual keys.
 

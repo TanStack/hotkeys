@@ -1,11 +1,14 @@
+import {
+  HOTKEYS_DEVTOOLS_DEFAULT_PROPS,
+  HotkeysDevtoolsCore,
+} from '@tanstack/hotkeys-devtools/production'
 import { defineComponent, h, onMounted, onUnmounted, ref, watch } from 'vue'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
-import type { DefineComponent, PropType } from 'vue'
 import type {
   HotkeysDevtoolsCoreClass,
   HotkeysDevtoolsPanelProps,
   HotkeysDevtoolsTheme,
-} from '@tanstack/hotkeys-devtools'
+} from '@tanstack/hotkeys-devtools/production'
+import type { DefineComponent, PropType } from 'vue'
 
 export interface HotkeysDevtoolsVueInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
@@ -25,8 +28,11 @@ function resolveProps(
   const dock = typeof props.theme === 'object' ? props.theme : undefined
   const theme = dock ? dock.theme : (props.theme as HotkeysDevtoolsTheme)
   return {
-    theme: theme ?? 'dark',
-    devtoolsOpen: dock?.devtoolsOpen ?? props.devtoolsOpen ?? true,
+    theme: theme ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.theme,
+    devtoolsOpen:
+      dock?.devtoolsOpen ??
+      props.devtoolsOpen ??
+      HOTKEYS_DEVTOOLS_DEFAULT_PROPS.devtoolsOpen,
   }
 }
 

@@ -1,18 +1,8 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'preact/hooks'
-import { createContext, render } from 'preact'
-
 import { TanStackDevtools } from '@tanstack/preact-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import {
   HotkeysProvider,
-  formatForDisplay,
   isHotkeySequence,
+  useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -22,15 +12,36 @@ import {
   useHotkeys,
   useKeyHold,
 } from '@tanstack/preact-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
+import { createContext, render } from 'preact'
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'preact/hooks'
 import type {
   Hotkey,
+  HotkeyPlatform,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/preact-hotkeys'
 import './styles.css'
 import type { JSX } from 'preact'
 
-// Created once: a new array on every render remounts the devtools panel
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
+
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
@@ -44,12 +55,14 @@ const pages = [
 
 /** A separate component lets each navigation link or button subscribe to its hint. */
 function Hint({ hotkey }: { hotkey: RegisterableHotkey }) {
+  const formatForDisplay = useFormatForDisplay()
   const visible = useHotkeyHint(hotkey)
   return visible ? <kbd>{formatForDisplay(hotkey)}</kbd> : null
 }
 
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
+  const formatForDisplay = useFormatForDisplay()
   const [path, setPath] = useState(location.hash.slice(1) || '/')
   useEffect(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
@@ -253,6 +266,7 @@ function Tickets() {
 
 /** Each editor owns a target ref, so the same shortcuts can be reused independently. */
 function EditorPane({ name }: { name: string }) {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const target = useRef<HTMLFieldSetElement>(null)
   const [text, setText] = useState('One shortcut, two independent editors.')
@@ -307,6 +321,7 @@ function EditorPane({ name }: { name: string }) {
 
 /** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = useState(false)
   const [count, setCount] = useState(0)
@@ -376,6 +391,7 @@ function Editor() {
 
 /** Sequences register with useHotkey and useHotkeys and expose progress through the registry. */
 function Sequences() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = useState(1000)
   useHotkey(['[KeyG]', '[KeyG]'], () => log('Sequence: go to top'), {
@@ -451,10 +467,11 @@ function Sequences() {
 
 /** Recorder output feeds local state; reset and validation are application policy. */
 function Recording() {
+  const formatForDisplay = useFormatForDisplay()
   const log = useContext(ActivityContext)
   const initial: Hotkey = 'Alt+[KeyR]'
   const [hotkey, setHotkey] = useState<Hotkey>(initial)
-  const [mode, setMode] = useState<RecorderKeyMode>('code')
+  const [mode, setMode] = useState<RecorderKeyMode>('auto')
   const [problem, setProblem] = useState('')
   const [sequence, setSequence] = useState<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = useState('')
@@ -474,7 +491,7 @@ function Recording() {
     },
     validate: (_, { parsedChord }) =>
       parsedChord.modifiers.length > 0 || 'Include a modifier for this action.',
-    onReject: ({ message }) => setProblem(message),
+    onReject: (rejection) => setProblem(rejectionText(rejection)),
     onRecord: (value) => {
       setHotkey(value)
       setProblem('')
@@ -507,7 +524,7 @@ function Recording() {
         `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
-    onReject: (reason) => setSequenceProblem(reason.message),
+    onReject: (rejection) => setSequenceProblem(rejectionText(rejection)),
     onClear: () => {
       setSequence(['[KeyX]', '[KeyY]'])
       setSequenceProblem('Restored default sequence.')
@@ -528,7 +545,10 @@ function Recording() {
           disabled={recorder.isRecording || sequenceRecorder.isRecording}
           onChange={(e) => setMode(e.currentTarget.value as RecorderKeyMode)}
         >
-          <option value="code">Physical code (default)</option>
+          <option value="auto">
+            By name, or position where needed (default)
+          </option>
+          <option value="code">Physical code</option>
           <option value="key">Logical character</option>
         </select>
       </label>
@@ -619,7 +639,8 @@ function Recording() {
 
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
-  const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
+  const formatForDisplay = useFormatForDisplay()
+  const [platform, setPlatform] = useState<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)
   const options = {

@@ -1,6 +1,6 @@
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, expect, it } from 'vitest'
-import { HotkeyManager } from '@tanstack/hotkeys'
 import ElementOrder from './ElementOrder.svelte'
 
 // Svelte runs onkeydown from one listener on the app's root, after native

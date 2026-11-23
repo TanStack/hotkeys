@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config'
 import { octane } from 'octane/compiler/vite'
+import { defineConfig } from 'vitest/config'
 export default defineConfig({
   plugins: [octane({ ssr: false })],
   test: {
@@ -8,5 +8,6 @@ export default defineConfig({
     exclude: ['**/ssr/**'],
     watch: false,
     environment: 'happy-dom',
+    setupFiles: ['@tanstack/hotkeys-test-utils/setup'],
   },
 })

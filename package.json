@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/TanStack/hotkeys.git"
   },
-  "packageManager": "pnpm@12.8.1",
+  "packageManager": "pnpm@12.18.0",
   "engines": {
     "pnpm": ">=12.6.0",
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
@@ -23,25 +23,30 @@
     "clean:all": "pnpm run clean && pnpm run clean:node_modules",
     "copy:readme": "cp README.md packages/hotkeys/README.md && cp README.md packages/hotkeys-devtools/README.md && cp README.md packages/angular-hotkeys/README.md && cp README.md packages/react-hotkeys/README.md && cp README.md packages/react-hotkeys-devtools/README.md && cp README.md packages/preact-hotkeys/README.md && cp README.md packages/preact-hotkeys-devtools/README.md && cp README.md packages/solid-hotkeys/README.md && cp README.md packages/solid-hotkeys-devtools/README.md && cp README.md packages/vue-hotkeys/README.md && cp README.md packages/vue-hotkeys-devtools/README.md && cp README.md packages/lit-hotkeys/README.md && cp README.md packages/svelte-hotkeys/README.md && cp README.md packages/alpine-hotkeys/README.md && cp README.md packages/ember-hotkeys/README.md && cp README.md packages/octane-hotkeys/README.md && cp README.md packages/angular-hotkeys-devtools/README.md && cp README.md packages/svelte-hotkeys-devtools/README.md",
     "dev": "pnpm run watch",
-    "format": "prettier --experimental-cli --ignore-unknown '**/*' --write",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "generate-docs": "node scripts/generate-docs.ts && pnpm run copy:readme",
+    "generate:layout-table": "node scripts/layout-table/generate.ts",
     "lint": "nx affected --target=lint --exclude=examples/**",
-    "lint:all": "pnpm run test:eslint && nx run-many --target=lint --projects=\"examples/**\"",
+    "lint:all": "pnpm run test:oxlint && pnpm run test:eslint && nx run-many --target=lint --projects=\"examples/**\"",
     "lint:fix": "nx affected --target=lint:fix --exclude=examples/**",
     "lint:fix:all": "nx run-many --targets=lint:fix",
     "test": "pnpm run test:ci",
     "test:ci": "pnpm run lint:all && nx run-many --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build && size-limit",
     "test:docs": "node scripts/verify-links.ts",
     "test:e2e": "pnpm --filter @tanstack/hotkeys-e2e test:e2e",
+    "test:e2e:adapters": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-e2e-app-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:adapters",
     "test:e2e:layouts": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts",
     "test:e2e:layouts:docker": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts:docker",
     "test:e2e:ssr": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-example-*-format-for-display-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:ssr",
     "test:eslint": "nx affected --target=test:eslint --exclude=examples/**",
+    "test:oxlint": "nx affected --target=test:oxlint --exclude=examples/**",
     "test:knip": "knip",
     "test:lib": "nx affected --targets=test:lib --exclude=examples/**",
     "test:lib:dev": "pnpm test:lib && nx watch --all -- pnpm test:lib",
+    "test:coverage": "nx run-many --targets=test:coverage --exclude=examples/**",
     "test:pr": "pnpm run lint:all && nx affected --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build",
-    "test:sherif": "sherif -i solid-js",
+    "test:sherif": "sherif",
     "test:skills": "intent maintainer check",
     "test:types": "nx affected --targets=test:types --exclude=examples/**",
     "watch": "pnpm run build:all && nx watch --all -- pnpm run build:all",
@@ -70,6 +75,12 @@
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ getKeyStateTracker }",
       "limit": "3.5 KB"
+    },
+    {
+      "name": "Keyboard layout loader",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ loadKeyboardLayout, getKeyboardLayoutStore }",
+      "limit": "0.6 KB"
     },
     {
       "name": "formatForDisplay",
@@ -102,6 +113,16 @@
         "react-dom"
       ],
       "limit": "12 KB"
+    },
+    {
+      "name": "React useHotkey + AppHotkeysProvider",
+      "path": "packages/react-hotkeys/dist/index.js",
+      "import": "{ useHotkey, AppHotkeysProvider }",
+      "ignore": [
+        "react",
+        "react-dom"
+      ],
+      "limit": "11.5 KB"
     }
   ],
   "nx": {
@@ -114,29 +135,33 @@
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^3.0.3",
+    "@eslint-react/eslint-plugin": "^5.28.8",
     "@faker-js/faker": "^10.6.0",
-    "@size-limit/preset-small-lib": "^14.1.0",
-    "@tanstack/eslint-config": "0.4.0",
-    "@tanstack/intent": "0.5.5",
-    "@tanstack/typedoc-config": "0.3.4",
+    "@size-limit/preset-small-lib": "^14.3.0",
+    "@tanstack/intent": "0.5.6",
+    "@tanstack/oxfmt-config": "0.1.0",
+    "@tanstack/oxlint-config": "0.2.0",
+    "@tanstack/typedoc-config": "0.3.5",
     "@testing-library/jest-dom": "^7.0.1",
-    "@types/node": "^26.6.4",
-    "eslint": "^10.11.0",
-    "eslint-plugin-unused-imports": "^4.4.1",
-    "happy-dom": "^20.14.5",
-    "knip": "^6.39.0",
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint-plugin-react-compiler": "19.1.0-rc.2",
+    "happy-dom": "^21.0.4",
+    "knip": "^6.44.2",
     "markdown-link-extractor": "^4.0.4",
-    "nx": "^23.2.1",
+    "nx": "^24.0.5",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2006",
     "premove": "^4.0.0",
-    "prettier": "^3.9.9",
-    "prettier-plugin-svelte": "^4.1.1",
     "publint": "^0.3.25",
     "sherif": "^1.13.0",
-    "size-limit": "^14.1.0",
+    "size-limit": "^14.3.0",
+    "svelte": "^5.57.3",
     "tinyglobby": "^0.2.17",
-    "tsdown": "^0.23.0",
+    "tsdown": "^0.23.7",
     "typescript": "6.0.3",
-    "vitest": "^5.0.3"
+    "vitest": "^5.1.0"
   },
   "volta": {
     "node": "24.15.0"

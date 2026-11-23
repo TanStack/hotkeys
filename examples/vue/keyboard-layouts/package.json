@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-vue-keyboard-layouts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "test:types": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/vue-hotkeys": "^0.25.3",
+    "vue": "^3.5.45"
+  },
+  "devDependencies": {
+    "@tanstack/vue-devtools": "^0.2.29",
+    "@tanstack/vue-hotkeys-devtools": "^0.13.14",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "typescript": "6.0.3",
+    "vite": "^8.3.7",
+    "vue-tsc": "^3.3.14"
+  }
+}

@@ -44,6 +44,22 @@ Component({ selector: 'app-required', template: '<div #panel></div>' })(
   RequiredPanel,
 )
 
+class ConditionalPanel {
+  open = signal(false)
+  panel = viewChild<ElementRef<HTMLElement>>('panel')
+  constructor() {
+    injectHotkey('K', onK, () => ({ target: this.panel()?.nativeElement }))
+  }
+}
+ViewChild('panel', { isSignal: true } as never)(
+  ConditionalPanel.prototype,
+  'panel',
+)
+Component({
+  selector: 'app-conditional',
+  template: '@if (open()) {<div #panel></div>}',
+})(ConditionalPanel)
+
 describe('injectHotkey targets', () => {
   beforeEach(() => {
     HotkeyManager.resetInstance()
@@ -96,6 +112,24 @@ describe('injectHotkey targets', () => {
     press(element)
     expect(onK).toHaveBeenCalledTimes(1)
     press(document)
+    expect(onK).toHaveBeenCalledTimes(1)
+  })
+
+  it('waits for a viewChild value read in a getter, then registers on its element', async () => {
+    const fixture = TestBed.createComponent(ConditionalPanel)
+    await fixture.whenStable()
+    expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
+    press(document.body)
+    expect(onK).not.toHaveBeenCalled()
+    fixture.componentInstance.open.set(true)
+    await fixture.whenStable()
+    const element = fixture.nativeElement.querySelector('div') as HTMLElement
+    expect(
+      [...HotkeyManager.getInstance().registrations.state.values()].map(
+        (registration) => registration.target,
+      ),
+    ).toEqual([element])
+    press(element)
     expect(onK).toHaveBeenCalledTimes(1)
   })
 })

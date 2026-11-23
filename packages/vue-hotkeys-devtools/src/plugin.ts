@@ -1,3 +1,4 @@
+import { HOTKEYS_DEVTOOLS_PLUGIN_NAME } from '@tanstack/hotkeys-devtools/production'
 import {
   HotkeysDevtoolsPanel,
   HotkeysDevtoolsPanelNoOp,
@@ -11,7 +12,7 @@ export interface HotkeysDevtoolsVuePlugin {
   props?: HotkeysDevtoolsVueInit
 }
 
-const name = 'TanStack Hotkeys'
+const name = HOTKEYS_DEVTOOLS_PLUGIN_NAME
 
 export function hotkeysDevtoolsPlugin(
   props?: HotkeysDevtoolsVueInit,

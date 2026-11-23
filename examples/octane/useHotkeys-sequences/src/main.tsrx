@@ -2,7 +2,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  useFormatForDisplay,
   useHotkey,
   useHotkeyRegistrations,
   useHotkeys,
@@ -308,6 +308,7 @@ function App() @{
 }
 
 function RegistrationsViewer() @{
+  const formatForDisplay = useFormatForDisplay()
   const { hotkeys } = useHotkeyRegistrations()
   <section className="demo-section">
         <h2>Live Registrations (useHotkeyRegistrations)</h2>

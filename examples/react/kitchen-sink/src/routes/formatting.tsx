@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useFormatForDisplay } from '@tanstack/react-hotkeys'
 import { createLazyRoute } from '@tanstack/react-router'
-import { formatForDisplay } from '@tanstack/react-hotkeys'
+import { useState } from 'react'
+import type { HotkeyPlatform } from '@tanstack/react-hotkeys'
 
 export const Route = createLazyRoute('/formatting')({ component: Formatting })
 
 /** Formatting changes labels, not the binding being registered. */
 function Formatting() {
-  const [platform, setPlatform] = useState<'mac' | 'windows' | 'linux'>('mac')
+  const formatForDisplay = useFormatForDisplay()
+  const [platform, setPlatform] = useState<HotkeyPlatform>('mac')
   const [modifierSymbols, setModifierSymbols] = useState(false)
   const [keySymbols, setKeySymbols] = useState(true)
   const options = {

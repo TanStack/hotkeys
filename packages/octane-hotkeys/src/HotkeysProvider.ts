@@ -1,10 +1,3 @@
-import {
-  createContext,
-  createElement,
-  useContext,
-  useLayoutEffect,
-  useRef,
-} from 'octane'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -12,48 +5,54 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
+import {
+  createContext,
+  createElement,
+  useContext,
+  useLayoutEffect,
+  useRef,
+} from 'octane'
 import { subSlot } from './internal'
 import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface DefaultHotkeysOptions {
   /**
-   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-   * recorders. Defaults to detection. When server rendering, set it from the
-   * request with `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. Defaults to detection.
+   * When server rendering, set it from the request with
+   * `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
+  /**
+   * Whether labels from `useFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first label mounts. Only Chromium
+   * browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /**
    * Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */
   hotkey?: UseHotkeyCommonOptions
   /** Defaults for every `useHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
-interface HotkeysContextValue {
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
-  defaultOptions: DefaultHotkeysOptions
-  appHotkeysStore: AppHotkeysStore | null
-  /** Whether this provider and every ancestor are enabled. */
-  enabled: boolean
-}
-
-const HotkeysContext = createContext<HotkeysContextValue | null>(null)
+const HotkeysContext =
+  createContext<HotkeysContextValue<DefaultHotkeysOptions> | null>(null)
 
 export type HotkeysProviderOptions = DefaultHotkeysOptions
 
@@ -62,15 +61,16 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
   /**
-   * Every app hotkey, from `defineAppHotkeys`. Read when the provider first
-   * renders; listed by `useAppHotkeyList` whether or not they are registered.
+   * Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
+   * whether or not they are registered. It can start as `undefined` and arrive
+   * later, such as from a lazy import.
    */
   appHotkeys?: AppHotkeys
   /**
    * The user's saved custom hotkeys. When the value changes, such as after
    * saved data loads or the user signs in, it replaces the current custom
-   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
-   * entries are ignored with a warning.
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Unknown
+   * ids and invalid entries are ignored.
    */
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -78,7 +78,7 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
 }
 
 /** Reads the nearest provider, or null outside a provider. */
-export function useHotkeysContext(): HotkeysContextValue | null {
+export function useHotkeysContext(): HotkeysContextValue<DefaultHotkeysOptions> | null {
   return useContext(HotkeysContext)
 }
 
@@ -110,6 +110,8 @@ export function HotkeysProvider({
     subSlot(undefined, 'provider-callback'),
   )
   callbackRef.current = onCustomHotkeysChange
+  // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+  const platform = defaultOptions?.platform ?? parent?.defaultOptions.platform
   const storeRef = useRef<AppHotkeysStore | null | undefined>(
     undefined,
     subSlot(undefined, 'provider-store'),
@@ -118,6 +120,7 @@ export function HotkeysProvider({
     ? createAppHotkeysStore(appHotkeys, {
         customHotkeys,
         onCustomHotkeysChange: (custom) => callbackRef.current?.(custom),
+        platform,
       })
     : null
   const store = storeRef.current
@@ -128,13 +131,13 @@ export function HotkeysProvider({
     [store, appHotkeys],
     subSlot(undefined, 'provider-declarations'),
   )
-  // Apply saved custom hotkeys whose value changes, such as data that loads
-  // after the first render.
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render.
   useLayoutEffect(
     () => {
-      store?.setOptions({ customHotkeys })
+      store?.setOptions({ customHotkeys, platform })
     },
-    [store, customHotkeys],
+    [store, customHotkeys, platform],
     subSlot(undefined, 'provider-custom-hotkeys'),
   )
   // Publish the store so devtools can list declared hotkeys.

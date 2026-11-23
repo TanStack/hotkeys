@@ -1,42 +1,49 @@
-import { createContext, onMount } from 'svelte'
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
-import { activateScopeWhileMounted } from './internal.svelte.js'
+import { createContext } from 'svelte'
+import {
+  activateScopeWhileMounted,
+  syncAppHotkeysStore,
+} from './internal.svelte.js'
 import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
-  HotkeyChordRecorderOptions,
   HotkeyPlatform,
-  HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
-import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
+import type {
+  HotkeyRecorderDefaults,
+  HotkeysContextValue,
+  HotkeysProviderScopeProps,
+} from '@tanstack/hotkeys/adapter'
 import type { Snippet } from 'svelte'
+import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 
 export interface HotkeysProviderOptions {
   /**
-   * The user's platform, for labels from `getFormatForDisplay`, hotkeys, and
-   * recorders. On a server, set it from the request with
-   * `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `getFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. On a server, set it
+   * from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
+  /**
+   * Whether labels from `getFormatForDisplay` follow the user's keyboard
+   * layout, so `[KeyQ]` reads `A` on a French AZERTY keyboard. The layout
+   * loads from the browser when the first label mounts. Only Chromium
+   * browsers report one. Set `false` to never ask the browser for it.
+   * Default: `true`.
+   */
+  keyboardLayout?: boolean
   /**
    * Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */
   hotkey?: CreateHotkeyCommonOptions
   /** Defaults for every `createHotkeyRecorder`. */
-  hotkeyRecorder?: Partial<
-    Omit<
-      HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions,
-      'maxSteps' | 'onRecord' | 'validate'
-    >
-  >
+  hotkeyRecorder?: HotkeyRecorderDefaults
 }
 
 /** Options for `setHotkeysContext` and props for `HotkeysProvider`. */
@@ -44,15 +51,16 @@ export interface HotkeysContextOptions extends HotkeysProviderScopeProps {
   /** Merged with the parent context's defaults. */
   defaultOptions?: HotkeysProviderOptions
   /**
-   * Every app hotkey, from `defineAppHotkeys`. Read when the context is set;
-   * listed by `getAppHotkeyList` whether or not they are registered.
+   * Every app hotkey, from `defineAppHotkeys`. Listed by `getAppHotkeyList`
+   * whether or not they are registered. It can start as `undefined` and arrive
+   * later, such as from a lazy import.
    */
   appHotkeys?: AppHotkeys
   /**
    * The user's saved custom hotkeys. When the value changes, such as after
    * saved data loads or the user signs in, it replaces the current custom
-   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
-   * entries are ignored with a warning.
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Unknown
+   * ids and invalid entries are ignored.
    */
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -65,16 +73,8 @@ export interface HotkeysProviderProps extends HotkeysContextOptions {
 
 export const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
-interface HotkeysContextValue {
-  readonly appHotkeysStore: AppHotkeysStore | null
-  /** Merged with every ancestor's defaults, including `hotkey.scope`. */
-  readonly defaultOptions: HotkeysProviderOptions
-  /** Whether this context and every ancestor are enabled. */
-  readonly enabled: boolean
-}
-
 const [useHotkeysContext, setHotkeysContextValue] =
-  createContext<HotkeysContextValue | null>()
+  createContext<HotkeysContextValue<HotkeysProviderOptions> | null>()
 
 /**
  * Sets the hotkeys context for descendants. `HotkeysProvider` calls this; call
@@ -99,27 +99,37 @@ const [useHotkeysContext, setHotkeysContextValue] =
  */
 export function setHotkeysContext(
   options: HotkeysContextOptions = {},
-): HotkeysContextValue {
+): HotkeysContextValue<HotkeysProviderOptions> {
   return setHotkeysContextSource(() => options)
 }
 
 /** Sets the context from a getter, so default options stay reactive. */
 export function setHotkeysContextSource(
   source: () => HotkeysContextOptions,
-): HotkeysContextValue {
+): HotkeysContextValue<HotkeysProviderOptions> {
   const parent = getHotkeysContext()
-  const { appHotkeys, customHotkeys } = source()
-  const store = appHotkeys
-    ? createAppHotkeysStore(appHotkeys, {
+  let store: AppHotkeysStore | null = null
+  // Created when app hotkeys first arrive. That can be after the context is
+  // set, such as when a lazy import loads the declarations. A reactive reader
+  // tracks the options through `source()`, so it re-runs when they arrive.
+  const ownStore = () => {
+    const { appHotkeys, customHotkeys, defaultOptions } = source()
+    if (!store && appHotkeys) {
+      store = createAppHotkeysStore(appHotkeys, {
         customHotkeys,
+        // App hotkeys compare hotkeys, such as for conflicts, on this
+        // platform.
+        platform: defaultOptions?.platform ?? parent?.defaultOptions.platform,
         onCustomHotkeysChange: (custom) =>
           source().onCustomHotkeysChange?.(custom),
       })
-    : null
-  // Publish the store so devtools can list declared hotkeys.
-  if (store) onMount(() => publishAppHotkeysStore(store))
+    }
+    return store
+  }
   const context = setHotkeysContextValue({
-    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
+    get appHotkeysStore() {
+      return ownStore() ?? parent?.appHotkeysStore ?? null
+    },
     get defaultOptions() {
       const { defaultOptions, scope } = source()
       return mergeHotkeysProviderDefaults(
@@ -132,6 +142,13 @@ export function setHotkeysContextSource(
       return (parent?.enabled ?? true) && source().enabled !== false
     },
   })!
+  // Only this context's own store: a nested context without app hotkeys
+  // reads its parent's store and never changes it.
+  syncAppHotkeysStore(ownStore, () => ({
+    appHotkeys: source().appHotkeys,
+    customHotkeys: source().customHotkeys,
+    platform: context.defaultOptions.platform,
+  }))
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   activateScopeWhileMounted(() => {
@@ -146,7 +163,7 @@ export function setHotkeysContextSource(
   return context
 }
 
-export function getHotkeysContext(): HotkeysContextValue | null {
+export function getHotkeysContext(): HotkeysContextValue<HotkeysProviderOptions> | null {
   try {
     return useHotkeysContext()
   } catch {

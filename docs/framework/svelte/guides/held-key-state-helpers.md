@@ -26,11 +26,11 @@ Each function returns an object with a reactive getter. Read the getter where yo
 </div>
 ```
 
-To label each held key the way hotkeys are labeled, pass it to `formatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+To label each held key the way hotkeys are labeled, pass it to the function from `getFormatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
 
 ## Check whether a key is held
 
-`getIsKeyHeld(key).held` tells you whether one key is held. It updates only when that key is pressed or released:
+`getIsKeyHeld(key).held` tells you whether one key is held. An effect that reads it runs again whenever any key is pressed or released:
 
 ```svelte
 <script lang="ts">
@@ -49,6 +49,8 @@ To label each held key the way hotkeys are labeled, pass it to `formatForDisplay
   {/if}
 </div>
 ```
+
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
 
 ## Tell left and right modifiers apart
 

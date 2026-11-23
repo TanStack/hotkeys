@@ -119,7 +119,7 @@ bootstrapApplication(AppComponent, {
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- Pass `customHotkeys` as a signal or function when saved data loads later. When its value changes, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. `undefined` leaves them unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
+- Pass `customHotkeys` as a signal or function when saved data loads later. When its value changes, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. `undefined` leaves them unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
@@ -131,9 +131,9 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 ```ts
 import { Component, computed, input } from '@angular/core'
 import {
-  formatForDisplay,
   injectAppHotkeys,
   injectCustomHotkeys,
+  injectFormatForDisplay,
   injectHotkeyRecorder,
 } from '@tanstack/angular-hotkeys'
 import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
@@ -142,7 +142,7 @@ import type { AppHotkeyId } from '@tanstack/angular-hotkeys'
   selector: 'app-shortcut-row',
   template: `
     {{ appHotkey().meta?.name }}:
-    {{ appHotkey().hotkey ? format(appHotkey().hotkey!) : 'Unassigned' }}
+    {{ appHotkey().hotkey ? formatForDisplay(appHotkey().hotkey!) : 'Unassigned' }}
     <button (click)="recorder.startRecording()">Change</button>
     <button (click)="custom.resetCustomHotkey(id())">Reset</button>
   `,
@@ -152,25 +152,27 @@ export class ShortcutRowComponent {
   readonly appHotkeys = injectAppHotkeys()
   readonly appHotkey = computed(() => this.appHotkeys()[this.id()])
   readonly custom = injectCustomHotkeys()
-  readonly format = formatForDisplay
+  readonly formatForDisplay = injectFormatForDisplay()
 
   readonly recorder = injectHotkeyRecorder(() => ({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const conflicts = this.custom.findConflicts(this.id(), hotkey)
+    validate: (hotkey, context) => {
+      const conflicts = this.custom.findConflicts(this.id(), hotkey, context)
       return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
     },
-    onRecord: (hotkey) => this.custom.setCustomHotkey(this.id(), hotkey),
+    onRecord: (hotkey, context) => this.custom.setCustomHotkey(this.id(), hotkey, context),
     onClear: () => this.custom.setCustomHotkey(this.id(), null),
   }))
 }
 ```
 
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+
 | Member | Description |
 | --- | --- |
 | `customHotkeys()` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. |
-| `findConflicts(id, hotkey)` | App hotkeys that would collide if `id` used `hotkey` |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 

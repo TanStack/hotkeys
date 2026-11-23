@@ -11,7 +11,7 @@ TanStack Hotkeys gives you two lists to build from:
 - `createHotkeyRegistrations` returns the hotkeys registered right now. It works with plain `createHotkey` and `createHotkeys`, but it only knows about mounted components.
 - `createAppHotkeyList` returns every [app hotkey](./app-hotkeys) you declared, including hotkeys on pages that haven't rendered, with the status of each.
 
-Both return accessors. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `formatForDisplay`, covered in [Formatting & Display](./formatting-display).
+Both return accessors. Start with registrations. Switch to app hotkeys when the cheat sheet should list shortcuts from the whole app, or when users can change them. Label each hotkey with `createFormatForDisplay`, covered in [Formatting & Display](./formatting-display).
 
 ## Name your hotkeys
 
@@ -49,6 +49,8 @@ declare module '@tanstack/hotkeys' {
 }
 ```
 
+Lists re-render when a new `meta` changes a string, number, or boolean field. Editing a `meta` object you already passed doesn't re-render them. A new array, object, element, or function in `meta` replaces the old one, so callbacks stay current, but it doesn't re-render lists on its own. That's what lets you write `meta` inline in a component. To show a changed array or element, also change a primitive field, such as `name`.
+
 ## List the hotkeys on screen
 
 `createHotkeyRegistrations` returns every registered hotkey, and updates when hotkeys register, unregister, or change. Show the ones with a name:
@@ -56,11 +58,12 @@ declare module '@tanstack/hotkeys' {
 ```tsx
 import { For } from 'solid-js'
 import {
+  createFormatForDisplay,
   createHotkeyRegistrations,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 
 function ShortcutList() {
+  const formatForDisplay = createFormatForDisplay()
   const registrations = createHotkeyRegistrations()
   const named = () =>
     registrations().filter(
@@ -100,9 +103,10 @@ Registrations exist only while their components are mounted, so this list can't 
 
 ```tsx
 import { For } from 'solid-js'
-import { createAppHotkeyList, formatForDisplay } from '@tanstack/solid-hotkeys'
+import { createAppHotkeyList, createFormatForDisplay } from '@tanstack/solid-hotkeys'
 
 function CheatSheet() {
+  const formatForDisplay = createFormatForDisplay()
   const items = createAppHotkeyList()
 
   return (
@@ -172,7 +176,7 @@ function CheatSheet() {
 }
 ```
 
-To show keycaps, pass `parts: true` to `formatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
+To show keycaps, pass `parts: true` to the function from `createFormatForDisplay` and render each part in its own `<kbd>`. See [Render individual keycaps](./formatting-display#render-individual-keycaps).
 
 ## Open the cheat sheet with a hotkey
 

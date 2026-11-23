@@ -1,9 +1,10 @@
 <script lang="ts">
   import {
-    formatForDisplay,
+    getFormatForDisplay,
     getHeldKeys,
     getHeldKeyCodesMap,
   } from '@tanstack/svelte-hotkeys'
+  const formatForDisplay = getFormatForDisplay()
   const heldKeys = getHeldKeys()
   const heldKeyCodesMap = getHeldKeyCodesMap()
 

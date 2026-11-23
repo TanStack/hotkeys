@@ -74,6 +74,7 @@ While the user works through a sequence:
 - A key that doesn't continue the sequence starts it over. If that key is the sequence's first step, it begins a new attempt, so `G X G G` completes `['G', 'G']`.
 - Holding a key doesn't count as pressing it again, so holding `G` doesn't complete `['G', 'G']`.
 - Pressing a modifier alone, such as Shift, neither advances the sequence nor starts it over.
+- Lock keys such as CapsLock and NumLock, Fn, and dead keys count only when they match a step. Otherwise they don't start the sequence over, unless they match a step of another sequence. A dead key that matches no step leaves the sequence to the next key, which types its character.
 
 [Sequences allow 1 second between steps](../../../guides/sensible-defaults.md#sequences-allow-1-second-between-steps) explains the default.
 
@@ -141,7 +142,7 @@ The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys
 
 ## Show sequences in your UI
 
-`formatForDisplay` formats each step and joins them with a space:
+The function from `getFormatForDisplay` formats each step and joins them with a space:
 
 ```ts
 formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
@@ -155,11 +156,12 @@ A sequence's first steps have no visible effect, so show users what they've pres
 ```svelte
 <script lang="ts">
   import {
-    formatForDisplay,
+    getFormatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
   import type { HotkeySequenceRegistrationView } from '@tanstack/svelte-hotkeys'
 
+  const formatForDisplay = getFormatForDisplay()
   const registrations = getHotkeyRegistrations()
   const longest = $derived(
     registrations.hotkeys

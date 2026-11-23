@@ -8,7 +8,7 @@ import {
   defineAppHotkeys, useAppHotkeyList, useCustomHotkeys,
 } from '@tanstack/octane-hotkeys';
 import type {
-  Hotkey, OctaneHotkeyRecorder, UseCustomHotkeysResult,
+  Hotkey, HotkeyPlatform, OctaneHotkeyRecorder, UseCustomHotkeysResult,
 } from '@tanstack/octane-hotkeys';
 
 export const capture: {
@@ -226,34 +226,66 @@ export function ForwardedOptionsFixture() @{
   <div>{'forwarded'}</div>
 }
 
-type Platform = 'mac' | 'windows' | 'linux';
-
 export const platformCapture: {
   fired: number;
   records: unknown[];
   recorder?: OctaneHotkeyRecorder;
 } = { fired: 0, records: [] };
 
-export function FormatLabel({ platform }: { platform?: Platform }) @{
-  const format = useFormatForDisplay();
-  <kbd>{format('Mod+S', { platform })}</kbd>
+export function FormatLabel({ platform }: { platform?: HotkeyPlatform }) @{
+  const formatForDisplay = useFormatForDisplay();
+  <kbd>{formatForDisplay('Mod+S', { platform })}</kbd>
 }
 
 export function PlatformFixture({ platform, label, hotkey }: {
-  platform?: Platform;
-  label?: Platform;
-  hotkey?: Platform;
+  platform?: HotkeyPlatform;
+  label?: HotkeyPlatform;
+  hotkey?: HotkeyPlatform;
 }) @{
   <HotkeysProvider defaultOptions={{ platform }}>
     <PlatformConsumer label={label} hotkey={hotkey} />
   </HotkeysProvider>
 }
 
-function PlatformConsumer({ label, hotkey }: { label?: Platform; hotkey?: Platform }) @{
+function PlatformConsumer({ label, hotkey }: { label?: HotkeyPlatform; hotkey?: HotkeyPlatform }) @{
   useHotkey('Mod+S', () => { platformCapture.fired++ }, { platform: hotkey });
   platformCapture.recorder = useHotkeyRecorder({
     recordBy: 'key',
     onRecord: (value) => platformCapture.records.push(value),
   });
   <FormatLabel platform={label} />
+}
+
+const platformAppHotkeys = defineAppHotkeys({
+  'doc.save': { hotkey: 'Mod+S' },
+});
+
+export function PlatformAppHotkeysFixture() @{
+  const [platform, setPlatform] = useState<'mac' | 'windows'>('mac');
+  <HotkeysProvider
+    appHotkeys={platformAppHotkeys}
+    customHotkeys={{ 'doc.save': 'Meta+S' }}
+    defaultOptions={{ platform }}
+  >
+    <button id="platform-windows" onClick={() => setPlatform('windows')}>Windows</button>
+    <PlatformAppHotkeysConsumer />
+  </HotkeysProvider>
+}
+
+function PlatformAppHotkeysConsumer() @{
+  const list = useAppHotkeyList();
+  <output id="platform-custom">{String(list[0]!.isCustom)}</output>
+}
+
+export const inlineMetaCapture: { renders: number } = { renders: 0 };
+
+// Inline `meta` with an array, an element and a function is new on every
+// render. The list below must not render this component again for it.
+export function InlineMetaFixture() @{
+  if (++inlineMetaCapture.renders > 20) throw new Error('did not settle');
+  useHotkey('Control+S', () => {}, {
+    meta: { name: 'Save', ...({ keywords: ['file', 'write'], icon: <svg />, run: () => {} } as object) },
+  });
+  const registrations = useHotkeyRegistrations();
+  <output id="inline-meta">{registrations.hotkeys.map((reg) => reg.options.meta?.name).join(',')}</output>
 }

@@ -1,5 +1,4 @@
 import { useHotkeys } from './useHotkeys'
-import type { MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -15,12 +14,18 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
+import type { ComponentPublicInstance, MaybeRefOrGetter } from 'vue'
 
 /**
- * The element to listen on: a ref, getter, element, or null. A target that
- * resolves to `null` skips registration until it is set. Defaults to document.
+ * The element to listen on: a ref, getter, element, or component instance,
+ * such as a template ref on a component, which listens on its root element.
+ * A target that resolves to `null` or `undefined`, or a component without a
+ * single root element, skips registration until it is set. Omit it for the
+ * document.
  */
-export type UseHotkeyTarget = MaybeRefOrGetter<Target | null>
+export type UseHotkeyTarget = MaybeRefOrGetter<
+  Target | ComponentPublicInstance | null | undefined
+>
 
 /** Lets `enabled` be a ref or getter. */
 type WithReactiveEnabled<TOptions> = Omit<TOptions, 'enabled'> & {
@@ -74,15 +79,18 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * useHotkey('Escape', () => close(), { enabled: isOpen })
  * ```
  */
-export function useHotkey<T extends AppHotkey>(
-  hotkey: MaybeRefOrGetter<T | null | undefined>,
-  callback: HotkeyCallback,
-  options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
-): void
+// The plain-hotkey overload comes first. While TypeScript tries an overload it
+// fixes the return type of a getter such as `() => 'Mod+S'`, and the app-hotkey
+// overload would fix it to `string`, which no later overload accepts.
 export function useHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeRefOrGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeRefOrGetter<UseHotkeyOptionsFor<T>>,
+): void
+export function useHotkey<T extends AppHotkey>(
+  hotkey: MaybeRefOrGetter<T | null | undefined>,
+  callback: HotkeyCallback,
+  options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
 ): void
 export function useHotkey(
   hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey | null | undefined>,

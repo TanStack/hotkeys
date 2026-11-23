@@ -11,14 +11,15 @@ Some apps show each button's shortcut only while the user holds a modifier, so t
 ```tsx
 import { Show } from 'solid-js'
 import {
+  createFormatForDisplay,
   createHotkey,
   createHotkeyHint,
-  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 
 const saveHotkey = 'Mod+S'
 
 function SaveButton() {
+  const formatForDisplay = createFormatForDisplay()
   createHotkey(saveHotkey, save)
   const showHint = createHotkeyHint(saveHotkey)
 
@@ -69,14 +70,15 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 ```tsx
 import { Show } from 'solid-js'
 import {
+  createFormatForDisplay,
   createHotkey,
   createHotkeyHint,
-  formatForDisplay,
   useAppHotkeys,
 } from '@tanstack/solid-hotkeys'
 import type { AppHotkeyId } from '@tanstack/solid-hotkeys'
 
 function Hint(props: { id: AppHotkeyId }) {
+  const formatForDisplay = createFormatForDisplay()
   const appHotkeys = useAppHotkeys()
   const appHotkey = () => appHotkeys()[props.id]
   const showHint = createHotkeyHint(appHotkey)

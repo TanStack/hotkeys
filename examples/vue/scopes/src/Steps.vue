@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useHotkey } from '@tanstack/vue-hotkeys'
-import { useActivity } from './activity'
+import { ref } from 'vue'
 import Key from './Key.vue'
+import { useActivity } from './activity'
 
 // Nested in the exclusive scope, so it stays active without being allowed.
 const { log } = useActivity()

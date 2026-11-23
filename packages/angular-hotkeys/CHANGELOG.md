@@ -1,5 +1,186 @@
 # @tanstack/angular-hotkeys
 
+## 0.25.3
+
+### Patch Changes
+
+- [#294](https://github.com/TanStack/hotkeys/pull/294) [`a387887`](https://github.com/TanStack/hotkeys/commit/a38788786ec1032e51508c18df09304a522e236c) - In zoneless apps, a hotkey callback that changes a hotkey's or provider's `enabled` now takes effect before the browser sends the next key. Before, the change waited for Angular's next scheduled change detection, so a quick second press, such as from Playwright's `keyboard.press`, still matched the old value. Zoneless apps now run change detection in a microtask after a hotkey callback returns, and again when an async callback settles. Keys dispatched in one synchronous loop still see the value from before the loop.
+- Updated dependencies [[`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`571d921`](https://github.com/TanStack/hotkeys/commit/571d921d5302d58829ecbf13f2ba9674f97a391c), [`0840d8f`](https://github.com/TanStack/hotkeys/commit/0840d8fe7630b3b76ee4d19618224c3ef2c1d27b), [`90db9ab`](https://github.com/TanStack/hotkeys/commit/90db9aba332faaca79d25c532e9b3809776588fc), [`c517173`](https://github.com/TanStack/hotkeys/commit/c517173ba8287791c178c39c82dec75bc2d4cc0f)]:
+  - @tanstack/hotkeys@0.33.1
+
+## 0.25.2
+
+### Patch Changes
+
+- Updated dependencies [[`8e01130`](https://github.com/TanStack/hotkeys/commit/8e011301ac9a22e53b2b885b4cd5ed6f2737d889)]:
+  - @tanstack/hotkeys@0.33.0
+
+## 0.25.1
+
+### Patch Changes
+
+- Updated dependencies [[`5a4a1c6`](https://github.com/TanStack/hotkeys/commit/5a4a1c678cf7f9fd46ca50b4a9e76e997efd078a), [`24d4182`](https://github.com/TanStack/hotkeys/commit/24d41826ef464f6298810d4352429936327f6b8d)]:
+  - @tanstack/hotkeys@0.32.0
+
+## 0.25.0
+
+### Minor Changes
+
+- [#279](https://github.com/TanStack/hotkeys/pull/279) [`82727f5`](https://github.com/TanStack/hotkeys/commit/82727f52cd4ac44af999bd664a66586760fdd959) - Escape goes to the innermost open overlay, not only to native dialogs and popovers. While focus is inside an element with `role="dialog"`, `role="alertdialog"`, or `role="menu"`, or on an expanded combobox or popup button (`aria-expanded="true"`, with `aria-haspopup` on the button), hotkeys outside it skip Escape. They don't run, call `preventDefault()`, or stop propagation, so the overlay closes. This changes what one Escape press does:
+
+  - Dialogs that stayed open now close, and the page hotkey doesn't run: Reka UI (shadcn-vue, Nuxt UI), Headless UI, Vuetify, Bits UI (shadcn-svelte), Kobalte (solid-ui, shadcn-solid), Corvu, and Shoelace.
+  - Dialogs that closed and also ran the page hotkey now only close: Radix UI (shadcn/ui), PrimeVue, and the Angular CDK and Angular Material. The first Escape in an open React Aria `ComboBox` closes its list without running the page hotkey.
+  - A hotkey targeted inside the overlay keeps Escape. Inside a `role="dialog"` or `role="alertdialog"` element, any hotkey in a named scope keeps it too, whatever its target, so a dialog that registers its own `Escape` hotkey in its scope still closes itself. An open combobox or menu inside that dialog still closes first. A global `Escape` hotkey that closes an app's own `role="dialog"` element now skips it. Give that hotkey the dialog's scope or target the dialog.
+  - Native dialogs follow `closedby`: a modal dialog with `closedby="none"` no longer takes Escape from hotkeys, and a non-modal dialog with `closedby="any"` or `closedby="closerequest"` gets it.
+
+  The overlays are read once per key press, from a `window` capture listener, before listeners on the document and its elements can close one.
+
+### Patch Changes
+
+- Updated dependencies [[`82727f5`](https://github.com/TanStack/hotkeys/commit/82727f52cd4ac44af999bd664a66586760fdd959)]:
+  - @tanstack/hotkeys@0.31.0
+
+## 0.24.1
+
+### Patch Changes
+
+- [#276](https://github.com/TanStack/hotkeys/pull/276) [`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd) - Types that every adapter wrote out for itself now come from one place in `@tanstack/hotkeys`.
+
+  - New types: `MaybeGetter`, `HotkeyEventType`, `KeyIdentity`, `ResolvableModifier`, `HotkeyCommonOptions`, `HotkeyRegistrationsResult`, `RegisteredAppHotkeyListItem`, `CustomHotkeyActions` and `HotkeyRecorderActions`. `HotkeyRecorderState` takes the recorded hotkey type as an optional type argument.
+  - Each adapter's types, such as `UseCustomHotkeysResult` and `ReactHotkeyRecorder`, now extend these, and keep their names.
+  - `@tanstack/hotkeys/adapter` adds helpers that the adapters shared by copy: hint visibility, the label formatter, keyboard layout following, the app hotkeys store lookup and custom hotkey actions.
+  - `@tanstack/hotkeys-devtools` exports `HOTKEYS_DEVTOOLS_PLUGIN_NAME`, `HOTKEYS_DEVTOOLS_DEFAULT_PROPS` and `HotkeysDevtoolsRenderPlugin`, which the framework devtools plugins extend.
+
+  Behavior is unchanged.
+
+- Updated dependencies [[`5c96d11`](https://github.com/TanStack/hotkeys/commit/5c96d1170d168e19bcbf97073abd1ee49f4cbcdd)]:
+  - @tanstack/hotkeys@0.30.0
+
+## 0.24.0
+
+### Minor Changes
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - App hotkey conflict checks can now use the key press that recorded a hotkey. `findConflicts(id, hotkey, context)` and `setCustomHotkey(id, hotkey, context)` take the `context` that a recorder passes to `validate`, on `AppHotkeysStore` and in every adapter.
+
+  Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one press, and so are a recorded `Mod+[KeyS]` and a declared `Mod+S`. Without the key press, the check compares how the hotkeys are written and misses these. Pass the context in a shortcut settings screen:
+
+  ```ts
+  validate: (hotkey, context) =>
+    findConflicts(id, hotkey, context).length === 0 || 'Already in use',
+  ```
+
+  The recorder's `onRecord` callback now receives the same context as its second argument. If a test asserts the exact arguments of your `onRecord` callback, add the second argument to the assertion.
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Labels of physical bindings now follow the user's keyboard layout where the browser reports it. `[KeyQ]` displayed as `Q`, the key's US character. It now displays as `A` on a French AZERTY keyboard in Chromium browsers. Firefox and Safari report no layout, so labels keep their US form there.
+
+  - Each adapter's label primitive, such as `useFormatForDisplay`, loads the layout after the first label mounts and uses it. Server-rendered labels hydrate with the US form and update when the layout arrives. `formatForDisplay` called directly is unchanged: it uses only a `layoutMap` you pass.
+  - A new layout primitive in every adapter, such as `useKeyboardLayout`, returns the layout for labels you draw yourself.
+  - `loadKeyboardLayout()` loads the layout with `navigator.keyboard.getLayoutMap()` and reads it again when the window regains focus. `getKeyboardLayoutStore()` holds the result. Use them without an adapter.
+  - To never ask the browser for the layout, set `keyboardLayout: false` in the provider's default options, or in the scope's options in Alpine and Ember.
+  - Devtools show the loaded layout, and mark the keys it relabels.
+
+  Matching and recording never use the layout. Providers don't import the loader, so an app that registers hotkeys and never formats a label or reads the layout doesn't bundle it. Alpine scopes carry every primitive, the layout one included.
+
+- [#274](https://github.com/TanStack/hotkeys/pull/274) [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f) - Each adapter's label primitive is now the way to format every label, and the plain `formatForDisplay` export of each adapter is deprecated. The primitive fills in the provider's platform and, in Chromium browsers, the user's keyboard layout, so it is no longer only for server-rendered apps.
+
+  - In components, replace `formatForDisplay(hotkey)` with the function from the label primitive, such as `const formatForDisplay = useFormatForDisplay()`. The primitive is `useFormatForDisplay` in React, Preact, Octane, Vue and Ember, `createFormatForDisplay` in Solid, `getFormatForDisplay` in Svelte, and `injectFormatForDisplay` in Angular.
+  - Lit and Alpine get a label primitive. In Lit, `new FormatForDisplayController(host, options?)` has a `format` function. In Alpine, a scope's `createFormatForDisplay()` returns the function, and `createHotkeysScope` takes a default `platform` for labels, hotkeys and recorders, as the other adapters' providers do.
+  - The deprecated export is still the core function and still works. Outside a component, such as in a test or a plain module, keep calling it and pass `platform` yourself.
+  - The guides, skills and examples of every framework now use the label primitive.
+
+- [#272](https://github.com/TanStack/hotkeys/pull/272) [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044) - Breaking: the hotkey recorder now records a key by name where it has one. Control+S on Windows, or Command+S on macOS, records `Mod+S`, where it recorded `Mod+[KeyS]`. The new default is `recordBy: 'auto'`. Set `recordBy: 'code'` to keep recording every key by position. Saved hotkeys in the old form keep working.
+
+  Recording by name fixes three problems with recorded hotkeys:
+
+  - **Labels follow the keyboard layout.** On Windows with a French AZERTY keyboard, Control and the key labeled A recorded `Mod+[KeyQ]`, which displayed as Ctrl+Q. It now records `Mod+A`.
+  - **A recorded hotkey equals the same hotkey written by hand.** A recorded `Mod+[KeyS]` and a declared `Mod+S` both fired for Control+S on Windows, but compared as different hotkeys. Conflict checks missed the pair, and no duplicate warning was logged.
+  - **Recording a hotkey's own default no longer marks it as custom**, where the recorder writes the press the way the default is written.
+
+  A press with no name that means the same thing on every platform still records by position:
+
+  - Shift with a digit or a symbol, such as `Shift+[Slash]`. Windows reports `?` for Control+Shift+/ and macOS reports `/` for Command+Shift+/, so a recorded `?` would not fire on a Mac.
+  - macOS Option with a digit or a symbol, such as `Alt+[Digit1]`. Option with a letter records the letter on the keycap, such as `Alt+S`.
+  - Dead keys and the numpad.
+
+  A letter from a non-Latin layout records as the key in its position on a US keyboard, the way it matches: on Windows with a Russian layout, Control+ы records `Mod+S`. A key press with no physical code is now recorded by what it typed. It was rejected with `'missing-code'`.
+
+### Patch Changes
+
+- Updated dependencies [[`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044), [`94358d5`](https://github.com/TanStack/hotkeys/commit/94358d54fd72a38952b6fb68560b48043a3f8277), [`e2c7f45`](https://github.com/TanStack/hotkeys/commit/e2c7f4535e6ae494c6feb8756cf31f45689ae45f), [`7d9cccc`](https://github.com/TanStack/hotkeys/commit/7d9cccc3815434c817412c7a3c167613f599a044)]:
+  - @tanstack/hotkeys@0.29.0
+
+## 0.23.0
+
+### Minor Changes
+
+- [#269](https://github.com/TanStack/hotkeys/pull/269) [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327) - Breaking: these exports are removed from the core package and from every adapter, which re-exports the core. The library never read them.
+
+  - The `KeyboardEventMatch` type. It described the matcher's internal result, and no public function returned it.
+  - The key Sets `LETTER_KEYS`, `NUMBER_KEYS`, `FUNCTION_KEYS`, `NAVIGATION_KEYS`, `EDITING_KEYS`, `PUNCTUATION_KEYS`, and `ALL_KEYS`. The key types, such as `LetterKey` and `FunctionKey`, are unchanged. If you listed keys from one of these Sets, keep your own list.
+
+### Patch Changes
+
+- Updated dependencies [[`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`e7b1af6`](https://github.com/TanStack/hotkeys/commit/e7b1af6c1210dd93623200378d2aaf8e357dd9a6), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`c2ae220`](https://github.com/TanStack/hotkeys/commit/c2ae220c44c49e5b59a7bfb52248de320a795327), [`f8a1f08`](https://github.com/TanStack/hotkeys/commit/f8a1f08596e7712addb6d514c7771fa61b78ca7e)]:
+  - @tanstack/hotkeys@0.28.0
+
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [[`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a), [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a)]:
+  - @tanstack/hotkeys@0.27.1
+
+## 0.22.0
+
+### Minor Changes
+
+- [#256](https://github.com/TanStack/hotkeys/pull/256) [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098) - Every key-hold helper now matches keys the way core `isKeyHeld` does: letters match in any case, and other key names are case-sensitive. React, Preact, Solid, Svelte, Angular, Vue, and Lit used to match every name in any case, so `'escape'` was held while Escape was down; now it isn't, so write `'Escape'`. Alpine, Octane, and Ember used to match letters exactly, so `'a'` wasn't held after Shift+A; now it is.
+
+### Patch Changes
+
+- Updated dependencies [[`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098), [`6f50749`](https://github.com/TanStack/hotkeys/commit/6f50749299e9732db9701a4204e502b92db4c098)]:
+  - @tanstack/hotkeys@0.27.0
+
+## 0.21.4
+
+### Patch Changes
+
+- [#237](https://github.com/TanStack/hotkeys/pull/237) [`23585af`](https://github.com/TanStack/hotkeys/commit/23585af44b87ccdc6989646311d076a534093bf9) - Hotkey and recorder callbacks now mark the registering component for check, as Angular's own event listeners do, so a callback that changes a plain field updates the view in zoneless apps and OnPush components. An `async` callback marks the component again when its promise settles. Keys that fire no hotkey still don't run change detection. A callback registered in a service outside any component, such as a root service, has no component to mark, so it must write signals to update OnPush or zoneless views.
+
+- [#242](https://github.com/TanStack/hotkeys/pull/242) [`f0b6650`](https://github.com/TanStack/hotkeys/commit/f0b66507efaa81904b779ddaf3b6a00ce092b7c7) - `injectHotkeyRecorder` now follows changes to the provider's `hotkeyRecorder` defaults, such as signal-driven `defaultOptions`, instead of keeping the defaults from when it was injected. A default or getter option that is later removed now goes back to the recorder's default instead of keeping its old value. The docs now say to put a scoped `provideHotkeys` in a component's `providers` rather than `Route.providers`, because by default the router keeps a route's injector, and its scope, after navigation.
+
+- [#240](https://github.com/TanStack/hotkeys/pull/240) [`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d) - The recorder no longer traps keyboard users. While recording, Tab and Shift+Tab cancel the recording, call `onCancel`, and move focus as usual. Before, Tab was recorded and its default prevented, so Escape was the only way to leave without a mouse. Registered hotkeys still skip that press, so an app's own `Tab` hotkey can't block focus. Tab with Control, Alt, or Meta is handled as before, and so is Tab from a text field while `ignoreInputs` is on (the default): focus moves, but the recording continues and `onCancel` isn't called. Set the new `recordTab: true` option to record Tab and Shift+Tab as before, for example in an editor, and tell users that Escape cancels.
+
+- [#241](https://github.com/TanStack/hotkeys/pull/241) [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f) - A hotkey whose element target isn't there yet now waits for it in every adapter. Before, a target of `undefined` listened on `document`, so the hotkey fired anywhere on the page until its element mounted. `undefined` is what an unset element usually is: a `useRef()` in React or Preact, a `ref()` in Vue, `createSignal<HTMLElement>()` in Solid, or a `viewChild()` value read in an Angular options function. Now a `target` that is `null` or `undefined`, or a ref that is still unset, registers nothing until the element exists. Only an omitted `target` listens on `document`.
+
+  This changes one case: a wrapper that forwards an optional target, such as `{ target: props.target }`, used to listen on `document` while the prop was unset and now waits. Pass `target: document` to listen on the document explicitly.
+
+  Vue: a template ref on a component, such as `useTemplateRef<InstanceType<typeof Panel>>('panel')`, now works as a `target` and listens on the component's root element. Before, it threw `target.addEventListener is not a function`. A component without a single root element registers nothing.
+
+  Octane: `useHotkey` and `useHotkeys` now accept a ref object, such as `useRef<HTMLDivElement | null>(null)`, as `target`, like the React adapter. The hook reads `current` after each render.
+
+- Updated dependencies [[`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d), [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f), [`0d28f6a`](https://github.com/TanStack/hotkeys/commit/0d28f6ab5e4b47d86b3f60eb9a5e2cf6a47d0beb)]:
+  - @tanstack/hotkeys@0.26.0
+
+## 0.21.3
+
+### Patch Changes
+
+- [#234](https://github.com/TanStack/hotkeys/pull/234) [`32727ea`](https://github.com/TanStack/hotkeys/commit/32727ea6b761671d6717cd9c8e4e7f78f514d98f) - App hotkeys now compare hotkeys on the provider's `platform`. Before, providers didn't pass it to the app hotkeys store, which used the detected platform instead. On a server that meant `'linux'`, so `isCustom` from the app hotkey list could differ after hydration when a saved hotkey and its default differ only in how they name the modifier, such as `Meta+S` and `Mod+S`. `findConflicts` and `setCustomHotkey` also compared on the detected platform. The store follows changes to the provider's `platform`, and `AppHotkeysStore.setOptions` notifies subscribers once when the platform changes, after applying any new saved custom hotkeys. Saved custom hotkeys are now compared exactly, so new saved data such as `Meta+S` replaces `Mod+S` even where the two match, and stays correct if the platform changes later.
+
+  The formatting guides and `formatForDisplay`'s JSDoc now warn more clearly against using `formatForDisplay` for server-rendered labels. Use your adapter's formatter, such as `useFormatForDisplay`, instead, and set the provider's `platform`, or in Ember the scope's, from the request. Where you can't use one, such as in a React Server Component, or with Lit, Alpine, or `@tanstack/hotkeys` alone, pass `platform` to `formatForDisplay`.
+
+- Updated dependencies [[`32727ea`](https://github.com/TanStack/hotkeys/commit/32727ea6b761671d6717cd9c8e4e7f78f514d98f)]:
+  - @tanstack/hotkeys@0.25.1
+
+## 0.21.2
+
+### Patch Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - `validateHotkey` and the recorder now return reason codes instead of English text, so apps write their own messages. Each error and warning from `validateHotkey` is a `HotkeyIssue` such as `{ reason: 'unknown-modifier', part: 'Ctl' }`, and issues in a sequence carry the index of their `step` instead of a `Step 2:` prefix. A `RecorderRejection` keeps its `reason` but no longer has a built-in `message`. It has a `message` only when your `validate` callback returns one. The `'invalid'` rejection reason is now `'whitespace'`. The devtools panel lists each problem in a hotkey's details, in plain words. Console warnings and thrown errors are now one short line that starts with `[hotkeys]`. App hotkeys no longer warn about saved custom hotkeys with an unknown id or an invalid value; they're still dropped. `setCustomHotkey` with an unknown id no longer warns either. Development warnings no longer throw a `ReferenceError` where `process` is undefined, such as plain ESM loaded from a CDN.
+- Updated dependencies [[`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`846509d`](https://github.com/TanStack/hotkeys/commit/846509d2366c7c47a00b4f35eb6fdda8d3b43632)]:
+  - @tanstack/hotkeys@0.25.0
+
 ## 0.21.1
 
 ### Patch Changes

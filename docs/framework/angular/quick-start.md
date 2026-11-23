@@ -31,7 +31,7 @@ export class EditorComponent {
 
 Call it in an injection context, such as a constructor or a field initializer.
 
-In apps that use zone.js, hotkeys listen outside the Angular zone, so typing doesn't run change detection on every key. Callbacks run inside the zone, so the view updates after a hotkey fires.
+In apps that use zone.js, hotkeys listen outside the Angular zone, so typing doesn't run change detection on every key. When a hotkey fires, its callback runs inside the zone and marks the component for check, like Angular's own event listeners. The view updates in zoneless apps and OnPush components too. In zoneless apps, change detection runs in a microtask after the callback, so a change to a signal that feeds `enabled` applies before the browser sends the next key. An `async` callback marks the component again when its promise settles, so changes after an `await` render as well. A hotkey registered in a service outside any component, such as a root service, has no component to mark, so its callback must write signals to update OnPush or zoneless views.
 
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
@@ -84,21 +84,22 @@ injectHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `injectFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```ts
 import { Component } from '@angular/core'
-import { formatForDisplay, injectHotkey } from '@tanstack/angular-hotkeys'
+import { injectFormatForDisplay, injectHotkey } from '@tanstack/angular-hotkeys'
 import type { HotkeyChord } from '@tanstack/angular-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 @Component({
   selector: 'app-save-button',
-  template: `<button (click)="save()">Save <kbd>{{ saveLabel }}</kbd></button>`,
+  template: `<button (click)="save()">Save <kbd>{{ formatForDisplay(saveHotkey) }}</kbd></button>`,
 })
 export class SaveButtonComponent {
-  readonly saveLabel = formatForDisplay(saveHotkey)
+  readonly saveHotkey = saveHotkey
+  readonly formatForDisplay = injectFormatForDisplay()
 
   constructor() {
     injectHotkey(saveHotkey, () => this.save())
@@ -112,7 +113,7 @@ export class SaveButtonComponent {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server, such as with Angular SSR or Analog, use `injectFormatForDisplay` instead, and set the `platform` in `provideHotkeys` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server, such as with Angular SSR or Analog, set the `platform` in `provideHotkeys` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your components
 

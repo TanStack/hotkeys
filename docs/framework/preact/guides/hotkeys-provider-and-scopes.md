@@ -33,6 +33,7 @@ function Root() {
 
 - `hotkey` defaults apply to every `useHotkey` and `useHotkeys` inside the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a hook override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
 - `hotkeyRecorder` defaults apply to every `useHotkeyRecorder` inside the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
+- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A nested provider merges its defaults over its parent's, so a provider deeper in the tree can change the defaults for one part of your app.
 

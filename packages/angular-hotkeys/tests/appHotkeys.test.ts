@@ -174,6 +174,54 @@ describe('injectHotkeyRecorder', () => {
     press('g', { code: 'KeyG' })
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
-    expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
+    expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+      ['G', 'H'],
+      expect.anything(),
+    )
+  })
+})
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', () => {
+    const platform = signal<'mac' | 'windows'>('mac')
+    TestBed.configureTestingModule({
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHotkeys({
+          appHotkeys,
+          customHotkeys: { 'doc.save': 'Meta+S' },
+          defaultOptions: () => ({ platform: platform() }),
+        }),
+      ],
+    })
+    const { list, custom } = TestBed.runInInjectionContext(() => ({
+      list: injectAppHotkeyList(),
+      custom: injectCustomHotkeys(),
+    }))
+    TestBed.flushEffects()
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(list()[0]!.isCustom).toBe(false)
+    expect(
+      custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+    ).toEqual(['doc.save'])
+    // A recorded position conflicts through the key press that recorded it
+    const recordedWith = {
+      event: new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        metaKey: true,
+      }),
+    }
+    expect(custom.findConflicts('palette.open', 'Meta+[KeyS]')).toEqual([])
+    expect(
+      custom
+        .findConflicts('palette.open', 'Meta+[KeyS]', recordedWith)
+        .map((a) => a.id),
+    ).toEqual(['doc.save'])
+
+    platform.set('windows')
+    TestBed.flushEffects()
+    expect(list()[0]!.isCustom).toBe(true)
   })
 })

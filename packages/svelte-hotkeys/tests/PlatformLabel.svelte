@@ -1,8 +1,9 @@
 <script lang="ts">
   import { getFormatForDisplay } from '../src/getFormatForDisplay'
+  import type { HotkeyPlatform } from '@tanstack/hotkeys'
 
-  let { platform }: { platform?: 'mac' | 'windows' | 'linux' } = $props()
-  const format = getFormatForDisplay()
+  let { platform }: { platform?: HotkeyPlatform } = $props()
+  const formatForDisplay = getFormatForDisplay()
 </script>
 
-<kbd>{format('Mod+S', { platform })}</kbd>
+<kbd>{formatForDisplay('Mod+S', { platform })}</kbd>

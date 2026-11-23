@@ -1,5 +1,11 @@
 import type { CanonicalModifier, Key, LogicalKey } from './key.types'
 
+/** An element, document, or window that hotkeys can listen on. */
+export type Target = HTMLElement | Document | Window
+
+/** The keyboard event a hotkey listens for. */
+export type HotkeyEventType = 'keydown' | 'keyup'
+
 // =============================================================================
 // HotkeyChord Types
 // =============================================================================
@@ -227,7 +233,8 @@ export type RegisterableHotkeySequence = ReadonlyArray<RegisterableHotkeyChord>
  * written as a string or an object.
  */
 export type RegisterableHotkey =
-  RegisterableHotkeyChord | RegisterableHotkeySequence
+  | RegisterableHotkeyChord
+  | RegisterableHotkeySequence
 
 /** Context passed to a chord's callback. */
 export interface HotkeyChordCallbackContext {
@@ -252,7 +259,8 @@ export interface HotkeySequenceCallbackContext {
  * Narrow with `kind` to read `parsedChord` or `parsedSequence`.
  */
 export type HotkeyCallbackContext =
-  HotkeyChordCallbackContext | HotkeySequenceCallbackContext
+  | HotkeyChordCallbackContext
+  | HotkeySequenceCallbackContext
 
 /**
  * The callback context for a hotkey: chord context for chords (including
@@ -323,3 +331,6 @@ export interface HotkeyMeta {
  * - `'allow'` - Allow multiple registrations without warning
  */
 export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow'
+
+/** A value, or a function that returns it, for options read when needed. */
+export type MaybeGetter<T> = T | (() => T)

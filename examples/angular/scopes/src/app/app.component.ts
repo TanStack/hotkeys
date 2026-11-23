@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core'
 import {
-  formatForDisplay,
+  injectFormatForDisplay,
   injectHotkey,
   provideHotkeys,
 } from '@tanstack/angular-hotkeys'
@@ -50,7 +50,8 @@ export class Activity {
 })
 export class Key {
   readonly hotkey = input.required<Hotkey>()
-  readonly label = computed(() => formatForDisplay(this.hotkey()))
+  readonly formatForDisplay = injectFormatForDisplay()
+  readonly label = computed(() => this.formatForDisplay(this.hotkey()))
 }
 
 // ---------------------------------------------------------------------------

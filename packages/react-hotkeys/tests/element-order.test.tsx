@@ -1,7 +1,7 @@
-import { afterEach, expect, it } from 'vitest'
-import { render } from '@testing-library/react'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { render } from '@testing-library/react'
 import React, { useRef } from 'react'
+import { afterEach, expect, it } from 'vitest'
 import { useHotkey } from '../src/useHotkey'
 
 // React runs onKeyDown from one listener on the root container, after native
@@ -22,7 +22,7 @@ function Panel({ childStops = false }: { childStops?: boolean }) {
     <div ref={panelRef} tabIndex={0} onKeyDown={() => log.push('panel')}>
       <input
         role="combobox"
-        aria-expanded="true"
+        aria-expanded="false"
         data-testid="child"
         onKeyDown={(event) => {
           log.push('child')

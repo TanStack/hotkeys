@@ -42,19 +42,20 @@ Register with `useHotkey(appHotkeys['doc.save'], save)`, using the import or `us
 A settings row records with `useHotkeyRecorder` and saves through `useCustomHotkeys`:
 
 ```tsrx
-import { formatForDisplay, useAppHotkeys, useCustomHotkeys, useHotkeyRecorder } from '@tanstack/octane-hotkeys'
+import { useAppHotkeys, useCustomHotkeys, useFormatForDisplay, useHotkeyRecorder } from '@tanstack/octane-hotkeys'
 import type { AppHotkeyId } from '@tanstack/octane-hotkeys'
 
 export function ShortcutRow({ id }: { id: AppHotkeyId }) @{
+  const formatForDisplay = useFormatForDisplay()
   const appHotkey = useAppHotkeys()[id]
   const { findConflicts, setCustomHotkey, resetCustomHotkey } = useCustomHotkeys()
   const recorder = useHotkeyRecorder({
     maxSteps: Infinity,
-    validate: (hotkey) => {
-      const [conflict] = findConflicts(id, hotkey)
+    validate: (hotkey, context) => {
+      const [conflict] = findConflicts(id, hotkey, context)
       return conflict ? `Used by ${conflict.meta?.name ?? conflict.id}` : true
     },
-    onRecord: (hotkey) => setCustomHotkey(id, hotkey),
+    onRecord: (hotkey, context) => setCustomHotkey(id, hotkey, context),
     onClear: () => setCustomHotkey(id, null),
   })
 
