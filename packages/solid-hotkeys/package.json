@@ -43,7 +43,7 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "files": [
     "dist",
@@ -53,13 +53,14 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "@solidjs/testing-library": "^0.8.10",
+    "@solidjs/testing-library": "^1.0.0-rc.2",
+    "@solidjs/vite-plugin": "^3.0.1",
+    "@solidjs/web": "^2.0.3",
     "@tanstack/hotkeys-test-utils": "workspace:*",
     "@testing-library/jest-dom": "^7.0.1",
-    "solid-js": "^1.9.18",
-    "vite-plugin-solid": "^2.11.15"
+    "solid-js": "^2.0.3"
   },
   "peerDependencies": {
-    "solid-js": "^1.7.0"
+    "solid-js": "^2.0.0"
   }
 }

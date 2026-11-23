@@ -1,5 +1,5 @@
-import { createComponent, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
+import { createComponent, createSignal, flush } from 'solid-js'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import {
   HotkeysDevtoolsPanel,
@@ -62,7 +62,23 @@ it('preserves reactive props supplied by the devtools dock', () => {
   const props = core.mount.mock.calls[0]![1]
   expect(props).toMatchObject({ theme: 'light', devtoolsOpen: false })
   setTheme('dark')
+  flush()
   expect(props.theme).toBe('dark')
+})
+
+it('uses the default for a prop passed as undefined', () => {
+  dispose = render(
+    () =>
+      createComponent(HotkeysDevtoolsPanel, {
+        theme: undefined,
+        devtoolsOpen: undefined,
+      }),
+    host,
+  )
+  expect(core.mount.mock.calls[0]![1]).toMatchObject({
+    theme: 'dark',
+    devtoolsOpen: true,
+  })
 })
 
 it('keeps the no-op panel inert with empty props', () => {

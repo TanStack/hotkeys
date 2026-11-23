@@ -4,7 +4,7 @@ import {
   runConformanceSuite,
 } from '@tanstack/hotkeys-test-utils/conformance'
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
-import { For, createMemo, createSignal } from 'solid-js'
+import { For, createMemo, createSignal, flush } from 'solid-js'
 import {
   HotkeysProvider,
   createFormatForDisplay,
@@ -17,6 +17,7 @@ import {
   createHotkeys,
   createKeyHold,
 } from '../src'
+import type { JSX } from '@solidjs/web'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
@@ -29,7 +30,7 @@ import type {
   ConformanceProvider,
   HotkeysSpec,
 } from '@tanstack/hotkeys-test-utils/conformance'
-import type { Accessor, JSX } from 'solid-js'
+import type { Accessor } from 'solid-js'
 import type { CreateHotkeyDefinition, SolidHotkeyRecorder } from '../src'
 
 /** Renders a provider when the view starts with one. Its props stay reactive. */
@@ -71,7 +72,11 @@ const harness: ConformanceHarness = {
     'callback-identity':
       'createHotkey keeps its first callback; callbacks read signals instead',
   },
-  act: (change) => void change(),
+  // Solid 2 batches writes until the next flush.
+  act: (change) => {
+    change()
+    flush()
+  },
   cleanup,
 
   mountHeldKeys(watch) {
@@ -102,7 +107,11 @@ const harness: ConformanceHarness = {
     let registrations!: () => Array<HotkeyRegistrationView>
     const view = render(() => {
       registrations = createHotkeyRegistrations()
-      return <output data-testid="count">{registrations().length}</output>
+      // A string: happy-dom drops `textContent = 0` (browsers write "0"), and
+      // Solid 2 hands numbers to the DOM as is.
+      return (
+        <output data-testid="count">{String(registrations().length)}</output>
+      )
     })
     return {
       list: () => registrations(),
@@ -119,7 +128,7 @@ const harness: ConformanceHarness = {
         () => spec().provider,
         () => (
           <>
-            <div tabIndex={0} ref={setElement} />
+            <div tabindex={0} ref={setElement} />
             {spec().form === 'list' ? <List /> : <Singles />}
           </>
         ),

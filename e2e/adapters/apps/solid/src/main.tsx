@@ -1,3 +1,4 @@
+import { render } from '@solidjs/web'
 import {
   createHeldKeys,
   createHotkey,
@@ -6,8 +7,7 @@ import {
   detectPlatform,
   getHotkeyManager,
 } from '@tanstack/solid-hotkeys'
-import { Show, createSignal, onMount } from 'solid-js'
-import { render } from 'solid-js/web'
+import { Show, createSignal, onSettled } from 'solid-js'
 import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
 
@@ -29,7 +29,7 @@ function App() {
   const shiftHeld = createKeyHold('Shift')
   const heldKeys = createHeldKeys()
 
-  onMount(() => {
+  onSettled(() => {
     exposeFixture(
       { getHotkeyManager, detectPlatform },
       {

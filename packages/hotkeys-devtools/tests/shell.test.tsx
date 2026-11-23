@@ -1,10 +1,11 @@
+import { render } from '@solidjs/web'
 import {
   AppHotkeysStore,
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
-import { render } from 'solid-js/web'
+import { flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import HotkeysDevtools from '../src/components/index'
 import type { HotkeyEventType } from '@tanstack/hotkeys'
@@ -22,6 +23,7 @@ function mountPanel(parent: HTMLElement = document.body) {
   const container = document.createElement('div')
   parent.append(container)
   dispose = render(() => <HotkeysDevtools theme="dark" />, container)
+  flush()
   return container
 }
 
@@ -53,22 +55,27 @@ const infoGrid = (ui: Element) => {
   for (let i = 0; i < cells.length; i += 2) result[cells[i]!] = cells[i + 1]!
   return result
 }
-const click = (el: Element) =>
+const click = (el: Element) => {
   el.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+  flush()
+}
 const search = (ui: Element, query: string) => {
   const input = ui.querySelector('input')!
   input.value = query
   input.dispatchEvent(new Event('input', { bubbles: true }))
+  flush()
 }
 const press = (
   type: HotkeyEventType,
   key: string,
   code: string,
   init: KeyboardEventInit = {},
-) =>
+) => {
   document.dispatchEvent(
     new KeyboardEvent(type, { key, code, bubbles: true, ...init }),
   )
+  flush()
+}
 
 afterEach(() => {
   dispose?.()
@@ -100,10 +107,13 @@ describe('devtools shell', () => {
     const manager = HotkeyManager.getInstance()
     const ui = mountPanel()
     const save = manager.register('Mod+S', () => {}, options)
+    flush()
     manager.register(['G', 'H'], () => {}, options)
+    flush()
     expect(listHeader(ui)).toBe('Hotkeys (2)')
     expect(rowLabels(ui)).toEqual(['Ctrl+S', 'G H'])
     save.unregister()
+    flush()
     expect(rowLabels(ui)).toEqual(['G H'])
   })
 
@@ -135,6 +145,7 @@ describe('devtools shell', () => {
 
     click(rows(ui)[0]!)
     save.unregister()
+    flush()
     expect(text(ui.querySelector('.noSelection'))).toContain('Select a hotkey')
   })
 
@@ -195,9 +206,11 @@ describe('devtools shell', () => {
       ...options,
       appHotkeyId: 'doc.save',
     })
+    flush()
     expect(ui.querySelectorAll('.hotkeyRowInactive')).toHaveLength(0)
     expect(rowLabels(ui)).toEqual(['Ctrl+S'])
     handle.unregister()
+    flush()
     expect(ui.querySelectorAll('.hotkeyRowInactive')).toHaveLength(1)
   })
 })
@@ -234,6 +247,7 @@ describe('held keys bar', () => {
     press('keydown', 'b', 'KeyB')
     expect(ui.querySelectorAll('.heldKeysBar .keyCap')).toHaveLength(1)
     window.dispatchEvent(new Event('blur'))
+    flush()
     expect(ui.querySelectorAll('.heldKeysBar .keyCap')).toHaveLength(0)
   })
 })
@@ -327,10 +341,12 @@ describe('search', () => {
 describe('resize', () => {
   const leftPanel = (ui: Element) =>
     ui.querySelector<HTMLElement>('.leftPanel')!
-  const mouse = (target: EventTarget, type: string, clientX: number) =>
+  const mouse = (target: EventTarget, type: string, clientX: number) => {
     target.dispatchEvent(
       new MouseEvent(type, { clientX, bubbles: true, cancelable: true }),
     )
+    flush()
+  }
 
   it('drags the divider to resize the list within 150px and 800px', () => {
     const ui = mountPanel()
@@ -430,6 +446,7 @@ describe('plugin host height', () => {
 
     height = 500
     observers[0]!.callback([], {} as ResizeObserver)
+    flush()
     expect(shellRoot(ui).style.height).toBe('500px')
 
     dispose!()
@@ -454,6 +471,7 @@ describe('plugin host height', () => {
       ],
       {} as ResizeObserver,
     )
+    flush()
     expect(shellRoot(ui).style.height).toBe('241px')
 
     observers[0]!.callback(
@@ -465,6 +483,7 @@ describe('plugin host height', () => {
       ],
       {} as ResizeObserver,
     )
+    flush()
     expect(shellRoot(ui).style.height).toBe('180px')
   })
 
@@ -574,6 +593,7 @@ describe('registration rows', () => {
     expect(text(row().querySelector('.triggerCount'))).toBe('x1')
     expect(row().classList.contains('hotkeyRowTriggered')).toBe(true)
     vi.advanceTimersByTime(600)
+    flush()
     expect(row().classList.contains('hotkeyRowTriggered')).toBe(false)
 
     press('keydown', 'k', 'KeyK')
@@ -590,11 +610,14 @@ describe('registration rows', () => {
     press('keydown', 'k', 'KeyK')
     press('keyup', 'k', 'KeyK')
     vi.advanceTimersByTime(400)
+    flush()
     press('keydown', 'k', 'KeyK')
     press('keyup', 'k', 'KeyK')
     vi.advanceTimersByTime(400)
+    flush()
     expect(pulsing()).toBe(true)
     vi.advanceTimersByTime(200)
+    flush()
     expect(pulsing()).toBe(false)
   })
 
@@ -612,7 +635,9 @@ describe('registration rows', () => {
     press('keydown', 'k', 'KeyK')
     press('keyup', 'k', 'KeyK')
     save.setOptions({ enabled: false })
+    flush()
     const added = manager.register('Mod+B', () => {}, options)
+    flush()
 
     expect(rows(ui).slice(0, 2)).toEqual([k, s])
     expect(rows(ui)).toContain(escape)
@@ -622,6 +647,7 @@ describe('registration rows', () => {
     expect(list.scrollTop).toBe(40)
 
     added.unregister()
+    flush()
     expect(rows(ui)).toEqual([k, s, escape])
   })
 
@@ -636,6 +662,7 @@ describe('registration rows', () => {
     expect(badges(rows(ui)[0]!)).toContain('on')
     expect(detailRows(ui).enabled).toBe('true')
     handle.setOptions({ enabled: false })
+    flush()
     expect(badges(rows(ui)[0]!)).toContain('off')
     expect(detailRows(ui).enabled).toBe('false')
   })
@@ -673,7 +700,9 @@ describe('scope groups', () => {
     ])
 
     manager.activateScope('editor')
+    flush()
     const release = manager.activateScope('dialog', { exclusive: true })
+    flush()
     expect(groups(ui).map((g) => [g.scope, g.status, g.dimmed])).toEqual([
       ['dialog scope', 'exclusive', false],
       ['editor scope', 'suspended', true],
@@ -682,6 +711,7 @@ describe('scope groups', () => {
     ])
 
     release()
+    flush()
     expect(groups(ui).map((g) => [g.scope, g.status])).toEqual([
       ['editor scope', 'active'],
       ['global scope', 'active'],
@@ -697,8 +727,10 @@ describe('scope groups', () => {
     click(rows(ui)[0]!)
     expect(detailRows(ui).scope).toBe('dialog (inactive)')
     const release = manager.activateScope('dialog')
+    flush()
     expect(detailRows(ui).scope).toBe('dialog (active)')
     release()
+    flush()
   })
 })
 
@@ -888,6 +920,7 @@ describe('sequence details', () => {
     click(rows(ui)[0]!)
     expect(detailRows(ui).enabled).toBe('true')
     handle.setOptions({ enabled: false, timeout: 300 })
+    flush()
     expect(detailRows(ui)).toMatchObject({ enabled: 'false', timeout: '300ms' })
   })
 
@@ -924,6 +957,7 @@ describe('sequence details', () => {
 
     // No more keys: the panel's own clock expires the progress.
     vi.advanceTimersByTime(600)
+    flush()
     expect(matched()).toEqual({ row: 0, title: 0, breakdown: 0 })
     expect(callback).not.toHaveBeenCalled()
   })

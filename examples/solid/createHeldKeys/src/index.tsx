@@ -1,5 +1,6 @@
 /* @refresh reload */
 
+import { render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
@@ -9,7 +10,6 @@ import {
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { createEffect, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
 import './index.css'
 
 function App() {
@@ -18,20 +18,23 @@ function App() {
   const heldCodes = createHeldKeyCodes()
   const [history, setHistory] = createSignal<Array<string>>([])
 
-  createEffect(() => {
-    const keys = heldKeys()
-    if (keys.length > 0) {
-      const combo = keys
+  createEffect(
+    // Format here so the labels follow the provider's options
+    () =>
+      heldKeys()
         .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
-        .join(' + ')
-      setHistory((h) => {
-        if (h[h.length - 1] !== combo) {
-          return [...h.slice(-9), combo]
-        }
-        return h
-      })
-    }
-  })
+        .join(' + '),
+    (combo) => {
+      if (combo) {
+        setHistory((h) => {
+          if (h[h.length - 1] !== combo) {
+            return [...h.slice(-9), combo]
+          }
+          return h
+        })
+      }
+    },
+  )
 
   return (
     <div class="app">

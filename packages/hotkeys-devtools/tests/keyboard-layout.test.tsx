@@ -1,9 +1,10 @@
+import { render } from '@solidjs/web'
 import {
   HotkeyManager,
   KeyStateTracker,
   getKeyboardLayoutStore,
 } from '@tanstack/hotkeys'
-import { render } from 'solid-js/web'
+import { flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import HotkeysDevtools from '../src/components/index'
 
@@ -25,6 +26,7 @@ function mountPanel() {
   const container = document.createElement('div')
   document.body.append(container)
   dispose = render(() => <HotkeysDevtools theme="dark" />, container)
+  flush()
   return container
 }
 
@@ -35,10 +37,15 @@ const chip = (ui: Element) => ui.querySelector('.layoutChip')!
 const chipStatus = (ui: Element) =>
   text(chip(ui).querySelector('span:last-child'))
 const details = (ui: Element) => ui.querySelector('.stateDetails')!
-const click = (el: Element) =>
+const click = (el: Element) => {
   el.dispatchEvent(new MouseEvent('click', { bubbles: true }))
-/** Lets the pending `getLayoutMap()` promise settle. */
-const settle = () => new Promise((resolve) => setTimeout(resolve))
+  flush()
+}
+/** Lets the pending `getLayoutMap()` promise settle, then applies its update. */
+const settle = async () => {
+  await new Promise((resolve) => setTimeout(resolve))
+  flush()
+}
 
 function stubLayout() {
   const getLayoutMap = vi.fn(() => Promise.resolve(AZERTY))

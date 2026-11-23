@@ -66,7 +66,8 @@ it('shows a useHotkey registration in the panel until the component unmounts', a
 
   const panelInput = host.querySelector('input')
   act(() => showSave(false))
-  expect(row()).toBeUndefined()
+  // The Solid 2 panel applies store changes on its next flush, a microtask.
+  await vi.waitFor(() => expect(row()).toBeUndefined())
   expect(host.textContent).toContain('Hotkeys (0)')
   // The panel updated in place instead of remounting.
   expect(host.querySelector('input')).toBe(panelInput)

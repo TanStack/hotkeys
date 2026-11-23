@@ -2,7 +2,7 @@
 
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
@@ -13,8 +13,8 @@ import {
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { createHotkeys } from '../src/createHotkeys'
+import type { JSX } from '@solidjs/web'
 import type { AppHotkeys, CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
-import type { JSX } from 'solid-js'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
@@ -78,6 +78,7 @@ describe('app hotkeys', () => {
 
     custom.setCustomHotkey('doc.save', ['G', 'S'])
     custom.setCustomHotkey('palette.open', 'Mod+K')
+    flush()
     expect(registrations().map((r) => r.hotkey)).toEqual([['G', 'S'], 'Mod+K'])
     press('g')
     press('s')
@@ -156,12 +157,14 @@ describe('HotkeysProvider customHotkeys prop', () => {
     ))
 
     setSaved({ 'doc.save': 'Mod+Shift+S' })
+    flush()
     expect(custom.customHotkeys()).toEqual({ 'doc.save': 'Mod+Shift+S' })
     expect(onCustomHotkeysChange).not.toHaveBeenCalled()
 
     // The same value again keeps the user's change.
     custom.setCustomHotkey('palette.open', 'Mod+K')
     setSaved({ 'doc.save': 'Mod+Shift+S' })
+    flush()
     expect(custom.customHotkeys()).toEqual({
       'doc.save': 'Mod+Shift+S',
       'palette.open': 'Mod+K',
@@ -169,6 +172,7 @@ describe('HotkeysProvider customHotkeys prop', () => {
 
     // Another user's data replaces it.
     setSaved({ 'nav.home': ['G', 'G'] })
+    flush()
     expect(custom.customHotkeys()).toEqual({ 'nav.home': ['G', 'G'] })
   })
 })
@@ -187,8 +191,10 @@ describe('createHotkeyRecorder', () => {
     })
     recorder.startRecording()
     press('g', { code: 'KeyG' })
+    flush()
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
+    flush()
     expect(onRecord).toHaveBeenCalledExactlyOnceWith(
       ['G', 'H'],
       expect.anything(),
@@ -237,6 +243,7 @@ describe('app hotkeys and the provider platform', () => {
     ).toEqual(['doc.save'])
 
     setPlatform('windows')
+    flush()
     expect(list()[0]!.isCustom).toBe(true)
   })
 })
@@ -265,6 +272,7 @@ describe('a nested provider whose app hotkeys arrive late', () => {
     expect([ids('root'), ids('nested')]).toEqual([rootIds, rootIds])
 
     setNested(nestedHotkeys)
+    flush()
     expect([ids('root'), ids('nested')]).toEqual([rootIds, ['file.open']])
   })
 })

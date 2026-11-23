@@ -61,12 +61,12 @@
     }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.8.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
     "@tanstack/hotkeys-test-utils": "workspace:*",
-    "@tanstack/react-devtools": "0.10.14",
+    "@tanstack/react-devtools": "0.10.15",
     "@tanstack/react-hotkeys": "workspace:*",
     "@types/react": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",

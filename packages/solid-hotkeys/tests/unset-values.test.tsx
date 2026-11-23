@@ -2,7 +2,7 @@
 
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
-import { Show, createSignal } from 'solid-js'
+import { Show, createSignal, flush } from 'solid-js'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyHint } from '../src/createHotkeyHint'
@@ -31,12 +31,14 @@ it('a hotkey that becomes undefined or null unregisters, and a value registers a
   expect(registrationCount()).toBe(1)
   for (const unset of [undefined, null]) {
     setShortcut(unset)
+    flush()
     expect(registrationCount()).toBe(0)
     expect(hint()).toBe(false)
     press()
     expect(onRun).not.toHaveBeenCalled()
   }
   setShortcut('K')
+  flush()
   expect(registrationCount()).toBe(1)
   press()
   expect(onRun).toHaveBeenCalledOnce()
@@ -98,7 +100,7 @@ it('a target signal that is still undefined waits, then registers on its element
     createHotkey('K', onRun, () => ({ target: panel() }))
     return (
       <Show when={visible()}>
-        <div ref={setPanel} tabIndex={0} />
+        <div ref={setPanel} tabindex={0} />
       </Show>
     )
   })
@@ -106,6 +108,7 @@ it('a target signal that is still undefined waits, then registers on its element
   press()
   expect(onRun).not.toHaveBeenCalled()
   setVisible(true)
+  flush()
   expect(
     [...getHotkeyManager().registrations.state.values()].map(
       (registration) => registration.target,

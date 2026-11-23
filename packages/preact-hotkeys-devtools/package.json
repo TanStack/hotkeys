@@ -58,13 +58,13 @@
     }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.8.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
     "@tanstack/hotkeys-test-utils": "workspace:*",
-    "@tanstack/preact-devtools": "0.10.15",
+    "@tanstack/preact-devtools": "0.10.16",
     "@tanstack/preact-hotkeys": "workspace:*",
     "preact": "^11.2.0"
   }

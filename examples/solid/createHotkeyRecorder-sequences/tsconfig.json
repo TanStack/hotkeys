@@ -6,7 +6,7 @@
     "skipLibCheck": true,
     "moduleResolution": "Bundler",
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
+    "jsxImportSource": "@solidjs/web",
     "strict": true,
     "types": ["vite/client", "solid-js"]
   },

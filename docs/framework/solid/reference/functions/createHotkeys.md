@@ -9,7 +9,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [createHotkeys.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L43)
+Defined in: [createHotkeys.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L42)
 
 Solid primitive for registering several hotkeys at once: chords, sequences,
 and app hotkeys. Pass an accessor for a reactive list.

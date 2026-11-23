@@ -1,21 +1,21 @@
 // @vitest-environment happy-dom
 
 import { render } from '@solidjs/testing-library'
+import { delegateEvents } from '@solidjs/web'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { createSignal } from 'solid-js'
-import { clearDelegatedEvents, delegateEvents } from 'solid-js/web'
 import { afterEach, expect, it } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 
-// Solid runs onKeyDown from one listener on the document. A hotkey must run
-// after it, even when the hotkey's listener was added first.
+// Solid 2 runs onKeyDown from one listener on the render root, which a key
+// event reaches before the document. A hotkey must run after it, even when
+// the hotkey's listener was added first.
 
 const log: Array<string> = []
 
 afterEach(() => {
   HotkeyManager.resetInstance()
   document.body.replaceChildren()
-  delegateEvents(['keydown', 'keyup'])
   log.length = 0
 })
 
@@ -33,7 +33,7 @@ function Panel(props: { childStops?: boolean }) {
     () => ({ target: panel() }),
   )
   return (
-    <div ref={setPanel} tabIndex={0} onKeyDown={() => log.push('panel')}>
+    <div ref={setPanel} tabindex={0} onKeyDown={() => log.push('panel')}>
       <input
         role="combobox"
         aria-expanded="false"
@@ -65,7 +65,6 @@ it('lets an onKeyDown handler inside the target stop the hotkey', () => {
 
 it('runs a document hotkey after onKeyDown handlers that load later', () => {
   // A route chunk that first uses onKeyDown loads after the hotkey registers.
-  clearDelegatedEvents()
   function Root() {
     createHotkey('J', () => log.push('hotkey'))
     return null
@@ -88,7 +87,6 @@ it('runs a document hotkey after onKeyDown handlers that load later', () => {
 })
 
 it('runs after onKeyDown handlers when the manager listened on the document first', () => {
-  clearDelegatedEvents()
   // A hotkey registered through core attaches the document listener first.
   getHotkeyManager().register('X', () => {})
   const { getByTestId } = render(() => <Panel childStops />)

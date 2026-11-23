@@ -1,5 +1,6 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
 import { getHotkeyRegistrationViews } from '@tanstack/hotkeys/adapter'
+import { createProjection } from 'solid-js'
 import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
@@ -21,8 +22,16 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * ```
  */
 export function createHotkeyRegistrations(): () => Array<HotkeyRegistrationView> {
-  return useSelector(
+  const views = useSelector(
     getHotkeyManager().registrations,
     getHotkeyRegistrationViews,
   )
+  // Views are rebuilt on every change. Reconciling them by id keeps each
+  // registration's identity, so `<For>` rows update in place.
+  const registrations = createProjection<Array<HotkeyRegistrationView>>(
+    () => views(),
+    [],
+    { key: 'id' },
+  )
+  return () => registrations
 }

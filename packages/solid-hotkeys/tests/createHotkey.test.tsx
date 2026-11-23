@@ -2,7 +2,7 @@
 
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
-import { Show, createSignal, type Component } from 'solid-js'
+import { Show, createSignal, flush, type Component } from 'solid-js'
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 
@@ -132,8 +132,10 @@ describe('createHotkey', () => {
         )
 
         return (
+          // A label around the count: happy-dom drops `textContent = 0`
+          // (browsers write "0"), and Solid 2 hands numbers to the DOM as is.
           <button type="button" onClick={() => setCount((c) => c + 5)}>
-            {count()}
+            Count: {count()}
           </button>
         )
       }
@@ -152,6 +154,7 @@ describe('createHotkey', () => {
 
       // Update state via button click (triggers re-run)
       getByRole('button').click()
+      flush()
 
       // Trigger hotkey again - count is now 5, callback uses count() for latest
       document.dispatchEvent(
@@ -164,6 +167,7 @@ describe('createHotkey', () => {
       expect(capturedValues).toEqual([0, 5])
 
       getByRole('button').click()
+      flush()
 
       document.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -205,6 +209,7 @@ describe('createHotkey', () => {
 
       // Disable the hotkey
       getByRole('button').click()
+      flush()
 
       // Should not fire when disabled
       document.dispatchEvent(
@@ -218,6 +223,7 @@ describe('createHotkey', () => {
 
       // Re-enable
       getByRole('button').click()
+      flush()
 
       document.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -286,6 +292,7 @@ describe('createHotkey', () => {
 
       // Mount the target div
       getByTestId('mount-btn').click()
+      flush()
 
       // Now target is set. Dispatch on the target element for the hotkey to fire
       const targetEl = getByTestId('target')
@@ -299,16 +306,20 @@ describe('createHotkey', () => {
       expect(callback).toHaveBeenCalled()
     })
 
-    it('registers from a ref callback and cleans up when the element is removed', () => {
+    it('registers in a component inside <Show> and cleans up when it is removed', () => {
       const callback = vi.fn()
       const [open, setOpen] = createSignal(false)
 
+      // Solid 2 runs ref callbacks outside the owner, so the element gets its
+      // own component with a signal ref.
+      const Panel: Component = () => {
+        const [panel, setPanel] = createSignal<HTMLDivElement | null>(null)
+        createHotkey('K', callback, () => ({ target: panel() }))
+        return <div data-testid="panel" ref={setPanel} />
+      }
       const TestComponent: Component = () => (
         <Show when={open()}>
-          <div
-            data-testid="panel"
-            ref={(el) => createHotkey('K', callback, { target: el })}
-          />
+          <Panel />
         </Show>
       )
 
@@ -326,15 +337,18 @@ describe('createHotkey', () => {
       expect(registrations()).toBe(0)
 
       setOpen(true)
+      flush()
       expect(registrations()).toBe(1)
       pressK()
       expect(callback).toHaveBeenCalledTimes(1)
 
       setOpen(false)
+      flush()
       expect(registrations()).toBe(0)
 
       // A new node replaces the removed one.
       setOpen(true)
+      flush()
       expect(registrations()).toBe(1)
       pressK()
       expect(callback).toHaveBeenCalledTimes(2)

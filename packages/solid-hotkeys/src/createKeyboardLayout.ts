@@ -1,6 +1,6 @@
 import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
 import { followKeyboardLayout } from '@tanstack/hotkeys/adapter'
-import { createEffect, createMemo, createSignal, onCleanup } from 'solid-js'
+import { createEffect, createMemo, createSignal } from 'solid-js'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
 
@@ -37,10 +37,10 @@ export function createKeyboardLayout(): () => KeyboardLayoutMap | null {
   // Server HTML never has a layout, so hydration starts without one.
   const [layoutMap, setLayoutMap] = createSignal<KeyboardLayoutMap | null>(null)
   // Effects run after mount, and never on a server.
-  createEffect(() => {
-    if (!enabled()) return
-    onCleanup(followKeyboardLayout((state) => setLayoutMap(() => state)))
+  createEffect(enabled, (isEnabled) => {
+    if (!isEnabled) return
     setLayoutMap(() => getKeyboardLayoutStore().get())
+    return followKeyboardLayout((state) => setLayoutMap(() => state))
   })
   return () => (enabled() ? layoutMap() : null)
 }

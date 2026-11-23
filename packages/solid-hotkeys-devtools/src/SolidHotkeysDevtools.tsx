@@ -3,10 +3,10 @@ import {
   HOTKEYS_DEVTOOLS_DEFAULT_PROPS,
   HotkeysDevtoolsCore,
 } from '@tanstack/hotkeys-devtools/production'
-import { createComponent, mergeProps } from 'solid-js'
+import { createComponent } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 import type { ClassType } from '@tanstack/devtools-utils/solid'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
-import type { JSX } from 'solid-js'
 
 export interface HotkeysDevtoolsSolidInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
@@ -20,8 +20,17 @@ const panels = createSolidPanel(HotkeysDevtoolsCore as unknown as ClassType)
 function withPanelDefaults(
   Panel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
+  // Getters keep the props reactive. Solid 2's `merge` would let an
+  // `undefined` prop replace its default.
   return (props = {}) =>
-    createComponent(Panel, mergeProps(HOTKEYS_DEVTOOLS_DEFAULT_PROPS, props))
+    createComponent(Panel, {
+      get theme() {
+        return props.theme ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.theme
+      },
+      get devtoolsOpen() {
+        return props.devtoolsOpen ?? HOTKEYS_DEVTOOLS_DEFAULT_PROPS.devtoolsOpen
+      },
+    })
 }
 
 export const HotkeysDevtoolsPanel = withPanelDefaults(panels[0])

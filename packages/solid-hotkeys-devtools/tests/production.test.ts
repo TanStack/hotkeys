@@ -4,7 +4,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 // The no-op core overrides `mount`, so the spy only sees the real core.
 // Solid loads after `resetModules`, so the test and panels share one runtime.
 let solid: typeof import('solid-js')
-let web: typeof import('solid-js/web')
+let web: typeof import('@solidjs/web')
 async function load(
   env: 'production' | 'development',
   entry: 'production' | 'index',
@@ -12,7 +12,7 @@ async function load(
   vi.stubEnv('NODE_ENV', env)
   vi.resetModules()
   solid = await import('solid-js')
-  web = await import('solid-js/web')
+  web = await import('@solidjs/web')
   const { HotkeysDevtoolsCore } =
     await import('@tanstack/hotkeys-devtools/production')
   const mount = vi

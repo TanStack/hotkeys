@@ -1,3 +1,4 @@
+import { Portal, render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
@@ -6,9 +7,8 @@ import {
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { For, Show, createContext, createSignal, useContext } from 'solid-js'
-import { Portal, render } from 'solid-js/web'
+import type { JSX } from '@solidjs/web'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
-import type { JSX } from 'solid-js'
 import './index.css'
 
 const plugins = [hotkeysDevtoolsPlugin()]
@@ -90,8 +90,8 @@ function ScopeFrame(props: Partial<ScopeProps>) {
   return (
     <fieldset
       class="scope-frame"
-      data-exclusive={!!props.exclusive}
-      data-enabled={props.enabled !== false}
+      data-exclusive={props.exclusive ? 'true' : 'false'}
+      data-enabled={props.enabled === false ? 'false' : 'true'}
     >
       <legend>
         <code>{label()}</code>
@@ -238,7 +238,7 @@ function FolderPane(props: {
   return (
     <button
       class="panel folder"
-      data-current={props.current}
+      data-current={props.current ? 'true' : 'false'}
       onClick={() => props.onSelect()}
     >
       <strong>{props.name}</strong>
@@ -400,16 +400,15 @@ function ActivityProvider(props: { children: JSX.Element }) {
   }
   const clear = () => setEntries([])
   return (
-    <ActivityContext.Provider value={{ entries, log, clear }}>
+    <ActivityContext value={{ entries, log, clear }}>
       {props.children}
-    </ActivityContext.Provider>
+    </ActivityContext>
   )
 }
 
+// A default-less context throws when its provider is missing.
 function useActivity() {
-  const activity = useContext(ActivityContext)
-  if (!activity) throw new Error('Missing ActivityProvider')
-  return activity
+  return useContext(ActivityContext)
 }
 
 function useLog() {

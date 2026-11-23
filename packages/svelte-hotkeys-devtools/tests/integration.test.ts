@@ -33,6 +33,7 @@ it('shows a createHotkey registration in the panel until its effect is destroyed
   expect(row()!.textContent).toContain('keyup')
 
   destroy()
-  expect(row()).toBeUndefined()
+  // The Solid 2 panel applies store changes on its next flush, a microtask.
+  await vi.waitFor(() => expect(row()).toBeUndefined())
   expect(host.textContent).toContain('Hotkeys (0)')
 })

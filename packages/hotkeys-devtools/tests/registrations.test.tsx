@@ -1,11 +1,11 @@
+import { render } from '@solidjs/web'
 import {
   AppHotkeysStore,
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { createSignal, flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeysContextProvider,
@@ -53,6 +53,7 @@ function mount(selectedId?: string) {
     ),
     container,
   )
+  flush()
   return container
 }
 
@@ -90,11 +91,13 @@ describe('shared devtools registrations', () => {
       options,
     )
     await Promise.resolve()
+    flush()
     expect(ui.querySelectorAll('.conflictList > div')).toHaveLength(2)
     expect(ui.querySelectorAll('.hotkeyBadges .badgeConflict')).toHaveLength(3)
     hotkey.setOptions({ enabled: false })
     longer.unregister()
     await Promise.resolve()
+    flush()
     expect(ui.querySelector('.conflictList')).toBeNull()
   })
 
@@ -162,9 +165,11 @@ describe('shared devtools registrations', () => {
       const input = ui.querySelector('input')!
       input.value = 'Documents'
       input.dispatchEvent(new Event('input', { bubbles: true }))
+      flush()
       expect(ui.querySelectorAll('.hotkeyRow')).toHaveLength(1)
       handle.setOptions({ meta: { name: 'Save', group: 'Editor' } })
       await Promise.resolve()
+      flush()
       expect(ui.querySelectorAll('.hotkeyRow')).toHaveLength(0)
     },
   )
@@ -279,6 +284,7 @@ describe('shared devtools registrations', () => {
 
     store.setCustomHotkey('palette.open', 'Mod+P')
     await Promise.resolve()
+    flush()
     expect(declared()[1]).not.toContain('Unassigned')
   })
 
@@ -313,6 +319,7 @@ describe('shared devtools registrations', () => {
     )
     for (const handle of [save, top, find]) {
       setSelectedId(handle.id)
+      flush()
       expect(container.textContent).toContain(handle.id)
     }
   })

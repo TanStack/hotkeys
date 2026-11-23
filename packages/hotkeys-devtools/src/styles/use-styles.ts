@@ -1,6 +1,6 @@
 import { createTheme } from '@tanstack/devtools-ui'
 import * as goober from 'goober'
-import { createEffect, createSignal } from 'solid-js'
+import { createMemo } from 'solid-js'
 import { tokens } from './tokens'
 import type { HotkeysDevtoolsTheme } from '../types'
 
@@ -809,9 +809,5 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
 
 export function useStyles() {
   const { theme } = createTheme()
-  const [styles, setStyles] = createSignal(stylesFactory(theme()))
-  createEffect(() => {
-    setStyles(stylesFactory(theme()))
-  })
-  return styles
+  return createMemo(() => stylesFactory(theme()))
 }

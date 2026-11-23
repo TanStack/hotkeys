@@ -216,22 +216,22 @@
       "evidence": ["The SKILL.md diff in this branch."]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "827944e4f6c2a65f10effc96cfd6fefeeefeb09e8dd3a006522426f6a3a88185",
+      "fingerprint": "f62fced356ac9b3ac4cde74d611e7a83c0b0cf9b822fc6cb3a2d79a78460443a",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
-        "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "c14b9a7cfee5fdad432a6c109ec586fa182298bbd00a1543b8b9c7cf223ca054",
-        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "3e03f4d32574a3c8d102fa90a215e5f2a638b527c8565b40ed9702e07ec320fc",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "c35ca54fafa6752c4babb72264947e7d025f6d9306d7380fa4a2bf32867a8ce4",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "f73bdfc9a117a35ff1deddf9c06dd784fa1b1c3850911fc51a8c5e271ea46fba",
+        "docs/framework/solid/quick-start.md": "762cb0ed8b44931b52c49f4b46e991da54649e4d34e230151c9565e568712819",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7e786434d39e7e374881e015d5ce420c94b5c2dbdb0d953a9c265803c31b0227",
+        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "06bb230001b041e7318df3ce0511229837eff97e2db9cf783e2eb8d98f5aa73b",
         "packages/solid-hotkeys/src/appHotkeys.ts": "4494eabd3760ecc81a40936e03e34ea9a7ad26fb3998668b34d5f2c0cdd25136",
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
-        "packages/solid-hotkeys/src/createHotkeys.ts": "a80182fd8217dd1c237f2b5ada5cb410831d2db63dfc8cf840d8d9a46997f2c3"
+        "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "The change shares type and helper definitions across packages and keeps every public name and behavior, so the skill text stays accurate.",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "updated",
+      "reason": "The adapter moved to Solid 2: the skill now says it needs Solid 2, replaces the ref-callback pattern that throws in Solid 2 with a component and a signal target, and uses Solid 2 attributes and JSX types.",
       "evidence": [
-        "Searched packages/*/skills for each replaced type spelling and changed API; none appear. Public export names and option shapes are unchanged."
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, references/app-hotkeys.md, tests/createHotkey.test.tsx"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
@@ -277,7 +277,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "6846876bec51eb827dcf5b19f19d1180763e727b52284d480e2273ecae71efb5",
+      "fingerprint": "35548bb9be8a686c1658eb85c921ad10cab5df36e1da7bc99afdcb21cc13bb4e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -301,8 +301,8 @@
         "docs/framework/react/guides/hotkeys.md": "891232579a1f0a24a84d27cab4ba793bc88cd2a2ada4b61a6690669902612388",
         "docs/framework/react/guides/sequences.md": "72a86d774d131b2a53d138730b822aa380147fea61696abde8a98825f64e2a8b",
         "docs/framework/react/quick-start.md": "7bb88df3ccd9454127c41892d49317a4bd362e73e3bea50f9a339e00d342c4cc",
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "693ce66cace245cedc9a4dc4403766e8219abe07b51ac040208bb9acce9da4af",
-        "docs/framework/solid/quick-start.md": "fef5577f2da3e25d3b202a4ce51d770ea55033e67eb5fdfa1d516d157658d394",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "f73bdfc9a117a35ff1deddf9c06dd784fa1b1c3850911fc51a8c5e271ea46fba",
+        "docs/framework/solid/quick-start.md": "762cb0ed8b44931b52c49f4b46e991da54649e4d34e230151c9565e568712819",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "e043fa0f57b4b0db98489ca63fe25d90a8819e131a44f318c3fe460dd04794fd",
         "docs/framework/svelte/quick-start.md": "d84e2d8ad51c77abfa3eb8e0e920890b5301f93f0ba8f735c0588d266953d8b1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "0d9807ea50c5e85164b26fa7c9298c16a92b0b7d0e8bc08413e070c00241ef8c",
@@ -385,12 +385,12 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "c14b9a7cfee5fdad432a6c109ec586fa182298bbd00a1543b8b9c7cf223ca054",
-        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "3e03f4d32574a3c8d102fa90a215e5f2a638b527c8565b40ed9702e07ec320fc",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "c35ca54fafa6752c4babb72264947e7d025f6d9306d7380fa4a2bf32867a8ce4",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7e786434d39e7e374881e015d5ce420c94b5c2dbdb0d953a9c265803c31b0227",
+        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "06bb230001b041e7318df3ce0511229837eff97e2db9cf783e2eb8d98f5aa73b",
         "packages/solid-hotkeys/src/appHotkeys.ts": "4494eabd3760ecc81a40936e03e34ea9a7ad26fb3998668b34d5f2c0cdd25136",
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
-        "packages/solid-hotkeys/src/createHotkeys.ts": "a80182fd8217dd1c237f2b5ada5cb410831d2db63dfc8cf840d8d9a46997f2c3",
+        "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "858548a437108d8e3a2ed3f79f1be92a3a51923f001ec4eedf0484391bff2e2e",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "f60367e6667d76633886af1398807b5ad54e4586e58b41b2f6d7ee180ab0e1c4",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "a221afbf74805ee0e0e40c82d2d3733164fc1c884dfbe4aa8176323121811075",
@@ -408,12 +408,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Zoneless apps now run change detection in a microtask after hotkey callbacks, so enabled changes apply before the next key. The API is unchanged and the skill's guidance on callbacks, OnPush, zoneless views, and root services still holds; the quick-start sentence documents the timing.",
-      "evidence": [
-        "Changed: docs/framework/angular/quick-start.md at bc1967b2e5f3b89c32b6e11ddbb6de5a7a117111"
-      ]
+      "reason": "The skill tree and spec describe the same Solid skill and sources; only the Solid version changed.",
+      "evidence": ["_artifacts/skill_tree.yaml"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -426,17 +424,14 @@
       "evidence": [".changeset/intent-skills.md"]
     },
     "source:scripts/verify-package.ts": {
-      "fingerprint": "f93157da0086ac1b234efa6b91482b6fed8538ad55f98ab186105837b9e274bc",
+      "fingerprint": "27af1e794efab776a87c2eb2b9bf35eece83359b02f2f05466820fac73622eb7",
       "snapshot": {
-        "scripts/verify-package.ts": "86c307730526309a448097c15fb9e041a8ac9f4bce1bd9328802f694996a0bb6"
+        "scripts/verify-package.ts": "b4999973a1ae12d8ea4316bd21e3692cfa3b0b29db398a6f0e63b64da21114f2"
       },
-      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Adds package checks for Ember v2 addon metadata and preserved 'use client' directives. Packaging checks aren't covered by skills.",
-      "evidence": [
-        "scripts/verify-package.ts",
-        "pnpm exec nx run-many --targets=test:build passes for all 18 packages"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/hotkey-hints.md": {
       "fingerprint": "bce59e78dd8e0c60c54e9782a6979bb13e67356afb9674f8ef6a555d03e5ea2b",
@@ -830,16 +825,14 @@
       ]
     },
     "source:examples/solid/kitchen-sink/src/index.tsx": {
-      "fingerprint": "739b4b074b03a5083e8d144e2f754e6905d9ac5f2b8d7b8f2cb4a2c11051dda7",
+      "fingerprint": "f6e8c8ceecebfb46e0a43b47c8293c99f49265761f54d44e27da117d3679c2e8",
       "snapshot": {
-        "examples/solid/kitchen-sink/src/index.tsx": "e8dcca21783dd78d0b2b998a0d590b4617696225b36b65cb47c7ebfd19029dff"
+        "examples/solid/kitchen-sink/src/index.tsx": "4fd323bbc324ce8e18159af51f3f2ed6104fc3f631d15b5cbcdb2b945ddfeaa7"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
       "fingerprint": "01b0347e79af6b710152be575508ccbb66823bed4519ea74e8aabde4cd38025a",
@@ -1108,17 +1101,14 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": {
-      "fingerprint": "639e3729aa4f1e5e4e517ed7011ad6e1fbfe61d6fe5c747c018eb171cb5a3f60",
+      "fingerprint": "f04433e1232c5bc9dad89616c76fc3b83642ebdf482a796e9a7af300a022090e",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": "8b9419e6e2a0f5024b84d0a8e67bf0f800493deb7523596c2784de6ef0f7c69e"
+        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": "6914cbfae14e20854e344d315455386c9637fd884010b001930cb83932262ed4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
       "fingerprint": "20246dddcd33073c051fcfccb0c76fc392c5bbcde1a674d44906e7d66a8e86b7",
@@ -1243,16 +1233,14 @@
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "32b30e8cfc28045c4310923e2248d85b913d731d1dc7d2e238ac616826c56954",
+      "fingerprint": "12291d48101f010de89b5015aff333219f90dc852261802cb322df94a64dad30",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "3b85965dfa53726e02064646c9a9c3e789f45c1171d823b40ba5b6a49f3655b2"
+        "docs/framework/solid/guides/hotkeys.md": "faae6a1d913eb33c436e3e929e437e533c0083cab8f6e825bfb2f7f2a0b2663d"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
-      "outcome": "updated",
-      "reason": "Layout key types through Register.keys; the core skill now covers registering layouts and when to prefer US bindings.",
-      "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md: pitfall \"Keys of other layouts need a registration\""
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
       "fingerprint": "48ff9781112bd9265738629e88e1b09e60ad1b42366749c7b866c5474099a807",
@@ -2335,17 +2323,14 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/scopes.test.tsx": {
-      "fingerprint": "d7eaf3d9721143a5ca443b142a611cd5ead1f2895b3f35bd3a955adc38b005b1",
+      "fingerprint": "e373cc9b026efa36c92bfb7a05b76132a2f8e44c60e89f97b015dafcc5fd7095",
       "snapshot": {
-        "packages/solid-hotkeys/tests/scopes.test.tsx": "a60014ade78616b6d44ed927f7236faaa480d43f91e343ef8fc58bcaa59087e5"
+        "packages/solid-hotkeys/tests/scopes.test.tsx": "c92bd637dbbf3a8763838d0e213ba495a99ea522849b3d2da12b9add9b7cc222"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/scopes.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
       "fingerprint": "c39420db15f120d59ee9d87ac7b4291b1f23232fa0cb6fbf90940a5a283384b4",
@@ -2705,26 +2690,24 @@
       "evidence": ["No skill references this file"]
     },
     "source:docs/devtools.md": {
-      "fingerprint": "f23246ab0c1af1ae9b82ea5e36d4666dac80ec702289a7c3142796bacada787b",
+      "fingerprint": "e3d1c5c4c75b39a6b89a5cda14f46a01e3aa8f7fe897c349fabd0408187992e6",
       "snapshot": {
-        "docs/devtools.md": "9e817838e2064225920014cf650f07e3916012acd1e0cbc6b96c28759cff471e"
+        "docs/devtools.md": "0061ad794a17b1907a14541da162782be6fc00bd105702dbaca0286d878ae9e5"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: docs/devtools.md at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/installation.md": {
-      "fingerprint": "a98d73f2c524f3dfe8a6a320acd40b8544245456676c62c71113bef0ca5f309d",
+      "fingerprint": "37b8184c77e8001314e560f5545336c88fe5e1c097509877cecea01df072b8da",
       "snapshot": {
-        "docs/installation.md": "fbc4689cb353f82892bf9fde5d4b1dc8912a3ac314b652973de7225a0f727ca1"
+        "docs/installation.md": "2847278825ca76536087a3ee44ff45da1da121aee43e83621dc978a993efeb35"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Guide or config change for the meta update rule or AppHotkeysProvider; the affected skills were updated.",
-      "evidence": ["Diff of docs/installation.md against origin/main."]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:nx.json": {
       "fingerprint": "e014971f835053ffc5ccbd92101c2526f8b5f2893ec5585cb893ea2283872953",
@@ -3491,16 +3474,14 @@
       "evidence": ["packages/react-hotkeys-devtools/src/production.ts"]
     },
     "source:packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": {
-      "fingerprint": "de4275fe09ef21dddacd68c495a7d70e2d063dd115c23ef9c6a79d296a04b630",
+      "fingerprint": "75c18ed7d2edb99ea4ff84ca2f5016e766c919b79461f4360b53ea700a98c4c3",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "81e65afc64832985ce4eacd8db462656d9925c1464dc96a522152bb0ed072d3b"
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "36963993fb0fbe357beb4d4abfc79235f6ae2a1f24f6607158e1b558292b1643"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys-devtools/src/index.ts": {
       "fingerprint": "6eddde2c0502f20d852d7826f3f7d7c67382d25a3b875cd9f7a6162649628202",
@@ -3513,16 +3494,14 @@
       "evidence": ["packages/solid-hotkeys-devtools/src/index.ts"]
     },
     "source:packages/solid-hotkeys-devtools/src/plugin.tsx": {
-      "fingerprint": "539a69e4dea9bde40d37c3a75e24fb8f8d4b90013690c1befd84609b911e39bf",
+      "fingerprint": "67d0f84eb52f3f05fb7dddfc83a8e5136c7ee9bf4bc2c5d2eea76e4c7d41816b",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/src/plugin.tsx": "0039e48efcd3a8cf7d0eeee6c4b0525feb6ffe1d7eaf7f5b630aa3319797ec84"
+        "packages/solid-hotkeys-devtools/src/plugin.tsx": "fce9f3a489fb912d7d893139a8d7cade09cdacc727b4b567478b38c2cc1c7944"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys-devtools/src/production.ts": {
       "fingerprint": "9fee86a61b2dc189140d22c3f4dfb2f8adf5637200e0507c031c30f53a2578b8",
@@ -4778,28 +4757,24 @@
       ]
     },
     "source:docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "12b0e3c5e9d7bd2157b1c12dd12d12757bf92f3f3eac76a072c9d698d7ac995b",
+      "fingerprint": "159e161416176dd1fbdb8afd62a8fbee68fb9c6bc064ea4ec07367032027eeb8",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "5b7f84ae3d8c78e2362ad6093884d810cd810311867312402016ecc1b6ed1ee3"
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "9d3a5514d7c46aff83ea8766c98aa0f365dcbd0c32508780b45c5cd3207358d5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "523b01a13c87df494fab8f89c4ded3f4e86fc1755e9295c878af56ab8bc4511e",
+      "fingerprint": "a179cdfd7556cc9e9cc0d77b39620372305388cf3c31dac953966ac9a1215c2b",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useHotkeysContext.md": "f4271ab322f3f20bbfbe6c154dd0d0cd725f133e4af1b9a62992d59693684bd0"
+        "docs/framework/solid/reference/functions/useHotkeysContext.md": "a42fe849949874e1356820031dae19267370062dad6d8051b47e0425eeeab9a9"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "03932ed44ffc0ac12a1f2d7edaac549cdd2e70ea5c630d33745b79127eec8558",
@@ -5508,17 +5483,14 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/live-updates.test.tsx": {
-      "fingerprint": "a232b05c664b6cd34658b3db867e7f50ec082439c582b9007ff9a1473a5e7e98",
+      "fingerprint": "7f763a4c54c80c5ce41a8fec45bc5fe9b81c062a9b6a70e580159546ca6416e2",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/live-updates.test.tsx": "47fd94ff2f82493b03ce61b366746e747e242bc5566bebc2746c894c3c61af15"
+        "packages/hotkeys-devtools/tests/live-updates.test.tsx": "f69522c9f9c139ad2b005953de7849e06a1beb5f8f3c5b3d48d3bf7d7bc388c5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/hotkeys-devtools/tests/live-updates.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/_app-hotkeys-factory.ts": {
       "fingerprint": "c402c32b78719f3d3a0db4266e810555958c26fd2d0c9440ac9ca87a5ae3a5ea",
@@ -5887,17 +5859,14 @@
       ]
     },
     "source:packages/solid-hotkeys/src/_useSelector.ts": {
-      "fingerprint": "38cfa82676df3ce8c3fdbd1aff2b21494fb7e9d451f5be70a9335c2d03c087a7",
+      "fingerprint": "6ec98df45d606b44c19cb0c8a6002b5e8e4f5ca6fae3767b5078b9e12207d5d2",
       "snapshot": {
-        "packages/solid-hotkeys/src/_useSelector.ts": "7f2bae4f8dded1118713e60cd388eaaf576bd6da505424f3e8ca0c510368308e"
+        "packages/solid-hotkeys/src/_useSelector.ts": "638eb74a647f33432a99abcd2d3fad8b4ada4cbcbab7ec7921b4ce0db3587141"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/solid-hotkeys/src/_useSelector.ts",
-        "git diff origin/main"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/src/createHeldKeyCodes.ts": {
       "fingerprint": "405d3ac12b34c7a7f475084a3f11d626a175a2bc7a3d8f139aa1042ebe68733e",
@@ -5924,28 +5893,24 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRecorder.ts": {
-      "fingerprint": "5971bc4ffefd0a19584f031ca1f1b89c97508600007d230b1638440a3f10e3d6",
+      "fingerprint": "bee734562eabc13db77453d2e65ea787c9e57958718ffa6c136a1ed5f01ba5f4",
       "snapshot": {
-        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "8e1350ba9c13332ea4944ffedcd5823b65e789e12a1db55efddd35361abf4d04"
+        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "b270d6525db5a1fff283350f5fc1c67797e1ed7bece7f641597236a54e172620"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRegistrations.ts": {
-      "fingerprint": "2e954793542ed1c2aae2854e0edb8f67a16c3afb51b08b351e3b48235c2b6f3c",
+      "fingerprint": "92b31b1178729a9bfc5e4b9c585b84b1d2bb13dea04470dbb07ce68adac75241",
       "snapshot": {
-        "packages/solid-hotkeys/src/createHotkeyRegistrations.ts": "08a96082fd592f837313e66ea1b60e505deacb2c3b79cfca67d9a1239a8b362d"
+        "packages/solid-hotkeys/src/createHotkeyRegistrations.ts": "67cdf6d77115c7eb170a193922a28e83e68317899b22edb549ada64d664887c2"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/src/createKeyHold.ts": {
       "fingerprint": "e962967b161163d712dca5ea4b05820ff157044425cd6ed7e567e1238a7301d0",
@@ -5996,14 +5961,16 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "5c23afdc9ad47475ce39da946007777bc20cb20c465bbc06dcb9cb5ba2ad1311",
+      "fingerprint": "780c581ce3a110afb6f8cc8acb2ac497e7685fbfd01d2ebb277f1e9bb594a0e0",
       "snapshot": {
-        "pnpm-workspace.yaml": "79b34614777b41b3b5e4d323cb7a08c4e96e42bc6a7560754f3caa225d07404a"
+        "pnpm-workspace.yaml": "6076b80972a81efc2a41aff473f11e6ac156dbb323550e54fe4e6f70c2373194"
       },
-      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
-      "outcome": "out-of-scope",
-      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
-      "evidence": ["pnpm-workspace.yaml"]
+      "head": "2da02315036394db5ee2d32ccbfeb3f5eac016a8",
+      "outcome": "no-change",
+      "reason": "Workspace release-age exclusions for the Solid 2 TanStack Start example; no skill content depends on them",
+      "evidence": [
+        "Changed: pnpm-workspace.yaml at 2da02315036394db5ee2d32ccbfeb3f5eac016a8"
+      ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "9f52c68f9d48ad5889e49faa5ee199109a997e3947638000527fc77350f81943",
@@ -6394,17 +6361,14 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "42ba1f8d72c909f1f7a3d66a58233a642ecb0c802c276d48a4e01606b08edc10",
+      "fingerprint": "2e95836eb37003befa4b54d1dd12501e5a6c0476668892d320f1dac9b1c7d493",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "bbf8e68ae906366fff82773f0a9e2673e49eab634922e98c60273bf36dec17ab"
+        "docs/framework/solid/guides/formatting-display.md": "6940807bd2a8126892265260f5f6dd012729091c1c505fd7407642941f034975"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Guide now teaches the label primitive for every label and calls out that layout labels work only in Chromium browsers. The framework skill says the same.",
-      "evidence": [
-        "docs/framework/solid/guides/formatting-display.md",
-        "git diff 7d9cccc3 -- docs/framework/solid/guides/formatting-display.md"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
       "fingerprint": "348b2f56ffbe13334ba3d499260d2729a9d74b2ca6a4e02bd3073f8dfc4295cf",
@@ -6697,30 +6661,24 @@
       ]
     },
     "source:examples/solid/createHeldKeys/src/index.tsx": {
-      "fingerprint": "4de25b19a5b58db768260055df680fe5d675fee22cdc7005d0557754977352b9",
+      "fingerprint": "bc3afdda31a0a2776776c95f14c207f17821b20fe2d5a4473c81a24c1b7f159d",
       "snapshot": {
-        "examples/solid/createHeldKeys/src/index.tsx": "0adb93f4c8c1dda0b6b0837157db398a6339f7d581392d8ec9c87cdc9f56309f"
+        "examples/solid/createHeldKeys/src/index.tsx": "796808cac1679d08026c07a3c7dcccda744fa9753c7f47a46bb02fc34871ad69"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHeldKeys/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHeldKeys/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkeys/src/index.tsx": {
-      "fingerprint": "697e2d9c77cfa25269567e117a57873ea5068a8a93e7d47c0b1b8f626b9fbccd",
+      "fingerprint": "6fd9753b141bc0567a6f6ebba46dda74b2006a1c467e6a6618db9d5e3d54e80d",
       "snapshot": {
-        "examples/solid/createHotkeys/src/index.tsx": "4b6b094b3ff0b2d2c96934ae3b1aac77b8881df5dce3699df5f8b57da2258b77"
+        "examples/solid/createHotkeys/src/index.tsx": "11e62e7be7e73b3d088a40698c485f74bb788388748c8659d2d453095fb07a78"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHotkeys/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHotkeys/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/svelte/get-held-keys/src/App.svelte": {
       "fingerprint": "5502c4ba69456a72acb4d0241f77732bbb748f2259d91d7972ac59a9a2edf183",
@@ -7078,16 +7036,14 @@
       ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeys.md": {
-      "fingerprint": "4e3e6c0eeb1722cf123e121d8c72c8ed7a8a09c10a8e462095d2c34822b2a382",
+      "fingerprint": "a0e9abe9c49475a36e138c85ca8d5410597249958c6cbb2538ca0a7924704537",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createHotkeys.md": "48eb2c879935bdac205fdb889dc4d0fb0c644d23778d0e1c83dcd9a3d3484666"
+        "docs/framework/solid/reference/functions/createHotkeys.md": "b9781414b5adf975a56557836c64e2277ed03386ab2ddf70f914fcf111ffcece"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/interfaces/SolidHotkeyRecorder.md": {
       "fingerprint": "25a904ea60135812b78eca427be68eab0c66ff9c51f3b190003a1bffbb017e69",
@@ -7428,27 +7384,24 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "8eacd21ae964a230b9029d9b4cb7cd3b0aa1d9b45c680cf396e80062b7684d52",
+      "fingerprint": "72a346df58831e4af56e2f093d9ce357dcf3afe8a379c4589dfec80d8b90d69a",
       "snapshot": {
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "80425246f2d2f7391bbe7037eeca22404eb6f87de76c5df62e87c5b4312679f1"
+        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "7165211a349e0b6643a3e86f761bec5bc8829728da36e64ac74a7ab3a6256a42"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
-      "evidence": ["packages/solid-hotkeys/tests/appHotkeys.test.tsx"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/unset-values.test.tsx": {
-      "fingerprint": "00f4f845ccac85853dc4dea9756869a2ae7718af44f0dd4df91a262b698229d4",
+      "fingerprint": "d083f9465b957e1b0230b91b7f6c60dcd68d8b2678af84ee4351ffe8f2076818",
       "snapshot": {
-        "packages/solid-hotkeys/tests/unset-values.test.tsx": "ff25054176380b17afb81880173e9410c6f6861f18958eeea42455d02f542b42"
+        "packages/solid-hotkeys/tests/unset-values.test.tsx": "ee57acd8b1f1900a97ad7961a3a7e22f6fcdf6644e6f48169fecd9a38c7eead2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/unset-values.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/CustomHotkeysPropHarness.svelte": {
       "fingerprint": "e248880e4d7e43203a13a8e1682f032f1471b08db2499f789966e5c32b647baa",
@@ -8131,17 +8084,14 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/createHotkey.test.tsx": {
-      "fingerprint": "626ee93c5dbf448e4f1d969e8d6738ecc459c9006f30c09840d69f9f2a489d71",
+      "fingerprint": "1c811dcfa0ee2556bb83633c746cbb04013c6497cb78a0bd5eaade2ac76e062d",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkey.test.tsx": "5fd43eb1f294ede89cd0af6e202bbda5a7f360fa8e1c142b613ea839c5437fd6"
+        "packages/solid-hotkeys/tests/createHotkey.test.tsx": "49190cc109e003f5d9dedb3f6e14fa05a3a23308c8c4e5bbbd3fa6f801418e12"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createHotkey.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys/src/_useLive.ts": {
       "fingerprint": "90a824fed7a72e361fd984e1128b8ff0f70823dc6736a458335ffb5cfe5b4836",
@@ -8536,38 +8486,34 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/platform.server.test.tsx": {
-      "fingerprint": "fa62af325a22e66e1d09ac75e22899d1748a56727b792eb9d3a3c60c5c817b03",
+      "fingerprint": "7b47f6c240d5ddaadd61ee045a62deaf7ffea4205e00d2a8297934960c31873a",
       "snapshot": {
-        "packages/solid-hotkeys/tests/platform.server.test.tsx": "4f629d5355a0e7c75ae2a5dd348d194f57444379b3986243cd21ed61593ab6a2"
+        "packages/solid-hotkeys/tests/platform.server.test.tsx": "0d36970e11c9724ede8541491be2e5132e5200bc327806acfca512f178b95515"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/solid-hotkeys/tests/platform.server.test.tsx"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/platform.test.tsx": {
-      "fingerprint": "f7d6dc5161975885309b3d55c74fc2825d863706cbaa0449af23f9440e60400a",
+      "fingerprint": "a625a0998232d5a6f2d2752c1036eb33afac818f29503b9bbef11bf6c85bc522",
       "snapshot": {
-        "packages/solid-hotkeys/tests/platform.test.tsx": "88da6911a8e9af60b9bcb2f920f56420e51d88ac8c6a960b68369650c44c7c21"
+        "packages/solid-hotkeys/tests/platform.test.tsx": "529d48d6c042619ce0ef698764b7f2208fdeb509c083528dc671cf51c142819f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/vitest.config.ts": {
-      "fingerprint": "e86b38176d7a196dc3c143783c7778e7436570c81cda5ca2e12017d8678cee5e",
+      "fingerprint": "dafa12ab0f152a7678c7a6146cccfb1b2d0cc705ed7f7b86a2d8f8c0d1b90034",
       "snapshot": {
-        "packages/solid-hotkeys/vitest.config.ts": "d6cb57331d8efcbbf81dd521960fe6cc2d94af24d4538ffe4584a6e9391e2c2b"
+        "packages/solid-hotkeys/vitest.config.ts": "71b902a6271f0f76b99e5b02452ec52d3fd580dc8ef72e5a9a6fbb4130bc2a40"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
-      "evidence": [
-        "Changed: packages/solid-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/src/getFormatForDisplay.ts": {
       "fingerprint": "aa79bf1df47ee4df11eda88a5c3210fe8036e7e47eb46ff735e7e6351cd1246c",
@@ -8729,14 +8675,14 @@
       ]
     },
     "source:e2e/ssr/examples.ts": {
-      "fingerprint": "578e1ba40ae95fa5e574862fae5066f757549f7fbc7ed6aeabf8e6cfc8830324",
+      "fingerprint": "088cb38fc9e1eef6cf57b37ea1eaf497cbd30aeab1d8027248f65dd78e9e23c6",
       "snapshot": {
-        "e2e/ssr/examples.ts": "ff6e65160a780ef1f9aa3ebcc946903eb8052b684a8fb455d48c519f7a59c44f"
+        "e2e/ssr/examples.ts": "5d8b90511f18a070161500e954835e4acbf26ba2c1c562bbde4536f81156a4d6"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/ssr/examples.ts"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/angular/injectFormatForDisplay-analog/index.html": {
       "fingerprint": "525b71e449c511e56c7e03b21729b3b91cf5f9e0cc15d9d516ac031dedc8eb31",
@@ -10385,17 +10331,14 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": {
-      "fingerprint": "106dbc789c4c05ecdf9fc8ccabe787988e6a27ec28c350b704d78bd3caa74fc0",
+      "fingerprint": "01a9ca8e8de13c4dc3741146aa60c1a14f6fd7905090c5dccf5ca8e10d0c5fb1",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "44f5692fc98658c6db94691fb171c2c5eaca62db11bb68a1e0f42d75646adeb1"
+        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "3b096249722a27b083efcdb67941346341031d6442f8f8c4c8a98eca5d51151e"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/commands.ts": {
       "fingerprint": "cda1b106c8d8a2533b04633004d1097cf5f6d9bde95fc50e64f35885a47242b8",
@@ -10446,17 +10389,14 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": {
-      "fingerprint": "889a173dba36f298a0101fa9113aa4440184145666f844ffc4336a5878a619d6",
+      "fingerprint": "a98a01735c2de03f4d576e47014ae42652903cfad4b5322a60aecddb56aaf4d3",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": "d169993b4d32ba148d4baa21c8262e3046b92d4b7c8bfbd37687add505facfe0"
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": "11106860fb7971472a245285b56d08797c301a00381f2fa5366e2428a4397836"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
-      "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx",
-        "lint and build pass"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/index.tsx": {
       "fingerprint": "a68904023fecc26470c64cd28f6dde0f44af195c37ddea0997b1257f17803eca",
@@ -10484,28 +10424,24 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": {
-      "fingerprint": "5abe651252cd8ec4b275bc2e3303f689bc990c349fa03365fea9e678d16fc8df",
+      "fingerprint": "8c1a798ec92e262dc3a5ddf409b6a54e6b45e3e723a4cef0d921bdf667585e71",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": "24b0e95df13d6b6a10a1344972ae740b9d473c29280856814f8c7190b8c94ff0"
+        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": "664b3f5b29ccecb81703be69edc3a321d25f1673d8839aae7318a3fe961a4876"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": {
-      "fingerprint": "6361b89486863b92a8e408fc4a9f490fe36792cce39496449dda42251de4a791",
+      "fingerprint": "e02c8f5ed31f47ba0f7bedb1e8c1f8374f4f521c0bdf90ccbea0c3c20ec06098",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": "ef7db523661d938695979d362f784f99d47119d12b4e50667df60201c75ffb67"
+        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": "cc62b6656b6e88fe5aec1e09e87716fc4c0afd113de9140da05bd1e7b10c5199"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/svelte/getFormatForDisplay-astro/.gitignore": {
       "fingerprint": "dacc75f52e5d1295df9f775b13784d42402a1e70db24c65fe1046657eadf6f35",
@@ -11439,17 +11375,14 @@
       ]
     },
     "source:examples/solid/scopes/src/index.tsx": {
-      "fingerprint": "345e114554edef4161d0540070beb67b7169effa11e0c9fe41078e1aff53bfb3",
+      "fingerprint": "0fa21130db753fd18ce8a7f22e6beece775cd1d6b2613dfeac5dce9950b7e4c2",
       "snapshot": {
-        "examples/solid/scopes/src/index.tsx": "4bcb989b409f6f544a0201adce45fc9f7ecb06f3efb844adeb169b4a0a6822b4"
+        "examples/solid/scopes/src/index.tsx": "bba330277b1d2e59ff79f448bfc24ca227431c18ea4b79756d7a505b0e0ed2cc"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/scopes/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/scopes/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/svelte/scopes/src/App.svelte": {
       "fingerprint": "69da308f1fb1d291d5e00a66ba3a422c8efc4876953c6f06154e7c40e8390aef",
@@ -11667,16 +11600,14 @@
       ]
     },
     "source:docs/framework/solid/reference/type-aliases/CreateHotkeyDefinition.md": {
-      "fingerprint": "9d956a6349960261df249cc5575d70136622338498b8d99f2d0d6006cbcd20ec",
+      "fingerprint": "4ccabcffb9b00d53f345ebefb6d44baabbd7a1eb26d39d2bfde140dd1eb87c9c",
       "snapshot": {
-        "docs/framework/solid/reference/type-aliases/CreateHotkeyDefinition.md": "a0aa492db9438186c87026a1b4394bb36064cb1e5ce6ca809ace2feb986993ab"
+        "docs/framework/solid/reference/type-aliases/CreateHotkeyDefinition.md": "747711936c1e0cbb2c69a15099cee47c96fdc586f57cb32f76864b0693c5a6a3"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:e2e/browser/delegated-handlers.spec.ts": {
       "fingerprint": "88f14068f021977c4517734a23f39a42fe53adb1b276808fb1c82dfd80954f70",
@@ -11760,14 +11691,14 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/element-order.test.tsx": {
-      "fingerprint": "03829a74f9a02ed017ab603f2aff44a21341ca32864058e9bbfe7c2606bc3526",
+      "fingerprint": "607a85fc50b83e6968e71572f5b10d7ee0df3a494d643b1da4fd3a816b9b833f",
       "snapshot": {
-        "packages/solid-hotkeys/tests/element-order.test.tsx": "0dc77db41a7f857e3fa3cd0392c57cec099ce343a66c49d14cb3cd79c8a6d286"
+        "packages/solid-hotkeys/tests/element-order.test.tsx": "a2b9a4c8f1d151332df512270814f4ef2bfe25d249b0c06cd01203e221a4f303"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Listener-order test fixture: its combobox is now collapsed so Escape still reaches the panel hotkey under the Escape layer rule.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/ElementOrder.svelte": {
       "fingerprint": "834d795413c10832cf3475d8e067b7363358738abae980b2160abc77527cb34d",
@@ -12437,29 +12368,24 @@
       "evidence": ["packages/hotkeys-devtools/src/_issues.ts"]
     },
     "source:packages/hotkeys-devtools/src/styles/use-styles.ts": {
-      "fingerprint": "83fb65120fc1dc7ac73956e6296096bc16326bb8d2ae8ee5b7b003b111024727",
+      "fingerprint": "16562a19ae55e896ebfa76ee5e427577181d29e0fc34efedbe38b55580d28479",
       "snapshot": {
-        "packages/hotkeys-devtools/src/styles/use-styles.ts": "cf69c1305509dd066180a2c4703bcabcd0657b76419c3db277c677d1b2a88658"
+        "packages/hotkeys-devtools/src/styles/use-styles.ts": "0b669669b7d1328ec6a35192b61562d1296fd76fe1a4d8f4bf008d735bf8273f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/tests/registrations.test.tsx": {
-      "fingerprint": "f92b77106714af45c530da28cf4eba2ea155808a828a347cecf46c26796df72d",
+      "fingerprint": "4a121daa224d501bc51aea9101f56e68810d24099d1193d03e244b67b95e201f",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/registrations.test.tsx": "c5a298b9e0832f23988af87571ff86f5100b5eef2009c4a847516dd3de9d9cfd"
+        "packages/hotkeys-devtools/tests/registrations.test.tsx": "5684648ecea128cb2c594da57debc7bed35ddf40052ff730931996cba74989c8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/hotkeys-devtools/tests/registrations.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
       "fingerprint": "43de69ffd9b4a513145d7926c66bfe0269f5a8ea98835feb07c52c7d183ff4db",
@@ -12992,16 +12918,14 @@
       ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyRegistrations.md": {
-      "fingerprint": "3b015607b1bb614223a268720a6ea024fcb0c46046958019315666d4fb9bd3ce",
+      "fingerprint": "813ee97fbba7df986f9f5939e5fcffefeb91b34179ab09c9f39f7600bd396bad",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createHotkeyRegistrations.md": "656dece83beb4861a1247fef1bb25c0734f05acb57b8980b8de103a7946d0aad"
+        "docs/framework/solid/reference/functions/createHotkeyRegistrations.md": "60acb8a71360ba31023d14dbe37d8de8fe196c5e96498ed664d6af787ac0a404"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/functions/useAppHotkeys.md": {
       "fingerprint": "8e62a7546c745d5be0c7ddaa95dae36eed1cdf6f092b500fdbabd22fb877eb95",
@@ -15759,17 +15683,14 @@
       ]
     },
     "source:examples/solid/createHotkey-sequences/src/index.tsx": {
-      "fingerprint": "454e17fc9535c8d00c2f92de88a1dc2672ca108def6c5854b2a219bf49c0020f",
+      "fingerprint": "47a0ca1114372136398887e8c12c542a7d1d4d63f3b5fa8f84e11d2eb615d8c5",
       "snapshot": {
-        "examples/solid/createHotkey-sequences/src/index.tsx": "e0c0bc6c0e07b3c252fb2803c0af6bbfd7f2684ded4a594576bee1e9ff535cd2"
+        "examples/solid/createHotkey-sequences/src/index.tsx": "d360d1d0d11ee1e3fefb5a7de98c27a65daf5c24178ecac741060b312e5b1c2a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
-      "evidence": [
-        "examples/solid/createHotkey-sequences/src/index.tsx",
-        "lint and build pass"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkey/src/index.css": {
       "fingerprint": "b8610bbffcda5bc957a81fcb1e1525b38428755d9eca552a2e83a0c26ff8c2da",
@@ -15785,17 +15706,14 @@
       ]
     },
     "source:examples/solid/createHotkey/src/index.tsx": {
-      "fingerprint": "8689566400c8fef2598d60a4ba5ce8c8246344a9d29eebb310b70449d417c18e",
+      "fingerprint": "0b9b8693a6a788972d234e7b18210050f3f0694171e9beeca43021dc1c9e3253",
       "snapshot": {
-        "examples/solid/createHotkey/src/index.tsx": "b2e193078a770e05ea1b8b1fddd614ded52c8bb2931a87b3b299d2ea506ffea6"
+        "examples/solid/createHotkey/src/index.tsx": "c00d8760942023e969657845d349712e964f7c4cd26b3245a3a1731fb057c441"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHotkey/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHotkey/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkeyRecorder-sequences/src/index.css": {
       "fingerprint": "8668a99f74a406e21ed66cd05e781927a684e0692c669bed171ca888e5f46da0",
@@ -15811,17 +15729,14 @@
       ]
     },
     "source:examples/solid/createHotkeyRecorder-sequences/src/index.tsx": {
-      "fingerprint": "5818a0bd9782aaa8ba23003132c7c23fa5ab62a26e432491f5ff4cda5290e207",
+      "fingerprint": "853e7b9e6448278ef58390065594d219773dc3807ea43d4081df3574f0782e83",
       "snapshot": {
-        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx": "e125af7d1f696bb089d3511a8a3de766b13ff1c09ea7a68804d639f9bcacbbc7"
+        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx": "ec1f4d9a2c4558b2ee6463f788fa0874ad9248fb2781e8f7447a34bbf55ce27d"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHotkeyRecorder-sequences/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkeyRecorder/src/index.css": {
       "fingerprint": "e44720f93161959ff991a22f457250a0481b1769d983c75b3455a4f506bf429a",
@@ -15837,17 +15752,14 @@
       ]
     },
     "source:examples/solid/createHotkeyRecorder/src/index.tsx": {
-      "fingerprint": "0517cf08430f377419c426561b10af81ac67852ad5f7dfc97a779bb595b10b82",
+      "fingerprint": "c809c284d5db6099fcbb13bbee6d3619f19396e9f4bab92fbdee72ddf06c99e3",
       "snapshot": {
-        "examples/solid/createHotkeyRecorder/src/index.tsx": "69f0b28022adfa6914f7bc0267afcb047b87785c14775b5f235e63875ebe71ed"
+        "examples/solid/createHotkeyRecorder/src/index.tsx": "8ed144e7ad871360d787eaa7eeeaaab468cd5cf1760c605856f7487f6af30e3f"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHotkeyRecorder/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHotkeyRecorder/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkeys-sequences/src/index.css": {
       "fingerprint": "fee6ae76705c16c7b9e50c725fbb925ad27900e789d70daa6ade9a9b5633c271",
@@ -15863,17 +15775,14 @@
       ]
     },
     "source:examples/solid/createHotkeys-sequences/src/index.tsx": {
-      "fingerprint": "1a223c438272acb0cbb5d5a525855f05c3948a59f3fd7c79091e49a3a3956f18",
+      "fingerprint": "c672d1524497fdeacd9398a54d59c9dc8133fa283c9446d52a4755dcd18d6bf4",
       "snapshot": {
-        "examples/solid/createHotkeys-sequences/src/index.tsx": "62c938a1ddadaed303a9da6b728c746f2f8eb2f52ad866fd739000d4b2977d5c"
+        "examples/solid/createHotkeys-sequences/src/index.tsx": "a59a616d996c1762c7cf02301b6dfe3796042ebaff07f38589477efa933d75b7"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/solid/createHotkeys-sequences/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/solid/createHotkeys-sequences/src/index.tsx"
-      ]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/createHotkeys/eslint.config.js": {
       "fingerprint": "784215ce530c97bc32edd1b3e628080043c52f1a74769989c8dee8732b13c2a6",
@@ -15915,17 +15824,14 @@
       ]
     },
     "source:examples/solid/createKeyHold/src/index.tsx": {
-      "fingerprint": "12c570740c11e4f844a1a9fd318bfb1d5d23afb25028f8026426bd50b64745b5",
+      "fingerprint": "d7197795c83bad954c2b8fd396ae64feb09cbbf0b39de37cad41ad09f76f274a",
       "snapshot": {
-        "examples/solid/createKeyHold/src/index.tsx": "67757c71846cefc37a33570f4cd57ab44e58ec9e5845a521efcb458253b96ff6"
+        "examples/solid/createKeyHold/src/index.tsx": "cb25cfeb606a8ba3b445212ec402007c2f9bdb744da41fe06540d629c6a6ccde"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
-      "evidence": [
-        "examples/solid/createKeyHold/src/index.tsx",
-        "lint and build pass"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/scopes/eslint.config.js": {
       "fingerprint": "ea608cb5a079546f1b6500f4ebe7019cde5f44ffc87f1042f2f15b91772a340b",
@@ -17303,14 +17209,14 @@
       ]
     },
     "source:packages/hotkeys-devtools/src/HotkeysContextProvider.tsx": {
-      "fingerprint": "4d9cc9b8eaab927f4edbade09ee1c31472fb26d7c7422a9aafe88c470a467d5f",
+      "fingerprint": "353c0054cc284af7987dd35ea4dbf641f287b39881ff2539dc5bedf71b2fc19b",
       "snapshot": {
-        "packages/hotkeys-devtools/src/HotkeysContextProvider.tsx": "a6fe95671a54066839969a3b98335fa03f90195e908063b489bfd41a55ef4c9d"
+        "packages/hotkeys-devtools/src/HotkeysContextProvider.tsx": "2df52c0a12976d7378c5e39b2c758fc8d58dddd0f7ad4fa73a1366f2c84f6eec"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Devtools show the loaded keyboard layout. No skill covers the devtools panel.",
-      "evidence": ["packages/hotkeys-devtools/src/HotkeysContextProvider.tsx"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/src/_registrations.ts": {
       "fingerprint": "7811d44c24c341e818002ddde305f48c71b751783a8686bf3c1d8c356cb09ae4",
@@ -17339,26 +17245,24 @@
       ]
     },
     "source:packages/hotkeys-devtools/src/components/HotkeyList.tsx": {
-      "fingerprint": "a87a867032471073b1e77aa92457e1b524aa8b54c860a20e0519dd63de1d9d95",
+      "fingerprint": "2e4617637795e6abe488d91986510ad6954bc3904be3e0ed1456be205d48a852",
       "snapshot": {
-        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "bae97a55b15d0cb419d984f82ae9f528b26c69fbf518d1cc091d2f3287912b54"
+        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "fb4ca4f74ac4e072b94c0eeeb0fc935f83a02b74a826072a859cd76cf4c205f6"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/src/components/Shell.tsx": {
-      "fingerprint": "f8e5864d8208ae7b6e603865ce722bd0c17cd450a53f52617d7dab955e8ed479",
+      "fingerprint": "919486091af3f317767d145cf4cd6fb52400d4ee62d7568a4dd2ef667ab35883",
       "snapshot": {
-        "packages/hotkeys-devtools/src/components/Shell.tsx": "dc87d54529b7ea3e49150de3110c70be928bac02070b1a54f71cd61484a9f4dc"
+        "packages/hotkeys-devtools/src/components/Shell.tsx": "4381b111bf9f6fa52e50a447df3b95b43b412a7b2cb01c0f6f92181dbfbf907d"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Devtools show the loaded keyboard layout. No skill covers the devtools panel.",
-      "evidence": ["packages/hotkeys-devtools/src/components/Shell.tsx"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/src/components/index.tsx": {
       "fingerprint": "eb67b36a0ef5012195fd50cfd195adfe6c98a007be6945e3ea70c380321790c3",
@@ -17374,26 +17278,24 @@
       ]
     },
     "source:packages/hotkeys-devtools/tsconfig.json": {
-      "fingerprint": "96b16c1de2110b1b46bed79b6b054613405eb5e41e9549a48cab5aed27b81de2",
+      "fingerprint": "866f7a0cbc87eb61ff595282980099b9532d9459486b037f5e8a39079b44370a",
       "snapshot": {
-        "packages/hotkeys-devtools/tsconfig.json": "e468e827b2648e221cc127f23c7f4519ec4b5e37d7fda25974428b82b5334dde"
+        "packages/hotkeys-devtools/tsconfig.json": "f34e667883251dbdb0fb9979f534b574ffe1c0ed377cfbb3d1354148bea6b049"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Drops the exclude for the deleted eslint.config.js.",
-      "evidence": ["packages/hotkeys-devtools/tsconfig.json"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/vitest.config.ts": {
-      "fingerprint": "2476edfcc15201226b6714674d543c2eb6a7ec0cfcbc4de19aa1c483ae265dbd",
+      "fingerprint": "82c1073034b4f722f4ad98488d69b3d437c78c95991a201cb6cfe8706a498ed5",
       "snapshot": {
-        "packages/hotkeys-devtools/vitest.config.ts": "117bd85d9f754b433b366f95e7c946ba7bcc4017b7e8776af602790c1024bbc7"
+        "packages/hotkeys-devtools/vitest.config.ts": "a6664c6f6f0261590791d0f6671109f521881c9e4a920a2237f1a532d26ab0eb"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys-devtools/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/eslint.config.js": {
       "fingerprint": "05afca6cbe0a5e709073e45c08029baf163cd9651102c8073b0386d7bc73b7f9",
@@ -17795,26 +17697,24 @@
       ]
     },
     "source:packages/solid-hotkeys-devtools/tsconfig.json": {
-      "fingerprint": "a19974a613999c1c219557b18c01ab4fa696bef57159fb9770400914b0af2ff6",
+      "fingerprint": "ed31e9140129376e200852554bbdf7f83a4d55824c12b39880037d30be2a97b0",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/tsconfig.json": "e468e827b2648e221cc127f23c7f4519ec4b5e37d7fda25974428b82b5334dde"
+        "packages/solid-hotkeys-devtools/tsconfig.json": "f34e667883251dbdb0fb9979f534b574ffe1c0ed377cfbb3d1354148bea6b049"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Drops the exclude for the deleted eslint.config.js.",
-      "evidence": ["packages/solid-hotkeys-devtools/tsconfig.json"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys-devtools/vitest.config.ts": {
-      "fingerprint": "bc7cb7b4eecb015cc2af980430d128a6b4907c5bc18f2101e67e1683b90dc252",
+      "fingerprint": "4b3affd51b058add563bf11d69202972da0c07dd2664a0c581f7d71c284868b1",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/vitest.config.ts": "e9737bae31d91f63409edbae150da7996650c36411f1551c7b01cb1975cb5ef4"
+        "packages/solid-hotkeys-devtools/vitest.config.ts": "c43444a785c9422061406d1d1ecf9fd02abdca219ec72746acc0b081e58481d5"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/solid-hotkeys-devtools/vitest.config.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/eslint.config.js": {
       "fingerprint": "a7ebebd77915fe58134b2e1c712d07e4bd5b50577839e3a87b718676a07f3c75",
@@ -17830,53 +17730,44 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx": {
-      "fingerprint": "8cb965bbee824957c7e92cdc72c03b4da6dcaabd1c8bdfa63b687b6d5dd812a9",
+      "fingerprint": "c58db52c834f02e09f5983ec969a7b720a7a8bf903ce98122e1468a743905a83",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx": "d688d27c67c6c744b5e969f659993b6a0db207e53065b9f07058b2f673ad1775"
+        "packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx": "6d02228a23dd8d3e472d846bc43cfb7be16a7268f695150ffc846cdadf958a3e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/createHotkeys.test.tsx": {
-      "fingerprint": "a7dced7ed3317a6ff1f35a9a1c468738d2d6003c2425630bb1fb39752fcbf118",
+      "fingerprint": "3a45d28749a3d059b284f06654a7902f79676702299fc638bac9f76394fa2f6f",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkeys.test.tsx": "c30a545417aec81dee203f73ea2ae54315a853a44f29735dda9158d34217f780"
+        "packages/solid-hotkeys/tests/createHotkeys.test.tsx": "e124e938eb0d6c93bf4f0d68a0e59d22e4d87b70196c0a1fd99e3c6644668221"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createHotkeys.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/reactive-options.test.tsx": {
-      "fingerprint": "dd6ec1d25af3e671561847ae6ee38fb267b43610f58009256cb20821e98c2fe5",
+      "fingerprint": "457ad484aa8fde1833a0e9b277d3275c2693fc58ec297a2b7b39cac6b4958fda",
       "snapshot": {
-        "packages/solid-hotkeys/tests/reactive-options.test.tsx": "f0befd8aa0d0e8ce59c0bb3ab2927eabf573e25ae5f0420e663b588bfffb5893"
+        "packages/solid-hotkeys/tests/reactive-options.test.tsx": "3c01040224a8fcbbd0c2b9cbae392c1e32cfcc38c0a7d7fe8181019b878524db"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/reactive-options.test.tsx",
-        "test:lib passes"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tsconfig.json": {
-      "fingerprint": "64b9705ed2448feac12064549fad067aab2348344ec66e3ccdc7bfcebba9021b",
+      "fingerprint": "e33cada837732aad7ea6f929770aa30d3655b7005f8a861f626d49c341b0d886",
       "snapshot": {
-        "packages/solid-hotkeys/tsconfig.json": "e468e827b2648e221cc127f23c7f4519ec4b5e37d7fda25974428b82b5334dde"
+        "packages/solid-hotkeys/tsconfig.json": "f34e667883251dbdb0fb9979f534b574ffe1c0ed377cfbb3d1354148bea6b049"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Drops the exclude for the deleted eslint.config.js.",
-      "evidence": ["packages/solid-hotkeys/tsconfig.json"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys-devtools/eslint.config.js": {
       "fingerprint": "b47d75d62b546159e145a775cb25e3d26677a3d87a06738d9e53d9c013037fbe",
@@ -18829,28 +18720,24 @@
       ]
     },
     "source:e2e/adapters/apps/solid/src/main.tsx": {
-      "fingerprint": "c25a69a1df38ad99ab0d1c013f70212a4847a8d5aeb4d12095e08c1b40f0c53c",
+      "fingerprint": "9d7362896dca2567934a56c82a857c80f0adfff3da58e607a83a496bddbe0ab4",
       "snapshot": {
-        "e2e/adapters/apps/solid/src/main.tsx": "1078579982a03b51f67dd1d499d1f53ed663a839d7225c99933170437edea7b1"
+        "e2e/adapters/apps/solid/src/main.tsx": "2aaa72da5ef859dcf52b7a496961d0a7411ce394d4a17d9cffa7c536929891e3"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: e2e/adapters/apps/solid/src/main.tsx at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:e2e/adapters/apps/solid/vite.config.ts": {
-      "fingerprint": "2f1cf506d04820f26dabfca81ba41d49d3efdeb9f0a620e03615d5b0a855516c",
+      "fingerprint": "fe7a2c3ba69a237e45cc79cde77daf7a78f0e38e1ab1e5b0e1f42599017895c2",
       "snapshot": {
-        "e2e/adapters/apps/solid/vite.config.ts": "6b8ce733c2bded84e808d28bde05c4848725423832e9c18deadcc8ec7703f210"
+        "e2e/adapters/apps/solid/vite.config.ts": "9acfa17bfea5e7b09f75869b8e2e7c95f8795750281faab744f588ecc8b59849"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: e2e/adapters/apps/solid/vite.config.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:e2e/adapters/apps/svelte/index.html": {
       "fingerprint": "a188d3df79d376d477d559d54160352ab610e3956475dfac5676ad1a588e9bc1",
@@ -19113,16 +19000,14 @@
       ]
     },
     "source:packages/angular-hotkeys-devtools/tests/integration.test.ts": {
-      "fingerprint": "43d26fc3123a98a82570cdd13ffb3a3f99f91286a1e5c57f3b2a660d258533af",
+      "fingerprint": "6d05169c173115b60a4aba56da14a08ad67275af69990c92965879497e673819",
       "snapshot": {
-        "packages/angular-hotkeys-devtools/tests/integration.test.ts": "3043cbd9e9237cf56a49a6cc2b76bb96a0809f32dd7b1869722254dbfe0fd955"
+        "packages/angular-hotkeys-devtools/tests/integration.test.ts": "28fc17a282eb97e05ae39afcd99a58c1c9788539f0a48c968db7e37e0e67bc3a"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
-      "evidence": [
-        "Changed: packages/angular-hotkeys-devtools/tests/integration.test.ts at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/tests/core.test.ts": {
       "fingerprint": "03d9415a2da91fb40d20b6639f7cd662ed993bf2978ca80e950f72a552645d22",
@@ -19149,16 +19034,14 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "eb60aa33ba454b927b0bd0c26f20912d5f8eca8691be9e79410b5339ec575cf8",
+      "fingerprint": "4b1211d6fba6e84b2faa661ba13c8603dba6ed02dc41cbd22434de65908d607e",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "f0bc9501998a657e5fad52817926fe7ba8877b537d85ed8a4312f1c8b4ec3729"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "b6d5dc10df1e9a1f55f2f5a42ce6ccc02a2942c8461439dc3d8e5e57b9a6a44c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
       "fingerprint": "78d1d6b9d47306d3075ef8b3abecccd9e089c401932103a01007f581e08f8c41",
@@ -19339,16 +19222,14 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "2d4c5e20a659e870d203525997e00d7aa6f1e6e696e96756af693f1f924da606",
+      "fingerprint": "bd18b27a27453b708f7ba737d8218e84c45cb9f3084c10f60d5d73da9ef0964d",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "1eae6b300095984ebff0f045b19b01e8ce6dd1c291545a29322e51518cb07681"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "3a29e9398dba19b1da5d2e1150cb76cb73e560b6ac0f6af02c5c9db18efbffc5"
       },
-      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
-      "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
       "fingerprint": "31350e8f8297633bea6e840a56186256510a602401a774a8203f106d9ab47313",
@@ -19363,16 +19244,14 @@
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "c0688df82f70cc75f0d56ba0a8f45e4addc9f413898f1b873185bf9fb8e6b09e",
+      "fingerprint": "5e1856503e9af523c717a78211aa25ac6f8f805a4198e8e3974731234b9a3a48",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/tests/integration.test.tsx": "be578b6c0948c9268913925623d60fb49884b29cee57246f6f8e4854d9331bff"
+        "packages/solid-hotkeys-devtools/tests/integration.test.tsx": "51556f75cc0406977d8b2770ecb46724113983de0fbbbe5c1354a4bc5a4ccf19"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
-      "evidence": [
-        "Changed: packages/solid-hotkeys-devtools/tests/integration.test.tsx at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys-devtools/tests/integration-harness.svelte.ts": {
       "fingerprint": "1bedeec6ec2ce2494ced7cd4d839927b39b0cf4f09c357e64d7e5f61910085a5",
@@ -19387,16 +19266,14 @@
       ]
     },
     "source:packages/svelte-hotkeys-devtools/tests/integration.test.ts": {
-      "fingerprint": "8e8482af34e52d37c0e787e3ce48719ad9358b29db9334efdec511d9f63da60c",
+      "fingerprint": "765e21a03b66f06c38679786365cd50a7f9c91bccf2ca5008a5b0b86315536d8",
       "snapshot": {
-        "packages/svelte-hotkeys-devtools/tests/integration.test.ts": "719938ec9a354cf8d18e09181b2560cc6e4be50a44c304d5cdefde06a9adddb2"
+        "packages/svelte-hotkeys-devtools/tests/integration.test.ts": "7985524c5146944e335dc003edf5f4c5ee21c1b1da47881fedfb89983a9630b9"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
-      "evidence": [
-        "Changed: packages/svelte-hotkeys-devtools/tests/integration.test.ts at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys-devtools/tests/integration.test.ts": {
       "fingerprint": "b79e5dd44285d88f368f6e257e6506b756928a546162a81ea4012bfc7920e334",
@@ -19699,16 +19576,14 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "18d37a6da0afd55228595bb3337d56185d98807acba9e185514d4ad906a0063a",
+      "fingerprint": "3c53593512431edcfa8e3ea971aff38dfe6e42629eaefd2a598f2654c4c0f5a2",
       "snapshot": {
-        "packages/solid-hotkeys/tests/conformance.test.tsx": "12fe5b25aef1416a2d4fc60c8d770e22aa5566bd24aea6434b719e6d1fbe95e2"
+        "packages/solid-hotkeys/tests/conformance.test.tsx": "59419ea7aa018ca3e79e2c788ff0b794902a1f355adbb11c3aaa30a7fc282167"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
-      "evidence": [
-        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at e7cc01367db32b74b489084bb35e173126664d39"
-      ]
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/conformance.test.ts": {
       "fingerprint": "80ac32fa2d8132883144edcc6401120bf1e3b16102580a8e7b951942c29f2c2b",
@@ -20565,14 +20440,14 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/keyboard-layout.test.tsx": {
-      "fingerprint": "e09571c67fd04398e3406f5d0707caa918b953f8bb81a9cdb7c14d9ec78a98ff",
+      "fingerprint": "901dc33aa0d11791c13d54560f61b3e5236cc1e0812a5df462a32e12053bc341",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/keyboard-layout.test.tsx": "b2c8e3a8153965bcd6c5a887b82f6ef1d6cf9f2fd1cf1376fcc51c09d827083b"
+        "packages/hotkeys-devtools/tests/keyboard-layout.test.tsx": "2455a74820aa2b797f3a0a8a31ce07ae0e54981d402e31280639e8d806609d02"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": ["packages/hotkeys-devtools/tests/keyboard-layout.test.tsx"]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/keyboard-layout.ts": {
       "fingerprint": "5228b50d00255c26a30fcd9654f1d1804c7e0f02fbd2f5c40053b88ba6605ff4",
@@ -20720,41 +20595,34 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createKeyboardLayout.ts": {
-      "fingerprint": "2a4f6160b956edac1e11297b210f3b9d3f60182c01532e8861425f0cf539d3c1",
+      "fingerprint": "e01e195b77fb636175649e3fc8c61dc71c7383d00bb309baad3ba58b643310ec",
       "snapshot": {
-        "packages/solid-hotkeys/src/createKeyboardLayout.ts": "9432192fb043db7c240096eb2d645c20c5547080310f578faeae2ed9ee3ace58"
+        "packages/solid-hotkeys/src/createKeyboardLayout.ts": "e206b98bebcc74732af1bc684d51632c638dec56d820583aae74afb092fc06d5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/createKeyboardLayout.server.test.tsx": {
-      "fingerprint": "5c0a0f166b0d9c1c1007825a3be0dae783307dea5053deef8d2e15ed0e690e4f",
+      "fingerprint": "57b17ea8093d82c7a69fea28098d5c4196d8d3a537dc88fae2663e4b7db57d48",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createKeyboardLayout.server.test.tsx": "ee366402c400015fb42d29e408767d9ee38a68662deb7ab6701033c5d60aed2f"
+        "packages/solid-hotkeys/tests/createKeyboardLayout.server.test.tsx": "3a610cd334f6684919279f2a2d638d581756ff0ef9b8ebff7a639dca554cc40f"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
       "outcome": "no-change",
-      "reason": "Tests for keyboard layout labels. Skills don't describe the test suites.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createKeyboardLayout.server.test.tsx"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": {
-      "fingerprint": "60af7d0201006f18a13792ec76268871c0b9f36b4eac72069f9d6713af5a72ae",
+      "fingerprint": "48a8c66e587515f0ac0124a02428003fc8c06335148f01166aaa095ac8f44367",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": "6c9d0bd6522567001095263a453ee5c3f9f2671d2e28bd06abb57226bf8bee51"
+        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx": "52b7e424e22c26ff208a9e4423fa0cd70a38da3cc0d809a4df8d242ce4fb439d"
       },
-      "head": "e0cabfdc478371c1ba16b7a6a4f54d1a81cf021c",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Test only: the focus refresh tests switch to a layout whose label differs from the label with no layout. No library behavior or guidance changes.",
-      "evidence": [
-        "packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx",
-        "git diff HEAD -- packages/solid-hotkeys/tests/createKeyboardLayout.test.tsx"
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/src/getKeyboardLayout.svelte.ts": {
       "fingerprint": "5bd245a8da99a147f1f3bd0ca2c7a701c86c60c88e57f5fa39f16dc053ca332e",
@@ -21950,16 +21818,14 @@
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/panel.test.ts": {
-      "fingerprint": "6221e5dc1eea0f42b1d23096b8cfd00badeed5d6f5b00364c58d3d9a6e1dff58",
+      "fingerprint": "0251adc7fc0ffc3b68e2ea400a33c30f0cc4a8a594249d1902e388f05f45c798",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/tests/panel.test.ts": "6b974a33b4d9c0f992ef364d96341b1d04f8b436d53f357dbc0039441cf4183a"
+        "packages/solid-hotkeys-devtools/tests/panel.test.ts": "80912dc6b2d5009c8e258732136eec967047cd33eb56ea8468951b913dcd6820"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys-devtools/tests/panel.test.ts": {
       "fingerprint": "70df64e809159c1403651b423a3120c955fbafe9c93c66493b2db25af3425c30",
@@ -22932,34 +22798,34 @@
       "evidence": ["No skill references this file"]
     },
     "source:examples/solid/keyboard-layouts/src/index.tsx": {
-      "fingerprint": "91b327acb054dfea6e09dc9a1174d81297fba9b720a5f81615d38f87027fa150",
+      "fingerprint": "1ebde86de6a27be580e023057515bd640cec750cbc7a248f0b3c99702aa65f01",
       "snapshot": {
-        "examples/solid/keyboard-layouts/src/index.tsx": "1ace1daee1c7477a37ab050284e4b77148de9977c16de728158fc5a52b0ff73a"
+        "examples/solid/keyboard-layouts/src/index.tsx": "0d52814693336d6a792f125da5a9e45281e791ffe7fde005e3c90a0dcbac8e87"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/keyboard-layouts/tsconfig.json": {
-      "fingerprint": "4574c1bea82e58d995e0cf1656472f846441b6037ba1c20deddd7f68a0238a6c",
+      "fingerprint": "f6b83d8f01dbe64b6806e1fd7fcfc438914122765a4990b300715241061c7c8d",
       "snapshot": {
-        "examples/solid/keyboard-layouts/tsconfig.json": "09ac0ba991241b8987c3ff1c5a6b421c54459a3603f2253d4a915f70c4a19d1f"
+        "examples/solid/keyboard-layouts/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/solid/keyboard-layouts/vite.config.ts": {
-      "fingerprint": "dafac4934b27c5225f7c268c441922361d84f9ed93aaf74eb60a7a995735f8cf",
+      "fingerprint": "210cd7abfbb118398f8da999ca74f2cffc46bff78c294ce89f29e5687984bf87",
       "snapshot": {
-        "examples/solid/keyboard-layouts/vite.config.ts": "ff85b2a31d8f2e2356559dde46de7ea8dc9b8aa3e8219cda88ca8668eaac4b52"
+        "examples/solid/keyboard-layouts/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
       },
-      "head": "a7c7ddcf89fac99790eb60372fc440fcc34f1b07",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, examples, tests, sidebar config, lockfile, or package/tsconfig wiring for the layout key types; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:examples/svelte/keyboard-layouts/.gitignore": {
       "fingerprint": "619698d457c4d2d8da6412de516b0d7320629480da150b16bb0cd5952af8eaf1",
@@ -23588,6 +23454,236 @@
       "outcome": "out-of-scope",
       "reason": "Test fixtures and the layout table generator; no skill guidance depends on them.",
       "evidence": ["No skill references this file"]
+    },
+    "source:examples/solid/createHeldKeys/tsconfig.json": {
+      "fingerprint": "d142d05ba0ecbc30c9b1b92b0922123b678d295647ca4cc2f079401fe1738d9e",
+      "snapshot": {
+        "examples/solid/createHeldKeys/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHeldKeys/vite.config.ts": {
+      "fingerprint": "d59975f828e351ff94711b3897314933fd59dabe76584f38b57a249c11f405fa",
+      "snapshot": {
+        "examples/solid/createHeldKeys/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkey-sequences/tsconfig.json": {
+      "fingerprint": "bf764b14d20d8242240657ef8537dbd98dca96cb95f65979b0f949a4b5707fa6",
+      "snapshot": {
+        "examples/solid/createHotkey-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkey-sequences/vite.config.ts": {
+      "fingerprint": "c34e9ea3eee6de7a7d6999530a12a7bb422150768bb3e0d0c420a2818e6e3864",
+      "snapshot": {
+        "examples/solid/createHotkey-sequences/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkey/tsconfig.json": {
+      "fingerprint": "c3b97a1e79cf21a2a4a56a3daab2cb2171ed396c92cf0ece322cc1bfe79c9aa2",
+      "snapshot": {
+        "examples/solid/createHotkey/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkey/vite.config.ts": {
+      "fingerprint": "d61828611fced8b56a8959de42788140d31f8703e0aead6843fe01cde6dc3318",
+      "snapshot": {
+        "examples/solid/createHotkey/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeyRecorder-sequences/tsconfig.json": {
+      "fingerprint": "00060d7a0e4b457b1f5629e5aa1f41075519152507bb5f09e1084ab8a08656d8",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeyRecorder-sequences/vite.config.ts": {
+      "fingerprint": "7dc03a88e4fc2fb4a6df5340f7b0c2fd0d101f1add72578c1f3f400fbd1ea62e",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder-sequences/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeyRecorder/tsconfig.json": {
+      "fingerprint": "fa33e36f5c7e8dca8777831086798e0ce995619ac1abbe57b85394ce2f153991",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeyRecorder/vite.config.ts": {
+      "fingerprint": "e687ebe62603d866f844774c29ea242c868be4fed66ac2cfd94ba13dc2ce505d",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeys-sequences/tsconfig.json": {
+      "fingerprint": "6c4c50ef624ff226038a74723db51fe18bcb2b55b087e5ea458ad6a6ac3805c1",
+      "snapshot": {
+        "examples/solid/createHotkeys-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeys-sequences/vite.config.ts": {
+      "fingerprint": "9b33da2409d5550c81212c9697673f277e03ca5a0d17e0efbee28544bd3f67e1",
+      "snapshot": {
+        "examples/solid/createHotkeys-sequences/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeys/tsconfig.json": {
+      "fingerprint": "c22077faeda9d3d0ce759c8216cb08d5bffb3529dd2b76e6e1ef250255295fe4",
+      "snapshot": {
+        "examples/solid/createHotkeys/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createHotkeys/vite.config.ts": {
+      "fingerprint": "1314d2418c91c10a3d886c44a12dc7c000752e74e16946ea8620dff69eb88df9",
+      "snapshot": {
+        "examples/solid/createHotkeys/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createKeyHold/tsconfig.json": {
+      "fingerprint": "68e2c89fa8424073756608da04bf8ed7c7a5a3f51e1845f155b46dd76312d50d",
+      "snapshot": {
+        "examples/solid/createKeyHold/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/createKeyHold/vite.config.ts": {
+      "fingerprint": "fce6a8950ee45caeb846f00803c906d90d86c29b1fa6dca8603d97279882a7ed",
+      "snapshot": {
+        "examples/solid/createKeyHold/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/kitchen-sink/tsconfig.json": {
+      "fingerprint": "c9d1ba76593359a7e042d87e96a003ff0377b9a3ad17bca4cefa3e518b48812e",
+      "snapshot": {
+        "examples/solid/kitchen-sink/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/kitchen-sink/vite.config.ts": {
+      "fingerprint": "38682c5201e0490f036385e49440172102b12de537868d15eb7b9d198a7bfe28",
+      "snapshot": {
+        "examples/solid/kitchen-sink/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/scopes/tsconfig.json": {
+      "fingerprint": "02dcb3c7482d972465a037ce3f33df52cd4e85e081e7d2a240b346ae269f53ba",
+      "snapshot": {
+        "examples/solid/scopes/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:examples/solid/scopes/vite.config.ts": {
+      "fingerprint": "5a4e97ade13b993432bd78a8ffd24c5ed912df8689f10e51e328053615c95de7",
+      "snapshot": {
+        "examples/solid/scopes/vite.config.ts": "60c3b2225e24012f91c9910cb81b84fc922931477283b5357aad251dd8828298"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:packages/hotkeys-devtools/tsdown.config.ts": {
+      "fingerprint": "57bdd3b84ad83e786d08a3883dd50d27a7176d10525d4978287ed1acb03c4558",
+      "snapshot": {
+        "packages/hotkeys-devtools/tsdown.config.ts": "3454f01062bd292126e17426d95b1fc09aca506bf69d18b315ae3b4cb59107e9"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:packages/solid-hotkeys-devtools/tests/production.test.ts": {
+      "fingerprint": "45d0727ed8537ba8f0b35084151d0fc86fc1dd1c639935effd37ee63387f4820",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/tests/production.test.ts": "c5679ad65b4ac81f582cd6aa86a748f9f7b347fa472c9ab5a15b7d1de34ef27d"
+      },
+      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+    },
+    "source:packages/solid-hotkeys/tsdown.config.ts": {
+      "fingerprint": "116eaf79e3f19b9ae225b3ddf3e369b292097b28daf0c594e191c15db962d8a5",
+      "snapshot": {
+        "packages/solid-hotkeys/tsdown.config.ts": "50a6a22feb3676bf3cd5a2c3feb9fc02d6deb68d315fde8a428a9b898543c526"
+      },
+      "head": "56348ac9b038be0fd612a8d895f49db991466190",
+      "outcome": "no-change",
+      "reason": "Solid 2 port of this file (imports, effects, attributes, versions), a formatting change, or a regenerated reference page. The solid-hotkeys skill covers the guidance change.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     }
   }
 }

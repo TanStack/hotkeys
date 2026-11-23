@@ -3,8 +3,7 @@ import {
   prepareHotkeyDefinitions,
   resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
-import { createEffect, onCleanup, untrack } from 'solid-js'
-import { delegateEvents } from 'solid-js/web'
+import { createEffect, onCleanup } from 'solid-js'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
@@ -51,21 +50,19 @@ export function createHotkeys(
   // Clean up only when this owner disposes, not before every effect re-run.
   onCleanup(() => bindings.destroy())
 
-  createEffect(() => {
-    // Track app hotkeys so registrations move with custom hotkeys.
-    appHotkeys.state()
-    const definitions = prepareHotkeyDefinitions(resolveMaybeGetter(hotkeys), {
-      appHotkeysStore: appHotkeys.store,
-      defaults: defaultOptions().hotkey,
-      commonOptions: resolveMaybeGetter(commonOptions),
-      // An unset target skips registration until the element exists.
-      resolveTarget: (target) => target,
-    })
-    // Solid's onKeyDown listener on the document must come before the
-    // hotkeys' listener there, even when the first module that uses
-    // onKeyDown loads later. This runs only in the browser.
-    delegateEvents(['keydown', 'keyup'])
-    // Untrack store writes so registrations do not re-trigger this effect.
-    untrack(() => bindings.update(definitions))
-  })
+  createEffect(
+    () => {
+      // Track app hotkeys so registrations move with custom hotkeys.
+      appHotkeys.state()
+      return prepareHotkeyDefinitions(resolveMaybeGetter(hotkeys), {
+        appHotkeysStore: appHotkeys.store,
+        defaults: defaultOptions().hotkey,
+        commonOptions: resolveMaybeGetter(commonOptions),
+        // An unset target skips registration until the element exists.
+        resolveTarget: (target) => target,
+      })
+    },
+    // The effect half is untracked, so registration writes do not re-run it.
+    (definitions) => bindings.update(definitions),
+  )
 }

@@ -42,7 +42,7 @@ npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
 
 # Solid
 
-Requires Solid 1.9.15 or newer within version 1.
+Requires Solid 2 and `@tanstack/solid-devtools` 0.9 or newer. For Solid 1 (1.9.15 or newer), install `@tanstack/solid-hotkeys-devtools@0.13`, the last release for Solid 1.
 
 ```sh
 npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools

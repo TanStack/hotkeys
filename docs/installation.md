@@ -42,7 +42,9 @@ Start with the [Quick Start](./framework/preact/quick-start) guide and the Preac
 
 # Solid
 
-Use Solid 1.7 or newer within version 1. The devtools panel needs Solid 1.9.15 or newer.
+Use Solid 2. `@tanstack/solid-hotkeys` 0.26 and `@tanstack/solid-hotkeys-devtools` 0.14 and newer need Solid 2, which needs Node 22.12 or newer.
+
+For Solid 1 (1.7 or newer), install the last releases that support it: `@tanstack/solid-hotkeys@0.25` and, for the devtools panel (Solid 1.9.15 or newer), `@tanstack/solid-hotkeys-devtools@0.13`.
 
 Start with the [Quick Start](./framework/solid/quick-start) guide and the Solid-specific [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
 

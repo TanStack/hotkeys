@@ -1,11 +1,11 @@
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager, getKeyboardLayoutStore } from '@tanstack/hotkeys'
-import { Show, createSignal } from 'solid-js'
+import { Show, createSignal, flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'
 import { createKeyboardLayout } from '../src/createKeyboardLayout'
-import type { JSX } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 
 const AZERTY = new Map([['KeyQ', 'a']])
 // The French BÉPO layout types `b` on this key
@@ -155,10 +155,12 @@ describe('keyboard layout labels', () => {
     expect(getLayoutMap).not.toHaveBeenCalled()
 
     setKeyboardLayout(true)
+    flush()
     await settle()
     expect(container.textContent).toBe('Ctrl+A')
 
     setKeyboardLayout(false)
+    flush()
     expect(container.textContent).toBe('Ctrl+Q')
     window.dispatchEvent(new Event('focus'))
     expect(getLayoutMap).toHaveBeenCalledOnce()
@@ -175,6 +177,7 @@ describe('keyboard layout labels', () => {
     await settle()
     expect(container.textContent).toBe('⌘ A')
     setPlatform('windows')
+    flush()
     expect(container.textContent).toBe('Ctrl+A')
     expect(getLayoutMap).toHaveBeenCalledOnce()
   })
@@ -232,6 +235,7 @@ describe('keyboard layout labels', () => {
     ))
     await settle()
     setShow(false)
+    flush()
     window.dispatchEvent(new Event('focus'))
     expect(getLayoutMap).toHaveBeenCalledOnce()
   })

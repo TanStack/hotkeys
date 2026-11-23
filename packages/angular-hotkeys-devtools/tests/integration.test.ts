@@ -58,6 +58,7 @@ it('shows an injectHotkey registration in the panel until its injector is destro
   expect(row()!.textContent).toContain('keyup')
 
   TestBed.resetTestingModule()
-  expect(row()).toBeUndefined()
+  // The Solid 2 panel applies store changes on its next flush, a microtask.
+  await vi.waitFor(() => expect(row()).toBeUndefined())
   expect(host.textContent).toContain('Hotkeys (0)')
 })

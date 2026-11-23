@@ -1,10 +1,10 @@
+import { render } from '@solidjs/web'
 import {
   HotkeyManager,
   KeyStateTracker,
   createHotkey,
 } from '@tanstack/solid-hotkeys'
-import { Show, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { Show, createSignal, flush } from 'solid-js'
 import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeysDevtoolsPanel } from '../src/SolidHotkeysDevtools'
 
@@ -56,6 +56,7 @@ it('shows a createHotkey registration in the panel until its owner is disposed',
   expect(row()!.textContent).toContain('keyup')
 
   setShow(false)
+  flush()
   expect(row()).toBeUndefined()
   expect(host.textContent).toContain('Hotkeys (0)')
 })

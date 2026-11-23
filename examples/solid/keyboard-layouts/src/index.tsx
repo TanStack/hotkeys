@@ -1,5 +1,6 @@
 /* @refresh reload */
 
+import { render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
@@ -8,7 +9,6 @@ import {
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { For, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
 import type { GermanKeys, Hotkey, UsKeys } from '@tanstack/solid-hotkeys'
 import './index.css'
 

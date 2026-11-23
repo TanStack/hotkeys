@@ -1,11 +1,12 @@
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
+import { Loading, createMemo, createSignal, flush } from 'solid-js'
 import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { createHotkeys } from '../src/createHotkeys'
+
 const press = () =>
   document.dispatchEvent(
     new KeyboardEvent('keydown', { key: 'a', bubbles: true }),
@@ -29,6 +30,7 @@ it('updates a direct enabled property getter without user setOptions', () => {
   press()
   expect(callback).toHaveBeenCalledTimes(1)
   setEnabled(false)
+  flush()
   press()
   expect(callback).toHaveBeenCalledTimes(1)
 })
@@ -47,6 +49,7 @@ it('updates provider defaults when its options object is replaced', () => {
   press()
   expect(callback).toHaveBeenCalledTimes(1)
   setEnabled(false)
+  flush()
   press()
   expect(callback).toHaveBeenCalledTimes(1)
 })
@@ -67,6 +70,7 @@ it('updates an active recorder callback property getter', () => {
   render(() => <Child />)
   recorder.startRecording()
   setCurrent(true)
+  flush()
   recorder.cancelRecording()
   expect(second).toHaveBeenCalledOnce()
   expect(first).not.toHaveBeenCalled()
@@ -116,13 +120,16 @@ it('refreshes all provider option groups without replacing registrations or acti
   expect(override).toHaveBeenCalledOnce()
   single.startRecording()
   setEnabled(false)
+  flush()
   single.cancelRecording()
   sequence.startRecording()
   setEnabled(true)
+  flush()
   sequence.cancelRecording()
   expect(first).toHaveBeenCalledOnce()
   expect(second).toHaveBeenCalledOnce()
   setEnabled(false)
+  flush()
   invoke()
   expect(run).toHaveBeenCalledTimes(4)
   expect(override).toHaveBeenCalledTimes(2)
@@ -131,4 +138,31 @@ it('refreshes all provider option groups without replacing registrations or acti
   )
   view.unmount()
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
+})
+
+it('waits for async recorder options instead of throwing', async () => {
+  let resolve!: (callback: () => void) => void
+  const onCancel = vi.fn()
+  let recorder!: ReturnType<typeof createHotkeyRecorder>
+  function Child() {
+    const cancel = createMemo(
+      () => new Promise<() => void>((r) => (resolve = r)),
+    )
+    recorder = createHotkeyRecorder(() => ({
+      onRecord() {},
+      onCancel: cancel(),
+    }))
+    return null
+  }
+  render(() => (
+    <Loading>
+      <Child />
+    </Loading>
+  ))
+  resolve(onCancel)
+  await new Promise((r) => setTimeout(r, 0))
+  flush()
+  recorder.startRecording()
+  recorder.cancelRecording()
+  expect(onCancel).toHaveBeenCalledOnce()
 })

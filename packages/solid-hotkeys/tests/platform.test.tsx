@@ -3,15 +3,15 @@ import {
   HotkeyManager,
   formatForDisplay as coreFormatForDisplay,
 } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as adapter from '../src'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
+import type { JSX } from '@solidjs/web'
 import type { HotkeyPlatform } from '@tanstack/hotkeys'
-import type { JSX } from 'solid-js'
 
 function press(init: KeyboardEventInit) {
   document.dispatchEvent(
@@ -46,6 +46,7 @@ describe('provider platform', () => {
     ))
     expect(container.textContent).toBe('⌘ S')
     setPlatform('windows')
+    flush()
     expect(container.textContent).toBe('Ctrl+S')
     unmount()
   })

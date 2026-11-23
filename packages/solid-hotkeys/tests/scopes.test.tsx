@@ -1,14 +1,13 @@
-// @vitest-environment happy-dom
-
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
+// @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createAppHotkeyList } from '../src/appHotkeys'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyScopesState } from '../src/createHotkeyScopesState'
-import type { JSX } from 'solid-js'
+import type { Element } from 'solid-js'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S' },
@@ -22,7 +21,7 @@ function press(key: string) {
   document.dispatchEvent(new KeyboardEvent('keyup', { key, bubbles: true }))
 }
 
-function Root(props: { children: JSX.Element }) {
+function Root(props: { children: Element }) {
   return (
     <HotkeysProvider
       appHotkeys={appHotkeys}
@@ -148,11 +147,13 @@ describe('HotkeysProvider scopes', () => {
     expect(calls()).toEqual([1, 0, 1])
 
     setOpen(true)
+    flush()
     press('e')
     press('k')
     expect(calls()).toEqual([1, 1, 1])
 
     setOpen(false)
+    flush()
     press('e')
     expect(calls()).toEqual([2, 1, 1])
   })
@@ -174,6 +175,7 @@ describe('HotkeysProvider scopes', () => {
     ))
     const activate = vi.spyOn(HotkeyManager.getInstance(), 'activateScope')
     setAllow(['global'])
+    flush()
     expect(activate).not.toHaveBeenCalled()
 
     press('e')
@@ -197,6 +199,7 @@ describe('HotkeysProvider scopes', () => {
     ))
     press('e')
     setEnabled(false)
+    flush()
     press('e')
     expect(save).toHaveBeenCalledTimes(1)
     expect(HotkeyManager.getInstance().isScopeActive('editor')).toBe(false)
@@ -223,6 +226,7 @@ describe('HotkeysProvider scopes', () => {
     ))
     expect(list().map((item) => item.status)).toEqual(['active', 'active'])
     setOpen(true)
+    flush()
     expect(list().map((item) => item.status)).toEqual([
       'suspended',
       'suspended',
@@ -243,6 +247,7 @@ describe('HotkeysProvider scopes', () => {
     const release = HotkeyManager.getInstance().activateScope('dialog', {
       exclusive: true,
     })
+    flush()
     expect(state()).toMatchObject({
       active: ['dialog'],
       exclusive: 'dialog',
@@ -251,6 +256,7 @@ describe('HotkeysProvider scopes', () => {
     expect(container.textContent).toBe('dialog')
 
     release()
+    flush()
     expect(state()).toMatchObject({ exclusive: null, suspended: [] })
     expect(container.textContent).toBe('none')
   })

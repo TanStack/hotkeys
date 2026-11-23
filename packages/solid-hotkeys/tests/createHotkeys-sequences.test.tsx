@@ -1,8 +1,7 @@
-// @vitest-environment happy-dom
-
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager } from '@tanstack/hotkeys'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
+// @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createHotkeys } from '../src/createHotkeys'
 import type { Component } from 'solid-js'
@@ -153,9 +152,11 @@ describe('createHotkeys', () => {
     expect(manager.getRegistrationCount()).toBe(1)
 
     setEnabled(false)
+    flush()
     expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
 
     setEnabled(true)
+    flush()
     expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
   })
 
@@ -181,6 +182,7 @@ describe('createHotkeys', () => {
       { hotkey: ['G', 'G'], callback: gg },
       { hotkey: ['Y', 'Y'], callback: yy },
     ])
+    flush()
 
     dispatchKey('y')
     dispatchKey('y')

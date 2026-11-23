@@ -1,10 +1,9 @@
-import solid from 'vite-plugin-solid'
+import solid from '@solidjs/vite-plugin'
 import { defineConfig } from 'vitest/config'
 import packageJson from './package.json' with { type: 'json' }
 
 export default defineConfig({
   plugins: [solid()],
-  resolve: { conditions: ['browser'] },
   test: {
     name: packageJson.name,
     dir: './tests',
@@ -18,8 +17,9 @@ export default defineConfig({
       thresholds: { lines: 99, branches: 99, functions: 99, statements: 99 },
     },
     globals: true,
-    // The integration test mounts the real Solid panel next to the adapter: load
-    // browser builds, and share one @tanstack/hotkeys instance between them.
-    server: { deps: { inline: [/solid-js/, /@tanstack\//] } },
+    // The integration test mounts the real Solid panel next to the adapter:
+    // share one @tanstack/hotkeys instance between them. The Solid plugin
+    // already loads Solid's browser builds in tests.
+    server: { deps: { inline: [/@tanstack\//] } },
   },
 })

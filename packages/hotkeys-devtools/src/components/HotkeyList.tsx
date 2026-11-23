@@ -7,9 +7,7 @@ import {
   createEffect,
   createMemo,
   createSignal,
-  on,
-  onCleanup,
-  untrack,
+  onSettled,
 } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import {
@@ -120,23 +118,19 @@ function RegistrationRow(props: {
       : 0
   })
 
-  const [prevCount, setPrevCount] = createSignal(untrack(triggerCount))
   const [pulsing, setPulsing] = createSignal(false)
 
   let pulseTimer: ReturnType<typeof setTimeout> | undefined
-  onCleanup(() => clearTimeout(pulseTimer))
+  onSettled(() => () => clearTimeout(pulseTimer))
 
-  createEffect(
-    on(triggerCount, (current) => {
-      if (current > prevCount()) {
-        // Restart the pulse when it fires again before the last one ends.
-        clearTimeout(pulseTimer)
-        setPulsing(true)
-        pulseTimer = setTimeout(() => setPulsing(false), 600)
-      }
-      setPrevCount(current)
-    }),
-  )
+  createEffect(triggerCount, (current, prev) => {
+    if (prev !== undefined && current > prev) {
+      // Restart the pulse when it fires again before the last one ends.
+      clearTimeout(pulseTimer)
+      setPulsing(true)
+      pulseTimer = setTimeout(() => setPulsing(false), 600)
+    }
+  })
 
   const metaName = () => liveReg().options.meta?.name
   const rowTooltip = () => buildRowTooltip(liveReg().options.meta)

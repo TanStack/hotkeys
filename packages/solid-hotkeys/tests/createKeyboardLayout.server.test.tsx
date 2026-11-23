@@ -1,5 +1,5 @@
+import { renderToString } from '@solidjs/web'
 import { getKeyboardLayoutStore } from '@tanstack/hotkeys'
-import { renderToString } from 'solid-js/web'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'

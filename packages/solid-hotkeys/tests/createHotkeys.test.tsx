@@ -1,13 +1,11 @@
-// @vitest-environment happy-dom
-
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager } from '@tanstack/hotkeys'
-import { createSignal, type Component } from 'solid-js'
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import {
-  createHotkeys,
-  type CreateHotkeyDefinition,
-} from '../src/createHotkeys'
+import { createSignal, flush } from 'solid-js'
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { createHotkeys } from '../src/createHotkeys'
+import type { Component } from 'solid-js'
+import type { CreateHotkeyDefinition } from '../src/createHotkeys'
 
 describe('createHotkeys', () => {
   beforeEach(() => {
@@ -178,9 +176,11 @@ describe('createHotkeys', () => {
     expect(manager.getRegistrationCount()).toBe(1)
 
     setEnabled(false)
+    flush()
     expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
 
     setEnabled(true)
+    flush()
     expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
   })
 
@@ -218,6 +218,7 @@ describe('createHotkeys', () => {
     expect(manager.getRegistrationCount()).toBe(2)
 
     getByRole('button').click()
+    flush()
 
     expect(manager.getRegistrationCount()).toBe(2)
 

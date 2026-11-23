@@ -1,5 +1,6 @@
 /* @refresh reload */
 
+import { render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   createFormatForDisplay,
@@ -11,7 +12,6 @@ import {
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { createSignal, Show, For } from 'solid-js'
-import { render } from 'solid-js/web'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
 
@@ -331,7 +331,7 @@ function RegistrationsViewer() {
           </For>
           <Show when={hotkeys().length === 0}>
             <tr>
-              <td colSpan={5} class="empty-row">
+              <td colspan={5} class="empty-row">
                 No hotkeys registered
               </td>
             </tr>

@@ -1,3 +1,4 @@
+import { Dynamic, render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
@@ -17,11 +18,11 @@ import {
   Show,
   createContext,
   createSignal,
-  onCleanup,
-  onMount,
+  onSettled,
   useContext,
 } from 'solid-js'
-import { Dynamic, render } from 'solid-js/web'
+import type { JSX } from '@solidjs/web'
+import './styles.css'
 import type {
   Hotkey,
   HotkeyPlatform,
@@ -29,8 +30,6 @@ import type {
   RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
-import './styles.css'
-import type { JSX } from 'solid-js'
 
 // The recorder sends a reason code, so the app writes the text
 const rejectionText = ({ reason, message }: RecorderRejection) =>
@@ -65,10 +64,10 @@ function Hint(props: { hotkey: RegisterableHotkey }) {
 function Layout() {
   const formatForDisplay = createFormatForDisplay()
   const [path, setPath] = createSignal(location.hash.slice(1) || '/')
-  onMount(() => {
+  onSettled(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
     window.addEventListener('hashchange', update)
-    onCleanup(() => window.removeEventListener('hashchange', update))
+    return () => window.removeEventListener('hashchange', update)
   })
   const [showShortcuts, setShowShortcuts] = createSignal(false)
   const [activity, setActivity] = createSignal<Array<string>>([])
@@ -102,7 +101,7 @@ function Layout() {
     }),
   )
   return (
-    <ActivityContext.Provider value={log}>
+    <ActivityContext value={log}>
       <header>
         <h1>TanStack Hotkeys kitchen sink</h1>
         <p>
@@ -118,7 +117,7 @@ function Layout() {
         </nav>
         <button
           onClick={() => setShowShortcuts((value) => !value)}
-          aria-expanded={showShortcuts()}
+          aria-expanded={showShortcuts() ? 'true' : 'false'}
         >
           {showShortcuts() ? 'Hide' : 'Show'} shortcuts{' '}
           <Hint hotkey="Alt+Shift+[KeyK]" />
@@ -203,7 +202,7 @@ function Layout() {
         </ul>
       </section>
       <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
-    </ActivityContext.Provider>
+    </ActivityContext>
   )
 }
 /** Single shortcuts share handlers with buttons and respect enabled/input policies. */
@@ -264,10 +263,10 @@ function Tickets() {
   )
 }
 /** Each editor owns a target ref, so the same shortcuts can be reused independently. */
-function EditorPane({ name }: { name: string }) {
+function EditorPane(props: { name: string }) {
   const formatForDisplay = createFormatForDisplay()
   const log = useContext(ActivityContext)
-  let target: HTMLFieldSetElement | undefined
+  const [target, setTarget] = createSignal<HTMLFieldSetElement>()
   const [text, setText] = createSignal('One shortcut, two independent editors.')
   const [saves, setSaves] = createSignal(0)
   createHotkeys(
@@ -276,11 +275,11 @@ function EditorPane({ name }: { name: string }) {
         hotkey: 'Mod+[KeyS]',
         callback: () => {
           setSaves((n) => n + 1)
-          log(`${name} saved`)
+          log(`${props.name} saved`)
         },
         options: {
           meta: {
-            name: `Save ${name}`,
+            name: `Save ${props.name}`,
             group: 'Editor',
             description: 'Limited to this editor',
           },
@@ -290,17 +289,17 @@ function EditorPane({ name }: { name: string }) {
         hotkey: 'Alt+[Backspace]',
         callback: () => {
           setText('')
-          log(`${name} cleared`)
+          log(`${props.name} cleared`)
         },
-        options: { meta: { name: `Clear ${name}`, group: 'Editor' } },
+        options: { meta: { name: `Clear ${props.name}`, group: 'Editor' } },
       },
     ],
-    () => ({ target, ignoreInputs: false }),
+    () => ({ target: target(), ignoreInputs: false }),
   )
   return (
-    <fieldset ref={target}>
+    <fieldset ref={setTarget}>
       <legend>
-        {name} — {saves()} saves
+        {props.name} — {saves()} saves
       </legend>
       <label>
         Editor content
@@ -332,12 +331,12 @@ function Editor() {
       meta: { name: 'Advance counter', group: 'Editor' },
     }),
   )
-  let scope: HTMLFieldSetElement | undefined
+  const [scope, setScope] = createSignal<HTMLFieldSetElement>()
   createHotkey(
     'Alt+[KeyB]',
     () => log('Target B handler'),
     () => ({
-      target: scope,
+      target: scope(),
       stopPropagation: !bubble(),
       preventDefault: !bubble(),
       meta: { name: 'Target propagation demo', group: 'Editor' },
@@ -379,7 +378,7 @@ function Editor() {
         {count()}. Release <kbd>{formatForDisplay('Alt+[KeyU]')}</kbd> to log a
         keyup event.
       </p>
-      <fieldset ref={scope} tabIndex={0}>
+      <fieldset ref={setScope} tabindex={0}>
         <legend>Propagation</legend>
         <label>
           <input
@@ -393,7 +392,7 @@ function Editor() {
           Focus this area and press <kbd>{formatForDisplay('Alt+[KeyB]')}</kbd>.
           Activity shows whether the document handler also receives the event.
         </p>
-        <button onClick={() => scope?.focus()}>Focus this area</button>
+        <button onClick={() => scope()?.focus()}>Focus this area</button>
       </fieldset>
     </section>
   )

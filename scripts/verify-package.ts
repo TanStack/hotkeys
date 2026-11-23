@@ -25,6 +25,21 @@ interface PackedManifest {
   'ember-addon'?: { version: number; main: string }
 }
 
+/** The Node range a package declares, which follows its framework's floor. */
+function nodeEngine(name: string): string {
+  if (name === '@tanstack/octane-hotkeys') return '>=22.22.2'
+  // Solid 2 and the devtools packages built on it need Node 22.12.
+  if (
+    [
+      '@tanstack/solid-hotkeys',
+      '@tanstack/solid-hotkeys-devtools',
+      '@tanstack/hotkeys-devtools',
+    ].includes(name)
+  )
+    return '>=22.12.0'
+  return '>=20'
+}
+
 const useClient = /^\s*['"]use client['"]/
 
 // Validate an actual pnpm tarball, not the workspace where unpublished source
@@ -59,10 +74,7 @@ try {
   } else {
     assert.equal(manifest.type, 'module', 'Packages must be ESM')
   }
-  assert.equal(
-    manifest.engines.node,
-    manifest.name === '@tanstack/octane-hotkeys' ? '>=22.22.2' : '>=20',
-  )
+  assert.equal(manifest.engines.node, nodeEngine(manifest.name))
   assert.equal(manifest.types, './dist/index.d.ts')
   assert.equal(manifest.main, undefined, 'Do not restore a legacy main entry')
   // Packages that ship Intent skills list `skills` after the build output.
