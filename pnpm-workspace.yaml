@@ -10,6 +10,13 @@ trustPolicyExclude:
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  # TanStack Start for Solid 2 with the start-server-core import fix: published
+  # less than 24 hours ago
+  - '@tanstack/solid-router@2.0.0-rc.12'
+  - '@tanstack/solid-start@2.0.0-rc.12'
+  - '@tanstack/solid-start-client@2.0.0-rc.12'
+  - '@tanstack/solid-start-server@2.0.0-rc.12'
 packages:
   - 'e2e'
   - 'e2e/adapters/apps/*'

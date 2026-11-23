@@ -5961,14 +5961,16 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "d0d37f044bc2f5b78c3390dc89beb165a9fc29813a255cf78578d4a6650ad2bb",
+      "fingerprint": "780c581ce3a110afb6f8cc8acb2ac497e7685fbfd01d2ebb277f1e9bb594a0e0",
       "snapshot": {
-        "pnpm-workspace.yaml": "bbf84524dbc8d57ceb3221a8199a989a8149c28cd9c996800da6a48905f41487"
+        "pnpm-workspace.yaml": "6076b80972a81efc2a41aff473f11e6ac156dbb323550e54fe4e6f70c2373194"
       },
-      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "head": "2da02315036394db5ee2d32ccbfeb3f5eac016a8",
       "outcome": "no-change",
-      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
-      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+      "reason": "Workspace release-age exclusions for the Solid 2 TanStack Start example; no skill content depends on them",
+      "evidence": [
+        "Changed: pnpm-workspace.yaml at 2da02315036394db5ee2d32ccbfeb3f5eac016a8"
+      ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "9f52c68f9d48ad5889e49faa5ee199109a997e3947638000527fc77350f81943",
