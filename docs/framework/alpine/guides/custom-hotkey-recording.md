@@ -6,12 +6,9 @@ redirect_from:
   - framework/alpine/guides/hotkey-recording
 ---
 
-> [!IMPORTANT]
-> `scope.createHotkeyRecorder` was removed in `@tanstack/alpine-hotkeys` v0.10.0, so apps that don't record hotkeys don't ship the recorder. Call `createHotkeyRecorder(scope, options)` instead, or `$hotkeyRecorder(options)` after you install `hotkeyRecorderPlugin`.
+`createHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. Pass it an owner from `createHotkeysScope`, which destroys the recorder with its other hotkeys. Use it only when users can change the app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
 
-`createHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. Pass it an owner from `createHotkeysScope`, which destroys the recorder with its other hotkeys. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
-
-While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. You don't need to disable them yourself.
+While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. The app doesn't need to disable them.
 
 ## Record a chord
 
@@ -92,7 +89,7 @@ The recorder has its state and controls. State members are reactive getters, so 
 
 ## Record a sequence
 
-Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step, and the recording commits when the user presses Enter, or after `idleTimeoutMs` without a new step:
+Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step, and the recording commits when the user presses Enter or, when `idleTimeoutMs` is configured, after that delay without a new step:
 
 ```ts
 Alpine.data('sequenceRecorder', () => {
@@ -190,8 +187,7 @@ By default, the check compares the recording with every enabled `keydown` hotkey
 ```ts
 detectConflicts: {
   excludeIds: [registration.id], // Skip the hotkey being changed
-  target: panelElement, // Only hotkeys on this element, inside it, or around it
-  scope: 'all', // Ignore target and check hotkeys on every element. Unrelated to hotkey scopes.
+  target: panelElement, // Only hotkeys on this element, inside it, or around it (pass scope: 'all' instead to check every element)
   eventType: 'keyup', // Check keyup hotkeys instead
   includeDisabled: true, // Include disabled hotkeys
   exclude: (registration) => registration.options.scope === 'vim', // Skip one hotkey scope
@@ -202,9 +198,17 @@ Two hotkeys can be written differently and still fire for the same key press. On
 
 A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
 
-`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code that can't be recorded another way, or `'alt-graph'` for an AltGr press it can't record. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
+`onReject` doesn't generate user-facing copy. Map `reason`, along with the optional `hotkey`, `conflicts`, and `message`, to your own UI strings:
 
-To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
+| `reason` | When it happens |
+| --- | --- |
+| `'conflict'` | Collides with a registered hotkey (`conflicts` lists the matches) |
+| `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
+| `'whitespace'` | The user pressed a whitespace character that can't be recorded |
+| `'missing-code'` | The key press had no physical `code`, and the recorder can't record it another way |
+| `'alt-graph'` | The user pressed an `AltGr` combination that the recorder can't record |
+
+`findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 ## Build a shortcut settings screen
 
@@ -292,3 +296,8 @@ Alpine.data('shortcutSettings', () => {
 To change the defaults for every recorder on an owner, pass `hotkeyRecorder` options to `createHotkeysScope`, such as `createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } })`. The [`createHotkeyRecorder` reference](../reference/functions/createHotkeyRecorder.md) lists the types.
 
 The [createHotkeyRecorder example](../examples/createHotkeyRecorder) records chords, and the [sequences example](../examples/createHotkeyRecorder-sequences) records sequences.
+
+## Migrating from v0.9 and earlier
+
+> [!NOTE]
+> `scope.createHotkeyRecorder` was removed in `@tanstack/alpine-hotkeys` v0.10.0, so apps that don't record hotkeys don't ship the recorder. Call `createHotkeyRecorder(scope, options)` instead, or `$hotkeyRecorder(options)` after you install `hotkeyRecorderPlugin`.

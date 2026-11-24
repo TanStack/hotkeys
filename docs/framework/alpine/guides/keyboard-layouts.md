@@ -56,9 +56,32 @@ TypeScript checks only the hotkeys in your TypeScript files, such as the ones in
 - Letters match Shift exactly. A letter that your layout types with Shift, such as Turkish `İ` or Swiss German `È`, needs Shift in the hotkey: `Shift+İ`. Symbols typed with Shift don't: German types `§` with Shift+3, and `§` matches it.
 - The recorder records whatever the user presses, which can be a key outside your registered sets.
 
-## Choose the sets
+## Available key sets
 
-There are 26 sets, which cover 33 layouts, such as `UkKeys`, `FrenchKeys`, `SwedishKeys`, and `RussianKeys`. Layouts that type the same keys share a set under two names, such as `AustrianKeys` and `GermanKeys`. [Sensible Defaults](../../../guides/sensible-defaults.md#type-keys-from-other-keyboard-layouts) lists every set and how each one is built.
+26 exported sets cover 33 layouts. Identical layouts share aliases, such as `AustrianKeys` and `GermanKeys`. Each set includes characters typed unshifted or with `Shift` across Windows, macOS, and Linux, excluding dead keys and `AltGr` or `Option` characters:
+
+| Set | Layouts |
+| --- | --- |
+| `UsKeys` | US QWERTY (default) |
+| `UkKeys` | UK (British) |
+| `GermanKeys`, `AustrianKeys` | German and Austrian QWERTZ |
+| `SwissGermanKeys`, `SwissFrenchKeys` | Swiss German and Swiss French |
+| `FrenchKeys`, `BelgianKeys` | French and Belgian AZERTY |
+| `CanadianFrenchKeys` | Canadian French |
+| `SpanishKeys`, `LatinAmericanKeys` | Spanish (Spain) and Latin American |
+| `PortugueseKeys`, `BrazilianKeys` | Portuguese (Portugal) and Brazilian ABNT2 |
+| `ItalianKeys` | Italian |
+| `DanishKeys`, `NorwegianKeys` | Danish and Norwegian |
+| `SwedishKeys`, `FinnishKeys` | Swedish and Finnish |
+| `IcelandicKeys` | Icelandic |
+| `CzechKeys`, `SlovakKeys`, `HungarianKeys` | Czech, Slovak, and Hungarian QWERTZ |
+| `CroatianKeys`, `SlovenianKeys`, `SerbianLatinKeys` | Croatian, Slovenian, and Serbian (Latin) |
+| `EstonianKeys`, `LithuanianKeys` | Estonian and Lithuanian |
+| `TurkishKeys` | Turkish Q |
+| `RomanianKeys` | Romanian (standard) |
+| `GreekKeys`, `RussianKeys`, `UkrainianKeys`, `BulgarianKeys`, `HebrewKeys` | Greek, Russian, Ukrainian, Bulgarian (BDS), and Hebrew |
+
+Polish and Latvian share US QWERTY base keys without `AltGr`, and most Dutch users use US International, so they don't need separate sets.
 
 ## Example
 

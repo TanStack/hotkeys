@@ -4,79 +4,93 @@ id: overview
 description: TanStack Hotkeys is a type-safe keyboard shortcut library for React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, Octane, and vanilla JavaScript.
 ---
 
-TanStack Hotkeys is a type-safe, framework-agnostic library for keyboard shortcuts. It includes:
+TanStack Hotkeys is a type-safe, framework-agnostic keyboard shortcut library. It includes:
 
-- **Hotkey registration** for shortcuts like `Mod+S` and Vim-style sequences like `G G`
-- **Display formatting** for platform-appropriate labels like `⌘ S` and `Ctrl+S`
-- **Scopes** for turning groups of hotkeys on and off with the part of the page they belong to
-- **App hotkeys** for cheat sheets and user-customizable shortcuts
-- **Hotkey recording** for shortcut settings screens
-- **Key state tracking** for held keys and modifier hints
-- **Devtools** for inspecting shortcuts while you develop
+- **Hotkey registration** for single shortcuts (`Mod+S`) and Vim-style sequences (`G G`)
+- **Platform display formatting** (`⌘ S` on macOS, `Ctrl+S` on Windows and Linux)
+- **Scopes** to turn groups of shortcuts on and off with dialogs, panels, and tabs
+- **App hotkeys** for centralized shortcut registries, cheat sheets, and user rebinding
+- **Hotkey recording** for customizable shortcut settings screens
+- **Key state tracking** for held keys and modifier-reveal hints
+- **Devtools** to inspect registrations, scopes, and sequence progress live
+
+```tsx
+import { useHotkey } from '@tanstack/react-hotkeys'
+
+function Editor() {
+  useHotkey('Mod+S', () => saveDocument())
+  return <textarea />
+}
+```
 
 > [!IMPORTANT]
-> TanStack Hotkeys is currently in **beta** and its API is still subject to change. Early adopters are encouraged to help us solve edge cases across multiple keyboard layouts, locales, and operating systems.
+> TanStack Hotkeys is currently in **beta** and its API may still change. Early adopters are encouraged to report edge cases across keyboard layouts, locales, and operating systems.
 
 ## Motivation
 
-On the surface, keyboard shortcuts are a simple concept, and you would think that it should just take a couple of lines of code to implement them. And sometimes, it can be that simple. However, there are enough small "gotchas" that can eventually add up to an annoying amount of complexity when you need to consider multiple keyboard layouts, operating systems, custom shortcuts, conflicting hotkey scopes, properly ignoring input elements, and more. Browser keyboard events have their own edge cases too: key repeat, IME composition, and keys that look stuck after a missed key-up or a window switch.
+On the surface, keyboard shortcuts look like a two-line `keydown` listener. For one shortcut, they can be. Then real-world edge cases show up: cross-platform `Cmd` versus `Ctrl`, non-US keyboard layouts, ignoring inputs without breaking `Mod+S` or `Escape`, key auto-repeat, IME composition, overlapping scopes, and keys getting stuck when the user switches windows.
 
-As an app grows, its shortcuts also end up scattered across components. Cheat sheets and settings screens are maintained by hand, drift out of sync with the actual hotkeys, and miss shortcuts on pages that haven't loaded yet.
+As an app grows, shortcuts also end up scattered across components. Cheat sheets and settings screens are maintained by hand, drift out of sync with actual handlers, and miss shortcuts on routes that haven't mounted yet.
 
-Surprisingly, in our experience, even AI often struggles to get hotkey management fully correct. We believe that providing a library that brings type-safety and well thought out cross-platform compatibility to hotkey management is a valuable contribution to the community.
+Even AI coding tools frequently miss these details and fall back to fragile `keydown` checks. TanStack Hotkeys solves them once with type-safe bindings, sensible defaults, and framework adapters that clean up automatically.
+
+## Where to start
+
+Most apps only need to register shortcuts and render their labels. Jump straight to the Quick Start for your framework:
+
+- [React](framework/react/quick-start) · [Preact](framework/preact/quick-start) · [Solid](framework/solid/quick-start) · [Angular](framework/angular/quick-start) · [Vue](framework/vue/quick-start)
+- [Svelte](framework/svelte/quick-start) · [Lit](framework/lit/quick-start) · [Alpine](framework/alpine/quick-start) · [Ember](framework/ember/quick-start) · [Octane](framework/octane/quick-start)
+
+If you use vanilla JavaScript, install `@tanstack/hotkeys` directly. See [Installation](./installation).
+
+Once the basics are in place, add extra features when your app needs them:
+
+- **Scopes** for groups of shortcuts that turn on and off together, such as modals, drawers, or tabs
+- **App hotkeys** for an app-wide cheat sheet or user-customizable bindings
+- **Recording** for settings screens where users press keys to rebind shortcuts
 
 ## Features
 
 ### Hotkey registration
 
-Register shortcuts such as `Mod+S` to save a document or `Escape` to close a dialog. A hotkey registered by a component is active while that component is mounted, so a dialog's `Escape` works only while the dialog is open. Hotkeys can also be enabled conditionally or bound to a specific element. `HotkeyManager` handles event listeners, conflict detection, and input filtering.
+Register chords like `Mod+S` or `Escape` inside the components that own them. Hotkeys activate when a component mounts and clean up when it unmounts. Hotkeys also support conditional `enabled` flags and element-specific `target` options.
 
-By default, TanStack Hotkeys prevents the browser's default action, stops event propagation, and ignores single-key shortcuts while the user types in a text field. [Sensible Defaults](./guides/sensible-defaults) explains each default and how to change it.
+By default, matched hotkeys prevent the browser's default action, stop propagation, and skip single-key shortcuts while typing in text fields. See [Sensible Defaults](./guides/sensible-defaults) for every default and how to change it.
 
 ### Multi-key sequences
 
-Some shortcuts are a series of keystrokes instead of a single combination. Pass an array of chords anywhere a hotkey is accepted to register a Vim-style sequence such as `['G', 'G']` or `['D', 'I', 'W']`, with a configurable timeout between steps. Use sequences for navigation or commands when you want more shortcuts without adding more modifier keys.
+Pass an array of chords anywhere a hotkey is accepted to create Vim-style or multi-step commands like `['G', 'G']` or `['Mod+K', 'Mod+C']`, with a configurable timeout between steps.
 
 ### Type-safe, cross-platform bindings
 
-TypeScript autocomplete helps you write valid shortcut strings such as `Control+A`, `Alt+S`, or `Mod+Shift+G`. You can also use a `RawHotkeyChord` object, such as `{ key: 'S', mod: true }`.
+Editor autocomplete guides you through valid chord strings like `Control+A`, `Alt+S`, or `Mod+Shift+G`, and TypeScript rejects invalid modifier order or typos at compile time. Bindings also accept dynamic objects like `{ key: 'S', mod: true }`.
 
-`Mod` resolves to Command on macOS and Control on Windows and Linux, so the same binding works across operating systems. Logical shortcuts follow the character that was pressed, while physical shortcuts follow a keyboard position. This lets you choose between a letter-based command and a position-based control, such as movement in a game.
+`Mod` resolves to Command on macOS and Control on Windows and Linux. Choose logical bindings like `Mod+S` to follow the character on the user's keyboard layout, or physical bindings like `[KeyW]` to follow physical key positions such as WASD game controls.
 
 ### Display formatting
 
-Format chords and sequences for menus, buttons, and cheat sheets with platform-appropriate labels, such as `⌘ S` on macOS and `Ctrl+S` on Windows. You can display a shortcut as text or individual keycaps while keeping its stored hotkey separate from its label.
+Format any chord or sequence for buttons, tooltips, and menus (`⌘ S` on macOS, `Ctrl+S` on Windows and Linux), either as a string or as individual keycaps. Your stored hotkey stays portable while its label adapts to the user's OS and, in supported browsers or with a supplied layout map, to their keyboard layout.
 
 ### Scopes
 
-Larger apps reuse keys. `Escape` should close the dialog, not the panel behind it. Give part of your app a scope, and its hotkeys turn on and off with that part of the page. Nested scopes take precedence over the scopes around them, and an exclusive scope, such as a dialog's, suspends every other scope while it is open.
+Large apps reuse keys. `Escape` should close the active dialog, not the panel behind it. Wrap parts of your UI in scopes so shortcuts turn on and off with that UI. Nested scopes override outer ones, and `exclusive` scopes suspend everything outside an open modal.
 
 ### App hotkeys
 
-Hotkeys registered by components only exist while those components are mounted. Declare every hotkey up front with `defineAppHotkeys` and pass the declarations to your framework's provider to list them in cheat sheets and settings screens, even on routes that have not loaded. Users can rebind or unbind any of them, conflicts are checked across every declaration, and your app decides where to save their custom hotkeys.
+Component-level hotkeys only exist while their components are mounted. Declare your app's shortcuts up front with `defineAppHotkeys` so cheat sheets and settings screens know every shortcut, even on unloaded routes. Conflicts are checked across every declaration, and users can rebind or unbind keys with your choice of storage.
 
 ### Hotkey recording
 
-`HotkeyRecorder` captures a key combination so users can customize shortcuts in a settings UI. Set `maxSteps: Infinity` to let users record a sequence too. It supports validation and conflict checks before you save a hotkey. You can register the recorded hotkey directly, store it in your application's state, or save it as an app hotkey's custom hotkey.
+Capture user-pressed chords, or multi-step sequences with `maxSteps: Infinity`, for shortcut settings screens. Built-in validation and opt-in conflict detection (`detectConflicts` or `findConflicts`) run before saving.
 
 ### Key state tracking
 
-`KeyStateTracker` tracks held keys and modifiers. Framework APIs such as `useHeldKeys`, `useHeldKeyCodes`, and `useKeyHold` let you respond while a key is down. Use them for keyboard controls, visual feedback, or hints that appear while a modifier is held.
+React to keys being held down in real time with `useHeldKeys`, `useHeldKeyCodes`, and `useKeyHold`. Use them for canvas panning modifiers, custom keyboard indicators, or hints that appear while a modifier is held.
 
 ### Framework adapters
 
-Use React and Preact hooks, Solid primitives, Angular inject APIs, Vue composables, Lit controllers and decorators, Svelte reactive APIs, Alpine scopes, Ember helpers, or Octane hooks. The adapters connect hotkey registration and key state to your framework and clean up registrations when components unmount. You can also use the core utilities directly in vanilla JavaScript.
+First-class adapters ship for React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, and Octane, plus the framework-agnostic `@tanstack/hotkeys` core for vanilla JavaScript or non-component code.
 
 ### Devtools
 
-See registered hotkeys, scopes, declared app hotkeys, held keys, and sequence progress in real time. The [devtools](./devtools) help you inspect which shortcuts are active and how they are configured while developing your application.
-
-## Where to start
-
-Most apps only need to register hotkeys and show them in the UI. Start with the quick start for [React](framework/react/quick-start), [Preact](framework/preact/quick-start), [Solid](framework/solid/quick-start), [Angular](framework/angular/quick-start), [Vue](framework/vue/quick-start), [Svelte](framework/svelte/quick-start), [Lit](framework/lit/quick-start), [Alpine](framework/alpine/quick-start), [Ember](framework/ember/quick-start), or [Octane](framework/octane/quick-start).
-
-Add the other pieces when your app needs them:
-
-- **Scopes**, when groups of hotkeys turn on and off together, such as everything in a dialog or a pane.
-- **App hotkeys**, when you want a cheat sheet that lists every shortcut, or want users to change them.
-- **Recording**, when users should be able to press the shortcut they want in a settings screen.
+Inspect active registrations, scopes, declared app hotkeys, held keys, and live sequence progress in real time with the [TanStack Hotkeys Devtools](./devtools).

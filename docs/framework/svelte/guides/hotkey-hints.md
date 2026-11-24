@@ -4,7 +4,9 @@ id: hotkey-hints
 description: Reveal keyboard shortcut hints next to buttons in Svelte while the user holds a modifier, with getHotkeyHint.
 ---
 
-Some apps show each button's shortcut only while the user holds a modifier, so the hints are there when the user reaches for the keyboard, and out of the way otherwise. `getHotkeyHint` returns an object whose `visible` getter is `true` while the user holds modifiers that belong to a hotkey that can fire. It's an optional helper, and it doesn't register anything, so use it alongside `createHotkey`.
+Some apps hide shortcut badges until the user holds a modifier key, which keeps buttons clean while still making shortcuts discoverable on demand.
+
+`getHotkeyHint` reports whether the user holds modifiers that belong to a hotkey that can fire. It's an optional display helper and doesn't register a shortcut itself, so pair it with `createHotkey`.
 
 ## Show a hint next to a button
 
@@ -33,14 +35,13 @@ While the user holds Command on macOS, or Control elsewhere, the button reads "S
 
 ## When a hint shows
 
-- Holding any of the hotkey's modifiers shows the hint. For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both shows it.
-- Holding a modifier the hotkey doesn't use hides the hint, so holding Control and Alt shows only the hints for hotkeys that use both.
-- Releasing every modifier, or the window losing focus, hides the hint.
-- Other held keys don't matter. AltGr never shows hints, because it types characters.
-- A hotkey without modifiers, such as `Escape` or `G`, never shows a hint.
-- The hotkey must be able to fire. A hint shows only while a registration of the hotkey is enabled and in an active [scope](./hotkeys-provider-and-scopes). A hotkey that nothing registers never shows a hint.
-- Every registration of the hotkey counts, not only the one in your component. If two components register the same hotkey and only one is enabled, both show the hint.
-- A hotkey bound to an element's `target` shows its hint only while focus is inside that element. A hotkey on `document` or `window` shows it wherever focus is.
+- **Any matching modifier shows the hint.** For `Alt+Shift+[KeyK]`, holding `Alt`, `Shift`, or both shows it.
+- **Extra modifiers hide it.** Holding `Control` and `Alt` shows only the hints for hotkeys that use both.
+- **Releases and blur hide it.** Releasing every modifier, or the window losing focus, hides the hint.
+- **Other keys are ignored.** `AltGr` never shows hints, because it types characters.
+- **Modifier-only requirement.** Hotkeys without modifiers, such as `Escape` or `G`, never show a hint.
+- **Only active registrations count.** The hotkey needs at least one enabled registration in an active [scope](./hotkeys-provider-and-scopes). Every mounted registration counts, so if two components register `Mod+S` and one is enabled, both hints appear.
+- **Targets follow focus.** An element-targeted hotkey shows its hint only while focus is inside that element. `document` and `window` hotkeys show wherever focus is.
 
 To show a hint only while every modifier is held, pass `exact`:
 
@@ -60,7 +61,7 @@ const hint = getHotkeyHint(['Mod+K', 'Mod+C']) // hint.visible is true while Mod
 
 ## Hints for app hotkeys
 
-Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including one they changed. An app hotkey with no hotkey assigned shows no hint. A small component keeps every button's hint the same:
+Pass an [app hotkey](./app-hotkeys) directly so hints stay in sync when users rebind shortcuts. An app hotkey with no hotkey assigned shows no hint. A small shared component keeps every button's hint consistent:
 
 ```svelte
 <!-- Hint.svelte -->
@@ -98,7 +99,7 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 
 ## Check held modifiers without the helper
 
-To check outside a component, such as while drawing on a canvas, pass the held keys to `matchesHeldModifiers`. It takes the same options, but it only looks at held keys. To also check that the hotkey can fire, call `hasActiveRegistration` on the hotkey manager:
+Outside components, such as in a canvas draw loop, combine `matchesHeldModifiers` with `getKeyStateTracker()` and `getHotkeyManager().hasActiveRegistration()`:
 
 ```ts
 import {
@@ -116,6 +117,4 @@ const showHint =
   getHotkeyManager().hasActiveRegistration('Mod+S') // Same check as the helper
 ```
 
-[Held Key State Helpers](./held-key-state-helpers) covers the tracker and the other held-key functions.
-
-The [Kitchen Sink example](../examples/kitchen-sink) shows hints next to its navigation links and buttons while Alt or Option is held.
+See [Held Keys](./held-key-state-helpers) for more on `getKeyStateTracker`, and the [Kitchen Sink example](../examples/kitchen-sink) for hints on live navigation links and buttons.

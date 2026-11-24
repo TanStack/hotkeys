@@ -78,7 +78,7 @@ this.hotkeys.createHotkey(
 
 A plain options object is read once, so `{ enabled: !this.readOnly }` keeps the value from when `init()` ran.
 
-That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
+That makes it straightforward to register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
 ### Use the `$hotkeys` magic
 
@@ -114,7 +114,7 @@ this.hotkeys.createHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is al
 
 TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
 
-Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
+To build a chord from data, such as a form with a checkbox for each modifier, write it as a `RawHotkeyChord` object:
 
 ```ts
 this.hotkeys.createHotkey({ key: 'S', mod: true, shift: true }, () => saveAs()) // Same as 'Mod+Shift+S'
@@ -313,7 +313,8 @@ With `'always'`, a hotkey that can't fire, because it's disabled or its scope is
 
 `enabled` works the same way for sequences. A disabled sequence ignores its steps.
 
-Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
+> [!NOTE]
+> Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
 
 When a group of hotkeys turns on and off together, put them in a scope instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays in the page, or suspend the rest of the page while a dialog is open. See [Add defaults and scopes](../quick-start#add-defaults-and-scopes-optional).
 
@@ -342,7 +343,7 @@ Alpine.data('panel', () => ({
 </div>
 ```
 
-`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` or `undefined` target waits until the element exists. Only an omitted `target` listens on `document`; set `target: document` to choose it explicitly.
+`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` or `undefined` target waits until the element exists. Only an omitted `target` listens on `document`. Set `target: document` to choose it explicitly.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
@@ -360,7 +361,7 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+Registering a hotkey that already exists on the same target, in the same scope, and for the same event type logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
 - `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.
@@ -369,7 +370,7 @@ When you register a hotkey that is already registered on the same target, in the
 
 The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
 
-The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key.
+The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
 
 ## Describe hotkeys with `meta`
 
@@ -381,4 +382,4 @@ this.hotkeys.createHotkey('Mod+S', () => save(), {
 })
 ```
 
-`meta` doesn't change how a hotkey behaves. You can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+`meta` doesn't change how a hotkey behaves. It appears in devtools and feeds UI lists such as help dialogs. See [Cheat Sheets](./cheat-sheet-ui-helpers).

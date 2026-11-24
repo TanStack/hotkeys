@@ -6,7 +6,7 @@ description: Install the TanStack Hotkeys adapter for React, Preact, Solid, Angu
 
 Install the adapter for your framework with your preferred package manager:
 
-<!-- ::start:tabs variant="package-managers" -->
+<!-- ::start:tabs variant="package-manager" -->
 
 alpine: @tanstack/alpine-hotkeys
 angular: @tanstack/angular-hotkeys
@@ -21,80 +21,72 @@ vue: @tanstack/vue-hotkeys
 
 <!-- ::end:tabs -->
 
-Each framework package re-exports everything from the core `@tanstack/hotkeys` package, so you don't need to install the core package separately.
+Every framework adapter re-exports the core `@tanstack/hotkeys` package, so you don't need to install both.
 
 > [!NOTE]
-> If you are not using a framework, you can install the core `@tanstack/hotkeys` package directly for use with vanilla JavaScript.
+> Not using a framework? Install `@tanstack/hotkeys` directly for vanilla JavaScript or TypeScript.
 
 <!-- ::start:framework -->
 
 # React
 
-Use React 18 or newer. The hooks and `HotkeysProvider` are client components, so a server component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` directly. To pass `appHotkeys` from a server component, render `AppHotkeysProvider` instead. See [App hotkeys with Server Components](./framework/react/guides/app-hotkeys#app-hotkeys-with-server-components).
+Requires React 18 or newer. `useHotkey` is a client hook and `HotkeysProvider` is a client component, so server components like Next.js `app/layout.tsx` can render `HotkeysProvider` directly. To pass `appHotkeys` from a Server Component, use `AppHotkeysProvider` instead. See [App hotkeys with Server Components](./framework/react/guides/ssr#app-hotkeys-with-server-components).
 
-Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
+Start with the [React Quick Start](./framework/react/quick-start). To add the devtools panel, install:
 
 # Preact
 
-Use Preact 10.5.2 or newer. TypeScript with `"moduleResolution": "bundler"` needs Preact 10.7.2 or newer.
+Requires Preact 10.5.2 or newer (10.7.2 or newer when using TypeScript `"moduleResolution": "bundler"`).
 
-Start with the [Quick Start](./framework/preact/quick-start) guide and the Preact-specific [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
+Start with the [Preact Quick Start](./framework/preact/quick-start) and [Preact guides](./framework/preact/guides/hotkeys). To add the devtools panel, install:
 
 # Solid
 
-Use Solid 2. `@tanstack/solid-hotkeys` 0.26 and `@tanstack/solid-hotkeys-devtools` 0.14 and newer need Solid 2, which needs Node 22.12 or newer.
+Requires Solid 2 (Node 22.12 or newer) for `@tanstack/solid-hotkeys` 0.26 and newer, and `@tanstack/solid-hotkeys-devtools` 0.14 and newer. For Solid 1 (1.7 or newer), install `@tanstack/solid-hotkeys@0.25` and `@tanstack/solid-hotkeys-devtools@0.13` (for Solid 1.9.15 or newer).
 
-For Solid 1 (1.7 or newer), install the last releases that support it: `@tanstack/solid-hotkeys@0.25` and, for the devtools panel (Solid 1.9.15 or newer), `@tanstack/solid-hotkeys-devtools@0.13`.
-
-Start with the [Quick Start](./framework/solid/quick-start) guide and the Solid-specific [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
+Start with the [Solid Quick Start](./framework/solid/quick-start) and [Solid guides](./framework/solid/guides/hotkeys). To add the devtools panel, install:
 
 # Angular
 
-Use Angular 19 or newer.
+Requires Angular 19 or newer (21 or newer for the integrated devtools panel).
 
-Start with the [Quick Start](./framework/angular/quick-start) guide and the Angular-specific [guides](./framework/angular/guides/hotkeys).
-
-The integrated devtools panel requires Angular 21 or newer. To use it, also install:
+Start with the [Angular Quick Start](./framework/angular/quick-start) and [Angular guides](./framework/angular/guides/hotkeys). To add the devtools panel, install:
 
 # Vue
 
-Use Vue 3.3 or newer.
+Requires Vue 3.3 or newer.
 
-Start with the [Quick Start](./framework/vue/quick-start) guide and the Vue-specific [guides](./framework/vue/guides/hotkeys).
-
-If you want the Vue devtools panel component, also install:
+Start with the [Vue Quick Start](./framework/vue/quick-start) and [Vue guides](./framework/vue/guides/hotkeys). To add the devtools panel, install:
 
 # Svelte
 
-Use Svelte 5.40 or newer within version 5.
+Requires Svelte 5.40 or newer within version 5.
 
-Start with the [Quick Start](./framework/svelte/quick-start) guide and the Svelte-specific [guides](./framework/svelte/guides/hotkeys). If you want the integrated devtools panel, also install:
+Start with the [Svelte Quick Start](./framework/svelte/quick-start) and [Svelte guides](./framework/svelte/guides/hotkeys). To add the devtools panel, install:
 
 # Lit
 
-Use Lit 3 or newer.
+Requires Lit 3 or newer.
 
-Start with the [Quick Start](./framework/lit/quick-start) guide and the Lit-specific [guides](./framework/lit/guides/hotkeys).
-
-Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools package is required.
+Start with the [Lit Quick Start](./framework/lit/quick-start) and [Lit guides](./framework/lit/guides/hotkeys). Lit ships the hotkeys adapter only and has no dedicated devtools package.
 
 # Alpine
 
-Use Alpine 3.13 or newer within version 3. Install `hotkeysPlugin` with `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`, so the adapter uses your Alpine instance.
+Requires Alpine 3.13 or newer within version 3. Register `hotkeysPlugin` with `Alpine.plugin(hotkeysPlugin)` before calling `Alpine.start()`.
 
-Start with the [Quick Start](./framework/alpine/quick-start), then follow the [guides](./framework/alpine/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Alpine devtools adapter is not provided.
+Start with the [Alpine Quick Start](./framework/alpine/quick-start) and [Alpine guides](./framework/alpine/guides/hotkeys). Alpine ships the hotkeys adapter only and has no dedicated devtools package.
 
 # Ember
 
-Use Ember 6.8.3 or newer, except 6.9.0 and 6.10.0. The adapter works in Vite (Embroider) apps and in classic ember-cli apps that use ember-auto-import. Register hotkeys with imported template helpers in strict-mode `.gts` components. Pass the component as owner to state readers and recorders.
+Requires Ember 6.8.3 or newer (excluding 6.9.0 and 6.10.0), and works with Vite (Embroider) or classic `ember-cli` with `ember-auto-import`. Register hotkeys in strict-mode `.gts` components and pass the component as owner to state readers and recorders.
 
-Start with the [Quick Start](./framework/ember/quick-start), then follow the [guides](./framework/ember/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Ember devtools adapter is not provided.
+Start with the [Ember Quick Start](./framework/ember/quick-start) and [Ember guides](./framework/ember/guides/hotkeys). Ember ships the hotkeys adapter only and has no dedicated devtools package.
 
 # Octane
 
-Use Octane 0.12 or newer, with compiler-enabled `.tsrx` components. The Octane adapter requires Node.js 22.22.2 or newer when used in Node.js.
+Requires Octane 0.12 or newer with compiler-enabled `.tsrx` components, and Node.js 22.22.2 or newer when running in Node.js.
 
-Start with the [Quick Start](./framework/octane/quick-start), then follow the [guides](./framework/octane/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Octane devtools adapter is not provided.
+Start with the [Octane Quick Start](./framework/octane/quick-start) and [Octane guides](./framework/octane/guides/hotkeys). Octane ships the hotkeys adapter only and has no dedicated devtools package.
 
 <!-- ::end:framework -->
 
@@ -118,26 +110,26 @@ svelte: @tanstack/svelte-hotkeys-devtools
 
 # React
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 # Preact
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 # Solid
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 # Angular
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 # Vue
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 # Svelte
 
-See the [devtools](./devtools) documentation for setup details.
+See [Devtools](./devtools) for setup instructions.
 
 <!-- ::end:framework -->

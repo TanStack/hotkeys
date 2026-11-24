@@ -4,27 +4,28 @@ id: devtools
 description: Inspect registered hotkeys, scopes, app hotkeys, held keys, and sequence progress with the TanStack Hotkeys devtools panel.
 ---
 
-TanStack Hotkeys ships devtools for debugging and monitoring your registered hotkeys in real time, as a panel inside the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI.
+TanStack Hotkeys ships a devtools panel inside the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI so you can inspect shortcuts, scopes, and key state live while developing.
 
 > [!NOTE]
-> The Hotkeys devtools exports are no-ops outside development mode. See [Production builds](#production-builds) if you need them in production.
+> Devtools exports are automatic no-ops outside development mode. To embed the panel in production, see [Production builds](#production-builds).
 
 ## Features
 
-The Hotkeys devtools panel lets you:
+Use the Hotkeys panel to:
 
-- View all currently registered hotkeys, chords and sequences in one list, with their options and status
-- Follow sequence progress as steps are pressed
-- See declared [app hotkeys](./overview#app-hotkeys) that nothing has registered yet, with their custom hotkeys
-- See which keys are held down in real time
-- Trigger hotkey callbacks for testing, without pressing the keys
-- Inspect individual registrations, including their target, event type, and conflict behavior
+- Inspect every registered chord and sequence along with its options and status (`active`, `suspended`, `disabled`)
+- Watch multi-step sequence progress live as keys are pressed
+- See declared [app hotkeys](./overview#app-hotkeys) before their components mount, including user-customized bindings
+- Monitor held keys in real time
+- Trigger hotkey callbacks from the UI without pressing physical keys
+- Inspect each registration's target, event type, and conflict behavior
 
 ## Installation
 
-Install the TanStack Devtools host package and the Hotkeys devtools adapter for your framework.
+Install both the TanStack Devtools host package and the Hotkeys devtools adapter for your framework.
 
-The adapters need a current TanStack Devtools host, such as `@tanstack/react-devtools` 0.10.14 or newer. Older hosts pass the plugin a theme string instead of props, so the panel ignores the theme and TypeScript rejects the plugin. Both libraries are in beta, so upgrade them together.
+> [!NOTE]
+> Keep your TanStack Devtools host package up to date, such as `@tanstack/react-devtools` 0.10.14 or newer. Older hosts pass a theme string instead of props, which causes theme issues and TypeScript errors. Both libraries are in beta, so upgrade them together.
 
 <!-- ::start:framework -->
 
@@ -137,7 +138,7 @@ The Hotkeys panel appears alongside any other TanStack devtools plugins you have
 
 # Angular
 
-Add the plugin through the official `provideTanStackDevtools` provider in `app.config.ts`. The provider creates the dock; you do not need to add a component to your template.
+Add the plugin through the official `provideTanStackDevtools` provider in `app.config.ts`. The provider creates the dock, so you do not need to add a component to your template.
 
 ```ts
 import { isDevMode } from '@angular/core'
@@ -214,7 +215,7 @@ Octane does not currently ship a dedicated Hotkeys devtools adapter.
 
 # React
 
-`HotkeysDevtoolsPanel` renders the panel without the TanStack Devtools dock:
+`HotkeysDevtoolsPanel` renders the panel directly without the TanStack Devtools dock:
 
 ```tsx
 import { HotkeysDevtoolsPanel } from '@tanstack/react-hotkeys-devtools'
@@ -224,7 +225,7 @@ function DebugPanel() {
 }
 ```
 
-Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+Both `theme` and `devtoolsOpen` are optional. `theme` defaults to `'dark'`, and `devtoolsOpen` defaults to `true`. Pass `theme="light"` for light mode. When mounted via `hotkeysDevtoolsPlugin()`, the dock's settings take precedence.
 
 # Preact
 
@@ -307,13 +308,13 @@ Octane does not currently ship a dedicated Hotkeys devtools adapter.
 
 ## Production builds
 
-In production builds, the framework devtools adapters return no-op implementations, so they don't affect your bundle's behavior.
+In production builds, the framework devtools exports become no-op stubs so they won't affect bundle behavior.
 
 <!-- ::start:framework -->
 
 # React
 
-To include the devtools in a production build, import from the production entry point:
+To include the panel in a production build, import from the `/production` entry point:
 
 ```tsx
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools/production'

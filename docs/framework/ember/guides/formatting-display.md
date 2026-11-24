@@ -4,15 +4,9 @@ id: formatting-display
 description: Format Ember hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `useFormatForDisplay` returns a function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `useFormatForDisplay` returns a function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it at render time. A label is for reading, not for registering.
 
-A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. `useFormatForDisplay` works wherever your labels render:
-
-| Where labels render | What to set up |
-| --- | --- |
-| Only in the browser | Nothing |
-| On the server with FastBoot | A scope's `platform`, set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
-| In a page prerendered with Prember | Nothing, or a block that skips FastBoot. See [Static and prerendered pages](#static-and-prerendered-pages) |
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. In the browser, `useFormatForDisplay` detects the platform. With FastBoot, set a scope's `platform` from the request. See [SSR & Hydration](./ssr).
 
 ## Format a hotkey
 
@@ -168,115 +162,9 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including in FastBoot.
 
-## Format labels in server-rendered apps
+## Server-side rendering
 
-The server doesn't know the user's platform. Without one, a label rendered in FastBoot uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML and `⌘ S` once the app boots in the browser. To render the right label from the start:
-
-1. Read the request's `User-Agent` header from the `fastboot` service, and pass `detectPlatform(userAgent)` as the `platform` of a `createHotkeysScope` scope.
-2. Format labels with `useFormatForDisplay(scope)`. It reads the scope, so it uses the platform from step 1.
-
-Create the scope in a component near the top of your app, such as the one your application template renders:
-
-```gts
-// app/components/app-shell.gts
-import Component from '@glimmer/component'
-import { service } from '@ember/service'
-import { createHotkeysScope, detectPlatform } from '@tanstack/ember-hotkeys'
-import Toolbar from './toolbar'
-
-// ember-cli-fastboot doesn't ship types, so declare the part you use
-interface FastBootService {
-  request: { headers: { get(name: string): string | null } } | null
-}
-
-export default class AppShell extends Component {
-  @service declare fastboot: FastBootService
-
-  hotkeys = createHotkeysScope({
-    platform: detectPlatform(
-      this.fastboot.request?.headers.get('user-agent'),
-    ),
-  })
-
-  <template>
-    <Toolbar @hotkeys={{this.hotkeys}} />
-  </template>
-}
-```
-
-```gts
-// app/components/toolbar.gts
-import Component from '@glimmer/component'
-import { useFormatForDisplay } from '@tanstack/ember-hotkeys'
-import type { EmberHotkeysScope, Hotkey } from '@tanstack/ember-hotkeys'
-
-const commands: Array<{ name: string; hotkey: Hotkey }> = [
-  { name: 'Save', hotkey: 'Mod+S' },
-  { name: 'Search', hotkey: 'Mod+K' },
-]
-
-interface ToolbarSignature {
-  Args: { hotkeys: EmberHotkeysScope }
-}
-
-export default class Toolbar extends Component<ToolbarSignature> {
-  formatForDisplay = useFormatForDisplay(this.args.hotkeys)
-
-  <template>
-    <ul>
-      {{#each commands as |command|}}
-        <li>{{command.name}} <kbd>{{this.formatForDisplay command.hotkey}}</kbd></li>
-      {{/each}}
-    </ul>
-  </template>
-}
-```
-
-Call the utility once in a class field, then call the function anywhere, including in the template's loops and conditions. It reads the scope's `platform` each time it formats, so labels update when the scope's defaults change. A `platform` passed to the function wins over the scope's.
-
-In the browser, `fastboot.request` is `null`, so `detectPlatform()` reads the browser's `navigator`. The server and the browser get the same platform for practically every user. The scope's `platform` is also the default platform for the hotkeys and recorders that use the scope. Pass the scope to child components, such as `@hotkeys={{this.hotkeys}}`, so their labels use the same platform.
-
-Without a scope `platform`, `useFormatForDisplay` renders `'linux'` labels in FastBoot. By default, the app replaces the server's HTML when it boots in the browser, so the labels then switch to the browser's platform. Mac users see `Ctrl+S` until the app boots. Set the scope's `platform` to avoid that.
-
-Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
-
-### Render a label only in the browser
-
-To leave a label out of the server's HTML instead, check the `fastboot` service's `isFastBoot`. A label that first renders in the browser gets the browser's platform from `useFormatForDisplay` at once:
-
-```gts
-import Component from '@glimmer/component'
-import { service } from '@ember/service'
-import { useFormatForDisplay } from '@tanstack/ember-hotkeys'
-
-interface FastBootService {
-  isFastBoot: boolean
-}
-
-export default class SaveShortcut extends Component {
-  @service declare fastboot: FastBootService
-
-  formatForDisplay = useFormatForDisplay()
-
-  <template>
-    {{#if this.fastboot.isFastBoot}}
-      <kbd>&nbsp;</kbd>
-    {{else}}
-      <kbd>{{this.formatForDisplay 'Mod+S'}}</kbd>
-    {{/if}}
-  </template>
-}
-```
-
-`isFastBoot` is `true` only while the app renders in FastBoot. A placeholder with the label's width keeps the layout from shifting.
-
-### Static and prerendered pages
-
-Prember renders pages with FastBoot at build time. A page rendered at build time has no request and no user, so `useFormatForDisplay` can't know the platform. The scope recipe above gets `'linux'` there, because the build sends no `User-Agent` header. Without a scope `platform`, `useFormatForDisplay` shows `'linux'` labels until the app boots, then switches. To show nothing until then, render the labels only in the browser, as above.
-
-### Development warning
-
-In development, formatting a label in FastBoot without a platform logs a warning once. Without a platform, FastBoot renders `'linux'` labels, so users on macOS and Windows get a different label once the app boots. If you develop on Linux, you won't see the problem yourself. The warning isn't included in production builds.
+The server doesn't know the user's platform, so labels rendered in FastBoot use `'linux'` unless a scope sets `platform`. Pass a `createHotkeysScope` scope with `platform: detectPlatform(userAgent)` to `useFormatForDisplay`, or render labels only in the browser. See [SSR & Hydration](./ssr) for the FastBoot, Prember, and caching details.
 
 ## Format outside a component
 
@@ -306,10 +194,13 @@ if (parsed.code !== undefined) {
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
 ```
 
-A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.
+- **Normalize before saving.** A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take. Because normalizing on macOS turns `Meta+S` into `Mod+S`, keep the original registerable binding string if an explicit modifier must stay platform-specific.
+- **Compare bindings.** `areHotkeysEqual(a, b)` compares chords or sequences after resolving modifiers, so `Mod+S` equals `Meta+S` on macOS. Sequences compare step by step. `isHotkeySequence` narrows a `Hotkey` to a sequence, and `simplifyHotkey` turns a one-step sequence into its chord.
+- **Validate untrusted strings.** Pass a hotkey from a settings file or user input to `validateHotkey`. It returns `{ valid, errors, warnings }`, and each issue includes:
+  - `reason`, a machine-readable code such as `'unknown-modifier'`
+  - `part`, the token the issue is about
+  - `step`, the zero-based step index for a sequence
 
-`areHotkeysEqual(a, b)` compares chords or sequences after resolving modifiers, so `Mod+S` equals `Meta+S` on macOS. Sequences compare step by step. `isHotkeySequence` narrows a `Hotkey` to a sequence, and `simplifyHotkey` turns a one-step sequence into its chord.
+`validateHotkey` checks syntax only. It can't promise that the browser or operating system delivers the shortcut. The library sends no text, so map each `reason` code to your own messages. The devtools describe each problem in the details of a hotkey. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`. Each error or warning has a `reason` code, such as `'unknown-modifier'`, the `part` it's about, and for a sequence, the index of the `step`. The library sends no text, so write your own messages for users. The devtools describe each problem in the details of a hotkey. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
-
-For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+For a full list of your app's shortcuts, see [Cheat Sheets](./cheat-sheet-ui-helpers).

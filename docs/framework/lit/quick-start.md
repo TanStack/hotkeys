@@ -122,7 +122,7 @@ class SaveButton extends LitElement {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server with Lit SSR, set the controller's `platform` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server with Lit SSR, set the controller's `platform` from the request, so the server's HTML shows the user's platform. See [SSR & Hydration](./guides/ssr).
 
 ## Hotkeys follow your elements
 
@@ -260,22 +260,28 @@ class ConfirmDialog extends LitElement {
 
 While the dialog is connected, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog disconnects, they work again.
 
-`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released.
+`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released. [Activate a scope](./guides/hotkey-manager#activate-a-scope) covers scopes for UI that Lit doesn't render.
 
 ## Next steps
 
-Learn more about the basics:
+Core guides:
 
 - [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
 - [Sequences](./guides/sequences): Vim-style multi-key shortcuts
 - [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
 - [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
-- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
-- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
 
-As your app grows:
+App Hotkeys & UI:
 
 - [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
-- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
-- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
-- [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components
+- [Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Cheat Sheets](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [Held Keys](./guides/held-key-state-helpers): show which keys are held
+
+Advanced & Integration:
+
+- [SSR & Hydration](./guides/ssr): server-render platform labels with Lit SSR
+- [Keyboard Layouts](./guides/keyboard-layouts): type-check keys from international layouts
+- [Testing](./guides/testing): reset singleton state and fix the target platform in unit tests
+- [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components, and activate scopes

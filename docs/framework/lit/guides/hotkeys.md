@@ -89,7 +89,7 @@ class MyEditor extends LitElement {
 
 Keep the values the functions read in reactive properties, so a change triggers an update. A controller callback receives `HotkeyCallbackContext`, which can belong to either kind of hotkey, so check `context.kind` before reading `context.parsedChord`.
 
-That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
+That makes it straightforward to register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
 ### Optional hotkeys
 
@@ -120,7 +120,7 @@ saveAs() {}
 
 TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
 
-Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
+To build a chord from data, such as a form with a checkbox for each modifier, write it as a `RawHotkeyChord` object:
 
 ```ts
 @hotkey({ key: 'S', mod: true, shift: true }) // Same as 'Mod+Shift+S'
@@ -309,7 +309,8 @@ With `'always'`, a hotkey that can't fire, because it's disabled or its scope is
 
 `enabled` works the same way for sequences. A disabled sequence ignores its steps.
 
-Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
+> [!NOTE]
+> Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
 
 When a group of hotkeys turns on and off together, put them in a scope instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays connected, or suspend the rest of the page while a dialog is open. See [Add scopes](../quick-start#add-scopes-optional).
 
@@ -338,11 +339,11 @@ class MyPanel extends LitElement {
 }
 ```
 
-A `null` or `undefined` target waits until the element renders. Only an omitted `target` listens on `document`; set `target: document` to choose it explicitly.
+A `null` or `undefined` target waits until the element renders. Only an omitted `target` listens on `document`. Set `target: document` to choose it explicitly.
 
 The controller reads the options function when its element connects and after each of its element's updates. Render the target in the controller's own element, as above, so each render that adds or replaces the target also updates the hotkey.
 
-When another element renders the target, such as a child that shows it from its own state, the controller's element doesn't update, so the hotkey keeps the old target or none. Either keep the element in a reactive property, for example set from an event the child dispatches, or call `this.requestUpdate()` on the controller's element after the target changes. You can also register the hotkey in the child with its own `HotkeyController`.
+When another element renders the target, such as a child that shows it from its own state, the controller's element doesn't update, so the hotkey keeps the old target or none. Either keep the element in a reactive property, for example set from an event the child dispatches, or call `this.requestUpdate()` on the controller's element after the target changes. Another option is to register the hotkey in the child, with its own `HotkeyController`.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
@@ -360,7 +361,7 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+Registering a hotkey that already exists on the same target, in the same scope, and for the same event type logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
 - `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.
@@ -369,7 +370,7 @@ When you register a hotkey that is already registered on the same target, in the
 
 The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
 
-The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key.
+The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
 
 ## Describe hotkeys with `meta`
 
@@ -382,4 +383,4 @@ Give a hotkey a name, a description, and a group with `meta`:
 save() {}
 ```
 
-`meta` doesn't change how a hotkey behaves. You can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+`meta` doesn't change how a hotkey behaves. It appears in devtools and feeds UI lists such as help dialogs. See [Cheat Sheets](./cheat-sheet-ui-helpers).

@@ -1,10 +1,10 @@
 ---
 title: Use the Hotkey Manager Outside Alpine Components
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Alpine components with the HotkeyManager behind createHotkey, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Alpine components with the HotkeyManager behind createHotkey.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Alpine, you usually never need to use the hotkey manager directly. `createHotkey` and `createHotkeys` on an owner from `createHotkeysScope` register hotkeys with it, apply the owner's defaults, follow your getters, and unregister the hotkeys when you destroy the owner. Use the manager for code that runs outside components, for scopes, and in tests.
+This is an advanced guide. Inside components, `createHotkey` and `createHotkeys` on an owner from `createHotkeysScope` register hotkeys with the manager, apply the owner's defaults, follow getters, and unregister the hotkeys when the owner is destroyed. Use the manager directly only for code that runs outside components and for scopes.
 
 Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
 
@@ -154,34 +154,8 @@ document.addEventListener('keydown', (event) => {
 
 The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Destroyed owners unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Reset the manager after each test:
-
-```ts
-import { afterEach, expect, it, vi } from 'vitest'
-import { HotkeyManager, createHotkeysScope } from '@tanstack/alpine-hotkeys'
-
-afterEach(() => {
-  HotkeyManager.resetInstance()
-})
-
-it('saves with Mod+S', () => {
-  const save = vi.fn()
-  const hotkeys = createHotkeysScope({ hotkey: { platform: 'mac' } })
-
-  hotkeys.createHotkey('Mod+S', save)
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-  )
-
-  expect(save).toHaveBeenCalledOnce()
-  hotkeys.destroy()
-})
-```
-
-An owner works without a running Alpine app, so a test can create one directly. `resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform: 'mac'` makes `Mod` mean Command, so the test passes on every operating system. Passing it to `createHotkeysScope` sets it for every hotkey on that owner.
+To reset `HotkeyManager` and `KeyStateTracker` between tests and pin the platform, see [Testing](./testing).
 
 The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.

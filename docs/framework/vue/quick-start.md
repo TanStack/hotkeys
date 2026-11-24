@@ -66,7 +66,7 @@ useHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `useFormatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `useFormatForDisplay`. Format the same value that is registered, so the label always matches the binding:
 
 ```vue
 <script setup lang="ts">
@@ -88,7 +88,7 @@ const formatForDisplay = useFormatForDisplay()
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server, such as with Nuxt, set the provider's `platform` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+In server-rendered apps such as Nuxt, pass the request's platform to `HotkeysProvider` so server HTML matches the browser without hydration errors. See [SSR & Hydration](./guides/ssr).
 
 ## Hotkeys follow your components
 
@@ -161,7 +161,7 @@ The hotkey fires while focus is on the element or inside it. If nothing there ca
 
 ## Add providers and scopes (optional)
 
-So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is mounted. You don't need a provider for that.
+So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is mounted. That needs no provider.
 
 Add `HotkeysProvider` at the root to set default options for every hotkey inside it, such as more time between sequence steps:
 
@@ -218,24 +218,30 @@ useHotkeys([
 
 While the dialog is open, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog closes, they work again.
 
-A composable uses the nearest provider above the component that calls it, so put the provider around the dialog component, not inside its template. [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes) covers nested scopes, precedence, and turning a scope off without unmounting it.
+A composable uses the nearest provider above the component that calls it, so put the provider around the dialog component, not inside its template. [HotkeysProvider & Scopes](./guides/hotkeys-provider-and-scopes) covers nested scopes, precedence, and turning a scope off without unmounting it.
 
 ## Next steps
 
-Learn more about the basics:
+Core guides:
 
 - [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
 - [Sequences](./guides/sequences): Vim-style multi-key shortcuts
 - [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
 - [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
-- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
-- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [HotkeysProvider & Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
 - [Devtools](../../devtools): inspect registered hotkeys, scopes, and held keys while you develop
 
-As your app grows:
+App Hotkeys & UI:
 
-- [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
 - [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
-- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
-- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Cheat Sheets](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [Held Keys](./guides/held-key-state-helpers): show which keys are held
+
+Advanced & Integration:
+
+- [SSR & Hydration](./guides/ssr): server-render platform labels in Nuxt, Vite SSR, and Astro
+- [Keyboard Layouts](./guides/keyboard-layouts): type-check keys from international layouts
+- [Testing](./guides/testing): reset singleton state and fix the target platform in unit tests
 - [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components

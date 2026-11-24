@@ -1,10 +1,10 @@
 ---
 title: Use the Hotkey Manager Outside Vue Components
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Vue components with the HotkeyManager behind useHotkey, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Vue components with the HotkeyManager behind useHotkey.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Vue, you usually never need to use the hotkey manager yourself. `useHotkey` and `useHotkeys` register hotkeys with it, unregister them when the component unmounts, apply provider defaults and scopes, and follow your refs. Use the manager directly only for code that runs outside components, and in tests.
+This is an advanced guide. In Vue components, the hotkey manager is rarely needed directly. `useHotkey` and `useHotkeys` register hotkeys with it, unregister them when the component unmounts, apply provider defaults and scopes, and follow your refs. Use the manager directly only for code that runs outside components.
 
 Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
 
@@ -28,7 +28,7 @@ handle.unregister() // Removes the hotkey
 
 A hotkey registered with the manager differs from one registered with a composable:
 
-- It stays registered until you call `unregister()`.
+- It stays registered until `unregister()` runs.
 - Provider defaults and scopes don't apply. It uses the built-in defaults and belongs to the `'global'` scope, unless you pass `scope`.
 - Its hotkey and options are plain values, not refs or getters. To change options later, call `handle.setOptions`.
 - During server rendering, `register` returns a handle that does nothing.
@@ -78,7 +78,7 @@ The store also updates each time a hotkey fires and each time a sequence advance
 
 ## Activate a scope
 
-In components, create scopes with `HotkeysProvider` or `provideHotkeysContext`. See [HotkeysProvider and Scopes](./hotkeys-provider-and-scopes). For UI that Vue doesn't render, such as a dialog from another library, activate the scope on the manager, and pass `scope` to the hotkeys that belong to it:
+In components, create scopes with `HotkeysProvider` or `provideHotkeysContext`. See [HotkeysProvider & Scopes](./hotkeys-provider-and-scopes). For UI that Vue doesn't render, such as a dialog from another library, activate the scope on the manager, and pass `scope` to the hotkeys that belong to it:
 
 ```ts
 const releaseScope = manager.activateScope('image-viewer', { exclusive: true })
@@ -141,44 +141,10 @@ document.addEventListener('keydown', (event) => {
 })
 ```
 
-The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
+The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener when needed.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Components that unmount unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Reset the manager after each test:
+For resetting `HotkeyManager` and `KeyStateTracker` between tests and pinning the platform, see [Testing](./testing).
 
-```ts
-import { afterEach, expect, it, vi } from 'vitest'
-import { defineComponent } from 'vue'
-import { mount } from '@vue/test-utils'
-import { HotkeyManager, useHotkey } from '@tanstack/vue-hotkeys'
-
-afterEach(() => {
-  HotkeyManager.resetInstance()
-})
-
-it('saves with Mod+S', () => {
-  const save = vi.fn()
-
-  const Editor = defineComponent({
-    setup() {
-      useHotkey('Mod+S', save, { platform: 'mac' })
-      return () => null
-    },
-  })
-
-  const wrapper = mount(Editor)
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-  )
-
-  expect(save).toHaveBeenCalledOnce()
-  wrapper.unmount()
-})
-```
-
-`resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform: 'mac'` makes `Mod` mean Command, so the test passes on every operating system. To set it for every hotkey in a test, pass it in `HotkeysProvider` default options: `:default-options="{ hotkey: { platform: 'mac' } }"`.
-
-The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.
+See the [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) for the full method list.

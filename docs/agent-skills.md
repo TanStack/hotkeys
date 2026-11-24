@@ -15,30 +15,26 @@ keywords:
   - AGENTS.md
 ---
 
-You're building with TanStack Hotkeys and using an AI coding agent such as Claude Code, Cursor, GitHub Copilot, or Codex. The agent keeps writing `keydown` listeners that check `event.metaKey`, adds `isMac` checks for shortcut labels, or builds its own shortcut registry next to the library. By the end of this guide, your agent will load TanStack Hotkeys' bundled skills automatically whenever you work on keyboard shortcuts, and those skills will stay in sync with whichever TanStack Hotkeys version your project installs.
+AI coding agents, including Claude Code, Cursor, GitHub Copilot, and Codex, often fall back to hand-rolled `keydown` listeners, `isMac` platform checks, or custom shortcut registries instead of using TanStack Hotkeys APIs.
+
+TanStack Hotkeys bundles [Agent Skills](#what-are-agent-skills) directly inside its npm packages so your agent reads version-matched library guidance automatically. Run one CLI command to wire them into your repository.
 
 ## What are Agent Skills?
 
-Agent Skills are markdown documents (`SKILL.md`) that ship inside npm packages and tell AI coding agents how to use a library correctly: which functions to use, which patterns to avoid, and when to reach for a particular feature. The format is an open standard supported by Claude Code, Cursor, GitHub Copilot, Codex, and others.
+Agent Skills are markdown documents (`SKILL.md`) shipped inside npm packages that tell coding agents which APIs to use, which patterns to avoid, and which edge cases already work out of the box. The format is an open standard supported across major coding agents.
 
-TanStack Hotkeys publishes skills inside its packages so the guidance travels with `npm update` instead of being pinned in a model's training data or copied into an agent configuration file manually.
+Because the skills live inside your installed packages, they stay in sync whenever you run `npm update` or `pnpm update` instead of relying on stale training data.
 
-## Skills Shipped by TanStack Hotkeys
+## Skills shipped by TanStack Hotkeys
 
-The skills available to your agent depend on which packages your project installs:
+The packages you install determine which skills are available:
 
-| Package                         | Skills                            | What they teach                                                                                                                                                                         |
-| ------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@tanstack/hotkeys`             | `hotkeys-core`, `app-hotkeys`     | When to use the library instead of `keydown` listeners, how hotkeys turn on and off (`enabled`, scopes, targets), sequences, testing, and app hotkeys for cheat sheets and rebinding. |
-| `@tanstack/<framework>-hotkeys` | `<framework>-hotkeys`             | The adapter's API, such as `useHotkey` or `createHotkey`, providers and dialog scopes, and framework-specific pitfalls. Each adapter also has a reference for wiring app hotkeys.        |
+| Package | Skills | What they cover |
+| --- | --- | --- |
+| `@tanstack/hotkeys` | `hotkeys-core`, `app-hotkeys` | Defaults versus raw `keydown` listeners, `enabled`, scopes, targets, sequences, testing, app hotkeys, and recording |
+| `@tanstack/<framework>-hotkeys` | `<framework>-hotkeys` | Framework bindings (such as `useHotkey` or `createHotkey`), provider scopes, pitfalls, and wiring app hotkeys |
 
-Adapter skills exist for React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, and Octane.
-
-Each skill lives under `node_modules/<package>/skills/<skill-name>/SKILL.md` once the package is installed. Its `references/` directory contains guidance for specific tasks. For example, nested and stacked scopes live in `@tanstack/hotkeys/skills/hotkeys-core/references/scopes.md`.
-
-The entry point tells the agent when to read each reference. Building a settings screen loads the app hotkeys and recording guidance; scope and testing references stay unloaded until a task needs them. Adapter skills load `hotkeys-core` first and then explain their own bindings.
-
-Intent lists entry points and loads one requested `SKILL.md` at a time. The agent follows its prerequisite instructions and reads relevant references. A React project has three Hotkeys entry points: `hotkeys-core`, `app-hotkeys`, and `react-hotkeys`. Other installed libraries add their own entries.
+Framework skills ship for all 10 adapters (React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, and Octane) under `node_modules/<package>/skills/<skill-name>/SKILL.md`. Task-specific guides live in `references/` and stay unloaded until needed, such as `references/scopes.md` for stacked dialogs.
 
 ## Step 1: Install TanStack Hotkeys
 
@@ -48,27 +44,21 @@ If you haven't already, install the adapter for your framework. See [Installatio
 pnpm add @tanstack/react-hotkeys
 ```
 
-Framework adapters install `@tanstack/hotkeys` as a dependency, so both the framework-specific and core skills are available to the installer. Don't install `@tanstack/hotkeys` separately alongside an adapter.
+Every framework adapter includes `@tanstack/hotkeys` as a dependency, so both the framework skill and core skills are available without installing `@tanstack/hotkeys` separately.
 
 ## Step 2: Run `intent install`
 
-From the root of your project, run:
+From your project root, run:
 
 ```bash
 npx @tanstack/intent@latest install
 ```
 
-The CLI writes lightweight skill-loading guidance into your agent's config file. That guidance tells the agent to discover skills from the packages installed in your project and load the most relevant one before it starts a substantial task.
+This discovers skills from your installed dependencies and writes a lightweight skill-loading block into your agent config (`AGENTS.md` by default, or `CLAUDE.md`, `.cursorrules`, and `.github/copilot-instructions.md`).
 
-By default the guidance lands in `AGENTS.md`. The CLI can also update:
+## Step 3: Review the generated guidance
 
-- `CLAUDE.md` for Claude Code
-- `.cursorrules` for Cursor
-- `.github/copilot-instructions.md` for GitHub Copilot
-
-## Step 3: Review the Generated Guidance
-
-The install command appends (or creates) an `intent-skills` block that looks like this:
+The CLI adds an `intent-skills` block like this:
 
 ```markdown
 <!-- intent-skills:start -->
@@ -86,9 +76,9 @@ Before editing files for a substantial task:
 <!-- intent-skills:end -->
 ```
 
-Keep the block near the top of the config file so your agent sees it before task-specific instructions.
+Keep this block near the top of your config file so agents read it before task-specific rules.
 
-You can inspect and load Hotkeys skills yourself with the same commands:
+Inspect installed skills directly from the terminal. In a React project:
 
 ```bash
 npx @tanstack/intent@latest list
@@ -96,31 +86,29 @@ npx @tanstack/intent@latest load @tanstack/react-hotkeys#react-hotkeys
 npx @tanstack/intent@latest load @tanstack/hotkeys#hotkeys-core
 ```
 
-For dialogs that stack or nest scopes, follow the loaded entry point's link to `references/scopes.md`. The load command resolves relative Markdown links to the installed package, including when your package manager uses nested dependency paths.
+For explicit task-to-skill mappings instead of dynamic discovery, run `npx @tanstack/intent@latest install --map`.
 
-If you prefer explicit task-to-skill entries, run `npx @tanstack/intent@latest install --map`. Mapping mode scans your installed intent-enabled packages and writes compact `id`, `run`, and `for` entries into the managed block.
+## Step 4: Verify in a fresh agent session
 
-## Step 4: Confirm It's Wired Up
+Open a new session in your coding agent and try a prompt like: _"Add Mod+S to save the document, and a dialog that closes with Escape, using TanStack Hotkeys."_
 
-Open a fresh session in your coding agent and ask it to build something with TanStack Hotkeys, for example: _"Add Mod+S to save the document, and a dialog that closes with Escape, using TanStack Hotkeys."_
+The agent should:
 
-You should see:
+- Call the adapter API (`useHotkey('Mod+S', ...)`) instead of `addEventListener('keydown', ...)`
+- Use `Mod` and the adapter's label formatter (`useFormatForDisplay`) instead of manual `isMac` or `⌘` checks
+- Rely on built-in `ignoreInputs` and `preventDefault` defaults rather than reimplementing them
+- Put the dialog's `Escape` shortcut inside an `exclusive` scope instead of toggling a global flag
+- Pass `meta: { name }` or declare app hotkeys when shortcuts need a cheat sheet
 
-- The agent registers shortcuts with the adapter API, such as `useHotkey('Mod+S', ...)`, instead of a `keydown` listener.
-- It uses `Mod` and the adapter's label primitive, such as `useFormatForDisplay`, instead of `isMac` checks and hand-written `⌘`/`Ctrl` labels.
-- It relies on the defaults for text inputs and `preventDefault` instead of reimplementing them.
-- The dialog's `Escape` is registered inside an `exclusive` scope with a per-instance name, instead of a "shortcuts enabled" flag.
-- Shortcuts that need a help dialog carry `meta: { name }`, or are declared as app hotkeys.
+If it still generates manual key listeners, confirm the `intent-skills` block is near the top of your agent config and run `npx @tanstack/intent@latest list` to verify the packages are detected.
 
-If the agent still writes its own key handling, reopen its config file and confirm the `intent-skills` block is present. You can also run `intent list` to confirm that the installed Hotkeys packages are detected and `intent load` to inspect the matching guidance directly.
+## Keeping skills current
 
-## Keeping Skills Current
+Skills update automatically alongside your `node_modules` packages. Standard discovery mode needs no CLI rerun after updates. If you used `--map`, rerun `npx @tanstack/intent@latest install --map` after adding or updating intent-enabled packages.
 
-Skills are versioned with each package. When you update your TanStack Hotkeys packages, the `SKILL.md` files under `node_modules` update with them. No CLI rerun is needed. If you use explicit mappings, rerun `npx @tanstack/intent@latest install --map` after adding another intent-enabled package, or when you want to refresh the mappings.
+## Wiring skills manually
 
-## Using Skills Without the CLI
-
-If you'd rather wire skills in yourself, reference them directly from `node_modules` in any agent config file. The minimum your agent needs is a pointer to the relevant files:
+If you'd rather not use the CLI, point your agent config directly to the installed skill files:
 
 ```markdown
 When working on keyboard shortcuts with TanStack Hotkeys, read and follow:
@@ -128,11 +116,10 @@ node_modules/@tanstack/hotkeys/skills/hotkeys-core/SKILL.md
 node_modules/@tanstack/react-hotkeys/skills/react-hotkeys/SKILL.md
 ```
 
-With pnpm, `@tanstack/hotkeys` isn't hoisted to the top-level `node_modules`, so the first path doesn't exist. Use the CLI, or point at the core package inside `node_modules/.pnpm`.
+> [!NOTE]
+> With `pnpm`, `@tanstack/hotkeys` isn't hoisted to the root `node_modules`, so the first path won't exist directly. Use the CLI or point to the nested `node_modules/.pnpm` path.
 
-The CLI is recommended because it discovers installed packages automatically and stays consistent with the Agent Skills standard, but the underlying file paths are stable.
+## Learn more
 
-## Learn More
-
-- [TanStack Intent documentation](https://tanstack.com/intent/latest/docs/overview), the CLI's full reference, including `scaffold`, `validate`, and CI setup for library maintainers.
-- [Agent Skills registry](https://tanstack.com/intent/registry), where you can browse other intent-enabled packages.
+- [TanStack Intent documentation](https://tanstack.com/intent/latest/docs/overview) covers `scaffold`, `validate`, and CI checks for library authors.
+- [Agent Skills registry](https://tanstack.com/intent/registry) lists other intent-enabled TanStack packages.

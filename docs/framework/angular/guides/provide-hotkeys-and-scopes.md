@@ -6,11 +6,11 @@ redirect_from:
   - framework/angular/guides/hotkeys-provider-and-scopes
 ---
 
-`provideHotkeys` is optional. Without it, every hotkey uses the built-in defaults and belongs to the `'global'` scope, so it works for as long as its component exists. Many apps never need more. Add it to your application config or to a component's `providers` when you want to:
+`provideHotkeys` is optional. Without it, every hotkey uses the built-in defaults and belongs to the `'global'` scope, so it works for as long as its component exists. Many apps never need more. Add it to:
 
-- Change the default options for every hotkey or recorder in part of your app.
-- Provide [app hotkeys](./app-hotkeys) and the user's custom hotkeys.
-- Group hotkeys into scopes that turn on and off together, such as everything in a dialog.
+- Override default options for hotkeys or recorders in part of your app
+- Supply [app hotkeys](./app-hotkeys) and load or save custom user bindings
+- Group shortcuts into scopes that turn on and off together, such as modals, panels, or tabs
 
 ## Set default options
 
@@ -31,9 +31,9 @@ bootstrapApplication(AppComponent, {
 })
 ```
 
-- `hotkey` defaults apply to every `injectHotkey` and `injectHotkeys` below the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a function override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
-- `hotkeyRecorder` defaults apply to every `injectHotkeyRecorder` below the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
-- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
+- **`hotkey`.** Sets defaults for every `injectHotkey` and `injectHotkeys` in the provider (`requireReset` applies to chords, and `timeout` applies to sequences). Options passed to a hotkey override these defaults. See [Hotkey options](./hotkeys#hotkey-options).
+- **`hotkeyRecorder`.** Sets defaults for every `injectHotkeyRecorder` in the provider. See [Hotkey Recording](./custom-hotkey-recording).
+- **`keyboardLayout: false`.** Stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A `provideHotkeys` in a component's `providers` merges its defaults over its parent's, so a component can change the defaults for its part of your app.
 
@@ -57,7 +57,7 @@ Nested providers use the app hotkeys and custom hotkeys of the provider above th
 
 ## Group hotkeys into scopes
 
-Apps reuse keys. `Escape` should close the dialog, not the panel behind it, and `Mod+S` should post the comment you are typing, not save the whole document. You could pass [`enabled`](./hotkeys#enable-and-disable-hotkeys) to every hotkey, but then each component has to know about every other component that might want the same key.
+Apps constantly reuse keys. `Escape` should close the active dialog rather than the panel behind it, and `Mod+S` in a comment box should post the comment instead of saving the document. Rather than passing [`enabled`](./hotkeys#enable-and-disable-hotkeys) to every hotkey and coordinating across components, group regions of your app into scopes.
 
 Scopes group hotkeys by where they render instead. Add `provideHotkeys` with a `scope` to a component's `providers`, and every hotkey injected in that component and its children belongs to that scope. The scope is active while the component exists and the provider is enabled, and nested scopes take precedence over the scopes around them.
 
@@ -99,7 +99,7 @@ export class LoadingOverlay {
 }
 ```
 
-Scopes are names, not instances. Two components that provide the `editor` scope share one scope, and it stays active until both are destroyed. Give each region its own name when you need to turn them on and off separately.
+Scopes are names, not instances. Two components that provide the `editor` scope share one scope, and it stays active until both are destroyed. Give each region its own name to turn them on and off separately.
 
 ### Scopes for a route's page
 
@@ -128,7 +128,7 @@ export class EditPage {
 }
 ```
 
-If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and must report the pages it stores through `retrieveStoredRouteHandles()`, or the router can destroy a stored page's injector. A stored page keeps its injector, so its scope stays active; turn it off while the page is detached, as in [Pages kept alive by route reuse](#pages-kept-alive-by-route-reuse).
+If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and must report the pages it stores through `retrieveStoredRouteHandles()`, or the router can destroy a stored page's injector. A stored page keeps its injector, so its scope stays active. Turn it off while the page is detached, as in [Pages kept alive by route reuse](#pages-kept-alive-by-route-reuse).
 
 ## Scopes and targets
 
@@ -155,20 +155,20 @@ export class Editor {
 
 | | Scope | Target |
 | --- | --- | --- |
-| Decides | Whether the hotkey is on | Which key presses the hotkey receives |
-| Based on | Which providers exist and are enabled | Where focus is |
+| Controls | Whether the hotkey is active | Which key presses reach the hotkey |
+| Driven by | Which providers exist and are enabled | Where focus is |
 | Follows | The injector tree, including overlays | The DOM |
 | Set with | `provideHotkeys({ scope })`, or the `scope` option | The `target` option |
 | Use for | Dialogs, panes, and tabs | Focusable elements, such as a list or a code editor |
 
 ## Nested scopes win
 
-When hotkeys in two active scopes match the same key, only one scope handles it:
+When several active scopes register the same chord, only the highest-precedence scope runs (sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope):
 
-- A nested scope beats the scopes it is nested in.
-- Otherwise, the scope that activated most recently wins.
+1. A nested scope beats its parent scopes.
+2. Among scopes that are not nested, the most recently activated scope wins.
 
-Every hotkey in the winning scope that matches the key runs. Hotkeys in other scopes do not.
+Every matching hotkey in the winning scope runs, and hotkeys in other scopes do not.
 
 ```ts
 @Component({
@@ -324,9 +324,7 @@ provideHotkeys({
 
 ### Stacked exclusive scopes
 
-When more than one exclusive scope is active, the one with the highest precedence owns the keyboard, and only its `allow` list applies. A confirmation dialog opened from inside an edit dialog suspends the edit dialog until it closes.
-
-Each exclusive scope needs a unique name. Activating the same exclusive scope twice logs a warning in development, because hotkeys from both providers would fire together.
+When two exclusive scopes are active at once, such as a confirmation dialog opened from inside an edit dialog, the higher-precedence one wins and only its `allow` list applies. Give each exclusive scope a unique name. Activating the same exclusive scope twice logs a development warning, because hotkeys from both providers would fire together.
 
 ## Choose a scope for one hotkey
 
@@ -351,11 +349,9 @@ export const appHotkeys = defineAppHotkeys({
 })
 ```
 
-App hotkeys without a declared scope use the provider's scope, like any other hotkey.
-
-The declared scope also drives conflict checks. `findConflicts` and `setCustomHotkey` let app hotkeys in different scopes share a hotkey, as `doc.save` and `comment.post` do above. An app hotkey in `'global'`, or with no declared scope, conflicts with every app hotkey that uses the same hotkey. Declare scopes on app hotkeys that are meant to share keys.
-
-`injectAppHotkeyList` reports an app hotkey as `'suspended'` when it has enabled registrations but none of them is in an active scope.
+- Declarations without a `scope` use the provider's scope, like any other hotkey.
+- **Conflict detection.** `findConflicts` and `setCustomHotkey` let app hotkeys in different named scopes share a hotkey, as `doc.save` and `comment.post` do above. An app hotkey in `'global'` or with no declared scope conflicts with every app hotkey that uses the same hotkey, so declare `scope` on bindings meant to coexist.
+- [`injectAppHotkeyList`](./cheat-sheet-ui-helpers#list-every-app-hotkey) reports an app hotkey as `'suspended'` when it has enabled registrations but none in an active scope.
 
 ## Scopes outside Angular
 
@@ -363,8 +359,6 @@ For UI that Angular doesn't render, such as a dialog from another library, activ
 
 ## Inspect scopes
 
-The hotkeys [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive.
-
-Your app doesn't need to track scopes itself. If you want to show scope state anyway, read it from the hotkey manager. See [Read scope state](./hotkey-manager#read-scope-state).
+The [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive. To read the same state in your own UI, see [Read scope state](./hotkey-manager#read-scope-state).
 
 See the [Scopes example](../examples/scopes) for nested, enabled, and exclusive scopes together.

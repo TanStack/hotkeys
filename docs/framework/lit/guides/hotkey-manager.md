@@ -1,10 +1,10 @@
 ---
 title: Use the Hotkey Manager Outside Lit Elements
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Lit elements with the HotkeyManager behind @hotkey and HotkeyController, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Lit elements with the HotkeyManager behind @hotkey and HotkeyController.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Lit, you usually never need to use the hotkey manager directly. The `@hotkey` decorator and `HotkeyController` register hotkeys with it, unregister them when the element disconnects, and call methods with the element as `this`. Use the manager for code that runs outside elements, for scopes, and in tests.
+This is an advanced guide. Inside elements, the `@hotkey` decorator and `HotkeyController` register hotkeys with the manager, unregister them when the element disconnects, and call methods with the element as `this`. Use the manager directly only for code that runs outside elements and for scopes.
 
 Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
 
@@ -144,46 +144,8 @@ document.addEventListener('keydown', (event) => {
 
 The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Elements that disconnect unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Reset the manager after each test:
-
-```ts
-import { afterEach, expect, it, vi } from 'vitest'
-import { LitElement } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { HotkeyManager, hotkey } from '@tanstack/lit-hotkeys'
-
-@customElement('test-editor')
-class TestEditor extends LitElement {
-  @hotkey('Mod+S', { platform: 'mac' })
-  save() {
-    this.dispatchEvent(new CustomEvent('save'))
-  }
-}
-
-afterEach(() => {
-  document.body.replaceChildren()
-  HotkeyManager.resetInstance()
-})
-
-it('saves with Mod+S', async () => {
-  const save = vi.fn()
-  const editor = new TestEditor()
-  editor.addEventListener('save', save)
-
-  document.body.append(editor)
-  await editor.updateComplete
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-  )
-
-  expect(save).toHaveBeenCalledOnce()
-})
-```
-
-`resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform: 'mac'` makes `Mod` mean Command, so the test passes on every operating system.
+To reset `HotkeyManager` and `KeyStateTracker` between tests and pin the platform, see [Testing](./testing).
 
 The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.

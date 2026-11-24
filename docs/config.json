@@ -8,6 +8,7 @@
   "sections": [
     {
       "label": "Getting Started",
+      "tab": "get-started",
       "children": [
         {
           "label": "Overview",
@@ -16,14 +17,6 @@
         {
           "label": "Installation",
           "to": "installation"
-        },
-        {
-          "label": "Devtools",
-          "to": "devtools"
-        },
-        {
-          "label": "Agent Skills (TanStack Intent)",
-          "to": "agent-skills"
         }
       ],
       "frameworks": [
@@ -120,7 +113,22 @@
       ]
     },
     {
-      "label": "Guides",
+      "label": "Tooling",
+      "tab": "get-started",
+      "children": [
+        {
+          "label": "Devtools",
+          "to": "devtools"
+        },
+        {
+          "label": "Agent Skills (TanStack Intent)",
+          "to": "agent-skills"
+        }
+      ]
+    },
+    {
+      "label": "Core Guides",
+      "tab": "guides",
       "children": [],
       "frameworks": [
         {
@@ -143,36 +151,8 @@
               "to": "framework/react/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/react/guides/hotkeys-provider-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/react/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/react/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/react/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/react/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/react/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/react/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/react/guides/keyboard-layouts"
             }
           ]
         },
@@ -196,36 +176,8 @@
               "to": "framework/preact/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/preact/guides/hotkeys-provider-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/preact/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/preact/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/preact/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/preact/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/preact/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/preact/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/preact/guides/keyboard-layouts"
             }
           ]
         },
@@ -249,36 +201,8 @@
               "to": "framework/solid/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/solid/guides/hotkeys-provider-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/solid/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/solid/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/solid/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/solid/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/solid/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/solid/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/solid/guides/keyboard-layouts"
             }
           ]
         },
@@ -302,36 +226,8 @@
               "to": "framework/angular/guides/formatting-display"
             },
             {
-              "label": "provideHotkeys and Scopes",
+              "label": "provideHotkeys & Scopes",
               "to": "framework/angular/guides/provide-hotkeys-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/angular/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/angular/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/angular/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/angular/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/angular/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/angular/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/angular/guides/keyboard-layouts"
             }
           ]
         },
@@ -355,36 +251,8 @@
               "to": "framework/vue/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/vue/guides/hotkeys-provider-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/vue/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/vue/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/vue/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/vue/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/vue/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/vue/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/vue/guides/keyboard-layouts"
             }
           ]
         },
@@ -406,34 +274,6 @@
             {
               "label": "Formatting & Display",
               "to": "framework/lit/guides/formatting-display"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/lit/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/lit/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/lit/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/lit/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/lit/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/lit/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/lit/guides/keyboard-layouts"
             }
           ]
         },
@@ -457,36 +297,8 @@
               "to": "framework/svelte/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/svelte/guides/hotkeys-provider-and-scopes"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/svelte/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/svelte/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/svelte/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/svelte/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/svelte/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/svelte/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/svelte/guides/keyboard-layouts"
             }
           ]
         },
@@ -508,34 +320,6 @@
             {
               "label": "Formatting & Display",
               "to": "framework/alpine/guides/formatting-display"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/alpine/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/alpine/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/alpine/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/alpine/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/alpine/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/alpine/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/alpine/guides/keyboard-layouts"
             }
           ]
         },
@@ -557,34 +341,6 @@
             {
               "label": "Formatting & Display",
               "to": "framework/ember/guides/formatting-display"
-            },
-            {
-              "label": "App Hotkeys",
-              "to": "framework/ember/guides/app-hotkeys"
-            },
-            {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/ember/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
-              "to": "framework/ember/guides/custom-hotkey-recording"
-            },
-            {
-              "label": "Held Key State Helpers",
-              "to": "framework/ember/guides/held-key-state-helpers"
-            },
-            {
-              "label": "Hotkey Hints",
-              "to": "framework/ember/guides/hotkey-hints"
-            },
-            {
-              "label": "Hotkey Manager",
-              "to": "framework/ember/guides/hotkey-manager"
-            },
-            {
-              "label": "Keyboard Layouts",
-              "to": "framework/ember/guides/keyboard-layouts"
             }
           ]
         },
@@ -608,36 +364,478 @@
               "to": "framework/octane/guides/formatting-display"
             },
             {
-              "label": "HotkeysProvider and Scopes",
+              "label": "HotkeysProvider & Scopes",
               "to": "framework/octane/guides/hotkeys-provider-and-scopes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "App Hotkeys & UI",
+      "tab": "guides",
+      "children": [],
+      "frameworks": [
+        {
+          "label": "react",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/react/guides/app-hotkeys"
             },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/react/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/react/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/react/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/react/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "preact",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/preact/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/preact/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/preact/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/preact/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/preact/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "solid",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/solid/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/solid/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/solid/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/solid/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/solid/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/angular/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/angular/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/angular/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/angular/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/angular/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "vue",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/vue/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/vue/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/vue/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/vue/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/vue/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "lit",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/lit/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/lit/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/lit/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/lit/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/lit/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/svelte/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/svelte/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/svelte/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/svelte/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/svelte/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/alpine/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/alpine/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/alpine/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/alpine/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/alpine/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "App Hotkeys",
+              "to": "framework/ember/guides/app-hotkeys"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/ember/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Cheat Sheets",
+              "to": "framework/ember/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/ember/guides/hotkey-hints"
+            },
+            {
+              "label": "Held Keys",
+              "to": "framework/ember/guides/held-key-state-helpers"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
             {
               "label": "App Hotkeys",
               "to": "framework/octane/guides/app-hotkeys"
             },
             {
-              "label": "Cheat Sheet UI Helpers",
-              "to": "framework/octane/guides/cheat-sheet-ui-helpers"
-            },
-            {
-              "label": "Custom Hotkey Recording",
+              "label": "Hotkey Recording",
               "to": "framework/octane/guides/custom-hotkey-recording"
             },
             {
-              "label": "Held Key State Helpers",
-              "to": "framework/octane/guides/held-key-state-helpers"
+              "label": "Cheat Sheets",
+              "to": "framework/octane/guides/cheat-sheet-ui-helpers"
             },
             {
               "label": "Hotkey Hints",
               "to": "framework/octane/guides/hotkey-hints"
             },
             {
+              "label": "Held Keys",
+              "to": "framework/octane/guides/held-key-state-helpers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Advanced & Integration",
+      "tab": "guides",
+      "children": [],
+      "frameworks": [
+        {
+          "label": "react",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/react/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/react/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/react/guides/testing"
+            },
+            {
               "label": "Hotkey Manager",
-              "to": "framework/octane/guides/hotkey-manager"
+              "to": "framework/react/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "preact",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/preact/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/preact/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/preact/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/preact/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "solid",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/solid/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/solid/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/solid/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/solid/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/angular/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/angular/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/angular/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/angular/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "vue",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/vue/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/vue/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/vue/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/vue/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "lit",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/lit/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/lit/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/lit/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/lit/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/svelte/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/svelte/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/svelte/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/svelte/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/alpine/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/alpine/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/alpine/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/ember/guides/ssr"
+            },
+            {
+              "label": "Keyboard Layouts",
+              "to": "framework/ember/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/ember/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/ember/guides/hotkey-manager"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "SSR & Hydration",
+              "to": "framework/octane/guides/ssr"
             },
             {
               "label": "Keyboard Layouts",
               "to": "framework/octane/guides/keyboard-layouts"
+            },
+            {
+              "label": "Testing",
+              "to": "framework/octane/guides/testing"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/octane/guides/hotkey-manager"
             }
           ]
         }

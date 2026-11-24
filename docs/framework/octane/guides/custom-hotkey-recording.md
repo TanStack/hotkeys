@@ -6,9 +6,9 @@ redirect_from:
   - framework/octane/guides/hotkey-recording
 ---
 
-`useHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
+`useHotkeyRecorder` lets users customize a shortcut by pressing the keys directly, just like IDE or operating system settings panels. You only need it when users can rebind shortcuts. Pair it with [App Hotkeys](./app-hotkeys) to validate, persist, and list customized bindings app-wide.
 
-While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. You don't need to disable them yourself.
+While any recorder is listening, registered hotkeys pause automatically so pressing `Mod+S` to record it doesn't also trigger Save.
 
 ## Record a chord
 
@@ -36,25 +36,21 @@ function ShortcutRecorder() @{
 }
 ```
 
-The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `useHotkey`, and label it with `useFormatForDisplay`.
+With the default `recordBy: 'auto'`, the recorder outputs portable strings just like you write by hand: `Mod+S` for Command+S on macOS or Control+S on Windows and Linux. It falls back to physical bracketed codes (`Shift+[Slash]`, `Alt+[Digit1]`) for presses whose characters vary across OSes or layouts. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules, or set `recordBy: 'code'` (always physical) or `recordBy: 'key'` (always typed character).
 
-Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
-
-The hook returns the recorder's state and controls:
-
-| Property | Description |
+| Property or method | Description |
 | --- | --- |
-| `isRecording` | Whether the recorder is listening |
-| `steps` | Chords recorded so far in a sequence recording |
-| `recordedHotkey` | The hotkey from the last recording, or `null` after a cancel or clear |
+| `isRecording` | Whether the recorder is currently listening |
+| `steps` | Chords captured so far during a sequence recording |
+| `recordedHotkey` | Last committed hotkey, or `null` after cancel or clear |
 | `startRecording()` | Starts listening |
-| `stopRecording()` | Stops listening without calling `onRecord` or `onCancel` |
+| `stopRecording()` | Stops listening without triggering `onRecord` or `onCancel` |
 | `cancelRecording()` | Stops listening and calls `onCancel` |
-| `commitRecording()` | Commits the `steps` recorded so far |
+| `commitRecording()` | Commits the current `steps` immediately |
 
 ## Record a sequence
 
-Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step, and the recording commits when the user presses Enter, or after `idleTimeoutMs` without a new step:
+Set `maxSteps: Infinity` to capture multi-step sequences. Each chord appends a step, and the recording commits when the user presses `Enter` or, when `idleTimeoutMs` is configured, stops typing for that duration:
 
 ```tsx
 function SequenceRecorder() @{
@@ -74,30 +70,26 @@ function SequenceRecorder() @{
 }
 ```
 
-A one-step recording commits as a chord, so the result can always go straight to `useHotkey`. With `maxSteps: Infinity`, `onRecord` and `validate` receive a `Hotkey`, which can be a chord or a sequence. See [Sequences](./sequences) for how sequences match.
+If the user commits after a single chord, `useHotkeyRecorder` simplifies it to a chord string rather than a 1-element array. With `maxSteps: Infinity`, `onRecord` and `validate` receive a `Hotkey` (`HotkeyChord | HotkeySequence`). See [Sequences](./sequences) for how sequence bindings work.
 
 ## Keys the recorder handles
 
-| Key | What it does |
+| Key | Behavior while recording |
 | --- | --- |
-| A modifier alone, such as Shift | Waits for a key to go with it |
-| A key, with or without modifiers | Records a chord, such as `Mod+S` or `F1` |
-| Enter | Commits a sequence recording. With `maxSteps: 1` or `commitKeys: 'none'`, records Enter like any other key. |
-| Escape | Cancels the recording and calls `onCancel` |
-| Tab or Shift+Tab, without Control, Alt, or Meta | Cancels the recording and calls `onCancel`, and the browser moves focus as usual. In a text field, moves focus without cancelling. With `recordTab: true`, records Tab like any other key. |
-| Backspace or Delete, without modifiers | Removes the last step. With no steps, stops recording and calls `onClear`. |
+| Standalone modifier, such as `Shift` or `Control` | Waits for a non-modifier key |
+| Key press (with or without modifiers) | Captures a chord (`Mod+S`, `F1`) |
+| `Enter` | Commits a sequence. With `maxSteps: 1` or `commitKeys: 'none'`, records `Enter` instead. |
+| `Escape` | Cancels recording and calls `onCancel` |
+| `Tab` or `Shift+Tab` (without `Control`, `Alt`, or `Meta`) | Cancels and lets focus move normally. In a text field, `Tab` moves focus without cancelling. Set `recordTab: true` to record `Tab` instead, and show "Press Escape to cancel" for keyboard accessibility. |
+| `Backspace` or `Delete` (no modifiers) | Removes the last sequence step, or stops and calls `onClear` when empty |
 
-Repeats and IME composition never add a step. `onClear` doesn't change anything on its own, so your app decides whether clearing removes a hotkey or restores its default.
-
-By default, the recorder ignores typing in text fields, so other fields on the page keep working while it listens. Escape still cancels. Set `ignoreInputs: false` to record from inside a text field.
-
-Tab and Shift+Tab end the recording, so keyboard users don't get stuck on the recorder ([WCAG 2.1.2](https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html)). Set `recordTab: true` to let users bind Tab, for example in an editor. Escape still cancels, so show it while recording, such as "Press Escape to cancel".
+Key auto-repeats and IME compositions never add steps. Typing inside other text fields passes through while recording (`Escape` still cancels), unless you pass `ignoreInputs: false` to record inside inputs. Note that `onClear` doesn't delete anything on its own. Decide in your callback whether clearing unbinds the shortcut or resets its default.
 
 ## Validate and check conflicts
 
 ### Reject hotkeys you don't want
 
-Pass `validate` to accept or reject each recording before it commits. Return `true` to accept, or `false` or a message to reject:
+Return `true` from `validate` to accept a recording, or `false` or an error string to reject it:
 
 ```tsx
 useHotkeyRecorder({
@@ -108,7 +100,7 @@ useHotkeyRecorder({
 })
 ```
 
-The second argument has the `event` that recorded the chord and `parsedChord`, with `Mod` resolved. `onRecord` receives the same second argument. With `maxSteps: Infinity`, a recording can be a chord or a sequence, so check `kind` first. A sequence's context has `events` and `parsedSequence`, with one entry per step:
+With `maxSteps: Infinity`, check `context.kind` before reading `parsedChord` or `parsedSequence` (both `validate` and `onRecord` receive the same `context`):
 
 ```tsx
 useHotkeyRecorder({
@@ -121,11 +113,11 @@ useHotkeyRecorder({
 })
 ```
 
-A rejected recording keeps listening, so the user can try again. A rejected sequence recording keeps its steps, so the user can edit them with Backspace.
+Rejected recordings keep the recorder active, and rejected sequences keep their captured `steps` so users can edit with `Backspace`.
 
 ### Check for conflicts
 
-Set `detectConflicts: true` to reject a hotkey that's already registered:
+Pass `detectConflicts: true` to reject bindings already registered on the page:
 
 ```tsx
 useHotkeyRecorder({
@@ -137,32 +129,38 @@ useHotkeyRecorder({
 })
 ```
 
-By default, the check compares the recording with every enabled `keydown` hotkey on the page, in every [scope](./hotkeys-provider-and-scopes). A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step. Pass an object instead of `true` to change what's checked:
+By default, `detectConflicts` checks every enabled `keydown` registration across all scopes. A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step (so `['G', 'H']` and `['G', 'S']` do not conflict). It compares underlying keypresses so `Shift+[Slash]` catches `?`. Pass an options object to narrow the check:
 
 ```tsx
 detectConflicts: {
-  excludeIds: [registration.id], // Skip the hotkey being changed
-  target: panelElement, // Only hotkeys on this element, inside it, or around it
-  scope: 'all', // Ignore target and check hotkeys on every element. Unrelated to hotkey scopes.
-  eventType: 'keyup', // Check keyup hotkeys instead
-  includeDisabled: true, // Include disabled hotkeys
-  exclude: (registration) => registration.options.scope === 'vim', // Skip one hotkey scope
+  excludeIds: [registration.id], // Ignore the registration being edited
+  target: panelElement, // Check only overlapping elements (pass scope: 'all' instead to check every target)
+  eventType: 'keyup',
+  includeDisabled: true,
+  exclude: (registration) => registration.options.scope === 'vim', // Skip a hotkey scope
 }
 ```
 
-Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a registered `?` are the same press. The check also tests each registered hotkey against the key presses that made the recording, so it finds these.
+> [!NOTE]
+> Live conflict checks inspect only mounted registrations. If you use [App Hotkeys](./app-hotkeys#change-hotkeys), use `findConflicts` inside `validate` so shortcuts on unmounted routes are checked too.
 
-A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
+`onReject` doesn't generate user-facing copy. Map `reason` (along with optional `hotkey`, `conflicts`, and `message`) to your own UI strings:
 
-`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code that can't be recorded another way, or `'alt-graph'` for an AltGr press it can't record. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
+| `reason` | When it happens |
+| --- | --- |
+| `'conflict'` | Collides with an active registration (`conflicts` lists the matches) |
+| `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
+| `'whitespace'` | User pressed a whitespace character that can't be recorded |
+| `'missing-code'` | Key event had no physical `code` when needed |
+| `'alt-graph'` | Unrecordable `AltGr` combination |
 
-To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
+`findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 ## Build a shortcut settings screen
 
-For an app-wide settings screen, declare your hotkeys as [app hotkeys](./app-hotkeys), and save each recording with `setCustomHotkey`. That keeps cheat sheets, conflict checks, and saved choices in one place. [Change hotkeys](./app-hotkeys#change-hotkeys) shows a settings row built that way.
+For app-wide settings, pair [App Hotkeys](./app-hotkeys#change-hotkeys) with `setCustomHotkey` so cheat sheets, persistence, and unmounted-route conflict checks stay unified.
 
-For a few hotkeys in one component, state is enough:
+For local shortcuts inside a single component, Octane state is enough:
 
 ```tsx
 import { useState } from 'octane'
@@ -224,20 +222,20 @@ function ShortcutSettings() @{
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `onRecord` | Required | Called with the recorded hotkey when a recording commits, and with the same context as `validate` |
-| `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, or you call `cancelRecording()` |
-| `onClear` | None | Called when the user presses Backspace or Delete with nothing recorded |
-| `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
-| `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |
-| `idleTimeoutMs` | None | With `maxSteps: Infinity`, commits after this many milliseconds without a new step. The timer starts after the first chord. |
-| `recordBy` | `'auto'` | Records the key by name where it has one and by position otherwise (`'auto'`), always by position (`'code'`), or always by the character it types (`'key'`) |
+| `onRecord` | Required | Called with the recorded `hotkey` and `context` when committed |
+| `onCancel` | None | Called on `Escape`, `Tab`, `Shift+Tab`, or `cancelRecording()` |
+| `onClear` | None | Called when `Backspace` or `Delete` is pressed with no recorded steps |
+| `maxSteps` | `1` | `1` for chords, `Infinity` for sequences |
+| `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether `Enter` commits (`'enter'`) or records (`'none'`) |
+| `idleTimeoutMs` | None | With `maxSteps: Infinity`, auto-commits after idle ms following the first chord |
+| `recordBy` | `'auto'` | `'auto'` (portable names and physical fallbacks), `'code'` (physical), or `'key'` (typed char) |
 | `ignoreInputs` | `true` | Lets typing in text fields pass through while recording |
-| `recordTab` | `false` | Records Tab and Shift+Tab instead of letting them cancel and move focus |
-| `validate` | None | Accepts or rejects a recording. See [Reject hotkeys you don't want](#reject-hotkeys-you-dont-want). |
-| `detectConflicts` | `false` | Rejects a recording that collides with a registered hotkey. See [Check for conflicts](#check-for-conflicts). |
-| `onReject` | None | Called with the reason when a recording is rejected |
-| `platform` | Detected | The platform that decides what `Mod` means |
+| `recordTab` | `false` | Records `Tab` and `Shift+Tab` instead of cancelling and moving focus |
+| `validate` | None | Custom validator returning `true`, `false`, or an error message |
+| `detectConflicts` | `false` | Rejects conflicts with registered hotkeys |
+| `onReject` | None | Called with `{ reason, hotkey?, conflicts?, message? }` when rejected |
+| `platform` | Detected | Override `'mac'`, `'windows'`, or `'linux'` for `Mod` output |
 
-To change the defaults for every recorder, pass `hotkeyRecorder` options to `HotkeysProvider`. See [Set default options](./hotkeys-provider-and-scopes#set-default-options). The [`useHotkeyRecorder` reference](../reference/functions/useHotkeyRecorder.md) lists the types.
+Set defaults for all recorders via `HotkeysProvider` using `hotkeyRecorder` in `defaultOptions`. See [Set default options](./hotkeys-provider-and-scopes#set-default-options) and [`useHotkeyRecorder`](../reference/functions/useHotkeyRecorder.md).
 
-The [useHotkeyRecorder example](../examples/useHotkeyRecorder) records chords, and the [sequences example](../examples/useHotkeyRecorder-sequences) records sequences.
+Try the [useHotkeyRecorder example](../examples/useHotkeyRecorder) or [sequences recorder example](../examples/useHotkeyRecorder-sequences).
