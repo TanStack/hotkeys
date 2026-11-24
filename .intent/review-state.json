@@ -8595,14 +8595,16 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "47a3a5cdabfd00a2c8ce0bee8a91530b93aff90b62ee3d66a92af1ba379f8626",
+      "fingerprint": "655273267b82fd303ff283293c9ee4e30fd8524217b787c756b233d2f298c58d",
       "snapshot": {
-        ".github/workflows/e2e.yml": "6d887cca3ca7ce1f0ee0b39167253bd26f7561f35996486f1084d6dcfe79ff28"
+        ".github/workflows/e2e.yml": "e8db2697917e4729195f70791ae7cd579f0a5ffe52dcb42875cf4a123185ecba"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/e2e.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -18335,24 +18337,28 @@
       ]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "880cdfd2aecd78a81486333b8dd253c6809f11d58939b747ac2f180b88e47212",
+      "fingerprint": "1de02f57ff94aa9765047e2db59e42e66a4aa11f294d1ca56a371c68ff26845e",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "d2cae18d3f2b43020d0fca89d9dd4ee9758f2c6615397548fb86ac8999bcfab1"
+        ".github/workflows/e2e-flaky.yml": "8bf9c5a0d4d1d1062846523ed94bdfb08398015142dd22ff6e812fafcd037938"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/e2e-flaky.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:.github/workflows/e2e-platforms.yml": {
-      "fingerprint": "c43cdef7e0aa4cf8fb88098a60901574b968c9368b37eda5382f0801d31402e9",
+      "fingerprint": "feb923f76a53072ad279d6609a020e3ae831329ea99e582165487198812190e1",
       "snapshot": {
-        ".github/workflows/e2e-platforms.yml": "9ed96de10c113972d7cc383f68b19a4bafdd0cf9bcec3280090b68f4f564c29e"
+        ".github/workflows/e2e-platforms.yml": "62c22f294db918dc07fb386c6063df92d989b7cd9664fae2fba897bce47bc4bc"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/e2e-platforms.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:e2e/adapters/adapters.spec.ts": {
       "fingerprint": "ff474bd1f24df0e3c14f27176cd19b1c9c9c4f97fa2e6e010ff656a22e8a946e",
@@ -19257,14 +19263,16 @@
       ]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "f591bfde7a79d514088bd947ac524d17dd5011f04e6cd9a76523ae6da80d997e",
+      "fingerprint": "cac9c9d20c5127a79ff67735fc996de9c897848f57bae69cbda4cbf539335ba8",
       "snapshot": {
-        ".github/workflows/nightly.yml": "7ca3bf15e8cff7b23b0721e90e6cdd851ea5702ee2669dfe7b7c0688262fb49d"
+        ".github/workflows/nightly.yml": "91bcd2e72a26f7c50f66e9c9933387bf5b57a11b351922b675abf628f17d9f00"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/nightly.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:e2e/native/ibus.spec.ts": {
       "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
@@ -19900,34 +19908,40 @@
       "evidence": [".github/renovate.json"]
     },
     "source:.github/workflows/autofix.yml": {
-      "fingerprint": "a4650fbdfe0e2d4d0e383ef0d84f04126cdcebdf8f3b7b0ac89560feaf6df046",
+      "fingerprint": "7c4629838c1e7e7e8c3d7e8a8cf42c5df5552e666fc630d86e8f6ce78a0aae18",
       "snapshot": {
-        ".github/workflows/autofix.yml": "7d4cae99bcc92aabccf679d0cb363654b5f6e28fc3deaf504b8f5520280ec6c4"
+        ".github/workflows/autofix.yml": "e5ba989d1c921d86d1b3aa76f8151085497fa5d575211664136e7ad0e83cd09a"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/autofix.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:.github/workflows/pr.yml": {
-      "fingerprint": "ff12dc3692e045e9c7b6c46545bf31323d9e3937a86cc0efc714bd0b98f1660f",
+      "fingerprint": "029b6d7671610a8d8d4d41e6e1c5bc80a96b6e32e60eccd93a10a06d9773cdfb",
       "snapshot": {
-        ".github/workflows/pr.yml": "721bed692dfb3ecaa68d1490bcfec095e6a3ba80f12d7c67bb5d4fe94587cc54"
+        ".github/workflows/pr.yml": "2d7e5a1639ede23b854b33c0eaf4bd23e108ce96a8b80fe359603d6c5b2fd0cd"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/pr.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:.github/workflows/release.yml": {
-      "fingerprint": "fbb39ec8c5ecafa223d42785517f803de26c234ed8cb163155e2398cc69dac4a",
+      "fingerprint": "9c5e1483d2e1a6b6597cbb3e23d1b6796cb0cfd5eef94ffd44a0cfec62d22ed6",
       "snapshot": {
-        ".github/workflows/release.yml": "10263cbaf209ae47260c9901d2770cfe432cc11076c673f240f1b06b7d252432"
+        ".github/workflows/release.yml": "e561f00c5194018063bed48248c37494ad9535b167879969161fe2fc8e383b2c"
       },
-      "head": "71c368fcfd0162d87ae0003073b25de58a42b419",
-      "outcome": "out-of-scope",
-      "reason": "CI workflow pin of TanStack/config moved to its current main commit; no skill guidance depends on CI workflows.",
-      "evidence": ["No skill references this file"]
+      "head": "de4bf303a796095f126a830b198068b3eb3e1fc2",
+      "outcome": "no-change",
+      "reason": "CI workflow TanStack/config hash pin updates; no library API or skill changes.",
+      "evidence": [
+        "Changed: .github/workflows/release.yml at de4bf303a796095f126a830b198068b3eb3e1fc2"
+      ]
     },
     "source:.github/workflows/zizmor.yml": {
       "fingerprint": "57b02f51f1dc89b02cf3f33acff8e5f3c5391bb97b8da216eee0cc8c3df2231d",

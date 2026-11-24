@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@88949c60ce4973c0aea4395a6bafb37cd7390e3b # main
+        uses: TanStack/config/.github/setup@c1ef98305f122da0257951e5e2896e143bdf8173 # main
       - name: Fix formatting
         run: pnpm run format
       - name: Regenerate docs
