@@ -4,13 +4,13 @@ id: app-hotkeys
 description: Declare every hotkey in your Svelte app in one place, list them in cheat sheets, and let users change them and save their choices.
 ---
 
-App hotkeys are optional. Plain `createHotkey` is enough until you need a cheat sheet for your whole app, or a screen where users change hotkeys. `createHotkey` registers a hotkey when its component mounts, so a cheat sheet built from live registrations misses hotkeys on routes that have not rendered yet, and a settings screen has nowhere to change them. App hotkeys solve both: you declare every hotkey in one place, pass the declarations to `HotkeysProvider`, and attach callbacks where the work happens. Users can then customize any of them, and your app decides how to save their choices.
+App hotkeys are optional. Plain `createHotkey` calls are enough until you need an app-wide cheat sheet or a shortcut settings screen. Because `createHotkey` registers shortcuts only while its component is mounted, a cheat sheet built purely from active registrations misses shortcuts on routes that haven't rendered and has no single store to edit them.
 
-A declaration holds a hotkey's id, default hotkey, metadata, and options. It never holds a callback. `createHotkey` and `createHotkeys` still attach the callbacks.
+App hotkeys solve both. Declare every shortcut's ID, default binding, and metadata once with `defineAppHotkeys`, pass it to `HotkeysProvider`, and attach callbacks where the actions live.
 
 ## Declare app hotkeys
 
-Use `defineAppHotkeys` in a module that contains only declarations. Keep it free of components and handlers, because it loads with your app shell:
+Create a dedicated module for declarations without importing components or handlers, since this file loads with your app shell:
 
 ```ts
 // app-hotkeys.ts
@@ -38,12 +38,12 @@ declare module '@tanstack/svelte-hotkeys' {
 }
 ```
 
-- The object key is the app hotkey's id. Treat ids as a stable contract, because saved custom hotkeys use them as keys.
-- `hotkey` is the default: a chord, a sequence, or `null` for an action without a default. An unbound app hotkey registers nothing until the user assigns one.
-- `options` describe the hotkey itself: `capture`, `conflictBehavior`, `eventType`, `ignoreInputs`, `preventDefault`, `stopPropagation`, plus `requireReset` for a chord default or `timeout` for a sequence default. [Hotkey options](./hotkeys#hotkey-options) describes each one. Options that don't match the default's kind are type errors. Pass `target` and `enabled` where you register the hotkey.
-- `scope` sets the [scope](./hotkeys-provider-and-scopes) the hotkey fires in, such as `'editor'`, in place of the scope of the provider it registers under. App hotkeys in different scopes may share a hotkey.
+- **IDs are your storage contract.** Keep object keys (`'doc.save'`) stable because persisted user overrides key off them.
+- **Defaults (`hotkey`).** Pass a chord, a sequence, or `null` for an unassigned action that registers nothing until the user sets one.
+- **Options (`options`).** Accepts hotkey behavior options (`capture`, `conflictBehavior`, `eventType`, `ignoreInputs`, `preventDefault`, `stopPropagation`, plus `requireReset` for chords or `timeout` for sequences). See [Hotkey options](./hotkeys#hotkey-options). Options mismatched to the default's kind are type errors. Pass `target` and `enabled` at registration time instead.
+- **Scopes (`scope`).** Overrides the [scope](./hotkeys-provider-and-scopes) of whichever provider the hotkey registers under. Declarations in different scopes can share keys.
 
-The `Register` augmentation types `getAppHotkeys()`, the ids accepted by `getCustomHotkeys()`, and the `CustomHotkeys` type.
+The `Register` module augmentation enables autocomplete and type checking for `getAppHotkeys()`, `getCustomHotkeys()`, and `CustomHotkeys`.
 
 ## Provide app hotkeys
 
@@ -63,7 +63,7 @@ Pass the declarations to the root `HotkeysProvider`. See [Provide app hotkeys](.
 
 ## Register app hotkeys
 
-Pass an app hotkey wherever you pass a hotkey. Read it from `getAppHotkeys().current` inside a getter, so the registration follows changes, or import it directly:
+Pass an app hotkey from `getAppHotkeys().current` inside a getter so the registration follows changes, or from a direct import of `appHotkeys`, anywhere `createHotkey` accepts a hotkey:
 
 ```ts
 import { createHotkey, getAppHotkeys } from '@tanstack/svelte-hotkeys'
@@ -77,11 +77,12 @@ createHotkey(
 )
 ```
 
-Both forms use the provider's effective hotkey for that id, so a user's custom hotkey applies even to a direct import, such as `createHotkey(appHotkeys['doc.save'], save)`. Without a provider, the declared default is used.
+Both forms resolve to the user's current custom binding inside the provider, such as `createHotkey(appHotkeys['doc.save'], save)`, and fall back to the declared default when there's no provider. When a user rebinds an app hotkey, active registrations update immediately, even when switching between a chord and a sequence.
 
-The registration takes `meta` and `options` from the declaration. Options merge in this order: provider `defaultOptions`, then declared options, then call-site options. `meta` comes only from the declaration, so the cheat sheet and the registration cannot disagree. Call-site options are typed by the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
+- **Option merging.** Options merge in order from provider `defaultOptions`, then declared `options`, then call-site options. Call-site options are typed against the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
+- **Metadata.** `meta` always comes from the declaration so cheat sheets and handlers stay in sync.
 
-When a component registers several hotkeys, pass app hotkeys to `createHotkeys` in the same field, mixed with plain hotkeys if you like:
+Mix app hotkeys and regular hotkeys freely in `createHotkeys`:
 
 ```ts
 createHotkeys(() => [
@@ -91,15 +92,13 @@ createHotkeys(() => [
 ])
 ```
 
-When the user changes a hotkey, registered app hotkeys move to the new hotkey immediately, even if it changes from a chord to a sequence.
-
 ## List app hotkeys
 
-`getAppHotkeyList` returns every app hotkey, with its current hotkey and whether anything has registered it. Use it to build a cheat sheet that includes pages that haven't rendered. See [List every app hotkey](./cheat-sheet-ui-helpers#list-every-app-hotkey).
+`getAppHotkeyList` returns every declared app hotkey, even on routes that haven't rendered, along with its live registration status and `isCustom` flag. See [List every app hotkey](./cheat-sheet-ui-helpers#list-every-app-hotkey).
 
 ## Customize and persist hotkeys
 
-TanStack Hotkeys does not store anything. Pass the user's saved custom hotkeys to the provider and save them when they change:
+TanStack Hotkeys leaves storage up to your app. Pass saved overrides into `customHotkeys` and save updates when they change:
 
 ```svelte
 <script lang="ts">
@@ -119,17 +118,24 @@ TanStack Hotkeys does not store anything. Pass the user's saved custom hotkeys t
 </HotkeysProvider>
 ```
 
-- `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
-- `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
+- **Stores diffs only.** `customHotkeys` contains only entries that differ from your defaults, with `null` meaning explicitly unbound. Users who haven't customized a binding automatically receive updated defaults when your app changes them.
+- **Persisting updates.** `onCustomHotkeysChange` fires with the full `CustomHotkeys` map whenever the user updates or resets a binding.
+
+How incoming `customHotkeys` updates behave:
+
+- **Changed values.** Replaces current overrides without firing `onCustomHotkeysChange`, for example when async settings finish loading or the user switches accounts.
+- **Deeply equal data on re-render.** Ignored, keeping in-memory edits intact even if you re-parse `localStorage` each time.
+- **`undefined`.** Leaves current overrides unchanged while async settings are still loading.
+- **`null`.** Clears all overrides, which is useful on sign-out.
+- **Unknown IDs or invalid bindings.** Silently ignored so older saved data doesn't break after app updates.
 
 `setHotkeysContext` accepts the same `appHotkeys`, `customHotkeys`, and `onCustomHotkeysChange` options.
 
-The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
+Because the [hotkey recorder](./custom-hotkey-recording) emits `Mod` rather than OS-specific `Meta` or `Control`, shortcuts saved on macOS carry over to Windows and Linux.
 
 ### Change hotkeys
 
-`getCustomHotkeys` reads and changes the user's custom hotkeys. Pair it with a [recorder](./custom-hotkey-recording), so users press the hotkey they want:
+Use `getCustomHotkeys` alongside the hotkey recorder to build a shortcut settings row. See [Hotkey Recording](./custom-hotkey-recording):
 
 ```svelte
 <script lang="ts">
@@ -166,18 +172,18 @@ The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platf
 </div>
 ```
 
-Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+Pass the recorder's `context` into `findConflicts` and `setCustomHotkey` so conflict detection compares the physical key presses too. That catches differently spelled bindings that fire for the same press, such as a recorded `Shift+[Slash]` against a declared `?` on US keyboards.
 
 | Member | Description |
 | --- | --- |
-| `current` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
-| `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
-| `resetCustomHotkey(id)` | Restores one default |
-| `resetCustomHotkeys()` | Restores every default |
+| `current` | Current overrides that differ from the declared defaults |
+| `setCustomHotkey(id, hotkey, context?)` | Assigns a hotkey, or unbinds with `null`. Returns any conflicting app hotkeys and changes nothing if there are any. |
+| `findConflicts(id, hotkey, context?)` | Returns app hotkeys that collide with assigning `hotkey` to `id` |
+| `resetCustomHotkey(id)` | Restores one app hotkey to its default |
+| `resetCustomHotkeys()` | Restores all app hotkeys to their defaults |
 
-Two app hotkeys conflict when their scopes match or either is in `'global'`, including app hotkeys with no declared scope, and their hotkeys collide: equal chords, or one sequence starts with the other, including a sequence whose first step equals a chord. Conflicts are checked across every declaration, whether or not it is registered.
+Two app hotkeys conflict when their scopes overlap (matching scopes, or either is in `'global'` or has no declared scope) and their bindings collide (equal chords, or one sequence starting with the other chord or sequence). Conflict checks scan every declaration, mounted or not.
 
-Each app hotkey's `defaultHotkey` holds its declared default, and `isCustom` in `getAppHotkeyList` reports whether the effective hotkey differs from it.
+Each app hotkey exposes `defaultHotkey`, and `getAppHotkeyList` includes `isCustom` to highlight modified rows. `HotkeysProvider` creates an `AppHotkeysStore` from the core package. For imperative use, see the [`AppHotkeysStore` reference](../../../reference/classes/AppHotkeysStore.md).
 
-`HotkeysProvider` creates an `AppHotkeysStore` from the core package. See the [`AppHotkeysStore` reference](../../../reference/classes/AppHotkeysStore.md) to use it directly.
+See the [Kitchen Sink example](../examples/kitchen-sink) for app hotkeys, grouped cheat sheets, and customization wired together.

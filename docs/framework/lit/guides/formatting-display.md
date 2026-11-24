@@ -4,9 +4,9 @@ id: formatting-display
 description: Format Lit hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `FormatForDisplayController` has a `format` function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `FormatForDisplayController` has a `format` function that formats chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it at render time. A label is for reading, not for registering.
 
-A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. In the browser, the controller detects the platform. With Lit SSR, set the controller's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. In the browser, the controller detects the platform. With Lit SSR, set the controller's `platform` from the request. See [SSR & Hydration](./ssr#format-labels-in-server-rendered-apps).
 
 ## Format a hotkey
 
@@ -162,56 +162,9 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including on the server.
 
-## Format labels in server-rendered apps
+## Server-side rendering
 
-With Lit SSR (`@lit-labs/ssr`), the server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. Hydration doesn't fix it: Lit expects the browser's first render to match the server's HTML, and keeps the server's text. To render the right label from the start:
-
-1. Give the element a `platform` property, and pass the controller a function that reads it. Lit has no provider, so the controller's options are where the platform goes.
-2. Read the request's `User-Agent` header on the server, and set the element's `platform` attribute to `detectPlatform(userAgent)`.
-
-```ts
-import { LitElement, html } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
-import { FormatForDisplayController } from '@tanstack/lit-hotkeys'
-import type { HotkeyPlatform } from '@tanstack/lit-hotkeys'
-
-@customElement('save-button')
-class SaveButton extends LitElement {
-  @property() platform?: HotkeyPlatform
-
-  // The function is read for each label, so it follows the property
-  private formatForDisplay = new FormatForDisplayController(this, () => ({
-    platform: this.platform,
-  }))
-
-  render() {
-    return html`
-      <button>
-        Save <kbd>${this.formatForDisplay.format('Mod+S')}</kbd>
-      </button>
-    `
-  }
-}
-```
-
-On the server, set the attribute:
-
-```ts
-import { render } from '@lit-labs/ssr'
-import { html } from 'lit'
-import { detectPlatform } from '@tanstack/lit-hotkeys'
-
-const platform = detectPlatform(userAgent)
-const result = render(html`<save-button platform=${platform}></save-button>`)
-```
-
-Every label in the element then uses the property's platform. A `platform` passed to `format` wins over it.
-
-The attribute is part of the server's HTML, so the element reads the same `platform` when it upgrades in the browser. Pass it on to child elements that show labels, such as `.platform=${this.platform}`. An element that renders only in the browser needs no `platform`: the controller detects it.
-
-Labels have no keyboard layout on the server or in an element's first render, so they hydrate unchanged. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
-
-Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+With Lit SSR, the server doesn't know the user's platform, so server-rendered labels use `'linux'` unless the element sets a `platform`. Give the element a `platform` property, and set it from the request's `User-Agent` header. See [SSR & Hydration](./ssr) for the full setup and a note on caching.
 
 ## Format outside an element
 
@@ -241,10 +194,13 @@ if (parsed.code !== undefined) {
 const stored = normalizeHotkey(parsed, 'mac') // 'Mod+[KeyS]'
 ```
 
-A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.
+- **Normalize before saving.** A parsed chord's modifiers are already resolved for one platform. To store it as a hotkey that works on every platform, normalize it with that same platform, as above. `normalizeHotkey` also accepts chord strings, chord objects, and sequences. Store hotkeys, never display labels. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers the forms a hotkey can take.
+- **Compare bindings.** `areHotkeysEqual(a, b)` compares chords or sequences after resolving modifiers, so `Mod+S` equals `Meta+S` on macOS. Sequences compare step by step. `isHotkeySequence` narrows a `Hotkey` to a sequence, and `simplifyHotkey` turns a one-step sequence into its chord.
+- **Validate untrusted strings.** Pass a hotkey from a settings file or user input to `validateHotkey`. It returns `{ valid, errors, warnings }`, and each issue includes:
+  - `reason`, a machine-readable code such as `'unknown-modifier'`
+  - `part`, the token the issue is about
+  - `step`, the zero-based step index for a sequence
 
-`areHotkeysEqual(a, b)` compares chords or sequences after resolving modifiers, so `Mod+S` equals `Meta+S` on macOS. Sequences compare step by step. `isHotkeySequence` narrows a `Hotkey` to a sequence, and `simplifyHotkey` turns a one-step sequence into its chord.
+`validateHotkey` checks syntax only. It can't promise that the browser or operating system delivers the shortcut. The library sends no text, so map each `reason` code to your own messages. The devtools describe each problem in the details of a hotkey. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`. Each error or warning has a `reason` code, such as `'unknown-modifier'`, the `part` it's about, and for a sequence, the index of the `step`. The library sends no text, so write your own messages for users. The devtools describe each problem in the details of a hotkey. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
-
-For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+For a full list of your app's shortcuts, see [Cheat Sheets](./cheat-sheet-ui-helpers).

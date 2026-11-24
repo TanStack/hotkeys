@@ -6,7 +6,7 @@ redirect_from:
   - framework/lit/guides/key-state-tracking
 ---
 
-These controllers report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. You don't need them to register hotkeys. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
+These controllers report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. Registering hotkeys doesn't depend on them. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
 
 Each controller adds itself to the element, requests an update when its value changes, and holds the current state in `value`.
 

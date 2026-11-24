@@ -6,12 +6,9 @@ redirect_from:
   - framework/ember/guides/hotkey-recording
 ---
 
-> [!IMPORTANT]
-> `createHotkeysScope(...).useHotkeyRecorder` was removed in `@tanstack/ember-hotkeys` v0.9.0, so apps that set defaults but don't record hotkeys don't ship the recorder. Pass the scope as the third argument instead: `useHotkeyRecorder(this, options, this.hotkeys)`.
+`useHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. Use it only when users can change the app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
 
-`useHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
-
-While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. You don't need to disable them yourself.
+While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. The app doesn't need to disable them.
 
 ## Record a chord
 
@@ -163,7 +160,15 @@ Two hotkeys can be written differently and still fire for the same key press. On
 
 A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
 
-`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code that can't be recorded another way, or `'alt-graph'` for an AltGr press it can't record. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
+`onReject` doesn't generate user-facing copy. Map `reason`, along with the optional `hotkey`, `conflicts`, and `message`, to your own UI strings:
+
+| `reason` | When it happens |
+| --- | --- |
+| `'conflict'` | Collides with a registered hotkey (`conflicts` lists the matches) |
+| `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
+| `'whitespace'` | The user pressed a whitespace character that can't be recorded |
+| `'missing-code'` | The key press had no physical `code`, and the recorder can't record it another way |
+| `'alt-graph'` | The user pressed an `AltGr` combination that the recorder can't record |
 
 To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
@@ -264,3 +269,8 @@ export default class ShortcutSettings extends Component {
 To change the defaults for several recorders, pass `hotkeyRecorder` options to `createHotkeysScope`, and pass the scope as the third argument: `useHotkeyRecorder(this, options, createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } }))`. Options you pass to `useHotkeyRecorder` take precedence. The [`useHotkeyRecorder` reference](../reference/functions/useHotkeyRecorder.md) lists the types.
 
 The [useHotkeyRecorder example](../examples/useHotkeyRecorder) records chords, and the [sequences example](../examples/useHotkeyRecorder-sequences) records sequences.
+
+## Migrating from v0.8 and earlier
+
+> [!NOTE]
+> `createHotkeysScope(...).useHotkeyRecorder` was removed in `@tanstack/ember-hotkeys` v0.9.0, so apps that set defaults but don't record hotkeys don't ship the recorder. Pass the scope as the third argument instead: `useHotkeyRecorder(this, options, this.hotkeys)`.

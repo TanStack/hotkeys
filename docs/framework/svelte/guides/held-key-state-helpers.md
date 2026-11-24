@@ -6,7 +6,7 @@ redirect_from:
   - framework/svelte/guides/key-state-tracking
 ---
 
-These functions report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. You don't need them to register hotkeys. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
+These functions track which keys the user is currently holding down. They're optional UI helpers for displaying live key indicators or swapping button labels while `Shift` is held. To reveal shortcut hints when a modifier is held, see [Hotkey Hints](./hotkey-hints).
 
 Each function returns an object with a reactive getter. Read the getter where you need the value, instead of destructuring it once.
 
@@ -26,7 +26,7 @@ Each function returns an object with a reactive getter. Read the getter where yo
 </div>
 ```
 
-To label each held key the way hotkeys are labeled, pass it to the function from `getFormatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+To format held keys consistently (`Shift` to `⇧` on macOS, `Escape` to `Esc`), pass `{ key }` to the function from `getFormatForDisplay`. Wrapping in `{ key }` accepts raw browser key names outside the strict `Key` type.
 
 ## Check whether a key is held
 
@@ -50,7 +50,7 @@ To label each held key the way hotkeys are labeled, pass it to the function from
 </div>
 ```
 
-Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
+Letters match case-insensitively (`'a'` and `'A'` are identical), while named keys are case-sensitive (`'Shift'`, `'Escape'`).
 
 ## Tell left and right modifiers apart
 
@@ -70,7 +70,7 @@ Key names follow the same rule as hotkeys: letters match in any case, so `'a'` a
 
 ## Read held keys in an event handler
 
-To read the held keys in an event handler without tracking them, use the shared tracker from `getKeyStateTracker`:
+To inspect held keys inside a click or canvas handler without tracking them, read the shared tracker from `getKeyStateTracker()`:
 
 ```svelte
 <script lang="ts">
@@ -88,10 +88,10 @@ To read the held keys in an event handler without tracking them, use the shared 
 <canvas onclick={onClick}></canvas>
 ```
 
-The tracker starts listening the first time you get it, so get it in the component's script, before the user presses the keys you care about. Call its methods inside the handler to read the state at that moment. It also has `getHeldKeys()` and `areAllKeysHeld(keys)`. Don't destroy the tracker when a component unmounts, because every function shares it.
+- Call `getKeyStateTracker()` in the component's script so it starts listening before the user holds any keys.
+- The tracker also exposes `getHeldKeys()` and `areAllKeysHeld(keys)`. Never destroy the shared tracker when a component unmounts, because every helper shares the same instance.
+- For mouse or wheel handlers, `event.shiftKey`, `altKey`, `metaKey`, and `ctrlKey` already exist on the event. Browsers also set `ctrlKey` during trackpad pinch gestures, so it doesn't always mean Control is held.
 
-For a mouse or wheel event, `event.ctrlKey`, `shiftKey`, `altKey`, and `metaKey` already report the modifiers. Browsers also set `ctrlKey` for a trackpad pinch, so it doesn't always mean Control is held.
+Held keys reset automatically when the window loses focus, so a key released after switching apps never stays stuck. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 
-Held keys clear when the window loses focus, so a key released after switching apps doesn't stay held. [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus) covers the cases the tracker handles.
-
-The [get-held-keys example](../examples/get-held-keys) shows held keys and their codes, and the [get-is-key-held example](../examples/get-is-key-held) shows modifier indicators.
+See the [get-held-keys example](../examples/get-held-keys) and the [get-is-key-held example](../examples/get-is-key-held).

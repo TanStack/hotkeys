@@ -6,7 +6,7 @@ redirect_from:
   - framework/ember/guides/key-state-tracking
 ---
 
-These utilities report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. You don't need them to register hotkeys. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
+These utilities report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. Registering hotkeys doesn't depend on them. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
 
 Pass the component as the owner of each one. Each returns an object with a tracked `value`, and stops tracking when its owner is destroyed.
 

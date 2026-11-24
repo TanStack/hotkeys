@@ -8,21 +8,21 @@ description: Register keyboard shortcuts in Vue with useHotkey and useHotkeys. W
 
 ## Chords and sequences
 
-A hotkey is one of two kinds:
+A hotkey is either a chord or a sequence:
 
-- A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
-- A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.
+- **Chord.** Keys pressed together (such as `'Mod+S'`) or a single key (such as `'Escape'`).
+- **Sequence.** Chords pressed one after another (such as `['G', 'H']`), written as an array.
 
 ```ts
 useHotkey('Mod+K', () => openSearch()) // Mod and K together
 useHotkey(['G', 'H'], () => goHome()) // G, then H
 ```
 
-Every composable and option in this guide accepts both kinds, and most examples use chords. [Sequences](./sequences) covers how sequences match, the time allowed between steps, and sequences that start with the same chord.
+Every function and option in this guide accepts both. See [Sequences](./sequences) for sequence rules such as timeouts and overlapping prefixes.
 
 ## Register a hotkey
 
-Call `useHotkey` in a component's `setup` with a hotkey and a callback:
+Pass a hotkey and callback to `useHotkey` in a component's `setup`:
 
 ```vue
 <script setup lang="ts">
@@ -36,7 +36,7 @@ useHotkey('Mod+S', () => saveDocument())
 </template>
 ```
 
-The callback receives the `KeyboardEvent` and a context object:
+Callbacks receive the `KeyboardEvent` and a context object:
 
 ```ts
 useHotkey('Mod+S', (event, context) => {
@@ -84,17 +84,17 @@ A plain options object is read once, so `{ enabled: !props.readOnly }` keeps the
 
 Give a ref that holds a hotkey the `Hotkey` type: `const saveHotkey = ref<Hotkey>('Mod+S')`. Without it, the ref is a `Ref<string>`, and `useHotkey` accepts only valid hotkeys.
 
-That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
+That makes it straightforward to register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
 ### Optional hotkeys
 
-A hotkey of `undefined`, `null`, or `''` registers nothing, so a component can take an optional shortcut. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+Passing `undefined`, `null`, or `''` registers nothing, which suits optional shortcut props. Switching to one of these values unregisters the hotkey and hides its hints. Passing a valid hotkey again registers it again.
 
-To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
+To keep the hotkey registered, visible in devtools and cheat sheets, but paused, leave it defined and pass `enabled: false` instead.
 
 ### Write a chord as a string or an object
 
-Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
+Most chords are written as strings, which gives you editor autocomplete and compile-time validation:
 
 ```ts
 useHotkey('Escape', () => close())
@@ -106,9 +106,9 @@ useHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod comes first
 useHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
 ```
 
-TypeScript accepts the printable keys of a US QWERTY keyboard. To bind a key that other layouts type, such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
+String bindings type-check against US QWERTY keys by default. To bind layout-specific keys such as `Ö` or `§`, register those layouts. See [Keyboard Layouts](./keyboard-layouts).
 
-Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
+When building bindings from UI state, such as modifier checkboxes, use a `RawHotkeyChord` object instead:
 
 ```ts
 useHotkey({ key: 'S', mod: true, shift: true }, () => saveAs()) // Same as 'Mod+Shift+S'
@@ -120,7 +120,7 @@ useHotkey(
 )
 ```
 
-Sequence steps can be strings, objects, or a mix:
+Sequence steps can be strings, objects, or a mix of both:
 
 ```ts
 useHotkey(['G', { key: 'H', shift: true }], () => goToHistory())
@@ -139,22 +139,22 @@ useHotkey('Enter', () => submit(), { ignoreInputs: false })
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `enabled` | `true` | Whether the hotkey responds to key presses. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
+| `enabled` | `true` | Whether the hotkey fires. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
 | `target` | `document` | Where the hotkey listens. See [Hotkey targets](#hotkey-targets). |
-| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S`. `'always'` also stops it while the hotkey can't fire. |
-| `stopPropagation` | `true` | Stops the key press from reaching other listeners |
-| `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
-| `ignoreDefaultPrevented` | `false` | Skips a key press that another listener already handled with `preventDefault()`, such as a component library's dialog closing on Escape. See [Component libraries that handle the same keys](../../../guides/sensible-defaults.md#component-libraries-that-handle-the-same-keys). |
+| `preventDefault` | `true` | Prevents the browser's default action. `'always'` keeps blocking even while disabled or suspended. |
+| `stopPropagation` | `true` | Stops the event from reaching outer listeners |
+| `ignoreInputs` | `'auto'` | Skips keys in text fields and interactive controls. See [Typing in inputs](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `ignoreDefaultPrevented` | `false` | Skips events already prevented by another listener, such as a UI library overlay. See [Component libraries](../../../guides/sensible-defaults.md#component-libraries-that-handle-the-same-keys). |
 | `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
-| `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
-| `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
+| `capture` | `false` | Runs in the capture phase before widget handlers inside `target`. See [Event phase](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
+| `requireReset` | `false` | Chords only. Fires once per press instead of repeating while held. |
 | `timeout` | `1000` | Sequences only. Milliseconds allowed between steps. |
-| `conflictBehavior` | `'warn'` | What happens when the same hotkey is already registered. See [Handle duplicate hotkeys](#handle-duplicate-hotkeys). |
+| `conflictBehavior` | `'warn'` | How duplicate registrations are handled. See [Handle duplicate hotkeys](#handle-duplicate-hotkeys). |
 | `scope` | The nearest provider's scope | The [scope](./hotkeys-provider-and-scopes) the hotkey belongs to |
-| `platform` | Detected | The platform that decides what `Mod` means: `'mac'`, `'windows'`, or `'linux'`. Useful in tests. |
-| `meta` | None | A name, a description, and a group. See [Describe hotkeys with `meta`](#describe-hotkeys-with-meta). |
+| `platform` | Detected | Override `'mac'`, `'windows'`, or `'linux'` for `Mod` resolution. Useful in tests. |
+| `meta` | None | Display metadata (`name`, `description`, `group`). See [Describe hotkeys with `meta`](#describe-hotkeys-with-meta). |
 
-The defaults suit most hotkeys. [Sensible Defaults](../../../guides/sensible-defaults.md) explains why each one was chosen and when to change it. The [`UseHotkeyOptions` reference](../reference/type-aliases/UseHotkeyOptions.md) lists the types.
+See [Sensible Defaults](../../../guides/sensible-defaults.md) for why each default behaves the way it does, and the [`UseHotkeyOptions` reference](../reference/type-aliases/UseHotkeyOptions.md) for type definitions.
 
 To change a default for every hotkey in your app, wrap it in a `HotkeysProvider` with `default-options`. Options passed to a composable override the provider's defaults:
 
@@ -173,11 +173,11 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </template>
 ```
 
-The provider is optional. Without one, every hotkey uses the built-in defaults in the table. The defaults apply to components inside the provider, not to the component that renders it. See [HotkeysProvider and Scopes](./hotkeys-provider-and-scopes) for nested defaults and for grouping hotkeys into scopes.
+The provider is optional. See [HotkeysProvider & Scopes](./hotkeys-provider-and-scopes) for nested overrides and scope management.
 
 ### Chord and sequence options
 
-Most options apply to both kinds of hotkey. `requireReset` applies only to chords, and `timeout` only to sequences. The option types follow the hotkey you pass, so TypeScript rejects options for the other kind:
+`requireReset` applies only to chords, and `timeout` applies only to sequences. TypeScript enforces this per hotkey:
 
 ```ts
 useHotkey('Escape', close, { requireReset: true }) // OK
@@ -185,13 +185,11 @@ useHotkey(['G', 'G'], scrollToTop, { timeout: 500 }) // OK
 useHotkey('Escape', close, { timeout: 500 }) // Type error
 ```
 
-Options that apply to many hotkeys at once, such as provider defaults, apply each of these to the matching kind only. In the provider example above, `requireReset` affects chords, and `timeout` affects sequences.
-
-When the kind isn't known until runtime, such as a `Hotkey` loaded from settings, the composable accepts only the options that both kinds share.
+When defaults apply to many hotkeys at once, `requireReset` affects only chords and `timeout` affects only sequences. If a hotkey's kind isn't known until runtime, such as a `Hotkey` loaded from user settings, only the options common to both kinds are accepted.
 
 ## Register multiple hotkeys
 
-When a component has more than one hotkey, use `useHotkeys`. It takes an array of definitions, each with a `hotkey`, a `callback`, and optional `options`:
+Use `useHotkeys` to register an array of `{ hotkey, callback, options? }` entries in one call:
 
 ```vue
 <script setup lang="ts">
@@ -206,9 +204,7 @@ useHotkeys([
 </script>
 ```
 
-Chords and sequences can share one array. Each definition's `options` are typed by its `hotkey`, as they are for `useHotkey`.
-
-A callback in the array receives a `context` that can belong to either kind of hotkey. Check `context.kind` before reading `context.parsedChord`:
+Chords and sequences can share the same array, and each item's `options` are typed against its own `hotkey`. Inside the array, `context` can belong to either kind, so check `context.kind` before reading `context.parsedChord`:
 
 ```ts
 useHotkeys([
@@ -223,7 +219,7 @@ useHotkeys([
 
 ### Share options
 
-Pass options for every definition as the second argument. A definition's own options override them:
+Pass shared options as the second argument. Individual definitions override them:
 
 ```vue
 <script setup lang="ts">
@@ -249,7 +245,7 @@ useHotkeys(
 
 The shared `target` makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets.
 
-Options merge in this order: provider defaults, then the shared options, then each definition's options.
+Options merge in three layers: defaults from the provider first, then the shared options, then per-item options.
 
 ### Build the list from data
 
@@ -299,7 +295,7 @@ For a condition that doesn't match a component, pass `enabled` as a ref or a get
 useHotkey('Mod+S', () => save(), { enabled: hasUnsavedChanges })
 ```
 
-A disabled hotkey stays registered, so devtools still list it, and changing `enabled` doesn't register it again. While disabled, it ignores key presses, so pressing `Mod+S` opens the browser's Save dialog. To keep the dialog closed, set `preventDefault: 'always'`:
+Toggling `enabled` keeps the hotkey registered and visible in devtools without registering it again. While disabled, it lets the browser handle the key, so `Mod+S` opens the Save Page dialog. To keep blocking the browser action while disabled or suspended, set `preventDefault: 'always'`:
 
 ```ts
 useHotkey('Mod+S', () => save(), {
@@ -308,13 +304,10 @@ useHotkey('Mod+S', () => save(), {
 })
 ```
 
-With `'always'`, a hotkey that can't fire, because it's disabled or its scope is inactive or suspended, still prevents the browser's action. It doesn't stop propagation, and when another hotkey handles the key, that hotkey's options apply instead. Sequences treat `'always'` as `true`. To apply it to every hotkey, set it in the default options. We recommend it for most hotkeys, but not for hotkeys you turn off to hand the key back to the browser, such as `Mod+C` or `Tab`. See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone).
+See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone) for when to avoid `'always'`, such as clipboard chords, single keys behind an accessibility switch, and `Tab`.
 
-`enabled` works the same way for sequences. A disabled sequence ignores its steps.
-
-Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
-
-When a group of hotkeys turns on and off together, use [scopes](./hotkeys-provider-and-scopes) instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays mounted, or suspend the rest of the page while a dialog is open.
+> [!NOTE]
+> Single-key shortcuts such as `K` need a user setting to turn them off or remap them for accessibility. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch). To toggle a group of shortcuts together, use [scopes](./hotkeys-provider-and-scopes) instead of passing `enabled` to each hotkey.
 
 ## Hotkey targets
 
@@ -365,29 +358,27 @@ While focus is inside the element, its hotkeys run before hotkeys on `document`.
 
 ### A target is not a scope
 
-A target and a [scope](./hotkeys-provider-and-scopes) both limit when a hotkey works, in different ways:
+Both limit when a hotkey fires, using different signals:
 
-- A target decides which key presses the hotkey receives, based on where focus is.
-- A scope decides whether the hotkey is on, based on which parts of your app are active, such as an open dialog. Focus doesn't matter.
+- **`target`** filters by DOM focus, checking which element received the key event.
+- **`scope`** filters by UI state, checking which mounted [provider scopes](./hotkeys-provider-and-scopes#scopes-and-targets) are active regardless of focus.
 
-Use a target for hotkeys that belong to a focusable element, such as a list or a code editor. Use a scope for hotkeys that belong to a part of your app, whether or not it has focus. A hotkey can have both.
+A single hotkey can use both.
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+Registering the same canonical binding on the same target, scope, and `eventType` logs a console warning in development and runs both callbacks. `Mod+S` and `Meta+S` are identical on macOS. Customize this with `conflictBehavior`:
 
-- `'warn'` (default) logs a warning in development and keeps both registrations.
-- `'error'` throws an error.
-- `'replace'` unregisters the existing registration.
-- `'allow'` keeps both without a warning.
+- `'warn'` (default) logs a development warning and keeps both registrations
+- `'error'` throws an error
+- `'replace'` unregisters the earlier registration
+- `'allow'` keeps both silently
 
-The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
-
-The same hotkey in two different [scopes](./hotkeys-provider-and-scopes) is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key. See [Nested scopes win](./hotkeys-provider-and-scopes#nested-scopes-win).
+Two sequences conflict only when all steps match, so `['G', 'H']` and `['G', 'S']` do not. Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins.
 
 ## Describe hotkeys with `meta`
 
-Give a hotkey a name, a description, and a group with `meta`:
+Attach display metadata (`name`, `description`, `group`) with `meta`:
 
 ```ts
 useHotkey('Mod+S', () => save(), {
@@ -395,4 +386,4 @@ useHotkey('Mod+S', () => save(), {
 })
 ```
 
-`meta` doesn't change how a hotkey behaves. Devtools show it, and you can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+`meta` has no effect on key matching. It appears in devtools and feeds UI lists such as help dialogs. See [Cheat Sheets](./cheat-sheet-ui-helpers).

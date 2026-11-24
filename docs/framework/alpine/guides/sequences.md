@@ -4,12 +4,9 @@ id: sequences
 description: Register multi-key sequences in Alpine components, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
 
-> [!IMPORTANT]
-> `scope.createHotkeySequence`, `scope.createHotkeySequences`, and `scope.createHotkeySequenceRecorder` were removed in `@tanstack/alpine-hotkeys` v0.3.0. Pass a sequence to `scope.createHotkey` or `scope.createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps: Infinity`.
-
 A sequence is a hotkey made of chords pressed one after another, such as `G` then `H` to go home. Vim-style navigation, two-step commands such as VS Code's `Ctrl+K` then `Ctrl+C`, and cheat codes are all sequences.
 
-Sequences are ordinary hotkeys. You register them with `createHotkey` and `createHotkeys` on an owner from `createHotkeysScope`, and options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
+Sequences are ordinary hotkeys. Register them with `createHotkey` and `createHotkeys` on an owner from `createHotkeysScope`. Options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
 
 ## Register a sequence
 
@@ -98,6 +95,12 @@ Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#
 `enabled`, `scope`, and `meta` work as they do for chords. A disabled sequence ignores its steps.
 
 ## Sequences that share keys
+
+| Pattern | Example | Behavior |
+| --- | --- | --- |
+| Shared prefix | `['D', 'D']` and `['D', 'W']` | Both track progress independently until the next key decides, with no warning |
+| Prefix of a longer sequence | `['G', 'G']` and `['G', 'G', 'G']` | The shorter one runs on step 2, and the longer one runs on step 3 |
+| Chord and sequence on the same key | `'G'` and `['G', 'G']` | The first `G` runs the chord. Once a sequence is underway, the keys that continue it belong to it |
 
 ### Sequences that start the same way
 
@@ -195,7 +198,7 @@ Alpine.data('pendingKeys', () => {
 </p>
 ```
 
-Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers) covers listing hotkeys.
+Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheets](./cheat-sheet-ui-helpers) covers listing hotkeys.
 
 ## Letter sequences need an off switch
 
@@ -231,4 +234,9 @@ this.hotkeys.createHotkey(
 )
 ```
 
-To record a sequence the user presses, see [Custom Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+To record a sequence the user presses, see [Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+
+## Migrating from v0.2 and earlier
+
+> [!NOTE]
+> `scope.createHotkeySequence`, `scope.createHotkeySequences`, and `scope.createHotkeySequenceRecorder` were removed in `@tanstack/alpine-hotkeys` v0.3.0. Pass a sequence to `scope.createHotkey` or `scope.createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps: Infinity`.

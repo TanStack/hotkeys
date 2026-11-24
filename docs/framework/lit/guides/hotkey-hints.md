@@ -4,7 +4,9 @@ id: hotkey-hints
 description: Reveal keyboard shortcut hints next to buttons in Lit while the user holds a modifier, with HotkeyHintController.
 ---
 
-Some apps show each button's shortcut only while the user holds a modifier, so the hints are there when the user reaches for the keyboard, and out of the way otherwise. `HotkeyHintController` has a `value` that's `true` while the user holds modifiers that belong to a hotkey that can fire. It's an optional helper, and it doesn't register anything, so use it alongside `@hotkey` or `HotkeyController`.
+Some apps hide shortcut badges until the user holds a modifier key, keeping buttons clean while still making shortcuts discoverable on demand.
+
+`HotkeyHintController` exposes a `value` getter that returns `true` while the user holds modifiers belonging to an active hotkey. It's an optional display helper and doesn't register a shortcut itself, so pair it with `@hotkey` or `HotkeyController`.
 
 ## Show a hint next to a button
 
@@ -32,37 +34,39 @@ class SaveButton extends LitElement {
   render() {
     return html`
       <button @click=${() => this.save()}>
-        Save ${this.hint.value ? html`<kbd>${this.formatForDisplay.format(saveHotkey)}</kbd>` : ''}
+        Save
+        ${this.hint.value
+          ? html`<kbd>${this.formatForDisplay.format(saveHotkey)}</kbd>`
+          : ''}
       </button>
     `
   }
 }
 ```
 
-The controller requests an update only when the hint appears or disappears. While the user holds Command on macOS, or Control elsewhere, the button reads "Save ⌘ S" or "Save Ctrl+S". [Formatting & Display](./formatting-display) covers labels and keycaps.
+The controller requests an update only when the hint appears or disappears. Holding `Command` on macOS or `Control` elsewhere reveals `Save ⌘ S` or `Save Ctrl+S`. See [Formatting & Display](./formatting-display) for formatting options.
 
 ## When a hint shows
 
-- Holding any of the hotkey's modifiers shows the hint. For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both shows it.
-- Holding a modifier the hotkey doesn't use hides the hint, so holding Control and Alt shows only the hints for hotkeys that use both.
-- Releasing every modifier, or the window losing focus, hides the hint.
-- Other held keys don't matter. AltGr never shows hints, because it types characters.
-- A hotkey without modifiers, such as `Escape` or `G`, never shows a hint.
-- The hotkey must be able to fire. A hint shows only while a registration of the hotkey is enabled and in an active [scope](./hotkey-manager#activate-a-scope). A hotkey that nothing registers never shows a hint.
-- Every registration of the hotkey counts, not only the one in your element. If two elements register the same hotkey and only one is enabled, both show the hint.
-- A hotkey bound to an element's `target` shows its hint only while focus is inside that element. A hotkey on `document` or `window` shows it wherever focus is.
-
-To show a hint only while every modifier is held, pass `exact`:
+- **Any matching modifier shows the hint.** For `Alt+Shift+[KeyK]`, holding `Alt`, `Shift`, or both shows it. Pass `{ exact: true }` to require every modifier instead:
 
 ```ts
-private hint = new HotkeyHintController(this, 'Alt+Shift+[KeyK]', { exact: true }) // Needs Alt and Shift
+private hint = new HotkeyHintController(this, 'Alt+Shift+[KeyK]', {
+  exact: true,
+}) // Requires Alt AND Shift
 ```
 
-If the hotkey sets `platform`, pass the same `platform` to the controller, so `Mod` resolves the same way. The hotkey and the options can also be getters that read the element's properties.
+- **Extra modifiers hide it.** Holding `Control` + `Alt` shows hints only for shortcuts using both.
+- **Releases and blur hide it.** Releasing all modifiers or leaving the window hides hints cleanly.
+- **Non-modifier and `AltGr` keys.** Other held keys are ignored, and `AltGr` never triggers hints since it types characters.
+- **Modifier-only requirement.** Unmodified shortcuts such as `Escape` or `G` never show hints.
+- **Only active registrations count.** The hotkey must have at least one enabled registration in an active [scope](./hotkey-manager#activate-a-scope). This checks across all mounted registrations, so if two elements register `Mod+S` and one is enabled, both hints appear.
+- **Targets follow focus.** An element-targeted hotkey shows its hint only while focus is inside that element. `document` and `window` hotkeys show regardless of focus.
+- **Custom platforms and reactive inputs.** If the hotkey overrides `platform`, pass the same `platform` to `HotkeyHintController`. Both the hotkey and the options can be getter functions that read reactive properties.
 
 ## Hints for sequences
 
-A sequence shows its hint while the user holds the modifiers of its first step:
+Sequences reveal their hint while the user holds the modifiers of their first step:
 
 ```ts
 private hint = new HotkeyHintController(this, ['Mod+K', 'Mod+C']) // true while Mod is held
@@ -70,7 +74,7 @@ private hint = new HotkeyHintController(this, ['Mod+K', 'Mod+C']) // true while 
 
 ## Hints for app hotkeys
 
-Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including one they changed. An app hotkey with no hotkey assigned shows no hint. A small element keeps every button's hint the same:
+Pass an [app hotkey](./app-hotkeys) directly so hints stay synchronized even when users rebind shortcuts. Unassigned app hotkeys never show a hint. A small shared element keeps buttons tidy:
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -86,12 +90,17 @@ import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 class ShortcutHint extends LitElement {
   @property() hotkeyId!: AppHotkeyId
   private app = new AppHotkeysController(this)
-  private hint = new HotkeyHintController(this, () => this.app.appHotkeys[this.hotkeyId])
+  private hint = new HotkeyHintController(
+    this,
+    () => this.app.appHotkeys[this.hotkeyId],
+  )
   private formatForDisplay = new FormatForDisplayController(this)
 
   render() {
     const { hotkey } = this.app.appHotkeys[this.hotkeyId]
-    return this.hint.value && hotkey ? html`<kbd>${this.formatForDisplay.format(hotkey)}</kbd>` : ''
+    return this.hint.value && hotkey
+      ? html`<kbd>${this.formatForDisplay.format(hotkey)}</kbd>`
+      : ''
   }
 }
 ```
@@ -108,14 +117,16 @@ class DocToolbar extends LitElement {
   }
 
   render() {
-    return html`<button @click=${() => this.save()}>Save <shortcut-hint hotkeyId="doc.save"></shortcut-hint></button>`
+    return html`<button @click=${() => this.save()}>
+      Save <shortcut-hint hotkeyId="doc.save"></shortcut-hint>
+    </button>`
   }
 }
 ```
 
 ## Check held modifiers without the controller
 
-To check outside an element, such as while drawing on a canvas, pass the held keys to `matchesHeldModifiers`. It takes the same options, but it only looks at held keys. To also check that the hotkey can fire, call `hasActiveRegistration` on the hotkey manager:
+Outside Lit elements, such as canvas draw loops, combine `matchesHeldModifiers` with `getKeyStateTracker()` and `getHotkeyManager().hasActiveRegistration()`:
 
 ```ts
 import {
@@ -133,6 +144,4 @@ const showHint =
   getHotkeyManager().hasActiveRegistration('Mod+S') // Same check as the controller
 ```
 
-[Held Key State Helpers](./held-key-state-helpers) covers the tracker and the other held-key controllers.
-
-The [Kitchen Sink example](../examples/kitchen-sink) shows hints next to its buttons while Alt or Option is held.
+See [Held Keys](./held-key-state-helpers) for more on `getKeyStateTracker`, and check the [Kitchen Sink example](../examples/kitchen-sink) to see hints on live buttons.

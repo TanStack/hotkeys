@@ -4,11 +4,11 @@ id: hotkeys-provider-and-scopes
 description: Use HotkeysProvider in Vue to set default options for hotkeys and recorders, provide app hotkeys, and turn groups of hotkeys on and off with the dialogs, panels, and tabs they belong to.
 ---
 
-`HotkeysProvider` is optional. Without one, every hotkey uses the built-in defaults and belongs to the `'global'` scope, so it works whenever its component is mounted. Many apps never need more. Add a provider when you want to:
+`HotkeysProvider` is optional. Without one, every hotkey uses the built-in defaults and belongs to the `'global'` scope, so it works whenever its component is mounted. Many apps never need more. Add a provider to:
 
-- Change the default options for every hotkey or recorder in part of your app.
-- Provide [app hotkeys](./app-hotkeys) and the user's custom hotkeys.
-- Group hotkeys into scopes that turn on and off together, such as everything in a dialog.
+- Override default options for hotkeys or recorders in part of your app
+- Supply [app hotkeys](./app-hotkeys) and load or save custom user bindings
+- Group shortcuts into scopes that turn on and off together, such as modals, panels, or tabs
 
 ## Set default options
 
@@ -31,9 +31,9 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </template>
 ```
 
-- `hotkey` defaults apply to every `useHotkey` and `useHotkeys` inside the provider. `requireReset` applies to chords, and `timeout` to sequences. Options passed to a composable override the defaults. See [Hotkey options](./hotkeys#hotkey-options).
-- `hotkeyRecorder` defaults apply to every `useHotkeyRecorder` inside the provider. See [Custom Hotkey Recording](./custom-hotkey-recording).
-- `keyboardLayout: false` stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
+- **`hotkey`.** Sets defaults for every `useHotkey` and `useHotkeys` in the provider (`requireReset` applies to chords, and `timeout` applies to sequences). Options passed to a hotkey override these defaults. See [Hotkey options](./hotkeys#hotkey-options).
+- **`hotkeyRecorder`.** Sets defaults for every `useHotkeyRecorder` in the provider. See [Hotkey Recording](./custom-hotkey-recording).
+- **`keyboardLayout: false`.** Stops labels from asking the browser for the user's keyboard layout. See [Label physical keys for the user's keyboard](./formatting-display#label-physical-keys-for-the-users-keyboard).
 
 A nested provider merges its defaults over its parent's, so a provider deeper in the tree can change the defaults for one part of your app.
 
@@ -57,7 +57,7 @@ Nested providers use the app hotkeys and custom hotkeys of the provider above th
 
 ## Group hotkeys into scopes
 
-Apps reuse keys. `Escape` should close the dialog, not the panel behind it, and `Mod+S` should post the comment you are typing, not save the whole document. You could pass [`enabled`](./hotkeys#enable-and-disable-hotkeys) to every hotkey, but then each component has to know about every other component that might want the same key.
+Apps constantly reuse keys. `Escape` should close the active dialog rather than the panel behind it, and `Mod+S` in a comment box should post the comment instead of saving the document. Rather than passing [`enabled`](./hotkeys#enable-and-disable-hotkeys) to every hotkey and coordinating across components, group regions of your app into scopes.
 
 Scopes group hotkeys by where they render instead. Wrap part of your tree in a `HotkeysProvider` with a `scope`, and every hotkey registered inside it belongs to that scope. The scope is active while the provider is mounted and enabled, and nested scopes take precedence over the scopes around them.
 
@@ -109,7 +109,7 @@ provideHotkeysContext({ scope: 'editor', enabled: () => props.active })
 
 Like Vue's `provide`, it applies to the component's children, not to the component itself. A hotkey registered in the same setup as `provideHotkeysContext` uses the scope above it, so register the scope's hotkeys in a child component.
 
-Scopes are names, not instances. Two mounted providers with `scope="editor"` share one scope, and it stays active until both unmount. Give each region its own name when you need to turn them on and off separately.
+Scopes are names, not instances. Two mounted providers with `scope="editor"` share one scope, and it stays active until both unmount. Give each region its own name to turn them on and off separately.
 
 ## Scopes and targets
 
@@ -137,20 +137,20 @@ useHotkey('Delete', () => deleteHeading(), { target: outline })
 
 | | Scope | Target |
 | --- | --- | --- |
-| Decides | Whether the hotkey is on | Which key presses the hotkey receives |
-| Based on | Which providers are mounted and enabled | Where focus is |
+| Controls | Whether the hotkey is active | Which key presses reach the hotkey |
+| Driven by | Which providers are mounted and enabled | Where focus is |
 | Follows | The component tree, including teleports | The DOM |
 | Set with | `HotkeysProvider scope`, `provideHotkeysContext`, or the `scope` option | The `target` option |
 | Use for | Dialogs, panes, and tabs | Focusable elements, such as a list or a code editor |
 
 ## Nested scopes win
 
-When hotkeys in two active scopes match the same key, only one scope handles it:
+When several active scopes register the same key, only the highest-precedence scope runs:
 
-- A nested scope beats the scopes it is nested in.
-- Otherwise, the scope that activated most recently wins.
+1. A nested scope beats its parent scopes.
+2. Among scopes that are not nested, the most recently activated scope wins.
 
-Every hotkey in the winning scope that matches the key runs. Hotkeys in other scopes do not.
+Every matching hotkey in the winning scope runs, and hotkeys in other scopes do not.
 
 ```vue
 <!-- DocumentView.vue, rendered inside <HotkeysProvider scope="document"> -->
@@ -254,9 +254,7 @@ Pass `{ allow }` to keep some scopes working while an exclusive scope is active:
 
 ### Stacked exclusive scopes
 
-When more than one exclusive scope is active, the one with the highest precedence owns the keyboard, and only its `allow` list applies. A confirmation dialog opened from inside an edit dialog suspends the edit dialog until it closes.
-
-Each exclusive scope needs a unique name. Activating the same exclusive scope twice logs a warning in development, because hotkeys from both providers would fire together.
+When two exclusive scopes are active at once, such as a confirmation dialog opened from inside an edit dialog, the higher-precedence one wins and only its `allow` list applies. Give each exclusive scope a unique name. Activating the same exclusive scope twice logs a development warning, because hotkeys from both providers would fire together.
 
 ## Choose a scope for one hotkey
 
@@ -281,11 +279,9 @@ export const appHotkeys = defineAppHotkeys({
 })
 ```
 
-App hotkeys without a declared scope use the provider's scope, like any other hotkey.
-
-The declared scope also drives conflict checks. `findConflicts` and `setCustomHotkey` let app hotkeys in different scopes share a hotkey, as `doc.save` and `comment.post` do above. An app hotkey in `'global'`, or with no declared scope, conflicts with every app hotkey that uses the same hotkey. Declare scopes on app hotkeys that are meant to share keys.
-
-`useAppHotkeyList` reports an app hotkey as `'suspended'` when it has enabled registrations but none of them is in an active scope.
+- Declarations without a `scope` use the provider's scope, like any other hotkey.
+- **Conflict detection.** `findConflicts` and `setCustomHotkey` let app hotkeys in different named scopes share a hotkey, as `doc.save` and `comment.post` do above. An app hotkey in `'global'` or with no declared scope conflicts with every app hotkey that uses the same hotkey, so declare `scope` on bindings meant to coexist.
+- [`useAppHotkeyList`](./cheat-sheet-ui-helpers#list-every-app-hotkey) reports an app hotkey as `'suspended'` when it has enabled registrations but none in an active scope.
 
 ## Scopes outside Vue
 
@@ -295,8 +291,6 @@ For UI that Vue doesn't render, such as a dialog from another library, activate 
 
 ## Inspect scopes
 
-The hotkeys [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive.
-
-Your app doesn't need to track scopes itself. If you want to show scope state anyway, read it from the hotkey manager. See [Read scope state](./hotkey-manager#read-scope-state).
+The [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive. To read the same state in your own UI, see [Read scope state](./hotkey-manager#read-scope-state).
 
 See the [Scopes example](../examples/scopes) for nested, enabled, and exclusive scopes together.

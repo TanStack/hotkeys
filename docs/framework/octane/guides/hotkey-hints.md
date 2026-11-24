@@ -4,7 +4,9 @@ id: hotkey-hints
 description: Reveal keyboard shortcut hints next to buttons in Octane while the user holds a modifier, with useHotkeyHint.
 ---
 
-Some apps show each button's shortcut only while the user holds a modifier, so the hints are there when the user reaches for the keyboard, and out of the way otherwise. `useHotkeyHint` returns `true` while the user holds modifiers that belong to a hotkey that can fire. It's an optional helper, and it doesn't register anything, so use it alongside `useHotkey`.
+Some apps hide shortcut badges until the user holds a modifier key, keeping buttons clean while still making shortcuts discoverable on demand.
+
+`useHotkeyHint` returns `true` while the user holds modifiers belonging to an active hotkey. It's an optional display helper and doesn't register a shortcut itself, so pair it with `useHotkey`.
 
 ## Show a hint next to a button
 
@@ -31,30 +33,27 @@ function SaveButton() @{
 }
 ```
 
-While the user holds Command on macOS, or Control elsewhere, the button reads "Save ⌘ S" or "Save Ctrl+S". [Formatting & Display](./formatting-display) covers labels and keycaps.
+Holding `Command` on macOS or `Control` elsewhere reveals `Save ⌘ S` or `Save Ctrl+S`. See [Formatting & Display](./formatting-display) for formatting options.
 
 ## When a hint shows
 
-- Holding any of the hotkey's modifiers shows the hint. For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both shows it.
-- Holding a modifier the hotkey doesn't use hides the hint, so holding Control and Alt shows only the hints for hotkeys that use both.
-- Releasing every modifier, or the window losing focus, hides the hint.
-- Other held keys don't matter. AltGr never shows hints, because it types characters.
-- A hotkey without modifiers, such as `Escape` or `G`, never shows a hint.
-- The hotkey must be able to fire. A hint shows only while a registration of the hotkey is enabled and in an active [scope](./hotkeys-provider-and-scopes). A hotkey that nothing registers never shows a hint.
-- Every registration of the hotkey counts, not only the one in your component. If two components register the same hotkey and only one is enabled, both show the hint.
-- A hotkey bound to an element's `target` shows its hint only while focus is inside that element. A hotkey on `document` or `window` shows it wherever focus is.
-
-To show a hint only while every modifier is held, pass `exact`:
+- **Any matching modifier shows the hint.** For `Alt+Shift+[KeyK]`, holding `Alt`, `Shift`, or both shows it. Pass `{ exact: true }` to require every modifier instead:
 
 ```tsx
-const showHint = useHotkeyHint('Alt+Shift+[KeyK]', { exact: true }) // Needs Alt and Shift
+const showHint = useHotkeyHint('Alt+Shift+[KeyK]', { exact: true }) // Requires Alt AND Shift
 ```
 
-If the hotkey sets `platform`, pass the same `platform` to `useHotkeyHint`, so `Mod` resolves the same way.
+- **Extra modifiers hide it.** Holding `Control` + `Alt` shows hints only for shortcuts using both.
+- **Releases and blur hide it.** Releasing all modifiers or leaving the window hides hints cleanly.
+- **Non-modifier and `AltGr` keys.** Other held keys are ignored, and `AltGr` never triggers hints since it types characters.
+- **Modifier-only requirement.** Unmodified shortcuts such as `Escape` or `G` never show hints.
+- **Only active registrations count.** The hotkey must have at least one enabled registration in an active [scope](./hotkeys-provider-and-scopes). This checks across all mounted registrations, so if two components register `Mod+S` and one is enabled, both hints appear.
+- **Targets follow focus.** An element-targeted hotkey shows its hint only while focus is inside that element. `document` and `window` hotkeys show regardless of focus.
+- **Custom platforms.** If the hotkey overrides `platform`, pass the same `platform` to `useHotkeyHint`.
 
 ## Hints for sequences
 
-A sequence shows its hint while the user holds the modifiers of its first step:
+Sequences reveal their hint while the user holds the modifiers of their first step:
 
 ```tsx
 const showHint = useHotkeyHint(['Mod+K', 'Mod+C']) // true while Mod is held
@@ -62,7 +61,7 @@ const showHint = useHotkeyHint(['Mod+K', 'Mod+C']) // true while Mod is held
 
 ## Hints for app hotkeys
 
-Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including one they changed. An app hotkey with no hotkey assigned shows no hint. A small component keeps every button's hint the same:
+Pass an [app hotkey](./app-hotkeys) directly so hints stay synchronized even when users rebind shortcuts. Unassigned app hotkeys never show a hint. A small shared `<Hint>` component keeps buttons tidy:
 
 ```tsx
 import {
@@ -94,7 +93,7 @@ function Toolbar() @{
 
 ## Check held modifiers without the hook
 
-To check outside a component, such as while drawing on a canvas, pass the held keys to `matchesHeldModifiers`. It takes the same options, but it only looks at held keys. To also check that the hotkey can fire, call `hasActiveRegistration` on the hotkey manager:
+Outside Octane components, such as canvas draw loops, combine `matchesHeldModifiers` with `getKeyStateTracker()` and `getHotkeyManager().hasActiveRegistration()`:
 
 ```ts
 import {
@@ -109,9 +108,7 @@ matchesHeldModifiers('Mod+S', tracker.getHeldKeys()) // true while Mod is held
 
 const showHint =
   matchesHeldModifiers('Mod+S', tracker.getHeldKeys()) &&
-  getHotkeyManager().hasActiveRegistration('Mod+S') // Same check as the hook
+  getHotkeyManager().hasActiveRegistration('Mod+S') // Same check as useHotkeyHint
 ```
 
-[Held Key State Helpers](./held-key-state-helpers) covers the tracker and the other held-key hooks.
-
-The [Kitchen Sink example](../examples/kitchen-sink) shows hints next to its navigation links and buttons while Alt or Option is held.
+See [Held Keys](./held-key-state-helpers) for the tracker and the other held-key hooks, and the [Kitchen Sink example](../examples/kitchen-sink) for hints on live buttons.

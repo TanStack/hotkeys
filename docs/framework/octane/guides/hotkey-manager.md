@@ -1,12 +1,12 @@
 ---
 title: Use the Hotkey Manager Outside Octane Components
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Octane components with the HotkeyManager behind useHotkey, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Octane components with the HotkeyManager behind useHotkey.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Octane, you usually never need to use the hotkey manager yourself. `useHotkey` and `useHotkeys` register hotkeys with it, unregister them when the component unmounts, apply provider defaults and scopes, and keep callbacks current. Use the manager directly only for code that runs outside components, and in tests.
+This is an advanced guide. Inside Octane components, `useHotkey` and `useHotkeys` handle registration, cleanup, provider defaults, scopes, and fresh callbacks automatically. Use `HotkeyManager` directly only outside Octane components, such as inside third-party chart or canvas wrappers.
 
-Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
+All hotkeys on a page share a single `HotkeyManager` instance that owns the DOM event listeners, matches key presses, tracks sequence progress, and evaluates scopes. Access it with `getHotkeyManager()`:
 
 ```ts
 import { getHotkeyManager } from '@tanstack/octane-hotkeys'
@@ -16,24 +16,24 @@ const manager = getHotkeyManager()
 
 ## Register a hotkey
 
-`manager.register` takes the same hotkeys and options as `useHotkey`, and returns a handle:
+`manager.register` accepts the same hotkeys and options as `useHotkey` and returns a registration handle:
 
 ```ts
 const handle = manager.register('Mod+K', () => openCommandPalette())
 
-handle.setOptions({ enabled: false }) // Merges new options into the registration
-handle.callback = () => openSearch() // Replaces the callback
-handle.unregister() // Removes the hotkey
+handle.setOptions({ enabled: false }) // Merges updated options
+handle.callback = () => openSearch() // Updates callback in place
+handle.unregister() // Removes the registration
 ```
 
-A hotkey registered with the manager differs from one registered with a hook:
+Keep a few differences from `useHotkey` in mind:
 
-- It stays registered until you call `unregister()`.
-- Provider defaults and scopes don't apply. It uses the built-in defaults and belongs to the `'global'` scope, unless you pass `scope`.
-- During server rendering, `register` returns a handle that does nothing.
-- A `null` target, such as a `querySelector` result that found nothing, also returns a handle that does nothing. The handle doesn't wait for the element, so call `register` again once it exists. Omit `target` to listen on `document`. `register` treats `target: undefined` as omitted, so it listens on `document` too.
+- **Manual cleanup.** Registrations stay active until `handle.unregister()` is called.
+- **No Octane context.** Provider `defaultOptions` and provider scopes don't apply. Registrations use the built-in defaults and `'global'` scope unless a `scope` is passed.
+- **Element targets only.** Pass a DOM element, `document`, or `window` (not an Octane ref). A `null` target, like an empty `querySelector`, returns a no-op handle and doesn't wait for the element, so call `register` again once it exists. An omitted or `undefined` target listens on `document`.
+- **SSR safe.** During server rendering, `register` returns a no-op handle.
 
-For example, code that sets up a chart library outside Octane can register the chart's hotkeys and return a function that removes them:
+For example, wiring shortcuts inside a vanilla chart plugin:
 
 ```ts
 import { getHotkeyManager } from '@tanstack/octane-hotkeys'
@@ -51,19 +51,17 @@ export function attachChartHotkeys(chart: Chart, element: HTMLElement) {
 
 ## Read registrations
 
-In a component, read registrations with `useHotkeyRegistrations`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
-
-Outside components, ask the manager:
+Inside components, subscribe to registrations with `useHotkeyRegistrations` (see [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen)). Outside Octane, query the manager directly:
 
 ```ts
-manager.getRegistrationCount() // How many hotkeys are registered
+manager.getRegistrationCount() // Total registered hotkeys
 manager.isRegistered('Mod+S') // Whether any registration matches
 manager.isRegistered('Escape', panelElement) // Whether one matches on that target
 ```
 
-`isRegistered` compares hotkeys the way [duplicate detection](./hotkeys#handle-duplicate-hotkeys) does, so `Meta+S` matches a `Mod+S` registration on macOS.
+`isRegistered` uses canonical matching just like [duplicate detection](./hotkeys#handle-duplicate-hotkeys), so `'Meta+S'` matches a `'Mod+S'` registration on macOS.
 
-`manager.registrations` is a store that holds every registration in a `Map`, keyed by id. It reads and subscribes like a [TanStack Store](https://tanstack.com/store), so it also works with TanStack Store's framework adapters. Subscribe to it to run code when registrations change:
+`manager.registrations` reads and subscribes like a [TanStack Store](https://tanstack.com/store) holding a `Map` of registrations by ID:
 
 ```ts
 const subscription = manager.registrations.subscribe((registrations) => {
@@ -73,11 +71,11 @@ const subscription = manager.registrations.subscribe((registrations) => {
 subscription.unsubscribe()
 ```
 
-The store also updates each time a hotkey fires and each time a sequence advances, so keep subscribers fast. Registrations in the store include their callbacks. To get the view that `useHotkeyRegistrations` returns, without the callback, pass a registration to `toHotkeyRegistrationView`.
+Because this store updates whenever a hotkey fires or a sequence step advances, keep subscribers lightweight. Raw registrations include `callback`. For the callback-free shape returned by `useHotkeyRegistrations`, pass a registration to `toHotkeyRegistrationView`.
 
 ## Activate a scope
 
-In components, create scopes with `HotkeysProvider`. See [HotkeysProvider and Scopes](./hotkeys-provider-and-scopes). For UI that Octane doesn't render, such as a dialog from another library, activate the scope on the manager, and pass `scope` to the hotkeys that belong to it:
+Inside Octane, define scopes with `HotkeysProvider` (see [HotkeysProvider & Scopes](./hotkeys-provider-and-scopes)). For non-Octane UI, such as a dialog mounted by an imperative library, activate a scope directly on the manager and pass that `scope` to its registrations:
 
 ```ts
 const releaseScope = manager.activateScope('image-viewer', { exclusive: true })
@@ -85,28 +83,28 @@ const close = manager.register('Escape', () => viewer.close(), {
   scope: 'image-viewer',
 })
 
-// When the viewer closes
+// Clean up when the viewer closes
 close.unregister()
 releaseScope()
 ```
 
-`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released. `activateScope` takes two options:
+`activateScope` returns a release function, and a scope remains active until every activation of it has been released. It accepts two options:
 
-- `exclusive` suspends every other scope, including `'global'`, while this scope is active. Pass `{ allow: ['global'] }` to keep the listed scopes working.
-- `parent` names the scope this one is nested in, so this scope takes precedence over it. The default is `'global'`.
+- `exclusive` suspends every other scope (including `'global'`), or pass `{ allow: ['global'] }` to keep specific scopes active.
+- `parent` names an ancestor scope so this scope takes precedence over it (defaults to `'global'`).
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys are on, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
+Call `manager.isScopeActive(scope)` to check whether a scope can currently fire, or inspect each registration's `status` (see [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen)).
 
-`manager.scopes` is a store with these fields:
+`manager.scopes` is a store with four fields:
 
-- `active` lists the activated scopes, lowest precedence first. `'global'` is always active, so it isn't listed.
-- `exclusive` is the exclusive scope that owns the keyboard, or `null`.
-- `allowed` lists the active scopes that the exclusive scope allows.
-- `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
+- `active`: active scopes ordered lowest-to-highest precedence (`'global'` is always active and omitted here)
+- `exclusive`: currently controlling exclusive scope, or `null`
+- `allowed`: active scopes permitted by the exclusive scope
+- `suspended`: active scopes blocked by an exclusive scope (may include `'global'`)
 
-To read it in a component, use `useHotkeyScopesState`. It updates when scopes activate or release:
+Inside Octane components, read the same state reactively with `useHotkeyScopesState`:
 
 ```tsx
 import { useHotkeyScopesState } from '@tanstack/octane-hotkeys'
@@ -122,11 +120,11 @@ function KeyboardOwner() @{
 
 ## Reset sequence progress
 
-`manager.resetSequenceProgress()` clears the steps the user has pressed in every sequence. Call it when an action in your app should cancel a sequence the user has started.
+Call `manager.resetSequenceProgress()` to clear partial progress on all active sequences, such as when an external UI action cancels a pending command.
 
 ## Match a sequence on your own
 
-`createSequenceMatcher` matches one sequence against keyboard events you pass it, without registering anything with the manager. Use it in a keyboard listener you already own:
+To match a sequence inside your own `keydown` listener without registering on `HotkeyManager`, use `createSequenceMatcher`:
 
 ```ts
 import { createSequenceMatcher } from '@tanstack/octane-hotkeys'
@@ -138,50 +136,14 @@ document.addEventListener('keydown', (event) => {
 })
 ```
 
-The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
+The matcher tracks its own state via `getProgress()` and `reset()`. Standalone matchers don't check `ignoreInputs`, call `preventDefault()`, or evaluate scopes, so handle those in your listener if needed.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Components that unmount unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Reset the manager after each test:
+For resetting `HotkeyManager` and `KeyStateTracker` between tests and pinning the platform, see [Testing](./testing).
 
-```tsx
-// Editor.tsrx
-import { useHotkey } from '@tanstack/octane-hotkeys'
+## Testing
 
-export function Editor({ onSave }: { onSave: () => void }) @{
-  useHotkey('Mod+S', onSave, { platform: 'mac' })
+For resetting `HotkeyManager` and `KeyStateTracker` between tests and pinning the platform, see [Testing](./testing).
 
-  <textarea />
-}
-```
-
-```ts
-// Editor.test.ts
-import { afterEach, expect, it, vi } from 'vitest'
-import { createRoot, flushSync } from 'octane'
-import { HotkeyManager } from '@tanstack/octane-hotkeys'
-import { Editor } from './Editor.tsrx'
-
-afterEach(() => {
-  HotkeyManager.resetInstance()
-})
-
-it('saves with Mod+S', () => {
-  const save = vi.fn()
-  const root = createRoot(document.body.appendChild(document.createElement('div')))
-
-  flushSync(() => root.render(Editor, { onSave: save }))
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-  )
-
-  expect(save).toHaveBeenCalledOnce()
-  root.unmount()
-})
-```
-
-`resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform: 'mac'` makes `Mod` mean Command, so the test passes on every operating system. To set it for every hotkey in a test, pass it in `HotkeysProvider` default options: `defaultOptions={{ hotkey: { platform: 'mac' } }}`.
-
-The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.
+See the [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) for the full method list.

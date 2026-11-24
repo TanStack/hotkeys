@@ -8,7 +8,7 @@ This guide adds keyboard shortcuts to a Solid app. If you haven't installed TanS
 
 ## Create a hotkey
 
-TanStack Hotkeys needs no special setup. To create a keyboard shortcut, call `createHotkey` in the component that owns the action:
+TanStack Hotkeys needs no setup or provider to start. Call `createHotkey` in the component that owns the action:
 
 ```tsx
 import { createHotkey } from '@tanstack/solid-hotkeys'
@@ -20,13 +20,13 @@ function Editor() {
 }
 ```
 
-`Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
+`Mod` resolves to Command on macOS and Control on Windows and Linux. Out of the box, the browser's Save dialog stays closed, and `Mod+S` still fires while typing inside the `<textarea>`. See [Sensible Defaults](../../guides/sensible-defaults) to learn how every default works.
 
-That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.
+Providers, scopes, and the rest of the features below are completely optional. Add them only as your app needs them.
 
 ## Create several hotkeys
 
-When a component has more than one hotkey, create them together with `createHotkeys`:
+When a component needs multiple shortcuts, create them together with `createHotkeys`:
 
 ```tsx
 import { createHotkeys } from '@tanstack/solid-hotkeys'
@@ -46,15 +46,13 @@ function Editor() {
 
 ## Sequences
 
-Pass an array of chords to create a sequence, pressed one after another:
+Pass an array of chords to create a multi-step sequence, pressed one after another:
 
 ```tsx
 createHotkey(['G', 'G'], () => scrollToTop())
 ```
 
-Each step must follow the previous one within a second.
-
-`createHotkeys` accepts chords and sequences in the same array:
+By default, each step must follow the previous one within 1 second. `createHotkeys` accepts chords and sequences in the same array:
 
 ```tsx
 createHotkeys([
@@ -66,7 +64,7 @@ createHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `createFormatForDisplay`. Format the same value you register, so the label always matches the binding:
+Format a shortcut for buttons, menus, or tooltips with `createFormatForDisplay`. Formatting the same binding that is registered keeps the label in sync:
 
 ```tsx
 import { createFormatForDisplay, createHotkey } from '@tanstack/solid-hotkeys'
@@ -86,13 +84,13 @@ function SaveButton() {
 }
 ```
 
-The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
+This renders `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` type-checks the string so typos fail at compile time. Use `Hotkey` if a value can also be a sequence.
 
-If your app renders on the server, such as with SolidStart or TanStack Start, set the provider's `platform` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+In server-rendered apps like SolidStart or TanStack Start, pass the request's platform to `HotkeysProvider` so server HTML matches the client without hydration errors. See [SSR & Hydration](./guides/ssr).
 
 ## Hotkeys follow your components
 
-A hotkey is registered when the component that creates it renders, and removed when that component is disposed. Put each hotkey in the component it belongs to, so it is active only while that component is rendered:
+Hotkeys register when the calling component runs and unregister when Solid disposes it. Put each shortcut in the component it belongs to so it's only active while rendered:
 
 ```tsx
 import { Show, createSignal } from 'solid-js'
@@ -118,17 +116,17 @@ function SettingsDialog(props: { onClose: () => void }) {
 }
 ```
 
-For a condition that doesn't match a component, pass `enabled`. Pass options as an accessor, so they follow your signals:
+For conditions independent of rendering, pass options as an accessor so they follow signals:
 
 ```tsx
 createHotkey('Mod+S', () => save(), () => ({ enabled: hasUnsavedChanges() }))
 ```
 
-When a group of hotkeys turns on and off together, put them in a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
+When a whole group of shortcuts should toggle together, use a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
 
 ## Element hotkeys
 
-A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, keep the element in a signal and pass it as `target`:
+Hotkeys listen on `document` by default. To restrict a shortcut to a single element, keep the element in a signal and pass it as `target`:
 
 ```tsx
 import { createSignal } from 'solid-js'
@@ -137,7 +135,7 @@ import { createHotkey } from '@tanstack/solid-hotkeys'
 function Panel() {
   const [panel, setPanel] = createSignal<HTMLDivElement | null>(null)
 
-  // Fires only while the panel, or something inside it, has focus
+  // Fires only while the panel (or something inside it) has focus
   createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
 
   return (
@@ -148,15 +146,15 @@ function Panel() {
 }
 ```
 
-A `null` target waits until the element is attached. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
+A `null` target waits until the element is attached. Element hotkeys only fire while the element or a descendant has focus. Add `tabindex={0}` if the container isn't focusable.
 
-For an element inside `<Show>` or `<For>`, put the element and its `createHotkey` call in their own component, like `Panel` above. The hotkey unregisters when Solid removes the component.
+For an element inside `<Show>` or `<For>`, put the element and its `createHotkey` call in their own component, like `Panel` above. The hotkey unregisters when Solid removes the component. See [Elements that are removed](./guides/hotkeys#elements-that-are-removed) for details.
 
 ## Add providers and scopes (optional)
 
-So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is rendered. You don't need a provider for that.
+Without a provider, hotkeys use the built-in defaults and belong to the `'global'` scope.
 
-Add `HotkeysProvider` at the root to set default options for every hotkey inside it, such as more time between sequence steps:
+To change default options across your app, add `HotkeysProvider` at the root:
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/solid-hotkeys'
@@ -170,7 +168,7 @@ function Root() {
 }
 ```
 
-Add more providers deeper in your app to group hotkeys into scopes. Every hotkey inside a provider with a `scope` belongs to that scope. Make the scope `exclusive`, and while it is rendered, only its hotkeys work. Use one for dialogs and popups that should own the keyboard:
+Nest `HotkeysProvider` with a `scope` deeper in your tree to group shortcuts together. Marking a scope `exclusive` suspends every other scope while it's rendered, which works well for modals and confirmation dialogs:
 
 ```tsx
 import { HotkeysProvider, createHotkeys } from '@tanstack/solid-hotkeys'
@@ -193,26 +191,35 @@ function ConfirmDialogBody(props: ConfirmDialogProps) {
 }
 ```
 
-While the dialog is open, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog closes, they work again.
+While the dialog is open, `Enter` and `Escape` belong exclusively to it, and background shortcuts pause until it closes.
 
-A primitive uses the nearest provider above the component that calls it, so create the dialog's hotkeys in a child of its provider. [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes) covers nested scopes, precedence, and turning a scope off without disposing it.
+> [!NOTE]
+> Primitives read the nearest provider *above* the component calling them, so create the dialog's hotkeys inside a child of its `HotkeysProvider`.
+
+See [HotkeysProvider & Scopes](./guides/hotkeys-provider-and-scopes) for nested scope precedence and toggling scopes via `enabled`.
 
 ## Next steps
 
-Learn more about the basics:
+Core guides:
 
 - [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
 - [Sequences](./guides/sequences): Vim-style multi-key shortcuts
 - [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
 - [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
-- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
-- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [HotkeysProvider & Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
 - [Devtools](../../devtools): inspect registered hotkeys, scopes, and held keys while you develop
 
-As your app grows:
+App Hotkeys & UI:
 
-- [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
 - [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
-- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
-- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Cheat Sheets](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [Held Keys](./guides/held-key-state-helpers): show which keys are held
+
+Advanced & Integration:
+
+- [SSR & Hydration](./guides/ssr): server-render platform labels without hydration mismatches
+- [Keyboard Layouts](./guides/keyboard-layouts): type-check keys from international layouts
+- [Testing](./guides/testing): reset singleton state and fix the target platform in unit tests
 - [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components

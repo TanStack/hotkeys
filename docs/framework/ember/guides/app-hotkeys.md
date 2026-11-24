@@ -4,7 +4,9 @@ id: app-hotkeys
 description: Declare every hotkey in your Ember app in one place, list them in cheat sheets, and let users change them and save their choices.
 ---
 
-App hotkeys are optional. Plain `useHotkey` is enough until you need a cheat sheet for your whole app, or a screen where users change hotkeys. `useHotkey` registers a hotkey while its template renders it, so a cheat sheet built from live registrations misses hotkeys on routes that have not rendered yet, and a settings screen has nowhere to change them. App hotkeys solve both: you declare every hotkey in one place, publish them with `provideAppHotkeys`, and attach callbacks where the work happens. Users can then customize any of them, and your app decides how to save their choices.
+App hotkeys are optional. Plain `useHotkey` is enough until the app needs a cheat sheet for every hotkey or a screen where users change hotkeys. It registers a hotkey only while its template renders it, so a cheat sheet built from live registrations misses hotkeys on routes that haven't rendered yet, and a settings screen has no single place to change them.
+
+App hotkeys solve both. Declare every hotkey in one place, publish the declarations with `provideAppHotkeys`, and attach callbacks where the work happens. Users can then customize any hotkey, and the app decides how to save their choices.
 
 A declaration holds a hotkey's id, default hotkey, metadata, and options. It never holds a callback. `useHotkey` and `useHotkeys` still attach the callbacks.
 
@@ -57,7 +59,7 @@ import { appHotkeys } from './app-hotkeys'
 provideAppHotkeys(appHotkeys)
 ```
 
-Ember has no provider component. `provideAppHotkeys` creates the shared `AppHotkeysStore` and publishes it for helpers, modifiers, utilities, and devtools. Call it once at startup; it returns `{ store, dispose }`.
+Ember has no provider component. `provideAppHotkeys` creates the shared `AppHotkeysStore` and publishes it for helpers, modifiers, utilities, and devtools. Call it once at startup. It returns `{ store, dispose }`.
 
 ## Register app hotkeys
 
@@ -87,7 +89,7 @@ Template paths can't index ids that contain dots, so read app hotkeys through ge
 
 The registration takes `meta` and `options` from the declaration. Options merge in this order: `createHotkeysScope` defaults, then declared options, then call-site options. `meta` comes only from the declaration, so the cheat sheet and the registration cannot disagree. Call-site options are typed by the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
 
-When a component registers several hotkeys, pass app hotkeys to `useHotkeys` in the same field, mixed with plain hotkeys if you like:
+When a component registers several hotkeys, pass app hotkeys to `useHotkeys` in the same field, and mix in plain hotkeys as needed:
 
 ```ts
 get shortcuts(): Array<EmberHotkeyDefinition> {
@@ -119,9 +121,16 @@ provideAppHotkeys(appHotkeys, {
 })
 ```
 
-- `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- To apply saved data that loads later, such as from a server, call `store.setOptions({ customHotkeys })` on the store that `provideAppHotkeys` returns. It replaces the current custom hotkeys without calling `onCustomHotkeysChange`. `undefined` leaves them unchanged, and `null` clears them. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored.
+- `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when the app changes them.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
+
+To apply saved data that loads later, such as from a server, call `store.setOptions({ customHotkeys })` on the store that `provideAppHotkeys` returns. The store treats the new value like this:
+
+- **Changed values.** Replaces the current custom hotkeys without calling `onCustomHotkeysChange`, such as when async settings finish loading or the user switches accounts.
+- **Deeply equal data.** Ignored, so in-memory edits stay intact even when the app parses `localStorage` again before each call.
+- **`undefined`.** Leaves the current custom hotkeys unchanged, such as while async settings are still loading.
+- **`null`.** Clears all custom hotkeys, which is useful on sign-out.
+- **Unknown ids or invalid hotkeys.** Ignored, so saved data that outlives the code that wrote it can't crash the app.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
 
@@ -176,7 +185,7 @@ Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds
 | Member | Description |
 | --- | --- |
 | `value` | The hotkeys that differ from the defaults |
-| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns conflicting app hotkeys; when there are any, nothing changes. Takes the recorder's `context`, as `findConflicts` does. |
+| `setCustomHotkey(id, hotkey, context?)` | Sets a hotkey, or unbinds with `null`. Returns any conflicting app hotkeys, and changes nothing when there are any. Takes the recorder's `context`, as `findConflicts` does. |
 | `findConflicts(id, hotkey, context?)` | App hotkeys that would collide if `id` used `hotkey`. With the recorder's `context`, also checks with the key press that recorded it. |
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |

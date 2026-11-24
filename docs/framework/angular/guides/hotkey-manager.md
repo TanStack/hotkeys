@@ -1,10 +1,10 @@
 ---
 title: Use the Hotkey Manager Outside Angular Components
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Angular components with the HotkeyManager behind injectHotkey, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Angular components with the HotkeyManager behind injectHotkey.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Angular, you usually never need to use the hotkey manager yourself. `injectHotkey` and `injectHotkeys` register hotkeys with it, unregister them when the component is destroyed, apply provided defaults and scopes, and follow your signals. Use the manager directly only for code that runs outside components, and in tests.
+This is an advanced guide. In Angular components, the hotkey manager is rarely needed directly. `injectHotkey` and `injectHotkeys` register hotkeys with it, unregister them when the component is destroyed, apply provided defaults and scopes, and follow your signals. Use the manager directly only for code that runs outside components.
 
 Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
 
@@ -28,7 +28,7 @@ handle.unregister() // Removes the hotkey
 
 A hotkey registered with the manager differs from one registered with `injectHotkey`:
 
-- It stays registered until you call `unregister()`, and it doesn't need an injection context.
+- It stays registered until `unregister()` runs, and it doesn't need an injection context.
 - Provided defaults and scopes don't apply. It uses the built-in defaults and belongs to the `'global'` scope, unless you pass `scope`.
 - Its hotkey and options are plain values, not functions. To change options later, call `handle.setOptions`.
 - During server rendering, `register` returns a handle that does nothing.
@@ -78,7 +78,7 @@ The store also updates each time a hotkey fires and each time a sequence advance
 
 ## Activate a scope
 
-In components, create scopes with `provideHotkeys` in a component's `providers`. See [provideHotkeys and Scopes](./provide-hotkeys-and-scopes). For UI that Angular doesn't render, such as a dialog from another library, activate the scope on the manager, and pass `scope` to the hotkeys that belong to it:
+In components, create scopes with `provideHotkeys` in a component's `providers`. See [provideHotkeys & Scopes](./provide-hotkeys-and-scopes). For UI that Angular doesn't render, such as a dialog from another library, activate the scope on the manager, and pass `scope` to the hotkeys that belong to it:
 
 ```ts
 const releaseScope = manager.activateScope('image-viewer', { exclusive: true })
@@ -146,46 +146,10 @@ document.addEventListener('keydown', (event) => {
 })
 ```
 
-The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
+The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener when needed.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Destroyed components unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Reset the manager after each test:
+For resetting `HotkeyManager` and `KeyStateTracker` between tests and pinning the platform, see [Testing](./testing).
 
-```ts
-import { provideZonelessChangeDetection } from '@angular/core'
-import { TestBed } from '@angular/core/testing'
-import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { HotkeyManager, injectHotkey } from '@tanstack/angular-hotkeys'
-
-beforeEach(() => {
-  TestBed.configureTestingModule({
-    providers: [provideZonelessChangeDetection()],
-  })
-})
-
-afterEach(() => {
-  TestBed.resetTestingModule()
-  HotkeyManager.resetInstance()
-})
-
-it('saves with Mod+S', () => {
-  const save = vi.fn()
-
-  TestBed.runInInjectionContext(() => {
-    injectHotkey('Mod+S', save, { platform: 'mac' })
-  })
-  TestBed.flushEffects()
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-  )
-
-  expect(save).toHaveBeenCalledOnce()
-})
-```
-
-`injectHotkey` registers from an effect, so `TestBed.flushEffects()` runs it before the test presses a key. `resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform: 'mac'` makes `Mod` mean Command, so the test passes on every operating system. To set it for every hotkey in a test, add `provideHotkeys({ defaultOptions: { hotkey: { platform: 'mac' } } })` to the testing module's providers.
-
-The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.
+See the [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) for the full method list.

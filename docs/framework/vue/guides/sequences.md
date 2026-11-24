@@ -4,12 +4,9 @@ id: sequences
 description: Register multi-key sequences in Vue, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
 
-> [!IMPORTANT]
-> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/vue-hotkeys` v0.14.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps: Infinity`.
+A sequence is a hotkey made of chords pressed one after another, like `G` then `H` to go home, VS Code's `Ctrl+K` then `Ctrl+C`, or Vim commands.
 
-A sequence is a hotkey made of chords pressed one after another, such as `G` then `H` to go home. Vim-style navigation, two-step commands such as VS Code's `Ctrl+K` then `Ctrl+C`, and cheat codes are all sequences.
-
-Sequences are ordinary hotkeys. You register them with `useHotkey` and `useHotkeys`, and options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
+`useHotkey` and `useHotkeys` accept sequences like chords, with the same options, targets, `enabled`, and `meta` described in [Hotkeys](./hotkeys). This guide covers what is specific to sequences.
 
 ## Register a sequence
 
@@ -91,6 +88,12 @@ Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#
 `enabled`, `scope`, and `meta` work as they do for chords. A disabled sequence ignores its steps.
 
 ## Sequences that share keys
+
+| Pattern | Example | Behavior |
+| --- | --- | --- |
+| Shared prefix | `['D', 'D']` and `['D', 'W']` | Each tracks progress independently until the next key decides, with no warning |
+| Prefix of a longer sequence | `['G', 'G']` and `['G', 'G', 'G']` | The shorter one fires on step 2, and the longer one fires on step 3 |
+| Chord and sequence on the same key | `'G'` and `['G', 'G']` | The first `G` fires the chord. Once a sequence is underway, continuing keys belong to it |
 
 ### Sequences that start the same way
 
@@ -180,7 +183,7 @@ const longest = computed(
 </template>
 ```
 
-Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers) covers listing hotkeys.
+Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheets](./cheat-sheet-ui-helpers) covers listing hotkeys.
 
 ## Letter sequences need an off switch
 
@@ -216,4 +219,9 @@ useHotkey(
 )
 ```
 
-To record a sequence the user presses, see [Custom Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+To record a sequence the user presses, see [Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+
+## Migrating from v0.13 and earlier
+
+> [!NOTE]
+> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/vue-hotkeys` v0.14.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps: Infinity`.

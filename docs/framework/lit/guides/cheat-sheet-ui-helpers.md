@@ -40,7 +40,10 @@ declare module '@tanstack/hotkeys' {
 }
 ```
 
-Lists re-render when a new `meta` changes a string, number, or boolean field. Editing a `meta` object you already passed doesn't re-render them. A new array, object, element, or function in `meta` replaces the old one, so callbacks stay current, but it doesn't re-render lists on its own. That's what lets you write `meta` inline in a component. To show a changed array or element, also change a primitive field, such as `name`.
+Write `meta` inline without memoizing it. TanStack Hotkeys compares its primitive fields (`string`, `number`, and `boolean`) to decide when cheat sheet lists re-render.
+
+> [!NOTE]
+> Don't edit a `meta` object you already passed. Non-primitive fields, such as arrays, nested objects, elements, or functions, update without re-rendering lists on their own. To show a changed one, also change a primitive field, such as `name` or a version key.
 
 ## List the hotkeys on screen
 

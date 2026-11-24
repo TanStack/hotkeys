@@ -4,12 +4,9 @@ id: sequences
 description: Register multi-key sequences in Lit, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
 
-> [!IMPORTANT]
-> `@hotkeySequence`, `HotkeySequenceController`, and `HotkeySequenceRecorderController` were removed in `@tanstack/lit-hotkeys` v0.15.0. Pass a sequence to `@hotkey` or `HotkeyController` instead, and record one with `HotkeyRecorderController` and `maxSteps: Infinity`.
-
 A sequence is a hotkey made of chords pressed one after another, such as `G` then `H` to go home. Vim-style navigation, two-step commands such as VS Code's `Ctrl+K` then `Ctrl+C`, and cheat codes are all sequences.
 
-Sequences are ordinary hotkeys. You register them with `@hotkey` and `HotkeyController`, and options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
+Sequences are ordinary hotkeys. Register them with `@hotkey` and `HotkeyController`. Options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
 
 ## Register a sequence
 
@@ -115,6 +112,12 @@ Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#
 
 ## Sequences that share keys
 
+| Pattern | Example | Behavior |
+| --- | --- | --- |
+| Shared prefix | `['D', 'D']` and `['D', 'W']` | Both track progress independently until the next key decides, with no warning |
+| Prefix of a longer sequence | `['G', 'G']` and `['G', 'G', 'G']` | The shorter one runs on step 2, and the longer one runs on step 3 |
+| Chord and sequence on the same key | `'G'` and `['G', 'G']` | The first `G` runs the chord. Once a sequence is underway, the keys that continue it belong to it |
+
 ### Sequences that start the same way
 
 Sequences can share their first steps. Each one tracks its own progress, and the next key decides which one completes:
@@ -216,7 +219,7 @@ class PendingKeys extends LitElement {
 }
 ```
 
-Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers) covers listing hotkeys.
+Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheets](./cheat-sheet-ui-helpers) covers listing hotkeys.
 
 ## Letter sequences need an off switch
 
@@ -262,4 +265,9 @@ class VimNavigation extends LitElement {
 enableEasterEgg() {}
 ```
 
-To record a sequence the user presses, see [Custom Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+To record a sequence the user presses, see [Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).
+
+## Migrating from v0.14 and earlier
+
+> [!NOTE]
+> `@hotkeySequence`, `HotkeySequenceController`, and `HotkeySequenceRecorderController` were removed in `@tanstack/lit-hotkeys` v0.15.0. Pass a sequence to `@hotkey` or `HotkeyController` instead, and record one with `HotkeyRecorderController` and `maxSteps: Infinity`.

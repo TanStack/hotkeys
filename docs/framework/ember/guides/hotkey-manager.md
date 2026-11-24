@@ -1,10 +1,10 @@
 ---
 title: Use the Hotkey Manager Outside Ember Components
 id: hotkey-manager
-description: Register hotkeys, read registrations, and activate scopes from code outside Ember components with the HotkeyManager behind the useHotkey helper, and reset it between tests.
+description: Register hotkeys, read registrations, and activate scopes from code outside Ember components with the HotkeyManager behind the useHotkey helper.
 ---
 
-This is an advanced guide. When you use TanStack Hotkeys with Ember, you usually never need to use the hotkey manager directly. The `useHotkey` and `useHotkeys` helpers and the `onHotkey` and `onHotkeys` modifiers register hotkeys with it, follow your tracked state, and unregister the hotkeys when they're removed. Use the manager for code that runs outside components, for scopes, and in tests.
+This is an advanced guide. Inside components, the `useHotkey` and `useHotkeys` helpers and the `onHotkey` and `onHotkeys` modifiers register hotkeys with the manager, follow tracked state, and unregister the hotkeys when they're removed. Use the manager directly only for code that runs outside components and for scopes.
 
 Every hotkey goes to one `HotkeyManager`, shared by the whole page. The manager attaches the keyboard listeners, matches key presses to hotkeys, tracks sequence progress, and decides which scopes are active. Get it with `getHotkeyManager()`:
 
@@ -144,40 +144,8 @@ document.addEventListener('keydown', (event) => {
 
 The matcher tracks its own progress. `getProgress()` returns the number of steps matched so far, and `reset()` starts over. It doesn't skip text fields, prevent the browser's action, or check scopes, so handle those in your listener if you need them.
 
-## Reset the manager in tests
+## Testing
 
-The manager lasts as long as the page, so a test environment keeps it between tests. Helpers that are removed unregister their hotkeys, but hotkeys registered with `manager.register` and scopes activated with `activateScope` stay. Clear the rendered template and reset the manager after each test:
-
-```gts
-import { module, test } from 'qunit'
-import { clearRender, render } from '@ember/test-helpers'
-import { setupRenderingTest } from 'ember-qunit'
-import { HotkeyManager, useHotkey } from '@tanstack/ember-hotkeys'
-
-module('Integration | editor hotkeys', function (hooks) {
-  setupRenderingTest(hooks)
-
-  hooks.afterEach(async function () {
-    await clearRender()
-    HotkeyManager.resetInstance()
-  })
-
-  test('saves with Mod+S', async function (assert) {
-    let saves = 0
-    const save = () => saves++
-
-    await render(<template>{{useHotkey 'Mod+S' save platform='mac'}}</template>)
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
-    )
-
-    assert.strictEqual(saves, 1)
-  })
-})
-```
-
-`resetInstance` removes every listener and registration, and the next `getHotkeyManager()` call creates a new manager. Held keys have their own tracker, so reset it with `KeyStateTracker.resetInstance()` in tests that read held keys.
-
-`platform='mac'` makes `Mod` mean Command, so the test passes on every operating system. To set it for several hotkeys, pass it to `createHotkeysScope({ hotkey: { platform: 'mac' } })`, and use the helpers it returns.
+To reset `HotkeyManager` and `KeyStateTracker` between tests and pin the platform, see [Testing](./testing).
 
 The [`HotkeyManager` reference](../../../reference/classes/HotkeyManager.md) lists every method.
