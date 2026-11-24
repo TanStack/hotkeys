@@ -129,7 +129,7 @@ To apply saved data that loads later, such as from a server, call `store.setOpti
 - **Changed values.** Replaces the current custom hotkeys without calling `onCustomHotkeysChange`, such as when async settings finish loading or the user switches accounts.
 - **Deeply equal data.** Ignored, so in-memory edits stay intact even when the app parses `localStorage` again before each call.
 - **`undefined`.** Leaves the current custom hotkeys unchanged, such as while async settings are still loading.
-- **`null`.** Clears all custom hotkeys when it differs from the previous value passed in, which is useful on sign-out. If the last supplied value was already `null` after in-memory edits, call `resetCustomHotkeys()` instead.
+- **`null`.** Clears all custom hotkeys without calling `onCustomHotkeysChange` when it differs from the last non-`undefined` value passed in, which is useful on sign-out. If the last non-`undefined` value was already `null` and the user made in-memory edits, recreate the store with `provideAppHotkeys` (or pass `{}`) instead. Calling `resetCustomHotkeys()` triggers `onCustomHotkeysChange` and is intended for user-initiated resets.
 - **Unknown ids or invalid hotkeys.** Ignored, so saved data that outlives the code that wrote it can't crash the app.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.

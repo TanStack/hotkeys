@@ -3,9 +3,9 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "f4869497d699585dcdc27036e25fee7be7dbe6b14df036fe845ed4bc7220be43",
+      "fingerprint": "4e2cba5a342b49a4ec38b4ba050fbbaa53d38badf1bf660e7d46536d8ac00f1a",
       "snapshot": {
-        "docs/framework/alpine/guides/app-hotkeys.md": "13c1c9079185c1448e926f6605220426696601c997ef959de665538ee2358fb4",
+        "docs/framework/alpine/guides/app-hotkeys.md": "654a32b48567d860d0aa0bba0826cd83b25691e6c1091c5bd60c234d04c07d85",
         "docs/framework/alpine/quick-start.md": "87ea89a265333a184ee1171b257f0a72a81fffc8cae4bd4d955ffd7d663eabbc",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
@@ -17,11 +17,11 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/alpine/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
@@ -45,9 +45,9 @@
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "bb66ba20b9dd86598c7ae30f9c90b70a0eb5c333dd53865462801f27c9813314",
+      "fingerprint": "7ece42e9e5e61692cfc3ef0a65f2fd19afe1979cd4cd2e6700dd9db1bc5b6fe5",
       "snapshot": {
-        "docs/framework/ember/guides/app-hotkeys.md": "4b233c534fa47c8f01a4c6f0a8d61045278de65f3fab6fa2ab407aefd38e8361",
+        "docs/framework/ember/guides/app-hotkeys.md": "1c990606276fadffbb251e6bba94de0c236c2fbdcf220c88cd912ea5f25d5d2c",
         "docs/framework/ember/quick-start.md": "4012e0096f4b5fe0a5cdb0f1dd376606d90bd62a5bbc28432da6e7fdd46c0338",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d315094e211499a2fb4d3bb83a1918a734458c150df9594416d1e412d88f7da6",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
@@ -59,17 +59,17 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/ember/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "672ea74cc76e06dbf2d5440d1b45087737454cb4d8e7b3db32a560079fa664ea",
+      "fingerprint": "30864bca80e3d9dbbf15087b183ef17629b0aece074a2a2da60cf3bffe3baa11",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "49ad283555697b3bb3a6e47f9e34bbfb1bb15b031bd058b83404d87ffb63f257",
+        "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
         "docs/framework/react/guides/custom-hotkey-recording.md": "787f80bf9ce91a64914f93314c9038ab139c5f43e7c5dd954ce331afeb419ca9",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
@@ -86,11 +86,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/app-hotkeys.md, docs/framework/react/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/react/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
@@ -123,9 +123,9 @@
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "5669267ff58349a1b30b6828c8f1b324b628e089f9dc27324d510c5591e6b2ce",
+      "fingerprint": "14450294bfd51dc74c1a7f98911cb240a5548ad0684a3fbef3932df752927f2c",
       "snapshot": {
-        "docs/framework/lit/guides/app-hotkeys.md": "38b8805193634f05612a3b550bca9dd2e519975524de162fdcc4f7bd6b90c569",
+        "docs/framework/lit/guides/app-hotkeys.md": "3eacb3ebd3b9ff396519a7d16395c08980dd6f17498b857058174bed210d7a88",
         "docs/framework/lit/quick-start.md": "7aadd89ab0714f6e7e712ab170c9b227013c6aa6a2b5d80b6c8fd3cdc213fc67",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -134,11 +134,11 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "79d2602f8855075599d0fb7250e865a3b525eda5a5dc274a3c386edd1abe734e",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/lit/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -278,24 +278,24 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "de088298bcd1c919d31cd8b176b05161d3e94936cf6eed02a459617eabcb458b",
+      "fingerprint": "d634119a0b0a205bc3cc81bb3da65d3e774f6d9509e92c6b4acdb5734cf58335",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
         "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
-        "docs/framework/alpine/guides/app-hotkeys.md": "13c1c9079185c1448e926f6605220426696601c997ef959de665538ee2358fb4",
+        "docs/framework/alpine/guides/app-hotkeys.md": "654a32b48567d860d0aa0bba0826cd83b25691e6c1091c5bd60c234d04c07d85",
         "docs/framework/alpine/quick-start.md": "87ea89a265333a184ee1171b257f0a72a81fffc8cae4bd4d955ffd7d663eabbc",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "62594922e588344e438abb6593cde87ddf0b56f71c8c37beff989c052cec0070",
         "docs/framework/angular/quick-start.md": "1c4ebd7fbc4997215cf8c76b514dea492f07d2c3a711953e9d34c5d570ce6790",
-        "docs/framework/ember/guides/app-hotkeys.md": "4b233c534fa47c8f01a4c6f0a8d61045278de65f3fab6fa2ab407aefd38e8361",
+        "docs/framework/ember/guides/app-hotkeys.md": "1c990606276fadffbb251e6bba94de0c236c2fbdcf220c88cd912ea5f25d5d2c",
         "docs/framework/ember/quick-start.md": "4012e0096f4b5fe0a5cdb0f1dd376606d90bd62a5bbc28432da6e7fdd46c0338",
-        "docs/framework/lit/guides/app-hotkeys.md": "38b8805193634f05612a3b550bca9dd2e519975524de162fdcc4f7bd6b90c569",
+        "docs/framework/lit/guides/app-hotkeys.md": "3eacb3ebd3b9ff396519a7d16395c08980dd6f17498b857058174bed210d7a88",
         "docs/framework/lit/quick-start.md": "7aadd89ab0714f6e7e712ab170c9b227013c6aa6a2b5d80b6c8fd3cdc213fc67",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "4d7cbaa5a7110e9e3a91bd18a30d5c8cd7110a65ada142f6ea3c1e4c15ab907b",
         "docs/framework/octane/quick-start.md": "dc1ff9544aa074918f37517f4f8c76c342e81add7bf58a8c64ded677ace2039a",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "894d3e6c7803caf9b132fb20a8798d4da4b722f82e2195f557329ff4060f1cca",
         "docs/framework/preact/quick-start.md": "c207723efab8ed85b8272a438397fadf14849a8d0f0e283f25bbcd57bcbd19c3",
-        "docs/framework/react/guides/app-hotkeys.md": "49ad283555697b3bb3a6e47f9e34bbfb1bb15b031bd058b83404d87ffb63f257",
+        "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
         "docs/framework/react/guides/custom-hotkey-recording.md": "787f80bf9ce91a64914f93314c9038ab139c5f43e7c5dd954ce331afeb419ca9",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
@@ -409,11 +409,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/app-hotkeys.md, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, docs/framework/ember/guides/app-hotkeys.md, docs/framework/lit/guides/app-hotkeys.md, docs/framework/octane/guides/hotkeys-provider-and-scopes.md, docs/framework/preact/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/app-hotkeys.md, docs/framework/react/guides/custom-hotkey-recording.md, docs/framework/react/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/hotkeys.md, docs/framework/solid/guides/hotkeys-provider-and-scopes.md, docs/framework/svelte/guides/hotkeys-provider-and-scopes.md, docs/framework/vue/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/alpine/guides/app-hotkeys.md, docs/framework/ember/guides/app-hotkeys.md, docs/framework/lit/guides/app-hotkeys.md, docs/framework/react/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -4425,15 +4425,15 @@
       "evidence": ["Not committed with this PR."]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
-      "fingerprint": "fedcdd82568d4d63553fb0fbd5dc1d25dac4f49a14273cfce15efbfe335efa6c",
+      "fingerprint": "e6355b538a8f8214cced0830cdedb209e697f61500a38ba3df234404ba9c1962",
       "snapshot": {
-        "docs/framework/angular/guides/app-hotkeys.md": "8d2a374dbdac1e1969abc7500d96bda3226e64d7c1f3e6f8f6a96aba481c4cfe"
+        "docs/framework/angular/guides/app-hotkeys.md": "45f476bc5643f3419d648976beb4cc1a1f066890acdae7c5593259bfccf28806"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/angular/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
@@ -4533,15 +4533,15 @@
       ]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
-      "fingerprint": "64774c34969fc2ec3d79d94ac9b3f8d9547e04ac0522bac37a030aa5b4dfbcc0",
+      "fingerprint": "69d871b96cd59a1ecdaffc9e9574e9859ce96a85054233d2c12a3f2a09ebc36f",
       "snapshot": {
-        "docs/framework/octane/guides/app-hotkeys.md": "800c5a1193b5e74c28f3f5676364cf2564abed5a1e02734a312ff64262f5e602"
+        "docs/framework/octane/guides/app-hotkeys.md": "82c705fc1c55b4ea0a24fef867d5d1ed2827d32e29633a6a09268d857a42f35b"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/octane/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
@@ -4617,15 +4617,15 @@
       ]
     },
     "source:docs/framework/preact/guides/app-hotkeys.md": {
-      "fingerprint": "902703015938067957b0f3b70715bceef4f43c14db0bb0de30bc3ca9b65b5152",
+      "fingerprint": "55b0792f234d79e2149dd6b219d1446b731ca4198c40768d397d3b8711520aa1",
       "snapshot": {
-        "docs/framework/preact/guides/app-hotkeys.md": "b016612cf3a2efb92bab39bcee17ebc9e30eaeb6b4676963ec6f15df512c6f90"
+        "docs/framework/preact/guides/app-hotkeys.md": "e80bbdbfd610a93113d2cc2c323cee4181afeba5319a5083dca42eed24d3d343"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/preact/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
@@ -4709,15 +4709,15 @@
       ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
-      "fingerprint": "7ea2983f7795318ce18e21aa9d0b3570bdcbb2e46b29876e295579e069b7dd23",
+      "fingerprint": "2f7d67b76e1c121ca87e06f046e2b5d2787b749cbb0c76589043380b1b218f94",
       "snapshot": {
-        "docs/framework/solid/guides/app-hotkeys.md": "b46503b0c6269c9b790f678679bf1f5a36a7d52d6c73eab6a37ff3b52b5706e3"
+        "docs/framework/solid/guides/app-hotkeys.md": "79863c5b723b774eb6028f195855c6e2129b9157bf38bbc869c9c9e055b9667d"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/solid/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/solid/reference/functions/createHeldKeyCodes.md": {
@@ -4809,15 +4809,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/app-hotkeys.md": {
-      "fingerprint": "87eb70334a61c6794df3cf9204ed5e06c32eb3397a6cfb3d66be7b8aa0aa042c",
+      "fingerprint": "5d9538b107a2ce7d76ae86d1b0c96026ef010a9a1aaf621fc5211d2e510e2464",
       "snapshot": {
-        "docs/framework/svelte/guides/app-hotkeys.md": "3946b6d95b873641ce442ac061048fb14a3ec0b64c76e64cb648d580dd5fd63b"
+        "docs/framework/svelte/guides/app-hotkeys.md": "975683cfac9d4679f81fda1a9d84e202a043d7b584fe6b9ca326a31cd62c30c2"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/svelte/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
@@ -4905,15 +4905,15 @@
       ]
     },
     "source:docs/framework/vue/guides/app-hotkeys.md": {
-      "fingerprint": "01ac89e2392cfedacacd72c31745c13a4910ea8506ce8f94475070f2788acaa1",
+      "fingerprint": "a0b746a9208d768b6d973f3112f556707d057b838c88692d3ad9eddd6cff38a6",
       "snapshot": {
-        "docs/framework/vue/guides/app-hotkeys.md": "a634f1d794ada48c24a77dca0542d3955ba5420ab068b52c6a7dfaf6bb0b4244"
+        "docs/framework/vue/guides/app-hotkeys.md": "d62787c2ab87e7741a56fd21273b729e5ba85806182043e165e983c93055b932"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/vue/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeys.md": {

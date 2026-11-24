@@ -130,7 +130,7 @@ How incoming `customHotkeys` updates behave:
 - **Changed values.** Replaces current overrides without firing `onCustomHotkeysChange`, for example when async settings finish loading or the user switches accounts.
 - **Deeply equal data on re-render.** Ignored, keeping in-memory edits intact even if you re-parse `localStorage` each time.
 - **`undefined`.** Leaves current overrides unchanged while async settings are still loading.
-- **`null`.** Clears all overrides when it differs from the previous value passed in, which is useful on sign-out. If the last supplied value was already `null` after in-memory edits, call `resetCustomHotkeys()` instead.
+- **`null`.** Clears all overrides without calling `onCustomHotkeysChange` when it differs from the last non-`undefined` value passed in, which is useful on sign-out. If the last non-`undefined` value was already `null` and the user made in-memory edits, remount the provider (or pass `{}`) instead. Calling `resetCustomHotkeys()` triggers `onCustomHotkeysChange` and is intended for user-initiated resets.
 - **Unknown IDs or invalid bindings.** Silently ignored so older saved data doesn't break after app updates.
 
 Because the [hotkey recorder](./custom-hotkey-recording) emits `Mod` rather than OS-specific `Meta` or `Control`, shortcuts saved on macOS carry over to Windows and Linux.
