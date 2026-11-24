@@ -6210,15 +6210,15 @@
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "35865a6c07fa8191fff767ef282d7b32d6fa8b0752267b7fe51c83fc708e17b3",
+      "fingerprint": "875975b6017a7e1b6ce5fe94b11a9a91cb4b90c92a134cc9a0f3873764b873cd",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "cebf69db94a9e1a7ce7cfcb274b5cac763892be18a1b407ba188192339887417"
+        "docs/framework/angular/guides/formatting-display.md": "11f19ecc1f63639d09a6bb2955f2f6d5db47a0248271c8b2de09e3aea6106a70"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/angular/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -6270,15 +6270,15 @@
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "c7f85f5bc98b164e03b5ed0a628d3c422470719915f004812785551d8461f461",
+      "fingerprint": "d35d0e27c382248f6e8b0fa3b9c401e6b1826800b7a06d57e728f5776e16887b",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "fa989615c2f57d56cf95c70e00d3800ea5a0947d5238d6094818130e50981831"
+        "docs/framework/octane/guides/formatting-display.md": "d0c204be2346899408df4eefe814d85c9a180f974b5146c4d600d8fdda6e676d"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/octane/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6294,15 +6294,15 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "0e0e33d9edb9b2db739eb8e986799cc28070c07f28986159583939ff59b18114",
+      "fingerprint": "dfcbbea4c56ceb5ab38c53e80a572a812ef8bccdfc5cd21fee744800a5cc0cec",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "932b2e56301811fd89cebdd57ba12322dc7704a98a265d452516dcc929258c6f"
+        "docs/framework/preact/guides/formatting-display.md": "0a127720af9085120186a4708d68921df001368305ff04be00a32b0aeef7283e"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/preact/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6318,15 +6318,15 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "29856d785a6d15c0877190be11d2300e6ce49ab4d2f88955fc520e535e53154b",
+      "fingerprint": "ac43d250e7c35c5454ec8b3ebbe1c465d7f8b434b846e87994828aa8f51b53c5",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "53e4cd3d3236bb461195c1a323be11addc8c5d87e687a92a4dbbfc57422a2c95"
+        "docs/framework/react/guides/formatting-display.md": "38a3798cbf78d10a1cc54e4dd7fe692cf7e9fc17f9feb9b2ab725a769d6a97bd"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/react/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/react/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6342,15 +6342,15 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "efa64d0ff6374c43b503270154e69d0d92b5c324dabdbae22ba49183fa9df5df",
+      "fingerprint": "18b81aa95458e5079bea0f089c1046fe3754e123b7abaf18f080aa0d6e316881",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "8c2fd7648335b9c83fcb0006f75dbf888bdbce57c2b1dfe3803ce967638262fd"
+        "docs/framework/solid/guides/formatting-display.md": "8a275291f46b03b34af3a66697a4572c3e77472d174b22722bc9710f5a965b85"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/solid/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6366,15 +6366,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "f65ba5efbddc28f406ee3f4d933e61a6c71b4b848ddb1cca1ececa85d7a5ecec",
+      "fingerprint": "6cb50e62b4a0521c4b0c1260a01b33ce354f566253be41180180ae6a1839d5cc",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "e76bf18133b170a8765be042624e8aa9d5b9378d2856df405da4d044c389b4fa"
+        "docs/framework/svelte/guides/formatting-display.md": "3c4d1e6167fd345af40cc1cb5407ec4e5a825f147a9e424f388de4f0e1d8de3b"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/svelte/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6390,15 +6390,15 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "2423f52950f378d8fee223497d0539c0eab4d647ed6b058729be55d148131c63",
+      "fingerprint": "afb6fdacd22c43907ec9d4bed138d21659236e6e5ea91d3031087ea1c376c55c",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "c648766a92e9786985db74447987ee35896f254cb9cf1c1acb752efa596f9847"
+        "docs/framework/vue/guides/formatting-display.md": "a6174b39351ea20dd9a29cc1acf3fdacf3106926ce0fbd4f1cb9fb0cecb4a798"
       },
-      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
+      "head": "b83a6d29f6e671c04ec1849209efa3eaa6abd2e6",
       "outcome": "no-change",
-      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Docs-only wording clarification in formatting-display guides; no library API or skill changes.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
+        "Changed: docs/framework/vue/guides/formatting-display.md at b83a6d29f6e671c04ec1849209efa3eaa6abd2e6"
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
