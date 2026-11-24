@@ -129,7 +129,7 @@ A scope and a [target](./hotkeys#hotkey-targets) both limit when a hotkey works,
 
 ## Nested scopes win
 
-When several active scopes register the same key, only the highest-precedence scope runs:
+When several active scopes register the same chord, only the highest-precedence scope runs (sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope):
 
 1. A nested scope beats its parent scopes.
 2. Among scopes that are not nested, the most recently activated scope wins.

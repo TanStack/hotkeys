@@ -57,7 +57,7 @@ With the default `recordBy: 'auto'`, the recorder outputs portable strings, writ
 
 ## Record a sequence
 
-Set `maxSteps: Infinity` to capture multi-step sequences. Each chord appends a step, and the recording commits when the user presses `Enter` or stops typing for `idleTimeoutMs`:
+Set `maxSteps: Infinity` to capture multi-step sequences. Each chord appends a step, and the recording commits when the user presses `Enter` or, when `idleTimeoutMs` is configured, stops typing for that duration:
 
 ```ts
 @Component({
@@ -149,8 +149,7 @@ By default, `detectConflicts` checks every enabled `keydown` registration across
 ```ts
 detectConflicts: {
   excludeIds: [registration.id], // Skip the hotkey being changed
-  target: panelElement, // Only hotkeys on this element, inside it, or around it
-  scope: 'all', // Ignore target and check hotkeys on every element. Unrelated to hotkey scopes.
+  target: panelElement, // Only hotkeys on this element, inside it, or around it (pass scope: 'all' instead to check every element)
   eventType: 'keyup', // Check keyup hotkeys instead
   includeDisabled: true, // Include disabled hotkeys
   exclude: (registration) => registration.options.scope === 'vim', // Skip one hotkey scope
@@ -170,7 +169,7 @@ detectConflicts: {
 | `'missing-code'` | The key press had no physical `code` when one was needed |
 | `'alt-graph'` | An `AltGr` combination that can't be recorded |
 
-`findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
+`findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 ## Build a shortcut settings screen
 

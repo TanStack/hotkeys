@@ -32,14 +32,20 @@ import { flushSync, mount, unmount } from 'svelte'
 import { HotkeyManager, KeyStateTracker } from '@tanstack/svelte-hotkeys'
 import Editor from './Editor.svelte'
 
+let mounted: Record<string, unknown> | undefined
+
 afterEach(() => {
+  if (mounted) {
+    unmount(mounted)
+    mounted = undefined
+  }
   HotkeyManager.resetInstance()
   KeyStateTracker.resetInstance()
 })
 
 it('saves with Mod+S', () => {
   const save = vi.fn()
-  const editor = mount(Editor, {
+  mounted = mount(Editor, {
     target: document.body,
     props: { onSave: save },
   })
@@ -50,7 +56,6 @@ it('saves with Mod+S', () => {
   )
 
   expect(save).toHaveBeenCalledOnce()
-  unmount(editor)
 })
 ```
 
@@ -92,13 +97,14 @@ Dispatch each step in order, and use fake timers to verify the sequence `timeout
 
 ```ts
 vi.useFakeTimers()
-
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
-vi.advanceTimersByTime(500)
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
-expect(goHome).toHaveBeenCalledOnce()
-
-vi.useRealTimers()
+try {
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
+  vi.advanceTimersByTime(500)
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
+  expect(goHome).toHaveBeenCalledOnce()
+} finally {
+  vi.useRealTimers()
+}
 ```
 
 ## Testing element targets and inputs
@@ -107,12 +113,14 @@ To test a hotkey attached to an element, or to verify `ignoreInputs` inside an `
 
 ```ts
 const component = mount(SearchBox, { target: document.body })
-flushSync()
+try {
+  flushSync()
 
-const input = document.querySelector('input')!
-input.focus()
-input.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', bubbles: true }))
-expect(shortcutCallback).not.toHaveBeenCalled()
-
-unmount(component)
+  const input = document.querySelector('input')!
+  input.focus()
+  input.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', bubbles: true }))
+  expect(shortcutCallback).not.toHaveBeenCalled()
+} finally {
+  unmount(component)
+}
 ```

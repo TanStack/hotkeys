@@ -97,11 +97,13 @@ Dispatch each step in order. QUnit has no fake timers, so use a library such as 
 import sinon from 'sinon'
 
 const clock = sinon.useFakeTimers()
-
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
-clock.tick(500)
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
-clock.restore()
+try {
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
+  clock.tick(500)
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
+} finally {
+  clock.restore()
+}
 
 assert.strictEqual(goHomeCount, 1)
 ```

@@ -13,12 +13,16 @@ Destroying an owner from `createHotkeysScope` unregisters the hotkeys it created
 Destroy every owner and reset `HotkeyManager` in `afterEach`. Reset `KeyStateTracker` too in tests that read held keys:
 
 ```ts
+import Alpine from 'alpinejs'
 import { afterEach, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   KeyStateTracker,
   createHotkeysScope,
+  hotkeysPlugin,
 } from '@tanstack/alpine-hotkeys'
+
+Alpine.plugin(hotkeysPlugin)
 
 const scopes: Array<ReturnType<typeof createHotkeysScope>> = []
 
@@ -43,7 +47,7 @@ it('saves with Mod+S', () => {
 })
 ```
 
-An owner works without a running Alpine app, so a test can create one directly. `resetInstance()` removes every listener and registration, and the next `getHotkeyManager()` call creates a fresh manager.
+Register `hotkeysPlugin` with `Alpine.plugin(hotkeysPlugin)` before calling `createHotkeysScope()`, without needing mounted DOM markup unless a test uses `Alpine.data`. `resetInstance()` removes every listener and registration, and the next `getHotkeyManager()` call creates a fresh manager.
 
 To test a component that uses `Alpine.data`, install `hotkeysPlugin` first, as your app does before `Alpine.start()`. Mount the markup, call `Alpine.initTree(element)`, and call `Alpine.destroyTree(element)` before the next test.
 
@@ -86,13 +90,14 @@ Dispatch each step in order, and use fake timers to verify the sequence `timeout
 
 ```ts
 vi.useFakeTimers()
-
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
-vi.advanceTimersByTime(500)
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
-expect(goHome).toHaveBeenCalledOnce()
-
-vi.useRealTimers()
+try {
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
+  vi.advanceTimersByTime(500)
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
+  expect(goHome).toHaveBeenCalledOnce()
+} finally {
+  vi.useRealTimers()
+}
 ```
 
 ## Testing element targets and inputs

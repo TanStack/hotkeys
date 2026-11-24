@@ -75,7 +75,7 @@ function Editor() @{
 }
 ```
 
-Both `useAppHotkeys()` and direct imports resolve to the user's current custom binding inside the provider, falling back to the declared default if there's no provider. When a user rebinds an app hotkey, active registrations update immediately, even when switching between a chord and a sequence.
+Inside `HotkeysProvider`, `useAppHotkeys()` and direct imports both resolve to the user's current custom binding. Without a provider, direct imports fall back to the declared defaults, while `useAppHotkeys()` requires a provider with `appHotkeys`. When a user rebinds an app hotkey, active registrations update immediately, even when switching between a chord and a sequence.
 
 - **Option merging.** Options merge in order from provider `defaultOptions`, then declared `options`, then call-site options. Call-site options are typed against the declared default's kind.
 - **Metadata.** `meta` always comes from the declaration so cheat sheets and handlers stay in sync.
@@ -125,7 +125,7 @@ How incoming `customHotkeys` prop updates behave:
 - **Changed values.** Replaces current overrides without firing `onCustomHotkeysChange` (for example, when async settings finish loading or the user switches accounts).
 - **Deeply equal data on re-render.** Ignored, keeping in-memory edits intact even if you re-parse `localStorage` each render.
 - **`undefined`.** Leaves current overrides unchanged while async settings are still loading.
-- **`null`.** Clears all overrides, which is useful on sign-out.
+- **`null`.** Clears all overrides when it differs from the previous value passed in, which is useful on sign-out. If the last supplied value was already `null` after in-memory edits, call `resetCustomHotkeys()` instead.
 - **Unknown IDs or invalid bindings.** Silently ignored so older saved data won't crash after app updates.
 
 Because the [hotkey recorder](./custom-hotkey-recording) emits `Mod` rather than OS-specific `Meta` or `Control`, shortcuts saved on macOS sync cleanly to Windows and Linux too.

@@ -3,9 +3,9 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "e6c81d93f96dd2dcc1c0b6e3e086f25277b24a8c96e5c32f61892fd942afd769",
+      "fingerprint": "f4869497d699585dcdc27036e25fee7be7dbe6b14df036fe845ed4bc7220be43",
       "snapshot": {
-        "docs/framework/alpine/guides/app-hotkeys.md": "9eff942ccff2687cf198015e8742ff5b0ccdc50259deb0ab55fb0cdf882b6fc5",
+        "docs/framework/alpine/guides/app-hotkeys.md": "13c1c9079185c1448e926f6605220426696601c997ef959de665538ee2358fb4",
         "docs/framework/alpine/quick-start.md": "87ea89a265333a184ee1171b257f0a72a81fffc8cae4bd4d955ffd7d663eabbc",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
@@ -17,17 +17,17 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/app-hotkeys.md, docs/framework/alpine/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "dfe47e3dbc5766719e2041948bb406afab58d4451ee8b6c819ffebaf2cbc2f1a",
+      "fingerprint": "8f5160aaa791392dd3858b6dee962ae34aa0728d6e0171d6741dc75e607c5f31",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "e9bffa3628051d0ece3bb1138d0468407df72b984e4642d898573c316c4f55fe",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "62594922e588344e438abb6593cde87ddf0b56f71c8c37beff989c052cec0070",
         "docs/framework/angular/quick-start.md": "1c4ebd7fbc4997215cf8c76b514dea492f07d2c3a711953e9d34c5d570ce6790",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2a623bf40bdffb6f1f2c64d7159d58ae25a6f8b4681f42e1b0274113ac2b0900",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "afe63a82c2e4b9269b0fece249317a1ad197481cb8d4ae434c5da48d64f0a2b5",
@@ -37,17 +37,17 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "1f1ab7d1e41e5dc39721945c9d9152706689990ec57d6b4d6dbc262975a6a13c",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/provide-hotkeys-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "661efb8c9c0538b5bf557f738f343cadf6f3bbd2658138c4cc31b1385ed522b6",
+      "fingerprint": "bb66ba20b9dd86598c7ae30f9c90b70a0eb5c333dd53865462801f27c9813314",
       "snapshot": {
-        "docs/framework/ember/guides/app-hotkeys.md": "fb3508d5f46b02ba703fdf95e9099cba7bc4093d04619697da97d9a7d1fc502b",
+        "docs/framework/ember/guides/app-hotkeys.md": "4b233c534fa47c8f01a4c6f0a8d61045278de65f3fab6fa2ab407aefd38e8361",
         "docs/framework/ember/quick-start.md": "4012e0096f4b5fe0a5cdb0f1dd376606d90bd62a5bbc28432da6e7fdd46c0338",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d315094e211499a2fb4d3bb83a1918a734458c150df9594416d1e412d88f7da6",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
@@ -59,19 +59,19 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/app-hotkeys.md, docs/framework/ember/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/ember/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "e0bb6fc469a5122107c51a77c8fe0b477a00687e383f6236c7161af321a0afcb",
+      "fingerprint": "672ea74cc76e06dbf2d5440d1b45087737454cb4d8e7b3db32a560079fa664ea",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "d96d3157b15852c75bd44969f3d3a2666f4a8d19a65d70eb615e807503362cd4",
+        "docs/framework/react/guides/app-hotkeys.md": "49ad283555697b3bb3a6e47f9e34bbfb1bb15b031bd058b83404d87ffb63f257",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "69b78a5b902e70a3e68cc20392254c684611fc0016e57089537c6e152a5f5869",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "787f80bf9ce91a64914f93314c9038ab139c5f43e7c5dd954ce331afeb419ca9",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "4e0dc65456c67bf099d1aec4ff9aa3039d8be3aaa461042002c924ac5c0687b3",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
@@ -86,18 +86,18 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/app-hotkeys.md, docs/framework/react/guides/cheat-sheet-ui-helpers.md, docs/framework/react/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/react/guides/app-hotkeys.md, docs/framework/react/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "59c138471d292bcd43291c5e654ea0ca47d64ed70eb2f34969f1cb4854c54aa4",
+      "fingerprint": "78031d956babcfae3a27ae0a5a0fa04a0ad7fa7dba2aaf4d03b7bc1f79163c37",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1a147242a01b2c3d012a6e54ed8d973584079f6cf60f53916fde18696c12bce5",
-        "docs/framework/react/guides/hotkeys.md": "f3ad9096593dd8ff73d0f684523e12c9ff58bc4818420c362ca6f2490292e4ea",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
+        "docs/framework/react/guides/hotkeys.md": "6a80820b340b1a7daa00cddd9dd82b7e245069d47b668e27066ce7b5a5bc6461",
         "docs/framework/react/guides/sequences.md": "bda26b5007b85f8f136001ed667c45d8c832c39bdae81834bc23957aa4078f34",
         "docs/guides/sensible-defaults.md": "9b79c50651a09c34b4f6fcea5296cf4c88c30becaec6c27c80506d2b3d64124b",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2713cc5a05ecd000e9dbfacfd79192ad7b87bb80fdf54ddc8c1f50b90015a60c",
@@ -115,17 +115,17 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/sequences.md, docs/guides/sensible-defaults.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/react/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "eae3fd9367d16aeeebde4a7f3c5cc4adaa16de2b1e32eb58a42d9f5d21dc60f8",
+      "fingerprint": "5669267ff58349a1b30b6828c8f1b324b628e089f9dc27324d510c5591e6b2ce",
       "snapshot": {
-        "docs/framework/lit/guides/app-hotkeys.md": "b64648679f3177a135dd2b5bc7b776591758b7ba318fe4f2c8e75dfb93af5e6c",
+        "docs/framework/lit/guides/app-hotkeys.md": "38b8805193634f05612a3b550bca9dd2e519975524de162fdcc4f7bd6b90c569",
         "docs/framework/lit/quick-start.md": "7aadd89ab0714f6e7e712ab170c9b227013c6aa6a2b5d80b6c8fd3cdc213fc67",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -134,17 +134,17 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "79d2602f8855075599d0fb7250e865a3b525eda5a5dc274a3c386edd1abe734e",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/app-hotkeys.md, docs/framework/lit/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/lit/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "df0650459cf1c5d72b476c50efc18c441cb5f2147c486039656cf50285ff4b56",
+      "fingerprint": "6cb50d2a93e416c319c1c5cd8ea9baf206e099e1cdb3209b82ce8009c1f8cc5c",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "2ae18ebbce73c06b25e02ec5b1ad78582ef1bbd43af06cd8a9735397ee1895ec",
+        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "4d7cbaa5a7110e9e3a91bd18a30d5c8cd7110a65ada142f6ea3c1e4c15ab907b",
         "docs/framework/octane/quick-start.md": "dc1ff9544aa074918f37517f4f8c76c342e81add7bf58a8c64ded677ace2039a",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "f9e9a3920370f2abe943634fb25d8be515cde8f0d4a6c510552c60b206c9fc72",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "ddb3f0f9457fa245b29e8cf8e98088a3bafbf493e4d702a6228795f6ee358442",
@@ -153,17 +153,17 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "7fad592ebe66e2c1822d2ca4018263d560aee41ba4334d9940dfd67b3ad44b09",
         "packages/octane-hotkeys/src/useHotkeys.ts": "a6ce6be008bc44382444ed9c11e1e8fcee6901b49e58d40d3ce6c88e64e4f084"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/hotkeys-provider-and-scopes.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "38dbb97ecfab58a1a39f8c696977075881ff337e64aec202e205de18101c9556",
+      "fingerprint": "1ae4a7e27935d5583d7f9fc7e8ecd6713c39d7dde8294b9b342e2a90b4db0501",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "9141f4502d94c67988cd9b3156091b10a0afe45ea9a7995de85078f02c21aa48",
+        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "894d3e6c7803caf9b132fb20a8798d4da4b722f82e2195f557329ff4060f1cca",
         "docs/framework/preact/quick-start.md": "c207723efab8ed85b8272a438397fadf14849a8d0f0e283f25bbcd57bcbd19c3",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "afdeebd81dfb59c167bba312cb753832951dce67c7dcac1f99772aa8d481a797",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "e28a5865d89549981131050565cbf6a9e9d7ed658c3d9254036d09888b5e42cb",
@@ -172,17 +172,17 @@
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/hotkeys-provider-and-scopes.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "03bd6a1448a55d841eb84b7c3034a0355f56d883d9037a3899e13aff1e00883b",
+      "fingerprint": "1daa6467c3dc22c27cef1a59505c7e40e561639b2193b73dba5b52a453237e97",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1a147242a01b2c3d012a6e54ed8d973584079f6cf60f53916fde18696c12bce5",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/quick-start.md": "b64e5e00e51a1e22050fa0e8ebf0bd0cb5e8d4a5c51292f7bc6dd9c0b9cd732c",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
@@ -209,17 +209,17 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkeys-provider-and-scopes.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/react/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "25c8dbf0fe3af02da7a5a1772d9432fe53f516205c20ed4533039fadc46b9f13",
+      "fingerprint": "4ee82da8efed9ced79fd9b960cbee211a7c0b2d2d6a4fd777be543d3c0c6964f",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "d002270d65a3f309a6511fe0f16c63c442687945223bca919b60825a672736c3",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4bd63e3578448500df1bb502f5531b5069dfdf85678f69dc8ba54c2a4280ca33",
         "docs/framework/solid/quick-start.md": "ff077cbae60ef60ecfb833abc1852d3f1ec704467028cfe0de2b5fa553c584ab",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7e786434d39e7e374881e015d5ce420c94b5c2dbdb0d953a9c265803c31b0227",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
@@ -228,17 +228,17 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
         "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkeys-provider-and-scopes.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "2c5d919da247fb8ead7669a4a5218aa64d7239c55b83a310b007f1a36a59c1c0",
+      "fingerprint": "a723a5dc7adeb96b7fee4ac8240e00669f0c3b436543b41f9bb96b88b700f3da",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "1d48f1f1e7f658041c7a72f824db94dbfe08f997ebe8d37965af3309685c2641",
+        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "418e3a7daaab0c3507cfd4dcd38b8a5603083f193354f701cf5a58b07c085766",
         "docs/framework/svelte/quick-start.md": "1ac75d04be9508779ee2707a3513a3b37322628c50208d58874b342227339171",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "858548a437108d8e3a2ed3f79f1be92a3a51923f001ec4eedf0484391bff2e2e",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "f60367e6667d76633886af1398807b5ad54e4586e58b41b2f6d7ee180ab0e1c4",
@@ -249,17 +249,17 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "62efea33d6017ba908e953320feb664334a3b2bb16167880007811077f0169d9",
+      "fingerprint": "675633183faf07bdf6e26abaff248f0655b395adf9600b57896c58d1202d657b",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "bc3062203bd1a29be7d275d2f8c9e64437ae95d26aef448ad046e51d00290959",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
         "docs/framework/vue/quick-start.md": "113f08751ed0ca6400e23f561ca381bfc5959a180bc637e3f6b11c2cf6e6f7f2",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7d9baffc9b4643da50529c2c86359707f3773bf2c9e025b01a90a8b005d55c99",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "9ff677a8ff993fb9a8e749e6885cbff28fd08bd1dc0f8d0150da19d29ec18736",
@@ -270,43 +270,43 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "5beef63b4a0a613876a9b5dd89898ab109b961c637ad9a297176119368159b1a",
+      "fingerprint": "de088298bcd1c919d31cd8b176b05161d3e94936cf6eed02a459617eabcb458b",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
         "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
-        "docs/framework/alpine/guides/app-hotkeys.md": "9eff942ccff2687cf198015e8742ff5b0ccdc50259deb0ab55fb0cdf882b6fc5",
+        "docs/framework/alpine/guides/app-hotkeys.md": "13c1c9079185c1448e926f6605220426696601c997ef959de665538ee2358fb4",
         "docs/framework/alpine/quick-start.md": "87ea89a265333a184ee1171b257f0a72a81fffc8cae4bd4d955ffd7d663eabbc",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "e9bffa3628051d0ece3bb1138d0468407df72b984e4642d898573c316c4f55fe",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "62594922e588344e438abb6593cde87ddf0b56f71c8c37beff989c052cec0070",
         "docs/framework/angular/quick-start.md": "1c4ebd7fbc4997215cf8c76b514dea492f07d2c3a711953e9d34c5d570ce6790",
-        "docs/framework/ember/guides/app-hotkeys.md": "fb3508d5f46b02ba703fdf95e9099cba7bc4093d04619697da97d9a7d1fc502b",
+        "docs/framework/ember/guides/app-hotkeys.md": "4b233c534fa47c8f01a4c6f0a8d61045278de65f3fab6fa2ab407aefd38e8361",
         "docs/framework/ember/quick-start.md": "4012e0096f4b5fe0a5cdb0f1dd376606d90bd62a5bbc28432da6e7fdd46c0338",
-        "docs/framework/lit/guides/app-hotkeys.md": "b64648679f3177a135dd2b5bc7b776591758b7ba318fe4f2c8e75dfb93af5e6c",
+        "docs/framework/lit/guides/app-hotkeys.md": "38b8805193634f05612a3b550bca9dd2e519975524de162fdcc4f7bd6b90c569",
         "docs/framework/lit/quick-start.md": "7aadd89ab0714f6e7e712ab170c9b227013c6aa6a2b5d80b6c8fd3cdc213fc67",
-        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "2ae18ebbce73c06b25e02ec5b1ad78582ef1bbd43af06cd8a9735397ee1895ec",
+        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "4d7cbaa5a7110e9e3a91bd18a30d5c8cd7110a65ada142f6ea3c1e4c15ab907b",
         "docs/framework/octane/quick-start.md": "dc1ff9544aa074918f37517f4f8c76c342e81add7bf58a8c64ded677ace2039a",
-        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "9141f4502d94c67988cd9b3156091b10a0afe45ea9a7995de85078f02c21aa48",
+        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "894d3e6c7803caf9b132fb20a8798d4da4b722f82e2195f557329ff4060f1cca",
         "docs/framework/preact/quick-start.md": "c207723efab8ed85b8272a438397fadf14849a8d0f0e283f25bbcd57bcbd19c3",
-        "docs/framework/react/guides/app-hotkeys.md": "d96d3157b15852c75bd44969f3d3a2666f4a8d19a65d70eb615e807503362cd4",
+        "docs/framework/react/guides/app-hotkeys.md": "49ad283555697b3bb3a6e47f9e34bbfb1bb15b031bd058b83404d87ffb63f257",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "69b78a5b902e70a3e68cc20392254c684611fc0016e57089537c6e152a5f5869",
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1a147242a01b2c3d012a6e54ed8d973584079f6cf60f53916fde18696c12bce5",
-        "docs/framework/react/guides/hotkeys.md": "f3ad9096593dd8ff73d0f684523e12c9ff58bc4818420c362ca6f2490292e4ea",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "787f80bf9ce91a64914f93314c9038ab139c5f43e7c5dd954ce331afeb419ca9",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
+        "docs/framework/react/guides/hotkeys.md": "6a80820b340b1a7daa00cddd9dd82b7e245069d47b668e27066ce7b5a5bc6461",
         "docs/framework/react/guides/sequences.md": "bda26b5007b85f8f136001ed667c45d8c832c39bdae81834bc23957aa4078f34",
         "docs/framework/react/quick-start.md": "b64e5e00e51a1e22050fa0e8ebf0bd0cb5e8d4a5c51292f7bc6dd9c0b9cd732c",
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "d002270d65a3f309a6511fe0f16c63c442687945223bca919b60825a672736c3",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4bd63e3578448500df1bb502f5531b5069dfdf85678f69dc8ba54c2a4280ca33",
         "docs/framework/solid/quick-start.md": "ff077cbae60ef60ecfb833abc1852d3f1ec704467028cfe0de2b5fa553c584ab",
-        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "1d48f1f1e7f658041c7a72f824db94dbfe08f997ebe8d37965af3309685c2641",
+        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "418e3a7daaab0c3507cfd4dcd38b8a5603083f193354f701cf5a58b07c085766",
         "docs/framework/svelte/quick-start.md": "1ac75d04be9508779ee2707a3513a3b37322628c50208d58874b342227339171",
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "bc3062203bd1a29be7d275d2f8c9e64437ae95d26aef448ad046e51d00290959",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
         "docs/framework/vue/quick-start.md": "113f08751ed0ca6400e23f561ca381bfc5959a180bc637e3f6b11c2cf6e6f7f2",
         "docs/guides/sensible-defaults.md": "9b79c50651a09c34b4f6fcea5296cf4c88c30becaec6c27c80506d2b3d64124b",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
@@ -409,11 +409,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/quick-start.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/app-hotkeys.md, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, docs/framework/ember/guides/app-hotkeys.md, docs/framework/lit/guides/app-hotkeys.md, docs/framework/octane/guides/hotkeys-provider-and-scopes.md, docs/framework/preact/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/app-hotkeys.md, docs/framework/react/guides/custom-hotkey-recording.md, docs/framework/react/guides/hotkeys-provider-and-scopes.md, docs/framework/react/guides/hotkeys.md, docs/framework/solid/guides/hotkeys-provider-and-scopes.md, docs/framework/svelte/guides/hotkeys-provider-and-scopes.md, docs/framework/vue/guides/hotkeys-provider-and-scopes.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1154,111 +1154,111 @@
       ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "eb5fb6c1a3406acc0dde31cfa1a0658337a2b45c07db32e32b964c6b23bead87",
+      "fingerprint": "87e1815f79c9fd274d2ffc761e033cbe2911260799a5bbca561b1b5be3467767",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "caa680a23cf358fd6b15e3af6fd5501b02c43964d83aed1deb5ee2852db30b98"
+        "docs/framework/alpine/guides/hotkeys.md": "f67c425bede5fd276b86011a6eb81de6a5febcf73e28ee500237cdad4dd5d582"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "a738dfcc34667155ac2ea689f4fc1788305db1599b9a9a5a66110f95ec0104cb",
+      "fingerprint": "bf20ed3086776d3c381b46c465f20105994d1f89dbab396ffbc8fec4ef964247",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "668baf24b0a3830476b63ef5762ef4f96c61824c059c223c016c15d8e51cc287"
+        "docs/framework/angular/guides/hotkeys.md": "5e2f877302e264cdbe05ae13e870aad7e948e9369a511425a15638670119e998"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "d1ae220ef462075022511a84d958b0a2373e14131be26c73f9abd895b9cb6ac0",
+      "fingerprint": "f0c28cd61688f1cc4ae0db72191fd561a9b906f46e71eb559af85b91616a3a3a",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "fe2e8d9ac895c4f0f80aebbd02190c1d0edd74ce4a5a636048237ec2c8e0536a"
+        "docs/framework/ember/guides/hotkeys.md": "1dc2c8df9b2a171baf2371e97c59eb303ccf2506c2cfc5a756da0281f95de20d"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/ember/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "4d69e6151a344e5af215354d1886bc20e8034ad8ce0780bffcfeb4624198a736",
+      "fingerprint": "a1b9b0820d28de4ab84d50cd0b28d10ea51802975b8c40b4411943380eb6dbf8",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "ba3e7d93c6d57801e522055a6661c9114b31f497a3d5654a48b2940d0bdc7aa6"
+        "docs/framework/lit/guides/hotkeys.md": "2a8f7c9d5085a0d0a1ba6406aa739a61e59b2cf22ef4b9e2f011579365da9c0c"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/lit/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "07e09ceed0ba91ebab744d7433dafce810393dd4785abc813f831ed1a729fce3",
+      "fingerprint": "805ac77d9842a11ba50401524a26edd0f09084c745349cb327917669d58dd210",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "394714f8f8768dafff753bc0efc3efe8987be21444439130ed2f0e93dba562be"
+        "docs/framework/octane/guides/hotkeys.md": "a9375d244dfd985caa8713fcf300b6a56116f8543c1566dddd784605a14ac81f"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "34c10cb2a16997c92f29dd81199f355e465be983aeb232d1d35cdff674e2f801",
+      "fingerprint": "2d5a69151867de2ea4416748768e04b14b8b817e5e8c8e11785d622dc9bcb924",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "0cc3862ab0e35f2e4cf008920888c75164781a50c9f39b75a91ab22503d54558"
+        "docs/framework/preact/guides/hotkeys.md": "17af6856819e37ed6708480b92c89d959559859994cd3245263a744d2745f56e"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "a7f194ded93ca86becac331d3978fc3b95fcc43c161ecebf165b256f6f72664a",
+      "fingerprint": "bbc6281a66520c7b74e43daee87cc126ab984618aa808b86c2800bf5a69fca7c",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "4a36689ba185d183190ed030a0abf8526a7bc3b43b27fecc5321e28eca251892"
+        "docs/framework/solid/guides/hotkeys.md": "e54a84678f3050cee99bb4ae32f3b8fd898ae0c82f8e37e375efa25b479e69b6"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
-      "fingerprint": "a2ad0cb436ed1a4b7d42eaf8d6fa84882e3d7dacedad34f2346152d5563a8105",
+      "fingerprint": "73dc52f4ea2016cdf9bed203fa3a6f5cf22a87b4979f0522975bd113d5834fc4",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys.md": "86d8b8f195d31fcbbc0167fe2a2952ed41895f0cf8380cea5a656716af64f947"
+        "docs/framework/svelte/guides/hotkeys.md": "c7a438a008e68cdb10ada1475436df21bbde56d4404f894af110dcac6f409f5d"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "11acb053b88b55161855e0f925c6d0d0b88bd298680c77af7042c8f94c5465a5",
+      "fingerprint": "9be1b8b47f6d693582c9b8e518364a165c4566e42b7192f909b6669f610b9969",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "c1da033477eb5a5a8a67100158f3062095bf551e60b3dbf3f66542f9d176fc0c"
+        "docs/framework/vue/guides/hotkeys.md": "2245a88a14e612b48ed10be447d7ac46b276cf6657bf6ca66bbc569444daeb82"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
@@ -4425,15 +4425,15 @@
       "evidence": ["Not committed with this PR."]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
-      "fingerprint": "5ce390a2e6dfbe71fea6c2e25af3eb50483954d2061806a49c8819e25c1df6bf",
+      "fingerprint": "fedcdd82568d4d63553fb0fbd5dc1d25dac4f49a14273cfce15efbfe335efa6c",
       "snapshot": {
-        "docs/framework/angular/guides/app-hotkeys.md": "ebc7f2b46725b7e2443eb5adccfe924f4ac1a36420ec6e5befe09a46990df4aa"
+        "docs/framework/angular/guides/app-hotkeys.md": "8d2a374dbdac1e1969abc7500d96bda3226e64d7c1f3e6f8f6a96aba481c4cfe"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
@@ -4533,15 +4533,15 @@
       ]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
-      "fingerprint": "abc7a6a3ebb807a51e3591e19b1aea66daa651ece0c60219352ac05973981003",
+      "fingerprint": "64774c34969fc2ec3d79d94ac9b3f8d9547e04ac0522bac37a030aa5b4dfbcc0",
       "snapshot": {
-        "docs/framework/octane/guides/app-hotkeys.md": "d5fbda5e993ede9541eeda064108efd6e7eed2d7d24039511a38f44987f29cda"
+        "docs/framework/octane/guides/app-hotkeys.md": "800c5a1193b5e74c28f3f5676364cf2564abed5a1e02734a312ff64262f5e602"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
@@ -4617,15 +4617,15 @@
       ]
     },
     "source:docs/framework/preact/guides/app-hotkeys.md": {
-      "fingerprint": "c67c5fd26f844231c10abf43ea021a30eea317867a0069870b0a569c5df31325",
+      "fingerprint": "902703015938067957b0f3b70715bceef4f43c14db0bb0de30bc3ca9b65b5152",
       "snapshot": {
-        "docs/framework/preact/guides/app-hotkeys.md": "7dfba1d774f5cd567aa38e314201859eb9178aeb9a9e2c5415530c30f2462a16"
+        "docs/framework/preact/guides/app-hotkeys.md": "b016612cf3a2efb92bab39bcee17ebc9e30eaeb6b4676963ec6f15df512c6f90"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
@@ -4709,15 +4709,15 @@
       ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
-      "fingerprint": "309641c6e077f13656238c51cec6dd7c9d1bd5173678c46adbf9f2ffa5e5d121",
+      "fingerprint": "7ea2983f7795318ce18e21aa9d0b3570bdcbb2e46b29876e295579e069b7dd23",
       "snapshot": {
-        "docs/framework/solid/guides/app-hotkeys.md": "e1e1dc4a590bf5f6cb79bf646aaa296f57f8f1680c67d69f6d85be827fb9deaf"
+        "docs/framework/solid/guides/app-hotkeys.md": "b46503b0c6269c9b790f678679bf1f5a36a7d52d6c73eab6a37ff3b52b5706e3"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/reference/functions/createHeldKeyCodes.md": {
@@ -4809,15 +4809,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/app-hotkeys.md": {
-      "fingerprint": "dbb028d9e9140870703e0a16b8a792343349d985a385c4031f84eb6b72e81e23",
+      "fingerprint": "87eb70334a61c6794df3cf9204ed5e06c32eb3397a6cfb3d66be7b8aa0aa042c",
       "snapshot": {
-        "docs/framework/svelte/guides/app-hotkeys.md": "f512c2b57947ddabccba13f3e00b342e2ef7b18b647c4ca45c177e55362160bf"
+        "docs/framework/svelte/guides/app-hotkeys.md": "3946b6d95b873641ce442ac061048fb14a3ec0b64c76e64cb648d580dd5fd63b"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
@@ -4905,15 +4905,15 @@
       ]
     },
     "source:docs/framework/vue/guides/app-hotkeys.md": {
-      "fingerprint": "c6500d105593e29f37fb3cead37e5dd5c880dd85e77b260ebd36120632621389",
+      "fingerprint": "01ac89e2392cfedacacd72c31745c13a4910ea8506ce8f94475070f2788acaa1",
       "snapshot": {
-        "docs/framework/vue/guides/app-hotkeys.md": "d1970c300049227fa06da3f04c4ecf8de77cb469da4dd81779ab9ac5b958c71e"
+        "docs/framework/vue/guides/app-hotkeys.md": "a634f1d794ada48c24a77dca0542d3955ba5420ab068b52c6a7dfaf6bb0b4244"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/app-hotkeys.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/app-hotkeys.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeys.md": {
@@ -6186,15 +6186,15 @@
       "evidence": ["packages/hotkeys/tests/key-tables.test.ts"]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "6ae63bedf5ce38c1284401c5d5cd76fb7397e06d512a00a08f79756da1f7acb6",
+      "fingerprint": "55e8e92644aa832a65dab45efb1e309587a114bd14507d25e7983f0f3888eeee",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "2e24bb902358262b55c345b038b6ed2716c7e0b89eac700aef3a0638f3c8d1c4"
+        "docs/framework/alpine/guides/formatting-display.md": "27d6cabdf062916d451a38c0f8d66d5e2c75d1aad83e7ebc63bc4f35869a4934"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
@@ -6210,15 +6210,15 @@
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "8c6ccdf3a5594c1e6e4734c2d21044f812e4e9808cbc2516f637402caf7b70ab",
+      "fingerprint": "35865a6c07fa8191fff767ef282d7b32d6fa8b0752267b7fe51c83fc708e17b3",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "be26db22fdf8ec992bc3e4ba9201280116322fbd4d8eaef0ac763dd6470acf77"
+        "docs/framework/angular/guides/formatting-display.md": "cebf69db94a9e1a7ce7cfcb274b5cac763892be18a1b407ba188192339887417"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -6234,15 +6234,15 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "c9754e7c8de1721bcc398f2452df8be5992faba969d3753e13b196bf280761e7",
+      "fingerprint": "fb2bda342c517cfa8291cff781cc9b0cffcef6b888383ba2b5a1c940b6bdedbd",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "4e34d2af2a412c800f7a493d003cf5f0445ad64f48c879f3a52bc3444653f641"
+        "docs/framework/ember/guides/formatting-display.md": "01a821e2e47042b1438fcdc27497d80139dcfcf103dc3ecf7d073d0fd01ad791"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/ember/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6258,27 +6258,27 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "3a1c8207d1059150b9b7de2b7ad60b56c8c17468d2d1342af0cd7c6274562dbe",
+      "fingerprint": "95789be0e3562c1089d01558ba9b583064fecffb98fc7c1af723dc64e5d5f34f",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "5b99c9b0fac80f37e57d57915e5944d085557eec5a0c5cc481d78f606b415d68"
+        "docs/framework/lit/guides/formatting-display.md": "3ba695516f8998a62ac7ffe4e56a028ae48c95fa0ff4be9b0d0a1e147d169dc5"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/lit/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "45b15c666c44d9d40c05b0831e40876c72d2c7c00c1d50ef046f4a1392a1f495",
+      "fingerprint": "c7f85f5bc98b164e03b5ed0a628d3c422470719915f004812785551d8461f461",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "cc17483268fa06171cc13821ce0f1b8ec16880e96f7f3087f8d69295b675b33b"
+        "docs/framework/octane/guides/formatting-display.md": "fa989615c2f57d56cf95c70e00d3800ea5a0947d5238d6094818130e50981831"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6294,15 +6294,15 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "ab8af28d78fea74acd061f765c556fef713788238f54f8307b641af40c6af53a",
+      "fingerprint": "0e0e33d9edb9b2db739eb8e986799cc28070c07f28986159583939ff59b18114",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "a824a25c090f7ea1145403f09a23d82398d17d0a9e547e4d1376412e867f51ac"
+        "docs/framework/preact/guides/formatting-display.md": "932b2e56301811fd89cebdd57ba12322dc7704a98a265d452516dcc929258c6f"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6318,15 +6318,15 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "fbd864b747cb4552e877a5f389b7dc47745cf6663f7b16b02aa7ea2b5a3104bd",
+      "fingerprint": "29856d785a6d15c0877190be11d2300e6ce49ab4d2f88955fc520e535e53154b",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "c26cccf5fe4b63481e5d9487a2c45994f4a41c5d07feee4d6bbb1ee391da44aa"
+        "docs/framework/react/guides/formatting-display.md": "53e4cd3d3236bb461195c1a323be11addc8c5d87e687a92a4dbbfc57422a2c95"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/react/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6342,15 +6342,15 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "85bc21313ce7c13ac5ffdb3b55be8227ff4a7a30d53f2aa8ef69f06dd2ef1430",
+      "fingerprint": "efa64d0ff6374c43b503270154e69d0d92b5c324dabdbae22ba49183fa9df5df",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "0af5b4d6a5aad8a604e0809272d8fcd79b2e3b55ae6691e842188aa75c605164"
+        "docs/framework/solid/guides/formatting-display.md": "8c2fd7648335b9c83fcb0006f75dbf888bdbce57c2b1dfe3803ce967638262fd"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6366,15 +6366,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "888e9e66781297c66faaef98b3e3a2ad85b0a6359d315dc8f8af49dc2fd991ae",
+      "fingerprint": "f65ba5efbddc28f406ee3f4d933e61a6c71b4b848ddb1cca1ececa85d7a5ecec",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "a21e3e5ad7409a6244418480d016b4de5058ec7209cfcd09495dde5caee58e68"
+        "docs/framework/svelte/guides/formatting-display.md": "e76bf18133b170a8765be042624e8aa9d5b9378d2856df405da4d044c389b4fa"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6390,15 +6390,15 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "086a5997a4b8ddd04a79918a262fc4660a7bc6f47d6b6d29107bfc5f4b195424",
+      "fingerprint": "2423f52950f378d8fee223497d0539c0eab4d647ed6b058729be55d148131c63",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "904aeb2f53e089437e1d326794ac03d70f40dc56938994271dfa0b0063e51181"
+        "docs/framework/vue/guides/formatting-display.md": "c648766a92e9786985db74447987ee35896f254cb9cf1c1acb752efa596f9847"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/formatting-display.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/formatting-display.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -7491,15 +7491,15 @@
       "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "59149f4fa6206862d75002161a2aec3ef2912960047a79a4078ad686006d1f40",
+      "fingerprint": "9f0f0cd4b3f12d94bc2b9e77069468bbf7419dbe4886fe80dbacdd23897c5636",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "bc6964e6f5b7d3a894161ad1a5207d88c0a0a5253b61226b51b1e9a1471afa5a"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "801b8103c11c7289f18d2be59067f88c937d481628537b92057ac6376229f7ca"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7689,15 +7689,15 @@
       ]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "c165dc41db79d1868b7e945e914c05361e36c732ab69ff6efbc1686eb711474c",
+      "fingerprint": "02ab89cb8f532f289707384cddf81c0e0ffcc340f38f827d5c3f95fa2a8ff68b",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "a84e14b35003109ea228bb07c89e58a7a376bb54f41069cd9d1fabb190d38714"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "d9726c6a1cd572823f8a0372d544c602810a00122ce1ed20e3f4773c77dcb435"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7723,15 +7723,15 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "0a7ce04b4a4a81816b37cc57577104a126bbb8bd508ec085603d5f2874680829",
+      "fingerprint": "86ec75e274a181e262ae203747d6c9da948e2233733df2f6f647b5af6d92a595",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "ba4976724466214dc9cecbd030ff025f13fd329f3f83715e4f6fd7c719665d03"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "ce8ba7f1d2b36c34b86dd2076beebcb327ec63dad350c6d6bbbae45843d94f18"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11955,15 +11955,15 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "132b2f9618139b124099f7f77825c6d2dcd9c8e117d16822ef4f3dc01f5cc78f",
+      "fingerprint": "68543846e2a7ef06c966f2ff4a56e72ecec704c86e51b1aa300b44eb5c7aaf66",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "c4f020197cd06466b92b5cca1cec5b095920af06fd6cde3a7b1c4a5830f235b5"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "b6f30b5262c2d7acb8f48ae5fe25ac134a9111980bf1ac54a4b44ac826cd5eb8"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -12003,15 +12003,15 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "53d711da1837e0eda87e20c056f75c5b2f3e885ad855b5b64736bde7f984851d",
+      "fingerprint": "5e188603b915e8a9917d86cdb96841d880963b13d4d846636fc0b723627c9f2e",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "b2ec26924f51e0ed69bd967e4926ed740ea8565f2bcbc23314fa1fd8885597ce"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "74c110aa2e7b03ead7133dde04b8b12250dea89a515b70d48bdbff64f76bc0ed"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -12051,39 +12051,39 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "2ee52da4fa50aee902fbf396fb1d173058c8334db0995a2245e27aa7b8ba046d",
+      "fingerprint": "45f4c0aa2634ed87b00480fab4c8d3d5be789278a37c413bc2f6254dce0dcf93",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "0a5292c2fed72bc434e5b03f93b09d7536812e75434826cacdd73a86969c6505"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "12d69f0da405e066c8466ce8f80093aa5bb3f2e87a5214a329a949374ccc75ea"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "bf386c10c9df1f699e1f3d3de56097d4e407084a6b1c4bb5c3ffef75f896c830",
+      "fingerprint": "24b0daae38aea7176cdb195b5d9d398f6e30eb27eb21be902b68277ce9466567",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "9c5e229b1a019b24773d578e20b822569b0d9a53bca4cbd1de02a3fc3db5b90f"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "b782659775523363a85fe9d6b1e98adb2a44016d6bc6ca24e68c54b74e374d00"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "e3077324b242fde0853e0a4d1b652485402187b2dc84c6d8b393268fcf2d9378",
+      "fingerprint": "417b7b65e56a8c836d201408ca58b1e2cbf3b0ce8598918828d715f3f2c45552",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "25d57a0954ee2897f862c4e784e1b99995c1f00129c791e3b29f6179c79fba74"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "7aa4ff48f32b19ec526ed2368c61d81d5686bf14ca31962068de26d36ea5be4d"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -12159,15 +12159,15 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "1f7ba5b617037547627b3147964c0e4c15edbbae9c40b9aa44ef3ca78c0112de",
+      "fingerprint": "931d9ffe4edabe867657c13f2950c2bc4089276900d4aaf34d950f2933d8d08c",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "3a3d6d2a755128f777ab7130b215cb6127b08abb4c56c73afbb291c0cd992667"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "41e6a9b61f7d1d60b9d06b0c967d63752d3f6517e34ddf61a7be265aff4b6dbd"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -23654,39 +23654,39 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/testing.md": {
-      "fingerprint": "230d9b8bc11f911caea80efb928572c187bcd31019f3b5e6fb31eb4d65377486",
+      "fingerprint": "b68cecd9617e1a32bdb98072e09af273d6a6fb442423324f96a6ebe5d4dbaae2",
       "snapshot": {
-        "docs/framework/alpine/guides/testing.md": "aff340a8ec4ad0a09fd3c843444f3bb1bc19f4940454ef85ef415f3292c5f9a5"
+        "docs/framework/alpine/guides/testing.md": "e418814b30e329da2f36093531b468fbe1e0517849ec12c890274e6d126b1cb2"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/alpine/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/alpine/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/angular/guides/ssr.md": {
-      "fingerprint": "9ebe2479000301ee3d40e4bdbfabb6f32d87d695b28b51bb062f7fb4654dcdb1",
+      "fingerprint": "153a53b0a9f92a685d67d198f6a0ac6bd51592e026becf70c6584bfb6e53068b",
       "snapshot": {
-        "docs/framework/angular/guides/ssr.md": "155d99ac0154e68f92360ecabe5881930ae2468eb22c1f547d0b2a046040a565"
+        "docs/framework/angular/guides/ssr.md": "2f3d7f0df4ac7b3bc8b404c44ecebe8a7cf82291c5eae7e30bf3b95ced625ac4"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/ssr.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/ssr.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/angular/guides/testing.md": {
-      "fingerprint": "649f0e8ff81a410a828bc734ad1f64b4337bc28cc7a449f8d5c18015d4270f4c",
+      "fingerprint": "2c37980db7fa56b5d92ff887c87f7329c2f7b7a164dad71bc69eaeb00a4cd0b4",
       "snapshot": {
-        "docs/framework/angular/guides/testing.md": "67bc86ed64740449b41e26857e24fb2e4632b2fbc729b0c9e8d1f2c88e334eea"
+        "docs/framework/angular/guides/testing.md": "b4782e6e1cedcb712acf99dd1f700bfc04802643a4af3eaf4f262aaeaf949bcb"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/angular/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/ember/guides/ssr.md": {
@@ -23702,15 +23702,15 @@
       ]
     },
     "source:docs/framework/ember/guides/testing.md": {
-      "fingerprint": "e248cc4c8c8bcbb306ee8a68def90b119f1c646ce2ad9df1d653ede40f955f4a",
+      "fingerprint": "372cb9f3d2b715b52c1f15e1179a24b9239fcfc49e2e5ff583401cb171a66d0a",
       "snapshot": {
-        "docs/framework/ember/guides/testing.md": "aad784237c046ad7c4a6f8a9ec813a9bf343145ff77aa5fef4ee3494ff6544a5"
+        "docs/framework/ember/guides/testing.md": "72e05e28ddaee4cf3f816815f2f0f04fb901c4ae90ebbb89c0648c5f9a4354b9"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/ember/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/ember/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/lit/guides/ssr.md": {
@@ -23726,15 +23726,15 @@
       ]
     },
     "source:docs/framework/lit/guides/testing.md": {
-      "fingerprint": "49817d2477be52e59ae86673de63f5b192b6807fc95d067b0d1eb9dd8d8d5132",
+      "fingerprint": "8424329e0e40fe808cf0694326b72dcd322659b1673f16fafac1c2c6fdd9c07b",
       "snapshot": {
-        "docs/framework/lit/guides/testing.md": "e91bf7e7fbbb2e1fdd2d9b09d23eaac0646fa88e529d05f99312ed1aaa3f9f33"
+        "docs/framework/lit/guides/testing.md": "142fa0e4f488465aeb286402af990703a30663f7fa30f715ddca009514afe0d4"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/lit/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/octane/guides/ssr.md": {
@@ -23750,15 +23750,15 @@
       ]
     },
     "source:docs/framework/octane/guides/testing.md": {
-      "fingerprint": "edc23fa79606a443652f0bb8a7d9a866be44b8b5ab120d6cf12fd31db5933535",
+      "fingerprint": "fca637a849043de08ecb45452c0a12960fadad4c796984a853d5533c26956801",
       "snapshot": {
-        "docs/framework/octane/guides/testing.md": "f4b1478e7dda1455b9844d6dea558bd6d2bfba93dae39c0e3031da19cc55a083"
+        "docs/framework/octane/guides/testing.md": "c7a7389c2910ead25df2d37e01d501aab162449d9eee0eecc901502ffaa93fc4"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/octane/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/octane/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/preact/guides/ssr.md": {
@@ -23774,15 +23774,15 @@
       ]
     },
     "source:docs/framework/preact/guides/testing.md": {
-      "fingerprint": "63409b84ea217a9f60b20927aa7dc86dda1aaf8a442bab56fed71cf34c898b5d",
+      "fingerprint": "716d3bedce76be4bdcf39505a8b338b252ab6462ff453f67da69844145695dc4",
       "snapshot": {
-        "docs/framework/preact/guides/testing.md": "f3473cb9d17a71cb7b126dcf64556a6fcd6dfbf03a21e4a3d9e294100a864c3c"
+        "docs/framework/preact/guides/testing.md": "717254a778347156b2e7eea447a5c1f03e147e9e96e7fca19a8f12c4d41b30ae"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/preact/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/preact/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/react/guides/ssr.md": {
@@ -23798,39 +23798,39 @@
       ]
     },
     "source:docs/framework/react/guides/testing.md": {
-      "fingerprint": "c8c5b18f3d6d4440d4f82f31a99a619992b8bbd5e6b336c9c862b5606938cf39",
+      "fingerprint": "2b696c535ee79b0d78cb800f65a817c1fcb501e35c24ee35d4e00a760362a096",
       "snapshot": {
-        "docs/framework/react/guides/testing.md": "0794e8d2ce7982797b960c66f219e4bb2015dc933687192b41029b50009532e4"
+        "docs/framework/react/guides/testing.md": "5613ef3c396f7f0cfd819df1ef209c3179407dbae31411b7e1893159d498cb39"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/react/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/react/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/guides/ssr.md": {
-      "fingerprint": "91b8178c89ee7bd4bf3d3c7e7b74ab97aaa1a04ad292d48e4d8d086426bb35a3",
+      "fingerprint": "66a56019c315392d6682f8b30602c88df920421e254f8e71971fef13f8325977",
       "snapshot": {
-        "docs/framework/solid/guides/ssr.md": "1dd1b24f4d66a4078aeb1a45d43637b8256e5b722d05e93bde7c562afc60c8d2"
+        "docs/framework/solid/guides/ssr.md": "31cb536eda30f5e0da8f00a4e5c39680c213a7e20fc8ef54812f5919f1b70d1f"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/ssr.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/ssr.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/solid/guides/testing.md": {
-      "fingerprint": "b88151bd873299352da7e47a8de69b9f797bcb078b042348b5e4351842377783",
+      "fingerprint": "57573c97ec95fdf6dcb248f3c87544c8fe897dc13ae2c56b198cafd8d3496ed6",
       "snapshot": {
-        "docs/framework/solid/guides/testing.md": "30b1f3eee17779804f3d8c662b4cf5a3fcfea9a5678dffff604a8c667b628b09"
+        "docs/framework/solid/guides/testing.md": "e24000fb305c5f4dbd1a5afecdc4c4ab4a299fc7e2c040307f46181e18dcdb9a"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/solid/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/solid/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/svelte/guides/ssr.md": {
@@ -23846,15 +23846,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/testing.md": {
-      "fingerprint": "621b4e152051b44389e5849de6ae2ba028c0600485950b26c7359b3fb5f7070f",
+      "fingerprint": "653e8e445240ca59369a5c59692057bf97f440a3629f246291e8a025438c197c",
       "snapshot": {
-        "docs/framework/svelte/guides/testing.md": "4885b48ba9549d43819677e70d2605642b4800f45cfee5357a8c947a8f888599"
+        "docs/framework/svelte/guides/testing.md": "3b290f412beeb78df4267695be17be9ab468778e723f52cbd03b4bfc3578613a"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/svelte/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/framework/vue/guides/ssr.md": {
@@ -23870,27 +23870,27 @@
       ]
     },
     "source:docs/framework/vue/guides/testing.md": {
-      "fingerprint": "8b511e34fe7921e0f7840230b8f69d1868c97a2fee5df287a25ee217fad9b132",
+      "fingerprint": "431ab2bda4acf670b7cc77c82eaecfedc374f1b12a33585b364b3efa269573ea",
       "snapshot": {
-        "docs/framework/vue/guides/testing.md": "a80d08b7fa028a07e203de9ceb016185681feff60c1828bdbba40ec1b6f8952c"
+        "docs/framework/vue/guides/testing.md": "68093c363521cf1dc38fbc6d73363a2104fbb2b78118d56e2822389ed41dcb89"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/framework/vue/guides/testing.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/framework/vue/guides/testing.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     },
     "source:docs/overview.md": {
-      "fingerprint": "85b78fdac2ccf1393595d7e1e86cfbc59d602a0079310967f830b6c2a752fae7",
+      "fingerprint": "090e961dfaf88db6d71bbb437b07342e1607a4bbf53d8210ede345165526514f",
       "snapshot": {
-        "docs/overview.md": "71b09395b0ddd99503d09a9a5571d5614d937939beaab56917b845050562eb6d"
+        "docs/overview.md": "e7deac01cc0d391e9b2f12bdf629da9c1a04999fa5c27b9d4b28e0d6e421c77e"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "7da3dfdc33d22180f6653527be96b779d8ded34c",
       "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Addressed PR review findings in core and framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
       "evidence": [
-        "Changed: docs/overview.md at bb8531891694fb630be3c91872f10a8377870d66"
+        "Changed: docs/overview.md at 7da3dfdc33d22180f6653527be96b779d8ded34c"
       ]
     }
   }

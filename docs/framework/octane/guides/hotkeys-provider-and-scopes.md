@@ -115,7 +115,7 @@ function Editor() @{
 
 ## Nested scopes win
 
-When multiple active scopes register the same key on the same [`target`](./hotkeys#hotkey-targets), only the highest-precedence scope runs:
+When multiple active scopes register the same chord on the same [`target`](./hotkeys#hotkey-targets), only the highest-precedence scope runs (sequences in multiple active scopes advance and fire independently unless suspended by an `exclusive` scope):
 
 1. A nested scope beats its parent scopes.
 2. Sibling scopes resolve by activation order, so the most recently activated scope wins.

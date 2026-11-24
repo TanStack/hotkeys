@@ -69,7 +69,7 @@ Editor autocomplete guides you through valid chord strings like `Control+A`, `Al
 
 ### Display formatting
 
-Format any chord or sequence for buttons, tooltips, and menus (`⌘ S` on macOS, `Ctrl+S` on Windows and Linux), either as a string or as individual keycaps. Your stored hotkey stays portable while its label adapts to the user's OS and keyboard layout.
+Format any chord or sequence for buttons, tooltips, and menus (`⌘ S` on macOS, `Ctrl+S` on Windows and Linux), either as a string or as individual keycaps. Your stored hotkey stays portable while its label adapts to the user's OS and, in supported browsers or with a supplied layout map, to their keyboard layout.
 
 ### Scopes
 
@@ -81,7 +81,7 @@ Component-level hotkeys only exist while their components are mounted. Declare y
 
 ### Hotkey recording
 
-Capture user-pressed chords, or multi-step sequences with `maxSteps: Infinity`, for shortcut settings screens. Built-in validation and conflict detection run before you save.
+Capture user-pressed chords, or multi-step sequences with `maxSteps: Infinity`, for shortcut settings screens. Built-in validation and opt-in conflict detection (`detectConflicts` or `findConflicts`) run before saving.
 
 ### Key state tracking
 

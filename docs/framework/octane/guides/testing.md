@@ -30,22 +30,29 @@ import { createRoot, flushSync } from 'octane'
 import { HotkeyManager, KeyStateTracker } from '@tanstack/octane-hotkeys'
 import { Editor } from './Editor.tsrx'
 
+let root: ReturnType<typeof createRoot> | undefined
+let container: HTMLDivElement | undefined
+
 afterEach(() => {
+  root?.unmount()
+  root = undefined
+  container?.remove()
+  container = undefined
   HotkeyManager.resetInstance()
   KeyStateTracker.resetInstance()
 })
 
 it('saves with Mod+S', () => {
   const save = vi.fn()
-  const root = createRoot(document.body.appendChild(document.createElement('div')))
+  container = document.body.appendChild(document.createElement('div'))
+  root = createRoot(container)
 
-  flushSync(() => root.render(Editor, { onSave: save }))
+  flushSync(() => root!.render(Editor, { onSave: save }))
   document.dispatchEvent(
     new KeyboardEvent('keydown', { key: 's', metaKey: true, bubbles: true }),
   )
 
   expect(save).toHaveBeenCalledOnce()
-  root.unmount()
 })
 ```
 
@@ -88,13 +95,14 @@ Dispatch each step in order, and use fake timers to verify the sequence `timeout
 
 ```ts
 vi.useFakeTimers()
-
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
-vi.advanceTimersByTime(500)
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
-expect(goHome).toHaveBeenCalledOnce()
-
-vi.useRealTimers()
+try {
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
+  vi.advanceTimersByTime(500)
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
+  expect(goHome).toHaveBeenCalledOnce()
+} finally {
+  vi.useRealTimers()
+}
 ```
 
 ## Testing element targets and inputs

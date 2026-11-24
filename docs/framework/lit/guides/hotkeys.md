@@ -370,7 +370,7 @@ Registering a hotkey that already exists on the same target, in the same scope, 
 
 The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
 
-The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key.
+The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
 
 ## Describe hotkeys with `meta`
 

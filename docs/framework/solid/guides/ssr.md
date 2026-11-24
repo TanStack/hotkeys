@@ -186,7 +186,7 @@ function ShortcutLabel(props: { hotkey: Hotkey }) {
 </ClientOnly>
 ```
 
-`onSettled` runs only in the browser, after hydration, so the server and the first render in the browser both show the fallback. Framework wrappers do the same: TanStack Router's `<ClientOnly>` from `@tanstack/solid-router`, SolidStart's `clientOnly()`, or `client:only="solid-js"` on an Astro island. A fallback with the label's width keeps the layout from shifting.
+`onSettled` runs only in the browser, after hydration, so the server and the first render in the browser both show the fallback. For Solid 1 (`@tanstack/solid-hotkeys@0.25`, used with SolidStart and Astro), import `onMount` and `type { JSX }` from `'solid-js'` and call `onMount(() => setMounted(true))` instead of `onSettled`. Framework wrappers do the same: TanStack Router's `<ClientOnly>` from `@tanstack/solid-router`, SolidStart's `clientOnly()`, or `client:only="solid-js"` on an Astro island. A fallback with the label's width keeps the layout from shifting.
 
 Don't use `<NoHydration>` or an `isServer` check for labels. `<NoHydration>` keeps the server's label, and rendering different content on the server and in the browser breaks hydration.
 

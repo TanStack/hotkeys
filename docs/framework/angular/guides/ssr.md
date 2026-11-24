@@ -47,6 +47,11 @@ import { injectFormatForDisplay } from '@tanstack/angular-hotkeys'
   `,
 })
 export class ToolbarComponent {
+  readonly commands = [
+    { id: 'save', name: 'Save', hotkey: 'Mod+S' },
+    { id: 'search', name: 'Search', hotkey: 'Mod+K' },
+  ] as const
+
   // Call it in an injection context, such as a field initializer
   readonly formatForDisplay = injectFormatForDisplay()
 }

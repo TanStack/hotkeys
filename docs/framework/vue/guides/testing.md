@@ -92,13 +92,14 @@ Dispatch each step in order, and use fake timers to verify the sequence `timeout
 
 ```ts
 vi.useFakeTimers()
-
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
-vi.advanceTimersByTime(500)
-document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
-expect(goHome).toHaveBeenCalledOnce()
-
-vi.useRealTimers()
+try {
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'g', bubbles: true }))
+  vi.advanceTimersByTime(500)
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'h', bubbles: true }))
+  expect(goHome).toHaveBeenCalledOnce()
+} finally {
+  vi.useRealTimers()
+}
 ```
 
 ## Testing element targets and inputs

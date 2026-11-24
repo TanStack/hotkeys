@@ -77,7 +77,7 @@ createHotkey(
 )
 ```
 
-Both forms resolve to the user's current custom binding inside the provider, such as `createHotkey(appHotkeys['doc.save'], save)`, and fall back to the declared default when there's no provider. When a user rebinds an app hotkey, active registrations update immediately, even when switching between a chord and a sequence.
+Inside `HotkeysProvider`, `getAppHotkeys()` and direct imports (such as `createHotkey(appHotkeys['doc.save'], save)`) both resolve to the user's current custom binding. Without a provider, direct imports fall back to the declared defaults, while `getAppHotkeys()` requires a provider with `appHotkeys`. When a user rebinds an app hotkey, active registrations update immediately, even when switching between a chord and a sequence.
 
 - **Option merging.** Options merge in order from provider `defaultOptions`, then declared `options`, then call-site options. Call-site options are typed against the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
 - **Metadata.** `meta` always comes from the declaration so cheat sheets and handlers stay in sync.
@@ -126,7 +126,7 @@ How incoming `customHotkeys` updates behave:
 - **Changed values.** Replaces current overrides without firing `onCustomHotkeysChange`, for example when async settings finish loading or the user switches accounts.
 - **Deeply equal data on re-render.** Ignored, keeping in-memory edits intact even if you re-parse `localStorage` each time.
 - **`undefined`.** Leaves current overrides unchanged while async settings are still loading.
-- **`null`.** Clears all overrides, which is useful on sign-out.
+- **`null`.** Clears all overrides when it differs from the previous value passed in, which is useful on sign-out. If the last supplied value was already `null` after in-memory edits, call `resetCustomHotkeys()` instead.
 - **Unknown IDs or invalid bindings.** Silently ignored so older saved data doesn't break after app updates.
 
 `setHotkeysContext` accepts the same `appHotkeys`, `customHotkeys`, and `onCustomHotkeysChange` options.

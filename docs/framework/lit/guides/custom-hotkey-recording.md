@@ -63,7 +63,7 @@ The controller adds itself to the element, requests an update whenever its state
 
 ## Record a sequence
 
-Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step, and the recording commits when the user presses Enter, or after `idleTimeoutMs` without a new step:
+Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step, and the recording commits when the user presses Enter or, when `idleTimeoutMs` is configured, after that delay without a new step:
 
 ```ts
 @customElement('sequence-recorder')
@@ -159,8 +159,7 @@ By default, the check compares the recording with every enabled `keydown` hotkey
 ```ts
 detectConflicts: {
   excludeIds: [registration.id], // Skip the hotkey being changed
-  target: panelElement, // Only hotkeys on this element, inside it, or around it
-  scope: 'all', // Ignore target and check hotkeys on every element. Unrelated to hotkey scopes.
+  target: panelElement, // Only hotkeys on this element, inside it, or around it (pass scope: 'all' instead to check every element)
   eventType: 'keyup', // Check keyup hotkeys instead
   includeDisabled: true, // Include disabled hotkeys
   exclude: (registration) => registration.options.scope === 'vim', // Skip one hotkey scope
@@ -181,7 +180,7 @@ A conflict check finds hotkeys that could collide. It can't promise which callba
 | `'missing-code'` | The key press had no physical `code`, and the recorder can't record it another way |
 | `'alt-graph'` | The user pressed an `AltGr` combination that the recorder can't record |
 
-To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
+`findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 ## Build a shortcut settings screen
 

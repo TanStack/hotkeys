@@ -374,7 +374,7 @@ Registering the same canonical binding on the same target, scope, and `eventType
 - `'replace'` unregisters the earlier registration
 - `'allow'` keeps both silently
 
-Two sequences conflict only when all steps match, so `['G', 'H']` and `['G', 'S']` do not. Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins.
+Two sequences conflict only when all steps match, so `['G', 'H']` and `['G', 'S']` do not. Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins for overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
 
 ## Describe hotkeys with `meta`
 
