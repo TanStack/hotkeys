@@ -1,5 +1,16 @@
 # @tanstack/svelte-hotkeys-devtools
 
+## 0.5.15
+
+### Patch Changes
+
+- [#213](https://github.com/TanStack/hotkeys/pull/213) [`6d5d0a1`](https://github.com/TanStack/hotkeys/commit/6d5d0a1dc4aad1029e5fb9a26cc25552424f138c) - Move the devtools panel to Solid 2, `@tanstack/devtools-ui` 0.8, and `@tanstack/devtools-utils` 0.8, the same as TanStack Devtools 0.17. The panel looks and works the same in every framework, and it needs Node 22.12 or newer.
+
+  `@tanstack/solid-hotkeys-devtools` now needs `solid-js` 2 and `@tanstack/solid-devtools` 0.9 or newer. Solid 1 apps can stay on `@tanstack/solid-hotkeys-devtools@0.13`.
+
+- Updated dependencies [[`6d5d0a1`](https://github.com/TanStack/hotkeys/commit/6d5d0a1dc4aad1029e5fb9a26cc25552424f138c)]:
+  - @tanstack/hotkeys-devtools@1.12.0
+
 ## 0.5.14
 
 ### Patch Changes
