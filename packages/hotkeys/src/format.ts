@@ -196,16 +196,19 @@ function formatChordParts(
     typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true)
   const normalized = normalizeHotkey(hotkey, platform)
   const segments = splitChordParts(normalized)
-  if (platform === 'mac') {
-    // Canonical registration puts Mod first; display resolves it to Command.
-    const modifierIndex = (segment: string) => {
-      const index = MODIFIER_ORDER.indexOf(
-        (segment === 'Mod' ? 'Meta' : segment) as CanonicalModifier,
-      )
-      return index === -1 ? MODIFIER_ORDER.length : index
-    }
-    segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
+  // Canonical registration puts Mod first; display resolves it to Command on
+  // macOS. Held modifiers, such as `Shift+Control`, take the same order.
+  const modifierIndex = (segment: string) => {
+    const index = MODIFIER_ORDER.indexOf(
+      (segment === 'Mod'
+        ? platform === 'mac'
+          ? 'Meta'
+          : 'Control'
+        : segment) as CanonicalModifier,
+    )
+    return index === -1 ? MODIFIER_ORDER.length : index
   }
+  segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
   return segments.map((segment) =>
     formatKey(segment, platform, modifierSymbols, keySymbols, options),
   )

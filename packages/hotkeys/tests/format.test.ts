@@ -229,6 +229,22 @@ describe('formatForDisplay', () => {
     it('should resolve Mod to Ctrl', () => {
       expect(formatForDisplay('Mod+S', { platform: 'windows' })).toBe('Ctrl+S')
       expect(formatForDisplay('Mod+S', { platform: 'linux' })).toBe('Ctrl+S')
+      expect(formatForDisplay('Mod+Alt+S', { platform: 'windows' })).toBe(
+        'Ctrl+Alt+S',
+      )
+    })
+
+    // A recorder shows the modifiers held so far in the order they were
+    // pressed: `heldKeys.join('+')`
+    it('orders held modifiers as in a chord', () => {
+      const held = hk('Shift+Meta+Alt+Control')
+      expect(formatForDisplay(held, { platform: 'windows' })).toBe(
+        'Ctrl+Alt+Shift+Win',
+      )
+      expect(formatForDisplay(held, { platform: 'mac' })).toBe('⌃ ⌥ ⇧ ⌘')
+      expect(formatForDisplay(hk('Shift+Control'), { platform: 'linux' })).toBe(
+        'Ctrl+Shift',
+      )
     })
 
     it('should use short names for special keys', () => {

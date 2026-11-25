@@ -145,7 +145,10 @@ export function chordRejection(
   return undefined
 }
 
-/** Whether the event reports a real physical key code to record. */
+/**
+ * Whether the event reports a real physical key code to record. Autofill
+ * sends a plain `Event` named keydown, without `code`.
+ */
 function hasUsableCode(event: KeyboardEvent): boolean {
-  return isCodeName(event.code) && event.code !== 'Unidentified'
+  return isCodeName(event.code || '') && event.code !== 'Unidentified'
 }

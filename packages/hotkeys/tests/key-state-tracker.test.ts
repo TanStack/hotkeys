@@ -92,6 +92,24 @@ describe('KeyStateTracker', () => {
       expect(tracker.isKeyHeld('A')).toBe(false)
     })
 
+    it('does not hold input method keydowns, whose keyup may never come', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Process', 'KeyN', { keyCode: 229 })
+      dispatchKey('keydown', 'k', 'KeyK', { isComposing: true })
+      dispatchKey('keydown', 'Unidentified', '', { keyCode: 229 })
+      expect(tracker.getHeldKeys()).toEqual([])
+    })
+
+    it('holds a modifier pressed during an input method composition', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Control', 'ControlLeft', {
+        ctrlKey: true,
+        isComposing: true,
+        keyCode: 229,
+      })
+      expect(tracker.isKeyHeld('Control')).toBe(true)
+    })
+
     it('pairs keyup by code when the logical key changes', () => {
       const tracker = KeyStateTracker.getInstance()
       dispatchKey('keydown', 'ф', 'KeyA')
@@ -371,6 +389,18 @@ describe('KeyStateTracker', () => {
       })
     })
 
+    // AltGr has no event flag, only modifier state
+    it('recovers a missed AltGraph release from modifier state', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'AltGraph', 'AltRight', {
+        altGraph: true,
+      } as never)
+      dispatchKey('keydown', '@', 'KeyQ', { altGraph: true } as never)
+      expect(tracker.isKeyHeld('AltGraph')).toBe(true)
+      dispatchKey('keydown', 'a', 'KeyA')
+      expect(tracker.isKeyHeld('AltGraph')).toBe(false)
+    })
+
     it('keeps the other physical modifier held until its own release', () => {
       const tracker = KeyStateTracker.getInstance()
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
@@ -507,6 +537,23 @@ describe('KeyStateTracker', () => {
       expect(tracker.isKeyHeld('a')).toBe(true)
       expect(tracker.isKeyHeld('A')).toBe(true)
     })
+  })
+
+  // Chrome autofill sends a trusted plain `Event` named keydown or keyup,
+  // with no key, code or modifier flags
+  describe('key events without key or code', () => {
+    it.each(['keydown', 'keyup'])(
+      'a %s holds no key and releases no modifier',
+      (type) => {
+        const tracker = KeyStateTracker.getInstance()
+        dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+        document.dispatchEvent(trusted(new Event(type, { bubbles: true })))
+        expect(tracker.store.state).toEqual({
+          heldKeys: ['Shift'],
+          heldCodes: { Shift: 'ShiftLeft' },
+        })
+      },
+    )
   })
 
   describe('lost keyups', () => {

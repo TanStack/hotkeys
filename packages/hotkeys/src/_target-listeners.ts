@@ -1,4 +1,5 @@
 import { getEscapeLayers, getTargetDocument } from './_event-target'
+import { listen } from './_listen'
 import type { HotkeyEventType, Target } from './hotkey.types'
 
 /** A node a registration's listener can attach to. */
@@ -52,7 +53,7 @@ export class TargetListeners {
     if (group && last) {
       for (const type of ['keydown', 'keyup'] as const) {
         target.removeEventListener(type, group[type], capture)
-        target.addEventListener(type, group[type], capture)
+        listen(target, type, group[type], capture)
       }
     }
     if (!group) {
@@ -88,8 +89,8 @@ export class TargetListeners {
         view: getTargetDocument(target as Target).defaultView,
       }
       // Attach first, so a target that can't listen leaves nothing behind.
-      target.addEventListener('keydown', group.keydown, capture)
-      target.addEventListener('keyup', group.keyup, capture)
+      listen(target, 'keydown', group.keydown, capture)
+      listen(target, 'keyup', group.keyup, capture)
       phases.set(capture, group)
       this.#targets.set(target, phases)
       this.#countWindow(group.view, 1)

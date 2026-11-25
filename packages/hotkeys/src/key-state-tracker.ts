@@ -106,17 +106,27 @@ export class KeyStateTracker {
    * Sets up the keyboard event listeners.
    */
   #setupListeners(): void {
-    // SSR safety. The listeners go on the window, and some server DOM shims
-    // define a `document` without one.
-    if (typeof window === 'undefined') {
+    // SSR safety. The listeners go on the window. Some server DOM shims
+    // define a `document` without one, and FastBoot's `window` can't listen.
+    if (
+      typeof window === 'undefined' ||
+      typeof window.addEventListener !== 'function'
+    ) {
       return
     }
 
     const onKeydown = (event: KeyboardEvent) => {
+      if (isKeyless(event)) return
       let changed = this.#reconcileModifiers(event)
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
-      if (!this.#heldEntries.has(identity)) {
+      // An input method's keydown (`Process`, key code 229) names no key,
+      // and its keyup may never come. A modifier still counts as held.
+      if (
+        (MODIFIER_KEYS.has(key) ||
+          (!event.isComposing && event.keyCode !== 229)) &&
+        !this.#heldEntries.has(identity)
+      ) {
         this.#heldEntries.set(identity, { key, code: event.code })
         changed = true
       }
@@ -124,6 +134,7 @@ export class KeyStateTracker {
     }
 
     const onKeyup = (event: KeyboardEvent) => {
+      if (isKeyless(event)) return
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
       this.#heldEntries.delete(identity)
@@ -204,7 +215,12 @@ export class KeyStateTracker {
           (entry.key === 'Control' && !event.ctrlKey) ||
           (entry.key === 'Alt' && !event.altKey) ||
           (entry.key === 'Shift' && !event.shiftKey) ||
-          (entry.key === 'Meta' && !event.metaKey)
+          (entry.key === 'Meta' && !event.metaKey) ||
+          // AltGr has no event flag, only modifier state. A missed AltGr
+          // keyup otherwise hides every hint until the window blurs.
+          (entry.key === 'AltGraph' &&
+            typeof event.getModifierState === 'function' &&
+            !event.getModifierState('AltGraph'))
         if (released) this.#heldEntries.delete(identity)
       }
     }
@@ -311,4 +327,13 @@ export class KeyStateTracker {
  */
 export function getKeyStateTracker(): KeyStateTracker {
   return KeyStateTracker.getInstance()
+}
+
+/**
+ * Whether a key event names no key at all. Chrome autofill sends a trusted
+ * plain `Event` named keydown or keyup, without modifier flags, so it says
+ * nothing about which keys are held.
+ */
+function isKeyless(event: KeyboardEvent): boolean {
+  return !event.key && !event.code
 }

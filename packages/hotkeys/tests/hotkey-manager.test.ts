@@ -301,6 +301,48 @@ describe('HotkeyManager', () => {
       document.dispatchEvent(keyupEvent)
       expect(callback).toHaveBeenCalled()
     })
+
+    it('runs the other callbacks for a key when one throws, and rethrows it uncaught', () => {
+      const manager = HotkeyManager.getInstance()
+      const rethrown: Array<() => void> = []
+      const microtask = vi
+        .spyOn(globalThis, 'queueMicrotask')
+        .mockImplementation((task) => rethrown.push(task))
+      const error = new Error('boom')
+      const chord = vi.fn()
+      const sequence = vi.fn()
+      try {
+        manager.register(
+          'K',
+          () => {
+            throw error
+          },
+          { conflictBehavior: 'allow' },
+        )
+        manager.register('K', chord, { conflictBehavior: 'allow' })
+        manager.register(
+          ['G', 'K'],
+          () => {
+            throw error
+          },
+          { conflictBehavior: 'allow' },
+        )
+        manager.register(['G', 'K'], sequence, { conflictBehavior: 'allow' })
+
+        const event = keydown({ key: 'k' })
+        expect(() => document.dispatchEvent(event)).not.toThrow()
+        expect(chord).toHaveBeenCalledOnce()
+        expect(event.defaultPrevented).toBe(true)
+
+        document.dispatchEvent(keydown({ key: 'g' }))
+        document.dispatchEvent(keydown({ key: 'k' }))
+        expect(sequence).toHaveBeenCalledOnce()
+      } finally {
+        microtask.mockRestore()
+      }
+      expect(rethrown).toHaveLength(2)
+      expect(rethrown[0]).toThrow(error)
+    })
   })
 
   describe('Brave browser compatibility (currentTarget)', () => {

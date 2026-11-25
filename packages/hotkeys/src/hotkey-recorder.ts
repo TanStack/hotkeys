@@ -2,6 +2,7 @@ import { splitChordParts } from './_chord'
 import { isTypingEvent } from './_event-target'
 import { resolveMaybeGetter } from './_getter'
 import { isModifierPress, normalizeKeyboardEvent } from './_keyboard-event'
+import { listen } from './_listen'
 import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
 import {
   beginRecording,
@@ -444,7 +445,7 @@ export class HotkeyRecorder {
     }
 
     this.#keydownHandler = handler
-    document.addEventListener('keydown', handler, true)
+    listen(document, 'keydown', handler as EventListener, true)
   }
 
   /**

@@ -11,7 +11,7 @@ type HotkeyRecorderValidationContext =
   | HotkeySequenceRecorderValidationContext;
 ```
 
-Defined in: [hotkey-recorder.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L106)
+Defined in: [hotkey-recorder.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L107)
 
 Validation context for a recorded chord or sequence. Narrow with `kind` to
 read `parsedChord` or `parsedSequence`.
