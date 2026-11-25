@@ -19107,15 +19107,15 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "d1fb221fed3c2520ae865c9029a2f4b3a37bad609b2fdfc4ff157cae8830e2ac",
+      "fingerprint": "0a31387313496444ec0f33cf0d39b962599d02ac126dd8b818132d3a711fb85a",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "90c60147cff2ce994256af526f568d854ffe6c5eeed31100732e8fe5bfbe7d40"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "d2993749924f557e321ba9c78c9cca309e6b78be8907216422a1ff9874ffd9ac"
       },
-      "head": "e7cc01367db32b74b489084bb35e173126664d39",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and skill guidance from #257/#258, reviewed in those PRs",
+      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
+      "outcome": "out-of-scope",
+      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at e7cc01367db32b74b489084bb35e173126664d39"
+        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
       ]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
@@ -19131,14 +19131,16 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/recorder-match.test.ts": {
-      "fingerprint": "0ea9343c7803cf513ef71e6ddd5850b284f8d84e1975fed3a90fa36c48b37d6f",
+      "fingerprint": "4ec141dbbc394567aeec6101e47e62fd4a02e5175954d013991cb1b77e8f2d41",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "613d369c0cfb4f947a5f688726f340659d6034e13ce32a442d9b0f53f0051cae"
+        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "c4e12a870251a42a8b5d3fad6f60e9567a9994de63f1acd5f85c310ab539aba9"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
+      ]
     },
     "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {
       "fingerprint": "f80e36e694dd618f7fc4c34def7ed4afdb2b0c22dbef614801e5884832dced36",
@@ -23388,14 +23390,16 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/layouts.test.ts": {
-      "fingerprint": "d6d86756b0d60f3a80f1ac9f2a72b26e481c70d78fdcf3a4935879688da25f6f",
+      "fingerprint": "0baf324e9f8fc0b8771437a87082d185f5fc1908ee6e53f58efbc48528c8c9bb",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/layouts.test.ts": "ae4b43cbc3268022e736e572777d8bb13bdc2cdf47223a232e4bc1119c359667"
+        "packages/hotkeys/tests/invariants/layouts.test.ts": "1477ec90c69a2637d73ab495fa673a72ef3dc4a51ff3c3a935be98fc48451bd9"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
+      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
       "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/layouts.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
+      ]
     },
     "source:scripts/layout-table/dump-xkb.sh": {
       "fingerprint": "0425d7f60d1a07a1833701a3cff2a7ca45604e8a3b6e8c13999032a1dc537125",
