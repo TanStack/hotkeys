@@ -29,15 +29,21 @@ export function isLatinLetter(key: string): boolean {
   return /^\p{Script_Extensions=Latin}$/u.test(key)
 }
 
-let collator: Intl.Collator | undefined
+/**
+ * Compares letters without case, preserving accents and avoiding expansions
+ * such as ß → SS. Only case folds: a collator would also equate letter-like
+ * symbols with letters, `º` with `O` and `ª` with `A`. Both sides are NFC, as
+ * key events are: Greek AltGr+N types U+0374, which NFC makes U+02B9.
+ */
+function fold(key: string): string {
+  return key.normalize('NFC').toLowerCase()
+}
 
-/** Compares letters without case, preserving accents and avoiding expansions such as ß → SS. */
 export function keysEqual(left: string, right: string): boolean {
   if (left === right) return true
-  if (isSingleLetterKey(left) && isSingleLetterKey(right)) {
-    // One collator is much cheaper than localeCompare on every key press.
-    collator ??= new Intl.Collator(undefined, { sensitivity: 'accent' })
-    return collator.compare(left, right) === 0
-  }
-  return false
+  return (
+    isSingleLetterKey(left) &&
+    isSingleLetterKey(right) &&
+    fold(left) === fold(right)
+  )
 }

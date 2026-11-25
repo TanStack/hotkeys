@@ -568,6 +568,9 @@ interface ScopeActivation {
  * top.unregister()
  * ```
  */
+/** Mac shifted-symbol hotkeys already warned about, in development only. */
+let warnedOnMac: Set<string> | undefined
+
 export class HotkeyManager {
   /**
    * The TanStack Store containing all hotkey registrations, chords and sequences.
@@ -967,10 +970,27 @@ export class HotkeyManager {
 
     // Dev-only guard: see `canWarn`
     if (canWarn && process.env.NODE_ENV !== 'production') {
-      for (const { key } of steps) {
+      for (const { key, meta, alt } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
             `[hotkeys] Unknown key '${key}' in '${formatForMessage(registration.hotkey)}' (names are case-sensitive)`,
+          )
+        }
+        // macOS reports the unshifted US character with Command held, so
+        // Cmd+Shift+= arrives as `=` and a `Mod++` binding never sees `+`
+        const index = key ? '~!@#$%^&*()_+{}|:"<>?'.indexOf(key) : -1
+        const text = formatForMessage(registration.hotkey)
+        if (
+          platform === 'mac' &&
+          meta &&
+          !alt &&
+          index >= 0 &&
+          !(warnedOnMac ??= new Set()).has(text)
+        ) {
+          warnedOnMac.add(text)
+          const usKey = "`1234567890-=[]\\;',./"[index]
+          console.warn(
+            `[hotkeys] '${text}' does not fire on a US Mac keyboard, where Command+Shift+${usKey} reports '${usKey}'. Register it with Shift and that key too.`,
           )
         }
       }
@@ -1285,11 +1305,9 @@ export class HotkeyManager {
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
     const matches = new Map<string, KeyboardEventMatch>()
-    let bestScore = 0
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
 
-    // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       const live = this.#isLive(registration)
       const { eventType: firesOn, preventDefault } = registration.options
@@ -1340,7 +1358,6 @@ export class HotkeyManager {
         continue
       }
       matches.set(registration.id, result)
-      bestScore = Math.max(bestScore, result.score)
     }
 
     // A hotkey that fires, on any listener, decides what happens to the event.
@@ -1352,29 +1369,43 @@ export class HotkeyManager {
       this.#prevent(event)
     }
 
-    // Among the best matches, the most recently activated scope handles the key.
+    // The most recently activated scope with a match handles the key, on any
+    // layout. Within it, exact matches outrank compatibility fallbacks.
     let bestRank = -1
     for (const registration of registrations) {
-      if (matches.get(registration.id)?.score === bestScore) {
+      if (matches.has(registration.id)) {
         bestRank = Math.max(
           bestRank,
           this.#scopeRank(registration.options.scope),
         )
       }
     }
-
-    for (const snapshot of registrations) {
-      const match = matches.get(snapshot.id)
-      if (
-        !match?.matched ||
-        match.score !== bestScore ||
-        this.#scopeRank(snapshot.options.scope) !== bestRank
-      ) {
-        continue
+    let bestScore = 0
+    for (const registration of registrations) {
+      const match = matches.get(registration.id)
+      if (match && this.#scopeRank(registration.options.scope) === bestRank) {
+        bestScore = Math.max(bestScore, match.score)
       }
+    }
+
+    // Then a physical binding is the more specific one: Numpad Enter fires
+    // `[NumpadEnter]` and not `Enter` too.
+    const best = registrations.filter(
+      (registration) =>
+        matches.get(registration.id)?.score === bestScore &&
+        this.#scopeRank(registration.options.scope) === bestRank,
+    )
+    const physical = best.some(({ parsedChord }) => parsedChord.code)
+
+    for (const snapshot of best) {
+      const match = matches.get(snapshot.id)!
+      if (physical && !snapshot.parsedChord.code) continue
+      // An earlier callback may have released this registration's scope.
+      if (this.#scopeRank(snapshot.options.scope) !== bestRank) continue
       // An earlier callback may have unregistered or moved this registration.
       const registration = this.#currentIn(snapshot, capture)
-      if (!registration) continue
+      // Or disabled it, or suspended its scope with an exclusive one.
+      if (!registration || !this.#isLive(registration)) continue
 
       // Always apply preventDefault/stopPropagation if the hotkey matches,
       // even when requireReset is active and has already fired

@@ -1082,6 +1082,61 @@ describe('matchesKeyboardEvent', () => {
       })
       expect(matchesKeyboardEvent(event, 'Alt+S')).toBe(true)
     })
+
+    it('matches ß and capital ẞ as one letter in either case', () => {
+      const capital = createKeyboardEvent('ẞ', { code: 'Minus' })
+      expect(matchesKeyboardEvent(capital, 'ß' as HotkeyChord)).toBe(true)
+      const small = createKeyboardEvent('ß', { code: 'Minus' })
+      expect(matchesKeyboardEvent(small, 'ẞ' as HotkeyChord)).toBe(true)
+    })
+
+    it('matches Greek final sigma as sigma', () => {
+      const final = createKeyboardEvent('ς', { code: 'KeyW' })
+      expect(matchesKeyboardEvent(final, 'σ' as HotkeyChord)).toBe(true)
+      expect(matchesKeyboardEvent(final, 'Σ' as HotkeyChord)).toBe(true)
+    })
+
+    // Spanish types º on the Backquote key, and macOS Option+0 types it
+    it('does not fire O or A on the ordinal indicators º and ª', () => {
+      const spanish = createKeyboardEvent('º', { code: 'Backquote' })
+      expect(matchesKeyboardEvent(spanish, 'O', 'windows')).toBe(false)
+      expect(matchesKeyboardEvent(spanish, 'º' as HotkeyChord, 'windows')).toBe(
+        true,
+      )
+      const option0 = createKeyboardEvent('º', {
+        code: 'Digit0',
+        altKey: true,
+      })
+      expect(matchesKeyboardEvent(option0, 'Alt+O', 'mac')).toBe(false)
+      expect(matchesKeyboardEvent(option0, 'Alt+0', 'mac')).toBe(true)
+      // German AltGr+Shift+F on Linux
+      const ordinalA = createKeyboardEvent('ª', {
+        code: 'KeyF',
+        shiftKey: true,
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(ordinalA, 'Shift+A', 'linux')).toBe(false)
+      expect(
+        matchesKeyboardEvent(ordinalA, 'Shift+ª' as HotkeyChord, 'linux'),
+      ).toBe(true)
+    })
+
+    // Neo types ℓ on a layer of its own
+    it('does not fire L on the script small ℓ', () => {
+      const event = createKeyboardEvent('ℓ', { code: 'KeyK', altGraph: true })
+      expect(matchesKeyboardEvent(event, 'L', 'linux')).toBe(false)
+    })
+
+    // Greek AltGr+N types U+0374, which NFC turns into U+02B9
+    it('matches a binding written with a character that NFC changes', () => {
+      const event = createKeyboardEvent('ʹ', {
+        code: 'KeyN',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(event, 'ʹ' as HotkeyChord, 'linux')).toBe(
+        true,
+      )
+    })
   })
 
   describe('macOS Cmd+Option combinations', () => {
@@ -1627,6 +1682,47 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(event, 'Alt+[' as HotkeyChord)).toBe(true)
     })
 
+    // Swiss German types a dead ^ on the US = key, and French on the US [ key
+    it.each([
+      ['Swiss ^ does not fire =', 'Equal', '='],
+      ['French ^ does not fire [', 'BracketLeft', '['],
+      ['German ´ does not fire =', 'Equal', '='],
+      ['Greek tonos does not fire ;', 'Semicolon', ';'],
+      ['French Shift+^ (¨) does not fire Shift+[', 'BracketLeft', 'Shift+['],
+    ] as const)('%s', (_, code, hotkey) => {
+      const event = createKeyboardEvent('Dead', {
+        code,
+        shiftKey: hotkey.startsWith('Shift+'),
+      })
+      for (const platform of ['windows', 'linux', 'mac'] as const) {
+        expect(
+          matchesKeyboardEvent(event, hotkey as HotkeyChord, platform),
+        ).toBe(false)
+      }
+    })
+
+    // US International types dead ' and ` on their own keys
+    it("fires ' and ` on US International dead keys", () => {
+      const quote = createKeyboardEvent('Dead', { code: 'Quote' })
+      expect(matchesKeyboardEvent(quote, "'" as HotkeyChord, 'windows')).toBe(
+        true,
+      )
+      const grave = createKeyboardEvent('Dead', { code: 'Backquote' })
+      expect(matchesKeyboardEvent(grave, '`' as HotkeyChord, 'windows')).toBe(
+        true,
+      )
+    })
+
+    it('keeps the position of a dead key pressed with Control', () => {
+      const event = createKeyboardEvent('Dead', {
+        code: 'BracketLeft',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+[' as HotkeyChord, 'linux')).toBe(
+        true,
+      )
+    })
+
     it('should not match dead key with unknown code', () => {
       const event = createKeyboardEvent('Dead', {
         altKey: true,
@@ -1844,6 +1940,126 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  // A Shift+symbol binding names the symbol US Shift types with that key, so
+  // `Shift+-` is `_` and `Shift+/` is `?`, wherever the layout puts them
+  describe('Shift with a symbol on other layouts', () => {
+    const shifted = (key: string, code: string) =>
+      createKeyboardEvent(key, { code, shiftKey: true })
+
+    it.each([
+      ['German Shift+ß (?) does not fire Shift+-', '?', 'Minus', 'Shift+-'],
+      ['German Shift+- (_) does not fire Shift+/', '_', 'Slash', 'Shift+/'],
+      ['AZERTY Shift+, (?) does not fire Shift+M', '?', 'KeyM', 'Shift+M'],
+      ['Dvorak Shift+W (<) does not fire Shift+W', '<', 'KeyW', 'Shift+W'],
+      ['Nordic Shift++ (?) does not fire Shift+-', '?', 'Minus', 'Shift+-'],
+    ] as const)('%s', (_, key, code, hotkey) => {
+      for (const platform of ['windows', 'linux', 'mac'] as const) {
+        expect(matchesKeyboardEvent(shifted(key, code), hotkey, platform)).toBe(
+          false,
+        )
+      }
+    })
+
+    it.each([
+      ['German Shift+- (_) fires Shift+-', '_', 'Slash', 'Shift+-'],
+      ['German Shift+ß (?) fires Shift+/', '?', 'Minus', 'Shift+/'],
+      ['AZERTY Shift+, (?) fires Shift+/', '?', 'KeyM', 'Shift+/'],
+      ['Dvorak Shift+W (<) fires Shift+,', '<', 'KeyW', 'Shift+,'],
+      ['Dvorak Shift+[ ({) fires Shift+[', '{', 'Minus', 'Shift+['],
+      ['US Shift+/ (?) still fires Shift+/', '?', 'Slash', 'Shift+/'],
+      ['US Shift+; (:) still fires Shift+;', ':', 'Semicolon', 'Shift+;'],
+      // `@` has no US punctuation key, so the position stands in
+      ["UK Shift+' (@) still fires Shift+'", '@', 'Quote', "Shift+'"],
+      ['Swiss Shift+2 (") still fires Shift+2', '"', 'Digit2', 'Shift+2'],
+    ] as const)('%s', (_, key, code, hotkey) => {
+      for (const platform of ['windows', 'linux', 'mac'] as const) {
+        expect(
+          matchesKeyboardEvent(
+            shifted(key, code),
+            hotkey as HotkeyChord,
+            platform,
+          ),
+        ).toBe(true)
+      }
+    })
+  })
+
+  // Greek types `;` and Hebrew `/` on the Q key. Windows still names the key
+  // VK_Q, and Chromium and Firefox on Linux report 81 for Hebrew.
+  describe('letter keys that type punctuation', () => {
+    const q = (key: string, keyCode: number) =>
+      createKeyboardEvent(key, { code: 'KeyQ', ctrlKey: true, keyCode })
+
+    it('fires Mod+Q when the key code names Q', () => {
+      expect(matchesKeyboardEvent(q(';', 81), 'Mod+Q', 'windows')).toBe(true)
+      expect(matchesKeyboardEvent(q('/', 81), 'Mod+Q', 'linux')).toBe(true)
+    })
+
+    // The key code beats the US shift pair, which would make `:` Shift+;
+    it('fires Shift+Q for Greek Shift+Q typing : when the key code names Q', () => {
+      const event = createKeyboardEvent(':', {
+        code: 'KeyQ',
+        shiftKey: true,
+        keyCode: 81,
+      })
+      expect(matchesKeyboardEvent(event, 'Shift+Q', 'windows')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Shift+;', 'windows')).toBe(false)
+    })
+
+    it('still fires the character it typed', () => {
+      expect(matchesKeyboardEvent(q('/', 81), 'Mod+/', 'linux')).toBe(true)
+    })
+
+    it('fires Alt+Shift+Q for Greek Alt+Shift+Q on Windows', () => {
+      const event = createKeyboardEvent(':', {
+        code: 'KeyQ',
+        altKey: true,
+        shiftKey: true,
+        keyCode: 81,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+Q', 'windows')).toBe(true)
+    })
+
+    // German AltGr+Q types `@` and still reports VK_Q
+    it('does not fire the letter for a symbol AltGr typed', () => {
+      for (const flags of [{ ctrlKey: true, altKey: true }, {}]) {
+        const event = createKeyboardEvent('@', {
+          ...flags,
+          code: 'KeyQ',
+          altGraph: true,
+          keyCode: 81,
+        })
+        expect(matchesKeyboardEvent(event, 'Q', 'windows')).toBe(false)
+      }
+    })
+
+    // Chromium on Linux reports 186 for Greek, the code of `;`
+    it('does not fire Mod+Q when the key code names the character', () => {
+      expect(matchesKeyboardEvent(q(';', 186), 'Mod+Q', 'linux')).toBe(false)
+    })
+
+    // AZERTY types `,` on the US M key, and Dvorak `'` on the US Q key
+    it('does not fire the US letter on Latin layouts', () => {
+      const azerty = createKeyboardEvent(',', {
+        code: 'KeyM',
+        ctrlKey: true,
+        keyCode: 188,
+      })
+      expect(matchesKeyboardEvent(azerty, 'Mod+M', 'windows')).toBe(false)
+      expect(matchesKeyboardEvent(q("'", 222), 'Mod+Q', 'windows')).toBe(false)
+    })
+  })
+
+  // Persian types the zero-width non-joiner with Ctrl+Shift+2
+  it('does not fire the digit for a format character typed on the digit row', () => {
+    const event = createKeyboardEvent('\u200c', {
+      code: 'Digit2',
+      ctrlKey: true,
+      shiftKey: true,
+    })
+    expect(matchesKeyboardEvent(event, 'Mod+Shift+2', 'windows')).toBe(false)
+  })
+
   describe('edge cases', () => {
     it('should not guess a letter when event.key is Unidentified', () => {
       const event = createKeyboardEvent('Unidentified', { code: 'KeyA' })
@@ -1887,6 +2103,30 @@ describe('matchesKeyboardEvent', () => {
 
       const codeless = createKeyboardEvent('Unidentified', { code: '' })
       expect(matchesKeyboardEvent(codeless, 'A')).toBe(false)
+    })
+
+    // Firefox on Linux has reported Shift+Tab (ISO_Left_Tab) this way
+    it('matches an Unidentified named key by its code', () => {
+      const shiftTab = createKeyboardEvent('Unidentified', {
+        code: 'Tab',
+        shiftKey: true,
+      })
+      expect(matchesKeyboardEvent(shiftTab, 'Shift+Tab', 'linux')).toBe(true)
+      expect(matchesKeyboardEvent(shiftTab, 'Tab', 'linux')).toBe(false)
+      const f13 = createKeyboardEvent('Unidentified', { code: 'F13' })
+      expect(matchesKeyboardEvent(f13, 'F13', 'linux')).toBe(true)
+      const arrow = createKeyboardEvent('Unidentified', {
+        code: 'ArrowUp',
+        altKey: true,
+      })
+      expect(matchesKeyboardEvent(arrow, 'Alt+ArrowUp', 'linux')).toBe(true)
+      // A code that names no key never matches a key name
+      const intl = createKeyboardEvent('Unidentified', {
+        code: 'IntlBackslash',
+      })
+      expect(matchesKeyboardEvent(intl, '\\' as HotkeyChord, 'linux')).toBe(
+        false,
+      )
     })
 
     // Firefox reports numpad 5 with NumLock off as key Unidentified

@@ -411,8 +411,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     }).toMatchInlineSnapshot(`
       {
         "events": "1e5d1093be4ffca6",
-        "keyCodeMatching": "034c28ecee30fcef",
-        "matching": "b2aa22828846319b",
+        "keyCodeMatching": "1d25bffd9c172015",
+        "matching": "6459075c12d78d3a",
       }
     `)
   })
@@ -488,7 +488,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
 
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
-        "fired": "8a5a2d58a181e823",
+        "fired": "71e1f1a88a839b27",
         "recorded": "b8d0674472cda8fb",
         "recorders": "279cdb991f021d8e",
       }
