@@ -1388,7 +1388,8 @@ export class HotkeyManager {
       if (this.#scopeRank(snapshot.options.scope) !== bestRank) continue
       // An earlier callback may have unregistered or moved this registration.
       const registration = this.#currentIn(snapshot, capture)
-      if (!registration) continue
+      // Or disabled it, or suspended its scope with an exclusive one.
+      if (!registration || !this.#isLive(registration)) continue
 
       // Always apply preventDefault/stopPropagation if the hotkey matches,
       // even when requireReset is active and has already fired

@@ -640,6 +640,29 @@ describe('HotkeyManager', () => {
       expect(second).not.toHaveBeenCalled()
     })
 
+    it('skips a registration that an earlier callback suspended with an exclusive scope', () => {
+      const manager = HotkeyManager.getInstance()
+      const release = manager.activateScope('dialog')
+      let releaseModal: (() => void) | undefined
+      const second = vi.fn()
+      manager.register(
+        'Enter',
+        () => {
+          releaseModal = manager.activateScope('modal', { exclusive: true })
+        },
+        { scope: 'dialog' },
+      )
+      manager.register('Enter', second, {
+        scope: 'dialog',
+        conflictBehavior: 'allow',
+      })
+
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      expect(second).not.toHaveBeenCalled()
+      releaseModal?.()
+      release()
+    })
+
     it('supports an explicit physical code registration', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
