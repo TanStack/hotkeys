@@ -123,6 +123,165 @@
         "react-dom"
       ],
       "limit": "11.5 KB"
+    },
+    {
+      "name": "Preact useHotkey",
+      "path": "packages/preact-hotkeys/dist/index.js",
+      "import": "{ useHotkey }",
+      "ignore": [
+        "preact",
+        "preact/hooks",
+        "preact/jsx-runtime"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Vue useHotkey",
+      "path": "packages/vue-hotkeys/dist/index.js",
+      "import": "{ useHotkey }",
+      "ignore": [
+        "vue"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Solid createHotkey",
+      "path": "packages/solid-hotkeys/dist/index.js",
+      "import": "{ createHotkey }",
+      "ignore": [
+        "solid-js",
+        "@solidjs/web"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Svelte createHotkey",
+      "path": "packages/svelte-hotkeys/dist/createHotkey.svelte.js",
+      "import": "{ createHotkey }",
+      "ignore": [
+        "svelte",
+        "svelte/reactivity"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Angular injectHotkey",
+      "path": "packages/angular-hotkeys/dist/index.js",
+      "import": "{ injectHotkey }",
+      "ignore": [
+        "@angular/core",
+        "@angular/common"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Lit hotkey decorator",
+      "path": "packages/lit-hotkeys/dist/index.js",
+      "import": "{ hotkey }",
+      "ignore": [
+        "lit"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Alpine createHotkeysScope + hotkeysPlugin",
+      "path": "packages/alpine-hotkeys/dist/index.js",
+      "import": "{ createHotkeysScope, hotkeysPlugin }",
+      "ignore": [
+        "alpinejs"
+      ],
+      "limit": "12 KB"
+    },
+    {
+      "name": "Ember useHotkey",
+      "path": "packages/ember-hotkeys/dist/index.js",
+      "import": "{ useHotkey }",
+      "ignore": [
+        "@ember/component/helper",
+        "@ember/destroyable",
+        "@ember/reactive/collections",
+        "@ember/runloop",
+        "ember-modifier",
+        "ember-source"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "Octane useHotkey",
+      "path": "packages/octane-hotkeys/dist/index.js",
+      "import": "{ useHotkey }",
+      "ignore": [
+        "octane"
+      ],
+      "limit": "10 KB"
+    },
+    {
+      "name": "React devtools in production",
+      "path": "packages/react-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "react",
+        "react-dom",
+        "@tanstack/react-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Preact devtools in production",
+      "path": "packages/preact-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "preact",
+        "@tanstack/preact-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Vue devtools in production",
+      "path": "packages/vue-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "vue",
+        "@tanstack/vue-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Solid devtools in production",
+      "path": "packages/solid-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "solid-js",
+        "@solidjs/web",
+        "@tanstack/solid-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Svelte devtools in production",
+      "path": "packages/svelte-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "svelte",
+        "@tanstack/svelte-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Angular devtools in production",
+      "path": "packages/angular-hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsPanel, hotkeysDevtoolsPlugin }",
+      "ignore": [
+        "@angular/core",
+        "@tanstack/angular-devtools"
+      ],
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "Devtools core in production",
+      "path": "packages/hotkeys-devtools/dist/index.js",
+      "import": "{ HotkeysDevtoolsCore }",
+      "limit": "0.5 KB"
     }
   ],
   "nx": {

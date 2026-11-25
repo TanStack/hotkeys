@@ -1,10 +1,8 @@
 import { act, createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import {
-  HotkeysDevtoolsPanel,
-  HotkeysDevtoolsPanelNoOp,
-} from '../src/ReactHotkeysDevtools'
+import { HotkeysDevtoolsPanel } from '../src/ReactHotkeysDevtools'
+import { HotkeysDevtoolsPanelNoOp } from '../src/noop'
 import { hotkeysDevtoolsPlugin } from '../src/plugin'
 import type { Root } from 'react-dom/client'
 

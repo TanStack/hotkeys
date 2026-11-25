@@ -34,4 +34,3 @@ function withPanelDefaults(
 }
 
 export const HotkeysDevtoolsPanel = withPanelDefaults(panels[0])
-export const HotkeysDevtoolsPanelNoOp = withPanelDefaults(panels[1])

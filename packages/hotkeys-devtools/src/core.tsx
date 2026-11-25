@@ -5,7 +5,7 @@ const loadComponent = () => import('./components/index')
 
 export interface HotkeysDevtoolsInit {}
 
-const coreClasses = constructCoreClass(loadComponent)
+// The no-op class is in `./noop`, so production bundles can drop this module.
+const [DevtoolsCore] = constructCoreClass(loadComponent)
 
-export const HotkeysDevtoolsCore: HotkeysDevtoolsCoreClass = coreClasses[0]
-export const HotkeysDevtoolsCoreNoOp: HotkeysDevtoolsCoreClass = coreClasses[1]
+export const HotkeysDevtoolsCore: HotkeysDevtoolsCoreClass = DevtoolsCore

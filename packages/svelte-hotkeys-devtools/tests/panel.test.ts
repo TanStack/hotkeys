@@ -1,10 +1,11 @@
 import { mount, tick, unmount } from 'svelte'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { HotkeysDevtoolsPanel } from '../src/SvelteHotkeysDevtools'
 import {
-  HotkeysDevtoolsPanel,
   HotkeysDevtoolsPanelNoOp,
-} from '../src/SvelteHotkeysDevtools'
-import { hotkeysDevtoolsNoOpPlugin, hotkeysDevtoolsPlugin } from '../src/plugin'
+  hotkeysDevtoolsNoOpPlugin,
+} from '../src/noop'
+import { hotkeysDevtoolsPlugin } from '../src/plugin'
 import { createPanelProps } from './panel-state.svelte'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))
@@ -91,15 +92,16 @@ it.each(['development', 'production'])(
     const entry = await import('../src/index')
     const devtools = await import('../src/SvelteHotkeysDevtools')
     const plugins = await import('../src/plugin')
+    const noop = await import('../src/noop')
     expect(entry.HotkeysDevtoolsPanel).toBe(
       mode === 'development'
         ? devtools.HotkeysDevtoolsPanel
-        : devtools.HotkeysDevtoolsPanelNoOp,
+        : noop.HotkeysDevtoolsPanelNoOp,
     )
     expect(entry.hotkeysDevtoolsPlugin).toBe(
       mode === 'development'
         ? plugins.hotkeysDevtoolsPlugin
-        : plugins.hotkeysDevtoolsNoOpPlugin,
+        : noop.hotkeysDevtoolsNoOpPlugin,
     )
   },
 )

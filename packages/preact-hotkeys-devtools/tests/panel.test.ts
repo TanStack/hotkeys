@@ -1,10 +1,8 @@
 import { h, render } from 'preact'
 import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import {
-  HotkeysDevtoolsPanel,
-  HotkeysDevtoolsPanelNoOp,
-} from '../src/PreactHotkeysDevtools'
+import { HotkeysDevtoolsPanel } from '../src/PreactHotkeysDevtools'
+import { HotkeysDevtoolsPanelNoOp } from '../src/noop'
 import { hotkeysDevtoolsPlugin } from '../src/plugin'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))

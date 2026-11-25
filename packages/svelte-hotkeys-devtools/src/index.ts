@@ -1,14 +1,15 @@
 import * as Devtools from './SvelteHotkeysDevtools.js'
+import * as NoOp from './noop.js'
 import * as plugin from './plugin.js'
 
 export const HotkeysDevtoolsPanel: typeof Devtools.HotkeysDevtoolsPanel =
   process.env.NODE_ENV !== 'development'
-    ? Devtools.HotkeysDevtoolsPanelNoOp
+    ? NoOp.HotkeysDevtoolsPanelNoOp
     : Devtools.HotkeysDevtoolsPanel
 
 export const hotkeysDevtoolsPlugin: typeof plugin.hotkeysDevtoolsPlugin =
   process.env.NODE_ENV !== 'development'
-    ? plugin.hotkeysDevtoolsNoOpPlugin
+    ? NoOp.hotkeysDevtoolsNoOpPlugin
     : plugin.hotkeysDevtoolsPlugin
 
 export type { HotkeysDevtoolsSvelteInit } from './SvelteHotkeysDevtools.js'

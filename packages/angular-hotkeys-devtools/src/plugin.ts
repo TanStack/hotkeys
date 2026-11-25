@@ -13,12 +13,6 @@ export interface HotkeysDevtoolsAngularPlugin {
   inputs?: HotkeysDevtoolsAngularInputs
 }
 
-/** The production plugin, which renders nothing. */
-export interface HotkeysDevtoolsAngularNoOpPlugin {
-  name: string
-  render: null
-}
-
 const name = HOTKEYS_DEVTOOLS_PLUGIN_NAME
 
 // Same shape as `createAngularPlugin` from `@tanstack/devtools-utils/angular`.
@@ -26,8 +20,4 @@ export function hotkeysDevtoolsPlugin(
   inputs?: HotkeysDevtoolsAngularInputs,
 ): HotkeysDevtoolsAngularPlugin {
   return { name, render: HotkeysDevtoolsPanel, inputs }
-}
-
-export function hotkeysDevtoolsNoOpPlugin(): HotkeysDevtoolsAngularNoOpPlugin {
-  return { name, render: null }
 }
