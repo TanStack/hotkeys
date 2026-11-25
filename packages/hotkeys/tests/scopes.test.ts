@@ -336,6 +336,46 @@ describe('hotkey scopes', () => {
     expect(top).toHaveBeenCalledTimes(1)
   })
 
+  it('lets the most recently activated scope handle a shared sequence', () => {
+    const manager = HotkeyManager.getInstance()
+    const page = vi.fn()
+    const dialog = vi.fn()
+    manager.register(['G', 'G'], page, options)
+    manager.register(['G', 'G'], dialog, { ...options, scope: 'dialog' })
+    const tap = () => {
+      keydown({ key: 'g', code: 'KeyG', target: document.body })
+      keyup({ key: 'g', code: 'KeyG', target: document.body })
+    }
+
+    const release = manager.activateScope('dialog')
+    tap()
+    tap()
+    expect([page.mock.calls.length, dialog.mock.calls.length]).toEqual([0, 1])
+
+    release()
+    tap()
+    tap()
+    expect([page.mock.calls.length, dialog.mock.calls.length]).toEqual([1, 1])
+  })
+
+  // On Russian, the dialog's first step matches through the key's position,
+  // which scores lower than the page's physical step. The scope still decides.
+  it('lets the scope decide a sequence before the match score', () => {
+    const manager = HotkeyManager.getInstance()
+    const page = vi.fn()
+    const dialog = vi.fn()
+    manager.register(['Mod+[KeyS]', 'J'], page, options)
+    manager.register(['Mod+S', 'J'], dialog, { ...options, scope: 'dialog' })
+    const release = manager.activateScope('dialog')
+
+    keydown({ key: 'ы', code: 'KeyS', ctrlKey: true, target: document.body })
+    keyup({ key: 'ы', code: 'KeyS', target: document.body })
+    keydown({ key: 'j', code: 'KeyJ', target: document.body })
+    keyup({ key: 'j', code: 'KeyJ', target: document.body })
+    expect([page.mock.calls.length, dialog.mock.calls.length]).toEqual([0, 1])
+    release()
+  })
+
   it('does not warn about the same hotkey in different scopes', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const manager = HotkeyManager.getInstance()

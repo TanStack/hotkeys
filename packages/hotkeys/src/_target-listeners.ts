@@ -34,6 +34,8 @@ export class TargetListeners {
       ids: Set<string>,
       first: boolean,
     ) => void,
+    /** Sees each keydown in a window with listeners, before other listeners there. */
+    private startPress: (event: KeyboardEvent) => void,
   ) {}
 
   /**
@@ -140,6 +142,7 @@ export class TargetListeners {
     if (!entry) {
       // Brave reports another `currentTarget`, so the listener keeps its window.
       const listener: EventListener = (event) => {
+        this.startPress(event as KeyboardEvent)
         if ((event as KeyboardEvent).key === 'Escape') {
           getEscapeLayers(event as KeyboardEvent, view.document)
         }

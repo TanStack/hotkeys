@@ -43,7 +43,7 @@ and arrive later, such as from a lazy import.
 children: ReactNode;
 ```
 
-Defined in: [HotkeysProvider.tsx:63](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L63)
+Defined in: [HotkeysProvider.tsx:64](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L64)
 
 #### Inherited from
 
@@ -57,7 +57,7 @@ Defined in: [HotkeysProvider.tsx:63](https://github.com/TanStack/hotkeys/blob/ma
 optional customHotkeys?: CustomHotkeys<T> | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:76](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L76)
+Defined in: [HotkeysProvider.tsx:77](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L77)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -76,7 +76,7 @@ ids and invalid entries are ignored.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:80](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L80)
+Defined in: [HotkeysProvider.tsx:81](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L81)
 
 Merged with the parent provider's defaults.
 
@@ -92,7 +92,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:78](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L78)
+Defined in: [HotkeysProvider.tsx:79](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L79)
 
 Called with the custom hotkeys after every change, ready to save.
 

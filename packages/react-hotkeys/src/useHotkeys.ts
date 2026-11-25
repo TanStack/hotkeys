@@ -5,9 +5,10 @@ import {
   prepareHotkeyDefinitions,
   resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
+import { useCommitEffect } from './_useCommitEffect'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions, UseHotkeyTarget } from './useHotkey'
 
@@ -77,9 +78,9 @@ export function useHotkeys(
     null,
   )
 
-  // Publish registrations, callbacks, and options after commit, never during
+  // Publish registrations, callbacks, and options in the commit, never during
   // render. Refs resolve here, after they attach.
-  useEffect(() => {
+  useCommitEffect(() => {
     bindingsRef.current ??= createHotkeyBindings({
       afterDelegatedHandlers: true,
     })
@@ -92,7 +93,7 @@ export function useHotkeys(
     )
   })
 
-  useEffect(() => {
+  useCommitEffect(() => {
     return () => {
       bindingsRef.current?.destroy()
       bindingsRef.current = null

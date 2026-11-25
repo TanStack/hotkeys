@@ -101,6 +101,7 @@ Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#
 | Shared prefix | `['D', 'D']` and `['D', 'W']` | Both track progress independently until the next key decides, with no warning |
 | Prefix of a longer sequence | `['G', 'G']` and `['G', 'G', 'G']` | The shorter one runs on step 2, and the longer one runs on step 3 |
 | Chord and sequence on the same key | `'G'` and `['G', 'G']` | The first `G` runs the chord. Once a sequence is underway, the keys that continue it belong to it |
+| Sequence that ends a longer one | `['A', 'B', 'C']` and `['B', 'C']` | Typing A B C runs only the longer one. A key that continues a sequence can't start another |
 
 ### Sequences that start the same way
 
@@ -122,7 +123,7 @@ When one sequence is the start of another, such as `['G', 'G']` and `['G', 'G', 
 
 - The second G runs `['G', 'G']`.
 - The third G runs `['G', 'G', 'G']`. The user gets both actions.
-- A fourth G runs `['G', 'G']` again, because each sequence tracks its own progress.
+- The third G belongs to `['G', 'G', 'G']`, so `['G', 'G']` starts over on the fourth G and runs on the fifth.
 
 TanStack Hotkeys doesn't warn about this. Choose sequences where neither one starts the other, such as `['G', 'G']` and `['G', 'B']`. [App hotkeys](./app-hotkeys) report these pairs as conflicts, and so does the [hotkey recorder](./custom-hotkey-recording) with `detectConflicts` on.
 

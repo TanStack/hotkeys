@@ -25,9 +25,9 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "5a817fb2fea059c4972564d80653772eaa4200ba13572a808f2a77784c525bce",
+      "fingerprint": "3acccaa260a9993b216bcdfd79c339337991d20403d2aab4c69293a56815e546",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "62594922e588344e438abb6593cde87ddf0b56f71c8c37beff989c052cec0070",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "3460ac6a9e5c544bfaa7c901aee1772e0b4122f4d942493998b132747929f97c",
         "docs/framework/angular/quick-start.md": "6853a3618a349160d18f61b97e8996c3ad4709930d4048192a724afa0b291690",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2a623bf40bdffb6f1f2c64d7159d58ae25a6f8b4681f42e1b0274113ac2b0900",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "afe63a82c2e4b9269b0fece249317a1ad197481cb8d4ae434c5da48d64f0a2b5",
@@ -37,11 +37,11 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "1f1ab7d1e41e5dc39721945c9d9152706689990ec57d6b4d6dbc262975a6a13c",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "d2993706bbc50800985797b806597f979bc907c55d5858a3a69ec6d9f2a3ac24",
+      "fingerprint": "ffe09b0a05af98e8a8239e9c4450cb4a56bd7660bd39a5a6ee1f49caf16e9908",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
-        "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
-        "docs/framework/react/guides/sequences.md": "572a3b5bb3107cffabec6282022f772475eee40959101d1d27d6d7937ea42990",
-        "docs/guides/sensible-defaults.md": "1c5450878afeaeb4e98383e67bd12bd919fa2de5149f01c2a87e5ca8e7282975",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
+        "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
+        "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
+        "docs/guides/sensible-defaults.md": "1c76e667b391f44920a4312e6e057d64fdbfb940036e3ad86387095b0166bef3",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "0e194d674e29565084761c2ab070e22a09903c5eb315dfd0e197229a84d71f11",
+        "packages/hotkeys/src/hotkey-manager.ts": "25385dbc251ec55fac1de7a2e402ba0ef7ab41547a4d956d424274d24e0c4969",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The scopes reference already says the winning scope handles a key both scopes match; the code now does that for chords on every layout.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/references/scopes.md line 5"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -142,9 +142,9 @@
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "169803f4e992bce7262bd601e2edfac73604d84acf0eb6321948c1530268ddfc",
+      "fingerprint": "e156621a3114b1c6f1e08f3fb46bbcf5a41a5e6e9f66d04efb5a81b2a9edafef",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "4d7cbaa5a7110e9e3a91bd18a30d5c8cd7110a65ada142f6ea3c1e4c15ab907b",
+        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "bf6c197492171df49814321c37b7e9c9981e3b02748179a6c32e88e91f77297e",
         "docs/framework/octane/quick-start.md": "239e2bc768ad1a9ebb0c6c972756d23ff6d78752d9355da6bb566eb4cd1591d1",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "f9e9a3920370f2abe943634fb25d8be515cde8f0d4a6c510552c60b206c9fc72",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "ddb3f0f9457fa245b29e8cf8e98088a3bafbf493e4d702a6228795f6ee358442",
@@ -153,17 +153,17 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "7fad592ebe66e2c1822d2ca4018263d560aee41ba4334d9940dfd67b3ad44b09",
         "packages/octane-hotkeys/src/useHotkeys.ts": "a6ce6be008bc44382444ed9c11e1e8fcee6901b49e58d40d3ce6c88e64e4f084"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "3be46b78d8b6eadf624e37ffb8fd92f677c0dab26230ecaf09e4b5fd86773d90",
+      "fingerprint": "c3d150d3ac5a28c301e8adfcba5ef6beee7db66b924ce8221579e7d514bc6136",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "894d3e6c7803caf9b132fb20a8798d4da4b722f82e2195f557329ff4060f1cca",
+        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "2c5824f8df01f95951b70bbbff125fb0dc2758d3278169fe7778b98a1ea8cc90",
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "afdeebd81dfb59c167bba312cb753832951dce67c7dcac1f99772aa8d481a797",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "e28a5865d89549981131050565cbf6a9e9d7ed658c3d9254036d09888b5e42cb",
@@ -172,25 +172,25 @@
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "fab6eeab74cc5616581ab79f3073e068406fd83af4033a11e589b1e958bb3cf1",
+      "fingerprint": "da3e86e753a9cafe62f4e94cc283f0883384a4a8bd670ad1901de93dac60cbe9",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4339f02f27abd944fe58cea13b1c3edaae5e7304949ec0a318a9643ac9a9feba",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "2faa5a863c8db89d93bde16d0d39840a6fe31c4bcd474d434b01440cdc826960",
+        "packages/react-hotkeys/src/useHotkeys.ts": "db509ad8071b0e97e2e7fb6396be131e1e4757f9f48ea7bfac1d5ca6a69ac371",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -209,17 +209,17 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "3606e8a9e8744ffc16612509c3bb273d35eb7768e4d2d7d7ce949eb498088c2e",
+      "fingerprint": "52f8880e1abd66f78b2032b41fb09cbf33a3ef1d2a03a08bfc5e8b97c493de36",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4bd63e3578448500df1bb502f5531b5069dfdf85678f69dc8ba54c2a4280ca33",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "e94cd37ce6d7d941fe2f9db5338d3fe3bb8b3a2ec57a06daa7d592ac6add1807",
         "docs/framework/solid/quick-start.md": "0f52444f47723a9340efdb2369a18dc6ede31b9afcdc0d8dc9344343bc5a4f5f",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7e786434d39e7e374881e015d5ce420c94b5c2dbdb0d953a9c265803c31b0227",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
@@ -228,17 +228,17 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
         "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "f449a78f3d58a243779309c183a2cec38ea13b6e26c99fec2245cf18d1a323bb",
+      "fingerprint": "2cb25690c7e6203500ac5386ad5ecfeddbd3590db94742bdfdf569b5fb2f0aa6",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "418e3a7daaab0c3507cfd4dcd38b8a5603083f193354f701cf5a58b07c085766",
+        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "79248cbcc9320b70185be8311b76332de3b9de2793cfa0b88ea56848d073bd92",
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "858548a437108d8e3a2ed3f79f1be92a3a51923f001ec4eedf0484391bff2e2e",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "f60367e6667d76633886af1398807b5ad54e4586e58b41b2f6d7ee180ab0e1c4",
@@ -249,17 +249,17 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "61c1ee52d95fe8b3eef2723f883d225c7366b848a5b04412df98f424f76b54de",
+      "fingerprint": "ee66fd52f74fd03ff84757306e42279d7f31cc5beabd81cecad206989cb8d7dc",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7d9baffc9b4643da50529c2c86359707f3773bf2c9e025b01a90a8b005d55c99",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "9ff677a8ff993fb9a8e749e6885cbff28fd08bd1dc0f8d0150da19d29ec18736",
@@ -270,45 +270,45 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
+      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
       "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
+        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8ee3e74c576e47ee75cd5fcbd960e0eff3e6089d57cda8cd752e75098b7868f1",
+      "fingerprint": "1af9263f92f979a6e24a01a3806f2ddf06f17a517aba3e1dfdb983c358019c1d",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
         "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
         "docs/framework/alpine/guides/app-hotkeys.md": "654a32b48567d860d0aa0bba0826cd83b25691e6c1091c5bd60c234d04c07d85",
         "docs/framework/alpine/quick-start.md": "08a69d1ed0415b4f2a85205b1de96565dcf97ef24d75cb5c6df991e531ba5cc0",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "62594922e588344e438abb6593cde87ddf0b56f71c8c37beff989c052cec0070",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "3460ac6a9e5c544bfaa7c901aee1772e0b4122f4d942493998b132747929f97c",
         "docs/framework/angular/quick-start.md": "6853a3618a349160d18f61b97e8996c3ad4709930d4048192a724afa0b291690",
         "docs/framework/ember/guides/app-hotkeys.md": "1c990606276fadffbb251e6bba94de0c236c2fbdcf220c88cd912ea5f25d5d2c",
         "docs/framework/ember/quick-start.md": "2c8dc08cae925871408200ef4636adbac20cb23312d18773d726ca340c91f0e1",
         "docs/framework/lit/guides/app-hotkeys.md": "3eacb3ebd3b9ff396519a7d16395c08980dd6f17498b857058174bed210d7a88",
         "docs/framework/lit/quick-start.md": "23152e6740cda01b503a85357b6cca35d948ae23d9dc4703c7fddc3b53c354f3",
-        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "4d7cbaa5a7110e9e3a91bd18a30d5c8cd7110a65ada142f6ea3c1e4c15ab907b",
+        "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "bf6c197492171df49814321c37b7e9c9981e3b02748179a6c32e88e91f77297e",
         "docs/framework/octane/quick-start.md": "239e2bc768ad1a9ebb0c6c972756d23ff6d78752d9355da6bb566eb4cd1591d1",
-        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "894d3e6c7803caf9b132fb20a8798d4da4b722f82e2195f557329ff4060f1cca",
+        "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "2c5824f8df01f95951b70bbbff125fb0dc2758d3278169fe7778b98a1ea8cc90",
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
         "docs/framework/react/guides/custom-hotkey-recording.md": "787f80bf9ce91a64914f93314c9038ab139c5f43e7c5dd954ce331afeb419ca9",
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
-        "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
-        "docs/framework/react/guides/sequences.md": "572a3b5bb3107cffabec6282022f772475eee40959101d1d27d6d7937ea42990",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
+        "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
+        "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4bd63e3578448500df1bb502f5531b5069dfdf85678f69dc8ba54c2a4280ca33",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "e94cd37ce6d7d941fe2f9db5338d3fe3bb8b3a2ec57a06daa7d592ac6add1807",
         "docs/framework/solid/quick-start.md": "0f52444f47723a9340efdb2369a18dc6ede31b9afcdc0d8dc9344343bc5a4f5f",
-        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "418e3a7daaab0c3507cfd4dcd38b8a5603083f193354f701cf5a58b07c085766",
+        "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "79248cbcc9320b70185be8311b76332de3b9de2793cfa0b88ea56848d073bd92",
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "1c5450878afeaeb4e98383e67bd12bd919fa2de5149f01c2a87e5ca8e7282975",
+        "docs/guides/sensible-defaults.md": "1c76e667b391f44920a4312e6e057d64fdbfb940036e3ad86387095b0166bef3",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -341,7 +341,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "0e194d674e29565084761c2ab070e22a09903c5eb315dfd0e197229a84d71f11",
+        "packages/hotkeys/src/hotkey-manager.ts": "25385dbc251ec55fac1de7a2e402ba0ef7ab41547a4d956d424274d24e0c4969",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -365,10 +365,10 @@
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4339f02f27abd944fe58cea13b1c3edaae5e7304949ec0a318a9643ac9a9feba",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "2faa5a863c8db89d93bde16d0d39840a6fe31c4bcd474d434b01440cdc826960",
+        "packages/react-hotkeys/src/useHotkeys.ts": "db509ad8071b0e97e2e7fb6396be131e1e4757f9f48ea7bfac1d5ca6a69ac371",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -409,10 +409,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Ranking-order bug fix; no new skill.",
-      "evidence": ["No public API change"]
+      "reason": "Dispatch fixes and an option removal; no new skill needed.",
+      "evidence": ["No new public API"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -671,24 +671,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "5e822b8ab9fc4809be4a691736ba8f3bef80fb0558ce77ab3f6f9fa1b8e10374",
+      "fingerprint": "1c0e2b9f6abbaeb5e74811490f11486bcddea6b5a009fc71331857cf709902c3",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "cb17faf2351a8a88e91ad40e6c6f60095dc2ad282998f018bdeaa741cd303717"
+        "docs/reference/classes/HotkeyManager.md": "3bbfea71b9410c15032eeaa87e3589d0ce07478c6b3902c2c023b4211c3bfa85"
       },
-      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
-      "evidence": ["hotkey-manager.test.ts"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "b6ca02709b7443466beca65f992851f55a2434728f8e383793505f726f9c9e4a",
+      "fingerprint": "efc2a50fa47cc6702ddb73bf3b95c3aabe443cd3fdc43f577d04df401eb55717",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "328938f84b5f479d27668569f78ae9d32a8c722baec9d90db3fa5bf8b6ef989b"
+        "docs/reference/functions/getHotkeyManager.md": "3af9bf1d87558ddefe2b1cbe94d18aad5c46a3f779c42bcdefe169eea43a89f7"
       },
-      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
-      "evidence": ["hotkey-manager.test.ts"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -943,16 +943,14 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
-      "fingerprint": "edfb909c378529849437198996c4ccc741ed5a7637aa1c6c99c62d83e96d202a",
+      "fingerprint": "70a3f7097c00848d84385f73324ffed9035c953a73b97cc2d575ca3ddec4d464",
       "snapshot": {
-        "packages/hotkeys/tests/scopes.test.ts": "32e03926cccb97987c079786fe5366764c2cda9cf26ac82a27679f62112bf40c"
+        "packages/hotkeys/tests/scopes.test.ts": "b1f12ea83bc3aa41f0cf033d31b24b3e5318f3890418c2030f54823fb73af646"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/scopes.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
       "fingerprint": "10309099249732d9d5cdb27b15b11171b3563b05871aeddc80d0c2ce2231dae3",
@@ -1148,112 +1146,94 @@
       ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "88aff5d261f68cc6c6d73a2f23e4012938c61ffcaff86862bff73f29388f1378",
+      "fingerprint": "dfa0f9f0f3d607cac55d227f9014132d0880b156422fce188488cda58ee94c5f",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "35f4e3c2b99d994788c4fad11297b46a8bc270331d09606664e30e627e663aca"
+        "docs/framework/alpine/guides/hotkeys.md": "6bc5ffd1d483ac2c9885f46977c1ccfc865b287184c9f8df2f03cb08e8ceb716"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "00c555d6146f7c52ec7a7b4082ee524d6f0d78fdb0fe50911e9a2ec9ee177611",
+      "fingerprint": "e03e407cde6dd6ae5a8d42bc8ae25df1cf109025b5c2bdcd8d2590450d082d8d",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "f33b817bfe57e83ad751a443459d9492b26920d2052d56a22cc53741b24b26ae"
+        "docs/framework/angular/guides/hotkeys.md": "909a3c4fe06e29a36788fc397209d615d26d77227203c6993f3b4c766771f438"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "bf8f76ccd7612e3d97869228fc31bab2b1ac214e46e03e276562004d540ec3cb",
+      "fingerprint": "de30e4a57f6e125050dcc486097b57ac320c820ae5bd6d5547efa54982b1ce0b",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "5a1a6fe41a0e63ba0deba5b075091bb798c3215cb3b577b9151c0f6e7305938e"
+        "docs/framework/ember/guides/hotkeys.md": "69b1bd17ee9811168a784f01a3f59a0a984282b3cc4d8bea79cc4e6eda70c8c0"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "5b76cc37113218b3b57205f17a14ed737e3c7a462fab9399064bdee2c8316813",
+      "fingerprint": "1b21baaf0f5c50bcbfa2450e1f835793398df23a5000cdacb5e5e1c2201abc27",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "11b8121da19a68e0febc176818efa8388d1e8fc52c2fce35e5b6d9e9c286eb3c"
+        "docs/framework/lit/guides/hotkeys.md": "618df819974f1a2b775c9fa4213bcc9cd8d65f2901da3f64f898ad708d1ac8e5"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "1de4953e5bbaa37e6d0445741ef168365a10126e84e2b3a10047b1705b89d1b6",
+      "fingerprint": "5488b737a838e912fcf91681b5dde823effde1a41501e9f481f92209f05e486c",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "20d016819144ae036159f188e9398d89e516de33653a6ea4b65c8afc337f39f5"
+        "docs/framework/octane/guides/hotkeys.md": "b0588300e17a61fdec464c2b698b7f9ebdaf91c5b90b183bfbf772d6eb021137"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "1d0730e430d3ca029a2cfc8bedd92742ea259f116b52689eba73e798dfa2441b",
+      "fingerprint": "7e8abf6ab5526c9d4ebe05a0325739311ed0c2d70e98298141d5f2192559c816",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "20d558b28df69defd18cb7c2e620d89ccbf5bcbc693bef50397c2a94e3fb5325"
+        "docs/framework/preact/guides/hotkeys.md": "8838e4a2a34636e96706f7c7321ca402e6198acefbca53404f44f27ece3dd73b"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "48301f9006af98f8577c891c6baffd1aad2968e5185371fcaac6329aa871d6ec",
+      "fingerprint": "a3b7905beaf02914b6165f4cfe9bad5661fa3df1311adda0d29430fe0d6255b9",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "473e93a8fdfcfa7652e13fbf95a67b9fca5c11ce356a0b15af9b4e7630d11003"
+        "docs/framework/solid/guides/hotkeys.md": "dc55525775bc63a72d27726772446101dcef08097080662384f3e1f6d4180e58"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
-      "fingerprint": "820f3a573bef8687896456012d5f1081b6677b3bf6394a0217375b2ebd334921",
+      "fingerprint": "8cddfa7fd5422ccc2870bcf5dd41641bd011cfeb52ba4ceac5a84df1cc0cb0fc",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys.md": "4cfa225db766f44fafac117efc8a8cb1377fa57db1daa01f6330d30f767453d6"
+        "docs/framework/svelte/guides/hotkeys.md": "99fe39dbdb00ecfa6ad79071f4af3fe1fce665d0cb1b609bbbd7e801f4675a8c"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "264df07fe91502620be12bae07cbac97584f9fe99006bdcb064853b3594d0ee3",
+      "fingerprint": "584ecd978991ffcb431fb3dd4ec4d45012b5c1f73bba859b87ada15ecd3d43fc",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "6776fb29b20036a8a5fef414bb93ca94bccc19057ea86a4b9d9c0976aa93d869"
+        "docs/framework/vue/guides/hotkeys.md": "79c03950f6cdd46c6fc911ec7ebb7bb53131e2d54d9a5bb884d76b295ce52409"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
       "fingerprint": "bb45f1a6ba7ff6baef260fe94f9642263fb07a0b517f902b587f7efe069f2839",
@@ -1436,14 +1416,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "9bb00e075306dda89703437b21cf26f3c5f0c469859b7b0a3569aedd6b2df314",
+      "fingerprint": "181c3883aa7038288178a42b9478ff271b1a5f91548bb620fe3af1a52dd8e942",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "70341f82f11af56492a2302a2f7277a70d6fd184ee447ea3bdd89d36696cc5bd"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "d31cdaa7ceb5bbcf98a75eda392d82cc6de638552ea880dd8fb858aba0c7c8c4"
       },
-      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
-      "evidence": ["hotkey-manager.test.ts"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b2b356d72de317f5260227ce77e4d729ad1462a711fceb07411fda66261f1dfd",
@@ -2863,16 +2843,14 @@
       ]
     },
     "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "1738f966f97091952d9bebe6e901e072694c099ec3ea2215559057c0ec206b00",
+      "fingerprint": "e3663c450fffccde4c563d77144c8d434c32785e20fb313de8c98f78f560ae76",
       "snapshot": {
-        "docs/framework/react/reference/functions/HotkeysProvider.md": "7fa7c52be4527bfbd014f2010c9484ae5b8157739a9987c28bfb851545d10034"
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "8570f93965ee72ae552cf212ec6a3a72ffa6681cc9dec2292a198b6341718436"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "2fad5ac22783505caad552a2ace16a9c1f1f8391820c82635d423ecd5646016b",
@@ -2911,16 +2889,14 @@
       ]
     },
     "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "4ab5ab74a07ef0819010299136322b5e30a47200f293eaacd5468334cc12c1d4",
+      "fingerprint": "b7754542fced3cc047c8dbfa20cd75de1a7d193dacf39fe46040cf1c52597d93",
       "snapshot": {
-        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "b5cce129f3929bf9d16e40a24c84c6e9c45e6b3ea3a49b7336975a720ebf8fb5"
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "54ddf9c28c88067dc16c0b4d60917ef93092c492b272ff79f86d7abf33b63521"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/functions/useHeldKeyCodes.md": {
       "fingerprint": "7232b60c409c226f315d11507f7e91418ece3881622e2617a66d3fc12332b4d8",
@@ -2979,26 +2955,24 @@
       ]
     },
     "source:docs/framework/react/reference/functions/useHotkeys.md": {
-      "fingerprint": "926dc15f3905fa694d5a1883c207d71ef7b1a6a27bc45fb7852d792e63972084",
+      "fingerprint": "7b9ca5e53b06bc8c574a66c8898715c920b1cc5547539a0437e7fe632753b42f",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeys.md": "5fd97581002336e6937dfd70e753461cd1509802246ff547ed7d0ccc86ce26d4"
+        "docs/framework/react/reference/functions/useHotkeys.md": "b9c06e45875ceeb61cfa888af89881076f6add67680a2c36944269fd32b36463"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "50454fd51c8b89f1ba3f32935f6c54a19c8ee3e45b2abe99c54b096c6457efe5",
+      "fingerprint": "d4a1dff1787d7d1e33dd94fdb500e8632950250a31eb41cda0dc772f7856fc09",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeysContext.md": "9f11107aaf52a3aa07b74d4530165b1ba1593edb5b29d4635b7d8c262fb87ec8"
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "be88373b4ab685d31b57a08ee1166d95f913e53dc9f3258ea41f23e7670529c5"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/functions/useKeyHold.md": {
       "fingerprint": "97083cacaa76629e2545736be9d9be4ad5816057b8c7f6d735b5177c130c7946",
@@ -3011,28 +2985,24 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "bac8582810fb6b4474d569afa31505d45a848b60dbbdc2522d95431acaf78525",
+      "fingerprint": "32c13dcc12335ff261bdf269e486a5cd4a32b241dddf0ac0d3b48a8de8ce5e96",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "abfb20e3f471f1d005a889282451ef20d8ee20085076e6fa5762e5f7764c765f"
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "6c00825754e7b7280aba40490aec3e56611c9d9ac6ceb17398fcec03dfe5eabb"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "a8c06eeb87110ea91a2ca62b6ff8b5f8eb3805bce531dc6d686b4e2a8824bf3c",
+      "fingerprint": "461587183eb57e3e523bd600b963be28671a236d1b48c1266b0596216f41114b",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "85395e47e658e244722894896e94ed40fa0414bb558f199a14dbc6eb1b1eee1e"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "eb4bf768c30e22999df323bd5a1339d829f0c19a75de30d3479dfda11f89e364"
       },
-      "head": "fb6af948672bc43c0c35414df41bb63724a85e97",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page; only source line links or the new AppHotkeysProvider and installAppHotkeysStore exports changed, which the skills cover.",
-      "evidence": [
-        "Diff of docs/framework/react/reference/interfaces/HotkeysProviderProps.md against origin/main."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
       "fingerprint": "326ef4b8a15acb9e3ed8840ab180cb953f54de73059831a244fa4b75278d3d35",
@@ -3095,14 +3065,14 @@
       ]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": {
-      "fingerprint": "44068b76f7444e923857813dde228155c75b3910a36f83de239167e556057aca",
+      "fingerprint": "5798f80caf40a89655c36218d8011e5f0c74e7c0307bf530f6c245f6e8305733",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": "49da497462a752fe0fc397fb28feed8c14995267961006c5d43c9ad29fc0341d"
+        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": "a4e4a71578905c268560007c126e3df7516d21dcfcf0aad8703c6442a3d3be65"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": {
       "fingerprint": "b4e377d3492d239cad4a1cc7f59790f2ee9c6ccbf5252f4d12d425bcc558c5c7",
@@ -4358,16 +4328,14 @@
       ]
     },
     "source:packages/hotkeys/tests/registration-and-target.test.ts": {
-      "fingerprint": "10e4e90f0b3396c0ef0d972534e15a3ba2a5675a1dfcac2d1bece02b3fdfd070",
+      "fingerprint": "3ffbd9aba4bfc8c441b699699ea420bbe2465b49b2ad9a7304e0520993fa83dd",
       "snapshot": {
-        "packages/hotkeys/tests/registration-and-target.test.ts": "f2827ae257ea8455541f6627fe28fa764b9c7c26841af27d5054b9cbc01469b9"
+        "packages/hotkeys/tests/registration-and-target.test.ts": "7941ad0f23c2247197be74f4317491d62af70f57d0a092558b61124ec3b6a971"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:e2e/layouts/layouts.spec.ts": {
       "fingerprint": "b5773a69a45e025ca3bdd6e7150171312111834148aad44b17c24fa23dcc036e",
@@ -4390,14 +4358,14 @@
       "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "01513eb3da7b0b7fcb2afed8ee0ee47b67dc891de68d39380eb46a20fbdc59f1",
+      "fingerprint": "3151197e26fa2e0682153a9609eae01c5cef9ac591bc3ca785e60f4fcbe44750",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "40a66c4625c8dab9068dac81cecdd6393ca390024ab63812e922a38bdf580350"
+        "packages/hotkeys/src/_match.ts": "61ba5bfce902f8d53faf3bd0e07e83c0329ffa501a533fd91a5d9c9b2d318711"
       },
-      "head": "29bf503c765005c774c6c890d81091be56171896",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
-      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
       "fingerprint": "c9dd39fdb37aeac04fc9ea345b0650bb166537d17eb9b5dd0090d77803d9e829",
@@ -5480,16 +5448,14 @@
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "6fb36c890b7670fd9202649f19861bae27dd6e76f8d1582a2af456bac8b2cf0b",
+      "fingerprint": "d9dc9105f034609474f7ac18c80ef93d7fb27e95678d58e504d83c9267d5d219",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "f9d9da5b3ef176db99282d7250504ec608dd517baff54e216debf5beb4299001"
+        "packages/hotkeys/src/_registration.ts": "962fbc1eb8f1f17cbac4e5ba8343d6dae8fa3a9b866ada9414e42bd001b4de88"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/hotkeys/src/_store.ts": {
       "fingerprint": "01d160bae20ef0906e8cc1d503ff6ea509c970130a580d2bbb3e54201f5523af",
@@ -6825,14 +6791,14 @@
       ]
     },
     "source:packages/hotkeys/tests/sequence-manager.test.ts": {
-      "fingerprint": "94ce516c5e958f1db781fbb628c297a96509ad31125bbe07c397105c61e3dc29",
+      "fingerprint": "ce1b418a784155a68b554bf020aab89d3e938e60701eb6ae835fd72f20d44320",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-manager.test.ts": "0eab2f5e8578ca445990cab0ef8f295bba09113cf49c85447cda45d67fd7c0f4"
+        "packages/hotkeys/tests/sequence-manager.test.ts": "ef5067864a9fc6b718c076cd6c2ba2213f124f593b256c4f6df8913533ec841b"
       },
-      "head": "8defa512828757067b9d6116441f2d71110f0a3d",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "outcome": "no-change",
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
       "fingerprint": "6e39110df15f0273941a7678377e3d2abaf9ccb0cda405a74817b6f70bce98f3",
@@ -7432,26 +7398,24 @@
       ]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "7a3ab1cfd70a64f8edb9e9e31becc214b3e4d18c2ff6910ec83cf707370f60ce",
+      "fingerprint": "4bd2c140a0550e3b13d4a240db4afee1644d90c789b2be88713de7f301c2dd5a",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "c5f04dcf0a305367d792999d73c686ac453a0265adc6e114718fdfab53eb53aa"
+        "packages/hotkeys/src/_target-listeners.ts": "b97ddef774cb32f1b7cb1b4298de36a4918bb1cf300508b474e7db74e4b0ead7"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
-      "fingerprint": "a1920d2364f4135a11c4a41d451299dabe36429292237d1293d2da0ed9e40efd",
+      "fingerprint": "b2cf4fdd6ba78faa7bfe2f33e3c340e57f0990c85b930cf85458e011ab9251f1",
       "snapshot": {
-        "packages/hotkeys/tests/capture.test.ts": "74313d89cf48b431b11c5759e6c338552d2d5c5ef912836765bfd24aaa5ac2c0"
+        "packages/hotkeys/tests/capture.test.ts": "a33a3dcbf2ae1552641e934a7d869a277069485f05921613ee87c85f402797d2"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
       "fingerprint": "2aff8b2fc2a8b9e66e937f71c83de14760795a3abb7b944f9cf8dab9b59d2b36",
@@ -7476,16 +7440,14 @@
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "d4018282edfa474cef9aff932c7dde713f4797f06d43bba9b44fea8f5470a504",
+      "fingerprint": "bd52ad132e2053a8ff821daf06fa40dbe0f8468aaec9472cfef0a0ce5805bd62",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "692d1ea20804bdeb7ee6305a49ed432974f7116db2d81756f6c6ecfabcaf119b"
+        "docs/framework/alpine/guides/sequences.md": "03d329ce66476b992822535d3337bd1aa546cc57935ead8f0f84d4eee0db1bcd"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
       "fingerprint": "c0ac86cefb78b4aec13cea80b04862ad34bb5477edd46856ce03eb4df797391c",
@@ -11674,100 +11636,84 @@
       ]
     },
     "source:docs/framework/angular/guides/sequences.md": {
-      "fingerprint": "8f5f454636106d1b1fe2a5c10d84fdfdf7d4b2ae7431a59c852f39f5bbc3820e",
+      "fingerprint": "7616b379560fdd249f07c578e508474549bcb872114da3cd2ef8ba60a911a075",
       "snapshot": {
-        "docs/framework/angular/guides/sequences.md": "2f4fed818327e8abf89e6668533225064455afef02f76532ebd476a19b565b46"
+        "docs/framework/angular/guides/sequences.md": "74e0c5a212b7ccdd455e173f3a381821aa65b4303fb603ca6f98340f3653b0d1"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/ember/guides/sequences.md": {
-      "fingerprint": "555eae97c07795622a6e5998471bed322031bbdff415a33b4291f01454af49fd",
+      "fingerprint": "73b3519f51eb77da06c16ec4409b4247faceabcfb8574a9faf63a98b025ef7e4",
       "snapshot": {
-        "docs/framework/ember/guides/sequences.md": "444035fdf58bb2e0187c1e161110fd5170824a0f98972255b1fd5b8f8580674b"
+        "docs/framework/ember/guides/sequences.md": "f82b665b9ff21f2716702ca2f542045f44469537c21a7424f7854f9c87ef49c1"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/lit/guides/sequences.md": {
-      "fingerprint": "2abab37ccd9d06e194ca2808288be8de69071ecca726c3ab5053625bca1194b2",
+      "fingerprint": "3bf1d421302c7e7bd9bdfcb598c3b947e11c1488363c6f533df273773826ad36",
       "snapshot": {
-        "docs/framework/lit/guides/sequences.md": "928e53b5ef21a53ab36d7654988ebbf43ac0ce3fb22a128b56338bb8afce23d3"
+        "docs/framework/lit/guides/sequences.md": "d5c067e666c06b33d87301be4e1b95582631c7566db8597c626fb9329e2a7ec0"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/octane/guides/sequences.md": {
-      "fingerprint": "ee0a7efe2b8d141276843cdd83d7f27c92ad445694b3c6617179979f555bb1fd",
+      "fingerprint": "42fdecb93dde0cab956c31f7f8b0d786f83674bf6829e207a9cccabafbf21862",
       "snapshot": {
-        "docs/framework/octane/guides/sequences.md": "02f3a762d7610df5b40f4dc73965c84e22d6ad3ad979585e912b442f993b06f3"
+        "docs/framework/octane/guides/sequences.md": "7bf35c53743cde1f2e045c87e688c5c88b0f7df638d350f44de8ca3dfc719036"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/preact/guides/sequences.md": {
-      "fingerprint": "ca56b3a9e3a87eb4511ad50ed105625cce3296028fe0ac49ddca97c27d49164a",
+      "fingerprint": "13f1dd822e3d23b192df323834b5072b25b3aa2ba7c70ef21ba8d5c2879e482e",
       "snapshot": {
-        "docs/framework/preact/guides/sequences.md": "8d5b0bcd970f8c3451cafb09b2b20f8e2e1fd803e3448895192a69c4301eb33f"
+        "docs/framework/preact/guides/sequences.md": "61c79f23d89045416e0a6d4edda7c3c1316a5459e1de283948345446371e57e9"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/solid/guides/sequences.md": {
-      "fingerprint": "86644549d53311b85bca8a4386ccb67f93ebdf109e04a4a625db30437e93ffbd",
+      "fingerprint": "7d49abe01b2084d42ab2ebf43eef967fcbc45c8822617fa3fa2eb09ed987ebc9",
       "snapshot": {
-        "docs/framework/solid/guides/sequences.md": "661d6b89a95cf9920b8aaa64613fa756bd08eaaecfdf8a800648be1c9931bd71"
+        "docs/framework/solid/guides/sequences.md": "34dd29e4bed391731f67f228a49c18174b7691d1f7424548e2e8b2c71556cade"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/svelte/guides/sequences.md": {
-      "fingerprint": "844d686bbd14bff2d88808a0f0d90a6eb600149991cd2e33e5aac288e1862918",
+      "fingerprint": "5cd10fe5ef6e27ed682598f528b68ca9d279fe6af404e92fb3fc96c281c57eb7",
       "snapshot": {
-        "docs/framework/svelte/guides/sequences.md": "ba573497bc0a725a7fa996945cf351f056f03a97303f6111a5f5c665c25a3db0"
+        "docs/framework/svelte/guides/sequences.md": "9114f53e4dc24fa54f51d93dcc3bf6d72f91c647db0888883252a093afec8883"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/vue/guides/sequences.md": {
-      "fingerprint": "fecff3da1c8fa01985b7759a20859eb841da059f52b116e533565cc24a29aa26",
+      "fingerprint": "262d7237ba419a972f595419b0a7b9aa902a2152350842677ee15b3e5af29fd7",
       "snapshot": {
-        "docs/framework/vue/guides/sequences.md": "5d186a721b9e0163556c72cfbaf012f0e8377f4b2d18cd568ee9dfc5cc157d1a"
+        "docs/framework/vue/guides/sequences.md": "7dc8b955695c54e6e0e635d88901a75d7684705d53d4b66c86002d8e68917da4"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:e2e/browser/chords.spec.ts": {
       "fingerprint": "25a360cba4f4e103472f70bed3e4471fbc026f87b5f868c91ab34c7366aea757",
@@ -13302,16 +13248,14 @@
       "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/ConflictBehavior.md": {
-      "fingerprint": "2e096e3a5f0f562a1c36185700a0622c4aead467c4dfc0f1d0e642f45e01bb20",
+      "fingerprint": "59a2573060fa987b2d157c52798b74e3b0a9407974df2b411489805f71629550",
       "snapshot": {
-        "docs/reference/type-aliases/ConflictBehavior.md": "101ba6608e2ea2eeb133e21421aacc564f2fc038895efaa3b868112bdb0d702a"
+        "docs/reference/type-aliases/ConflictBehavior.md": "c79907f6838d6bf60881669b159029e4ca1fbe383f009372031e90a01d970d35"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/reference/type-aliases/EditingKey.md": {
       "fingerprint": "344778a50d81b54ddbc8f15201b0bb3cfc39fd818ba465eed3333a815f69c046",
@@ -17253,16 +17197,14 @@
       ]
     },
     "source:packages/hotkeys/src/hotkey.types.ts": {
-      "fingerprint": "87edc86c6cd145647e9903c1a49472177d09a51cf0ba0016f9594e8d7c11df10",
+      "fingerprint": "ae18fd4d74f3108b404daea35a06838eff56335836568f04df7e255cc8c2cbbd",
       "snapshot": {
-        "packages/hotkeys/src/hotkey.types.ts": "53a88fb8d0842a32d01fd247edeb5dca79670dc269b1cd1fb95d1aff93395073"
+        "packages/hotkeys/src/hotkey.types.ts": "49de2c0beb1ff26bd7e11ccba91cdd484b4127db71fa01bce4ec4b59afde355b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/lit-hotkeys/eslint.config.js": {
       "fingerprint": "00e23f693fc1abf5b6be81184a216e4a2539616298c48af212974abacda716aa",
@@ -19128,14 +19070,14 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": {
-      "fingerprint": "8c19312a6359524cc2cb53fbfe41196a07f9e32a3ea6c9d5e9f28291a5fe02d2",
+      "fingerprint": "384a6ea1aa43c8df037f5b680396c867c55569c612c622537726afc7ef19febf",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": "8501da3e8b22c8d8bef03046b8edffc32b947a30a6b06580a5d0c17ee9a82d07"
+        "packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": "e680d7614bc289a360319c8a82cf4af1cb33a59a2756b334ee0fa0556f6765b3"
       },
-      "head": "7d7987cd3aa0a01565debdc06bcfb104a59d0889",
-      "outcome": "out-of-scope",
-      "reason": "Test fixtures, invariant tests, the layout table generator, generated reference docs, or formatter config; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "outcome": "no-change",
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/hotkeys/tests/recorder-options.test.ts": {
       "fingerprint": "167d28ac6541af53f2635d3ede000b778facd311ae4077be11bd35aade19d7b9",
@@ -21545,16 +21487,14 @@
       ]
     },
     "source:docs/reference/type-aliases/MaybeGetter.md": {
-      "fingerprint": "c10b90e13276bc202db54a8101464600e9c07f598bf45e1a0e57aeea3be7f2ac",
+      "fingerprint": "4eca4124ac80156216e0eeee58e7db735772f39185fe2130cc15d5429a365692",
       "snapshot": {
-        "docs/reference/type-aliases/MaybeGetter.md": "002ce1f9952ef0436ef7bb8a61c6a04d9fa1959188be59f7a65a82ab86701e78"
+        "docs/reference/type-aliases/MaybeGetter.md": "405e3de3e916604888b4fef52fddbd35bb1b37c24842a88d74180c0013169edf"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeyListItem.md": {
       "fingerprint": "788ecf6334adca54e90d55cad1c0429f0a833dbcaef48ea27bdd039d1018a721",
@@ -21815,16 +21755,14 @@
       ]
     },
     "source:docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": {
-      "fingerprint": "c3f3c7d8a1bcef2af2225b866e46d8d18d73345aa704f799ec861486ecb8891c",
+      "fingerprint": "409237f11aa03500947096928d23a5419f7c60d3ecbb9d728eb32f52806dfa24",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": "2f91e872cf170e2a35f12ebbc8ff50962e6fbd638f6441eff65d9135791903d0"
+        "docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md": "ff7279f755550a117e45c33b8ab5880de84e3ee6246777e3230ca40b7a2d0e88"
       },
-      "head": "225de981e43439fc3157a41f2cf1627c3ef8dc6a",
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
       "outcome": "no-change",
-      "reason": "CI regenerated this TypeDoc page with source links for the new AppHotkeysProvider file. The React skill already covers AppHotkeysProvider.",
-      "evidence": [
-        "Autofix diff of docs/framework/react/reference/interfaces/AppHotkeysProviderProps.md: Defined in lines now link to the source."
-      ]
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/reference/adapter/functions/installAppHotkeysStore.md": {
       "fingerprint": "6612e9ac0d99d5f115e6f086ccf6c391b0bb4bc72faa1aa41398526c578e18c0",
@@ -24001,6 +23939,36 @@
       "outcome": "no-change",
       "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
       "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
+    },
+    "source:packages/hotkeys/tests/press-start.test.ts": {
+      "fingerprint": "d941b82e455d859206917b446fb37df5e39d0fba69f1fb7141a4594649926a65",
+      "snapshot": {
+        "packages/hotkeys/tests/press-start.test.ts": "6f1c095c4c1f6817576dfed2ba9c1bc51e24d90859acda5e4ea14a871db1ed1d"
+      },
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "outcome": "no-change",
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+    },
+    "source:packages/react-hotkeys/src/_useCommitEffect.ts": {
+      "fingerprint": "ad2f73446d0d59b9c13c6d007d107091ef83acee63a7b3668d88319eb522761b",
+      "snapshot": {
+        "packages/react-hotkeys/src/_useCommitEffect.ts": "4a60f008cd60e9d3baf3ad945a84ccc90276119d44ec22ef9c7b57cbbdff6ec9"
+      },
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "outcome": "no-change",
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+    },
+    "source:packages/react-hotkeys/tests/hidden-content.test.tsx": {
+      "fingerprint": "6ad38d5f507ab7f3f5ef517554b0c2e2ee891643ae73cb86b83c3e0b6d1add82",
+      "snapshot": {
+        "packages/react-hotkeys/tests/hidden-content.test.tsx": "f304e0cf027b1ac0a6b986633f4c327e1e0c9470dffd3355a20414e3d1464a88"
+      },
+      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "outcome": "no-change",
+      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     }
   }
 }

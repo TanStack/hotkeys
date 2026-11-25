@@ -312,6 +312,8 @@ createHotkey('Mod+S', () => save(), () => ({
 
 See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone) for when to avoid `'always'`, such as clipboard chords, single keys behind an accessibility switch, and `Tab`.
 
+When a `<Loading>` boundary shows its fallback again, the content it hid stays mounted, so its hotkeys keep firing. Solid gives the adapter no signal for this. If those hotkeys shouldn't run while the fallback shows, pass `enabled` from the same state that is pending.
+
 > [!NOTE]
 > Single-key shortcuts like `K` need a user setting to turn them off or remap them for accessibility. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch). To toggle a group of shortcuts together, use [scopes](./hotkeys-provider-and-scopes) instead of passing `enabled` on every call.
 
@@ -386,10 +388,9 @@ Registering the same canonical binding on the same target, scope, and `eventType
 
 - `'warn'` (default) logs a dev warning and keeps both registrations
 - `'error'` throws an error
-- `'replace'` unregisters the earlier registration
 - `'allow'` keeps both silently
 
-Two sequences conflict only when all steps match (`['G', 'H']` and `['G', 'S']` do not). Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins for overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
+Two sequences conflict only when all steps match (`['G', 'H']` and `['G', 'S']` do not). Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins for overlapping chords and for a sequence that completes in both. Sequences in both scopes still advance, so a dialog's `['G', 'G']` doesn't stop a page's `['G', 'I']`.
 
 ## Describe hotkeys with `meta`
 

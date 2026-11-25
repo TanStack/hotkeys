@@ -332,10 +332,9 @@ Registering the same canonical binding on the same target, scope, and `eventType
 
 - `'warn'` (default) logs a development warning and keeps both registrations
 - `'error'` throws an error
-- `'replace'` unregisters the earlier registration
 - `'allow'` keeps both silently
 
-Two sequences conflict only when all steps match, so `['G', 'H']` and `['G', 'S']` do not. Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins for overlapping chords, whereas matching sequences in active scopes advance and fire independently unless suspended by an `exclusive` scope.
+Two sequences conflict only when all steps match, so `['G', 'H']` and `['G', 'S']` do not. Registrations in different [scopes](./hotkeys-provider-and-scopes) don't conflict either. When both are active, the [higher-precedence scope](./hotkeys-provider-and-scopes#nested-scopes-win) wins for overlapping chords and for a sequence that completes in both. Sequences in both scopes still advance, so a dialog's `['G', 'G']` doesn't stop a page's `['G', 'I']`.
 
 ## Describe hotkeys with `meta`
 

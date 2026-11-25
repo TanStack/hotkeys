@@ -1792,26 +1792,6 @@ describe('HotkeyManager', () => {
       expect(manager.getRegistrationCount()).toBe(1)
     })
 
-    it('should replace existing registration when conflictBehavior is "replace"', () => {
-      const manager = HotkeyManager.getInstance()
-      const callback1 = vi.fn()
-      const callback2 = vi.fn()
-
-      manager.register('Mod+S', callback1, { platform: 'mac' })
-      expect(manager.getRegistrationCount()).toBe(1)
-
-      manager.register('Mod+S', callback2, {
-        conflictBehavior: 'replace',
-        platform: 'mac',
-      })
-      expect(manager.getRegistrationCount()).toBe(1)
-
-      keydown({ key: 's', metaKey: true, target: document })
-
-      expect(callback1).not.toHaveBeenCalled()
-      expect(callback2).toHaveBeenCalledOnce()
-    })
-
     it('should allow multiple registrations when conflictBehavior is "allow"', () => {
       const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
@@ -2678,7 +2658,7 @@ describe('HotkeyManager edge cases', () => {
       manager.register('K', down)
       manager.register('K', up, {
         eventType: 'keyup',
-        conflictBehavior: 'replace',
+        conflictBehavior: 'error',
       })
       expect(() =>
         manager.register('K', () => {}, {

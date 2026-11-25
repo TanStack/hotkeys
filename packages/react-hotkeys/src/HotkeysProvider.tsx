@@ -14,6 +14,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react'
+import { useCommitEffect } from './_useCommitEffect'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -153,8 +154,8 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     parent: parent.defaultOptions.hotkey?.scope,
   })
 
-  // Activate this provider's scope while mounted and enabled.
-  useEffect(() => {
+  // Activate this provider's scope while mounted, shown, and enabled.
+  useCommitEffect(() => {
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
