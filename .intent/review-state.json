@@ -67,7 +67,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "30864bca80e3d9dbbf15087b183ef17629b0aece074a2a2da60cf3bffe3baa11",
+      "fingerprint": "3c707c685152d556c911ccc9cbad01f6dccca1db9566ac01e641b624c035dc96",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
@@ -76,7 +76,7 @@
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-recorder.ts": "0fbcd9a8e06fa8170107db7e68199bcc9dc54b9ef86683a11e1952c1cc66e6a3",
+        "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "1d40680b6046115e8c7c71f474e3487fc953b82220e0f5809b01f39c0ca12206",
@@ -86,24 +86,24 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
+      "reason": "Crash and silent-failure fixes with no API change; the skill gives no guidance about callback errors, zone.js listeners, held-key internals, or recorder listener attachment.",
       "evidence": [
-        "Changed: docs/framework/react/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
+        "git grep in packages/*/skills finds no mention of callback throws, zone.js or IME held keys"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "d64f6b307fd2c5e6212fc5f89c23cde172d532b83a53a76deea2f5084df34314",
+      "fingerprint": "773ded7c912df38b26d1d461d307a83d10f82da4fd61c2d2b9a4446c0ef030ca",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
         "docs/framework/react/guides/sequences.md": "572a3b5bb3107cffabec6282022f772475eee40959101d1d27d6d7937ea42990",
-        "docs/guides/sensible-defaults.md": "ece21a7716baf21d3f089be03eacd550dd44f1ed2facf0ebe13c6dcb38598da1",
+        "docs/guides/sensible-defaults.md": "dc257989163d6ace29a55f0c6e3034be6191629eb9b5d600ef7c0619037f05da",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "4f9970a548baa6804fbc6e1424ee74db10930135391047d9b0b1ea9428ae9825",
+        "packages/hotkeys/src/hotkey-manager.ts": "21cd87e4eb20dd0ccd004a803b0dc7d5fd4776cb05752e21ef74d0c0a4b45d0f",
         "packages/hotkeys/src/match.ts": "bd5f9384cf73cdaf508e3ef236cf568eaed3734934d04c5c6830d294d144f86b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
-      "outcome": "updated",
-      "reason": "The defaults row now says function and media keys fire in text fields under ignoreInputs auto.",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "outcome": "no-change",
+      "reason": "Crash and silent-failure fixes with no API change; the skill gives no guidance about callback errors, zone.js listeners, held-key internals, or recorder listener attachment.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md table row; packages/hotkeys/src/_registration.ts getDefaultIgnoreInputs"
+        "git grep in packages/*/skills finds no mention of callback throws, zone.js or IME held keys"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -278,7 +278,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "3374e5b60345050f47f97d4f1c27bd3e0b64efcb3fa427dc69e372ca73820405",
+      "fingerprint": "ae15533bb56d704ae6c4260b36c1c939702edbf4b41f8cbfb2c1f520056768f2",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -308,7 +308,7 @@
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "ece21a7716baf21d3f089be03eacd550dd44f1ed2facf0ebe13c6dcb38598da1",
+        "docs/guides/sensible-defaults.md": "dc257989163d6ace29a55f0c6e3034be6191629eb9b5d600ef7c0619037f05da",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -341,8 +341,8 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "4f9970a548baa6804fbc6e1424ee74db10930135391047d9b0b1ea9428ae9825",
-        "packages/hotkeys/src/hotkey-recorder.ts": "0fbcd9a8e06fa8170107db7e68199bcc9dc54b9ef86683a11e1952c1cc66e6a3",
+        "packages/hotkeys/src/hotkey-manager.ts": "21cd87e4eb20dd0ccd004a803b0dc7d5fd4776cb05752e21ef74d0c0a4b45d0f",
+        "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5f9384cf73cdaf508e3ef236cf568eaed3734934d04c5c6830d294d144f86b",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -409,12 +409,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Example and defaults wording changes only; no new skill or reference is needed.",
-      "evidence": [
-        "Diff limited to ignoreInputs auto resolution, its docs, and tests"
-      ]
+      "reason": "Bug fixes only; no new skill is needed.",
+      "evidence": ["No public API added or renamed"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -673,28 +671,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "705482e56dae161f09a8c1d2c03a5627cd546c1236e0346a7ac243e8b9da36d6",
+      "fingerprint": "9d8a721e5e1c547fcdc6bc230ca5a7f12db36597926a3f355ad73f85441a7f55",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "9f47a39a490df38b42b4af9f385fc8febaac402e9ea7961a43abeee6c1f6d8b8"
+        "docs/reference/classes/HotkeyManager.md": "e1f2bfb1221ffebeedbd1d8876d2e5c4a7f2a2c1b8893347f9e0cbedba18d94f"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "f89209ca5bc92c3f54db7d45f9d5f64e985adc3765189f2ab78e55075f51bca8",
+      "fingerprint": "b8b1b0f003cb70d435505e36668469e834e36e4df2d4f1c95dcee7674d0fc1b1",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "9388c120f23bbc6b437b331bf0b0ed0126ec919f7d9f7e26c50ce605ec0ab830"
+        "docs/reference/functions/getHotkeyManager.md": "3e154997d4b1dede8f0ef1d64936badf8254f16e873488d5902846c224ce240f"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1442,14 +1436,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "fd3e7842e3c63416675ccddfdfc0f726e371ac547ad15627dd7b8bac50c2562e",
+      "fingerprint": "129331caec9c84df67d6776da8dfeed54ea134b57aa166801dde6db4acba469a",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "6c30ece250f770202c2084b7e89c3e6e565f8e57d43e018046c8863dddc144cc"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "1783f7084d5d0a1914a13b3d1ed0b618f87cf7efd86fef3e88e3bd9efa435096"
       },
-      "head": "0cf3e5496791f1974b2e38f196870211d6891ca6",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Formatting only after the earlier recorded review; the hotkeys-core skill covers the ignoreInputs auto rule.",
-      "evidence": ["pnpm format reflowed the new test"]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b2b356d72de317f5260227ce77e4d729ad1462a711fceb07411fda66261f1dfd",
@@ -4305,16 +4299,14 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "99df23b0ab9321db06776373938716f7208003432e5a430bff8d517514d0331b",
+      "fingerprint": "e7016b840d70fe1c9e527b1a821b78ae7ac0cba4642464ec9da89a687139157a",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "8cd823c88edff785a2f3853fca1d79328f3d32f744cae3e1dc65d75656bd0cb1"
+        "docs/reference/classes/HotkeyRecorder.md": "1dd7e09c70dc9ed5da36a95a7b0952d19a743dfb2c3bbb0c0288e4a5776e43ee"
       },
-      "head": "b4acb61b038e16f572c897bd8759e6046ed20200",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Regenerated reference docs; only source line numbers changed.",
-      "evidence": [
-        "Changed: docs/reference/classes/HotkeyRecorder.md at b4acb61b038e16f572c897bd8759e6046ed20200"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
       "fingerprint": "394b648ffc52be332ca1ab001ee62311b653f8162c126029f9856e8728ebdbc4",
@@ -5202,16 +5194,14 @@
       ]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "f7a590813f2d4f165bb3f0730b59af476c1d55942a5aa88d44e20c0993a625a0",
+      "fingerprint": "044b823ef89d2dbcce7c10c4656befbc41cde7572ebd3145821331ea2d14f4a1",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "22211e68473a0bc55d96d0daa40bd04a522af1bb992eded778ef6c6d537000ed"
+        "docs/reference/classes/KeyStateTracker.md": "f8ac63419817adfd49be22f867c9cad67605d319527777afc21f4410683e2e07"
       },
-      "head": "b4acb61b038e16f572c897bd8759e6046ed20200",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Regenerated reference docs; only source line numbers changed.",
-      "evidence": [
-        "Changed: docs/reference/classes/KeyStateTracker.md at b4acb61b038e16f572c897bd8759e6046ed20200"
-      ]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/reference/functions/checkHotkey.md": {
       "fingerprint": "b795c46d9627a330afd586eb39f0252d32ca063ec5ca61602cb3354248efe1d4",
@@ -5224,76 +5214,64 @@
       "evidence": ["docs/reference/functions/checkHotkey.md"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "3e2386a9cd2922ac9ab82074121a4163c8633049e92e87bf92d1985b0d0c1669",
+      "fingerprint": "f43d79e814969e4df27fd39e369951a071288a27b9a0755e2e39a36b8deffa51",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "7c8206dae507db6346dd3884ab319533c702d8903ccb8f5acf6a4f4612a0f842"
+        "docs/reference/functions/getKeyStateTracker.md": "dccc8a32363485486512daa2f53dad7894c14d4b636ce6d5f463f3dd165ba441"
       },
-      "head": "b4acb61b038e16f572c897bd8759e6046ed20200",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Regenerated reference docs; only source line numbers changed.",
-      "evidence": [
-        "Changed: docs/reference/functions/getKeyStateTracker.md at b4acb61b038e16f572c897bd8759e6046ed20200"
-      ]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "177779940a6b870f36e13ff86612c62e9e0169a0ca872c4f95f06d5f52fba985",
+      "fingerprint": "8a418fc9aae02dd78227e5ce2342b8bda90dc011219f263ced3611929420f889",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "f8e42c5e84fe9f70d132dee92bafdb6b4e824b7f9da26ae11f14434fa4c4cb54"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "15b68b56fc488a45723d47aad420df56018e8fcb22eb40aad8b170ad66cac49e"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
-      "fingerprint": "5bf12c571aea901f5dc77b5ed6954704b9247dd278bad5e9d5787ff208ebd8eb",
+      "fingerprint": "6f754958433f06483d13347f37ed317f0ced0a15a787e6c83dd3bc166f8f2e43",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "47956cf0f2df44c6a7b1d9e63786b129ce88bd414112b8a753555137a5ab692b"
+        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "f9309b8fe66017f10e2e2ae4b6e534b90928ed9d420e22a33c10abeae8b3deeb"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/HotkeyRecorderState.md": {
-      "fingerprint": "b9b393d23f448475d64a27ee32a467506c5586fe9c196098c8883ece7987f733",
+      "fingerprint": "7f5c232341ce324dfec4b51e7af766136344f0bfd1a54cc0051f26e3178e18a0",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderState.md": "2fc9638b97f57689ef93e2ee77f6bc761b2d590b12083a626dd90b679c6aa684"
+        "docs/reference/interfaces/HotkeyRecorderState.md": "d16320e0961d13a18aa62b8883f56ca3200230854eef0f1a126136535c3510d3"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "ffbcb661eed46cde89f9c308a609e4760110b5557e60f77d110c6ea40d543c2b",
+      "fingerprint": "536a8becdcb1518016989c744a1f5bade8aeee054d8f7ec899452269eb794cc5",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "64b039c331de530c340e38abf733857afaa44263935a401d23f0e6d40a477f31"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "32c83e6e701392810c2a4dc0780b455275c87ce08c3a3a7ea4eef271296f23aa"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
-      "fingerprint": "fe6b0a5e1df9f924b2f0490cc7ef3742a74450044be7bba5f1c4a03769aa911b",
+      "fingerprint": "79dee0596bec8da7d5c52512e1ada2145f6f04556bf0d5bf3861472966bb214d",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "ebdd06694d2fbc1465b4711d82ffc019aa76a9722de8d21bb0f5df0e60b8882a"
+        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "a840e6de4294ccace1795c8e6caba5c6ff7d634dc17ce22d06295869f8885aaa"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
       "fingerprint": "87b90f4eb9f326182eeeeb4f341d5cdffffb955972ecaf103ecf7906400f61ea",
@@ -5308,28 +5286,24 @@
       ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
-      "fingerprint": "9e34ffaa5618dd93c10651796e27802291f8ee3c520901d6e7e414ac6bdf97a8",
+      "fingerprint": "6fb1b549ab4faaa9cf40d0e04d1eb61d7adfd26778ffc39e7a60f21c1bd3ec09",
       "snapshot": {
-        "docs/reference/interfaces/RecorderOptions.md": "eedca633323a8ab46656de14ff01fff4468dd600ea4c17521d75e51d657b8a87"
+        "docs/reference/interfaces/RecorderOptions.md": "a8229765eb434baab248d3f681e1deed3b6da240e5ac487059bbc9f7e51bb884"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/RecorderRejection.md": {
-      "fingerprint": "14ec5ab84b030919f8c5f66d86907f14f0b926de4dfd229238377ab4913b2dc7",
+      "fingerprint": "934e5f53765a95ad2ff1c105657fb88c0442b65b8de1e5e0b9c1cbb284020c96",
       "snapshot": {
-        "docs/reference/interfaces/RecorderRejection.md": "158d9fed7ec6c78794923373deedbbf6e823d7631510cec1dcf0c91306f4b3bc"
+        "docs/reference/interfaces/RecorderRejection.md": "a5b4e2e65d30e04b9620d5c69f1474ee8cc17a3805464c403f4a238cedab836e"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
       "fingerprint": "bf50351d2f5a5f1183873562205bcbdb5fb0f0ff818dcb82e0ff12a7dde09943",
@@ -5342,52 +5316,44 @@
       "evidence": ["docs/reference/interfaces/ValidationResult.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
-      "fingerprint": "01cd9086703baab4bbeaa230a570df460cae45ec65cec1fb9deaae62ba27a444",
+      "fingerprint": "2e976a843206b6c42904fcb0b3f2d0a62747febe9edbe93f1b2cee6f0eca9684",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "b75215663ab4edf72d498950c6f02d04b835e701289e80306a20f2c8abc90937"
+        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "0dc04f9cb95c146573b5259e12b00d904c98250e327a55aa22098f275ab24e1c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "d9e24b0b3d7156a597be6dc6d904c86e173b63d210a357bf5866ef27449faa95",
+      "fingerprint": "cc9b9ce08aed4ff04070f8ab16be6ad67f6b869a6bff9b0a88f3dae8c9a50580",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "412e6a25995d059ac453db54ed981de01b3632a0c074f7497e5a3ee01cd6af96"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "e603929d1ce0006c54e8e50f6e91576c3f16f0ed5bc42559dc7c7d8a1770cc9c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
-      "fingerprint": "03f1a2fce4b1ef517879ef6bb906fe1bf925bd5250fb32a2c2853e564ab9782e",
+      "fingerprint": "5767174173239c1fab47997f975bf858b9e92101619f1608bdc9df8575c98559",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "48daffa8b62e08fd051ab7ccbcdfc68cd195f470205ebede63ca474c90889b4f"
+        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "4464c4783cec3105b3418b39348471909bbbc337b42815dde43a39c4f8eb4824"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/type-aliases/RecorderKeyMode.md": {
-      "fingerprint": "6c46319595b9751b960f50894f3eec47ea2ef7dcdb76a50568d58dab42f7386f",
+      "fingerprint": "58df06ad1f0e0d3bae291445f8baad2d39f050f515196eb042351265b50b6fa8",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderKeyMode.md": "757c054db58be1a42e9c92746f698ebad059b621047e11c2e5500061676dbac8"
+        "docs/reference/type-aliases/RecorderKeyMode.md": "aaa3f8cd321272a44e1c6614bda245fa5c6c358a055111a525aa0ad1a3cb988d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/alpine-hotkeys/tsconfig.docs.json": {
       "fingerprint": "2ae425b102b1ea8fdb67e00ada8c04eb02af8ce1b351a1efa37d6b54c1b580ac",
@@ -5552,16 +5518,14 @@
       ]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "ac0977ec3c85f0a67025cca2b1989a36de54f2c47733c6494803cc6f22417cc1",
+      "fingerprint": "4bb5661d06e5172a9a0723dbeb9347eda7f90977d3f03b837f81ef0419cc0694",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "42b9cbeab7ddcedc64f6fe5454f441d5301f652d7d921b7510350e68c82bfefa"
+        "packages/hotkeys/src/key-state-tracker.ts": "42532867041d349e306eaf87c7a12c99ccc40a70a675908c6a36305acdf1582e"
       },
-      "head": "0840d8fe7630b3b76ee4d19618224c3ef2c1d27b",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Internal cleanup with no public behavior or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/src/key-state-tracker.ts at 0840d8fe7630b3b76ee4d19618224c3ef2c1d27b"
-      ]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:packages/hotkeys/src/validate.ts": {
       "fingerprint": "0f9690ccdbcba7a3478990102a3f72b2174a397cd69c1ee5ce965f9494ba14e3",
@@ -5904,14 +5868,14 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRecorder.ts": {
-      "fingerprint": "bee734562eabc13db77453d2e65ea787c9e57958718ffa6c136a1ed5f01ba5f4",
+      "fingerprint": "9317943daed77a473e02a687ec958a20708f8358c9219bc1bd075562b554b7d3",
       "snapshot": {
-        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "b270d6525db5a1fff283350f5fc1c67797e1ed7bece7f641597236a54e172620"
+        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "47e8852f25f3b78830efab08c19f1bff9de238b92d2a0746c57538dbbe4b457e"
       },
-      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
-      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRegistrations.ts": {
       "fingerprint": "92b31b1178729a9bfc5e4b9c585b84b1d2bb13dea04470dbb07ce68adac75241",
@@ -6455,16 +6419,14 @@
       ]
     },
     "source:docs/reference/interfaces/FormatDisplayOptions.md": {
-      "fingerprint": "cb5d9d78e9dba284ac398fa363314c17848efaebfe6d8259ad1084a627e811af",
+      "fingerprint": "ae94d586b569889e65a125c72cbc484fc70ec8841f15bd8bea743871039cdb5b",
       "snapshot": {
-        "docs/reference/interfaces/FormatDisplayOptions.md": "404802899102a3f92afcd4a8e3e3cf65a67716d59c9d0dbc0aa0209325559984"
+        "docs/reference/interfaces/FormatDisplayOptions.md": "78cd97b02433f91d1643713190395eae5f9fb101c8cfdd006f5b00f06807c6a8"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/type-aliases/DisplayHotkey.md": {
       "fingerprint": "ece4a28d59986c3086d406b8e6cd7616da038632b8290b427f9b19c5d82c352b",
@@ -6734,28 +6696,24 @@
       "evidence": ["packages/hotkeys/src/_keyboard-event.ts"]
     },
     "source:packages/hotkeys/src/format.ts": {
-      "fingerprint": "9a5a50b3270d0416a0467a4a4fa1e698fe821eff867f88b13705a6cd4725c361",
+      "fingerprint": "a1b5e5de70aa8d427c9b07d130fa903fdd356695ba76bc1065fa4c410efe1e5c",
       "snapshot": {
-        "packages/hotkeys/src/format.ts": "833dfef32c5807f43c27021a41f5c67d90102bee975721aee179f082944f4b99"
+        "packages/hotkeys/src/format.ts": "fb19fe1a57ae4f33ee798071530528ed94c12cebe18fe49e7eb6d1195841969d"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "7ecb682ba92207b213a2031590779b891714fc2e2a79569a156681931e85eb90",
+      "fingerprint": "8baf2eeb2a45aee3187a0e72cc1113af6c5aefb61102d419849ec71cdd4e3382",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "c3b0b4ac19d16a4d63e083fc2e4a1e7740a02fbc63a3d5fb9593838e81bfd42d"
+        "packages/hotkeys/tests/format.test.ts": "07fd982ebc8731e6ae81b4b4a259c5f942ae00ed75704af3c683a6b571c10d18"
       },
-      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/format.test.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
       "fingerprint": "a2a7f6b2b4befc43241369c4bba46a4fa58dddc9e38d36453b37f903791ef695",
@@ -6800,14 +6758,14 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "57e7ff879cc0c4030498678190fbdb02c8a8b3f205def7a1b7543bbc2622a3e7",
+      "fingerprint": "101751075d3627975eeca613f6548030d9bc0f11abe16225eab0d7f2c44ac032",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "f009a03b8faa6cd839af8d85e7bc5851d1ef05e3f9ce6afc901175a478120ae2"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "d78bdfa705cccf09d9555c532ed3caf414a1e98e0f94ef06d42c59ce80e02a27"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
-      "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
@@ -7476,14 +7434,14 @@
       ]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "665b5fdd17ee34c51cb44737a4919e0286ada7bfc4a5618216065b9d6b533bb9",
+      "fingerprint": "7a3ab1cfd70a64f8edb9e9e31becc214b3e4d18c2ff6910ec83cf707370f60ce",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "b70de4f6d529e8943d9006411f911ee70e7c202391dcc26ddc87a868b9cde6e1"
+        "packages/hotkeys/src/_target-listeners.ts": "c5f04dcf0a305367d792999d73c686ac453a0265adc6e114718fdfab53eb53aa"
       },
-      "head": "a82e0a38a1d38844690882ca45cab83b3cd0a01e",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Implementation, tests or generated reference for the Escape layer rule. The core skill already describes the behavior.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
       "fingerprint": "a1920d2364f4135a11c4a41d451299dabe36429292237d1293d2da0ed9e40efd",
@@ -7498,14 +7456,14 @@
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "e1f0cbda71da27353ef12f29d83ec7373eed6313c279655114942077881945d3",
+      "fingerprint": "2aff8b2fc2a8b9e66e937f71c83de14760795a3abb7b944f9cf8dab9b59d2b36",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "7be3e73399c7eef85382cc15f6f0192fc546ec8fe8203598d8eb713fa3261c73"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "d305343be8c2f36e02e308855efa32c6c9135745c836868c8d8b46288b236fb2"
       },
-      "head": "64035d6dff014cf516a25c11430bb8d6bdfdf471",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Bug fix or regression test with no change to documented API or skill guidance.",
-      "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
       "fingerprint": "9f0f0cd4b3f12d94bc2b9e77069468bbf7419dbe4886fe80dbacdd23897c5636",
@@ -12258,16 +12216,14 @@
       "evidence": ["docs/reference/type-aliases/HotkeyIssueReason.md"]
     },
     "source:docs/reference/type-aliases/RecorderRejectionReason.md": {
-      "fingerprint": "e0e05250ec047a0fef43ed0c3a2c150a99c6b24e5a59b7a76f364871fad9c171",
+      "fingerprint": "20515a48a796317f01599f51c4ddb61e968d2b370657024b6025a6cbc5fba031",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderRejectionReason.md": "c6f0d1f703777f2be6529af6dd5f9a9f695243317ace083765fed211513030ca"
+        "docs/reference/type-aliases/RecorderRejectionReason.md": "efbd73a50fb3c98d8b745f133c63e9a63e6284f46ce49c8d31ed99c16893008f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:examples/ember/useHotkeys/app/templates/application.gts": {
       "fingerprint": "16779627970d0c79bb13ec3a1895540a6ca8d2f5624e1521f9e523b8447fa5ad",
@@ -12376,14 +12332,14 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "43de69ffd9b4a513145d7926c66bfe0269f5a8ea98835feb07c52c7d183ff4db",
+      "fingerprint": "1ea52c2e96fc84928a751f080e208203ec59374d54ee3c41b42b021ddf2c09e8",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "2cf5fc7adc4e04bebb731778a59c92f91fa2896b7d5e813a4c0068ec2cc8916e"
+        "packages/hotkeys/src/_recorder-chord.ts": "d278c8a88fc7d0c00e481aab9f0542d1ef9f8e930a246b957128c7e1eb98c016"
       },
-      "head": "64035d6dff014cf516a25c11430bb8d6bdfdf471",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Bug fix or regression test with no change to documented API or skill guidance.",
-      "evidence": ["packages/hotkeys/src/_recorder-chord.ts"]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
       "fingerprint": "38b5b292f0b5970d80856bdac43e365f06b9a371b85094ee392a944d61b72d22",
@@ -19882,16 +19838,14 @@
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker-ssr.test.ts": {
-      "fingerprint": "13fc762e5ffc142db29e86c72c6a56d8415fd44f562bbb173476c4fde8eecb5d",
+      "fingerprint": "fcf19159ff0b1634f1d1bad63c10b0d52cf32c0e4361b8a16cf32f8918e0ba8b",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker-ssr.test.ts": "85027c11479bdab3bacdf83f6484f9f0a187f309bf54878426daaff7ff9b630c"
+        "packages/hotkeys/tests/key-state-tracker-ssr.test.ts": "f5665e779961dda5b5177f81faa0319550a44f82f5bbb059fbe456fdc31a90f2"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/key-state-tracker-ssr.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/lit-hotkeys/tests/ssr-dom-shim.test.ts": {
       "fingerprint": "8f3a08795fa3943fdf43a37d0fed3176b3e4931adaa2e816d1a817f911615883",
@@ -21539,16 +21493,14 @@
       "evidence": ["No skill references this file"]
     },
     "source:docs/reference/interfaces/HotkeyRecorderActions.md": {
-      "fingerprint": "14ee123e15112493e554fcc6d1bf3694c99ed11324b2672236f470180a3c9bd5",
+      "fingerprint": "08ab8cea7c98b8ece8357a5b64ecfba457fc301963acb3a8ab02620466b77c29",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderActions.md": "4b1ea3e94f8ab1801e8665bbab1fa85e375dc34465d96662712a99b2516fae04"
+        "docs/reference/interfaces/HotkeyRecorderActions.md": "c1cdd103d04a39570a9185b9a7d8d478f16646f3a5a32f7178d83c1d9070fc78"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
       "fingerprint": "7918003d1f9c7f2b8f7596d384408697210a4a4a42f42daba14e27f0b0f0748f",
@@ -23729,16 +23681,14 @@
       ]
     },
     "source:docs/framework/ember/guides/ssr.md": {
-      "fingerprint": "a174c29589b43d731c2fa964948e60dba538012afbb407ab1f3294c616afa697",
+      "fingerprint": "5cd5420fb23dc0fd2e8cb6b4ed66710ab40208f9c8f35a07ff68af9e7267f55b",
       "snapshot": {
-        "docs/framework/ember/guides/ssr.md": "3ac5e5da75de091f0fac8796aefdb58f4bf10c09724a588a0692aac6c65138f8"
+        "docs/framework/ember/guides/ssr.md": "2956f6884d04927af9b5a33141e573ecd04e66341d8d49a8fbd9efd40c5f23ba"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
       "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/ember/guides/ssr.md at bb8531891694fb630be3c91872f10a8377870d66"
-      ]
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:docs/framework/ember/guides/testing.md": {
       "fingerprint": "372cb9f3d2b715b52c1f15e1179a24b9239fcfc49e2e5ff583401cb171a66d0a",
@@ -24015,6 +23965,46 @@
       "evidence": [
         "git grep NoOp in packages/*/skills and docs finds nothing; devtools panel tests pass"
       ]
+    },
+    "source:e2e/browser/zone-passive-listener.spec.ts": {
+      "fingerprint": "aaeb6d12ab0b019d85016884eb69a6a2f088472efff412df83a86d18435c0717",
+      "snapshot": {
+        "e2e/browser/zone-passive-listener.spec.ts": "197e9f4b651e4852295f6fbbf40a6850c11eb60a7484c09524f483a64b250958"
+      },
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "outcome": "no-change",
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
+    },
+    "source:packages/hotkeys/src/_listen.ts": {
+      "fingerprint": "f81790ec76c6dc7eb04ebd1a8e347c8ceaf6075cb8ce07537ca253bb4a88e263",
+      "snapshot": {
+        "packages/hotkeys/src/_listen.ts": "39eebd9ea1ce5a1cc90892b9149906b3f4f19de490ba710635515692d3e8ef5e"
+      },
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
+      "outcome": "no-change",
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
+    },
+    "source:packages/solid-hotkeys/tests/createHotkeyRecorder.server.test.tsx": {
+      "fingerprint": "59c380cbbc0cd354ed9a57d63eaa9696f4c41aec25647ce7ceaae903ec3b74b2",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/createHotkeyRecorder.server.test.tsx": "a4a6bd079abc19ce4b8a3cc487c83c7051941ac679c1c645b2477505b7a3ba82"
+      },
+      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "outcome": "no-change",
+      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
+      "evidence": ["Core, adapter and e2e suites pass"]
+    },
+    "source:packages/hotkeys/tests/listen.test.ts": {
+      "fingerprint": "b29ef86f4b17d220c1d56d175a3e808b8c6bead795b9079c24a18040a8843be6",
+      "snapshot": {
+        "packages/hotkeys/tests/listen.test.ts": "f1df9946c52066db5a692f1188f5164bc54962369d23e9c5bb8960766bd4789e"
+      },
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
+      "outcome": "no-change",
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     }
   }
 }

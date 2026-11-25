@@ -1670,7 +1670,14 @@ export class HotkeyManager {
     this.#notify()
 
     const prevented: boolean = event.defaultPrevented
-    registration.callback(event, context)
+    try {
+      registration.callback(event, context)
+    } catch (error) {
+      // Like separate listeners: report it uncaught and run the other hotkeys.
+      queueMicrotask(() => {
+        throw error
+      })
+    }
     // A callback's own preventDefault counts as the hotkey's.
     if (!prevented && event.defaultPrevented) this.#prevented.add(event)
   }

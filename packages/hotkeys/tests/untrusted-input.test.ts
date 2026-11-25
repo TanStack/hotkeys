@@ -100,6 +100,29 @@ describe('recording whitespace', () => {
   })
 })
 
+// Chrome autofill and some extensions send a plain `Event` named keydown,
+// with neither `key` nor `code`
+describe('recording a key event without key or code', () => {
+  it.each([1, 3])('ignores it with maxSteps %i', (maxSteps) => {
+    const onRecord = vi.fn()
+    const onReject = vi.fn()
+    const recorder = new HotkeyRecorder({ maxSteps, onRecord, onReject })
+    recorder.start()
+    expect(() =>
+      document.body.dispatchEvent(
+        new Event('keydown', { bubbles: true, cancelable: true }),
+      ),
+    ).not.toThrow()
+    expect(recorder.store.state.steps).toEqual([])
+    expect(onReject).toHaveBeenCalledWith({ reason: 'missing-code' })
+    // Recording carries on
+    keydown({ key: 'k', code: 'KeyK', target: document.body })
+    recorder.commit()
+    expect(onRecord).toHaveBeenCalledWith('K', expect.anything())
+    recorder.destroy()
+  })
+})
+
 describe('registering a hotkey with an unknown key name', () => {
   it('warns in development that it may never fire', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})

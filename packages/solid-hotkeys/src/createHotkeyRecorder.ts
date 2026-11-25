@@ -70,6 +70,10 @@ export function createHotkeyRecorder(
   // still be loading). The render effect below reads them and applies every
   // value before the first render.
   const recorder = new HotkeyRecorder({} as HotkeySequenceRecorderOptions)
+  // Registered before the selectors subscribe, so it runs after they
+  // unsubscribe (Solid runs cleanups in reverse). Its reset then writes no
+  // signal, which a server render would report as SERVER_WRITE.
+  onCleanup(() => recorder.destroy())
 
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)
   const steps = useSelector(recorder.store, (state) => state.steps)
@@ -81,10 +85,6 @@ export function createHotkeyRecorder(
   // Apply the options, and again whenever they change
   createRenderEffect(resolve, (resolved) => {
     recorder.setOptions(resolved)
-  })
-
-  onCleanup(() => {
-    recorder.destroy()
   })
 
   return {

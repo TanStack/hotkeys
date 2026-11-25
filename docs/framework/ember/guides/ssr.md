@@ -124,3 +124,7 @@ Prember renders pages with FastBoot at build time. A page rendered at build time
 ### Development warning
 
 In development, formatting a label in FastBoot without a platform logs a warning once. Without a platform, FastBoot renders `'linux'` labels, so users on macOS and Windows get a different label once the app boots. A developer on Linux never sees the problem, which is why the warning exists. The warning isn't included in production builds.
+
+## Held keys and hints
+
+The server has no keyboard. In FastBoot, `useHeldKeys` and `useHeldKeyCodes` return no keys, `useKeyHold` returns `false`, and `useHotkeyHint` returns `false`. Hotkeys register nothing on the server, so they start working once the app boots in the browser.

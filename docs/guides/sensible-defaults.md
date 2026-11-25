@@ -441,6 +441,7 @@ While recording is active:
 - `Backspace` or `Delete` undoes the last sequence step, or clears when empty.
 - `Enter` commits multi-step sequences (`maxSteps: Infinity`).
 - Existing registered hotkeys pause automatically, while typing in other inputs passes through.
+- To show the modifiers held so far, join the held modifier keys from the key state tracker with `+` and pass them to `formatForDisplay`. Leave other keys out, because a string that starts with a non-modifier key formats as empty. It orders them as in a chord: `⌃ ⌥ ⇧ ⌘` on macOS, `Ctrl+Alt+Shift+Win` elsewhere.
 - `AltGr` presses are rejected unless `recordBy: 'key'`, except `AltGr+Home` on Windows which records as `Control+Alt+Home`.
 
 ## Held keys reset when the window loses focus
