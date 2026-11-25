@@ -15,5 +15,3 @@ const plugins = createSolidPlugin({
 })
 
 export const hotkeysDevtoolsPlugin: HotkeysDevtoolsPluginFactory = plugins[0]
-export const hotkeysDevtoolsNoOpPlugin: HotkeysDevtoolsPluginFactory =
-  plugins[1]

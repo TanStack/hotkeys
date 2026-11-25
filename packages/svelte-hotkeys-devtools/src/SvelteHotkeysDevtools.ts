@@ -27,5 +27,3 @@ function withPanelDefaults(
 // Annotated so the emitted types keep Svelte's default `Component` bindings.
 export const HotkeysDevtoolsPanel: Component<HotkeysDevtoolsSvelteInit> =
   withPanelDefaults(panels[0])
-export const HotkeysDevtoolsPanelNoOp: Component<HotkeysDevtoolsSvelteInit> =
-  withPanelDefaults(panels[1])

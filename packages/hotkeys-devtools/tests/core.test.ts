@@ -1,6 +1,7 @@
 import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeysDevtoolsCore, HotkeysDevtoolsCoreNoOp } from '../src/core'
+import { HotkeysDevtoolsCore } from '../src/core'
+import { HotkeysDevtoolsCoreNoOp } from '../src/noop'
 
 afterEach(() => {
   HotkeyManager.resetInstance()
@@ -53,6 +54,7 @@ describe('entry points', () => {
       vi.stubEnv('NODE_ENV', env)
       vi.resetModules()
       const core = await import('../src/core')
+      const noop = await import('../src/noop')
       const mod =
         entry === 'index'
           ? await import('../src/index')
@@ -60,7 +62,7 @@ describe('entry points', () => {
       expect(mod.HotkeysDevtoolsCore).toBe(
         expected === 'real'
           ? core.HotkeysDevtoolsCore
-          : core.HotkeysDevtoolsCoreNoOp,
+          : noop.HotkeysDevtoolsCoreNoOp,
       )
     },
   )

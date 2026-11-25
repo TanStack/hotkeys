@@ -37,7 +37,7 @@ function resolveProps(
 }
 
 function createPanel(
-  Core: HotkeysDevtoolsCoreClass | null,
+  Core: HotkeysDevtoolsCoreClass,
 ): DefineComponent<HotkeysDevtoolsVuePanelProps> {
   return defineComponent({
     name: 'HotkeysDevtoolsPanel',
@@ -50,7 +50,6 @@ function createPanel(
       devtoolsOpen: { type: Boolean, default: undefined },
     },
     setup(props) {
-      if (!Core) return () => null
       const el = ref<HTMLElement | null>(null)
       let devtools: InstanceType<HotkeysDevtoolsCoreClass> | null = null
 
@@ -84,4 +83,3 @@ function createPanel(
 }
 
 export const HotkeysDevtoolsPanel = createPanel(HotkeysDevtoolsCore)
-export const HotkeysDevtoolsPanelNoOp = createPanel(null)

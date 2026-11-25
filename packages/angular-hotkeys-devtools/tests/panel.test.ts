@@ -1,9 +1,10 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { HotkeysDevtoolsPanel } from '../src/AngularHotkeysDevtools'
 import {
-  HotkeysDevtoolsPanel,
   HotkeysDevtoolsPanelNoOp,
-} from '../src/AngularHotkeysDevtools'
-import { hotkeysDevtoolsNoOpPlugin, hotkeysDevtoolsPlugin } from '../src/plugin'
+  hotkeysDevtoolsNoOpPlugin,
+} from '../src/noop'
+import { hotkeysDevtoolsPlugin } from '../src/plugin'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))
 vi.mock('@tanstack/hotkeys-devtools/production', async (importOriginal) => ({

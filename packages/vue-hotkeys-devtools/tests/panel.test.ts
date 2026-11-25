@@ -1,9 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { createApp, h, nextTick, ref } from 'vue'
-import {
-  HotkeysDevtoolsPanel,
-  HotkeysDevtoolsPanelNoOp,
-} from '../src/VueHotkeysDevtools'
+import { HotkeysDevtoolsPanel } from '../src/VueHotkeysDevtools'
+import { HotkeysDevtoolsPanelNoOp } from '../src/noop'
 import { hotkeysDevtoolsPlugin } from '../src/plugin'
 import type { App, Component } from 'vue'
 

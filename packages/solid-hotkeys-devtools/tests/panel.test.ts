@@ -1,10 +1,8 @@
 import { render } from '@solidjs/web'
 import { createComponent, createSignal, flush } from 'solid-js'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
-import {
-  HotkeysDevtoolsPanel,
-  HotkeysDevtoolsPanelNoOp,
-} from '../src/SolidHotkeysDevtools'
+import { HotkeysDevtoolsPanel } from '../src/SolidHotkeysDevtools'
+import { HotkeysDevtoolsPanelNoOp } from '../src/noop'
 import { hotkeysDevtoolsPlugin } from '../src/plugin'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))

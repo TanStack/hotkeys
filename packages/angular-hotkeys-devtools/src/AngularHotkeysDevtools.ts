@@ -7,8 +7,7 @@ import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/produ
 
 export interface HotkeysDevtoolsAngularInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
-const [createPanel, HotkeysDevtoolsPanelNoOp] =
-  createAngularPanel(HotkeysDevtoolsCore)
+const [createPanel] = createAngularPanel(HotkeysDevtoolsCore)
 
 // Angular Devtools distinguishes render factories from components by prototype.
 export const HotkeysDevtoolsPanel = () => {
@@ -24,5 +23,3 @@ export const HotkeysDevtoolsPanel = () => {
       }
     }, host)
 }
-
-export { HotkeysDevtoolsPanelNoOp }
