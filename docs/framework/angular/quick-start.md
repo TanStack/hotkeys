@@ -53,8 +53,8 @@ export class EditorComponent {
   constructor() {
     injectHotkeys([
       { hotkey: 'Mod+S', callback: () => this.save() },
-      { hotkey: 'Mod+Z', callback: () => this.undo() },
-      { hotkey: 'Mod+Shift+Z', callback: () => this.redo() },
+      { hotkey: 'Mod+Enter', callback: () => this.publish() },
+      { hotkey: 'Mod+D', callback: () => this.duplicate() },
     ])
   }
 }

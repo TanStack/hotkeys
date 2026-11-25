@@ -26,13 +26,14 @@ afterEach(() => {
 describe.each(['hotkey', 'sequence'] as const)('%s in ARIA widgets', (kind) => {
   // Sequences end with the hotkey under test, so the widget key is checked as
   // a later sequence step rather than collapsing to a chord. They start with
-  // F2 because typeahead widgets own letter keys.
+  // Pause because typeahead widgets own letter keys, and a function key as
+  // the first step would resolve `ignoreInputs: 'auto'` to false.
   function register(hotkey: HotkeyChord, options: HotkeyOptions = {}) {
     const callback = vi.fn()
     if (kind === 'hotkey') {
       HotkeyManager.getInstance().register(hotkey, callback, options)
     } else {
-      HotkeyManager.getInstance().register(['F2', hotkey], callback, options)
+      HotkeyManager.getInstance().register(['Pause', hotkey], callback, options)
     }
     return callback
   }
@@ -43,7 +44,7 @@ describe.each(['hotkey', 'sequence'] as const)('%s in ARIA widgets', (kind) => {
     options: KeyboardEventInit = {},
   ) {
     if (kind === 'sequence')
-      keydown({ key: 'F2', composed: true, target: element })
+      keydown({ key: 'Pause', composed: true, target: element })
     return keydown({ key, composed: true, ...options, target: element })
   }
 

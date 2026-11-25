@@ -47,6 +47,25 @@ test.describe('typing in inputs (ignoreInputs: auto)', () => {
         { name: 'close', focus: id },
       ])
     })
+
+    test(`function and media keys still fire in #${id}`, async ({
+      page,
+      harness,
+    }) => {
+      const hk = await harness(FORM)
+      await hk.register('rename', 'F2')
+      await hk.register('context', 'Shift+F10')
+      await hk.register('play', 'MediaPlayPause')
+      await page.focus(`#${id}`)
+      await page.keyboard.press('F2')
+      await page.keyboard.press('Shift+F10')
+      await page.keyboard.press('MediaPlayPause')
+      expect(await hk.fired()).toMatchObject([
+        { name: 'rename', focus: id },
+        { name: 'context', focus: id },
+        { name: 'play', focus: id },
+      ])
+    })
   }
 
   test('ignoreInputs: false fires single keys in inputs', async ({

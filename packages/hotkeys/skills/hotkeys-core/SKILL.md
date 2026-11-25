@@ -30,16 +30,16 @@ The library owns the keyboard. Register every shortcut with your framework adapt
 
 ## Use the library instead of rebuilding it
 
-| Instead of                                                            | Use                                                                                                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| A `keydown` listener that checks `event.key`, `metaKey`, or `ctrlKey` | A registered hotkey such as `'Mod+S'`. Inside a widget's own key handler, `matchesKeyboardEvent(event, 'Mod+Enter')`.                         |
-| `isMac` checks and `⌘`/`Ctrl` label maps                              | `Mod` in the hotkey, and the adapter's label primitive, such as `useFormatForDisplay()`, for labels of hotkeys and of held keys as `{ key }`  |
-| Skipping events from text fields, calling `preventDefault`            | The defaults: single keys and Shift/Alt chords are skipped while typing, `Mod` chords and `Escape` still fire, and matched keys are prevented |
-| A shortcut registry, service, context, or wrapper hook                | The adapter API, called where each action lives. For one list of every shortcut, load `@tanstack/hotkeys#app-hotkeys`.                        |
-| A "shortcuts enabled" flag or topmost-dialog tracking                 | Scopes, with `exclusive` for dialogs                                                                                                          |
-| A hand-written shortcut list for a help dialog                        | `meta: { name }` and the adapter's registrations list, or app hotkeys                                                                         |
-| `keydown`/`keyup` state that tracks held keys                         | The adapter's held-key and hint APIs                                                                                                          |
-| Capturing the next key press for a settings screen                    | The adapter's recorder                                                                                                                        |
+| Instead of                                                            | Use                                                                                                                                                                       |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A `keydown` listener that checks `event.key`, `metaKey`, or `ctrlKey` | A registered hotkey such as `'Mod+S'`. Inside a widget's own key handler, `matchesKeyboardEvent(event, 'Mod+Enter')`.                                                     |
+| `isMac` checks and `⌘`/`Ctrl` label maps                              | `Mod` in the hotkey, and the adapter's label primitive, such as `useFormatForDisplay()`, for labels of hotkeys and of held keys as `{ key }`                              |
+| Skipping events from text fields, calling `preventDefault`            | The defaults: single keys and Shift/Alt chords are skipped while typing, `Mod` chords, `Escape`, function keys, and media keys still fire, and matched keys are prevented |
+| A shortcut registry, service, context, or wrapper hook                | The adapter API, called where each action lives. For one list of every shortcut, load `@tanstack/hotkeys#app-hotkeys`.                                                    |
+| A "shortcuts enabled" flag or topmost-dialog tracking                 | Scopes, with `exclusive` for dialogs                                                                                                                                      |
+| A hand-written shortcut list for a help dialog                        | `meta: { name }` and the adapter's registrations list, or app hotkeys                                                                                                     |
+| `keydown`/`keyup` state that tracks held keys                         | The adapter's held-key and hint APIs                                                                                                                                      |
+| Capturing the next key press for a settings screen                    | The adapter's recorder                                                                                                                                                    |
 
 A workaround loses what the library tracks: scopes stop suspending it, recorders stop pausing it, devtools stop listing it, and layout and platform handling disappear.
 

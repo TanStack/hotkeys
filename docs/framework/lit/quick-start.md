@@ -48,14 +48,14 @@ class MyEditor extends LitElement {
     saveDocument()
   }
 
-  @hotkey('Mod+Z')
-  undo() {
-    undoAction()
+  @hotkey('Mod+Enter')
+  publish() {
+    publishDocument()
   }
 
-  @hotkey('Mod+Shift+Z')
-  redo() {
-    redoAction()
+  @hotkey('Mod+D')
+  duplicate() {
+    duplicateDocument()
   }
 }
 ```

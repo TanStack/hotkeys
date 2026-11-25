@@ -904,6 +904,7 @@ describe('HotkeyManager', () => {
         shiftKey?: boolean
         altKey?: boolean
         metaKey?: boolean
+        code?: string
       } = {},
     ): KeyboardEvent {
       // Focus the element so document.activeElement is set
@@ -940,6 +941,20 @@ describe('HotkeyManager', () => {
       ['K', 'k', {}, false],
       ['Mod+S', 's', { metaKey: true }, true],
       ['Escape', 'Escape', {}, true],
+      // Function and media keys type nothing, so they fire in text fields
+      ['F5', 'F5', {}, true],
+      ['Shift+F5', 'F5', { shiftKey: true }, true],
+      ['Alt+F2', 'F2', { altKey: true }, true],
+      ['[F2]', 'F2', { code: 'F2' }, true],
+      ['F24', 'F24', {}, true],
+      ['MediaPlayPause', 'MediaPlayPause', {}, true],
+      ['AudioVolumeUp', 'AudioVolumeUp', {}, true],
+      ['BrowserBack', 'BrowserBack', {}, true],
+      ['LaunchMail', 'LaunchMail', {}, true],
+      // Keys that type, move the caret, or edit stay with the text field
+      ['F', 'f', {}, false],
+      ['Home', 'Home', {}, false],
+      ['Insert', 'Insert', {}, false],
     ] as const)(
       "resolves ignoreInputs: 'auto' for %s",
       (hotkey, key, modifiers, firesInInput) => {
@@ -966,6 +981,27 @@ describe('HotkeyManager', () => {
         input.remove()
       },
     )
+
+    it('fires a sequence that starts with a function key in a text field', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['F2', 'R'], callback, {
+        platform: 'mac',
+      })
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      dispatchKeyboardEventFromElement(document, input, 'keydown', 'F2')
+      const r = dispatchKeyboardEventFromElement(
+        document,
+        input,
+        'keydown',
+        'r',
+      )
+
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(r.defaultPrevented).toBe(true)
+      input.remove()
+    })
 
     it.each(['auto', undefined] as const)(
       'restores the automatic default with setOptions({ ignoreInputs: %s })',
