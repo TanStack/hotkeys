@@ -593,6 +593,76 @@ describe('HotkeyManager', () => {
       expect(fallback).not.toHaveBeenCalled()
     })
 
+    it('fires only the physical registration when a key and its code both match', () => {
+      const manager = HotkeyManager.getInstance()
+      const enter = vi.fn()
+      const numpadEnter = vi.fn()
+      manager.register('Enter', enter)
+      manager.register('[NumpadEnter]', numpadEnter)
+
+      keydown({ key: 'Enter', code: 'NumpadEnter', target: document })
+      expect(numpadEnter).toHaveBeenCalledOnce()
+      expect(enter).not.toHaveBeenCalled()
+
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      expect(enter).toHaveBeenCalledOnce()
+      expect(numpadEnter).toHaveBeenCalledOnce()
+    })
+
+    it('lets the active scope decide before a physical registration does', () => {
+      const manager = HotkeyManager.getInstance()
+      const outer = vi.fn()
+      const dialog = vi.fn()
+      manager.register('Mod+[KeyK]', outer, { platform: 'windows' })
+      const release = manager.activateScope('dialog')
+      manager.register('Mod+K', dialog, {
+        platform: 'windows',
+        scope: 'dialog',
+      })
+
+      keydown({ key: 'k', ctrlKey: true, code: 'KeyK', target: document })
+      expect(dialog).toHaveBeenCalledOnce()
+      expect(outer).not.toHaveBeenCalled()
+      release()
+    })
+
+    it('skips a registration whose scope an earlier callback released', () => {
+      const manager = HotkeyManager.getInstance()
+      const release = manager.activateScope('dialog')
+      const second = vi.fn()
+      manager.register('Enter', () => release(), { scope: 'dialog' })
+      manager.register('Enter', second, {
+        scope: 'dialog',
+        conflictBehavior: 'allow',
+      })
+
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      expect(second).not.toHaveBeenCalled()
+    })
+
+    it('skips a registration that an earlier callback suspended with an exclusive scope', () => {
+      const manager = HotkeyManager.getInstance()
+      const release = manager.activateScope('dialog')
+      let releaseModal: (() => void) | undefined
+      const second = vi.fn()
+      manager.register(
+        'Enter',
+        () => {
+          releaseModal = manager.activateScope('modal', { exclusive: true })
+        },
+        { scope: 'dialog' },
+      )
+      manager.register('Enter', second, {
+        scope: 'dialog',
+        conflictBehavior: 'allow',
+      })
+
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      expect(second).not.toHaveBeenCalled()
+      releaseModal?.()
+      release()
+    })
+
     it('supports an explicit physical code registration', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()

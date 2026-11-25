@@ -132,6 +132,32 @@ describe('registering a hotkey with an unknown key name', () => {
     )
   })
 
+  // macOS reports Cmd+Shift+= as `=`, so `Mod++` never sees `+` there
+  it('warns that Mod with a US shifted symbol does not fire on a US Mac', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const manager = getHotkeyManager()
+    manager.register('Mod++', () => {}, { platform: 'mac' })
+    expect(warn).toHaveBeenCalledWith(
+      "[hotkeys] 'Mod++' does not fire on a US Mac keyboard, where Command+Shift+= reports '='. Register it with Shift and that key too.",
+    )
+    warn.mockClear()
+    // Once per hotkey, so re-registering on every render stays quiet
+    manager.register('Mod++', () => {}, {
+      platform: 'mac',
+      conflictBehavior: 'allow',
+    })
+    expect(warn).not.toHaveBeenCalled()
+    for (const hotkey of ['Mod+?', 'Mod+>', 'Mod+!'] as Array<HotkeyChord>)
+      manager.register(hotkey, () => {}, { platform: 'mac' })
+    expect(warn).toHaveBeenCalledTimes(3)
+    warn.mockClear()
+    // Elsewhere, and with Option, the character arrives
+    manager.register('Mod++', () => {}, { platform: 'windows' })
+    manager.register('Mod+Alt+?', () => {}, { platform: 'mac' })
+    manager.register('Mod+=', () => {}, { platform: 'mac' })
+    expect(warn).not.toHaveBeenCalled()
+  })
+
   it('does not warn for typed hotkeys', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const manager = getHotkeyManager()

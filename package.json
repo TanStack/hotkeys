@@ -56,7 +56,7 @@
     {
       "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "13.5 KB"
+      "limit": "14 KB"
     },
     {
       "name": "HotkeyManager",

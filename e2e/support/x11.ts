@@ -68,6 +68,12 @@ export const KEYCODES = {
   NumpadDecimal: 91,
   Enter: 36,
   Backspace: 22,
+  // Keys for the shifted-symbol and Q-key cases
+  Minus: 20,
+  Equal: 21,
+  KeyW: 25,
+  Period: 60,
+  Tab: 23,
 } as const
 
 /**
