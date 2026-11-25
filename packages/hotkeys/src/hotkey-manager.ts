@@ -568,6 +568,9 @@ interface ScopeActivation {
  * top.unregister()
  * ```
  */
+/** Mac shifted-symbol hotkeys already warned about, in development only. */
+let warnedOnMac: Set<string> | undefined
+
 export class HotkeyManager {
   /**
    * The TanStack Store containing all hotkey registrations, chords and sequences.
@@ -976,10 +979,18 @@ export class HotkeyManager {
         // macOS reports the unshifted US character with Command held, so
         // Cmd+Shift+= arrives as `=` and a `Mod++` binding never sees `+`
         const index = key ? '~!@#$%^&*()_+{}|:"<>?'.indexOf(key) : -1
-        if (platform === 'mac' && meta && !alt && index >= 0) {
+        const text = formatForMessage(registration.hotkey)
+        if (
+          platform === 'mac' &&
+          meta &&
+          !alt &&
+          index >= 0 &&
+          !(warnedOnMac ??= new Set()).has(text)
+        ) {
+          warnedOnMac.add(text)
           const usKey = "`1234567890-=[]\\;',./"[index]
           console.warn(
-            `[hotkeys] '${formatForMessage(registration.hotkey)}' does not fire on a US Mac keyboard, where Command+Shift+${usKey} reports '${usKey}'. Register it with Shift and that key too.`,
+            `[hotkeys] '${text}' does not fire on a US Mac keyboard, where Command+Shift+${usKey} reports '${usKey}'. Register it with Shift and that key too.`,
           )
         }
       }

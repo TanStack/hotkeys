@@ -141,6 +141,12 @@ describe('registering a hotkey with an unknown key name', () => {
       "[hotkeys] 'Mod++' does not fire on a US Mac keyboard, where Command+Shift+= reports '='. Register it with Shift and that key too.",
     )
     warn.mockClear()
+    // Once per hotkey, so re-registering on every render stays quiet
+    manager.register('Mod++', () => {}, {
+      platform: 'mac',
+      conflictBehavior: 'allow',
+    })
+    expect(warn).not.toHaveBeenCalled()
     for (const hotkey of ['Mod+?', 'Mod+>', 'Mod+!'] as Array<HotkeyChord>)
       manager.register(hotkey, () => {}, { platform: 'mac' })
     expect(warn).toHaveBeenCalledTimes(3)

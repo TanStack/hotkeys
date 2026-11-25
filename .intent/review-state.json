@@ -94,7 +94,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "0fae2135b35fca62cb7b2f3d0ab434c921bdf2fcdcb3dbcc0f1d75f7baddffff",
+      "fingerprint": "6150bd9babf7c82d631bc5ac0f95e1f562d69c7e7b8c7d5af9998b8501472848",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
@@ -103,7 +103,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "68af1a502c1e60f3ab7f6061a21dbc11c281504c111b3fa13cfee76691ca84e5",
+        "packages/hotkeys/src/hotkey-manager.ts": "b352940efeb278acbcdb3aead6cf67123e5240bcd1d52668aaa3becf206ec037",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,10 +115,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "1cd45614cb001bf8278c2b0d4b8587f3c821b8f8",
+      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
       "outcome": "no-change",
-      "reason": "Dispatch rechecks registration status mid-press; no skill guidance changes.",
-      "evidence": ["hotkey-manager.test.ts exclusive-scope regression test"]
+      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
+      "evidence": ["untrusted-input.test.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "4ac9996dbda18616bd026a228bbfd5c01a886c8e58e05fee6198611096bdb867",
@@ -276,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "61edd159de8ceee7322ebcd9f70f024d92a0006d8280d1e81463259cb7090f4b",
+      "fingerprint": "13557dca5ad1b336e18bab75eade92f42671a4124286a320a1cd311cf676d4d4",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -339,7 +339,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "68af1a502c1e60f3ab7f6061a21dbc11c281504c111b3fa13cfee76691ca84e5",
+        "packages/hotkeys/src/hotkey-manager.ts": "b352940efeb278acbcdb3aead6cf67123e5240bcd1d52668aaa3becf206ec037",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -407,10 +407,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "1cd45614cb001bf8278c2b0d4b8587f3c821b8f8",
+      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
       "outcome": "no-change",
-      "reason": "Dispatch rechecks registration status mid-press; no skill guidance changes.",
-      "evidence": ["hotkey-manager.test.ts exclusive-scope regression test"]
+      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
+      "evidence": ["untrusted-input.test.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -669,24 +669,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "0f973ecba5acfa39a6a99be2f304cdc313b64081f9620c5bd3f5d47e26dd3766",
+      "fingerprint": "9e14c78ff11b7e97753228fd2768bfa58c2318de93db7f2df8da745ef0aec9ff",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "10de7bd67194bbe4ae4ab0b97f49dfdd2200c22b7167febb5f4a9cd8a777caa4"
+        "docs/reference/classes/HotkeyManager.md": "8bfc09202b5b9649209dcaeb7e108ee0a8511130a040164751904bb18f1bf2a1"
       },
-      "head": "1cd45614cb001bf8278c2b0d4b8587f3c821b8f8",
+      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
       "outcome": "no-change",
-      "reason": "Dispatch rechecks registration status mid-press; no skill guidance changes.",
-      "evidence": ["hotkey-manager.test.ts exclusive-scope regression test"]
+      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
+      "evidence": ["untrusted-input.test.ts"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "747680e99b7a01153c9625b6912febd55e31114213d360837c763b2e89a99d7d",
+      "fingerprint": "b993fe6c9ab70f01ccc91b83cb6398c583f99ef7d4d0fdc4f459ac2d3f6d6cce",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "7d8131092038462d034df3f3adea7d1b489efdd8b01cc111d6b6501c235be407"
+        "docs/reference/functions/getHotkeyManager.md": "c9500c8bb4e4a105ae5007c4f0959465b78f3bdc4a73adcd6fd6d05c148a2042"
       },
-      "head": "1cd45614cb001bf8278c2b0d4b8587f3c821b8f8",
+      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
       "outcome": "no-change",
-      "reason": "Dispatch rechecks registration status mid-press; no skill guidance changes.",
-      "evidence": ["hotkey-manager.test.ts exclusive-scope regression test"]
+      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
+      "evidence": ["untrusted-input.test.ts"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -6754,14 +6754,14 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "edecb985858a9d50777ee82543e30ebd6b49c3a5febd9cf98bb57a809180210a",
+      "fingerprint": "08bab3386b27d32ead4bdc92485e47ae0e952de3632659fa61c2943443db544e",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "057b2b5a4dcd79d7c3fbd9bab9d5496910133a20733f871b27a8ca93e54aa7bb"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "eb77b8f2777212c21d96237b8de95844a86f4db4cf092c8d1ba2353876f444f5"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
+      "evidence": ["untrusted-input.test.ts"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
