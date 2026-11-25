@@ -94,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "6150bd9babf7c82d631bc5ac0f95e1f562d69c7e7b8c7d5af9998b8501472848",
+      "fingerprint": "d2993706bbc50800985797b806597f979bc907c55d5858a3a69ec6d9f2a3ac24",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
         "docs/framework/react/guides/sequences.md": "572a3b5bb3107cffabec6282022f772475eee40959101d1d27d6d7937ea42990",
-        "docs/guides/sensible-defaults.md": "57e70f18e96ff0c7610c7c23d6b1bf5bd12d8d91db2aaccc5b5ce711b8ae1e11",
+        "docs/guides/sensible-defaults.md": "1c5450878afeaeb4e98383e67bd12bd919fa2de5149f01c2a87e5ca8e7282975",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "b352940efeb278acbcdb3aead6cf67123e5240bcd1d52668aaa3becf206ec037",
+        "packages/hotkeys/src/hotkey-manager.ts": "0e194d674e29565084761c2ab070e22a09903c5eb315dfd0e197229a84d71f11",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,10 +115,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
+      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
       "outcome": "no-change",
-      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
-      "evidence": ["untrusted-input.test.ts"]
+      "reason": "The scopes reference already says the winning scope handles a key both scopes match; the code now does that for chords on every layout.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/references/scopes.md line 5"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "4ac9996dbda18616bd026a228bbfd5c01a886c8e58e05fee6198611096bdb867",
@@ -276,7 +278,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "13557dca5ad1b336e18bab75eade92f42671a4124286a320a1cd311cf676d4d4",
+      "fingerprint": "8ee3e74c576e47ee75cd5fcbd960e0eff3e6089d57cda8cd752e75098b7868f1",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -306,7 +308,7 @@
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "57e70f18e96ff0c7610c7c23d6b1bf5bd12d8d91db2aaccc5b5ce711b8ae1e11",
+        "docs/guides/sensible-defaults.md": "1c5450878afeaeb4e98383e67bd12bd919fa2de5149f01c2a87e5ca8e7282975",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -339,7 +341,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "b352940efeb278acbcdb3aead6cf67123e5240bcd1d52668aaa3becf206ec037",
+        "packages/hotkeys/src/hotkey-manager.ts": "0e194d674e29565084761c2ab070e22a09903c5eb315dfd0e197229a84d71f11",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -407,10 +409,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
+      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
       "outcome": "no-change",
-      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
-      "evidence": ["untrusted-input.test.ts"]
+      "reason": "Ranking-order bug fix; no new skill.",
+      "evidence": ["No public API change"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -669,24 +671,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "9e14c78ff11b7e97753228fd2768bfa58c2318de93db7f2df8da745ef0aec9ff",
+      "fingerprint": "5e822b8ab9fc4809be4a691736ba8f3bef80fb0558ce77ab3f6f9fa1b8e10374",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "8bfc09202b5b9649209dcaeb7e108ee0a8511130a040164751904bb18f1bf2a1"
+        "docs/reference/classes/HotkeyManager.md": "cb17faf2351a8a88e91ad40e6c6f60095dc2ad282998f018bdeaa741cd303717"
       },
-      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
+      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
       "outcome": "no-change",
-      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
-      "evidence": ["untrusted-input.test.ts"]
+      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
+      "evidence": ["hotkey-manager.test.ts"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "b993fe6c9ab70f01ccc91b83cb6398c583f99ef7d4d0fdc4f459ac2d3f6d6cce",
+      "fingerprint": "b6ca02709b7443466beca65f992851f55a2434728f8e383793505f726f9c9e4a",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "c9500c8bb4e4a105ae5007c4f0959465b78f3bdc4a73adcd6fd6d05c148a2042"
+        "docs/reference/functions/getHotkeyManager.md": "328938f84b5f479d27668569f78ae9d32a8c722baec9d90db3fa5bf8b6ef989b"
       },
-      "head": "db08f256acbe81bb6971a1efcdef634cb2aed970",
+      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
       "outcome": "no-change",
-      "reason": "Dev-only warning now prints once per hotkey; no skill guidance changes.",
-      "evidence": ["untrusted-input.test.ts"]
+      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
+      "evidence": ["hotkey-manager.test.ts"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1434,14 +1436,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "eab6077c4d909752756f0321e404845fe693b97cac9422a20287f02da9d821d4",
+      "fingerprint": "9bb00e075306dda89703437b21cf26f3c5f0c469859b7b0a3569aedd6b2df314",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "2ed739619ed4ffc1b1812cb411679c71b3cf53c9d173b86ca335350941f462b3"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "70341f82f11af56492a2302a2f7277a70d6fd184ee447ea3bdd89d36696cc5bd"
       },
-      "head": "1cd45614cb001bf8278c2b0d4b8587f3c821b8f8",
+      "head": "5cbaccf4a920b153838c066e7193d7c9d1f068e2",
       "outcome": "no-change",
-      "reason": "Dispatch rechecks registration status mid-press; no skill guidance changes.",
-      "evidence": ["hotkey-manager.test.ts exclusive-scope regression test"]
+      "reason": "Chord ranking now matches the documented scope precedence; tests cover US, Russian and keyup.",
+      "evidence": ["hotkey-manager.test.ts"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b2b356d72de317f5260227ce77e4d729ad1462a711fceb07411fda66261f1dfd",

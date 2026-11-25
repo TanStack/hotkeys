@@ -1305,11 +1305,9 @@ export class HotkeyManager {
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
     const matches = new Map<string, KeyboardEventMatch>()
-    let bestScore = 0
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
 
-    // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       const live = this.#isLive(registration)
       const { eventType: firesOn, preventDefault } = registration.options
@@ -1360,7 +1358,6 @@ export class HotkeyManager {
         continue
       }
       matches.set(registration.id, result)
-      bestScore = Math.max(bestScore, result.score)
     }
 
     // A hotkey that fires, on any listener, decides what happens to the event.
@@ -1372,14 +1369,22 @@ export class HotkeyManager {
       this.#prevent(event)
     }
 
-    // Among the best matches, the most recently activated scope handles the key.
+    // The most recently activated scope with a match handles the key, on any
+    // layout. Within it, exact matches outrank compatibility fallbacks.
     let bestRank = -1
     for (const registration of registrations) {
-      if (matches.get(registration.id)?.score === bestScore) {
+      if (matches.has(registration.id)) {
         bestRank = Math.max(
           bestRank,
           this.#scopeRank(registration.options.scope),
         )
+      }
+    }
+    let bestScore = 0
+    for (const registration of registrations) {
+      const match = matches.get(registration.id)
+      if (match && this.#scopeRank(registration.options.scope) === bestRank) {
+        bestScore = Math.max(bestScore, match.score)
       }
     }
 
