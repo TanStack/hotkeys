@@ -12,7 +12,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "nx affected --skip-nx-cache --targets=build --exclude=examples/** && size-limit",
+    "build": "nx affected --skip-nx-cache --targets=build --exclude=examples/** && nx run-many --targets=build --exclude=examples/** && size-limit",
     "build:all": "nx run-many --targets=build --exclude=examples/** && size-limit",
     "build:core": "nx run-many --targets=build --projects=packages/hotkeys",
     "changeset": "changeset",
