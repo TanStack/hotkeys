@@ -124,6 +124,7 @@ export class KeyStateTracker {
       // and its keyup may never come. A modifier still counts as held.
       if (
         (MODIFIER_KEYS.has(key) ||
+          key === 'AltGraph' ||
           (!event.isComposing && event.keyCode !== 229)) &&
         !this.#heldEntries.has(identity)
       ) {

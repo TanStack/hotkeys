@@ -110,6 +110,15 @@ describe('KeyStateTracker', () => {
       expect(tracker.isKeyHeld('Control')).toBe(true)
     })
 
+    it('holds AltGr pressed during an input method composition', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'AltGraph', 'AltRight', {
+        isComposing: true,
+        keyCode: 229,
+      })
+      expect(tracker.isKeyHeld('AltGraph')).toBe(true)
+    })
+
     it('pairs keyup by code when the logical key changes', () => {
       const tracker = KeyStateTracker.getInstance()
       dispatchKey('keydown', 'ф', 'KeyA')

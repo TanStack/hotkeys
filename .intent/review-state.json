@@ -5194,14 +5194,14 @@
       ]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "82e89b5aa2300b9753dc77d4f17318e86d5420d8450d5235f05b53dd2d6a4bb0",
+      "fingerprint": "044b823ef89d2dbcce7c10c4656befbc41cde7572ebd3145821331ea2d14f4a1",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "727176372a7d1d600167d9a001694505c03279b7513e1d5c3bec42479444486c"
+        "docs/reference/classes/KeyStateTracker.md": "f8ac63419817adfd49be22f867c9cad67605d319527777afc21f4410683e2e07"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/reference/functions/checkHotkey.md": {
       "fingerprint": "b795c46d9627a330afd586eb39f0252d32ca063ec5ca61602cb3354248efe1d4",
@@ -5214,14 +5214,14 @@
       "evidence": ["docs/reference/functions/checkHotkey.md"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "aaa0a1b288efd9285feb208596e5443c4c89ae605b11d9ce2a63df0ddc3d3966",
+      "fingerprint": "f43d79e814969e4df27fd39e369951a071288a27b9a0755e2e39a36b8deffa51",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "96548bfb3dae34534ec32bddf578f1cc4f20f7e9a30d823dc6ea356e6c2812ae"
+        "docs/reference/functions/getKeyStateTracker.md": "dccc8a32363485486512daa2f53dad7894c14d4b636ce6d5f463f3dd165ba441"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
       "fingerprint": "8a418fc9aae02dd78227e5ce2342b8bda90dc011219f263ced3611929420f889",
@@ -5518,14 +5518,14 @@
       ]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "79e6949faa01e0e4b7567971dd23384b9c3c439dc33944d0ead1212189a50f84",
+      "fingerprint": "4bb5661d06e5172a9a0723dbeb9347eda7f90977d3f03b837f81ef0419cc0694",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "82a524039217dc2fb9cbb19e1696fa4071257f1bff1a0927accaa5837c119004"
+        "packages/hotkeys/src/key-state-tracker.ts": "42532867041d349e306eaf87c7a12c99ccc40a70a675908c6a36305acdf1582e"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:packages/hotkeys/src/validate.ts": {
       "fingerprint": "0f9690ccdbcba7a3478990102a3f72b2174a397cd69c1ee5ce965f9494ba14e3",
@@ -7456,14 +7456,14 @@
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "b8f178f7b7745fcf8ed0405d2bf7ba85bf80fd8d133570dfc954689591033ccc",
+      "fingerprint": "2aff8b2fc2a8b9e66e937f71c83de14760795a3abb7b944f9cf8dab9b59d2b36",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "a73e5f327ca9f660dc4daebe851406ce512652ceade02adac8549350004e7818"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "d305343be8c2f36e02e308855efa32c6c9135745c836868c8d8b46288b236fb2"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
       "fingerprint": "9f0f0cd4b3f12d94bc2b9e77069468bbf7419dbe4886fe80dbacdd23897c5636",
@@ -23977,14 +23977,14 @@
       "evidence": ["Core, adapter and e2e suites pass"]
     },
     "source:packages/hotkeys/src/_listen.ts": {
-      "fingerprint": "a9442a88a9fabf60aa6ac4ad820eddba12e14f4e33be030b913acaebc7e01d86",
+      "fingerprint": "f81790ec76c6dc7eb04ebd1a8e347c8ceaf6075cb8ce07537ca253bb4a88e263",
       "snapshot": {
-        "packages/hotkeys/src/_listen.ts": "faf0957ad549b6ed4127daa352bec471038366b75cd74fd55c3d112dde799b6b"
+        "packages/hotkeys/src/_listen.ts": "39eebd9ea1ce5a1cc90892b9149906b3f4f19de490ba710635515692d3e8ef5e"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:packages/solid-hotkeys/tests/createHotkeyRecorder.server.test.tsx": {
       "fingerprint": "59c380cbbc0cd354ed9a57d63eaa9696f4c41aec25647ce7ceaae903ec3b74b2",
@@ -23995,6 +23995,16 @@
       "outcome": "no-change",
       "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
       "evidence": ["Core, adapter and e2e suites pass"]
+    },
+    "source:packages/hotkeys/tests/listen.test.ts": {
+      "fingerprint": "b29ef86f4b17d220c1d56d175a3e808b8c6bead795b9079c24a18040a8843be6",
+      "snapshot": {
+        "packages/hotkeys/tests/listen.test.ts": "f1df9946c52066db5a692f1188f5164bc54962369d23e9c5bb8960766bd4789e"
+      },
+      "head": "b789b9a62b3e6157c79477ab3acc6612d34b82be",
+      "outcome": "no-change",
+      "reason": "Review follow-ups: zone.js symbol prefix and AltGr held during composition; no skill guidance changes.",
+      "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     }
   }
 }
