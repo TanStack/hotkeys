@@ -663,6 +663,49 @@ describe('HotkeyManager', () => {
       release()
     })
 
+    // On Russian, `Mod+S` matches through the key's position, which scores
+    // lower than the physical binding. The scope still decides first.
+    it.each([
+      ['US', 's', 'keydown'],
+      ['Russian', 'ы', 'keydown'],
+      ['Russian', 'ы', 'keyup'],
+    ] as const)(
+      'lets the active scope decide before the match score on %s %s',
+      (_, key, eventType) => {
+        const manager = HotkeyManager.getInstance()
+        const outer = vi.fn()
+        const dialog = vi.fn()
+        manager.register('Mod+[KeyS]', outer, {
+          platform: 'windows',
+          eventType,
+        })
+        const release = manager.activateScope('dialog')
+        manager.register('Mod+S', dialog, {
+          platform: 'windows',
+          scope: 'dialog',
+          eventType,
+        })
+
+        keydown({ key, ctrlKey: true, code: 'KeyS', target: document })
+        keyup({ key, ctrlKey: true, code: 'KeyS', target: document })
+        expect(dialog).toHaveBeenCalledOnce()
+        expect(outer).not.toHaveBeenCalled()
+        release()
+      },
+    )
+
+    it('still ranks by match score within one scope', () => {
+      const manager = HotkeyManager.getInstance()
+      const exact = vi.fn()
+      const fallback = vi.fn()
+      manager.register('Mod+[KeyS]', exact, { platform: 'windows' })
+      manager.register('Mod+S', fallback, { platform: 'windows' })
+
+      keydown({ key: 'ы', ctrlKey: true, code: 'KeyS', target: document })
+      expect(exact).toHaveBeenCalledOnce()
+      expect(fallback).not.toHaveBeenCalled()
+    })
+
     it('supports an explicit physical code registration', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
