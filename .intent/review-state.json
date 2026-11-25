@@ -94,17 +94,17 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "773ded7c912df38b26d1d461d307a83d10f82da4fd61c2d2b9a4446c0ef030ca",
+      "fingerprint": "32b2ab47b0662dc13282ce69e7ebbac019d9c74f2cb58e4857662493f254556d",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
         "docs/framework/react/guides/sequences.md": "572a3b5bb3107cffabec6282022f772475eee40959101d1d27d6d7937ea42990",
-        "docs/guides/sensible-defaults.md": "dc257989163d6ace29a55f0c6e3034be6191629eb9b5d600ef7c0619037f05da",
+        "docs/guides/sensible-defaults.md": "57e70f18e96ff0c7610c7c23d6b1bf5bd12d8d91db2aaccc5b5ce711b8ae1e11",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "21cd87e4eb20dd0ccd004a803b0dc7d5fd4776cb05752e21ef74d0c0a4b45d0f",
-        "packages/hotkeys/src/match.ts": "bd5f9384cf73cdaf508e3ef236cf568eaed3734934d04c5c6830d294d144f86b",
+        "packages/hotkeys/src/hotkey-manager.ts": "3c5f8610633f98c72e1f7e8bab714a489887bdf628c2af2899c0c1b144840429",
+        "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes with no API change; the skill gives no guidance about callback errors, zone.js listeners, held-key internals, or recorder listener attachment.",
+      "reason": "The core skill tells agents to rely on the library for layouts and not to hand-match keys; it does not describe the fallback rules this PR refines, which live in the defaults guide.",
       "evidence": [
-        "git grep in packages/*/skills finds no mention of callback throws, zone.js or IME held keys"
+        "git grep for Shift+, dead key, NumpadEnter and collator in packages/*/skills finds nothing"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -278,7 +278,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "ae15533bb56d704ae6c4260b36c1c939702edbf4b41f8cbfb2c1f520056768f2",
+      "fingerprint": "2acfb936b9418ea310db167c24f1d863cf3c2f26f5d0c8b67e4b0ac2a3b8d1dd",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -308,7 +308,7 @@
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "a40acd15486b4016df96454086752c58c8e20bcfcdfdca214c7219c79ac9a466",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "dc257989163d6ace29a55f0c6e3034be6191629eb9b5d600ef7c0619037f05da",
+        "docs/guides/sensible-defaults.md": "57e70f18e96ff0c7610c7c23d6b1bf5bd12d8d91db2aaccc5b5ce711b8ae1e11",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -341,9 +341,9 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "21cd87e4eb20dd0ccd004a803b0dc7d5fd4776cb05752e21ef74d0c0a4b45d0f",
+        "packages/hotkeys/src/hotkey-manager.ts": "3c5f8610633f98c72e1f7e8bab714a489887bdf628c2af2899c0c1b144840429",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
-        "packages/hotkeys/src/match.ts": "bd5f9384cf73cdaf508e3ef236cf568eaed3734934d04c5c6830d294d144f86b",
+        "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "b597a0682f4b4168794cef6a0f3f512649b01cd1796d059e220d73bee58968a4",
@@ -409,10 +409,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Bug fixes only; no new skill is needed.",
-      "evidence": ["No public API added or renamed"]
+      "reason": "Matching fixes only; no new skill is needed.",
+      "evidence": ["No public API added"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -671,24 +671,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "9d8a721e5e1c547fcdc6bc230ca5a7f12db36597926a3f355ad73f85441a7f55",
+      "fingerprint": "7f0147631f12fc9053a80bd92fe7f84f5acbdf8e832c0ef8b0e30ae8f140ef8b",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "e1f2bfb1221ffebeedbd1d8876d2e5c4a7f2a2c1b8893347f9e0cbedba18d94f"
+        "docs/reference/classes/HotkeyManager.md": "cf918ac875433536d19601dd210645dcccfbb2b6de851668fbdc3a039d165c54"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "b8b1b0f003cb70d435505e36668469e834e36e4df2d4f1c95dcee7674d0fc1b1",
+      "fingerprint": "e588ec0e16e6905ccffd44c558a6ea9cae1ef7fd0db082d524593ef4d5d9f8c9",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "3e154997d4b1dede8f0ef1d64936badf8254f16e873488d5902846c224ce240f"
+        "docs/reference/functions/getHotkeyManager.md": "9be9924a15349b22a668edd3526f8814bf392b4869836844ae71d4d47ffd6c77"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1436,14 +1436,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "129331caec9c84df67d6776da8dfeed54ea134b57aa166801dde6db4acba469a",
+      "fingerprint": "cecfdd7b45a0379208a19a25d96a1eccf248bb2aec597e32897a5d2a37e61f8c",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "1783f7084d5d0a1914a13b3d1ed0b618f87cf7efd86fef3e88e3bd9efa435096"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "8595a4b81dd6beec80df75237c218e410c212f7661ae0bb2b894c1f086ffa754"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b2b356d72de317f5260227ce77e4d729ad1462a711fceb07411fda66261f1dfd",
@@ -4380,36 +4380,34 @@
       "evidence": ["No skill references this file"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "486f65af92474ee41478465f79bb981ecd6bac273ff4f25424c1aefee861d356",
+      "fingerprint": "0e6ec8bd98dbc1e3eddb42d45a9b5bd8fbcf35734a90bbb6ab82251496df80da",
       "snapshot": {
-        "e2e/support/x11.ts": "76fe3c1917babec335ddad5dc199ace59a37d7a1f5ea0fd5b696d345b3ce3c6d"
+        "e2e/support/x11.ts": "2749b5165fbbbbc1bf74f8954aae5af64bf4313af93ae190a86482248f911ad4"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "7f20a5a179b5fe40e375c344c5a0f0a35aaad5c9c7d24cac82efc73f95bc0c73",
+      "fingerprint": "fa6a56f716969731440078a7ec6d7c10c6e8f5825aa73c2b110ac314b952ad8e",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "cc257b17aacea5d976f8d4c8eb122b3c1a09d21be570c5dd7c1907179d60e5e9"
+        "packages/hotkeys/src/_match.ts": "6158774b6c1a75de3e5001974eaeac6d4e5194c7abb8f5333b30a4498864ca34"
       },
-      "head": "0840d8fe7630b3b76ee4d19618224c3ef2c1d27b",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Internal cleanup with no public behavior or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/src/_match.ts at 0840d8fe7630b3b76ee4d19618224c3ef2c1d27b"
-      ]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "3fe8472ea8d33436f30b1df7968ed3fd55205e4ecc62c8430bc6b30ef9be29dc",
+      "fingerprint": "d31cd54d5179deb95bbe0057faf1300da17be12572c99aa16b1b5c3ffbe02fca",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "241c2f969f9546d54afa7252f57153877615f108740bd3c4372beb92b63ef485"
+        "packages/hotkeys/tests/match.test.ts": "18ceb0d2a45dc207aa851e7181128fe63bd9a809d1eafd858592d8e39dd112da"
       },
-      "head": "64035d6dff014cf516a25c11430bb8d6bdfdf471",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Bug fix or regression test with no change to documented API or skill guidance.",
-      "evidence": ["packages/hotkeys/tests/match.test.ts"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
       "fingerprint": "7fc444c0c86d281425e7a71df8d2acce649d69e855bf0b3b43db276139528489",
@@ -6736,14 +6734,14 @@
       "evidence": ["packages/hotkeys/tests/parse.test.ts"]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "ef0b4123d47955228b782ac2b7d6a090c1fb0c583914f58e06970e9aff952df8",
+      "fingerprint": "e3cebdfb17c22f2725415349c3e2c145737a8b5a6a9cd7d4f44dae4fdfe0ffbb",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "904b7e579c15d8d256e4c273390f4376b71f10f0761cb354c4571b0a39210171"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "59f3afcd30d5f04864c005ccd7d22f0fd646a1a09af68682a8798ae66f480b5a"
       },
-      "head": "64035d6dff014cf516a25c11430bb8d6bdfdf471",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Bug fix or regression test with no change to documented API or skill guidance.",
-      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "84ea6e4465995de18af8677d3413b37181cb6a56a7f48da748dd8f16c59b3b04",
@@ -6758,14 +6756,14 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "101751075d3627975eeca613f6548030d9bc0f11abe16225eab0d7f2c44ac032",
+      "fingerprint": "edecb985858a9d50777ee82543e30ebd6b49c3a5febd9cf98bb57a809180210a",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "d78bdfa705cccf09d9555c532ed3caf414a1e98e0f94ef06d42c59ce80e02a27"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "057b2b5a4dcd79d7c3fbd9bab9d5496910133a20733f871b27a8ca93e54aa7bb"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
@@ -7095,44 +7093,44 @@
       "evidence": ["docs/reference/adapter/functions/withDefaults.md"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "9900d5135178efa87e8eeca8fb5b4790f03907b24ec3d54879bd2fdf0a57cdab",
+      "fingerprint": "b5cf0644243cf5baa7d446f5a38917b0eb9de1ac12cba67d81908e0629f8da69",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "55835d04f40ba1e97f6d955faee8c2f87b0228d834e1bcad7b54c190c4be490c"
+        "docs/reference/functions/areHotkeysEqual.md": "c26275146ef5b4578f771b2ed2a7207bde1daeb80f64952db937f85393ceda61"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "6c8cbc7edc149cfa45981ce042cf0524de497241ca26b93a0d84231249041b43",
+      "fingerprint": "9c7b88e373ae5b88afdef616aafd8d57633ce9c05691b56bc8a1c6eff6ab509c",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "22abde7b690d6ec8bd894efed99d48fcf9b0c2793df177e595f9e6d9b8323c72"
+        "docs/reference/functions/createHotkeyChordHandler.md": "b1286776c37b83ef6159c8a664c8ab792fd5116ed02b05c628435c68be9a4b09"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "081cca92747866afbd1a1d1d73493a6b1a0100e1f7b2535c5a80da4c7359964a",
+      "fingerprint": "5a588203e74d27734febf38a22758f6cb353da076e3ce28f4c440cf23fc162a3",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "4b22d071f5db70649a4f898d8bd7434d42286b70f41feecd6732f4c766a3c385"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "7a1d3c481ce09c5deddeaad7048d659050ffa3f412963dfbafec41136aaccdf9"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "0e5973e727a40bf06cfdd5268bd7843f0143279ffa047887cc88e5847ab22c3b",
+      "fingerprint": "96bbf148c4d7179059903ef9acf27cf5712c87d8bc7cd0a17cb0916e9d02d916",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "b37bb5a42c372b8a955b5c3e99c89e9203e5860e7d4f3faadc77388dae2de116"
+        "docs/reference/functions/createSequenceMatcher.md": "a484bfffee2fcaa814b1a4a4ecf7c1fca02473033ac67aa0b6ee7b37f95974d1"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
       "fingerprint": "a70c6c565dd2cff22ec4cf8a99fe3df975e838587412de2f06c02bcf77d2fea9",
@@ -7147,24 +7145,24 @@
       ]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "bbc8a7c313e995f5f1b9fd949e8dca8b72e0f457efe51d7460825ecdbe7ce8b9",
+      "fingerprint": "9ca8952eb44524c3eb3298fd9468f1a12d2b2a15707c6bfef280287a73d7284e",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "c7ad056f133268b60933eb2a37a6a331b6719e9d6fd33ac9ea8722f750e45e6f"
+        "docs/reference/functions/matchesKeyboardEvent.md": "c9eab443061013b1e2d8c5600d24ee5ac389040840645615a231c282dad7473e"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "6b6f4c64901e9e0ea8ddf1df7d9a77f0335a3d5f8f8d13223c23ae122597ce71",
+      "fingerprint": "50a6bf94ac701e13b7ede7408ac5015a2d4fee06483d15138429ef429c593892",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "5e1538436e917f926d90eb34ad714b040ed73b6a5f3baf8bdcda477c4de823ad"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "59eaf105ab4767dd06e65e1f50864f93bec34898688eeb96b3e2d0397693e55f"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
       "fingerprint": "4a8764a1b65b56b9d147493ec86d100f492b1981ffc21ad7073179cc761fef8e",
@@ -7177,24 +7175,24 @@
       "evidence": ["docs/reference/interfaces/KeyboardEventMatch.md"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "485525a05a62db9ff94e36a93ccbb47628c095bffd396897e0210ff187b0607c",
+      "fingerprint": "1a79044c994594d9ac4397816100c6635bea4fbac9ee6239d1c2913312059cd0",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ab8a1e0cbee608ee9f90c3b1f1355efb29b6d66596e2a34554ac2c09f19b289f"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "ba74a56fa712bd88464ee04d852dbc583c94c64d327bd47ca41134ac57f48868"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "83c561a9f62c8c6c38ed16e631349a9e9236352bd6cc220c8aa4bc4aaed27d4d",
+      "fingerprint": "912801290695ebfbc82095dcd0bad2b731181cb22280bbb0509a8c76fae7f126",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "ad30530aa74db91b840251c7bf6ebe98109993ffa106f0696463fedead9ec8e8"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "f9c607018b005e15c560eeab6cb8153ea65ef24757dfed88a5db7978ab58081b"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "outcome": "no-change",
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
       "fingerprint": "fa4414336c960632c262b4d13e54de02ef630c600024c1c5349285c4baf9546f",
@@ -18868,14 +18866,14 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "7a13bd31207d19f59bdb0224e85ef23639638d98abcd0b4c928726beb70540f9",
+      "fingerprint": "ba45c7d6c915d6edfdbb473829b085d169705f1b87acf13dff79e004b4014121",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "d31e8b5a06fd67f5d19ff1e4bd33d25de634f081799b3b52934d4654995cdbe8"
+        "e2e/layouts/more-layouts.spec.ts": "05e4f8c9241d00e8eefd60288a8e7e1c976e9c0ef16b4c186b36c1db31887191"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
-      "evidence": ["e2e/layouts/more-layouts.spec.ts"]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:e2e/playwright.adapters.config.ts": {
       "fingerprint": "78b6d7f3510be3aec5691c58dfc68dd800ca71d5b34254301eea3293adbeefad",
@@ -19981,16 +19979,14 @@
       ]
     },
     "source:packages/hotkeys/src/_keys.ts": {
-      "fingerprint": "0870bcdc4c5cea2e7bd5580230edc5d9e9ec3f91e3e63b9d78142dd7871629b8",
+      "fingerprint": "99ccb70fdc5787323bccc4aeecb6ac6a33627e8e1b5e3c1c151aaddf7081f9b8",
       "snapshot": {
-        "packages/hotkeys/src/_keys.ts": "ab0cb861488520952bd0519bcb0675a47b10b31616ceff23c15d09d3eff8b68f"
+        "packages/hotkeys/src/_keys.ts": "ee9422e2f515b680637163c8b7697dadd1da8beee9ae0e5780d75f0712067fab"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
+      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/tests/public-api.test.ts": {
       "fingerprint": "e7ccbe3f2531d275da27bf8205e5861690f486c028f9fa1bb0ee33d3d99aa874",

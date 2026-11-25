@@ -24,7 +24,9 @@ import type { HotkeyPlatform } from './platform'
  *
  * When `event.key` cannot name the shortcut, the key's conventional position
  * (`event.code`) stands in. That covers non-Latin letters, dead keys, the
- * digit row, symbols typed with Shift, and what macOS Option types. On the
+ * digit row, symbols typed with Shift, and what macOS Option types. A symbol
+ * that US Shift types names its US key, so `Shift+/` fires on whatever key
+ * types `?`. On the
  * digit row, `-`, `+`, and `=` typed with Control alone, or Command alone on
  * macOS, don't stand in, because those presses zoom the page: AZERTY Ctrl+-
  * doesn't fire `Mod+6`.

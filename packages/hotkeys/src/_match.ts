@@ -17,6 +17,10 @@ import type { ParsedHotkeyChord } from './hotkey.types'
 import type { KeyIdentity, NormalizedKeyboardEvent } from './key.types'
 import type { HotkeyPlatform } from './platform'
 
+/** What US Shift types on each punctuation key, and the key itself. */
+const US_SHIFTED = '~_+{}|:"<>?'
+const US_UNSHIFTED = "`-=[]\\;',./"
+
 /**
  * How a key event matched a chord. The score ranks matches of one key press:
  * - 3: the exact code, or the exact key with Shift as the binding names it
@@ -117,10 +121,38 @@ export function matchKeyboardEvent(
       ? macKeycapLetter(event)
       : undefined
 
-  if (optionLetter === undefined && !positionStandsIn(normalized, platform)) {
+  // A symbol that US Shift types on a punctuation key stands for that key,
+  // wherever the layout puts it: German Shift+- types `_` on the US `/`
+  // position and fires `Shift+-`. The digit row and numpad keep their
+  // positions, since Swiss Shift+2 types `"`.
+  const shiftedIndex =
+    normalized.shift &&
+    !normalized.alt &&
+    normalized.key.length === 1 &&
+    !/^(Digit|Numpad)/.test(normalized.code)
+      ? US_SHIFTED.indexOf(normalized.key)
+      : -1
+  // A letter key whose legacy keyCode names its letter stays that letter
+  // (see positionStandsIn), so Greek Shift+Q typing `:` is `Shift+Q`.
+  const usKey =
+    shiftedIndex < 0 || namesLetter(normalized, event.keyCode)
+      ? undefined
+      : US_UNSHIFTED[shiftedIndex]
+
+  if (
+    optionLetter === undefined &&
+    usKey === undefined &&
+    !positionStandsIn(normalized, platform, event.keyCode)
+  ) {
     return noMatch
   }
-  const fallbackKey = optionLetter ?? codeToLogicalKey(normalized.code)
+  // An `Unidentified` named key, such as Shift+Tab on older Firefox for
+  // Linux, is named by its code: `Tab`, `ArrowUp` and `F13` are both.
+  const fallbackKey =
+    optionLetter ??
+    usKey ??
+    codeToLogicalKey(normalized.code) ??
+    (normalized.key === 'Unidentified' ? normalized.code : undefined)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)
     ? matched(1)
     : noMatch
@@ -140,7 +172,8 @@ export function matchKeyboardEvent(
  * output that can't name a shortcut falls back:
  * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`,
  *   including text of several code points, such as macOS Hebrew `שׁ`
- * - dead keys
+ * - dead keys on a letter key, on Quote or Backquote (US International's
+ *   ' and `), or with Control, Alt or Command
  * - `Unidentified` keys, except on letter positions, which layouts such as
  *   AZERTY rearrange, and numpad positions, whose output depends on NumLock.
  *   Chrome on Linux Wayland reports Ctrl+` this way, and Firefox reports
@@ -149,7 +182,11 @@ export function matchKeyboardEvent(
  *   and macOS Spanish Option+Shift+6 types a space,
  *   except `-`, `+` or `=` typed with only the platform's zoom modifier,
  *   Control or macOS Command: AZERTY Ctrl+- on the 6 key is zoom out
- * - ASCII symbols typed with Shift, such as `!` for Shift+1
+ * - ASCII symbols typed with Shift on a punctuation key, such as UK `@` on
+ *   the US ' key. One that US Shift types, such as `?`, names its US key
+ *   instead (`/`), in matchKeyboardEvent
+ * - ASCII symbols on a letter key whose legacy keyCode names that letter:
+ *   Greek `;` on the Q key reports VK_Q on Windows
  * - ASCII symbols typed with macOS Option on a letter position, such as `~`
  *   for US Cmd+Option+N, where Command cancels the dead key
  * - Latin letters typed with Alt, such as macOS Option+A typing `å`
@@ -165,23 +202,48 @@ export function matchKeyboardEvent(
 function positionStandsIn(
   { key, code, ctrl, meta, shift, alt }: NormalizedKeyboardEvent,
   platform: HotkeyPlatform,
+  keyCode: number,
 ): boolean {
   if (key === 'Unidentified') return !/^(Key|Numpad)/.test(code)
   if (code.startsWith('Digit')) {
+    // Persian types the zero-width non-joiner with Ctrl+Shift+2. An invisible
+    // format character is text, not the digit.
+    if (/\p{Cf}/u.test(key)) return false
     // AZERTY types `-` on the 6 key, so Ctrl+- is zoom out, not Ctrl+6
     const zoom =
       !shift && !alt && (platform === 'mac' ? meta && !ctrl : ctrl && !meta)
     return !zoom || !/^[-+=]$/.test(key)
   }
-  if (key === 'Dead') return true
+  // A dead key pressed alone stands in on a letter key, as other non-Latin
+  // output does (Greek Shift+W), and where US International puts its accent
+  // on the US key, ' and `. Swiss ^ on the US = key is not =. With a modifier
+  // the press is a shortcut, so the position stays.
+  if (key === 'Dead') {
+    return ctrl || meta || alt || /^(Quote|Backquote|Key)/.test(code)
+  }
   if (!isTypedText(key)) return false
   if (isAsciiLetter(key)) return false
   const letterKey = code.startsWith('Key')
   if (/^[!-~]$/.test(key)) {
-    return shift || (alt && platform === 'mac' && letterKey)
+    // Greek types `;` and Hebrew `/` on the Q key, where the legacy keyCode
+    // still names Q (Windows VK_Q). Otherwise a letter key that types a
+    // symbol is another key on this layout: AZERTY Shift+M types `?`, and
+    // its `,` reports VK_OEM_COMMA.
+    if (letterKey) {
+      return namesLetter({ code, alt }, keyCode) || (alt && platform === 'mac')
+    }
+    return shift
   }
   // A letter with marks keeps its base letter's script
   if (!isLatinLetter(Array.from(key)[0]!)) return true
   if (alt && !(letterKey && ctrl && platform === 'windows')) return true
   return (ctrl || meta) && !letterKey
+}
+
+/** Whether a key's legacy keyCode names the letter of its position, without Alt. */
+function namesLetter(
+  { code, alt }: Pick<NormalizedKeyboardEvent, 'code' | 'alt'>,
+  keyCode: number,
+): boolean {
+  return !alt && /^Key[A-Z]$/.test(code) && keyCode === code.charCodeAt(3)
 }

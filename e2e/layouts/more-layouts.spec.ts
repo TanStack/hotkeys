@@ -412,6 +412,57 @@ describeLayouts('Japanese JIS', {
   },
 })
 
+// German QWERTZ: Shift+ß types "?" on the US "-" key, and Shift+- types "_"
+// on the US "/" key. A Shift+symbol binding names what US Shift types, so
+// `Shift+-` is "_" and `Shift+/` is "?", wherever the layout puts them.
+describeLayouts('German shifted symbols', {
+  bindings: [
+    '?',
+    '_',
+    'Shift+-',
+    'Shift+/',
+    'Shift+.',
+    'Shift+;',
+    'Mod+/',
+    'Mod+Shift+/',
+    'Mod+Shift+7',
+  ],
+  registered: ['?', 'Shift+-', 'Mod+/'],
+  layouts: {
+    de: [
+      {
+        keys: 'Shift+Minus',
+        matches: ['?', 'Shift+/'],
+        parsed: 'Shift+?',
+        recorded: 'Shift+[Minus]',
+      },
+      {
+        keys: 'Shift+Slash',
+        matches: ['_', 'Shift+-'],
+        parsed: 'Shift+_',
+        recorded: 'Shift+[Slash]',
+      },
+      // ":" is US Shift+;
+      { keys: 'Shift+Period', matches: ['Shift+;'], parsed: 'Shift+:' },
+      // Control+Shift+7 types "/", so Mod+/ fires by character
+      {
+        keys: 'Control+Shift+Digit7',
+        matches: ['Mod+/', 'Mod+Shift+/', 'Mod+Shift+7'],
+        parsed: 'Mod+Shift+/',
+      },
+    ],
+  },
+})
+
+// Hebrew types "/" on the US Q key, which both Linux browsers report with
+// keyCode 81, so Q also fires there
+describeLayouts('Hebrew Q key', {
+  bindings: ['/', 'Q', '[KeyQ]'],
+  layouts: {
+    il: [{ keys: 'KeyQ', matches: ['/', 'Q', '[KeyQ]'], parsed: '/' }],
+  },
+})
+
 // Russian with US as the second group, as most Russian users have it.
 // Browsers report the Cyrillic letter even with Control, so Latin bindings
 // match through the position fallback. Chromium's layout map takes the Latin
