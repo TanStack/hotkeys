@@ -86,7 +86,7 @@ Most options from [Hotkey options](./hotkeys#hotkey-options) behave identically,
 
 - `timeout` applies only to sequences, and `requireReset` applies only to chords. TypeScript rejects each on the wrong kind.
 - `preventDefault` runs on every step that advances the sequence, while `stopPropagation` runs only on the final step so earlier keys still reach other listeners.
-- `ignoreInputs: 'auto'` checks the first step, so `['G', 'G']` is ignored in inputs while `['Mod+K', 'Mod+C']` still fires.
+- `ignoreInputs: 'auto'` checks the first step, so `['G', 'G']` is ignored in inputs while `['Mod+K', 'Mod+C']` still fires. A sequence that starts with a function key, such as `['F2', 'R']`, also works in a text field, and its later keys don't type into the field.
 - With a `target`, only key presses inside that element advance the sequence.
 - `capture: true` matches every step in the capture phase.
 

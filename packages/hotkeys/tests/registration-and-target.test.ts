@@ -224,6 +224,8 @@ describe('registration and event-target helpers', () => {
 
     it.each([
       'F',
+      'F0',
+      'F25',
       'Fn',
       'Find',
       'Home',

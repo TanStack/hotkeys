@@ -982,6 +982,27 @@ describe('HotkeyManager', () => {
       },
     )
 
+    it('fires a sequence that starts with a function key in a text field', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(['F2', 'R'], callback, {
+        platform: 'mac',
+      })
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      dispatchKeyboardEventFromElement(document, input, 'keydown', 'F2')
+      const r = dispatchKeyboardEventFromElement(
+        document,
+        input,
+        'keydown',
+        'r',
+      )
+
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(r.defaultPrevented).toBe(true)
+      input.remove()
+    })
+
     it.each(['auto', undefined] as const)(
       'restores the automatic default with setOptions({ ignoreInputs: %s })',
       (value) => {

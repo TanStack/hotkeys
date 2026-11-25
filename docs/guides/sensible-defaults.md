@@ -114,7 +114,7 @@ A hotkey bound to `K` shouldn't fire when the user types "okay" into a search bo
 | `Escape` | Fires | Users expect `Escape` to close dialogs from inside inputs |
 | `F5`, `Shift+F10`, `MediaPlayPause` | Fires | Function keys and media keys don't type text, and a text field does nothing with them |
 
-Function keys are `F1` to `F24`. Media keys are the keys whose names start with `Audio`, `Browser`, `Launch`, or `Media`, such as `AudioVolumeMute`, `BrowserBack`, `LaunchMail`, and `MediaTrackNext`. Both kinds fire in inputs with any modifiers.
+Function keys are `F1` to `F24`. Media keys are the keys whose names start with `Audio`, `Browser`, `Launch`, or `Media`, such as `AudioVolumeMute`, `BrowserBack`, `LaunchMail`, and `MediaTrackNext`. Both kinds fire in inputs with any modifiers. A sequence follows its first step, so `['F2', 'R']` also fires in inputs, and the `R` press doesn't type into the field.
 
 These elements count as inputs, including inside open shadow roots:
 
@@ -203,7 +203,7 @@ Ignoring text inputs prevents `K` from firing while typing, but speech-input use
 - **Remap it.** Let users add a modifier through app hotkeys and the recorder.
 - **Scope it to focus.** Give it an element `target` so it fires only while that widget is focused.
 
-Shortcuts using `Mod`, `Control`, or `Alt`, as well as non-character keys like `Escape` and `F1` to `F12`, don't need this.
+Shortcuts using `Mod`, `Control`, or `Alt`, as well as non-character keys like `Escape`, function keys, and media keys, don't need this.
 
 ## Chords fire on keydown and repeat while held
 

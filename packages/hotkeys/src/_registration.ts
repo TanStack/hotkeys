@@ -54,7 +54,7 @@ export function withDefaults<T extends object>(
  * Function keys (`F1` to `F24`) and media keys: the audio, browser, launch,
  * and playback keys. They type nothing, and a text field does nothing with them.
  */
-const NON_TYPING_KEY = /^(F\d|Audio|Browser|Launch|Media)/
+const NON_TYPING_KEY = /^(F([1-9]|1\d|2[0-4])$|Audio|Browser|Launch|Media)/
 
 /**
  * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).

@@ -104,7 +104,7 @@ Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#
 
 - `timeout` applies only to sequences, and `requireReset` only to chords. The decorator's option types reject each one on the other kind.
 - Every step that advances a sequence calls `preventDefault`, so in `['Mod+K', 'Mod+C']`, the browser doesn't act on `Mod+K`. `stopPropagation` applies only on the last step, so earlier steps still reach other listeners, such as a focused widget.
-- With the default `ignoreInputs: 'auto'`, the first step decides whether a sequence works while the user types in a text field. `['G', 'G']` doesn't, and `['Mod+K', 'Mod+C']` does.
+- With the default `ignoreInputs: 'auto'`, the first step decides whether a sequence works while the user types in a text field. `['G', 'G']` doesn't, and `['Mod+K', 'Mod+C']` does. A sequence that starts with a function key, such as `['F2', 'R']`, also works in a text field, and its later keys don't type into the field.
 - A sequence with a `target` advances only on key presses inside the target.
 - With `capture: true`, every step is matched in the capture phase.
 
