@@ -1384,6 +1384,8 @@ export class HotkeyManager {
     for (const snapshot of best) {
       const match = matches.get(snapshot.id)!
       if (physical && !snapshot.parsedChord.code) continue
+      // An earlier callback may have released this registration's scope.
+      if (this.#scopeRank(snapshot.options.scope) !== bestRank) continue
       // An earlier callback may have unregistered or moved this registration.
       const registration = this.#currentIn(snapshot, capture)
       if (!registration) continue

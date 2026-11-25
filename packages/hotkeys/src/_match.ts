@@ -200,7 +200,7 @@ export function matchKeyboardEvent(
  * Control+Alt as AltGr, so Polish Control+Alt+A types `ą`.
  */
 function positionStandsIn(
-  { key, code, ctrl, meta, shift, alt }: NormalizedKeyboardEvent,
+  { key, code, ctrl, meta, shift, alt, altGraph }: NormalizedKeyboardEvent,
   platform: HotkeyPlatform,
   keyCode: number,
 ): boolean {
@@ -230,7 +230,10 @@ function positionStandsIn(
     // symbol is another key on this layout: AZERTY Shift+M types `?`, and
     // its `,` reports VK_OEM_COMMA.
     if (letterKey) {
-      return namesLetter({ code, alt }, keyCode) || (alt && platform === 'mac')
+      return (
+        namesLetter({ code, shift, alt, altGraph }, keyCode) ||
+        (alt && platform === 'mac')
+      )
     }
     return shift
   }
@@ -240,10 +243,24 @@ function positionStandsIn(
   return (ctrl || meta) && !letterKey
 }
 
-/** Whether a key's legacy keyCode names the letter of its position, without Alt. */
+/**
+ * Whether a key's legacy keyCode names the letter of its position. AltGr, or
+ * Alt without Shift, types a character of its own, such as German `@` on
+ * VK_Q, so then it doesn't. Greek Alt+Shift+Q typing `:` is still Q.
+ */
 function namesLetter(
-  { code, alt }: Pick<NormalizedKeyboardEvent, 'code' | 'alt'>,
+  {
+    code,
+    shift,
+    alt,
+    altGraph,
+  }: Pick<NormalizedKeyboardEvent, 'code' | 'shift' | 'alt' | 'altGraph'>,
   keyCode: number,
 ): boolean {
-  return !alt && /^Key[A-Z]$/.test(code) && keyCode === code.charCodeAt(3)
+  return (
+    !altGraph &&
+    (!alt || shift) &&
+    /^Key[A-Z]$/.test(code) &&
+    keyCode === code.charCodeAt(3)
+  )
 }

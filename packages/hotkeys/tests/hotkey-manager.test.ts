@@ -626,6 +626,20 @@ describe('HotkeyManager', () => {
       release()
     })
 
+    it('skips a registration whose scope an earlier callback released', () => {
+      const manager = HotkeyManager.getInstance()
+      const release = manager.activateScope('dialog')
+      const second = vi.fn()
+      manager.register('Enter', () => release(), { scope: 'dialog' })
+      manager.register('Enter', second, {
+        scope: 'dialog',
+        conflictBehavior: 'allow',
+      })
+
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      expect(second).not.toHaveBeenCalled()
+    })
+
     it('supports an explicit physical code registration', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()

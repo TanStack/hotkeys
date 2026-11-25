@@ -94,7 +94,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "32b2ab47b0662dc13282ce69e7ebbac019d9c74f2cb58e4857662493f254556d",
+      "fingerprint": "8dedd423f1f4f0c57c9334ee4a115dea8b3ae3a6c1eb865e6c0b465d166c3b1a",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "ca2c80117b3861dbe391e6f4bf4082ec990e2430745f5009e33431250613d600",
         "docs/framework/react/guides/hotkeys.md": "083b7612488c28c2f96e097dc9bb73654e9257ecb486ff48b0317000105ef3bc",
@@ -103,7 +103,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "3c5f8610633f98c72e1f7e8bab714a489887bdf628c2af2899c0c1b144840429",
+        "packages/hotkeys/src/hotkey-manager.ts": "4fd059eed606b98a761bc65ec64f2762a6f6c18fefa5ca7ec52b1c50656743ba",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,12 +115,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "The core skill tells agents to rely on the library for layouts and not to hand-match keys; it does not describe the fallback rules this PR refines, which live in the defaults guide.",
-      "evidence": [
-        "git grep for Shift+, dead key, NumpadEnter and collator in packages/*/skills finds nothing"
-      ]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "4ac9996dbda18616bd026a228bbfd5c01a886c8e58e05fee6198611096bdb867",
@@ -278,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "2acfb936b9418ea310db167c24f1d863cf3c2f26f5d0c8b67e4b0ac2a3b8d1dd",
+      "fingerprint": "d3764136a2156ed2036269f18d002743686ccc69d5e4106dbe6fae6fa423271a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -341,7 +339,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "3c5f8610633f98c72e1f7e8bab714a489887bdf628c2af2899c0c1b144840429",
+        "packages/hotkeys/src/hotkey-manager.ts": "4fd059eed606b98a761bc65ec64f2762a6f6c18fefa5ca7ec52b1c50656743ba",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -409,10 +407,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes only; no new skill is needed.",
-      "evidence": ["No public API added"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -671,24 +669,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "7f0147631f12fc9053a80bd92fe7f84f5acbdf8e832c0ef8b0e30ae8f140ef8b",
+      "fingerprint": "580c5a04bdba932dc9809ca62ed79ce393faf9c128acedf80a4716d9eef6e35a",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "cf918ac875433536d19601dd210645dcccfbb2b6de851668fbdc3a039d165c54"
+        "docs/reference/classes/HotkeyManager.md": "fe1d6dcf0a9ccc8b6b29091781f535c775ee4053e2754303da2f743d0c4507ce"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "e588ec0e16e6905ccffd44c558a6ea9cae1ef7fd0db082d524593ef4d5d9f8c9",
+      "fingerprint": "b8f446419986dc6b3b0645f96dd38c4a9038831c71821e9b2eab7f15617a73ba",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "9be9924a15349b22a668edd3526f8814bf392b4869836844ae71d4d47ffd6c77"
+        "docs/reference/functions/getHotkeyManager.md": "fe5f3a84460d2c05bcf28fee9817d83cf041abd8cdb9e5837f9e06229c26e156"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -1436,14 +1434,14 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "cecfdd7b45a0379208a19a25d96a1eccf248bb2aec597e32897a5d2a37e61f8c",
+      "fingerprint": "a02568b54d4b5371380334cee31a9f76a0f309a7d1a206a2ccf5a2830a55422f",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "8595a4b81dd6beec80df75237c218e410c212f7661ae0bb2b894c1f086ffa754"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "375332e563c4aeac9be2bb90b1204e4d581423d195e69a4cf22257ed76c6aa0a"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b2b356d72de317f5260227ce77e4d729ad1462a711fceb07411fda66261f1dfd",
@@ -4390,24 +4388,24 @@
       "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "fa6a56f716969731440078a7ec6d7c10c6e8f5825aa73c2b110ac314b952ad8e",
+      "fingerprint": "01513eb3da7b0b7fcb2afed8ee0ee47b67dc891de68d39380eb46a20fbdc59f1",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "6158774b6c1a75de3e5001974eaeac6d4e5194c7abb8f5333b30a4498864ca34"
+        "packages/hotkeys/src/_match.ts": "40a66c4625c8dab9068dac81cecdd6393ca390024ab63812e922a38bdf580350"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "d31cd54d5179deb95bbe0057faf1300da17be12572c99aa16b1b5c3ffbe02fca",
+      "fingerprint": "c9dd39fdb37aeac04fc9ea345b0650bb166537d17eb9b5dd0090d77803d9e829",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "18ceb0d2a45dc207aa851e7181128fe63bd9a809d1eafd858592d8e39dd112da"
+        "packages/hotkeys/tests/match.test.ts": "6ac5ba29159f90228f247adae2a528855dec3c5057ec1c8a62c0dfb51c82751a"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "29bf503c765005c774c6c890d81091be56171896",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
+      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
       "fingerprint": "7fc444c0c86d281425e7a71df8d2acce649d69e855bf0b3b43db276139528489",

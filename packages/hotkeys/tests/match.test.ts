@@ -2010,6 +2010,29 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(q('/', 81), 'Mod+/', 'linux')).toBe(true)
     })
 
+    it('fires Alt+Shift+Q for Greek Alt+Shift+Q on Windows', () => {
+      const event = createKeyboardEvent(':', {
+        code: 'KeyQ',
+        altKey: true,
+        shiftKey: true,
+        keyCode: 81,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+Shift+Q', 'windows')).toBe(true)
+    })
+
+    // German AltGr+Q types `@` and still reports VK_Q
+    it('does not fire the letter for a symbol AltGr typed', () => {
+      for (const flags of [{ ctrlKey: true, altKey: true }, {}]) {
+        const event = createKeyboardEvent('@', {
+          ...flags,
+          code: 'KeyQ',
+          altGraph: true,
+          keyCode: 81,
+        })
+        expect(matchesKeyboardEvent(event, 'Q', 'windows')).toBe(false)
+      }
+    })
+
     // Chromium on Linux reports 186 for Greek, the code of `;`
     it('does not fire Mod+Q when the key code names the character', () => {
       expect(matchesKeyboardEvent(q(';', 186), 'Mod+Q', 'linux')).toBe(false)
