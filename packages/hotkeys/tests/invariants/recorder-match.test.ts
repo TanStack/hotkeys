@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
@@ -21,7 +21,6 @@ import type { EventCase, Platform } from './fixtures'
 
 afterEach(() => {
   HotkeyManager.resetInstance()
-  vi.restoreAllMocks()
 })
 
 type RecordResult =
@@ -103,19 +102,17 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
           const result = record(init, platform, recordBy)
           if (result.kind !== 'recorded') continue
           const hotkey = result.hotkey as HotkeyChord
-          const callback = vi.fn()
-          const handle = manager.register(hotkey, callback, {
+          // A counter, not vi.fn(): Vitest holds every called mock and its
+          // call arguments until the test returns
+          let calls = 0
+          const handle = manager.register(hotkey, () => calls++, {
             platform,
             ignoreInputs: false,
             conflictBehavior: 'allow',
           })
           document.dispatchEvent(makeEvent('keydown', init))
           handle.unregister()
-          if (callback.mock.calls.length !== 1) {
-            log.add(
-              `${label}: ${hotkey} fired ${callback.mock.calls.length} times`,
-            )
-          }
+          if (calls !== 1) log.add(`${label}: ${hotkey} fired ${calls} times`)
         }
         expect(log.report()).toEqual([])
       })
@@ -191,17 +188,19 @@ describe.each(PLATFORMS)('recorded chords on %s', (platform) => {
       if (!matchesKeyboardEvent(makeEvent('keydown', init), hotkey, platform)) {
         log.add(`${label}: recorded ${hotkey}, which doesn't match it`)
       }
-      const callback = vi.fn()
-      const handle = HotkeyManager.getInstance().register(hotkey, callback, {
-        platform,
-        ignoreInputs: false,
-        conflictBehavior: 'allow',
-      })
+      let calls = 0
+      const handle = HotkeyManager.getInstance().register(
+        hotkey,
+        () => calls++,
+        {
+          platform,
+          ignoreInputs: false,
+          conflictBehavior: 'allow',
+        },
+      )
       document.dispatchEvent(makeEvent('keydown', init))
       handle.unregister()
-      if (callback.mock.calls.length !== 1) {
-        log.add(`${label}: ${hotkey} fired ${callback.mock.calls.length} times`)
-      }
+      if (calls !== 1) log.add(`${label}: ${hotkey} fired ${calls} times`)
     }
     return log.report()
   }
