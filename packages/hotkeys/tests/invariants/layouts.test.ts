@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { HotkeyManager, matchesKeyboardEvent, parseHotkey } from '../../src'
 import {
   altGraphTypedCharacter,
@@ -293,7 +293,8 @@ describe.each(PLATFORMS)('layouts on %s', (platform) => {
       }
     }
     expectOnlyKnownGaps('none', platform, failures)
-  })
+    // About 0.2 s locally, but over 5 s on a loaded CI runner
+  }, 30_000)
 
   it('a keyup hotkey fires once, when its key or one of its modifiers comes up, in any release order', () => {
     const failures: Array<string> = []
@@ -346,10 +347,12 @@ describe.each(PLATFORMS)('layouts on %s', (platform) => {
         for (const chord of chords) {
           const chordMods = parseHotkey(chord as never, platform)
           for (const order of orders) {
-            const callback = vi.fn()
+            // A counter, not vi.fn(): Vitest holds every called mock and its
+            // call arguments until the test returns
+            let calls = 0
             const handle = HotkeyManager.getInstance().register(
               chord as never,
-              callback,
+              () => calls++,
               {
                 platform,
                 eventType: 'keyup',
@@ -372,7 +375,7 @@ describe.each(PLATFORMS)('layouts on %s', (platform) => {
                   document.dispatchEvent(
                     makeEvent('keyup', releaseInit(layout, press, released)),
                   )
-                  atEnd ??= callback.mock.calls.length
+                  atEnd ??= calls
                 }
                 continue
               }
@@ -393,10 +396,10 @@ describe.each(PLATFORMS)('layouts on %s', (platform) => {
                 }),
               )
               if (modifier !== 'altGraph' && chordMods[modifier])
-                atEnd ??= callback.mock.calls.length
+                atEnd ??= calls
             }
             handle.unregister()
-            const count = callback.mock.calls.length
+            const count = calls
             if (count !== 1 || atEnd !== 1)
               failures.push(
                 `${press.label}: keyup ${chord} fired ${count}× (${atEnd ?? 0}× when the press ended), releasing ${order.join(', ')}`,

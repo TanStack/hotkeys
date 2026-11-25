@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { HotkeyManager, matchesKeyboardEvent, parseHotkey } from '../../src'
 import { normalizeKeyName } from '../../src/constants'
 import {
@@ -160,10 +160,12 @@ describe.each(PLATFORMS)('matching on %s', (platform) => {
     events: Array<KeyboardEvent>,
     options: HotkeyOptions & { requireReset?: boolean; timeout?: number } = {},
   ): number {
-    const callback = vi.fn()
+    // A counter, not vi.fn(): Vitest holds every called mock and its
+    // call arguments until the test returns
+    let calls = 0
     const handle = HotkeyManager.getInstance().register(
       chord as never,
-      callback,
+      () => calls++,
       {
         platform,
         ignoreInputs: false,
@@ -173,7 +175,7 @@ describe.each(PLATFORMS)('matching on %s', (platform) => {
     )
     for (const event of events) document.dispatchEvent(event)
     handle.unregister()
-    return callback.mock.calls.length
+    return calls
   }
 
   it('a composing press never fires a hotkey or advances a sequence', () => {
@@ -280,7 +282,7 @@ describe.each(PLATFORMS)('matching on %s', (platform) => {
       }
     }
     expect(log.report()).toEqual([])
-    // About 0.5 s locally, but over 5 s on a busy CI runner
+    // About 1 s locally, but far longer on a loaded CI runner
   }, 30_000)
 
   it('a keyup hotkey fires once when a modifier is released first', () => {
