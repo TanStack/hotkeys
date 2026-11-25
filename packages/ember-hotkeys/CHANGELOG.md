@@ -1,5 +1,12 @@
 # @tanstack/ember-hotkeys
 
+## 0.14.4
+
+### Patch Changes
+
+- Updated dependencies [[`980d86f`](https://github.com/TanStack/hotkeys/commit/980d86fc955c25e396d35b914dc49aa480a51a33), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`be758b3`](https://github.com/TanStack/hotkeys/commit/be758b328cb33041d3602197b93f61e7ed9666a6), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c)]:
+  - @tanstack/hotkeys@0.34.0
+
 ## 0.14.3
 
 ### Patch Changes

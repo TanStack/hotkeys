@@ -1,5 +1,13 @@
 # @tanstack/hotkeys-devtools
 
+## 1.12.1
+
+### Patch Changes
+
+- [#301](https://github.com/TanStack/hotkeys/pull/301) [`00bc764`](https://github.com/TanStack/hotkeys/commit/00bc7643c72d5de35b8f214f9be9cb20e5de421a) - Production builds no longer bundle the devtools panel's JavaScript. The default entry's no-op panel and plugin now live in their own module, so bundlers drop the real panel, the devtools core and the Solid runtime when `NODE_ENV` is not `development`. With the documented React setup, that removes about 2.7 kB gzip under Vite and about 53 kB gzip under esbuild.
+- Updated dependencies [[`980d86f`](https://github.com/TanStack/hotkeys/commit/980d86fc955c25e396d35b914dc49aa480a51a33), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c), [`be758b3`](https://github.com/TanStack/hotkeys/commit/be758b328cb33041d3602197b93f61e7ed9666a6), [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2), [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c)]:
+  - @tanstack/hotkeys@0.34.0
+
 ## 1.12.0
 
 ### Minor Changes

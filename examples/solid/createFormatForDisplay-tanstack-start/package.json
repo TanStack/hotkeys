@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@solidjs/web": "^2.0.3",
-    "@tanstack/solid-hotkeys": "^0.26.0",
+    "@tanstack/solid-hotkeys": "^0.26.1",
     "@tanstack/solid-router": "^2.0.0-rc.12",
     "@tanstack/solid-start": "^2.0.0-rc.12",
     "solid-js": "^2.0.3"

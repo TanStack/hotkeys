@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "@tanstack/react-hotkeys": "^0.27.2",
+    "@tanstack/react-hotkeys": "^0.27.3",
     "next": "^16.4.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

@@ -1,5 +1,13 @@
 # @tanstack/vue-hotkeys-devtools
 
+## 0.13.16
+
+### Patch Changes
+
+- [#301](https://github.com/TanStack/hotkeys/pull/301) [`00bc764`](https://github.com/TanStack/hotkeys/commit/00bc7643c72d5de35b8f214f9be9cb20e5de421a) - Production builds no longer bundle the devtools panel's JavaScript. The default entry's no-op panel and plugin now live in their own module, so bundlers drop the real panel, the devtools core and the Solid runtime when `NODE_ENV` is not `development`. With the documented React setup, that removes about 2.7 kB gzip under Vite and about 53 kB gzip under esbuild.
+- Updated dependencies [[`00bc764`](https://github.com/TanStack/hotkeys/commit/00bc7643c72d5de35b8f214f9be9cb20e5de421a)]:
+  - @tanstack/hotkeys-devtools@1.12.1
+
 ## 0.13.15
 
 ### Patch Changes
