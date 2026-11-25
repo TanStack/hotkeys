@@ -1,5 +1,45 @@
 # @tanstack/hotkeys
 
+## 0.34.0
+
+### Minor Changes
+
+- [#299](https://github.com/TanStack/hotkeys/pull/299) [`980d86f`](https://github.com/TanStack/hotkeys/commit/980d86fc955c25e396d35b914dc49aa480a51a33) - With the default `ignoreInputs: 'auto'`, hotkeys on function keys (`F1` to `F24`) and media keys now fire while a text field has focus, with any modifiers. These keys type nothing, so a text field has no use for them. Before, an `F5` or `Shift+F10` hotkey was skipped in a text field, and the browser acted on the key instead. Media keys are the keys whose names start with `Audio`, `Browser`, `Launch`, or `Media`, such as `MediaPlayPause` and `AudioVolumeUp`. A sequence follows its first step, so a sequence such as `['F2', 'R']` now also fires in text fields, and its later keys don't type into the field. To keep one of these hotkeys out of text fields, set `ignoreInputs: true` on it.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - When a logical and a physical hotkey on the same target and phase both match a key press exactly, in the same scope, only the physical one fires. Numpad Enter now fires `[NumpadEnter]` and not `Enter` as well, and `[KeyS]` registered next to `S` fires alone. Before, both fired on one press.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - A symbol that US Shift types on a punctuation key now stands for that US key on every layout. `Shift+/` means `?` and `Shift+-` means `_`, wherever the layout puts them. On German QWERTZ, `Shift+ß` (which types `?`) now fires `Shift+/` instead of `Shift+-`, and the key that types `_` fires `Shift+-`. On AZERTY, `Shift+,` types `?` and fires `Shift+/` instead of `Shift+M`. Nothing changes on a US layout. One trade-off: on German, Swiss, Spanish, Italian and Portuguese layouts, `Shift+.` types `:`, so it now fires `Shift+;` instead of `Shift+.`. Other layouts follow the same rule: UK `Shift+#` types `~` and fires ``Shift+` ``, and German `Shift+<` types `>` and fires `Shift+.`. Symbols US Shift doesn't type, such as UK `Shift+'` typing `@`, keep the key's position.
+
+### Patch Changes
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - Fix server renders in FastBoot when a component reads held keys or a hotkey hint. FastBoot defines a `window` that can't listen for events, and the key state tracker called `window.addEventListener` on it. The tracker now skips its listeners when `window` can't listen, so held-key readers return no keys and hints stay hidden on the server.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - `formatForDisplay` orders modifiers the same way on every platform. Held modifiers joined in the order they were pressed, such as `'Shift+Control'`, now display as `Ctrl+Shift` on Windows and Linux, as they already did on macOS.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - Held-key state releases AltGr when a later key press reports AltGr as up, so a missed AltGr keyup no longer hides hotkey hints until the window loses focus.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - Held-key state no longer keeps an input method's `Process` keydown, whose keyup may never arrive. A modifier pressed during a composition still counts as held.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - A hotkey callback that throws no longer stops the other hotkeys on the same key press. The error is reported as uncaught on the next microtask, the way separate event listeners report theirs.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - A dead key pressed alone no longer fires the US key at its position, except on a letter key, on the digit row, or on the US `'` and `` ` `` keys, where US International puts its accents. Swiss German `^` on the US `=` key no longer fires `=`. With Control, Alt or Command held, a dead key still matches by position.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - An invisible format character typed on the digit row, such as the zero-width non-joiner Persian types with `Ctrl+Shift+2`, no longer fires the digit.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - `Mod+Q` fires on Greek and Hebrew layouts, which type `;` and `/` on the Q key, when the browser's legacy `keyCode` still names Q: on Windows, and for Hebrew in Chromium and Firefox on Linux. Greek `Ctrl+Q` in Chromium on Linux reports the code of `;`, so the guide suggests also registering `Mod+[KeyQ]` where Greek users need it.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - `º`, `ª` and `ℓ` no longer fire `O`, `A` and `L` hotkeys. Key comparison now folds case only, instead of using an `Intl.Collator` that also treated these symbols as letters. This affects Spanish and Portuguese `º`, macOS Option+0 and Option+9, and AltGr+Shift+F and AltGr+Shift+M on many Linux layouts.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - A named key that the browser reports as `Unidentified`, such as `Shift+Tab` in older Firefox on Linux, now matches by its code, so `Shift+Tab` fires.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - The hotkey recorder no longer throws on a `keydown` with no `key` or `code`, which browser autofill and password managers send. It rejects the press with the `missing-code` reason instead. Held-key state also ignores these events, so it no longer shows an empty key or drops a held Shift.
+
+- [#306](https://github.com/TanStack/hotkeys/pull/306) [`be758b3`](https://github.com/TanStack/hotkeys/commit/be758b328cb33041d3602197b93f61e7ed9666a6) - The active scope now decides which chord handles a key press before the match score does, as the scopes guide describes. Before, a scope's hotkey could lose to an outer one on some keyboard layouts. With a `dialog` scope holding `Mod+S` and a global `Mod+[KeyS]`, the dialog won on a US layout, but on a Russian layout the global hotkey won, because `Mod+S` matched there through the key's position. Within one scope, exact matches still outrank position fallbacks. A scope's fallback match now also beats an outer exact one: with a global `Mod+Ы` and a dialog `Mod+S`, a Russian Ctrl+ы fires the dialog hotkey. Sequences still rank by match score alone.
+
+- [#303](https://github.com/TanStack/hotkeys/pull/303) [`5cbaccf`](https://github.com/TanStack/hotkeys/commit/5cbaccf4a920b153838c066e7193d7c9d1f068e2) - In development, registering a Mac hotkey with Command and a shifted US symbol, such as `Mod++` or `Mod+?`, warns that it can't fire on a US Mac keyboard, because macOS reports the unshifted character with Command held. Register it with Shift and the unshifted key instead. The binding still works on Mac layouts that type the symbol without Shift, such as `+` on German, so keep it next to the Shift form if you support those.
+
+- [#302](https://github.com/TanStack/hotkeys/pull/302) [`26983f5`](https://github.com/TanStack/hotkeys/commit/26983f5ef5c3fb0c158c02f5442937f8669c412c) - Hotkeys now prevent the browser's default action on pages that load zone.js, such as Angular apps that use zone change detection, even when another script added a passive `keydown` listener first. zone.js runs every listener it patches for one event type from a single native listener that takes the first listener's options, so `preventDefault` failed after a passive one, and `Mod+S` opened the browser's Save dialog. The hotkey and recorder listeners now attach with the browser's own `addEventListener`. Because of that, a callback passed straight to `HotkeyManager.register` no longer runs inside the Angular zone, so code that relies on zone change detection should call `NgZone.run` in the callback. The Angular adapter already runs callbacks this way.
+
 ## 0.33.1
 
 ### Patch Changes
