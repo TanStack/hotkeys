@@ -14,7 +14,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react'
-import { useCommitEffect } from './_useCommitEffect'
+import { useIsomorphicLayoutEffect } from './_useIsomorphicLayoutEffect'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -155,7 +155,7 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   })
 
   // Activate this provider's scope while mounted, shown, and enabled.
-  useCommitEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 

@@ -178,17 +178,17 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "9030b3ab60677e6479a804e654a5904eb102ef504c9976488397c91d6d79146a",
+      "fingerprint": "d9274785b5934bcf6e1c4e1ca70ec5eaee51bdce8b778384680869fd0f4eab6d",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "cfc2faa5d15fdc0d1b546770efef3bb6bfa69dd7edb2459b27035818e9cc3d83",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "dc5c0c35ace425e87231ef0515b050ee5a7c75b4d0bac546ff0894f54bcf8360",
+        "packages/react-hotkeys/src/useHotkeys.ts": "b9718ef67f2c773b7f474c0c556b480657faed6e798c486a978644bdb30ee2f7",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -207,10 +207,10 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "04caadd657dad4bab302200042915d298bd8d5d4",
+      "head": "5b301097c99c779e62e481e6f313af7ca2daf771",
       "outcome": "no-change",
-      "reason": "React retry errors reach error boundaries; no skill guidance changes.",
-      "evidence": ["hidden-content.test.tsx"]
+      "reason": "Renames an internal React hook to the common useIsomorphicLayoutEffect name; no skill guidance changes.",
+      "evidence": ["Internal file, not exported"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
       "fingerprint": "52f8880e1abd66f78b2032b41fb09cbf33a3ef1d2a03a08bfc5e8b97c493de36",
@@ -274,7 +274,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "34f73022758f3d2841b6c455e4a781b37a7bee96580d98cf6f6a7379b1094a52",
+      "fingerprint": "cd92f570931beb11338b336edbc10c500f654907dbf985d28808177f12071d3d",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -361,10 +361,10 @@
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "30140dfebbc4d822d2267af8a23a476c0bfd7e012d822e890edcd7d2fd4f883f",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "cfc2faa5d15fdc0d1b546770efef3bb6bfa69dd7edb2459b27035818e9cc3d83",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "dc5c0c35ace425e87231ef0515b050ee5a7c75b4d0bac546ff0894f54bcf8360",
+        "packages/react-hotkeys/src/useHotkeys.ts": "b9718ef67f2c773b7f474c0c556b480657faed6e798c486a978644bdb30ee2f7",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -405,10 +405,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "04caadd657dad4bab302200042915d298bd8d5d4",
+      "head": "5b301097c99c779e62e481e6f313af7ca2daf771",
       "outcome": "no-change",
-      "reason": "React retry errors reach error boundaries; no skill guidance changes.",
-      "evidence": ["hidden-content.test.tsx"]
+      "reason": "Renames an internal React hook to the common useIsomorphicLayoutEffect name; no skill guidance changes.",
+      "evidence": ["Internal file, not exported"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -23972,6 +23972,16 @@
       "outcome": "no-change",
       "reason": "Regression tests for ancestor ref targets in Preact and Octane; no skill guidance changes.",
       "evidence": ["effect-timing.test.tsx and ref-targets.test.ts"]
+    },
+    "source:packages/react-hotkeys/src/_useIsomorphicLayoutEffect.ts": {
+      "fingerprint": "80c4c89c37f85e2c50a33b50d147bfe4b8ad15a07b7b792919274de47ee5a327",
+      "snapshot": {
+        "packages/react-hotkeys/src/_useIsomorphicLayoutEffect.ts": "522a9092ff84fbeb494e435cfd99422fb1e493b9c26b7cc28854eb3a31056719"
+      },
+      "head": "5b301097c99c779e62e481e6f313af7ca2daf771",
+      "outcome": "no-change",
+      "reason": "Renames an internal React hook to the common useIsomorphicLayoutEffect name; no skill guidance changes.",
+      "evidence": ["Internal file, not exported"]
     }
   }
 }

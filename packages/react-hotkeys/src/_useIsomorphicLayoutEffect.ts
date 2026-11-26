@@ -6,5 +6,5 @@ import { useEffect, useLayoutEffect } from 'react'
  * effects then). React 18 warns when a server render calls `useLayoutEffect`,
  * so the server gets `useEffect`, which does not run there either.
  */
-export const useCommitEffect: typeof useEffect =
+export const useIsomorphicLayoutEffect: typeof useEffect =
   typeof document === 'undefined' ? useEffect : useLayoutEffect

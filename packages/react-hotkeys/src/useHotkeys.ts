@@ -8,7 +8,7 @@ import {
 import { useRef, useState } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
-import { useCommitEffect } from './_useCommitEffect'
+import { useIsomorphicLayoutEffect } from './_useIsomorphicLayoutEffect'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions, UseHotkeyTarget } from './useHotkey'
 
@@ -98,7 +98,7 @@ export function useHotkeys(
     )
     return waiting
   }
-  useCommitEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const bindings = (bindingsRef.current ??= createHotkeyBindings({
       afterDelegatedHandlers: true,
     }))
@@ -118,7 +118,7 @@ export function useHotkeys(
     }
   })
 
-  useCommitEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return () => {
       bindingsRef.current?.destroy()
       bindingsRef.current = null
