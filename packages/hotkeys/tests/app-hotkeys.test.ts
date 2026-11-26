@@ -169,6 +169,36 @@ describe('AppHotkeysStore', () => {
     expect(store.appHotkeys['palette.open'].hotkey).toBeNull()
   })
 
+  // Loading drops values that aren't hotkeys, so a saved '' would bring the
+  // default back after a reload.
+  it.each([[''], ['Foo+Bar'], [['G', '']]])(
+    'refuses to save %j and warns in development',
+    (value) => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      const onCustomHotkeysChange = vi.fn()
+      const store = new AppHotkeysStore(appHotkeys, { onCustomHotkeysChange })
+      store.setCustomHotkey('doc.save', 'Mod+K')
+      onCustomHotkeysChange.mockClear()
+      expect(store.setCustomHotkey('doc.save', value as never)).toEqual([])
+      expect(onCustomHotkeysChange).not.toHaveBeenCalled()
+      expect(store.appHotkeys['doc.save'].hotkey).toBe('Mod+K')
+      expect(warn).toHaveBeenCalledWith(
+        expect.stringContaining("setCustomHotkey('doc.save') ignored"),
+      )
+    },
+  )
+
+  it('warns in development about an unknown id', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const onCustomHotkeysChange = vi.fn()
+    const store = new AppHotkeysStore(appHotkeys, { onCustomHotkeysChange })
+    expect(store.setCustomHotkey('doc.typo' as never, 'Mod+K')).toEqual([])
+    expect(onCustomHotkeysChange).not.toHaveBeenCalled()
+    expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining("unknown app hotkey id: 'doc.typo'"),
+    )
+  })
+
   it('treats scopes and sequence prefixes when finding conflicts', () => {
     const store = new AppHotkeysStore(
       defineAppHotkeys({

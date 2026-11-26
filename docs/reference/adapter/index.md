@@ -51,4 +51,5 @@ title: "@tanstack/hotkeys"
 - [resolveMaybeGetter](functions/resolveMaybeGetter.md)
 - [resolveRefTarget](functions/resolveRefTarget.md)
 - [subscribePublishedAppHotkeys](functions/subscribePublishedAppHotkeys.md)
+- [syncRecorderOptions](functions/syncRecorderOptions.md)
 - [withDefaults](functions/withDefaults.md)

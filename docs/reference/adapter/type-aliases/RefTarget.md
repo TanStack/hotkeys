@@ -9,7 +9,7 @@ title: RefTarget
 type RefTarget<TRef> = TRef | Target | null;
 ```
 
-Defined in: [adapter.ts:672](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L672)
+Defined in: [adapter.ts:674](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L674)
 
 A framework ref, element, document, or window to listen on. A `null` or
 `undefined` target, or a ref that is still unset, waits for the element.

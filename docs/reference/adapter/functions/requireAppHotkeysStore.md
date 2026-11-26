@@ -9,7 +9,7 @@ title: requireAppHotkeysStore
 function requireAppHotkeysStore(store, message): AppHotkeysStore<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>;
 ```
 
-Defined in: [adapter.ts:568](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L568)
+Defined in: [adapter.ts:570](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L570)
 
 The app hotkeys store, typed by `Register`, or throws when there is none.
 `message` says which API needs it and how to provide one.

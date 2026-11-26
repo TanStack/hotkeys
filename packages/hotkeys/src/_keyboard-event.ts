@@ -89,11 +89,13 @@ export function isModifierPress(event: KeyboardEvent): boolean {
 
 /**
  * Whether a key event can be a step of a sequence. Auto-repeats, keys an
- * input method editor reads, and modifier presses are not steps: they neither
- * advance a sequence nor reset it.
+ * input method editor reads, modifier presses, and events without a key,
+ * such as the ones autofill sends, are not steps: they neither advance a
+ * sequence nor reset it.
  */
 export function isSequenceStep(event: KeyboardEvent): boolean {
   return (
+    !!event.key &&
     !(event.type === 'keydown' && event.repeat) &&
     !isComposingEvent(event) &&
     !isModifierPress(event)

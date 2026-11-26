@@ -30,6 +30,8 @@ interface Shortcut {
   hotkey: Hotkey | null
 }
 
+const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
+
 let nextId = 0
 
 function createId(): string {
@@ -352,6 +354,14 @@ class RegistrationsViewer extends Component {
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
   formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
+  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
+  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
+  get heldModifierLabels() {
+    return this.heldKeys.value
+      .filter((key) => MODIFIER_ORDER.includes(key))
+      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+      .map((key) => this.formatForDisplay({ key }))
+  }
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
   }
@@ -401,12 +411,12 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
           {{#if this.args.isEditing}}<div class='recording-indicator'>
               {{#if (gt this.args.liveSteps.length 0)}}<span class='held-hotkeys'>
                   {{this.liveSequenceText}}
-                </span>{{else if (gt this.heldKeys.value.length 0)}}<div
+                </span>{{else if (gt this.heldModifierLabels.length 0)}}<div
                   class='held-hotkeys'
                 >
-                  {{#each this.heldKeys.value as |key index|}}
+                  {{#each this.heldModifierLabels as |label index|}}
                     {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
-                    <kbd>{{key}}</kbd>
+                    <kbd>{{label}}</kbd>
                   {{/each}}
                 </div>{{else}}<span class='recording-text'>
                   Press chords, then Enter...

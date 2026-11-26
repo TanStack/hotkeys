@@ -1,7 +1,7 @@
 'use client'
 
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { syncRecorderOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { useEffect, useRef, useState } from 'react'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { useSelector } from './_useSelector'
@@ -83,7 +83,7 @@ export function useHotkeyRecorder(
   }
 
   // Sync options on every render so callbacks always see the latest values
-  recorderRef.current.setOptions(mergedOptions)
+  syncRecorderOptions(recorderRef.current, mergedOptions)
 
   const recorder = recorderRef.current
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)

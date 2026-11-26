@@ -9,7 +9,7 @@ title: AppHotkeyDefaultKind
 type AppHotkeyDefaultKind<THotkey> = THotkey extends null ? null : THotkey extends readonly [unknown] ? HotkeyChord : THotkey extends ReadonlyArray<unknown> ? HotkeySequence : HotkeyChord;
 ```
 
-Defined in: [app-hotkeys.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L131)
+Defined in: [app-hotkeys.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L132)
 
 The kind of a declared default hotkey; a one-step sequence is a chord.
 

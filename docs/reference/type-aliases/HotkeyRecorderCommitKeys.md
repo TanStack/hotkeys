@@ -9,6 +9,6 @@ title: HotkeyRecorderCommitKeys
 type HotkeyRecorderCommitKeys = "enter" | "none";
 ```
 
-Defined in: [hotkey-recorder.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L137)
+Defined in: [hotkey-recorder.ts:146](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L146)
 
 Which keys commit a multi-step recording before it reaches `maxSteps`.

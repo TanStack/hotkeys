@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useFormatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
+import { computed } from 'vue'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 import type { Shortcut } from './types'
 
@@ -19,8 +20,17 @@ defineEmits<{
   delete: []
 }>()
 
+const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
+
 const formatForDisplay = useFormatForDisplay()
 const heldKeys = useHeldKeys()
+// Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
+// Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
+const heldModifiers = computed(() =>
+  heldKeys.value
+    .filter((key) => MODIFIER_ORDER.includes(key))
+    .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b)),
+)
 </script>
 
 <template>
@@ -65,10 +75,10 @@ const heldKeys = useHeldKeys()
       </div>
       <div class="shortcut-hotkey">
         <div v-if="isEditing" class="recording-indicator">
-          <div v-if="heldKeys.length > 0" class="held-hotkeys">
-            <template v-for="(key, index) in heldKeys" :key="key">
+          <div v-if="heldModifiers.length > 0" class="held-hotkeys">
+            <template v-for="(key, index) in heldModifiers" :key="key">
               <span v-if="index > 0" class="plus">+</span>
-              <kbd>{{ key }}</kbd>
+              <kbd>{{ formatForDisplay({ key }) }}</kbd>
             </template>
           </div>
           <span v-else class="recording-text"

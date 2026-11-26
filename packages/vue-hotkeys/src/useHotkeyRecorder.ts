@@ -1,5 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { syncRecorderOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { getCurrentInstance, onScopeDispose, toValue, watch } from 'vue'
 import { useLive } from './_useLive'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
@@ -79,8 +79,10 @@ export function useHotkeyRecorder(
     (state) => state.recordedHotkey,
   )
 
-  const stopWatcher = watch(resolve, (resolved) =>
-    recorder.setOptions(resolved),
+  const stopWatcher = watch(
+    resolve,
+    (resolved) => syncRecorderOptions(recorder, resolved),
+    { immediate: true },
   )
 
   // A page cached by <KeepAlive> stops recording when hidden, and can't

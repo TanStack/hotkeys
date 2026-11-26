@@ -196,4 +196,36 @@ test.describe('recorder', () => {
       isRecording: true,
     })
   })
+
+  // Escape cancels the recording and nothing else: a modal dialog stays open,
+  // and so does one whose library listens on the document in the capture
+  // phase, as Radix does, from before the recording started.
+  test('Escape cancels without closing a dialog', async ({ page, harness }) => {
+    const hk = await harness(
+      '<dialog id="native"><button id="inside">Record</button></dialog>',
+    )
+    await page.evaluate(() => {
+      const dialog = document.querySelector<HTMLDialogElement>('#native')!
+      dialog.showModal()
+      document.addEventListener(
+        'keydown',
+        (event) => {
+          if (event.key === 'Escape') {
+            document.body.dataset.libraryClosed = 'true'
+          }
+        },
+        true,
+      )
+    })
+    await page.focus('#inside')
+    await hk.call('startRecorder')
+    await page.keyboard.press('Escape')
+    expect((await hk.call('recorderState')).recorded).toBe('cancelled')
+    expect(
+      await page.evaluate(() => ({
+        open: document.querySelector<HTMLDialogElement>('#native')!.open,
+        libraryClosed: document.body.dataset.libraryClosed ?? 'false',
+      })),
+    ).toEqual({ open: true, libraryClosed: 'false' })
+  })
 })

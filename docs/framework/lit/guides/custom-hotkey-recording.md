@@ -104,6 +104,31 @@ Options can also be a getter, such as `new HotkeyRecorderController(this, () => 
 | Tab or Shift+Tab, without Control, Alt, or Meta | Cancels the recording and calls `onCancel`, and the browser moves focus as usual. In a text field, moves focus without cancelling. With `recordTab: true`, records Tab like any other key. |
 | Backspace or Delete, without modifiers | Removes the last step. With no steps, stops recording and calls `onClear`. |
 
+The recorder also cancels and calls `onCancel` when the window loses focus, such as when the user switches apps or tabs, opens browser devtools, or clicks into an iframe. Set `cancelOnBlur: false` to keep recording. While debugging with devtools open, Chrome's **Rendering > Emulate a focused page** setting keeps the page focused.
+
+A click elsewhere on the page doesn't cancel, because the recorder doesn't know which element is your recorder. To cancel on a click outside it, listen for `pointerdown` while recording. Check `event.composedPath()`, because the document sees a click inside a shadow root as a click on its host. Don't rely on the button's `blur` event: Safari and Firefox on macOS don't focus a button when it is clicked.
+
+```ts
+private onPointerDown = (event: PointerEvent) => {
+  if (!event.composedPath().includes(this)) this.recorder.cancelRecording()
+}
+
+updated() {
+  if (this.recorder.isRecording) {
+    document.addEventListener('pointerdown', this.onPointerDown, true)
+  } else {
+    document.removeEventListener('pointerdown', this.onPointerDown, true)
+  }
+}
+
+disconnectedCallback() {
+  super.disconnectedCallback()
+  document.removeEventListener('pointerdown', this.onPointerDown, true)
+}
+```
+
+Shortcuts that the browser or the operating system keeps, such as `Mod+T`, `Mod+N`, and `Mod+W` in Chrome or most `Win` shortcuts on Windows, never reach the page. The recorder can't see them, so it can't reject them either.
+
 Repeats and IME composition never add a step. `onClear` doesn't change anything on its own, so your app decides whether clearing removes a hotkey or restores its default.
 
 By default, the recorder ignores typing in text fields, so other fields on the page keep working while it listens. Escape still cancels. Set `ignoreInputs: false` to record from inside a text field.
@@ -139,6 +164,24 @@ recorder = new HotkeyRecorderController(this, {
 ```
 
 A rejected recording keeps listening, so the user can try again. A rejected sequence recording keeps its steps, so the user can edit them with Backspace.
+
+### Save hotkeys that work on another platform
+
+A recorded hotkey means the same keys on every platform when its modifiers are `Mod`, `Shift`, and `Alt`. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
+
+If your app syncs hotkeys between machines, pick one rule:
+
+- Store each hotkey with the platform it was recorded on, and use it only there. `context.platform` names it.
+- Reject the platform-specific modifiers, so every saved hotkey is portable:
+
+```ts
+recorder = new HotkeyRecorderController(this, {
+  validate: (_hotkey, { parsedChord, platform }) =>
+    !(platform === 'mac' ? parsedChord.ctrl : parsedChord.meta) ||
+    'Use Ctrl or Cmd, Shift, and Alt.',
+  onRecord: (hotkey) => saveHotkey(hotkey),
+})
+```
 
 ### Check for conflicts
 
@@ -256,7 +299,8 @@ class ShortcutSettings extends LitElement {
 | Option | Default | Description |
 | --- | --- | --- |
 | `onRecord` | Required | Called with the recorded hotkey when a recording commits, and with the same context as `validate` |
-| `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, or you call `cancelRecording()` |
+| `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, when the window loses focus, or when you call `cancelRecording()` |
+| `cancelOnBlur` | `true` | Cancels the recording when the window loses focus. Set `false` to keep recording. |
 | `onClear` | None | Called when the user presses Backspace or Delete with nothing recorded |
 | `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |

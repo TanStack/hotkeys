@@ -8,7 +8,11 @@ import {
   untracked,
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
+import {
+  resolveMaybeGetter,
+  syncRecorderOptions,
+  withDefaults,
+} from '@tanstack/hotkeys/adapter'
 import { injectWrapCallback } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
@@ -108,17 +112,12 @@ export function injectHotkeyRecorder(
     return resolved as never
   }
 
-  // Keys sent to the recorder last time. A key that disappears from the
-  // options is sent as `undefined`, which restores the recorder's default
-  // instead of keeping the old value.
-  let syncedKeys: Array<string> = []
-
   // Stable signal to lazy initialize the recorder
   const recorderSignal = computed(() =>
     untracked(() => {
-      const initial = resolve()
-      syncedKeys = Object.keys(initial)
-      return new HotkeyRecorder(initial)
+      const recorder = new HotkeyRecorder(resolve())
+      syncRecorderOptions(recorder, resolve())
+      return recorder
     }),
   )
 
@@ -136,10 +135,7 @@ export function injectHotkeyRecorder(
 
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
-    const next: Record<string, unknown> = { ...resolve() }
-    for (const key of syncedKeys) if (!(key in next)) next[key] = undefined
-    syncedKeys = Object.keys(next)
-    recorderSignal().setOptions(next)
+    syncRecorderOptions(recorderSignal(), resolve())
   })
 
   destroyRef.onDestroy(() => {

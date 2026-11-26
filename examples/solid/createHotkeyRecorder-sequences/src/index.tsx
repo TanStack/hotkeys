@@ -23,6 +23,8 @@ interface Shortcut {
   hotkey: Hotkey | null
 }
 
+const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
+
 let nextId = 0
 function createId(): string {
   return `shortcut_${++nextId}`
@@ -394,6 +396,12 @@ function ShortcutListItem(props: {
 }) {
   const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
+  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
+  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
+  const heldModifiers = () =>
+    heldKeys()
+      .filter((key) => MODIFIER_ORDER.includes(key))
+      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
 
   return (
     <div class={`shortcut-item ${props.isEditing ? 'recording' : ''}`}>
@@ -436,12 +444,15 @@ function ShortcutListItem(props: {
                 <span class="held-hotkeys">
                   {formatForDisplay(props.liveSteps)}
                 </span>
-              ) : heldKeys().length > 0 ? (
+              ) : heldModifiers().length > 0 ? (
                 <div class="held-hotkeys">
-                  {heldKeys().flatMap((key, index) =>
+                  {heldModifiers().flatMap((key, index) =>
                     index > 0
-                      ? [<span class="plus">+</span>, <kbd>{key}</kbd>]
-                      : [<kbd>{key}</kbd>],
+                      ? [
+                          <span class="plus">+</span>,
+                          <kbd>{formatForDisplay({ key })}</kbd>,
+                        ]
+                      : [<kbd>{formatForDisplay({ key })}</kbd>],
                   )}
                 </div>
               ) : (

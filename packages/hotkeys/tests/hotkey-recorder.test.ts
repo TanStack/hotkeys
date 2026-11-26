@@ -647,12 +647,231 @@ describe('HotkeyRecorder stopped during a key press', () => {
     const onRecord = vi.fn()
     const recorder = createRecorder({ onRecord })
     const stop = () => recorder.stop()
-    document.addEventListener('keydown', stop, true)
+    window.addEventListener('keydown', stop, true)
     recorder.start()
     const event = keydown({ key: 'a', code: 'KeyA', target: document })
-    document.removeEventListener('keydown', stop, true)
+    window.removeEventListener('keydown', stop, true)
     expect(onRecord).not.toHaveBeenCalled()
     expect(event.defaultPrevented).toBe(false)
     expect(recorder.store.state.recordedHotkey).toBeNull()
+  })
+})
+
+describe('HotkeyRecorder and the window losing focus', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    document.body.replaceChildren()
+  })
+
+  it('cancels when the window loses focus', () => {
+    const onCancel = vi.fn()
+    const onRecord = vi.fn()
+    const recorder = createRecorder({ onRecord, onCancel })
+    recorder.start()
+    window.dispatchEvent(new Event('blur'))
+    expect(recorder.store.state.isRecording).toBe(false)
+    expect(onCancel).toHaveBeenCalledOnce()
+    // The next key press reaches the page again
+    const event = keydown({ key: 'a', code: 'KeyA', target: document.body })
+    expect(event.defaultPrevented).toBe(false)
+    expect(onRecord).not.toHaveBeenCalled()
+  })
+
+  it('keeps recording when an element on the page loses focus', () => {
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    const button = document.body.appendChild(document.createElement('button'))
+    button.focus()
+    recorder.start()
+    button.blur()
+    expect(recorder.store.state.isRecording).toBe(true)
+  })
+
+  it('keeps recording with cancelOnBlur: false', () => {
+    const onCancel = vi.fn()
+    const recorder = createRecorder({
+      onRecord: vi.fn(),
+      onCancel,
+      cancelOnBlur: false,
+    })
+    recorder.start()
+    window.dispatchEvent(new Event('blur'))
+    expect(recorder.store.state.isRecording).toBe(true)
+    expect(onCancel).not.toHaveBeenCalled()
+  })
+
+  it('reads cancelOnBlur when the window loses focus', () => {
+    const onCancel = vi.fn()
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel })
+    recorder.start()
+    recorder.setOptions({ cancelOnBlur: false })
+    window.dispatchEvent(new Event('blur'))
+    expect(onCancel).not.toHaveBeenCalled()
+  })
+
+  it('stops listening for focus loss once recording ends', () => {
+    const onCancel = vi.fn()
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel })
+    recorder.start()
+    recorder.stop()
+    window.dispatchEvent(new Event('blur'))
+    expect(onCancel).not.toHaveBeenCalled()
+  })
+})
+
+describe('HotkeyRecorder and other key listeners on the page', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+  })
+
+  // Dialog libraries such as Radix listen for Escape on the document in the
+  // capture phase, and add that listener when the dialog opens.
+  it('cancels on Escape without letting a dialog close too', () => {
+    const closeDialog = vi.fn()
+    const onKeydown = (event: KeyboardEvent) =>
+      event.key === 'Escape' && closeDialog()
+    document.addEventListener('keydown', onKeydown, true)
+    const onCancel = vi.fn()
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel })
+    recorder.start()
+    keydown({ key: 'Escape', code: 'Escape', target: document.body })
+    document.removeEventListener('keydown', onKeydown, true)
+    expect(onCancel).toHaveBeenCalledOnce()
+    expect(closeDialog).not.toHaveBeenCalled()
+  })
+
+  it("doesn't record the key press that started it", () => {
+    const onRecord = vi.fn()
+    const recorder = createRecorder({ onRecord })
+    const onKeydown = (event: KeyboardEvent) =>
+      event.key === 'r' && recorder.start()
+    window.addEventListener('keydown', onKeydown, true)
+    keydown({ key: 'r', code: 'KeyR', target: document.body })
+    window.removeEventListener('keydown', onKeydown, true)
+    expect(recorder.store.state.isRecording).toBe(true)
+    expect(onRecord).not.toHaveBeenCalled()
+  })
+})
+
+describe('HotkeyRecorder with another recorder', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+  })
+
+  // A settings screen with a recorder per row: clicking another row's
+  // Record button while one row records.
+  it('cancels the recording in progress when another one starts', () => {
+    const first = { onRecord: vi.fn(), onCancel: vi.fn() }
+    const second = { onRecord: vi.fn(), onCancel: vi.fn() }
+    const a = createRecorder(first)
+    const b = createRecorder(second)
+    a.start()
+    b.start()
+    expect(a.store.state.isRecording).toBe(false)
+    expect(first.onCancel).toHaveBeenCalledOnce()
+    keydown({ key: 's', code: 'KeyS', metaKey: true, target: document.body })
+    expect(first.onRecord).not.toHaveBeenCalled()
+    expect(second.onRecord).toHaveBeenCalledWith('Mod+S', expect.anything())
+  })
+})
+
+describe('HotkeyRecorder and key releases', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+    vi.restoreAllMocks()
+  })
+
+  // A dialog that closes on Escape keyup, around a recorder.
+  it("doesn't let the page see the release of a key it recorded", () => {
+    const released: Array<string> = []
+    const onKeyup = (event: KeyboardEvent) => released.push(event.key)
+    document.addEventListener('keyup', onKeyup)
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel: vi.fn() })
+    recorder.start()
+    keydown({ key: 'Escape', code: 'Escape', target: document.body })
+    keyup({ key: 'Escape', code: 'Escape', target: document.body })
+    recorder.start()
+    keydown({ key: 'Tab', code: 'Tab', target: document.body })
+    keyup({ key: 'Tab', code: 'Tab', target: document.body })
+    document.removeEventListener('keyup', onKeyup)
+    // Tab leaves the recorder without being stopped, so its release reaches
+    // the page and held-key state.
+    expect(released).toEqual(['Tab'])
+  })
+
+  it('leaves autofill events alone after a recording that saw one', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    recorder.start()
+    document.body.dispatchEvent(
+      new Event('keydown', { bubbles: true, cancelable: true }),
+    )
+    recorder.stop()
+    keydown({ key: 'g', code: 'KeyG', target: document })
+    keyup({ key: 'g', code: 'KeyG', target: document })
+    document.dispatchEvent(new Event('keydown', { bubbles: true }))
+    keydown({ key: 'g', code: 'KeyG', target: document })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
+  it('does nothing when cancelled while idle', () => {
+    const onCancel = vi.fn()
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel })
+    recorder.start()
+    keydown({ key: 's', code: 'KeyS', metaKey: true, target: document.body })
+    expect(recorder.store.state.recordedHotkey).toBe('Mod+S')
+    recorder.cancel()
+    expect(onCancel).not.toHaveBeenCalled()
+    expect(recorder.store.state.recordedHotkey).toBe('Mod+S')
+  })
+})
+
+describe('HotkeyRecorder and held keys around a recording', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+  })
+
+  function pageEvents() {
+    const seen: Array<string> = []
+    const onKey = (event: KeyboardEvent) =>
+      seen.push(`${event.type} ${event.key}${event.repeat ? ' repeat' : ''}`)
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('keyup', onKey)
+    return {
+      seen,
+      stop() {
+        document.removeEventListener('keydown', onKey)
+        document.removeEventListener('keyup', onKey)
+      },
+    }
+  }
+
+  // A key press starts the recording and the key is held.
+  it('lets the page see the release of the press that started it', () => {
+    const page = pageEvents()
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    keydown({ key: 'r', code: 'KeyR', target: document.body })
+    recorder.start()
+    keydown({ key: 'r', code: 'KeyR', repeat: true, target: document.body })
+    keyup({ key: 'r', code: 'KeyR', target: document.body })
+    page.stop()
+    expect(page.seen).toEqual(['keydown r', 'keyup r'])
+  })
+
+  // The recorder commits on the press, and the key stays held.
+  it('hides the rest of a recorded press from the page after it commits', () => {
+    const page = pageEvents()
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    recorder.start()
+    keydown({ key: 'a', code: 'KeyA', target: document.body })
+    expect(recorder.store.state.isRecording).toBe(false)
+    keydown({ key: 'a', code: 'KeyA', repeat: true, target: document.body })
+    keyup({ key: 'a', code: 'KeyA', target: document.body })
+    page.stop()
+    expect(page.seen).toEqual([])
   })
 })

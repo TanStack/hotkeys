@@ -3,7 +3,7 @@
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { act, renderHook } from '@testing-library/react'
 import { StrictMode } from 'react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 
 describe('useHotkeyRecorder', () => {
@@ -32,5 +32,31 @@ describe('useHotkeyRecorder', () => {
 
     act(() => first.stopRecording())
     expect(result.current.isRecording).toBe(false)
+  })
+
+  it('stops applying an option the caller no longer passes', () => {
+    const onRecord = vi.fn()
+    const { result, rerender } = renderHook(
+      ({ strict }: { strict: boolean }) =>
+        useHotkeyRecorder(
+          strict
+            ? { onRecord, validate: () => 'reserved' as const }
+            : { onRecord },
+        ),
+      { initialProps: { strict: true } },
+    )
+    rerender({ strict: false })
+    act(() => result.current.startRecording())
+    act(() => {
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'k',
+          code: 'KeyK',
+          ctrlKey: true,
+          bubbles: true,
+        }),
+      )
+    })
+    expect(onRecord).toHaveBeenCalledOnce()
   })
 })

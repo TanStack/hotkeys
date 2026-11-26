@@ -77,22 +77,24 @@
                             </template>
                             <template x-if="!(props().liveSteps.length > 0)">
                               <span>
-                                <template x-if="heldKeys.value.length > 0">
+                                <template x-if="heldModifiers.length > 0">
                                   <div class="held-hotkeys">
                                     <template
-                                      x-for="(key, index) in (heldKeys.value)"
+                                      x-for="(key, index) in heldModifiers"
                                       :key="key"
                                     >
                                       <span>
                                         <template x-if="index > 0">
                                           <span class="plus">+</span>
                                         </template>
-                                        <kbd x-text="key"></kbd>
+                                        <kbd
+                                          x-text="formatForDisplay({ key })"
+                                        ></kbd>
                                       </span>
                                     </template>
                                   </div>
                                 </template>
-                                <template x-if="!(heldKeys.value.length > 0)">
+                                <template x-if="!(heldModifiers.length > 0)">
                                   <span class="recording-text">
                                     Press chords, then Enter...
                                   </span>

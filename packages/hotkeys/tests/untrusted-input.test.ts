@@ -1,5 +1,5 @@
 import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   AppHotkeysStore,
   HotkeyManager,
@@ -120,6 +120,25 @@ describe('recording a key event without key or code', () => {
     recorder.commit()
     expect(onRecord).toHaveBeenCalledWith('K', expect.anything())
     recorder.destroy()
+  })
+})
+
+describe('a key event without key or code between sequence steps', () => {
+  // Clears keys an earlier recording still holds
+  beforeEach(() => window.dispatchEvent(new Event('blur')))
+  afterEach(() => HotkeyManager.resetInstance())
+
+  it('keeps the sequence in progress', () => {
+    const callback = vi.fn()
+    getHotkeyManager().register(['G', 'G'], callback)
+    const g = { key: 'g', code: 'KeyG', target: document.body }
+    keydown(g)
+    keyup(g)
+    // Autofill fills a field between the two presses
+    document.body.dispatchEvent(new Event('keydown', { bubbles: true }))
+    document.body.dispatchEvent(new Event('keyup', { bubbles: true }))
+    keydown(g)
+    expect(callback).toHaveBeenCalledOnce()
   })
 })
 

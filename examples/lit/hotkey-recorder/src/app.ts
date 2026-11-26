@@ -17,6 +17,8 @@ interface Shortcut {
   hotkey: Hotkey | ''
 }
 
+const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
+
 let nextId = 0
 function createId(): string {
   return `shortcut_${++nextId}`
@@ -233,6 +235,11 @@ export class MyApp extends LitElement {
 
   render() {
     const formatForDisplay = this.formatForDisplay.format
+    // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
+    // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
+    const heldModifiers = this.heldKeys.value
+      .filter((key) => MODIFIER_ORDER.includes(key))
+      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
 
     return html`
       <div class="app">
@@ -306,10 +313,10 @@ export class MyApp extends LitElement {
                             ? html`
                                 <div class="recording-indicator">
                                   ${
-                                    this.heldKeys.value.length > 0
+                                    heldModifiers.length > 0
                                       ? html`
                                           <div class="held-hotkeys">
-                                            ${this.heldKeys.value.map(
+                                            ${heldModifiers.map(
                                               (key, index) => html`
                                                 ${
                                                   index > 0
@@ -318,7 +325,9 @@ export class MyApp extends LitElement {
                                                       >`
                                                     : nothing
                                                 }
-                                                <kbd>${key}</kbd>
+                                                <kbd
+                                                  >${formatForDisplay({ key })}</kbd
+                                                >
                                               `,
                                             )}
                                           </div>

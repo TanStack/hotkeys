@@ -31,8 +31,17 @@
     onDelete,
   }: Props = $props()
 
+  const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
+
   const formatForDisplay = getFormatForDisplay()
   const heldKeys = getHeldKeys()
+  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
+  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
+  const heldModifiers = $derived(
+    heldKeys.keys
+      .filter((key) => MODIFIER_ORDER.includes(key))
+      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b)),
+  )
 </script>
 
 <div class="shortcut-item" class:recording={isEditing}>
@@ -71,13 +80,13 @@
         <div class="recording-indicator">
           {#if liveSteps.length > 0}
             <span class="held-hotkeys">{formatForDisplay(liveSteps)}</span>
-          {:else if heldKeys.keys.length > 0}
+          {:else if heldModifiers.length > 0}
             <div class="held-hotkeys">
-              {#each heldKeys.keys as key, index}
+              {#each heldModifiers as key, index}
                 {#if index > 0}
                   <span class="plus">+</span>
                 {/if}
-                <kbd>{key}</kbd>
+                <kbd>{formatForDisplay({ key })}</kbd>
               {/each}
             </div>
           {:else}

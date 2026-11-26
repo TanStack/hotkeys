@@ -1,5 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { syncRecorderOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { getDefaultHotkeysOptions } from './HotkeysCtx.js'
 import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte.js'
 import type {
@@ -42,7 +42,7 @@ class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
   }
 
   setOptions(options: HotkeyRecorderOptions): void {
-    this.#recorder.setOptions(options)
+    syncRecorderOptions(this.#recorder, options)
   }
 
   // Arrow functions keep the receiver when used directly as event handlers.
