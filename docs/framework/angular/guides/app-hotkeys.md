@@ -174,7 +174,7 @@ export class ShortcutRowComponent {
 }
 ```
 
-Pass the recorder's `context` into `findConflicts` and `setCustomHotkey` so conflict detection compares the physical key presses too. That catches differently spelled bindings that fire for the same press, such as a recorded `Shift+[Slash]` against a declared `?` on US keyboards.
+Pass the recorder's `context` into `findConflicts` and `setCustomHotkey` so conflict detection compares the physical key presses too. That catches differently spelled bindings that fire for the same press, such as `Shift+[Slash]`, recorded by code, against a declared `?` on US keyboards.
 
 | Member | Description |
 | --- | --- |

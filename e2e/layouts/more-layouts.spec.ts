@@ -156,7 +156,7 @@ describeLayouts('Czech digit row', {
         keys: 'Shift+Digit2',
         matches: ['2', 'Shift+2'],
         parsed: 'Shift+2',
-        recorded: 'Shift+[Digit2]',
+        recorded: '2',
         recordedByCode: 'Shift+[Digit2]',
         recordedByKey: 'Shift+2',
       },
@@ -164,7 +164,7 @@ describeLayouts('Czech digit row', {
         keys: 'Control+Digit2',
         matches: ['Mod+2', 'Mod+Ě'],
         parsed: 'Mod+Ě',
-        recorded: 'Mod+Ě',
+        recorded: 'Mod+2',
         recordedByCode: 'Mod+[Digit2]',
         recordedByKey: 'Mod+Ě',
         label: 'Ctrl+2',
@@ -174,14 +174,14 @@ describeLayouts('Czech digit row', {
         keys: 'Control+Digit3',
         matches: ['Mod+3'],
         parsed: 'Mod+Š',
-        recorded: 'Mod+Š',
+        recorded: 'Mod+3',
       },
       // The digit needs Shift on this layout, so Mod+2 accepts it too.
       {
         keys: 'Control+Shift+Digit2',
         matches: ['Mod+2', 'Mod+Shift+2'],
         parsed: 'Mod+Shift+2',
-        recorded: 'Mod+Shift+[Digit2]',
+        recorded: 'Mod+Shift+2',
       },
     ],
   },
@@ -224,7 +224,7 @@ describeLayouts('UK', {
         keys: 'Shift+IntlBackslash',
         matches: ['|'],
         parsed: 'Shift+|',
-        recorded: 'Shift+[IntlBackslash]',
+        recorded: '|',
         recordedByCode: 'Shift+[IntlBackslash]',
       },
       // Without a layout map the label is the US key at that position.
@@ -242,7 +242,7 @@ describeLayouts('UK', {
         keys: 'Shift+Digit3',
         matches: ['£', 'Shift+3'],
         parsed: 'Shift+£',
-        recorded: 'Shift+[Digit3]',
+        recorded: '£',
         recordedByCode: 'Shift+[Digit3]',
         recordedByKey: 'Shift+£',
         label: 'Shift+3',
@@ -251,13 +251,13 @@ describeLayouts('UK', {
         keys: 'Shift+Digit2',
         matches: ['"', 'Shift+2'],
         parsed: 'Shift+"',
-        recorded: 'Shift+[Digit2]',
+        recorded: '"',
       },
       {
         keys: 'Shift+Quote',
         matches: ['@', "Shift+'"],
         parsed: 'Shift+@',
-        recorded: 'Shift+[Quote]',
+        recorded: '@',
       },
       {
         keys: 'Control+IntlBackslash',
@@ -307,7 +307,7 @@ describeLayouts('Brazilian ABNT2', {
         keys: 'Shift+IntlRo',
         matches: ['?', 'Shift+[IntlRo]'],
         parsed: 'Shift+?',
-        recorded: 'Shift+[IntlRo]',
+        recorded: '?',
         recordedByCode: 'Shift+[IntlRo]',
         recordedByKey: 'Shift+?',
       },
@@ -372,7 +372,7 @@ describeLayouts('Japanese JIS', {
         keys: 'Shift+IntlYen',
         matches: ['|'],
         parsed: 'Shift+|',
-        recorded: 'Shift+[IntlYen]',
+        recorded: '|',
         recordedByCode: 'Shift+[IntlYen]',
       },
       {
@@ -387,7 +387,7 @@ describeLayouts('Japanese JIS', {
         keys: 'Shift+IntlRo',
         matches: ['_'],
         parsed: 'Shift+_',
-        recorded: 'Shift+[IntlRo]',
+        recorded: '_',
       },
       {
         keys: 'Control+IntlYen',
@@ -426,6 +426,7 @@ describeLayouts('German shifted symbols', {
     'Mod+/',
     'Mod+Shift+/',
     'Mod+Shift+7',
+    'Mod+?',
   ],
   registered: ['?', 'Shift+-', 'Mod+/'],
   layouts: {
@@ -434,13 +435,13 @@ describeLayouts('German shifted symbols', {
         keys: 'Shift+Minus',
         matches: ['?', 'Shift+/'],
         parsed: 'Shift+?',
-        recorded: 'Shift+[Minus]',
+        recorded: '?',
       },
       {
         keys: 'Shift+Slash',
         matches: ['_', 'Shift+-'],
         parsed: 'Shift+_',
-        recorded: 'Shift+[Slash]',
+        recorded: '_',
       },
       // ":" is US Shift+;
       { keys: 'Shift+Period', matches: ['Shift+;'], parsed: 'Shift+:' },
@@ -449,6 +450,14 @@ describeLayouts('German shifted symbols', {
         keys: 'Control+Shift+Digit7',
         matches: ['Mod+/', 'Mod+Shift+/', 'Mod+Shift+7'],
         parsed: 'Mod+Shift+/',
+        recorded: 'Mod+Shift+7',
+      },
+      // Control+Shift+ß types "?", recorded as written by hand
+      {
+        keys: 'Control+Shift+Minus',
+        matches: ['Mod+?', 'Mod+Shift+/'],
+        parsed: 'Mod+Shift+?',
+        recorded: 'Mod+?',
       },
     ],
   },
@@ -550,6 +559,52 @@ const NUMPAD_BINDINGS = [
   'Mod+[Numpad1]',
 ]
 const NUMPAD_REGISTERED = ['1', '8', 'End', 'ArrowUp']
+
+// Numpad Enter and the operators type the same with NumLock on or off, so
+// the recorder records what they type. Shift with an operator keeps the
+// position: `Shift+-` also means the "_" that US Shift+- types.
+describeLayouts('Numpad Enter and operators', {
+  bindings: [
+    'Enter',
+    '[NumpadEnter]',
+    '+',
+    '-',
+    'Mod++',
+    'Shift+-',
+    '[NumpadAdd]',
+    'Shift+[NumpadSubtract]',
+  ],
+  layouts: {
+    us: [
+      {
+        keys: 'NumpadEnter',
+        matches: ['Enter', '[NumpadEnter]'],
+        parsed: 'Enter',
+        recorded: 'Enter',
+        recordedByCode: '[NumpadEnter]',
+      },
+      {
+        keys: 'NumpadAdd',
+        matches: ['+', '[NumpadAdd]'],
+        parsed: '+',
+        recorded: '+',
+        recordedByCode: '[NumpadAdd]',
+      },
+      {
+        keys: 'Control+NumpadAdd',
+        matches: ['Mod++'],
+        parsed: 'Mod++',
+        recorded: 'Mod++',
+      },
+      {
+        keys: 'Shift+NumpadSubtract',
+        matches: ['-', 'Shift+-', 'Shift+[NumpadSubtract]'],
+        parsed: 'Shift+-',
+        recorded: 'Shift+[NumpadSubtract]',
+      },
+    ],
+  },
+})
 
 describeLayouts('NumLock on', {
   numLock: true,

@@ -18,8 +18,8 @@ import type {
   RecorderRejection,
 } from '../src'
 
-// The default recorder mode, `recordBy: 'auto'`: a press is recorded by name
-// when it has one, and by physical code otherwise.
+// The default recorder mode, `recordBy: 'auto'`: a press is recorded by what
+// it typed when that names it, and by physical code otherwise.
 
 type Press = Omit<KeyOptions, 'target'>
 
@@ -144,13 +144,135 @@ describe('recordBy: auto', () => {
       'Mod+/',
       'Ctrl+/',
     ],
+    // Symbols typed with Shift, written without Shift as by hand
+    [
+      'US Shift+/',
+      'windows',
+      { key: '?', code: 'Slash', shiftKey: true },
+      '?',
+      '?',
+    ],
+    [
+      'AZERTY ? (Shift+,)',
+      'windows',
+      { key: '?', code: 'KeyM', shiftKey: true },
+      '?',
+      '?',
+    ],
+    [
+      'US Shift+1',
+      'windows',
+      { key: '!', code: 'Digit1', shiftKey: true },
+      '!',
+      '!',
+    ],
+    // AZERTY types digits with Shift
+    [
+      'AZERTY Shift+&',
+      'windows',
+      { key: '1', code: 'Digit1', shiftKey: true },
+      '1',
+      '1',
+    ],
+    // Only where it is typed, as with German `Mod+Ü`
+    [
+      'German Shift+3',
+      'windows',
+      { key: '§', code: 'Digit3', shiftKey: true },
+      '§',
+      '§',
+    ],
+    [
+      'Ctrl+Shift+/',
+      'windows',
+      { key: '?', code: 'Slash', ctrlKey: true, shiftKey: true },
+      'Mod+?',
+      'Ctrl+?',
+    ],
+    // macOS reports `/` for Cmd+Shift+/, and the press typed `?` there too
+    [
+      'macOS Cmd+Shift+/',
+      'mac',
+      { key: '/', code: 'Slash', metaKey: true, shiftKey: true },
+      'Mod+?',
+      '⌘ ?',
+    ],
+    // Elsewhere Command may report the unshifted character, so Shift stays
+    [
+      'Dvorak macOS Cmd+Shift+/',
+      'mac',
+      { key: '/', code: 'BracketLeft', metaKey: true, shiftKey: true },
+      'Mod+Shift+/',
+      '⇧ ⌘ /',
+    ],
+    [
+      'German macOS Cmd+Shift+ß',
+      'mac',
+      { key: '?', code: 'Minus', metaKey: true, shiftKey: true },
+      'Mod+Shift+?',
+      '⇧ ⌘ ?',
+    ],
+    // Most layouts type `;` with Shift on the US `,` key, not `<`
+    [
+      'macOS Cmd+Shift+,',
+      'mac',
+      { key: ',', code: 'Comma', metaKey: true, shiftKey: true },
+      'Mod+Shift+,',
+      '⇧ ⌘ ,',
+    ],
+    // The digit row with Control, Command or Alt is its digit, as matched
     [
       'AZERTY Ctrl+&',
       'windows',
       { key: '&', code: 'Digit1', ctrlKey: true },
-      'Mod+&',
-      'Ctrl+&',
+      'Mod+1',
+      'Ctrl+1',
     ],
+    [
+      'Ctrl+Shift+1',
+      'windows',
+      { key: '!', code: 'Digit1', ctrlKey: true, shiftKey: true },
+      'Mod+Shift+1',
+      'Ctrl+Shift+1',
+    ],
+    [
+      'macOS Cmd+Shift+1',
+      'mac',
+      { key: '1', code: 'Digit1', metaKey: true, shiftKey: true },
+      'Mod+Shift+1',
+      '⇧ ⌘ 1',
+    ],
+    [
+      'macOS Option+1',
+      'mac',
+      { key: '¡', code: 'Digit1', altKey: true, keyCode: 49 },
+      'Alt+1',
+      '⌥ 1',
+    ],
+    // Control alone with `-` on the digit row is zoom out
+    [
+      'AZERTY Ctrl+-',
+      'windows',
+      { key: '-', code: 'Digit6', ctrlKey: true },
+      'Mod+-',
+      'Ctrl+-',
+    ],
+    // Numpad Enter and the operators are what they type
+    [
+      'numpad Enter',
+      'windows',
+      { key: 'Enter', code: 'NumpadEnter' },
+      'Enter',
+      '↵',
+    ],
+    [
+      'Ctrl+numpad +',
+      'windows',
+      { key: '+', code: 'NumpadAdd', ctrlKey: true },
+      'Mod++',
+      'Ctrl++',
+    ],
+    ['numpad /', 'windows', { key: '/', code: 'NumpadDivide' }, '/', '/'],
     // A non-Latin letter is named by its position, as the matcher names it
     [
       'Russian Ctrl+ы',
@@ -220,31 +342,6 @@ describe('recordBy: auto', () => {
   })
 
   it.each<[string, HotkeyPlatform, Press, string]>([
-    // macOS reports `/` for Cmd+Shift+/, so a typed `?` would not fire there
-    [
-      'Shift+symbol',
-      'windows',
-      { key: '?', code: 'Slash', ctrlKey: true, shiftKey: true },
-      'Mod+Shift+[Slash]',
-    ],
-    [
-      'Shift+digit symbol',
-      'windows',
-      { key: '!', code: 'Digit1', shiftKey: true },
-      'Shift+[Digit1]',
-    ],
-    [
-      'Shift+non-ASCII symbol',
-      'windows',
-      { key: '§', code: 'Digit3', shiftKey: true },
-      'Shift+[Digit3]',
-    ],
-    [
-      'macOS Option+digit',
-      'mac',
-      { key: '¡', code: 'Digit1', altKey: true, keyCode: 49 },
-      'Alt+[Digit1]',
-    ],
     [
       'macOS Option+symbol',
       'mac',
@@ -269,20 +366,6 @@ describe('recordBy: auto', () => {
       { key: 'Unidentified', code: 'Backquote', ctrlKey: true },
       'Mod+[Backquote]',
     ],
-    // Shift types a digit on AZERTY, and macOS reports the digit for
-    // Cmd+Shift+1 where Windows reports `!`
-    [
-      'AZERTY Shift+1',
-      'windows',
-      { key: '1', code: 'Digit1', shiftKey: true },
-      'Shift+[Digit1]',
-    ],
-    [
-      'macOS Cmd+Shift+1',
-      'mac',
-      { key: '1', code: 'Digit1', metaKey: true, shiftKey: true },
-      'Mod+Shift+[Digit1]',
-    ],
     [
       'a non-breaking space',
       'windows',
@@ -304,10 +387,17 @@ describe('recordBy: auto', () => {
       '[Numpad1]',
     ],
     [
-      'numpad Enter',
+      'numpad decimal',
       'windows',
-      { key: 'Enter', code: 'NumpadEnter' },
-      '[NumpadEnter]',
+      { key: ',', code: 'NumpadDecimal' },
+      '[NumpadDecimal]',
+    ],
+    // Shift+- would also fire on Shift+Minus, which types `_`
+    [
+      'Shift+numpad -',
+      'windows',
+      { key: '-', code: 'NumpadSubtract', shiftKey: true },
+      'Shift+[NumpadSubtract]',
     ],
   ])('records %s by code', (_, platform, press, expected) => {
     const { hotkey, event } = record(press, platform)
@@ -326,17 +416,19 @@ describe('recordBy: auto', () => {
     const macPress = { key: '/', code: 'Slash', metaKey: true, shiftKey: true }
     const onWindows = record(windowsPress, 'windows')
     const onMac = record(macPress, 'mac')
-    expect(onWindows.hotkey).toBe('Mod+Shift+[Slash]')
-    expect(onMac.hotkey).toBe('Mod+Shift+[Slash]')
+    expect(onWindows.hotkey).toBe('Mod+?')
+    expect(onMac.hotkey).toBe('Mod+?')
     expect(matchesKeyboardEvent(onMac.event, onWindows.hotkey!, 'mac')).toBe(
       true,
     )
     expect(
       matchesKeyboardEvent(onWindows.event, onMac.hotkey!, 'windows'),
     ).toBe(true)
-    // The typed character would not carry over
-    const typed = record(windowsPress, 'windows', { recordBy: 'key' }).hotkey!
-    expect(matchesKeyboardEvent(onMac.event, typed, 'mac')).toBe(false)
+    // The documented spelling fires on both too
+    expect(matchesKeyboardEvent(onMac.event, 'Mod+Shift+/', 'mac')).toBe(true)
+    expect(
+      matchesKeyboardEvent(onWindows.event, 'Mod+Shift+/', 'windows'),
+    ).toBe(true)
   })
 
   it('records a Shift+digit press the same way on macOS and Windows', () => {
@@ -349,7 +441,7 @@ describe('recordBy: auto', () => {
       { key: '1', code: 'Digit1', metaKey: true, shiftKey: true },
       'mac',
     )
-    expect(onWindows.hotkey).toBe('Mod+Shift+[Digit1]')
+    expect(onWindows.hotkey).toBe('Mod+Shift+1')
     expect(onMac.hotkey).toBe(onWindows.hotkey)
     expect(formatForDisplay(onMac.hotkey!, { platform: 'windows' })).toBe(
       'Ctrl+Shift+1',
@@ -357,7 +449,7 @@ describe('recordBy: auto', () => {
   })
 
   // `·` belongs to the Latin script but is a symbol, not a letter
-  it('records Shift with a Latin-script symbol by position', () => {
+  it('records Control+Shift with a Latin-script symbol on the digit row as its digit', () => {
     // Spanish Control+Shift+3 types `·` on Windows, and macOS reports `3`
     const onWindows = record(
       { key: '·', code: 'Digit3', ctrlKey: true, shiftKey: true },
@@ -367,7 +459,7 @@ describe('recordBy: auto', () => {
       { key: '3', code: 'Digit3', metaKey: true, shiftKey: true },
       'mac',
     )
-    expect(onWindows.hotkey).toBe('Mod+Shift+[Digit3]')
+    expect(onWindows.hotkey).toBe('Mod+Shift+3')
     expect(matchesKeyboardEvent(onMac.event, onWindows.hotkey!, 'mac')).toBe(
       true,
     )
@@ -378,9 +470,9 @@ describe('recordBy: auto', () => {
       record({ ...press, code: '' }, 'windows')
     expect(noCode({ key: 's', ctrlKey: true }).hotkey).toBe('Mod+S')
     expect(noCode({ key: 'Enter' }).hotkey).toBe('Enter')
-    // With a code, these record a position
+    // With a code, `ы` records its position
     expect(noCode({ key: 'ы', ctrlKey: true }).hotkey).toBe('Mod+Ы')
-    expect(noCode({ key: '?', shiftKey: true }).hotkey).toBe('Shift+?')
+    expect(noCode({ key: '?', shiftKey: true }).hotkey).toBe('?')
     for (const press of [
       noCode({ key: 'ы', ctrlKey: true }),
       noCode({ key: '?', shiftKey: true }),
@@ -412,13 +504,33 @@ describe('recordBy: auto', () => {
     expect(noCode.rejection).toEqual({ reason: 'missing-code' })
   })
 
-  it('rejects AltGr presses, as recording by code does', () => {
+  it('records the character AltGr typed, which recording by code rejects', () => {
     const press = { key: '@', code: 'KeyQ', altGraph: true }
-    expect(record(press, 'linux').rejection).toEqual({ reason: 'alt-graph' })
+    const { hotkey, event } = record(press, 'linux')
+    expect(hotkey).toBe('@')
+    // German AltGr+Q and US Shift+2 both type it
+    expect(matchesKeyboardEvent(event, '@', 'linux')).toBe(true)
+    expect(
+      matchesKeyboardEvent(
+        keydown({ key: '@', code: 'Digit2', shiftKey: true }),
+        hotkey!,
+        'linux',
+      ),
+    ).toBe(true)
     expect(record(press, 'linux', { recordBy: 'code' }).rejection).toEqual({
       reason: 'alt-graph',
     })
     expect(record(press, 'linux', { recordBy: 'key' }).hotkey).toBe('@')
+    // A dead key typed nothing yet
+    const dead = { key: 'Dead', code: 'BracketRight', altGraph: true }
+    expect(record(dead, 'linux').rejection).toEqual({ reason: 'alt-graph' })
+    // AltGr+Home typed nothing, and `Home` alone wouldn't fire on it, with or
+    // without a code
+    for (const code of ['Home', '']) {
+      const home = record({ key: 'Home', code, altGraph: true }, 'linux')
+      expect(home.hotkey).toBeUndefined()
+      expect(home.rejection).toEqual({ reason: 'alt-graph' })
+    }
   })
 
   it('ignores a key on a modifier position', () => {
@@ -559,9 +671,19 @@ describe('app hotkey conflicts of a recorded hotkey', () => {
     expect(store.appHotkeys.search.hotkey).toBe('Mod+K')
   })
 
+  it('records ? as the declared ? by default', () => {
+    const store = newStore()
+    const { hotkey } = record(
+      { key: '?', code: 'Slash', shiftKey: true },
+      'windows',
+    )
+    expect(hotkey).toBe('?')
+    expect(ids(store.findConflicts('search', hotkey!))).toEqual(['help'])
+  })
+
   it('finds a declared hotkey written another way, such as ? for Shift+/', () => {
     const store = newStore()
-    for (const recordBy of ['auto', 'code', 'key'] as const) {
+    for (const recordBy of ['code', 'key'] as const) {
       const { hotkey, event } = record(
         { key: '?', code: 'Slash', shiftKey: true },
         'windows',
@@ -629,6 +751,104 @@ describe('app hotkey conflicts of a recorded hotkey', () => {
       ids(store.findConflicts('search', 'Mod+J', { event: unrelated })),
     ).toEqual([])
   })
+
+  it.each<[string, HotkeyPlatform, Press, string, string]>([
+    [
+      'Shift+/',
+      'windows',
+      { key: '?', code: 'Slash', shiftKey: true },
+      'Shift+[Slash]',
+      '?',
+    ],
+    [
+      'AZERTY ?',
+      'windows',
+      { key: '?', code: 'KeyM', shiftKey: true },
+      'Shift+[KeyM]',
+      '?',
+    ],
+    [
+      'AZERTY Shift+&',
+      'windows',
+      { key: '1', code: 'Digit1', shiftKey: true },
+      'Shift+[Digit1]',
+      '1',
+    ],
+    [
+      'AZERTY Ctrl+&',
+      'windows',
+      { key: '&', code: 'Digit1', ctrlKey: true },
+      'Mod+&',
+      'Mod+1',
+    ],
+    [
+      'Ctrl+Shift+/',
+      'windows',
+      { key: '?', code: 'Slash', ctrlKey: true, shiftKey: true },
+      'Mod+Shift+[Slash]',
+      'Mod+?',
+    ],
+    [
+      'macOS Cmd+Shift+/',
+      'mac',
+      { key: '/', code: 'Slash', metaKey: true, shiftKey: true },
+      'Mod+Shift+[Slash]',
+      'Mod+?',
+    ],
+    [
+      'macOS Cmd+Shift+1',
+      'mac',
+      { key: '1', code: 'Digit1', metaKey: true, shiftKey: true },
+      'Mod+Shift+[Digit1]',
+      'Mod+Shift+1',
+    ],
+    [
+      'macOS Option+1',
+      'mac',
+      { key: '¡', code: 'Digit1', altKey: true, keyCode: 49 },
+      'Alt+[Digit1]',
+      'Alt+1',
+    ],
+    [
+      'numpad Enter',
+      'windows',
+      { key: 'Enter', code: 'NumpadEnter' },
+      '[NumpadEnter]',
+      'Enter',
+    ],
+    [
+      'Ctrl+numpad +',
+      'windows',
+      { key: '+', code: 'NumpadAdd', ctrlKey: true },
+      'Mod+[NumpadAdd]',
+      'Mod++',
+    ],
+  ])(
+    'keeps a %s saved by an earlier version working',
+    (_, platform, press, saved, recorded) => {
+      const store = new AppHotkeysStore(
+        defineAppHotkeys({
+          old: { hotkey: 'Mod+K' },
+          other: { hotkey: 'Mod+J' },
+        }),
+        { platform },
+      )
+      expect(store.setCustomHotkey('old', saved as HotkeyChord)).toEqual([])
+      const { hotkey, event } = record(press, platform)
+      expect(hotkey).toBe(recorded)
+      expect(matchesKeyboardEvent(event, saved as HotkeyChord, platform)).toBe(
+        true,
+      )
+      // The strings differ, so only the key press shows the collision
+      expect(areHotkeysEqual(saved as HotkeyChord, hotkey!, platform)).toBe(
+        false,
+      )
+      expect(ids(store.findConflicts('other', hotkey!))).toEqual([])
+      expect(ids(store.findConflicts('other', hotkey!, { event }))).toEqual([
+        'old',
+      ])
+    },
+  )
 
   it('does not mark a re-recorded default as custom', () => {
     const store = newStore()

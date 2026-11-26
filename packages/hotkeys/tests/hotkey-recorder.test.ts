@@ -440,9 +440,10 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(onReject).toHaveBeenLastCalledWith(
       expect.objectContaining({ reason: 'missing-code' }),
     )
+    // AltGr that started an accent typed nothing to record
     keydown({
-      key: '@',
-      code: 'KeyQ',
+      key: 'Dead',
+      code: 'BracketRight',
       ctrlKey: true,
       altKey: true,
       altGraph: true,

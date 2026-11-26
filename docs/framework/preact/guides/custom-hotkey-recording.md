@@ -37,7 +37,7 @@ function ShortcutRecorder() {
 }
 ```
 
-With the default `recordBy: 'auto'`, the recorder outputs portable strings just like you write by hand: `Mod+S` for Command+S on macOS or Control+S on Windows and Linux. It falls back to physical bracketed codes (`Shift+[Slash]`, `Alt+[Digit1]`) for presses whose characters vary across OSes or layouts. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules, or set `recordBy: 'code'` (always physical) or `recordBy: 'key'` (always typed character).
+With the default `recordBy: 'auto'`, the recorder outputs portable strings just like you write by hand: `Mod+S` for Command+S on macOS or Control+S on Windows and Linux. It records what the press typed (`?` for Shift+/, `Mod+1` for AZERTY Ctrl+&), and falls back to physical bracketed codes for the few presses whose character the browser reports differently by platform, such as `Alt+[Slash]` for macOS Option+/. A recorded character such as `@` fires wherever the layout types it, which can be a different key. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules, or set `recordBy: 'code'` (always physical) or `recordBy: 'key'` (always typed character).
 
 | Property or method | Description |
 | --- | --- |
@@ -144,12 +144,12 @@ Rejected recordings keep the recorder active, and rejected sequences keep their 
 
 ### Save hotkeys that work on another platform
 
-A recorded hotkey means the same keys on every platform when its modifiers are `Mod`, `Shift`, and `Alt`. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
+A recorded hotkey's modifiers mean the same keys on every platform when they are `Mod`, `Shift`, and `Alt`. A recorded character such as `@` follows the layout, so it can sit on a different key, while a bracketed code such as `[Slash]` stays on the same physical key. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
 
 If your app syncs hotkeys between machines, pick one rule:
 
 - Store each hotkey with the platform it was recorded on, and use it only there. `context.platform` names it.
-- Reject the platform-specific modifiers, so every saved hotkey is portable:
+- Reject the platform-specific modifiers, so every saved hotkey's modifiers work on every platform:
 
 ```tsx
 useHotkeyRecorder({
@@ -174,7 +174,7 @@ useHotkeyRecorder({
 })
 ```
 
-By default, `detectConflicts` checks every enabled `keydown` registration across all scopes. A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step (so `['G', 'H']` and `['G', 'S']` do not conflict). It compares underlying keypresses so `Shift+[Slash]` catches `?`. Pass an options object to narrow the check:
+By default, `detectConflicts` checks every enabled `keydown` registration across all scopes. A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step (so `['G', 'H']` and `['G', 'S']` do not conflict). It compares underlying keypresses so `Shift+[Slash]`, recorded by code, catches `?`. Pass an options object to narrow the check:
 
 ```tsx
 detectConflicts: {
@@ -197,7 +197,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | User pressed a whitespace character that can't be recorded |
 | `'missing-code'` | Key event had no physical `code` when needed |
-| `'alt-graph'` | Unrecordable `AltGr` combination |
+| `'alt-graph'` | `AltGr` combination that typed no character, or, with `recordBy: 'code'`, any other. On Windows, the recorder treats `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, which no mode rejects. It records `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 

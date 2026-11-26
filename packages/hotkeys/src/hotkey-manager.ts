@@ -1010,9 +1010,11 @@ export class HotkeyManager {
             `[hotkeys] Unknown key '${key}' in '${formatForMessage(registration.hotkey)}' (names are case-sensitive)`,
           )
         }
-        // macOS reports the unshifted US character with Command held, so
-        // Cmd+Shift+= arrives as `=` and a `Mod++` binding never sees `+`
-        const index = key ? '~!@#$%^&*()_+{}|:"<>?'.indexOf(key) : -1
+        // macOS reports the unshifted character with Command held, so
+        // Cmd+Shift+1 arrives as `1` and a `Mod+!` binding never sees `!`.
+        // The matcher maps the other US shifted symbols back, but not the
+        // digit row (AZERTY types digits with Shift), `<` or `>`
+        const index = key ? '!@#$%^&*()<>'.indexOf(key) : -1
         const text = formatForMessage(registration.hotkey)
         if (
           platform === 'mac' &&
@@ -1022,7 +1024,7 @@ export class HotkeyManager {
           !(warnedOnMac ??= new Set()).has(text)
         ) {
           warnedOnMac.add(text)
-          const usKey = "`1234567890-=[]\\;',./"[index]
+          const usKey = '1234567890,.'[index]
           console.warn(
             `[hotkeys] '${text}' does not fire on a US Mac keyboard, where Command+Shift+${usKey} reports '${usKey}'. Register it with Shift and that key too.`,
           )

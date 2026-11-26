@@ -18,8 +18,8 @@ import type { KeyIdentity, NormalizedKeyboardEvent } from './key.types'
 import type { HotkeyPlatform } from './platform'
 
 /** What US Shift types on each punctuation key, and the key itself. */
-const US_SHIFTED = '~_+{}|:"<>?'
-const US_UNSHIFTED = "`-=[]\\;',./"
+export const US_SHIFTED = '~_+{}|:"<>?'
+export const US_UNSHIFTED = "`-=[]\\;',./"
 
 /**
  * How a key event matched a chord. The score ranks matches of one key press:
@@ -70,21 +70,33 @@ export function matchKeyboardEvent(
       : noMatch
   }
 
+  // With Command held, macOS reports the unshifted character for many keys:
+  // Cmd+Shift+/ arrives as `/`. Shift was then a modifier of its own, not
+  // how the character was typed, so `Mod+/` stays quiet. The position's US
+  // character is the only evidence, so other layouts keep the implicit
+  // Shift. So do the digit row and the numpad: French types digits with
+  // Shift, and sends the event a US keyboard sends for Cmd+Shift+1. With
+  // Option held too, the character comes from the Option layer instead.
+  const shiftTypedNothing =
+    platform === 'mac' &&
+    normalized.meta &&
+    normalized.shift &&
+    !normalized.alt &&
+    !/^(Digit|Numpad)/.test(normalized.code) &&
+    codeToLogicalKey(normalized.code) === normalized.key
+  // The character US Shift types there is what the press typed, as Windows
+  // reports it: macOS Cmd+Shift+/ fires `Mod+?`. Not for `<` and `>`: most
+  // layouts with `,` and `.` in their US position type `;` and `:` there.
+  if (
+    shiftTypedNothing &&
+    !parsed.shift &&
+    !'<>'.includes(parsed.key) &&
+    US_SHIFTED[US_UNSHIFTED.indexOf(normalized.key)] === parsed.key
+  ) {
+    return matched(2)
+  }
+
   if (keysEqual(normalized.key, parsed.key)) {
-    // With Command held, macOS reports the unshifted character for many keys:
-    // Cmd+Shift+/ arrives as `/`. Shift was then a modifier of its own, not
-    // how the character was typed, so `Mod+/` stays quiet. The position's US
-    // character is the only evidence, so other layouts keep the implicit
-    // Shift. So do the digit row and the numpad: French types digits with
-    // Shift, and sends the event a US keyboard sends for Cmd+Shift+1. With
-    // Option held too, the character comes from the Option layer instead.
-    const shiftTypedNothing =
-      platform === 'mac' &&
-      normalized.meta &&
-      normalized.shift &&
-      !normalized.alt &&
-      !/^(Digit|Numpad)/.test(normalized.code) &&
-      codeToLogicalKey(normalized.code) === normalized.key
     // Shift that typed a symbol, such as `?`, is not a modifier of the binding.
     const implicitShift =
       isPrintableKey(normalized.key) &&

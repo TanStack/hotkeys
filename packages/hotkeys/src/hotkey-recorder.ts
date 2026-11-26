@@ -28,12 +28,13 @@ import type { HotkeyPlatform } from './platform'
 /**
  * How the recorder writes the pressed key:
  *
- * - `'auto'` (default): by name when the press has one, such as `Mod+S` or
- *   `Shift+Enter`, and by physical code otherwise, such as `Alt+[Digit1]` for
- *   macOS Option+1. The result reads like a hotkey written by hand, so it
- *   compares equal to one, and its label follows the user's keyboard layout.
- *   Recorded by code: Shift or macOS Option with a digit or a symbol, dead
- *   keys and the numpad.
+ * - `'auto'` (default): by what the press typed, written as by hand, such as
+ *   `Mod+S`, `Shift+Enter`, `?` for Shift+/ and `@` for German AltGr+Q. The
+ *   result compares equal to a hotkey written by hand, and its label follows
+ *   the user's keyboard layout. With Control, Command or Alt, a digit-row key
+ *   records its digit (AZERTY Ctrl+& is `Mod+1`). Recorded by code: macOS
+ *   Option with a symbol, such as `Alt+[Slash]`, dead keys, the numpad digits
+ *   and decimal key, and Shift with a numpad operator.
  * - `'code'`: always by physical code, such as `Mod+[KeyS]`. The hotkey names
  *   a position on the keyboard, whatever that key types.
  * - `'key'`: always by the character or key name the press produced, such as
@@ -44,10 +45,12 @@ export type RecorderKeyMode = 'auto' | 'code' | 'key'
 /**
  * Why the recorder rejected a key press or a recording:
  *
- * - `'alt-graph'`: AltGr was held. Only `recordBy: 'key'` records AltGr
- *   presses, as the characters AltGr types. It still rejects AltGr that typed
- *   nothing new, such as AltGr+Home on Linux, because no hotkey matches that
- *   press.
+ * - `'alt-graph'`: AltGr was held and typed nothing the mode can record:
+ *   recording by code rejects every AltGr press, `'auto'` rejects a dead key,
+ *   and both `'auto'` and `'key'` reject AltGr that typed nothing new, such
+ *   as AltGr+Home on Linux, because no hotkey matches that press. On
+ *   Windows, AltGr with a key it doesn't change counts as Control+Alt, which
+ *   no mode rejects: AltGr+Home records `Mod+Alt+Home`, or `Mod+Alt+[Home]` by code.
  * - `'missing-code'`: the event has no usable physical key code. Recording by
  *   code always needs one. `recordBy: 'auto'` records what the press typed
  *   instead, and rejects only a press that typed nothing it can record.

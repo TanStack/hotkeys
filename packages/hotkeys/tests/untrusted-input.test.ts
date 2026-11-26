@@ -151,29 +151,35 @@ describe('registering a hotkey with an unknown key name', () => {
     )
   })
 
-  // macOS reports Cmd+Shift+= as `=`, so `Mod++` never sees `+` there
-  it('warns that Mod with a US shifted symbol does not fire on a US Mac', () => {
+  // macOS reports Cmd+Shift+1 as `1`, so `Mod+!` never sees `!` there
+  it('warns that Mod with a shifted digit, `<` or `>` does not fire on a US Mac', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const manager = getHotkeyManager()
-    manager.register('Mod++', () => {}, { platform: 'mac' })
+    manager.register('Mod+!', () => {}, { platform: 'mac' })
     expect(warn).toHaveBeenCalledWith(
-      "[hotkeys] 'Mod++' does not fire on a US Mac keyboard, where Command+Shift+= reports '='. Register it with Shift and that key too.",
+      "[hotkeys] 'Mod+!' does not fire on a US Mac keyboard, where Command+Shift+1 reports '1'. Register it with Shift and that key too.",
     )
     warn.mockClear()
     // Once per hotkey, so re-registering on every render stays quiet
-    manager.register('Mod++', () => {}, {
+    manager.register('Mod+!', () => {}, {
       platform: 'mac',
       conflictBehavior: 'allow',
     })
     expect(warn).not.toHaveBeenCalled()
-    for (const hotkey of ['Mod+?', 'Mod+>', 'Mod+!'] as Array<HotkeyChord>)
+    for (const hotkey of ['Mod+@', 'Mod+)', 'Mod+<'] as Array<HotkeyChord>)
       manager.register(hotkey, () => {}, { platform: 'mac' })
     expect(warn).toHaveBeenCalledTimes(3)
+    expect(warn).toHaveBeenLastCalledWith(
+      "[hotkeys] 'Mod+<' does not fire on a US Mac keyboard, where Command+Shift+, reports ','. Register it with Shift and that key too.",
+    )
     warn.mockClear()
-    // Elsewhere, and with Option, the character arrives
-    manager.register('Mod++', () => {}, { platform: 'windows' })
-    manager.register('Mod+Alt+?', () => {}, { platform: 'mac' })
-    manager.register('Mod+=', () => {}, { platform: 'mac' })
+    // The matcher maps the other symbols back, elsewhere the character
+    // arrives, and with Option it comes from the Option layer
+    for (const hotkey of ['Mod++', 'Mod+?', 'Mod+:'] as Array<HotkeyChord>)
+      manager.register(hotkey, () => {}, { platform: 'mac' })
+    manager.register('Mod+!', () => {}, { platform: 'windows' })
+    manager.register('Mod+Alt+!', () => {}, { platform: 'mac' })
+    manager.register('Mod+1', () => {}, { platform: 'mac' })
     expect(warn).not.toHaveBeenCalled()
   })
 

@@ -19,7 +19,7 @@ import type {
 const rejectionText = ({ reason, message }: RecorderRejection) =>
   message ??
   {
-    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'alt-graph': 'AltGr with that key types nothing to record.',
     'missing-code': 'This key has no physical key code.',
     whitespace: "Whitespace keys can't be recorded.",
     validation: 'This hotkey is not allowed.',

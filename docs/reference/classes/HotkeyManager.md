@@ -113,7 +113,7 @@ manager.activateScope('dialog', { exclusive: { allow: ['global'] } })
 destroy(): void;
 ```
 
-Defined in: [hotkey-manager.ts:1980](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1980)
+Defined in: [hotkey-manager.ts:1982](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1982)
 
 Destroys the manager and removes all listeners.
 
@@ -129,7 +129,7 @@ Destroys the manager and removes all listeners.
 getRegistrationCount(): number;
 ```
 
-Defined in: [hotkey-manager.ts:1912](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1912)
+Defined in: [hotkey-manager.ts:1914](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1914)
 
 Gets the number of registered hotkeys, chords and sequences.
 
@@ -145,7 +145,7 @@ Gets the number of registered hotkeys, chords and sequences.
 hasActiveRegistration(hotkey): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1950](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1950)
+Defined in: [hotkey-manager.ts:1952](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1952)
 
 Checks whether a hotkey can fire now: at least one registration is
 enabled, in an active scope, and listening where key presses go. A
@@ -179,7 +179,7 @@ True if a registration that can fire exists
 isRegistered(hotkey, target?): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1923](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1923)
+Defined in: [hotkey-manager.ts:1925](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1925)
 
 Checks if a specific hotkey is registered.
 
@@ -305,7 +305,7 @@ handle.unregister()
 resetSequenceProgress(): void;
 ```
 
-Defined in: [hotkey-manager.ts:1897](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1897)
+Defined in: [hotkey-manager.ts:1899](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1899)
 
 Resets the progress of every in-progress sequence.
 

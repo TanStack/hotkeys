@@ -120,8 +120,8 @@ collide when their scopes match or either is `'global'`, and their
 hotkeys are equal or one sequence starts with the other.
 
 Pass the recorder's `context` for a recorded hotkey. Two hotkeys written
-differently can fire for one key press, such as a recorded `Shift+[Slash]`
-and a declared `?` on a US keyboard. Only the key press shows that.
+differently can fire for one key press, such as `Shift+[Slash]` recorded
+by code and a declared `?` on a US keyboard. Only the key press shows that.
 
 #### Parameters
 

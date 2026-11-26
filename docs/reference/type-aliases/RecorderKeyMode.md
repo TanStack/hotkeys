@@ -9,16 +9,17 @@ title: RecorderKeyMode
 type RecorderKeyMode = "auto" | "code" | "key";
 ```
 
-Defined in: [hotkey-recorder.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L42)
+Defined in: [hotkey-recorder.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L43)
 
 How the recorder writes the pressed key:
 
-- `'auto'` (default): by name when the press has one, such as `Mod+S` or
-  `Shift+Enter`, and by physical code otherwise, such as `Alt+[Digit1]` for
-  macOS Option+1. The result reads like a hotkey written by hand, so it
-  compares equal to one, and its label follows the user's keyboard layout.
-  Recorded by code: Shift or macOS Option with a digit or a symbol, dead
-  keys and the numpad.
+- `'auto'` (default): by what the press typed, written as by hand, such as
+  `Mod+S`, `Shift+Enter`, `?` for Shift+/ and `@` for German AltGr+Q. The
+  result compares equal to a hotkey written by hand, and its label follows
+  the user's keyboard layout. With Control, Command or Alt, a digit-row key
+  records its digit (AZERTY Ctrl+& is `Mod+1`). Recorded by code: macOS
+  Option with a symbol, such as `Alt+[Slash]`, dead keys, the numpad digits
+  and decimal key, and Shift with a numpad operator.
 - `'code'`: always by physical code, such as `Mod+[KeyS]`. The hotkey names
   a position on the keyboard, whatever that key types.
 - `'key'`: always by the character or key name the press produced, such as
