@@ -62,6 +62,13 @@ describe('hotkeyFromModifiers', () => {
     expect(hotkeyFromModifiers([])).toBeUndefined()
   })
 
+  it('keeps a letter that uppercases to another key', () => {
+    // `ı` uppercases to the ASCII `I` and `ß` to `SS`, as core keeps them.
+    expect(hotkeyFromModifiers(['mod', 'ı'])).toBe('Mod+ı')
+    expect(hotkeyFromModifiers(['ß'])).toBe('ß')
+    expect(hotkeyFromModifiers(['é'])).toBe('É')
+  })
+
   it('reads nothing when a modifier comes after the last key', () => {
     // `x-hotkey.s.mod` must not register a bare `S`.
     expect(hotkeyFromModifiers(['s', 'mod'])).toBeUndefined()

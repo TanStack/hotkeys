@@ -58,7 +58,7 @@ To add an example, add it to `ssr/examples.ts` with an unused port and the comma
 
 The Ember adapter supports `ember-source` 4.12 and newer, but its own tests run on a recent Ember only. This check runs it in a classic ember-cli app on an older Ember. `scripts/ember-compat.ts` generates the app with the given ember-cli version, copies in the probe component and test from `ember-compat/`, installs the packed core and adapter, and runs `ember test`. The test registers a hotkey with the `useHotkey` helper and one with the `onHotkey` modifier, fires both, reads held keys, a key hold and a hint, and checks that teardown unregisters everything.
 
-Run `pnpm test:e2e:ember-compat "~4.12.0"` from the repository root: it builds the core and the adapter, then runs the check. Run `pnpm --filter @tanstack/hotkeys-e2e test:e2e:ember-compat "~4.12.0"` to skip the build. A second argument sets the `ember-source` version. The app is generated in a temporary folder and needs network access. The check uses Chrome; set `TESTEM_BROWSER="Headless Edge"` where only Edge is installed.
+Run `pnpm test:e2e:ember-compat "~4.12.0"` from the repository root: it builds the core and the adapter, then runs the check. Run `pnpm --filter @tanstack/hotkeys-e2e test:e2e:ember-compat "~4.12.0"` to skip the build. A second argument sets the `ember-source` version. The app is generated in a temporary folder and needs network access. The script runs on macOS and Linux. The check uses Chrome; set `TESTEM_BROWSER="Headless Edge"` where only Edge is installed.
 
 CI runs it on 4.12 and 5.12 for pull requests that change the core source or the Ember adapter, and after each merge to `main`.
 

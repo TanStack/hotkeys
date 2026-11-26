@@ -3,11 +3,11 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "804b8de7a86bba49dd1be3cc53be282bf2faa01e624962e4e6bc5b82730d265d",
+      "fingerprint": "19554ef6b5764ec9a5c186e1b25fe00a2e0b2742a8bf19f7cfac1bb55dc905d2",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
         "docs/framework/alpine/quick-start.md": "822d70174d351fa7b2fe2e773b4fb3a2b558191386001025cdf2efac7b0c7854",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3d671158016cfd0e71c7338f7258976d1bf46ed0e2b7c0b31b4415c809f65a6d",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e0403473c7a27af925d286e94c1c8e0bb0a780b03e47b816e5e96afa4da49fd5",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -17,13 +17,10 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
       "outcome": "updated",
-      "reason": "Added the x-hotkey directive: install line, API row, morph pitfall, and the CSP build method-name form.",
-      "evidence": [
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
-        "docs/framework/alpine/quick-start.md"
-      ]
+      "reason": "Named the hotkeyDirective import next to the install call.",
+      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
       "fingerprint": "237317989c8ce962bdca3471aac65f256d472f58d2d2160bc0cf6e6089927c2d",
@@ -270,7 +267,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8e4fdda349b42d650d2e340e9bea5946e5410db677ff484ea72b89e5da3a5c1e",
+      "fingerprint": "977bbb02f485e955e5de07bc22f25730c593026fd40239385752e100eef5f819",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -301,7 +298,7 @@
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
         "docs/guides/sensible-defaults.md": "96163627a03c50b44d62f49ee35eae4609445b3d7d928283391dacf79a250b6c",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3d671158016cfd0e71c7338f7258976d1bf46ed0e2b7c0b31b4415c809f65a6d",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e0403473c7a27af925d286e94c1c8e0bb0a780b03e47b816e5e96afa4da49fd5",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -401,13 +398,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
       "outcome": "updated",
-      "reason": "Alpine and Ember skills updated for the directive and the Ember 4.12 floor.",
-      "evidence": [
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
-      ]
+      "reason": "Alpine skill names the directive import.",
+      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -8420,13 +8414,13 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "f40caefcf983c054d2491cae70a560467bd77048e319f42110af427bad3844d2",
+      "fingerprint": "aea95f4a468218f55a0f29afc6592e3850bf4637e782ad4dbeba6805e59ebc18",
       "snapshot": {
-        "e2e/README.md": "64e0a057a61864f17287c9b392cad4727933776d6c5f3eca1a0ae55bc5ae7fa1"
+        "e2e/README.md": "507d4b0c3a926df68f16b56ad7be649faba3bd17d03df61e5309fb16272d36ac"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
       "outcome": "out-of-scope",
-      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "reason": "Directive key normalization, its test, and an e2e README note; the Alpine skill does not describe key normalization.",
       "evidence": ["e2e/README.md"]
     },
     "source:e2e/playwright.ssr.config.ts": {
@@ -23889,13 +23883,13 @@
       "evidence": ["e2e/scripts/ember-compat.ts"]
     },
     "source:packages/alpine-hotkeys/src/hotkeyDirective.ts": {
-      "fingerprint": "10095995d0233286caee2e2ef2be648d3fde3f29adadcd7748c4565bf5e02aff",
+      "fingerprint": "8eb511d5f2b6d78481758dcb1651e57d60aaa0b3bad256480b4f5f980d4668c8",
       "snapshot": {
-        "packages/alpine-hotkeys/src/hotkeyDirective.ts": "57407b2b2c281140b8f793bfb3c1058b481708381e5acf67d1aa13fffdec5c73"
+        "packages/alpine-hotkeys/src/hotkeyDirective.ts": "c05bfa110b0501ebffe36fc79cf09e35a3705a1fce76c64b74ba81209233868d"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
       "outcome": "out-of-scope",
-      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "reason": "Directive key normalization, its test, and an e2e README note; the Alpine skill does not describe key normalization.",
       "evidence": ["packages/alpine-hotkeys/src/hotkeyDirective.ts"]
     },
     "source:packages/alpine-hotkeys/tests/alpine-plugins.d.ts": {
@@ -23919,13 +23913,13 @@
       "evidence": ["packages/alpine-hotkeys/tests/csp-build.test.ts"]
     },
     "source:packages/alpine-hotkeys/tests/hotkey-directive.test.ts": {
-      "fingerprint": "7ba45532c05b6de56039df29d5f48ec242f8dc75965b98cd386932ef993a9e46",
+      "fingerprint": "368235348ffb851efdd6ea473e2f6d94509f97c4f61b338aaa6745e080a07183",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/hotkey-directive.test.ts": "eca43d3f8ae6520ed43e80a5534ae3898c29465352512ea0cc455f575eb7befd"
+        "packages/alpine-hotkeys/tests/hotkey-directive.test.ts": "0d6620ec6f956c84fb5571e23e1fe6b499ea64e4086a93aa09bf598169ece6bc"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
       "outcome": "out-of-scope",
-      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "reason": "Directive key normalization, its test, and an e2e README note; the Alpine skill does not describe key normalization.",
       "evidence": ["packages/alpine-hotkeys/tests/hotkey-directive.test.ts"]
     },
     "source:packages/ember-hotkeys/src/tracked.ts": {

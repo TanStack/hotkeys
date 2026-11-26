@@ -1,4 +1,8 @@
-import { MODIFIER_ALIASES, getHotkeyManager } from '@tanstack/hotkeys'
+import {
+  MODIFIER_ALIASES,
+  getHotkeyManager,
+  normalizeKeyName,
+} from '@tanstack/hotkeys'
 import type { Hotkey } from '@tanstack/hotkeys'
 import type Alpine from 'alpinejs'
 
@@ -16,9 +20,14 @@ export function hotkeyFromModifiers(
     if (Object.hasOwn(MODIFIER_ALIASES, part)) {
       step += `${MODIFIER_ALIASES[part]}+`
     } else {
+      // One character goes through core, which keeps `ı` and `ß` as written.
       steps.push(
         step +
-          part.replace(/(?:^|-)(.)/g, (_, char: string) => char.toUpperCase()),
+          ([...part].length === 1
+            ? normalizeKeyName(part)
+            : part.replace(/(?:^|-)(.)/g, (_, char: string) =>
+                char.toUpperCase(),
+              )),
       )
       step = ''
     }
