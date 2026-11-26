@@ -5,7 +5,7 @@ import {
   prepareHotkeyDefinitions,
   resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import { useCommitEffect } from './_useCommitEffect'
@@ -79,19 +79,26 @@ export function useHotkeys(
   )
 
   // Publish registrations, callbacks, and options in the commit, never during
-  // render. Refs resolve here, after they attach.
-  useCommitEffect(() => {
-    bindingsRef.current ??= createHotkeyBindings({
-      afterDelegatedHandlers: true,
-    })
+  // render.
+  const update = () => {
     const { hotkeys, ...context } = latestRef.current
-    bindingsRef.current.update(
+    bindingsRef.current?.update(
       prepareHotkeyDefinitions(hotkeys, {
         ...context,
         resolveTarget: resolveRefTarget,
       }),
     )
+  }
+  useCommitEffect(() => {
+    bindingsRef.current ??= createHotkeyBindings({
+      afterDelegatedHandlers: true,
+    })
+    update()
   })
+  // React attaches a ref on an ancestor element after this component's layout
+  // effects, so resolve targets again once every ref has attached. Content a
+  // Suspense boundary hid has no bindings, so this doesn't register it.
+  useEffect(update)
 
   useCommitEffect(() => {
     return () => {

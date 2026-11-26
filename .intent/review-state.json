@@ -94,7 +94,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "ffe09b0a05af98e8a8239e9c4450cb4a56bd7660bd39a5a6ee1f49caf16e9908",
+      "fingerprint": "dc039521573d7115f365d34d832324de73b232fbe2c0377e7fcd82681ac72d64",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
@@ -103,7 +103,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "25385dbc251ec55fac1de7a2e402ba0ef7ab41547a4d956d424274d24e0c4969",
+        "packages/hotkeys/src/hotkey-manager.ts": "5b4be198cced39f6d72cce3c081d4629f40567fe6a001b1c0ecdd5167cc18245",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -115,11 +115,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
       "evidence": [
-        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -180,7 +180,7 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "da3e86e753a9cafe62f4e94cc283f0883384a4a8bd670ad1901de93dac60cbe9",
+      "fingerprint": "f9c0bc512a98e0b562d104c76e6a21aeb69d2d355a6a7003389471b72fe13688",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
@@ -190,7 +190,7 @@
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "db509ad8071b0e97e2e7fb6396be131e1e4757f9f48ea7bfac1d5ca6a69ac371",
+        "packages/react-hotkeys/src/useHotkeys.ts": "7efad30e4b50b2911bbd32945dcb68ea542c7dae2c238f43658e05ec30c32403",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -209,11 +209,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "The skill does not describe conflictBehavior replace, sequence suffix ownership, sequence scope order, the mount guard, or React effect timing; the scopes reference already says only the winning scope runs.",
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
       "evidence": [
-        "git grep for replace, conflictBehavior and the sequence rules in packages/*/skills finds nothing to update"
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -278,7 +278,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "1af9263f92f979a6e24a01a3806f2ddf06f17a517aba3e1dfdb983c358019c1d",
+      "fingerprint": "1478968c08bdb7c59d35359259087107042292ad93b8fc9a5b98f21dab5eea70",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -341,7 +341,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "45b453c61aa4a762ad3f92fcb4f4fe0cb0dd636e8dc2f232f2a4fe4663159a3c",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "25385dbc251ec55fac1de7a2e402ba0ef7ab41547a4d956d424274d24e0c4969",
+        "packages/hotkeys/src/hotkey-manager.ts": "5b4be198cced39f6d72cce3c081d4629f40567fe6a001b1c0ecdd5167cc18245",
         "packages/hotkeys/src/hotkey-recorder.ts": "ca886ba016aad15f87ac89b8c3f714f4417d04a709015be177742a0478e8d03d",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
@@ -368,7 +368,7 @@
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "db509ad8071b0e97e2e7fb6396be131e1e4757f9f48ea7bfac1d5ca6a69ac371",
+        "packages/react-hotkeys/src/useHotkeys.ts": "7efad30e4b50b2911bbd32945dcb68ea542c7dae2c238f43658e05ec30c32403",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -409,10 +409,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch fixes and an option removal; no new skill needed.",
-      "evidence": ["No new public API"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -671,24 +673,28 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "1c0e2b9f6abbaeb5e74811490f11486bcddea6b5a009fc71331857cf709902c3",
+      "fingerprint": "475e3b9a36043ef147a617c6c1017109c6aa14d01c04b9bca97d75e9f6f47730",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "3bbfea71b9410c15032eeaa87e3589d0ce07478c6b3902c2c023b4211c3bfa85"
+        "docs/reference/classes/HotkeyManager.md": "30e27639358e4573e952c9d76e3681bd02ad7eb659d8a0796a044acdf6e5efa6"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "efc2a50fa47cc6702ddb73bf3b95c3aabe443cd3fdc43f577d04df401eb55717",
+      "fingerprint": "0fd19e02e22b1e5df6bee34eddb205147d22948bf31d0b8785ec31a0b9a6b8e2",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "3af9bf1d87558ddefe2b1cbe94d18aad5c46a3f779c42bcdefe169eea43a89f7"
+        "docs/reference/functions/getHotkeyManager.md": "cec65b91d98920fe1877ac2202c2bcfc3da567d60ea6e61670787f7a41621962"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -7398,14 +7404,16 @@
       ]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "4bd2c140a0550e3b13d4a240db4afee1644d90c789b2be88713de7f301c2dd5a",
+      "fingerprint": "dcffc5426be62a365d241e8086ff88f01e259d528a9d7c068325ab097c691424",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "b97ddef774cb32f1b7cb1b4298de36a4918bb1cf300508b474e7db74e4b0ead7"
+        "packages/hotkeys/src/_target-listeners.ts": "e90902d0fe118d2d112a7dc8319cd0faa198ae700bd9e8b23f54de2b801011aa"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
       "fingerprint": "b2cf4fdd6ba78faa7bfe2f33e3c340e57f0990c85b930cf85458e011ab9251f1",
@@ -23941,14 +23949,16 @@
       "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:packages/hotkeys/tests/press-start.test.ts": {
-      "fingerprint": "d941b82e455d859206917b446fb37df5e39d0fba69f1fb7141a4594649926a65",
+      "fingerprint": "f8ee38f0c955412609f0e860377d08aee5890aa6267fed4ac9d7a373b95eb3d4",
       "snapshot": {
-        "packages/hotkeys/tests/press-start.test.ts": "6f1c095c4c1f6817576dfed2ba9c1bc51e24d90859acda5e4ea14a871db1ed1d"
+        "packages/hotkeys/tests/press-start.test.ts": "a31febc65419e43c24755704df3b0902c134d75ff8589618fb491b9d62950aa3"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     },
     "source:packages/react-hotkeys/src/_useCommitEffect.ts": {
       "fingerprint": "ad2f73446d0d59b9c13c6d007d107091ef83acee63a7b3668d88319eb522761b",
@@ -23961,14 +23971,16 @@
       "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/react-hotkeys/tests/hidden-content.test.tsx": {
-      "fingerprint": "6ad38d5f507ab7f3f5ef517554b0c2e2ee891643ae73cb86b83c3e0b6d1add82",
+      "fingerprint": "54bf1f3bbfa0a73a2ea8b93b8063d6bf0b1e69d54620edf0f79c6173c461e70d",
       "snapshot": {
-        "packages/react-hotkeys/tests/hidden-content.test.tsx": "f304e0cf027b1ac0a6b986633f4c327e1e0c9470dffd3355a20414e3d1464a88"
+        "packages/react-hotkeys/tests/hidden-content.test.tsx": "6f6f8f683202254e4218a62988bebf2bdbcca9eb0f343b1fa5cb48f91f5da796"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "evidence": [
+        "press-start.test.ts and hidden-content.test.tsx regression tests"
+      ]
     }
   }
 }

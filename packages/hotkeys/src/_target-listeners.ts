@@ -90,12 +90,20 @@ export class TargetListeners {
         keyup: listener('keyup'),
         view: getTargetDocument(target as Target).defaultView,
       }
-      // Attach first, so a target that can't listen leaves nothing behind.
-      listen(target, 'keydown', group.keydown, capture)
-      listen(target, 'keyup', group.keyup, capture)
+      // The window's press listener goes first, so it sees each keydown
+      // before a capture listener on the window itself. A target that can't
+      // listen leaves nothing behind.
+      this.#countWindow(group.view, 1)
+      try {
+        listen(target, 'keydown', group.keydown, capture)
+        listen(target, 'keyup', group.keyup, capture)
+      } catch (error) {
+        target.removeEventListener('keydown', group.keydown, capture)
+        this.#countWindow(group.view, -1)
+        throw error
+      }
       phases.set(capture, group)
       this.#targets.set(target, phases)
-      this.#countWindow(group.view, 1)
     }
     group.ids.add(id)
   }

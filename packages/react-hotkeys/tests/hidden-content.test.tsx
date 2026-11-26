@@ -2,7 +2,7 @@
 
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/react'
-import React, { StrictMode, Suspense, useState } from 'react'
+import React, { StrictMode, Suspense, useRef, useState } from 'react'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
@@ -24,6 +24,38 @@ describe('hotkeys inside hidden content', () => {
   afterEach(() => {
     cleanup()
     HotkeyManager.resetInstance()
+  })
+
+  // React attaches an ancestor's ref after its children's layout effects.
+  it('registers a hotkey whose target is a ref on an ancestor element', () => {
+    const fired: Array<string> = []
+    function Child({
+      target,
+    }: {
+      target: React.RefObject<HTMLDivElement | null>
+    }) {
+      useHotkey('Mod+S', () => fired.push('save'), { platform: 'mac', target })
+      return null
+    }
+    function Panel() {
+      const ref = useRef<HTMLDivElement>(null)
+      return (
+        <div ref={ref} tabIndex={0} data-testid="panel">
+          <Child target={ref} />
+        </div>
+      )
+    }
+    const { getByTestId } = render(<Panel />)
+    getByTestId('panel').dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 's',
+        code: 'KeyS',
+        metaKey: true,
+        bubbles: true,
+        cancelable: true,
+      }),
+    )
+    expect(fired).toEqual(['save'])
   })
 
   it.each([false, true])(

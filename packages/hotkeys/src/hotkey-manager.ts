@@ -617,10 +617,13 @@ export class HotkeyManager {
   #listeners = new TargetListeners(
     (...args) => this.#processTargetEvent(...args),
     (event) => {
-      // A new press: every earlier key event has finished dispatching.
       this.#keydown = event
-      this.#liveDuring.clear()
-      this.#scopeLiveDuring.clear()
+      // A new press: every earlier key event has finished dispatching. An
+      // auto-repeat continues the press, whose release a mark still covers.
+      if (!event.repeat) {
+        this.#liveDuring.clear()
+        this.#scopeLiveDuring.clear()
+      }
     },
   )
   /** The last keydown a window listener saw, which may still be dispatching. */
@@ -1100,11 +1103,11 @@ export class HotkeyManager {
           ) {
             manager.#listeners.add(to, capture, id, true)
           }
-          // A keyup chord enabled by its own keydown, to end a mode, still
-          // gets that press's release.
+          // Enabled, or moved into an active scope. A keyup chord enabled by
+          // its own keydown, to end a mode, still gets that press's release.
           if (
-            !reg.options.enabled &&
-            options.enabled &&
+            getRegistrationStatus(reg.options, manager) !== 'active' &&
+            getRegistrationStatus(options, manager) === 'active' &&
             !(reg.kind === 'chord' && options.eventType === 'keyup')
           ) {
             manager.#markLive(id)

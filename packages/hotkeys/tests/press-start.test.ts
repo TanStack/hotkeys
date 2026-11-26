@@ -198,6 +198,55 @@ describe('a hotkey that goes live during a key event', () => {
     expect(later).toHaveBeenCalledOnce()
   })
 
+  it('keeps a keyup sequence from starting on its press release after auto-repeats', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register('Mod+K', vi.fn())
+    const callback = vi.fn()
+    const element = opener(() =>
+      manager.register(['Enter', 'Enter'], callback, { eventType: 'keyup' }),
+    )
+    const tap = () => {
+      keydown({ key: 'Enter', code: 'Enter', target: document })
+      keyup({ key: 'Enter', code: 'Enter', target: document })
+    }
+
+    keydown({ key: 'Enter', code: 'Enter', target: element })
+    keydown({ key: 'Enter', code: 'Enter', repeat: true, target: element })
+    keyup({ key: 'Enter', code: 'Enter', target: element })
+    tap()
+    expect(callback).not.toHaveBeenCalled()
+    tap()
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
+  it('does not fire on the press when a window capture hotkey registered it', () => {
+    const manager = HotkeyManager.getInstance()
+    const dialogEnter = vi.fn()
+    manager.register(
+      'Enter',
+      () =>
+        manager.register('Enter', dialogEnter, { conflictBehavior: 'allow' }),
+      { target: window, capture: true, stopPropagation: false },
+    )
+
+    keydown({ key: 'Enter', code: 'Enter', target: document })
+    expect(dialogEnter).not.toHaveBeenCalled()
+  })
+
+  it('does not fire on the press that moved it into an active scope', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register('Mod+K', vi.fn())
+    const dialogEnter = vi.fn()
+    const handle = manager.register('Enter', dialogEnter, { scope: 'dialog' })
+    const element = opener(() => handle.setOptions({ scope: 'global' }))
+
+    keydown({ key: 'Enter', code: 'Enter', target: element })
+    expect(dialogEnter).not.toHaveBeenCalled()
+    keyup({ key: 'Enter', code: 'Enter', target: element })
+    keydown({ key: 'Enter', code: 'Enter', target: document })
+    expect(dialogEnter).toHaveBeenCalledOnce()
+  })
+
   it('fires on the same event object dispatched again after another event', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('Mod+K', vi.fn())
