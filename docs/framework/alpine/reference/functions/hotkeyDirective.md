@@ -9,7 +9,7 @@ title: hotkeyDirective
 function hotkeyDirective(alpine): void;
 ```
 
-Defined in: [hotkeyDirective.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/hotkeyDirective.ts#L37)
+Defined in: [hotkeyDirective.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/hotkeyDirective.ts#L46)
 
 Installs `x-hotkey`, which registers the hotkey named by its modifiers while
 its element exists: `x-hotkey.mod.s="save()"`, `x-hotkey.escape="close()"`,
