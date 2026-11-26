@@ -5,7 +5,7 @@ import {
   prepareHotkeyDefinitions,
   resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import { useCommitEffect } from './_useCommitEffect'
@@ -79,26 +79,36 @@ export function useHotkeys(
   )
 
   // Publish registrations, callbacks, and options in the commit, never during
-  // render.
-  const update = () => {
+  // render. Returns whether a ref target was still unset.
+  const update = (): boolean => {
+    let waiting = false
     const { hotkeys, ...context } = latestRef.current
     bindingsRef.current?.update(
       prepareHotkeyDefinitions(hotkeys, {
         ...context,
-        resolveTarget: resolveRefTarget,
+        resolveTarget: (target) => {
+          const resolved = resolveRefTarget(target)
+          if (resolved == null) waiting = true
+          return resolved
+        },
       }),
     )
+    return waiting
   }
   useCommitEffect(() => {
-    bindingsRef.current ??= createHotkeyBindings({
+    const bindings = (bindingsRef.current ??= createHotkeyBindings({
       afterDelegatedHandlers: true,
-    })
-    update()
+    }))
+    // React attaches a ref on an ancestor element after this component's
+    // layout effects, on mount and when Suspense shows hidden content again.
+    // Resolve again once the commit has attached every ref, unless these
+    // bindings were destroyed by then.
+    if (update()) {
+      queueMicrotask(() => {
+        if (bindingsRef.current === bindings) update()
+      })
+    }
   })
-  // React attaches a ref on an ancestor element after this component's layout
-  // effects, so resolve targets again once every ref has attached. Content a
-  // Suspense boundary hid has no bindings, so this doesn't register it.
-  useEffect(update)
 
   useCommitEffect(() => {
     return () => {

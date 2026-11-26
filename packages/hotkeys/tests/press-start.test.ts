@@ -247,6 +247,28 @@ describe('a hotkey that goes live during a key event', () => {
     expect(dialogEnter).toHaveBeenCalledOnce()
   })
 
+  it('skips the auto-repeat that activated its scope after the keydown registered it', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register('Mod+K', vi.fn())
+    const dialogEnter = vi.fn()
+    let release = () => {}
+    const element = document.createElement('div')
+    element.tabIndex = 0
+    document.body.append(element)
+    let calls = 0
+    element.addEventListener('keydown', () => {
+      calls++
+      if (calls === 1)
+        manager.register('Enter', dialogEnter, { scope: 'dialog' })
+      if (calls === 2) release = manager.activateScope('dialog')
+    })
+
+    keydown({ key: 'Enter', code: 'Enter', target: element })
+    keydown({ key: 'Enter', code: 'Enter', repeat: true, target: element })
+    expect(dialogEnter).not.toHaveBeenCalled()
+    release()
+  })
+
   it('fires on the same event object dispatched again after another event', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('Mod+K', vi.fn())

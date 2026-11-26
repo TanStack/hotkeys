@@ -27,26 +27,10 @@ describe('hotkeys inside hidden content', () => {
   })
 
   // React attaches an ancestor's ref after its children's layout effects.
-  it('registers a hotkey whose target is a ref on an ancestor element', () => {
-    const fired: Array<string> = []
-    function Child({
-      target,
-    }: {
-      target: React.RefObject<HTMLDivElement | null>
-    }) {
-      useHotkey('Mod+S', () => fired.push('save'), { platform: 'mac', target })
-      return null
-    }
-    function Panel() {
-      const ref = useRef<HTMLDivElement>(null)
-      return (
-        <div ref={ref} tabIndex={0} data-testid="panel">
-          <Child target={ref} />
-        </div>
-      )
-    }
-    const { getByTestId } = render(<Panel />)
-    getByTestId('panel').dispatchEvent(
+  // React attaches an ancestor's ref after its children's layout effects,
+  // so the hotkey registers once the commit has attached it.
+  function pressPanel(panel: HTMLElement) {
+    panel.dispatchEvent(
       new KeyboardEvent('keydown', {
         key: 's',
         code: 'KeyS',
@@ -55,6 +39,55 @@ describe('hotkeys inside hidden content', () => {
         cancelable: true,
       }),
     )
+  }
+  function Child({
+    target,
+    fired,
+  }: {
+    target: React.RefObject<HTMLDivElement | null>
+    fired: Array<string>
+  }) {
+    useHotkey('Mod+S', () => fired.push('save'), { platform: 'mac', target })
+    return null
+  }
+  function Panel({ fired }: { fired: Array<string> }) {
+    const ref = useRef<HTMLDivElement>(null)
+    return (
+      <div ref={ref} tabIndex={0} data-testid="panel">
+        <Child target={ref} fired={fired} />
+      </div>
+    )
+  }
+
+  it('registers a hotkey whose target is a ref on an ancestor element', async () => {
+    const fired: Array<string> = []
+    const { getByTestId } = render(<Panel fired={fired} />)
+    await Promise.resolve()
+    pressPanel(getByTestId('panel'))
+    expect(fired).toEqual(['save'])
+  })
+
+  it('registers it again when Suspense shows the unchanged content again', async () => {
+    const fired: Array<string> = []
+    const never = new Promise<void>(() => {})
+    let suspend!: (on: boolean) => void
+    function Suspender() {
+      const [on, setOn] = useState(false)
+      suspend = setOn
+      if (on) throw never
+      return null
+    }
+    const view = render(
+      <Suspense fallback={<p>loading</p>}>
+        <Panel fired={fired} />
+        <Suspender />
+      </Suspense>,
+    )
+    await Promise.resolve()
+    act(() => suspend(true))
+    act(() => suspend(false))
+    await Promise.resolve()
+    pressPanel(view.getByTestId('panel'))
     expect(fired).toEqual(['save'])
   })
 

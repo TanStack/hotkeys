@@ -1764,16 +1764,20 @@ export class HotkeyManager {
     registration: HotkeyRegistration,
     event: KeyboardEvent,
   ): boolean {
-    const live = (this.#liveDuring.get(registration.id) ??
-      this.#scopeLiveDuring.get(registration.options.scope!)) as
-      | KeyboardEvent
-      | undefined
-    if (!live || live === event) return !!live
-    return (
-      registration.kind === 'sequence' &&
-      event.type === 'keyup' &&
-      live.type === 'keydown' &&
-      (live.code || live.key) === (event.code || event.key)
+    // The registration's own mark and its scope's mark can come from
+    // different events of one press, such as a keydown and its auto-repeat.
+    return [
+      this.#liveDuring.get(registration.id),
+      this.#scopeLiveDuring.get(registration.options.scope!),
+    ].some(
+      (live) =>
+        live === event ||
+        (!!live &&
+          registration.kind === 'sequence' &&
+          event.type === 'keyup' &&
+          live.type === 'keydown' &&
+          ((live as KeyboardEvent).code || (live as KeyboardEvent).key) ===
+            (event.code || event.key)),
     )
   }
 
