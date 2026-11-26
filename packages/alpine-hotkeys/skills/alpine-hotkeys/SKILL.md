@@ -62,6 +62,8 @@ Alpine.data('panel', () => ({
 
 Install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`. It gives the adapter the app's Alpine instance; without it, the adapter falls back to `window.Alpine` and throws when neither exists. The plugin also adds the `$hotkeys` magic for markup-only components, which is destroyed with its element: `x-init="$hotkeys.createHotkey('Mod+S', () => save())"`.
 
+For a fixed hotkey in markup, import `hotkeyDirective` from `@tanstack/alpine-hotkeys`, install `Alpine.plugin(hotkeyDirective)`, and write `x-hotkey.mod.s="save()"`. Modifiers name the hotkey in lowercase, with dashes for multi-word keys (`x-hotkey.arrow-up`), and `x-hotkey.g.h` is a sequence. The expression gets `$event`. The directive uses the built-in options, and it lives as long as its attribute, so it follows Livewire and `Alpine.morph` updates.
+
 ## API
 
 | API                                                 | What it's for                                                                                                                         |
@@ -69,6 +71,7 @@ Install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`. It gives the ada
 | `Alpine.plugin(hotkeysPlugin)`                      | Give the adapter the app's Alpine, and install the `$hotkeys` magic, an owner destroyed with its element.                             |
 | `createHotkeysScope(defaults?)`                     | Create an owner for one `Alpine.data` component, with optional default options.                                                       |
 | `createHotkeyRecorder(owner, options)`              | Record a chord or sequence the user presses, for a settings screen. The owner destroys it and supplies its `hotkeyRecorder` defaults. |
+| `Alpine.plugin(hotkeyDirective)`                    | Install `x-hotkey`, which registers the hotkey its modifiers name while the attribute exists.                                         |
 | `Alpine.plugin(hotkeyRecorderPlugin)`               | Install the `$hotkeyRecorder(options)` magic, which creates recorders destroyed with their element.                                   |
 | `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys once at startup, since Alpine has no provider.                                 |
 | `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off.                             |
@@ -99,6 +102,8 @@ The package also re-exports `@tanstack/hotkeys`, such as `matchesKeyboardEvent` 
 - **`createHotkeysScope` isn't a hotkey scope.** It only owns registrations and sets defaults. For a dialog, activate a real scope in `init()` with `release = getHotkeyManager().activateScope(name, { exclusive: true })`, pass `{ scope: name }` to the dialog's hotkeys, and call `release()` in `destroy()`. Give each open dialog its own name.
 - **Pass options as a getter.** `{ enabled: this.dirty }` is read once. Use `() => ({ enabled: this.dirty })`.
 - **Use either `$hotkeys` or your own owner for a hotkey, not both.** Otherwise it registers twice.
+- **Use `x-hotkey` on pages that Livewire or `Alpine.morph` updates.** A morph that changes `x-init` runs it again, but `$hotkeys` keeps the old registration until its element is removed, so both hotkeys fire.
+- **Alpine's CSP build can't parse arrow functions in markup.** Put the callback in an `Alpine.data` method and name it: `x-hotkey.mod.s="save"`. A call such as `save()` needs `@alpinejs/csp` 3.15 or newer, or use the `init()` pattern.
 - **Call `create*` in `x-init` or `init()`, and read `.value` anywhere.** Calling `create*` inside a reactive expression such as `x-text="$hotkeys.createHeldKeys().value"` creates a new subscription on every evaluation.
 - **Owners have no `createHotkeyRecorder` method** since v0.10.0. Call `createHotkeyRecorder(this.hotkeys, options)`, so apps that don't record don't ship the recorder.
 - With server rendering, load the adapter only in the browser.

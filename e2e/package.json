@@ -5,6 +5,7 @@
   "scripts": {
     "test:e2e": "playwright test",
     "test:e2e:adapters": "playwright test --config playwright.adapters.config.ts",
+    "test:e2e:ember-compat": "node scripts/ember-compat.ts",
     "test:e2e:layouts": "playwright test --config playwright.layouts.config.ts",
     "test:e2e:layouts:docker": "node scripts/layouts-docker.ts",
     "test:e2e:native": "playwright test --config playwright.native.config.ts",

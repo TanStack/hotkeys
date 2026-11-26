@@ -1,0 +1,7 @@
+{{use-hotkey 'Control+S' this.save}}
+<span id='count'>{{this.count}}</span>
+<span id='held'>{{this.heldText}}</span>
+<span id='hold'>{{if this.hold.value 'held' 'up'}}</span>
+<span id='hint'>{{if this.hint.value 'on' 'off'}}</span>
+<span id='label'>{{this.formatForDisplay 'Control+S'}}</span>
+<div id='el' tabindex='0' {{on-hotkey 'K' this.save}}></div>

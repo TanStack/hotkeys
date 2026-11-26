@@ -5,6 +5,7 @@ import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 import {
   HotkeyManager,
+  createHotkeysScope,
   defineAppHotkeys,
   getHotkeyManager,
   provideAppHotkeys,
@@ -125,4 +126,90 @@ module('App hotkeys', (hooks) => {
       assert.dom('#count').hasText('2')
     })
   }
+})
+
+const declaredHotkeys = defineAppHotkeys({
+  'doc.print': {
+    hotkey: 'Control+P',
+    options: { preventDefault: false, stopPropagation: false },
+  },
+})
+const scoped = createHotkeysScope({
+  hotkey: { preventDefault: true, stopPropagation: true },
+})
+
+module('App hotkeys with scope defaults', (hooks) => {
+  setupRenderingTest(hooks)
+
+  hooks.afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  // Scope defaults are the lowest layer, below an app hotkey's declaration.
+  test('an app hotkey declaration wins over scope defaults', async (assert) => {
+    const { dispose } = provideAppHotkeys(declaredHotkeys)
+    const print = declaredHotkeys['doc.print']
+    const noop = () => {}
+    await render(
+      <template>
+        {{scoped.useHotkey print noop}}
+        <div {{scoped.onHotkey print noop}}></div>
+      </template>,
+    )
+    assert.deepEqual(
+      [...getHotkeyManager().registrations.state.values()].map((r) => ({
+        preventDefault: r.options.preventDefault,
+        stopPropagation: r.options.stopPropagation,
+      })),
+      [
+        { preventDefault: false, stopPropagation: false },
+        { preventDefault: false, stopPropagation: false },
+      ],
+    )
+    await clearRender()
+    dispose()
+  })
+})
+
+// Defaults that differ from the built-in ones, so a lost default shows.
+const quiet = createHotkeysScope({
+  hotkey: { preventDefault: false, stopPropagation: false },
+})
+
+module('App hotkeys with scope defaults, by layer', (hooks) => {
+  setupRenderingTest(hooks)
+
+  hooks.afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  // Lists follow the same order, call-site options beat the declaration, and
+  // a subclass of a scope's helper keeps the scope defaults.
+  test('lists, call-site options and subclasses', async (assert) => {
+    const { dispose } = provideAppHotkeys(declaredHotkeys)
+    const noop = () => {}
+    const list: Array<EmberHotkeyDefinition> = [
+      { hotkey: declaredHotkeys['doc.print'], callback: noop },
+    ]
+    const SubHotkey = class extends quiet.useHotkey {}
+    await render(
+      <template>
+        {{scoped.useHotkeys list stopPropagation=true}}
+        <div {{scoped.onHotkeys list}}></div>
+        {{SubHotkey "Control+K" noop}}
+      </template>,
+    )
+    assert.deepEqual(
+      [...getHotkeyManager().registrations.state.values()]
+        .map(
+          (r) =>
+            // The key alone: Linux and Windows write `Control` as `Mod`.
+            `${String(r.hotkey).slice(-1)} ${String(r.options.preventDefault)} ${String(r.options.stopPropagation)}`,
+        )
+        .sort(),
+      ['K false false', 'P false false', 'P false true'],
+    )
+    await clearRender()
+    dispose()
+  })
 })

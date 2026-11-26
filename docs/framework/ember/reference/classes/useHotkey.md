@@ -1650,8 +1650,11 @@ coalesced manner.
   \| ((`properties`) => `void`)
   \| (() => `void`)
   \| `DirtyableTag`
+  \| ((...`args`) => `any`)
   \| ((...`args`) => `this`)
   \| (() => `this`)
+  \| (() => `void`)
+  \| (() => `string`)
   \| (\{
 \<`K`\>  (`key`): `UseHotkey`\[`K`\];
   (`key`): `unknown`;
@@ -1683,9 +1686,6 @@ coalesced manner.
   \| ((`keyName`, `decrement?`) => `number`)
   \| ((`keyName`) => `boolean`)
   \| (\<`K`\>(`key`) => `unknown`)
-  \| ((...`args`) => `any`)
-  \| (() => `void`)
-  \| (() => `string`)
   \| `undefined`
 
 ##### Parameters

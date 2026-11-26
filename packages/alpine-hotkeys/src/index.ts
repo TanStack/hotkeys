@@ -4,6 +4,7 @@ export * from './createHotkeysScope'
 // Replaces the core export, to point components to the scope's function
 export { formatForDisplay } from './formatForDisplay'
 export * from './hotkeysPlugin'
+export { hotkeyDirective } from './hotkeyDirective'
 export { createHotkeyRecorder } from './createHotkeyRecorder'
 export * from './hotkeyRecorderPlugin'
 

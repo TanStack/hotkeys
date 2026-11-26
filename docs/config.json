@@ -1624,6 +1624,10 @@
               "to": "framework/alpine/reference/functions/createHotkeysScope"
             },
             {
+              "label": "hotkeyDirective",
+              "to": "framework/alpine/reference/functions/hotkeyDirective"
+            },
+            {
               "label": "hotkeyRecorderPlugin",
               "to": "framework/alpine/reference/functions/hotkeyRecorderPlugin"
             },

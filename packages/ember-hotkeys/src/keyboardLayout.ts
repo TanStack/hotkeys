@@ -1,6 +1,6 @@
-import { trackedObject } from '@ember/reactive/collections'
 import { schedule, scheduleOnce } from '@ember/runloop'
 import { getKeyboardLayoutStore, loadKeyboardLayout } from '@tanstack/hotkeys'
+import { trackedVersion } from './tracked'
 import { scopeDefaults } from './utils'
 import type { KeyboardLayoutMap } from '@tanstack/hotkeys'
 import type { EmberHotkeysScope } from './createHotkeysScope'
@@ -41,7 +41,7 @@ let changes: { version: number } | undefined
 export function trackedLayout(): KeyboardLayoutMap | null {
   const store = getKeyboardLayoutStore()
   if (!changes) {
-    const state = (changes = trackedObject({ version: 0 }))
+    const state = (changes = trackedVersion())
     store.subscribe(() => {
       state.version++
     })
@@ -60,7 +60,7 @@ export function untilRendered(
   onRendered?: () => void,
 ): () => KeyboardLayoutMap | null {
   let rendered = false
-  const state = trackedObject({ version: 0 })
+  const state = trackedVersion()
   schedule('afterRender', () => {
     rendered = true
     onRendered?.()

@@ -31,5 +31,6 @@ title: "@tanstack/alpine-hotkeys"
 
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeysScope](functions/createHotkeysScope.md)
+- [hotkeyDirective](functions/hotkeyDirective.md)
 - [hotkeyRecorderPlugin](functions/hotkeyRecorderPlugin.md)
 - [hotkeysPlugin](functions/hotkeysPlugin.md)

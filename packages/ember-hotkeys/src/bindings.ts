@@ -25,6 +25,28 @@ function copyHotkey(
 }
 
 /**
+ * Hotkey defaults for the helper and modifier classes a `createHotkeysScope`
+ * scope creates. They are the lowest layer, below an app hotkey's declaration.
+ */
+export const classDefaults = new WeakMap<
+  object,
+  () => EmberHotkeyCommonOptions | undefined
+>()
+
+/** The scope defaults for a helper or modifier, including a subclass of one. */
+function defaultsFor(owner: object): EmberHotkeyCommonOptions | undefined {
+  for (
+    let helper: unknown = owner.constructor;
+    typeof helper === 'function';
+    helper = Object.getPrototypeOf(helper)
+  ) {
+    const defaults = classDefaults.get(helper)
+    if (defaults) return defaults()
+  }
+  return undefined
+}
+
+/**
  * Registrations owned by a helper or modifier. `set` records the latest
  * definitions while Ember tracks the caller; registration changes publish
  * after rendering, and again when app hotkeys or custom hotkeys change.
@@ -34,15 +56,22 @@ export function createOwnedBindings(owner: object) {
   const state: {
     definitions: ReadonlyArray<EmberHotkeyDefinition>
     commonOptions: EmberHotkeyCommonOptions
+    defaults: EmberHotkeyCommonOptions | undefined
     element: HTMLElement | undefined
-  } = { definitions: [], commonOptions: {}, element: undefined }
+  } = {
+    definitions: [],
+    commonOptions: {},
+    defaults: undefined,
+    element: undefined,
+  }
 
   function update(): void {
     if (isDestroying(owner) || isDestroyed(owner)) return
-    const { definitions, commonOptions, element } = state
+    const { definitions, commonOptions, defaults, element } = state
     bindings.update(
       prepareHotkeyDefinitions(definitions, {
         appHotkeysStore: getPublishedAppHotkeysStore(),
+        defaults,
         commonOptions: element
           ? { ...commonOptions, target: element }
           : commonOptions,
@@ -75,6 +104,8 @@ export function createOwnedBindings(owner: object) {
           }) as EmberHotkeyDefinition,
       )
       state.commonOptions = { ...commonOptions }
+      // Read while Ember tracks the caller, so reactive defaults re-run it.
+      state.defaults = defaultsFor(owner)
       state.element = element
       schedule()
     },

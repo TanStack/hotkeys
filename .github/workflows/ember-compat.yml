@@ -1,0 +1,46 @@
+name: Ember Compatibility
+
+# The Ember adapter in classic ember-cli apps on the oldest Ember lines its peer
+# range allows. The package's own tests run on a recent Ember only.
+on:
+  pull_request:
+    paths:
+      - packages/hotkeys/src/**
+      - packages/hotkeys/package.json
+      - packages/ember-hotkeys/**
+      - e2e/ember-compat/**
+      - e2e/scripts/ember-compat.ts
+      - e2e/package.json
+      - .github/workflows/ember-compat.yml
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ember:
+    name: Ember ${{ matrix.ember }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        ember: ['4.12', '5.12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@c1ef98305f122da0257951e5e2896e143bdf8173 # main
+      # Chrome comes with the runner image.
+      - name: Run Probe App
+        run: pnpm test:e2e:ember-compat "~${EMBER_VERSION}.0"
+        env:
+          EMBER_VERSION: ${{ matrix.ember }}
