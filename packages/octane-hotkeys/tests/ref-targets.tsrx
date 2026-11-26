@@ -18,3 +18,14 @@ export function RefTargetFixture() @{
     @if (which !== 'none') { <div id="shared" ref={shared as never} tabIndex={0} /> }
   </div>
 }
+
+function AncestorChild(props: { target: { current: HTMLDivElement | null } }) @{
+  useHotkey('L', () => refTargetLog.push('L'), { target: props.target });
+}
+
+export function AncestorRefFixture() @{
+  const panel = useRef<HTMLDivElement | null>(null);
+  <div id="ancestor" ref={panel} tabIndex={0}>
+    <AncestorChild target={panel} />
+  </div>
+}

@@ -1,7 +1,11 @@
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { createRoot, delegateEvents, flushSync } from 'octane'
 import { afterEach, beforeEach, expect, it } from 'vitest'
-import { RefTargetFixture, refTargetLog } from './ref-targets.tsrx'
+import {
+  AncestorRefFixture,
+  RefTargetFixture,
+  refTargetLog,
+} from './ref-targets.tsrx'
 import { flush } from './utils'
 import type { Root } from 'octane'
 
@@ -64,4 +68,12 @@ it('waits while a ref object is unset, then follows its element across renders',
   expect(targets()).toEqual({ K: b, J: shared })
   press('k', b)
   expect(refTargetLog).toEqual(['K', 'J', 'K'])
+})
+
+it('registers a hotkey whose target is a ref on an ancestor element', () => {
+  flushSync(() => root.render(AncestorRefFixture))
+  flush()
+  refTargetLog.length = 0
+  press('l', container.querySelector('#ancestor')!)
+  expect(refTargetLog).toEqual(['L'])
 })
