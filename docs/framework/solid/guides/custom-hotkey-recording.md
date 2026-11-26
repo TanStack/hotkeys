@@ -147,7 +147,7 @@ Rejected recordings keep the recorder active, and rejected sequences keep their 
 
 ### Save hotkeys that work on another platform
 
-A recorded hotkey's modifiers mean the same keys on every platform when they are `Mod`, `Shift`, and `Alt`. Its key follows the layout, so a recorded character such as `@` can sit on a different key. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
+A recorded hotkey's modifiers mean the same keys on every platform when they are `Mod`, `Shift`, and `Alt`. A recorded character such as `@` follows the layout, so it can sit on a different key, while a bracketed code such as `[Slash]` stays on the same physical key. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
 
 If your app syncs hotkeys between machines, pick one rule:
 
@@ -200,7 +200,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | User pressed a whitespace character that can't be recorded |
 | `'missing-code'` | Key event had no physical `code` when needed |
-| `'alt-graph'` | `AltGr` combination that typed no character, or any with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, recorded as `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
+| `'alt-graph'` | `AltGr` combination that typed no character, or any with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt instead and records it as `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
