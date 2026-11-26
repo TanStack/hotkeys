@@ -1,6 +1,6 @@
 import { keyEvent, keyup } from '@tanstack/hotkeys-test-utils'
 import fc from 'fast-check'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
@@ -10,6 +10,11 @@ import {
 } from '../../src'
 import { KEY_TOKENS, PHYSICAL_CODES, PLATFORMS } from './fixtures'
 import type { Hotkey } from '../../src'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // Arbitrary key events: whatever `key` and `code` a browser, extension or
 // test tool sends, matching never throws and a recorded chord matches the

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   areHotkeysEqual,
   formatForDisplay,
@@ -10,6 +10,11 @@ import {
 } from '../../src'
 import { CHORDS, PLATFORMS, failureLog } from './fixtures'
 import type { ParsedHotkeyChord } from '../../src'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // Parsing, normalizing and formatting are lossless for every chord the key
 // tables can spell, on every platform.

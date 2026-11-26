@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, matchesKeyboardEvent, parseHotkey } from '../../src'
 import {
   altGraphTypedCharacter,
@@ -15,6 +15,11 @@ import {
 import { PLATFORMS, makeEvent } from './fixtures'
 import type { LayoutModifiers, LayoutPress } from '../fixtures/layout-events'
 import type { Platform } from './fixtures'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // Rules from the Sensible Defaults guide, checked on every real layout in
 // layout-table.json. Each failure names the platform, layout, press, and
@@ -293,8 +298,7 @@ describe.each(PLATFORMS)('layouts on %s', (platform) => {
       }
     }
     expectOnlyKnownGaps('none', platform, failures)
-    // About 0.2 s locally, but over 5 s on a loaded CI runner
-  }, 30_000)
+  })
 
   it('a keyup hotkey fires once, when its key or one of its modifiers comes up, in any release order', () => {
     const failures: Array<string> = []
