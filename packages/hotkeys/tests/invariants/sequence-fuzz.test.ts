@@ -13,6 +13,9 @@ import type { HotkeySequenceRegistrationView } from '../../src'
 // - each step must follow the last one within `timeout` ms;
 // - a key that doesn't continue a sequence starts it over, and begins a new
 //   attempt if it is the first step;
+// - a key that continues a sequence in progress belongs to it, so it doesn't
+//   start or restart another sequence (keyed by the event type, and a keyup
+//   belongs to the sequence that owned its keydown);
 // - repeats and modifier presses neither advance nor reset a sequence;
 // - a sequence registered for keyup advances on releases instead of presses.
 
@@ -88,9 +91,10 @@ class Model {
     return this.index > 0 && now - this.last > TIMEOUT ? 0 : this.index
   }
 
-  step(key: Key, now: number): void {
+  /** `owned`: another sequence in progress continues on this key. */
+  step(key: Key, now: number, owned = false): void {
     this.index = this.progress(now)
-    if (key === this.steps[this.index]) {
+    if (key === this.steps[this.index] && !(owned && this.index === 0)) {
       this.index++
       this.last = now
       if (this.index === this.steps.length) {
@@ -98,10 +102,37 @@ class Model {
         this.fired++
       }
     } else if (this.index > 0) {
-      this.index = key === this.steps[0] ? 1 : 0
+      this.index = key === this.steps[0] && !owned ? 1 : 0
       if (this.index) this.last = now
     }
   }
+}
+
+/**
+ * Whether a key belongs to a sequence in progress, decided before any
+ * sequence steps: it continues one of the models of its event type, or it is
+ * the release of a key whose press one did. `ownedCodes` holds those presses.
+ */
+function ownedBySequence(
+  models: ReadonlyArray<Model>,
+  eventType: 'keydown' | 'keyup',
+  key: string,
+  code: string,
+  now: number,
+  ownedCodes: Set<string>,
+): boolean {
+  const continues = models.some((model) => {
+    const index = model.progress(now)
+    return (
+      model.eventType === eventType &&
+      index > 0 &&
+      (model.steps[index] as string) === key
+    )
+  })
+  if (eventType === 'keyup') return ownedCodes.delete(code) || continues
+  if (continues) ownedCodes.add(code)
+  else ownedCodes.delete(code)
+  return continues
 }
 
 const CODES: Record<Key | 'Shift', string> = {
@@ -146,6 +177,7 @@ describe('sequence timing under random input', () => {
             })
             return { model, callback, handle }
           })
+          const ownedCodes = new Set<string>()
           for (const act of actions) {
             if (act.type === 'wait') {
               vi.advanceTimersByTime(act.ms)
@@ -156,19 +188,31 @@ describe('sequence timing under random input', () => {
                 code: CODES[act.key],
                 shiftKey: shift && act.type === 'down',
               }
+              const now = Date.now()
+              const eventType = act.type === 'down' ? 'keydown' : 'keyup'
+              const owned =
+                !shift &&
+                !(act.type === 'down' && act.repeat) &&
+                ownedBySequence(
+                  live.map(({ model }) => model),
+                  eventType,
+                  act.key,
+                  init.code,
+                  now,
+                  ownedCodes,
+                )
               if (act.type === 'down') {
                 keydown({ ...init, repeat: act.repeat, target: document })
               } else {
                 keyup({ ...init, target: document })
               }
-              const now = Date.now()
               for (const { model } of live) {
                 const counts =
                   !shift &&
                   (act.type === 'down'
                     ? model.eventType === 'keydown' && !act.repeat
                     : model.eventType === 'keyup')
-                if (counts) model.step(act.key as Key, now)
+                if (counts) model.step(act.key as Key, now, owned)
               }
             }
             const now = Date.now()
@@ -405,19 +449,21 @@ describe('lock and dead keys under random input', () => {
     models: Array<Model>,
     press: Exclude<PressKey, 'Shift'>,
     now: number,
+    owned = false,
   ): void {
     const [key, passive] = STEP[press]
     if (passive) {
       const matchesAStep = models.some((model) => {
         const index = model.progress(now)
+        // A key another sequence owns can't start or restart this one.
         return (
-          (model.steps[index] as string) === key ||
-          (index > 0 && (model.steps[0] as string) === key)
+          ((model.steps[index] as string) === key && !(owned && index === 0)) ||
+          (index > 0 && !owned && (model.steps[0] as string) === key)
         )
       })
       if (!matchesAStep) return
     }
-    for (const model of models) model.step(key as Key, now)
+    for (const model of models) model.step(key as Key, now, owned)
   }
 
   it('the manager follows the model', () => {
@@ -439,6 +485,7 @@ describe('lock and dead keys under random input', () => {
             })
             return { model, callback, handle }
           })
+          const ownedCodes = new Set<string>()
           for (const act of actions) {
             if (act.type === 'wait') {
               vi.advanceTimersByTime(act.ms)
@@ -448,6 +495,17 @@ describe('lock and dead keys under random input', () => {
                 ...INIT[act.key],
                 shiftKey: shift && act.type === 'down',
               }
+              const owned =
+                !shift &&
+                !(act.type === 'down' && act.repeat) &&
+                ownedBySequence(
+                  live.map(({ model }) => model),
+                  act.type === 'down' ? 'keydown' : 'keyup',
+                  STEP[act.key as Exclude<PressKey, 'Shift'>][0],
+                  init.code,
+                  Date.now(),
+                  ownedCodes,
+                )
               if (act.type === 'down') {
                 keydown({ ...init, repeat: act.repeat, target: document })
               } else {
@@ -461,6 +519,7 @@ describe('lock and dead keys under random input', () => {
                     .filter((model) => model.eventType === eventType),
                   act.key,
                   Date.now(),
+                  owned,
                 )
               }
             }

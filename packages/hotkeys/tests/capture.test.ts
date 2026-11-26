@@ -188,8 +188,7 @@ function widget() {
       expect(() =>
         register(vi.fn(), { capture: true, conflictBehavior: 'error' }),
       ).toThrow('already registered')
-      register(vi.fn(), { capture: true, conflictBehavior: 'replace' })
-      expect(first.isActive).toBe(false)
+      expect(first.isActive).toBe(true)
       expect(manager().getRegistrationCount()).toBe(1)
     })
 

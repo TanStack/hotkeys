@@ -426,7 +426,7 @@ A sequence like `['G', 'G']` completes when each step arrives within `1000` ms (
 
 ## Duplicate registrations warn
 
-Registering two hotkeys with the same canonical binding, target, scope, and event type logs a console warning in development and runs both callbacks. Set `conflictBehavior` to `'replace'`, `'error'`, or `'allow'` to customize this.
+Registering two hotkeys with the same canonical binding, target, scope, and event type logs a console warning in development and runs both callbacks. Set `conflictBehavior` to `'error'` or `'allow'` to customize this.
 
 Dev warnings check `process.env.NODE_ENV`, so bundlers strip them in production. If you load the library without a bundler (no `process` global), use `validateHotkey` or `assertValidHotkey` to validate strings, or set `conflictBehavior: 'error'`.
 

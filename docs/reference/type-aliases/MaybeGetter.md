@@ -9,7 +9,7 @@ title: MaybeGetter
 type MaybeGetter<T> = T | (() => T);
 ```
 
-Defined in: [hotkey.types.ts:336](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L336)
+Defined in: [hotkey.types.ts:335](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L335)
 
 A value, or a function that returns it, for options read when needed.
 

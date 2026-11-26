@@ -2,7 +2,7 @@
 
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/preact'
-import { useState } from 'preact/hooks'
+import { useRef, useState } from 'preact/hooks'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { useHotkey } from '../src/useHotkey'
 
@@ -63,5 +63,33 @@ describe('effect timing', () => {
     expect(queryByTestId('dialog')).toBeNull()
     press('Escape')
     expect(onClose).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('a ref target on an ancestor element', () => {
+  afterEach(() => {
+    cleanup()
+    HotkeyManager.resetInstance()
+  })
+
+  it('registers once the ancestor attaches its ref', () => {
+    const fired: Array<string> = []
+    function Child({ target }: { target: { current: HTMLDivElement | null } }) {
+      useHotkey('K', () => fired.push('K'), { target })
+      return null
+    }
+    function Panel() {
+      const ref = useRef<HTMLDivElement>(null)
+      return (
+        <div ref={ref} tabIndex={0} data-testid="panel">
+          <Child target={ref} />
+        </div>
+      )
+    }
+    const { getByTestId } = render(<Panel />)
+    getByTestId('panel').dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'k', code: 'KeyK', bubbles: true }),
+    )
+    expect(fired).toEqual(['K'])
   })
 })

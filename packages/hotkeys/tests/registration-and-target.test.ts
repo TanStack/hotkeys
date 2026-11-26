@@ -307,42 +307,27 @@ describe('registration and event-target helpers', () => {
     })
 
     it('should do nothing when conflictBehavior is allow', () => {
-      const unregister = vi.fn()
-      expect(() =>
-        handleConflict('id-1', 'Mod+S', 'allow', unregister),
-      ).not.toThrow()
-      expect(unregister).not.toHaveBeenCalled()
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      expect(() => handleConflict('Mod+S', 'allow')).not.toThrow()
+      expect(warnSpy).not.toHaveBeenCalled()
     })
 
     it('should warn when conflictBehavior is warn', () => {
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
-      const unregister = vi.fn()
 
-      handleConflict('id-1', 'Mod+S', 'warn', unregister)
+      handleConflict('Mod+S', 'warn')
 
       expect(warnSpy).toHaveBeenCalledWith(
         expect.stringContaining('already registered'),
       )
-      expect(unregister).not.toHaveBeenCalled()
 
       warnSpy.mockRestore()
     })
 
     it('should throw when conflictBehavior is error', () => {
-      const unregister = vi.fn()
-
-      expect(() =>
-        handleConflict('id-1', 'Mod+S', 'error', unregister),
-      ).toThrow(/already registered/)
-      expect(unregister).not.toHaveBeenCalled()
-    })
-
-    it('should call unregister when conflictBehavior is replace', () => {
-      const unregister = vi.fn()
-
-      handleConflict('id-1', 'Mod+S', 'replace', unregister)
-
-      expect(unregister).toHaveBeenCalledWith('id-1')
+      expect(() => handleConflict('Mod+S', 'error')).toThrow(
+        /already registered/,
+      )
     })
   })
 })

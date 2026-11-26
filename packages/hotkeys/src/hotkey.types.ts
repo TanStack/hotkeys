@@ -327,10 +327,9 @@ export interface HotkeyMeta {
  *
  * - `'warn'` - Log a warning to the console but allow both registrations (default)
  * - `'error'` - Throw an error and prevent the new registration
- * - `'replace'` - Unregister the existing registration and register the new one
  * - `'allow'` - Allow multiple registrations without warning
  */
-export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow'
+export type ConflictBehavior = 'warn' | 'error' | 'allow'
 
 /** A value, or a function that returns it, for options read when needed. */
 export type MaybeGetter<T> = T | (() => T)

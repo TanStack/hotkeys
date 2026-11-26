@@ -95,6 +95,7 @@ Most options from [Hotkey options](./hotkeys#hotkey-options) behave identically,
 | Shared prefix | `['D', 'D']` and `['D', 'W']` | Both track progress independently until the next key decides (no warning) |
 | Prefix of a longer sequence | `['G', 'G']` and `['G', 'G', 'G']` | Shorter fires immediately on step 2, and longer fires on step 3 |
 | Chord and sequence on same key | `'G'` and `['G', 'G']` | First `G` fires the chord. Once a sequence is active, continuing keys belong to it |
+| Sequence that ends a longer one | `['A', 'B', 'C']` and `['B', 'C']` | Typing A B C runs only the longer one. A key that continues a sequence can't start another |
 
 ### Sequences that start the same way
 
@@ -110,7 +111,7 @@ Sharing leading steps is expected and never triggers a duplicate warning. Two se
 
 ### A sequence that starts a longer one
 
-If one sequence is a strict prefix of another, such as `['G', 'G']` and `['G', 'G', 'G']`, the shorter sequence fires immediately on the second `G` without waiting to see if a third follows. The third `G` fires `['G', 'G', 'G']`, and a fourth fires `['G', 'G']` again.
+If one sequence is a strict prefix of another, such as `['G', 'G']` and `['G', 'G', 'G']`, the shorter sequence fires immediately on the second `G` without waiting to see if a third follows. The third `G` fires `['G', 'G', 'G']`. That `G` belongs to the longer sequence, so `['G', 'G']` starts over on the fourth `G` and fires on the fifth.
 
 Prefer non-overlapping sequences such as `['G', 'G']` and `['G', 'B']`. [App Hotkeys](./app-hotkeys) and [Hotkey Recording](./custom-hotkey-recording) (`detectConflicts`) treat prefix overlaps as conflicts.
 

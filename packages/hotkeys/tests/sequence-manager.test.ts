@@ -646,21 +646,6 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
-    it('should replace with conflictBehavior replace', () => {
-      const manager = HotkeyManager.getInstance()
-      const callback1 = vi.fn()
-      const callback2 = vi.fn()
-
-      manager.register(['G', 'G'], callback1, { conflictBehavior: 'replace' })
-      manager.register(['G', 'G'], callback2, { conflictBehavior: 'replace' })
-
-      keydown({ key: 'g', target: document })
-      keydown({ key: 'g', target: document })
-
-      expect(callback1).not.toHaveBeenCalled()
-      expect(callback2).toHaveBeenCalledTimes(1)
-    })
-
     it('should allow multiple with conflictBehavior allow', () => {
       const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
@@ -1300,15 +1285,18 @@ describe('sequence matching regressions', () => {
       },
     )
 
-    it('replaces the old callback while preserving the supplied sequence spelling', () => {
+    it('treats an alias spelling as a conflict and preserves the supplied spelling', () => {
       const manager = HotkeyManager.getInstance()
       const oldCallback = vi.fn()
       const newCallback = vi.fn()
       const oldHandle = manager.register(['Control+S', 'Escape'], oldCallback)
       // Exercise a modifier alias accepted by the parser but omitted from canonical types.
       const sequence = ['Ctrl+S', 'Escape'] as unknown as HotkeySequence
-      manager.register(sequence, newCallback, { conflictBehavior: 'replace' })
-      expect(oldHandle.isActive).toBe(false)
+      expect(() =>
+        manager.register(sequence, () => {}, { conflictBehavior: 'error' }),
+      ).toThrow(/already registered/)
+      oldHandle.unregister()
+      manager.register(sequence, newCallback)
       expect(manager.getRegistrationCount()).toBe(1)
       expect([...manager.registrations.state.values()][0]?.hotkey).toEqual(
         sequence,
@@ -1476,9 +1464,42 @@ describe('sequence matching regressions', () => {
       expect(fired).toEqual(['G G'])
       keydown({ key: 'g', code: 'KeyG', target: document })
       expect(fired).toEqual(['G G', 'G G G'])
-      // Each sequence tracks its own progress, so the fourth G completes G G again.
+      // The third G belonged to G G G, so G G starts over on the fourth.
+      keydown({ key: 'g', code: 'KeyG', target: document })
+      expect(fired).toEqual(['G G', 'G G G'])
       keydown({ key: 'g', code: 'KeyG', target: document })
       expect(fired).toEqual(['G G', 'G G G', 'G G'])
+    })
+  })
+
+  describe('a sequence that ends another one', () => {
+    it('does not start on a key that continues the longer sequence', () => {
+      const manager = HotkeyManager.getInstance()
+      const fired: Array<string> = []
+      manager.register(['A', 'B', 'C'], () => fired.push('A B C'))
+      manager.register(['B', 'C'], () => fired.push('B C'))
+
+      for (const key of ['a', 'b', 'c']) {
+        keydown({ key, code: `Key${key.toUpperCase()}`, target: document })
+      }
+      expect(fired).toEqual(['A B C'])
+
+      for (const key of ['b', 'c']) {
+        keydown({ key, code: `Key${key.toUpperCase()}`, target: document })
+      }
+      expect(fired).toEqual(['A B C', 'B C'])
+    })
+
+    it('does not restart on a key that continues another sequence', () => {
+      const manager = HotkeyManager.getInstance()
+      const fired: Array<string> = []
+      manager.register(['D', 'D'], () => fired.push('D D'))
+      manager.register(['D', 'W'], () => fired.push('D W'))
+
+      for (const key of ['d', 'd', 'w']) {
+        keydown({ key, code: `Key${key.toUpperCase()}`, target: document })
+      }
+      expect(fired).toEqual(['D D'])
     })
   })
 })

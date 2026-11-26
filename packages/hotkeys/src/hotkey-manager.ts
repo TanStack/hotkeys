@@ -614,9 +614,27 @@ export class HotkeyManager {
   #scopeOrder: Array<string> = []
   /** Scopes that can fire while a scope is exclusive, or `null` when none is. */
   #liveScopes: Set<string> | null = null
-  #listeners = new TargetListeners((...args) =>
-    this.#processTargetEvent(...args),
+  #listeners = new TargetListeners(
+    (...args) => this.#processTargetEvent(...args),
+    (event) => {
+      this.#keydown = event
+      // A new press: every earlier key event has finished dispatching. An
+      // auto-repeat continues the press, whose release a mark still covers.
+      if (!event.repeat) {
+        this.#liveDuring.clear()
+        this.#scopeLiveDuring.clear()
+      }
+    },
   )
+  /** The last keydown a window listener saw, which may still be dispatching. */
+  #keydown: Event | undefined
+  /**
+   * The key event being dispatched when a registration went live, or when a
+   * scope was activated, such as the Enter that opened a dialog. Those
+   * registrations don't fire on that event. Cleared at the next keydown.
+   */
+  #liveDuring = new Map<string, Event>()
+  #scopeLiveDuring = new Map<string, Event>()
   /** Where each registration listens, kept so cleanup finds a target that moved documents. */
   #listenerTargets = new Map<string, ListenerTarget>()
   /** Events that continue a sequence in progress, decided before any listener runs. */
@@ -682,6 +700,9 @@ export class HotkeyManager {
     options: ActivateHotkeyScopeOptions = {},
   ): () => void {
     if (scope === GLOBAL_SCOPE) return () => {}
+    // The press that opened the scope's dialog doesn't fire its hotkeys.
+    const event = this.#currentEvent()
+    if (event) this.#scopeLiveDuring.set(scope, event)
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
     // Dev-only guard: see `canWarn`
@@ -1000,10 +1021,8 @@ export class HotkeyManager {
     const conflicting = this.#findConflictingRegistration(registration)
     if (conflicting) {
       handleConflict(
-        conflicting.id,
         formatForMessage(registration.hotkey),
         options.conflictBehavior ?? 'warn',
-        (conflictId) => this.#unregister(conflictId),
       )
     }
 
@@ -1016,6 +1035,7 @@ export class HotkeyManager {
       movesAfterDelegatedHandlers(registration.options),
     )
     this.#listenerTargets.set(id, listenOn)
+    this.#markLive(id)
 
     this.registrations.setState((prev) => new Map(prev).set(id, registration))
 
@@ -1083,6 +1103,15 @@ export class HotkeyManager {
           ) {
             manager.#listeners.add(to, capture, id, true)
           }
+          // Enabled, or moved into an active scope. A keyup chord enabled by
+          // its own keydown, to end a mode, still gets that press's release.
+          if (
+            getRegistrationStatus(reg.options, manager) !== 'active' &&
+            getRegistrationStatus(options, manager) === 'active' &&
+            !(reg.kind === 'chord' && options.eventType === 'keyup')
+          ) {
+            manager.#markLive(id)
+          }
           return new Map(prev).set(id, { ...reg, options })
         })
       },
@@ -1103,6 +1132,7 @@ export class HotkeyManager {
 
     // Before subscribers run, since one may dispatch a key event
     this.#pendingReleases.delete(id)
+    this.#liveDuring.delete(id)
     // Remove registration
     this.registrations.setState((prev) => {
       const next = new Map(prev)
@@ -1192,7 +1222,8 @@ export class HotkeyManager {
   /**
    * Processes keyboard events for a specific target and event type.
    * A key that continues a sequence in progress belongs to that sequence, so
-   * chords skip it. Chords and first steps of sequences may both fire.
+   * chords and other sequences' first steps skip it. Otherwise chords and
+   * first steps of sequences may both fire.
    */
   #processTargetEvent(
     event: KeyboardEvent,
@@ -1521,7 +1552,12 @@ export class HotkeyManager {
     const now = Date.now()
     let changed = false
     // Score eligible next steps (or restarts) before advancing any sequence.
-    const candidates = new Map<string, { score: number; nextIndex: number }>()
+    // Scores compete within a scope: the scope decides at completion.
+    const candidates = new Map<
+      string,
+      { score: number; nextIndex: number; rank: number }
+    >()
+    const bestScores = new Map<number, number>()
     let bestScore = 0
 
     for (const registration of registrations) {
@@ -1562,21 +1598,29 @@ export class HotkeyManager {
         )
         nextIndex = 1
       }
-      candidates.set(registration.id, { score: match.score, nextIndex })
-      bestScore = Math.max(bestScore, match.score)
+      // A key that continues a sequence in progress belongs to it, so it
+      // can't start another sequence, such as `b c` inside `a b c`.
+      const score =
+        nextIndex === 1 && this.#sequenceOwned.get(event) ? 0 : match.score
+      const rank = this.#scopeRank(registration.options.scope)
+      candidates.set(registration.id, { score, nextIndex, rank })
+      bestScores.set(rank, Math.max(bestScores.get(rank) ?? 0, score))
+      bestScore = Math.max(bestScore, score)
     }
 
     const completed: Array<HotkeySequenceRegistration> = []
     for (const registration of registrations) {
       const candidate = candidates.get(registration.id)
       if (!candidate) continue
-      if (candidate.score > 0 && candidate.score === bestScore) {
+      if (
+        candidate.score > 0 &&
+        candidate.score === bestScores.get(candidate.rank)
+      ) {
         registration.lastKeyTime = now
         registration.currentIndex = candidate.nextIndex
         changed = true
 
         if (registration.currentIndex >= registration.parsedSequence.length) {
-          this.#consume(registration, event)
           registration.currentIndex = 0
           completed.push(registration)
         } else if (registration.options.preventDefault) {
@@ -1608,10 +1652,20 @@ export class HotkeyManager {
     }
 
     if (changed && completed.length === 0) this.#notify()
+    // As for chords, the most recently activated scope handles the key.
+    const bestRank = Math.max(
+      ...completed.map((registration) =>
+        this.#scopeRank(registration.options.scope),
+      ),
+    )
     for (const snapshot of completed) {
-      // An earlier callback may have unregistered or moved this registration.
+      if (this.#scopeRank(snapshot.options.scope) !== bestRank) continue
+      // An earlier callback may have unregistered, moved, disabled or
+      // suspended this registration.
       const registration = this.#currentIn(snapshot, capture)
-      if (registration) this.#fire(registration, event)
+      if (!registration || !this.#isLive(registration)) continue
+      this.#consume(registration, event)
+      this.#fire(registration, event)
     }
   }
 
@@ -1653,6 +1707,28 @@ export class HotkeyManager {
     this.#endedPresses.set(event, ended)
   }
 
+  /**
+   * The event being dispatched in the target's window. A listener inside a
+   * shadow root can't read `window.event`, so the last keydown stands in.
+   */
+  /**
+   * The key event being dispatched now, if any. The keydown a window listener
+   * saw wins while it is still dispatching, so a click or focus handler that
+   * the keydown triggered still counts as that keydown.
+   */
+  #currentEvent(): Event | undefined {
+    const keydown = this.#keydown
+    if (keydown?.eventPhase) return keydown
+    const event = typeof window === 'undefined' ? undefined : window.event
+    return event?.eventPhase && event.type.startsWith('key') ? event : undefined
+  }
+
+  /** Marks a registration that went live during the current key event. */
+  #markLive(id: string): void {
+    const event = this.#currentEvent()
+    if (event) this.#liveDuring.set(id, event)
+  }
+
   #prevent(event: KeyboardEvent): void {
     // An event another listener prevented first stays theirs.
     if (!event.defaultPrevented) this.#prevented.add(event)
@@ -1661,11 +1737,13 @@ export class HotkeyManager {
 
   /**
    * Whether the registration skips the event: Escape belongs to a dialog,
-   * popover, or menu outside its target, or another listener prevented the
-   * event and the registration skips such events.
+   * popover, or menu outside its target, another listener prevented the
+   * event and the registration skips such events, or the event was being
+   * dispatched when the registration went live.
    */
   #skips(registration: HotkeyRegistration, event: KeyboardEvent): boolean {
     return (
+      this.#wentLiveDuring(registration, event) ||
       yieldsEscape(
         event,
         registration.target,
@@ -1674,6 +1752,32 @@ export class HotkeyManager {
       (!!registration.options.ignoreDefaultPrevented &&
         event.defaultPrevented &&
         !this.#prevented.has(event))
+    )
+  }
+
+  /**
+   * Whether the registration, or its scope, went live during this event's
+   * dispatch, or, for a sequence, this is the release of the key press it
+   * went live during. Keyup chords track their releases themselves.
+   */
+  #wentLiveDuring(
+    registration: HotkeyRegistration,
+    event: KeyboardEvent,
+  ): boolean {
+    // The registration's own mark and its scope's mark can come from
+    // different events of one press, such as a keydown and its auto-repeat.
+    return [
+      this.#liveDuring.get(registration.id),
+      this.#scopeLiveDuring.get(registration.options.scope!),
+    ].some(
+      (live) =>
+        live === event ||
+        (!!live &&
+          registration.kind === 'sequence' &&
+          event.type === 'keyup' &&
+          live.type === 'keydown' &&
+          ((live as KeyboardEvent).code || (live as KeyboardEvent).key) ===
+            (event.code || event.key)),
     )
   }
 

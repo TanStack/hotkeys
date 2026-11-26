@@ -72,23 +72,16 @@ export function getDefaultIgnoreInputs(
 }
 
 /**
- * Handles conflicts between registrations based on conflict behavior.
+ * Handles a registration that duplicates an existing one, based on conflict
+ * behavior. Both registrations stay unless `'error'` throws.
  *
- * @param conflictingId - The ID of the conflicting registration
  * @param keyDisplay - Display string for the conflicting key/sequence (for error messages)
  * @param conflictBehavior - How to handle the conflict
- * @param unregister - Function to unregister by ID
  */
 export function handleConflict(
-  conflictingId: string,
   keyDisplay: string,
   conflictBehavior: ConflictBehavior,
-  unregister: (id: string) => void,
 ): void {
-  if (conflictBehavior === 'allow') {
-    return
-  }
-
   if (conflictBehavior === 'warn') {
     // Dev-only guard: see `canWarn`
     if (canWarn && process.env.NODE_ENV !== 'production') {
@@ -100,9 +93,6 @@ export function handleConflict(
   if (conflictBehavior === 'error') {
     throw new Error(`[hotkeys] '${keyDisplay}' is already registered`)
   }
-
-  // At this point, conflictBehavior must be 'replace'
-  unregister(conflictingId)
 }
 
 /**

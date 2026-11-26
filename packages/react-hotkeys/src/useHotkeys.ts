@@ -5,9 +5,10 @@ import {
   prepareHotkeyDefinitions,
   resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
-import { useEffect, useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
+import { useIsomorphicLayoutEffect } from './_useIsomorphicLayoutEffect'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions, UseHotkeyTarget } from './useHotkey'
 
@@ -76,23 +77,48 @@ export function useHotkeys(
   const bindingsRef = useRef<ReturnType<typeof createHotkeyBindings> | null>(
     null,
   )
+  // An error from the ref retry, rethrown during render for error boundaries.
+  const [retryError, setRetryError] = useState<{ error: unknown }>()
+  if (retryError) throw retryError.error
 
-  // Publish registrations, callbacks, and options after commit, never during
-  // render. Refs resolve here, after they attach.
-  useEffect(() => {
-    bindingsRef.current ??= createHotkeyBindings({
-      afterDelegatedHandlers: true,
-    })
+  // Publish registrations, callbacks, and options in the commit, never during
+  // render. Returns whether a ref target was still unset.
+  const update = (): boolean => {
+    let waiting = false
     const { hotkeys, ...context } = latestRef.current
-    bindingsRef.current.update(
+    bindingsRef.current?.update(
       prepareHotkeyDefinitions(hotkeys, {
         ...context,
-        resolveTarget: resolveRefTarget,
+        resolveTarget: (target) => {
+          const resolved = resolveRefTarget(target)
+          if (resolved == null) waiting = true
+          return resolved
+        },
       }),
     )
+    return waiting
+  }
+  useIsomorphicLayoutEffect(() => {
+    const bindings = (bindingsRef.current ??= createHotkeyBindings({
+      afterDelegatedHandlers: true,
+    }))
+    // React attaches a ref on an ancestor element after this component's
+    // layout effects, on mount and when Suspense shows hidden content again.
+    // Resolve again once the commit has attached every ref, unless these
+    // bindings were destroyed by then.
+    if (update()) {
+      queueMicrotask(() => {
+        if (bindingsRef.current !== bindings) return
+        try {
+          update()
+        } catch (error) {
+          setRetryError({ error })
+        }
+      })
+    }
   })
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return () => {
       bindingsRef.current?.destroy()
       bindingsRef.current = null
