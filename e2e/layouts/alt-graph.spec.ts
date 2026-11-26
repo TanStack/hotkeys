@@ -90,19 +90,20 @@ const ALT_GR_LAYOUT_CASES: Array<LayoutCase> = [
   },
 ]
 
-// AltGr typing a character: only the character matches.
+// AltGr typing a character: only the character matches, and the recorder
+// records the character unless it records by code.
 const AT_SIGN: LayoutCase = {
   keys: 'AltGr+Digit2',
   matches: ['@'],
   parsed: '@',
-  recorded: { reject: 'alt-graph' },
+  recorded: '@',
   recordedByCode: { reject: 'alt-graph' },
 }
 const EURO: LayoutCase = {
   keys: 'AltGr+KeyE',
   matches: ['€'],
   parsed: '€',
-  recorded: { reject: 'alt-graph' },
+  recorded: '€',
 }
 
 const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
@@ -140,7 +141,7 @@ const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
       keys: 'AltGr+KeyF',
       matches: [],
       parsed: 'Đ',
-      recorded: { reject: 'alt-graph' },
+      recorded: 'Đ',
       recordedByCode: { reject: 'alt-graph' },
     },
   ],
@@ -151,7 +152,7 @@ const LAYOUTS: Record<Layout, Array<LayoutCase>> = {
       keys: 'AltGr+KeyA',
       matches: ['ą'],
       parsed: 'Ą',
-      recorded: { reject: 'alt-graph' },
+      recorded: 'Ą',
       recordedByCode: { reject: 'alt-graph' },
     },
     {

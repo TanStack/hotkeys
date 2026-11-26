@@ -64,7 +64,7 @@ test.describe('recorder', () => {
     expect(await hk.firedNames()).toEqual(['recorded'])
   })
 
-  test('records Shift with a symbol by physical key and the result fires', async ({
+  test('records Shift with a symbol as the character it typed and the result fires', async ({
     page,
     harness,
   }) => {
@@ -72,9 +72,26 @@ test.describe('recorder', () => {
     await hk.call('startRecorder')
     await page.keyboard.press('Shift+Slash')
     const { recorded } = await hk.call('recorderState')
-    expect(recorded).toBe('Shift+[Slash]')
-    await hk.register('recorded', recorded as 'Shift+[Slash]')
+    expect(recorded).toBe('?')
+    await hk.register('recorded', recorded as '?')
     await page.keyboard.press('Shift+Slash')
+    expect(await hk.firedNames()).toEqual(['recorded'])
+  })
+
+  // Windows and Linux report `?` for Ctrl+Shift+/. On a Mac host, Playwright
+  // reports `?` with Command too, as German macOS does, while a US Mac
+  // reports `/`. Command can report either character, so Shift stays there.
+  test('records Mod+Shift with a symbol as typed', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.call('startRecorder')
+    await page.keyboard.press(`${hk.mod}+Shift+Slash`)
+    const { recorded } = await hk.call('recorderState')
+    expect(recorded).toBe(hk.mod === 'Meta' ? 'Mod+Shift+?' : 'Mod+?')
+    await hk.register('recorded', recorded as 'Mod+?')
+    await page.keyboard.press(`${hk.mod}+Shift+Slash`)
     expect(await hk.firedNames()).toEqual(['recorded'])
   })
 

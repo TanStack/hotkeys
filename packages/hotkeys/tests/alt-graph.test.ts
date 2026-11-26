@@ -107,11 +107,37 @@ describe.each(shapes)('AltGr held (%s)', (_, platform, flags) => {
   it('rejects AltGr character entry when recording in code mode', () => {
     const onRecord = vi.fn()
     const onReject = vi.fn()
-    recorder({ onRecord, onReject, platform })
+    recorder({ onRecord, onReject, platform, recordBy: 'code' })
     document.dispatchEvent(altGr('@', 'KeyQ'))
     expect(onReject).toHaveBeenCalledWith(
       expect.objectContaining({ reason: 'alt-graph' }),
     )
+    expect(onRecord).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    ['@', 'KeyQ', '@'],
+    ['€', 'KeyE', '€'],
+    ['{', 'Digit7', '{'],
+    ['ą', 'KeyA', 'Ą'],
+  ])(
+    'records the character AltGr typed by default: %s on %s is %s',
+    (key, code, hotkey) => {
+      const onRecord = vi.fn()
+      recorder({ onRecord, platform })
+      const event = altGr(key, code)
+      document.dispatchEvent(event)
+      expect(onRecord).toHaveBeenCalledWith(hotkey, expect.anything())
+      expect(matches(event, hotkey)).toBe(true)
+    },
+  )
+
+  it('rejects an AltGr dead key by default', () => {
+    const onRecord = vi.fn()
+    const onReject = vi.fn()
+    recorder({ onRecord, onReject, platform })
+    document.dispatchEvent(altGr('Dead', 'BracketRight'))
+    expect(onReject).toHaveBeenCalledWith({ reason: 'alt-graph' })
     expect(onRecord).not.toHaveBeenCalled()
   })
 })

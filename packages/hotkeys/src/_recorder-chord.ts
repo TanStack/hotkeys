@@ -7,7 +7,7 @@ import {
   normalizeKeyboardEvent,
 } from './_keyboard-event'
 import { isAsciiLetter, isLatinLetter, isPrintableKey } from './_keys'
-import { matchKeyboardEvent } from './_match'
+import { US_SHIFTED, US_UNSHIFTED, matchKeyboardEvent } from './_match'
 import { isSingleLetterKey } from './constants'
 import { normalizeHotkey, parseKeyboardEvent } from './parse'
 import type { RecorderKeyMode, RecorderRejection } from './hotkey-recorder'
@@ -35,14 +35,27 @@ export function hotkeyChordFromKeydown(
   if (normalized.isComposing || isModifierPress(event)) return null
   const parsed = parseKeyboardEvent(event, platform)
   const { key: _key, code: _code, ...modifiers } = parsed
-  if (recordBy === 'auto') {
-    const key = keyName(event, platform)
+  const key = recordBy === 'auto' ? keyName(event, platform) : undefined
+  if (key !== undefined) {
+    const { ctrl, shift, alt, meta } = parsed
+    // A character Shift typed, such as `?`, is written without Shift. The
+    // digit row with Control, Command or Alt keeps it, since `Mod+1` stands
+    // for the key and also fires with Shift.
+    const digitRow = /^Digit/.test(event.code) && (ctrl || meta || alt)
+    // With Command, macOS may report the unshifted character, as Dvorak
+    // Cmd+Shift+/ reports `/`, so Shift stays unless the key was read at its
+    // US position: Cmd+Shift+/ on the US `/` key is `Mod+?`.
+    const keepShift =
+      digitRow || (platform === 'mac' && meta && !alt && key === normalized.key)
     // A name is only kept when it fires for the press that recorded it.
-    if (
-      key !== undefined &&
-      matchKeyboardEvent(event, { ...modifiers, key }, platform).matched
-    ) {
-      return normalizeHotkey({ ...modifiers, key }, platform)
+    for (const withShift of [keepShift && shift, shift]) {
+      const chord = { ...modifiers, shift: withShift, key }
+      if (matchKeyboardEvent(event, chord, platform).matched) {
+        return normalizeHotkey(
+          { ctrl, shift: withShift, alt, meta, key },
+          platform,
+        )
+      }
     }
   }
   // Without a code, `'auto'` has only what the press typed to record.
@@ -72,46 +85,69 @@ export function hotkeyChordFromKeydown(
  * The name `'auto'` records a press by, or undefined when its physical code
  * says more than anything it typed:
  *
- * - A named key such as Enter and a letter are recorded as typed.
- * - Any other character is recorded as typed without Shift. With Shift, the
- *   position is recorded: macOS reports `/` for Cmd+Shift+/ where Windows
- *   reports `?`, and `1` for Cmd+Shift+1 where Windows reports `!`, so the
- *   typed character would not name the same press on both.
+ * - A named key such as Enter, a letter and any other character are recorded
+ *   as typed, including a character AltGr typed, such as German `@`.
+ * - With Control, Command or Alt, a digit-row key is recorded as its digit,
+ *   as the matcher reads it: AZERTY Ctrl+& is `Mod+1`, and macOS Cmd+Shift+1,
+ *   which reports `1` where Windows reports `!`, is `Mod+Shift+1`.
+ * - macOS reports `/` for Cmd+Shift+/ on the US `/` key, where Windows reports
+ *   `?`, so it is recorded as `?`, as the matcher reads it.
  * - A non-Latin letter is named by its position, as the matcher names it:
  *   Russian `ы` is `S`.
  * - macOS Option types another character or starts an accent, so the keycap
  *   letter is read from `keyCode`, as the matcher reads it. Option with any
  *   other key keeps its position.
- * - Dead keys, whitespace characters, `Unidentified` keys, the numpad (what
- *   it types depends on NumLock), modifier positions and AltGr presses keep
- *   their position.
+ * - On the numpad, Enter and the four operators without Shift are recorded as
+ *   typed: Numpad Enter is `Enter`. The digits and decimal key keep their
+ *   position, since what they type depends on NumLock and the layout.
+ * - Dead keys, whitespace characters, `Unidentified` keys and modifier
+ *   positions keep their position.
  */
 function keyName(
   event: KeyboardEvent,
   platform: HotkeyPlatform,
 ): string | undefined {
-  const { key, alt, shift, altGraph } = normalizeKeyboardEvent(event, platform)
+  const { key, code, ctrl, meta, alt, shift, altGraph } =
+    normalizeKeyboardEvent(event, platform)
   if (
     !key ||
-    altGraph ||
     key === 'Unidentified' ||
-    /^Numpad/.test(event.code) ||
-    isModifierCode(event.code)
+    // Shift+- would also fire on Shift+Minus, which types `_`
+    (/^Numpad/.test(code) &&
+      code !== 'NumpadEnter' &&
+      (shift || !/^Numpad(Add|Subtract|Multiply|Divide)$/.test(code))) ||
+    isModifierCode(code)
   ) {
     return undefined
   }
   const typed = key !== 'Dead' && isPrintableKey(key)
+  if (altGraph) return typed && key.trim() ? key : undefined
   // A synthetic event can report anything as its key, such as `[KeyX]`.
   if (key !== 'Dead' && !typed) return isKeyNameShape(key) ? key : undefined
+  // Control or Command alone with `-`, `+` or `=` is zoom, and keeps its key
+  if (
+    /^Digit\d$/.test(code) &&
+    (alt || ((ctrl || meta) && (shift || !/^[-+=]$/.test(key))))
+  ) {
+    return code.slice(5)
+  }
   if (platform === 'mac' && alt) {
     return isAsciiLetter(key) ? key : macKeycapLetter(event)
   }
   if (!typed || !key.trim()) return undefined
   // A Latin-script symbol such as Spanish `·` is a symbol, not a letter
   if (isSingleLetterKey(key)) {
-    return isLatinLetter(key) ? key : codeToLogicalKey(event.code)
+    return isLatinLetter(key) ? key : codeToLogicalKey(code)
   }
-  return shift ? undefined : key
+  // Most layouts with `,` and `.` in their US position type something other
+  // than `<` and `>` with Shift there, so those two keep Shift
+  return platform === 'mac' &&
+    meta &&
+    shift &&
+    !',.'.includes(key) &&
+    codeToLogicalKey(code) === key
+    ? (US_SHIFTED[US_UNSHIFTED.indexOf(key)] ?? key)
+    : key
 }
 
 /**
@@ -132,16 +168,14 @@ export function chordRejection(
       ? { reason: 'alt-graph' }
       : undefined
   }
-  // AltGr is character entry, often reported as synthetic Ctrl+Alt; macOS Option is handled separately.
-  if (normalized.altGraph) return { reason: 'alt-graph' }
+  // AltGr is character entry, often reported as synthetic Ctrl+Alt; macOS
+  // Option is handled separately. `'auto'` records the character it typed.
+  const unrecorded =
+    recordBy === 'code' ||
+    hotkeyChordFromKeydown(event, platform, recordBy) === null
+  if (normalized.altGraph && unrecorded) return { reason: 'alt-graph' }
   // Without a code, a press can still be recorded by its name.
-  if (
-    !hasUsableCode(event) &&
-    (recordBy === 'code' ||
-      hotkeyChordFromKeydown(event, platform, recordBy) === null)
-  ) {
-    return { reason: 'missing-code' }
-  }
+  if (!hasUsableCode(event) && unrecorded) return { reason: 'missing-code' }
   return undefined
 }
 

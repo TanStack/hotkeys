@@ -3,9 +3,9 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "84d10a6d2de69a44c4020e3f3881a984bbefc5c0f601f4381ebc96c004d7a408",
+      "fingerprint": "ca9e3bb36fb667aa2f169fb0626252b647add734e6510a7aeddd7070149e833b",
       "snapshot": {
-        "docs/framework/alpine/guides/app-hotkeys.md": "654a32b48567d860d0aa0bba0826cd83b25691e6c1091c5bd60c234d04c07d85",
+        "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
         "docs/framework/alpine/quick-start.md": "08a69d1ed0415b4f2a85205b1de96565dcf97ef24d75cb5c6df991e531ba5cc0",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
@@ -17,12 +17,10 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
-      "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
-      ]
+      "reason": "The framework skill points to its guides and states no recorder output strings or macOS Command rules that changed.",
+      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
       "fingerprint": "237317989c8ce962bdca3471aac65f256d472f58d2d2160bc0cf6e6089927c2d",
@@ -45,9 +43,9 @@
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "4c50749554d41657accb5b2d47ae4e9a9b3c479cb6aafcd5656e97b48f8d9aa5",
+      "fingerprint": "b9a8c8816fb7e610041ed1989459417b1d26537a20284a41ecc65734455521ec",
       "snapshot": {
-        "docs/framework/ember/guides/app-hotkeys.md": "1c990606276fadffbb251e6bba94de0c236c2fbdcf220c88cd912ea5f25d5d2c",
+        "docs/framework/ember/guides/app-hotkeys.md": "0bb08f63eb9974ff3d8a0f408a3db321e16f8c6f285b1bbccd6e6b0a940ca4a7",
         "docs/framework/ember/quick-start.md": "2c8dc08cae925871408200ef4636adbac20cb23312d18773d726ca340c91f0e1",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d315094e211499a2fb4d3bb83a1918a734458c150df9594416d1e412d88f7da6",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
@@ -59,24 +57,22 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
-      "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
-      ]
+      "reason": "The framework skill points to its guides and states no recorder output strings or macOS Command rules that changed.",
+      "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "110d71303d7da46f3887916d93c5ba4f5e6b184f7591cece355526c146b70bb7",
+      "fingerprint": "4fe4b6dfc97242a16cbd7f5cb0fe4314ca8375d33c682cfed8903ba0564d9e0d",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
+        "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "13ee9ea179b956b8ea66a1eeade80af824634c8c8492df6092ab3bae67239c66",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "d4397323acb50682dc4a981b2ef983d45710d3d4c002ee260f8a795b7980890b",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/src/app-hotkeys.ts": "1ced30763496f94998f801f26c51847743cf50f09fb02012b08f0339c0b6cfc0",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "afde3705876b91f6987779a9ca146c754aea5d131c65b39c8e00eef4b2c8d779",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
+        "packages/hotkeys/src/app-hotkeys.ts": "ef6787cf1077c6d25a6760e7fad13b7a8f23a4571d5986ab74b2e7fa075f0c92",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a41014f090f65124c74f27d925a0fe9eaab3c94c9330f4f3b81c8ef2b2784ad4",
+        "packages/hotkeys/src/hotkey-recorder.ts": "0aabc484a23190a38dd8dcacfe775260d9199e0d3061525cc1cc7891effb56b9",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "1d40680b6046115e8c7c71f474e3487fc953b82220e0f5809b01f39c0ca12206",
@@ -86,22 +82,24 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
-      "outcome": "no-change",
-      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "updated",
+      "reason": "Recorder output and the macOS Command+Shift rule changed; the skill text now states what the recorder writes and which macOS bindings fire.",
+      "evidence": [
+        "packages/hotkeys/src/_recorder-chord.ts, packages/hotkeys/src/_match.ts, docs/guides/sensible-defaults.md"
+      ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "984d4177e59a60835c5906715370ac7678b946ca4a7d58ac43f33e5bb9e02e70",
+      "fingerprint": "af9fb622ac0ee62704f8b4f62c321ea377071f373c96c57ac0970cb16ed64dbf",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
-        "docs/guides/sensible-defaults.md": "e7822072e79a07190d409df9099dcb967090371c17c2dc517ec2a98cd72cba07",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
+        "docs/guides/sensible-defaults.md": "c749c470ddf46f50f0d39876b92fd405cf19d3b9df22532e9cad95b02edd24b5",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "4cc8408f3b438fb8b303db74eb4fd5ccfd949ca2c7b3c1133c2fba831c26ecc6",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "07cd6f1abf740a3f35bf6be945564a24ba85966d0cee4333a16d620dcfffc6e5",
+        "packages/hotkeys/src/hotkey-manager.ts": "dde5bcfc98f4f961452a7addcb2be073dbc7c2bd7f3870e16ea9070be2a0a778",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,17 +111,17 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
-      "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes and the syncRecorderOptions helper; the skill does not describe recorder cancel, blur, keyup handling or option syncing.",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "updated",
+      "reason": "Recorder output and the macOS Command+Shift rule changed; the skill text now states what the recorder writes and which macOS bindings fire.",
       "evidence": [
-        "git grep in packages/*/skills finds no recorder lifecycle guidance"
+        "packages/hotkeys/src/_recorder-chord.ts, packages/hotkeys/src/_match.ts, docs/guides/sensible-defaults.md"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "4ac9996dbda18616bd026a228bbfd5c01a886c8e58e05fee6198611096bdb867",
+      "fingerprint": "86c2dfff4d5ed7ff73b8b1ec51dd036a1443d49063d7fb230e8adf04f03a35d4",
       "snapshot": {
-        "docs/framework/lit/guides/app-hotkeys.md": "3eacb3ebd3b9ff396519a7d16395c08980dd6f17498b857058174bed210d7a88",
+        "docs/framework/lit/guides/app-hotkeys.md": "28e5957604e21250f70aa925a6576f820dd0be2957b209557064d013e45abb94",
         "docs/framework/lit/quick-start.md": "23152e6740cda01b503a85357b6cca35d948ae23d9dc4703c7fddc3b53c354f3",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -132,12 +130,10 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "79d2602f8855075599d0fb7250e865a3b525eda5a5dc274a3c386edd1abe734e",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "The quick-start only swapped undo and redo for other Mod chords in an example; the skill does not show that example or describe the ignoreInputs auto rule.",
-      "evidence": [
-        "git grep for ignoreInputs and Mod+Z in packages/*/skills finds nothing outside hotkeys-core"
-      ]
+      "reason": "The framework skill points to its guides and states no recorder output strings or macOS Command rules that changed.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
       "fingerprint": "e156621a3114b1c6f1e08f3fb46bbcf5a41a5e6e9f66d04efb5a81b2a9edafef",
@@ -272,26 +268,26 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8a33dc9a569731c984826c1f7ffc8fc8fdedca82fab8c985c3a2605d286e67ee",
+      "fingerprint": "252b71d97f69f8ce4945b5b4e4171e20dcf39ac7ea477ba647b53b280be0ba8e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
         "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
-        "docs/framework/alpine/guides/app-hotkeys.md": "654a32b48567d860d0aa0bba0826cd83b25691e6c1091c5bd60c234d04c07d85",
+        "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
         "docs/framework/alpine/quick-start.md": "08a69d1ed0415b4f2a85205b1de96565dcf97ef24d75cb5c6df991e531ba5cc0",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "3460ac6a9e5c544bfaa7c901aee1772e0b4122f4d942493998b132747929f97c",
         "docs/framework/angular/quick-start.md": "6853a3618a349160d18f61b97e8996c3ad4709930d4048192a724afa0b291690",
-        "docs/framework/ember/guides/app-hotkeys.md": "1c990606276fadffbb251e6bba94de0c236c2fbdcf220c88cd912ea5f25d5d2c",
+        "docs/framework/ember/guides/app-hotkeys.md": "0bb08f63eb9974ff3d8a0f408a3db321e16f8c6f285b1bbccd6e6b0a940ca4a7",
         "docs/framework/ember/quick-start.md": "2c8dc08cae925871408200ef4636adbac20cb23312d18773d726ca340c91f0e1",
-        "docs/framework/lit/guides/app-hotkeys.md": "3eacb3ebd3b9ff396519a7d16395c08980dd6f17498b857058174bed210d7a88",
+        "docs/framework/lit/guides/app-hotkeys.md": "28e5957604e21250f70aa925a6576f820dd0be2957b209557064d013e45abb94",
         "docs/framework/lit/quick-start.md": "23152e6740cda01b503a85357b6cca35d948ae23d9dc4703c7fddc3b53c354f3",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "bf6c197492171df49814321c37b7e9c9981e3b02748179a6c32e88e91f77297e",
         "docs/framework/octane/quick-start.md": "239e2bc768ad1a9ebb0c6c972756d23ff6d78752d9355da6bb566eb4cd1591d1",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "2c5824f8df01f95951b70bbbff125fb0dc2758d3278169fe7778b98a1ea8cc90",
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
-        "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
+        "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "13ee9ea179b956b8ea66a1eeade80af824634c8c8492df6092ab3bae67239c66",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "afde3705876b91f6987779a9ca146c754aea5d131c65b39c8e00eef4b2c8d779",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
@@ -302,7 +298,7 @@
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "e7822072e79a07190d409df9099dcb967090371c17c2dc517ec2a98cd72cba07",
+        "docs/guides/sensible-defaults.md": "c749c470ddf46f50f0d39876b92fd405cf19d3b9df22532e9cad95b02edd24b5",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -328,15 +324,15 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "afddc8e2c34ec8bb6351d4162d38710c60927c60cbb0cc6695b5dfd751d32159",
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "d4397323acb50682dc4a981b2ef983d45710d3d4c002ee260f8a795b7980890b",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6bfff513c8031affe9e6162c974cfcc2f23550ec9576732860fc36aa04f78a25",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "4cc8408f3b438fb8b303db74eb4fd5ccfd949ca2c7b3c1133c2fba831c26ecc6",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/app-hotkeys.ts": "1ced30763496f94998f801f26c51847743cf50f09fb02012b08f0339c0b6cfc0",
+        "packages/hotkeys/src/app-hotkeys.ts": "ef6787cf1077c6d25a6760e7fad13b7a8f23a4571d5986ab74b2e7fa075f0c92",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "07cd6f1abf740a3f35bf6be945564a24ba85966d0cee4333a16d620dcfffc6e5",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a41014f090f65124c74f27d925a0fe9eaab3c94c9330f4f3b81c8ef2b2784ad4",
+        "packages/hotkeys/src/hotkey-manager.ts": "dde5bcfc98f4f961452a7addcb2be073dbc7c2bd7f3870e16ea9070be2a0a778",
+        "packages/hotkeys/src/hotkey-recorder.ts": "0aabc484a23190a38dd8dcacfe775260d9199e0d3061525cc1cc7891effb56b9",
         "packages/hotkeys/src/match.ts": "bd5ea7546cf68a2ce2d6d0d98b83ce62eebec7b15f50781456472dac29ac2740",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "2abef2d5efb7887b8737e661722eb3b5aa80f117666ac13e12c35a0de1c422af",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -403,10 +399,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "No new skill or domain; the recorder changes fit the existing app-hotkeys and hotkeys-core skills.",
+      "evidence": ["_artifacts/domain_map.yaml"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -665,24 +661,24 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "1e7095649b628c4bb2eef0120df3388df5351b50dfafa9660892523bc17ec6bc",
+      "fingerprint": "fe14cf61e338a4c5b10f0ac752ed6a6db3754a10d3fb26f75ef01a7cd1ef9bfd",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "f42b8257b3f6544d3836a1dbd5f7e40b371bb8d05c16fff83be951371f474742"
+        "docs/reference/classes/HotkeyManager.md": "91f7e63c7eb99c691c3cecb53428312d3ce33a6f97002423e8f0171dfd5b2272"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "d9bdd459c0510ad061eb8b8442142a5ca35f46532cee957c374380ad4ef8c1a0",
+      "fingerprint": "78c0f45132c5751a81faa027ceef7733c8d4547bf87fab6d79876305e567d565",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "61137e1d805aaff741ec838459b47e0fc776016e4d0deac03c1aa0aa412b35fe"
+        "docs/reference/functions/getHotkeyManager.md": "a71e33abe3a0610730b9507dd04c908a890968c90c362990a3f1d4e53e4057c0"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
@@ -695,76 +691,64 @@
       "evidence": ["examples/alpine/kitchen-sink/index.html"]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
-      "fingerprint": "e03e638c12b4140f76b41d4301fe2658102cb11022d0252b94f89dc905a0e692",
+      "fingerprint": "74e0a159195d10c9b1a31ce3ce8662c1ffb8ba54175b4b1809099f0072016d9a",
       "snapshot": {
-        "examples/alpine/kitchen-sink/src/main.ts": "86f63ff7cbff67bd2dfb90366bf22fbf6bfa1315b4a6017b488478bc1f920376"
+        "examples/alpine/kitchen-sink/src/main.ts": "883db128d1d55fccb362b7aab8caac0d3d784fd37e5f256adcb8a3c5a786c4be"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
-      "fingerprint": "340e691d41d5cf2700dc4dd855d12ca47f91bccf69070d859522f9a2ed015b8c",
+      "fingerprint": "330681aa68178157b80a37c712263f64dde408566bbe1fff1f147b21deb349df",
       "snapshot": {
-        "examples/angular/kitchen-sink/src/app/app.component.ts": "aaefb66a77ac6fa998183f02e35844bf592fd1620ff00977adcee05751614239"
+        "examples/angular/kitchen-sink/src/app/app.component.ts": "ab887c8257f97e059818648a4de3f2d7b06cce84b251ce7798a32ea201f7351c"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/angular/kitchen-sink/src/app/app.component.ts"]
     },
     "source:examples/ember/kitchen-sink/app/templates/application.gts": {
-      "fingerprint": "4f7436651790be644c2ea6c6bebe26304a543074b9dcf9a7b7fdb65495232641",
+      "fingerprint": "c0efa336639683144eb6ca0b680a2b687fda9329faac1d4ea9d3d8d8cd9d2f93",
       "snapshot": {
-        "examples/ember/kitchen-sink/app/templates/application.gts": "2ac641527c4d50efbedc66d52a2c585858c04c557b6ff7ef9604076bf8631f4b"
+        "examples/ember/kitchen-sink/app/templates/application.gts": "c7494111c1dfc88004ad367d012758a94196d51bf05db3ace406a6c1727e7fab"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/ember/kitchen-sink/app/templates/application.gts"]
     },
     "source:examples/lit/kitchen-sink/src/app.ts": {
-      "fingerprint": "cb2f17847f5771f908f1820a53bf72d37e6a8ece4a149344e6e26bf3a5de75a1",
+      "fingerprint": "b977531575dfc067d7517c3adadb85d8c9c88f2b9c9442fd556babdb4f0c4bc9",
       "snapshot": {
-        "examples/lit/kitchen-sink/src/app.ts": "0d5edb7cecd82096fe470f9f9762c1cc9fd314544ca6abaea34d8b82e20d8bdd"
+        "examples/lit/kitchen-sink/src/app.ts": "af6e30094daa96fc08566f879f43777161bcbee3aa78aeb87fbb15a1c29803b2"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/lit/kitchen-sink/src/app.ts"]
     },
     "source:examples/octane/kitchen-sink/src/main.tsrx": {
-      "fingerprint": "00ef925b67fda6cb33424558eb99c28740222dd6c741369fe0b7a95a3ab8c6b9",
+      "fingerprint": "91589b08fc0cc4ec1fcd12c863b08aba6cc3e72a3eb6381ca0a05e1a25129521",
       "snapshot": {
-        "examples/octane/kitchen-sink/src/main.tsrx": "5335e38ea1d64f281a90cb4378a687aaceeb5ffdf4ff505d62e5c5c514814c00"
+        "examples/octane/kitchen-sink/src/main.tsrx": "ba4cbb6ecea75293b978a59b61411b5331ecc13382333982456fa55cfb801426"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/octane/kitchen-sink/src/main.tsrx"]
     },
     "source:examples/preact/kitchen-sink/src/index.tsx": {
-      "fingerprint": "af83b7fc587897ab4c722ab9d8eda68a4cb63047a8a3637ccadfd1cf06bbc400",
+      "fingerprint": "0ca59ad164794582837626cf3b2f16df51cb3b30caaec0da6ef65c298ad9263a",
       "snapshot": {
-        "examples/preact/kitchen-sink/src/index.tsx": "e04345ec25f66e5fc7501e7bff3bbde6d0b0cedac7467447fe0ce75518936e0a"
+        "examples/preact/kitchen-sink/src/index.tsx": "b0e1b87db21bd341c63fb0c173c80f088d59ede988000ce67d66e25ea61489dd"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/preact/kitchen-sink/src/index.tsx"]
     },
     "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
       "fingerprint": "447a6dec35c22a6cf7312fd7515117d0812bab01876cf32d9b0c0dc3d7ae3391",
@@ -806,14 +790,14 @@
       ]
     },
     "source:examples/solid/kitchen-sink/src/index.tsx": {
-      "fingerprint": "f6e8c8ceecebfb46e0a43b47c8293c99f49265761f54d44e27da117d3679c2e8",
+      "fingerprint": "a18f090ae5e793612ab64c9d1526b0758c80bff144c2832c654afe3f03f4d828",
       "snapshot": {
-        "examples/solid/kitchen-sink/src/index.tsx": "4fd323bbc324ce8e18159af51f3f2ed6104fc3f631d15b5cbcdb2b945ddfeaa7"
+        "examples/solid/kitchen-sink/src/index.tsx": "10df8d2f81d092443cd589cd85db4f9f5b6fd6bed6f3796c052bd4360b5617a6"
       },
-      "head": "62484c0a986018704e1ebe3a7f7c93061fa90942",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Solid 2 port of this file (imports, effects, attributes, versions) or a regenerated reference page. The solid-hotkeys skill covers the guidance change; no other skill guidance depends on it.",
-      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/solid/kitchen-sink/src/index.tsx"]
     },
     "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
       "fingerprint": "01b0347e79af6b710152be575508ccbb66823bed4519ea74e8aabde4cd38025a",
@@ -2379,14 +2363,14 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "247686f17abe3a17e578b5d9fac537968cff4b4929e7e7ce2000f0135d7942f9",
+      "fingerprint": "41fe296d8f3820535927a05cb9e488a0c3d2465cfde25766059f831871fb1114",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "11f2c196faa44f3e458bca9304f57a48e308b6abf6f9ef68bf7bd653fd65774a"
+        "docs/reference/classes/AppHotkeysStore.md": "97926a190afa16b8bc9a4be24649230ef0735a30fb45af6a3bfeddc65902b7f7"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
       "fingerprint": "b64be9a81474b04f7b38887ff2c15a630c2dfa1d12b24c257cfa00b6ea7cad81",
@@ -4249,14 +4233,14 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "19afa18ea958f9ed8b9dc5684614fa9fc40b315c37d0da20c96d8cf8da23f9e6",
+      "fingerprint": "b4c31d33f23ad88e8a4c9b0cd6eb9ea2747914668ec33b723d6b9f183e75bb8e",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "b170db1a0125e7f6db0030fcff066e61ca20b103819c95821812ee9ae85196bc"
+        "docs/reference/classes/HotkeyRecorder.md": "e26853059b2526989e956c3da3ab3ae57927f2dfdd83ff3bd8af922efb34e15c"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/classes/HotkeyRecorder.md"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
       "fingerprint": "394b648ffc52be332ca1ab001ee62311b653f8162c126029f9856e8728ebdbc4",
@@ -4318,44 +4302,44 @@
       "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:e2e/layouts/layouts.spec.ts": {
-      "fingerprint": "b5773a69a45e025ca3bdd6e7150171312111834148aad44b17c24fa23dcc036e",
+      "fingerprint": "1b3dfa8b77303bfad05f6fe2d54dd760a97fc1433fbeae93b1ca2c3c632be929",
       "snapshot": {
-        "e2e/layouts/layouts.spec.ts": "d6abbca0129566558f0428f8711dcdcc0d9fc342d1e36aea18a362a2fb579f66"
+        "e2e/layouts/layouts.spec.ts": "c2dad893eac2afec350af56ddd45d8d719a252c845e0016dbd561fed9cab5067"
       },
-      "head": "182bcad4292b740de8425fb054cfdca805c50f17",
-      "outcome": "out-of-scope",
-      "reason": "Tests, real-layout cases, or generated reference docs for the matching fixes; no skill guidance depends on them.",
-      "evidence": ["No skill references this file"]
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "no-change",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "0e6ec8bd98dbc1e3eddb42d45a9b5bd8fbcf35734a90bbb6ab82251496df80da",
+      "fingerprint": "22acb5fb451e83192318ce2d7099faeabc5c117c612aac89bdd73f19c9382d47",
       "snapshot": {
-        "e2e/support/x11.ts": "2749b5165fbbbbc1bf74f8954aae5af64bf4313af93ae190a86482248f911ad4"
+        "e2e/support/x11.ts": "dad34250ae8dc83a8c651ff369809987f6443d62c4e30d2b9a4b46c8d1d1f7b3"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "3151197e26fa2e0682153a9609eae01c5cef9ac591bc3ca785e60f4fcbe44750",
+      "fingerprint": "c384861ddd0f4ef61ebecad23d164d9299306cf0e63635f781aaf29220f8ecc3",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "61ba5bfce902f8d53faf3bd0e07e83c0329ffa501a533fd91a5d9c9b2d318711"
+        "packages/hotkeys/src/_match.ts": "d8bf3d644e265a278941fa14a73901f38e00ea4cbb498a86edab4089846fb0b5"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/src/_match.ts"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "c9dd39fdb37aeac04fc9ea345b0650bb166537d17eb9b5dd0090d77803d9e829",
+      "fingerprint": "76e81d5fc0599187a51e13ceb09d3b9bf874100529a114900e41722f97684387",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "6ac5ba29159f90228f247adae2a528855dec3c5057ec1c8a62c0dfb51c82751a"
+        "packages/hotkeys/tests/match.test.ts": "cddee98088cdb5efbf7596a36691407530ce516c1f49686d3f878761ef01561b"
       },
-      "head": "29bf503c765005c774c6c890d81091be56171896",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Review follow-ups: Alt+Shift letter evidence and scope recheck during dispatch; no skill guidance changes.",
-      "evidence": ["match.test.ts and hotkey-manager.test.ts regression tests"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/match.test.ts"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
       "fingerprint": "7fc444c0c86d281425e7a71df8d2acce649d69e855bf0b3b43db276139528489",
@@ -4380,16 +4364,14 @@
       "evidence": ["Not committed with this PR."]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
-      "fingerprint": "e6355b538a8f8214cced0830cdedb209e697f61500a38ba3df234404ba9c1962",
+      "fingerprint": "0deb2521b481c6d2ad1b555371d90b5a85cbc50cb57b93557e9073da4537a6ea",
       "snapshot": {
-        "docs/framework/angular/guides/app-hotkeys.md": "45f476bc5643f3419d648976beb4cc1a1f066890acdae7c5593259bfccf28806"
+        "docs/framework/angular/guides/app-hotkeys.md": "50d85aa56b4293bc0ddf548ae531b3d11370f1456c073bfda2e6444795f5ddac"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/angular/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
       "fingerprint": "18c49c75f19e0f9cff31ab5c9e6376a8a5948e55c3933c6bdab826fcf0344d9d",
@@ -4488,16 +4470,14 @@
       ]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
-      "fingerprint": "69d871b96cd59a1ecdaffc9e9574e9859ce96a85054233d2c12a3f2a09ebc36f",
+      "fingerprint": "a20bd20258c38092f7e53a3934f18039b87ba755357a14c439ba407ac3dc1801",
       "snapshot": {
-        "docs/framework/octane/guides/app-hotkeys.md": "82c705fc1c55b4ea0a24fef867d5d1ed2827d32e29633a6a09268d857a42f35b"
+        "docs/framework/octane/guides/app-hotkeys.md": "6f19c9fec4b91e9e40a0dfbc9d0169a333ae6774a7a117fa9e2b7e5d76994150"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/octane/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/octane/guides/app-hotkeys.md"]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
       "fingerprint": "c102fc219e0019700a31107eb88f4b94b381d54b2f405a36653e68067ccbb7b0",
@@ -4572,16 +4552,14 @@
       ]
     },
     "source:docs/framework/preact/guides/app-hotkeys.md": {
-      "fingerprint": "55b0792f234d79e2149dd6b219d1446b731ca4198c40768d397d3b8711520aa1",
+      "fingerprint": "49d412ee1a5565483f957bd20475352315087cd4bd91eeb96d95d3b71cabcf60",
       "snapshot": {
-        "docs/framework/preact/guides/app-hotkeys.md": "e80bbdbfd610a93113d2cc2c323cee4181afeba5319a5083dca42eed24d3d343"
+        "docs/framework/preact/guides/app-hotkeys.md": "803ce332a276023f5b1387db5696a865006913e4996d5834586dec270cac0924"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/preact/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/preact/guides/app-hotkeys.md"]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
       "fingerprint": "748e4b90d029fbdec4e4472894f87b9b804d1d0bc9c127c2bd8b209ea0a84710",
@@ -4664,16 +4642,14 @@
       ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
-      "fingerprint": "2f7d67b76e1c121ca87e06f046e2b5d2787b749cbb0c76589043380b1b218f94",
+      "fingerprint": "2a82912e236d755d9d0bf8e8ab5697f1d60a5f47a7fc34a95e193b5dc8ff9e91",
       "snapshot": {
-        "docs/framework/solid/guides/app-hotkeys.md": "79863c5b723b774eb6028f195855c6e2129b9157bf38bbc869c9c9e055b9667d"
+        "docs/framework/solid/guides/app-hotkeys.md": "9f00ebca93263e5f69a9a995f654344d72774adad5a9ec02527309065778b18b"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/solid/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/solid/guides/app-hotkeys.md"]
     },
     "source:docs/framework/solid/reference/functions/createHeldKeyCodes.md": {
       "fingerprint": "e4150389b3de2875d43111c6730ebfc7709021ca141866911917e0fd5cbf1099",
@@ -4764,16 +4740,14 @@
       ]
     },
     "source:docs/framework/svelte/guides/app-hotkeys.md": {
-      "fingerprint": "5d9538b107a2ce7d76ae86d1b0c96026ef010a9a1aaf621fc5211d2e510e2464",
+      "fingerprint": "8ec6928b5afa8ea49092efbf08a9db30fbd3aaf6548fa79fd58c4598adc68045",
       "snapshot": {
-        "docs/framework/svelte/guides/app-hotkeys.md": "975683cfac9d4679f81fda1a9d84e202a043d7b584fe6b9ca326a31cd62c30c2"
+        "docs/framework/svelte/guides/app-hotkeys.md": "fe9bf745be4b394ddcee5ba40a295f349e02ada99bc0aa9d21f29abb2ab069e9"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/svelte/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
       "fingerprint": "760e7cf001fc09605999babb8b11a61532a4b9b2896b5d99f9586e98cb12a65e",
@@ -4860,16 +4834,14 @@
       ]
     },
     "source:docs/framework/vue/guides/app-hotkeys.md": {
-      "fingerprint": "a0b746a9208d768b6d973f3112f556707d057b838c88692d3ad9eddd6cff38a6",
+      "fingerprint": "02e8b7ded73cde03dd86cad60752a693e9f8fe8aab353530e477d3278e3da9b7",
       "snapshot": {
-        "docs/framework/vue/guides/app-hotkeys.md": "d62787c2ab87e7741a56fd21273b729e5ba85806182043e165e983c93055b932"
+        "docs/framework/vue/guides/app-hotkeys.md": "aa0f1c6be58043580ee489e70ca361fc103910d1ef41c3a58c1417ba19065461"
       },
-      "head": "b57341c6e3bca5e172d8041f43e341d668b8d1b5",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Clarified customHotkeys null and resetCustomHotkeys sign-out behavior across framework guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/framework/vue/guides/app-hotkeys.md at b57341c6e3bca5e172d8041f43e341d668b8d1b5"
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/vue/guides/app-hotkeys.md"]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeys.md": {
       "fingerprint": "cd5cfda2c33e31587443971a0b0d1e5a3cdd092d90902d696d311bb684cd57f8",
@@ -5132,54 +5104,58 @@
       "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "6868850a68216b573d5c4efc6f139c52e4348dfe168cba08e520d987c3f6ae00",
+      "fingerprint": "9a01c4a18d540b4fb3a024e16498d1318932ea998967d0b399973f42e38c2159",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "f9cfe0c7c53112e2ea1bd3a002096effc390f1c391e0ec1e2e55a8c023778039"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "fe3442f40529fd09a4b4b28f6016f4c007abdf7592ae46f6d0bd20277e9301c7"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRecorderOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
-      "fingerprint": "f3768d46dd35df429db67ef39851e82fee9df1c4af7102aa9b1629d432b21c10",
+      "fingerprint": "57b80c9adc8d01654383f5d088258588a7a4e0a8bf0c0cb240ec12b85746e58c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "1cfb988629d3d8e5f63965b32236546714949fc86ef4ddd0d0a0cb7bc9d456f0"
+        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": "229bb6214d66c50851f64ea96544e3a3859e1cee2e185c0b6a69ad66f0cc49ba"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordRecorderValidationContext.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyRecorderState.md": {
-      "fingerprint": "9dbc6c886c107f8c30285e5a91cb374de6ad411ce49e622d50305b9aa2947491",
+      "fingerprint": "763736ac99783520702da9892a1ea85a052e6782376e7656c067f9a8d7836371",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderState.md": "e494b07270c72b4a9029a3edc96a826ff38754dbb9171191eae1671c74dd98b0"
+        "docs/reference/interfaces/HotkeyRecorderState.md": "ddfd102e65412cfe82b0ea7f3fced2dba9ed5fcf807f1d0dd6f801a8bb19a8df"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/HotkeyRecorderState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "1ba5def5c79023bfe64c3c8bc6a359929604e4faa72cd5d72ec4b23d258f7444",
+      "fingerprint": "1d3259d7d2d39262e9fa862ace175493e3034c1edbd738c159f98a954c25d4f3",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "6ea4bd2b29d702bf1987db6059e443a36dc9a916024d1e47f8c44c57dee51997"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "0a708599bfa65cffe663fab6a24c746293d6f2305d48fdf809bf90a1c12b6f63"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRecorderOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
-      "fingerprint": "a92a77ccff9732d88b8b673fe130961244b71363ea035e5ff6a250fd847e853f",
+      "fingerprint": "1cd25f873298a2d3ac4f2c6a53146fa643c363bc795f697fc98b06cf946efe7c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "21c45f75dab3dd018a587700ce05bd36ffc5720087e4d43867f564b6e5906b78"
+        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": "48680dd23e84101dd9cadd992af7d21b2df897643e499644cc86d07f8f809664"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md"
+      ]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
       "fingerprint": "87b90f4eb9f326182eeeeb4f341d5cdffffb955972ecaf103ecf7906400f61ea",
@@ -5194,24 +5170,24 @@
       ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
-      "fingerprint": "6c4b83009d01f5b8636c8320dfa8f583bb8e22960eaa2308cf7b0f406b850bce",
+      "fingerprint": "8e2f0bdd5c3ad8e7e90284dd4f6c0d2b343e6d5d1dab8c382eb7346aba34bdaf",
       "snapshot": {
-        "docs/reference/interfaces/RecorderOptions.md": "4073a126831053b3c942e223357d2bdc30ea6f7daff51c0307534dff0ebcd7a2"
+        "docs/reference/interfaces/RecorderOptions.md": "633b7f90a39784897fdf48b21efcc8d867b99e82101e6dd8da249c30577ec0b1"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/RecorderOptions.md"]
     },
     "source:docs/reference/interfaces/RecorderRejection.md": {
-      "fingerprint": "cd0b8043b7d321e7061bf9a1609dea8d1918ba1bd234d657b954c95d0031a83f",
+      "fingerprint": "8f180660d7640bdb833463c25f91ac9bcff485df65658a43f866b8baaac90456",
       "snapshot": {
-        "docs/reference/interfaces/RecorderRejection.md": "b6c8097768f83ef098d26d6083261aa5e8d8f841fae14a90dbacdf167cba7216"
+        "docs/reference/interfaces/RecorderRejection.md": "eac84c802f2e2c11ed4abe5afb17211753f3abee91ebac2c83995815f62daece"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/RecorderRejection.md"]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
       "fingerprint": "bf50351d2f5a5f1183873562205bcbdb5fb0f0ff818dcb82e0ff12a7dde09943",
@@ -5224,44 +5200,46 @@
       "evidence": ["docs/reference/interfaces/ValidationResult.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
-      "fingerprint": "7d6c85bd9540283469f2e80db106057db6bdcd57c49ba614c9326ceb423f9663",
+      "fingerprint": "d295ff25b5eaa35a83bd2bd834001b122b0b414b5cebcfcd0c54ea7e28743f2b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "7b8ee2b22f40210b219ac37e804ea4fd8847aeb5646bf14d4fbc49b0cd3ea2e3"
+        "docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": "4c5587a93ebebe0985b0393964fa9fe19745e5fea6a337fabe960ad89a855842"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRecorderCommitKeys.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "33b9fbfc2f562bb4b45cce634b249fdee888e943e075dc9a9bdaec4301396ea5",
+      "fingerprint": "b2d8c0f7251fdc658c6166d92bcc82e8074ac2cf2def4a9f0b56b2c704543834",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "4d309eb2cd35b738d3be1ca3d2e8529ba1c6f255de4387f70d5069b469d69ef0"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "08bafcf3ab08e88bdd3a06ee50a5fc09a879d6e40108c5cbd5a1d29293d2c52b"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRecorderOptions.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
-      "fingerprint": "4ddab649760a9e3d2d8eb4cdd2ce22a733107a7249d4b7539414cd0231479b1d",
+      "fingerprint": "204c3b5de92f03ec27819af9f7295652f7d375e349318b7efd10e6d2fa29e312",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "f391495791dfd041fbc3afbb121601fe74fbb04d6155109cfc90ad259be4485f"
+        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md": "b770cfe3fb82d8b6e1782ba6d770d42c56854e9d66d6f8a21da4c880b1978154"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRecorderValidationContext.md"
+      ]
     },
     "source:docs/reference/type-aliases/RecorderKeyMode.md": {
-      "fingerprint": "395f460e6998fc198e7e00d462b9cf5ba4e1c98900e1305d63525ef41e3b55c1",
+      "fingerprint": "09216e5a32b79aa37e117e875ccc981124d8487b030b061850e2d8af3e0fa386",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderKeyMode.md": "49b6876869accf4b2c4e51ca4a8201c44531481f0d5387001b685589ed5da7eb"
+        "docs/reference/type-aliases/RecorderKeyMode.md": "1dd9d84af5d9d4674cef545f3317fc77078c39a9101621e444a8e66d523eb486"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/type-aliases/RecorderKeyMode.md"]
     },
     "source:packages/alpine-hotkeys/tsconfig.docs.json": {
       "fingerprint": "2ae425b102b1ea8fdb67e00ada8c04eb02af8ce1b351a1efa37d6b54c1b580ac",
@@ -6626,14 +6604,14 @@
       "evidence": ["packages/hotkeys/tests/parse.test.ts"]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "e3cebdfb17c22f2725415349c3e2c145737a8b5a6a9cd7d4f44dae4fdfe0ffbb",
+      "fingerprint": "96fb682157cd01b735864d709ffac89576f1b4a1bd8ef5956fb880e5ea3c9a53",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "59f3afcd30d5f04864c005ccd7d22f0fd646a1a09af68682a8798ae66f480b5a"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "c1e02ee2ebb28c502faa361b388362b88020dc60eafaf07f467e97df470ce050"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "84ea6e4465995de18af8677d3413b37181cb6a56a7f48da748dd8f16c59b3b04",
@@ -6648,14 +6626,14 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "36bc0927e1f362304d6b8d5409a52166dc02e217e0b2d625c492647bc560f719",
+      "fingerprint": "5d30c2a0ee8c7c57f5d95d5b461985648d0594783dd5a5bd56f641e2f00be397",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "d7de6207403e4a18983742a1d08396d6e925f3e2183c27018611886069e46688"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "c2cff07aa07ca6392819971815644305e09c292302cfec57939e206c8547b7f5"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
@@ -7346,14 +7324,14 @@
       "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f7f4f501fb7cf149dc2b86a9c151a9158669aaf8f6e540ac30fe20638bac44c6",
+      "fingerprint": "e15b71e2d757754e45a7168553a076c524b5a46a88527c87bc7f62314c5d6fff",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "6d63922383cd5d959bba19803d2b7eecdcff20266ad3d5099af132feacc3f792"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "eb227fda12d1cf77e065323e911ba01b3306953bf04ea2a202b506a6b67a1ae1"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/alpine/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
       "fingerprint": "bd52ad132e2053a8ff821daf06fa40dbe0f8468aaec9472cfef0a0ce5805bd62",
@@ -7540,14 +7518,14 @@
       ]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "d6d2b1db962233747be634f1ddab9e77c3ed77f5a92c5b9292603eb6139b247e",
+      "fingerprint": "f2d1257a1a917da6d0efd73fd2b54b389098f4f9c40f32cdafba5fc90046d463",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "48a7c0b982a25f93db448d47bc57d7b07b370d780594a739119b9c990cf4e111"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "56e9215fe32dcfed63a8fb0bde801165f0d9af9117c4968ebd60407fe0e0c636"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/ember/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
       "fingerprint": "4c01d74c0ffbb8c81803d1501956d23831ad4973c11675c7bea85328e09a11d3",
@@ -7572,14 +7550,14 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f38b5ad1d6bdbd736cc98b5e9681489a4f4f205422f87ab367c4e1ace9676b7b",
+      "fingerprint": "f550b45c68f61fb92e9ad20fe188c517e713c14419f07be71bce0327c76328f6",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "ff9a3b8e2b32079498f4402f061fdca038d5fb783bcd31491b637357973240ce"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "9d3ccab7c922ba2ebc2f023114baf0d05197fecf45ee9df9e6e03715d5a1bb36"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/lit/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
       "fingerprint": "0249aa4057b56a195215f7131104752abd651795f61a9b9ae580ccd996edacee",
@@ -11780,14 +11758,14 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "2ffe9e774378163fa32f50cd650aaa7ed4fa378cdb0fb42288f0fcc6170f8d7d",
+      "fingerprint": "715842164facbd0f6731714087ee92a9cd096e122d9c87ed15bd7fe5c6e4cd38",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "485d7c62900f50feec6fae96579138f6e4937f2c24ba40a7675261452e6243e5"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "ad1f57f4addc324b0640b3b00791b93236192610787495b585b510df11f760c3"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/angular/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "5f75049947abd0007e83d78ffc33f4dcbf4b6b8a374f8243e24946d4e3d1d98d",
@@ -11826,14 +11804,14 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "7193acb7dbce66cafeaa26dfdf81e8cc973fc9562cf5517ec6c593ec9717973d",
+      "fingerprint": "98d39ebb960329078a1e573336638d0f7d2d5e198c33a1edee2f5f5c892827bc",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "c401fd6d0e5cb9d3f3d905f9284eb2e12cb5ad8c9114dc4329c27a74f686a60f"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "bd2d115d2aa2efb4ae4567b3e484d6487bf6962c559c2d0426c23bee6fe6461c"
       },
-      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/octane/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "ff7e221e6129f28058dff7f07a65181459e9c3d92f896c46fe95a1f60911008a",
@@ -11872,34 +11850,34 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "4fa8a39883baba8d3bccad0b190294e6c0ad6de2a4430ef2551a582995ea307b",
+      "fingerprint": "b86186326e8131e238b05f5ca652c22bd65938182348a01383b7c722b904fb9b",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "6921bd9102af868ef0f55662d398a82f35bb1b37a1396fa181b44e50ee165e65"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "6479ad3fbac367bfbbe17a163233e1cf369b3b06cb5d55c4fe9cd8687636bbbd"
       },
-      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/preact/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "9c732a63395c8a182613975b5407c1fedc02f1c0b43c1b6054c32e64e1356a1e",
+      "fingerprint": "0add146e7c88fed2cc6fcdbee1feddad61a3ed47e787b1da35204a1fb885a9e4",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "b552105cb6a8a13f2141e9565f9c71da6311734f61357bc379cca5464ca10792"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "2b937ca66a573bc727f04ef66d9691d67147ebb9efcef2531385ad03c5b2c86a"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/solid/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "8dc7b3b65d59b26fa86c3499cea1370bccc50e7e709b78042e5e771096bac81a",
+      "fingerprint": "1fcd1726bb878ea52f8884ef04868ec00758484efcdc43fc8354d231de5990ca",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "474f8522746b83da38d103c46287f8ecade9ac800e303b2a401f601a778ec9ce"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "d73db0a34c6b7448333bce394717130dc916def1fc4381cd5fb73a3e79d6630a"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/svelte/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
       "fingerprint": "8fe5e73db20916113f27570e3ddd2015cf4df4fd61e9285f8b2baeb5ad09831c",
@@ -11974,14 +11952,14 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "829b80dda6f5465702503dfcf395b15126c0c2acc5b5679e14c270dc323451b9",
+      "fingerprint": "ee0f3e72976673af494bf4557cdd8e1462bc76b99d98e61e9a7b2355b74072d5",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "f8e3f7e3e9347cd9ffa9fd819028d74549403171ba72dfef2c30f47ddc006c8f"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "ecb9a2ad717efce41e08f1d7a2322e95281f34a5fd12f837386b213b6cb229e1"
       },
-      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/framework/vue/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "0df2af88647ddeaac6454bc7f5d408739b4214832ed3b4e59581d64475d1073d",
@@ -12052,14 +12030,14 @@
       "evidence": ["docs/reference/type-aliases/HotkeyIssueReason.md"]
     },
     "source:docs/reference/type-aliases/RecorderRejectionReason.md": {
-      "fingerprint": "3ec9f4544e8a81dc2b25274663edc6d9cfbf36f862971f0c4b99c62540180255",
+      "fingerprint": "8f131992c8fd0a797299d9fef2e52f88f659799fce6974462b8372b42ba9d681",
       "snapshot": {
-        "docs/reference/type-aliases/RecorderRejectionReason.md": "fa628b4b5d5d9ae5945d043721e10e453c4dd62da84e31f83886113cd4f5058e"
+        "docs/reference/type-aliases/RecorderRejectionReason.md": "f546989aa1a93e6453a9389f6f2befe1bacb65f973bb52a46cabd27ad0f2d22e"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/type-aliases/RecorderRejectionReason.md"]
     },
     "source:examples/ember/useHotkeys/app/templates/application.gts": {
       "fingerprint": "16779627970d0c79bb13ec3a1895540a6ca8d2f5624e1521f9e523b8447fa5ad",
@@ -12088,17 +12066,14 @@
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/shortcuts.tsx": {
-      "fingerprint": "2da2cd03e49623da10a0b7e93f6d66d529b01fc34c998cb29301402f620fdfbe",
+      "fingerprint": "a019069ea2957e41faf79435fa05ab55933675e761913b15080a8cdf1787a1eb",
       "snapshot": {
-        "examples/react/kitchen-sink/src/routes/shortcuts.tsx": "3c0957038bbf3a434334ca4aa519db967b2b9b7103e2a586c6831cc85d4407a4"
+        "examples/react/kitchen-sink/src/routes/shortcuts.tsx": "4afb5295432469eda77fd6cddb9fbe8d3a525a7154e8f071cf79ea2abdf6bb8b"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/react/kitchen-sink/src/routes/shortcuts.tsx",
-        "git diff 7d9cccc3 -- examples/react/kitchen-sink/src/routes/shortcuts.tsx"
-      ]
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "no-change",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/react/kitchen-sink/src/routes/shortcuts.tsx"]
     },
     "source:examples/react/useHotkeys/src/index.tsx": {
       "fingerprint": "922fd94c6560e74043411471a7bd17f4ea92c1bbcb335c48464d72ddbc980897",
@@ -12114,28 +12089,24 @@
       ]
     },
     "source:examples/svelte/kitchen-sink/src/Recording.svelte": {
-      "fingerprint": "4feecb6861572ae0ae47d088df87ed718e3f6c2a664e5534b0814848a948b3d0",
+      "fingerprint": "b0ce5df7ee3981d80ed98f86fec7efbb1c3b34086ed59e0a1083e91066742ad4",
       "snapshot": {
-        "examples/svelte/kitchen-sink/src/Recording.svelte": "1fffa7cb73574e499373d3df46c13397c590c9412319abd8469a567f361b9bea"
+        "examples/svelte/kitchen-sink/src/Recording.svelte": "c5bdf795392262267ba6fb48e0e703ac10cc1153027076e15cfe3a4c951f773f"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/svelte/kitchen-sink/src/Recording.svelte"]
     },
     "source:examples/vue/kitchen-sink/src/Recording.vue": {
-      "fingerprint": "dfbc6fd17bb29c00f47f2924e5f53eefea7b40d4df06c122d6fc2435288ba499",
+      "fingerprint": "9960221c247b23d76116007fbf74778f427372b193056e2bded6d778ae68f4b1",
       "snapshot": {
-        "examples/vue/kitchen-sink/src/Recording.vue": "4c112b903fa30b6e384c4b31ea7a6fe640e94dad15b49b104db3266998e5c2e0"
+        "examples/vue/kitchen-sink/src/Recording.vue": "fa11ac5644bcbd3b4455cf06848d9def09859e18b4ab69f2aea6bc752fb5ce03"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["examples/vue/kitchen-sink/src/Recording.vue"]
     },
     "source:packages/hotkeys-devtools/src/_issues.ts": {
       "fingerprint": "d184045b7298a2b17addb75e2ccfd9f89071202c1c3cdbb987b3b7252eccf9a2",
@@ -12168,14 +12139,14 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "1ea52c2e96fc84928a751f080e208203ec59374d54ee3c41b42b021ddf2c09e8",
+      "fingerprint": "5461a3ccbe492ab1e37a62a48309305c8e7d0558a87c921231f77ece7be8959d",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "d278c8a88fc7d0c00e481aab9f0542d1ef9f8e930a246b957128c7e1eb98c016"
+        "packages/hotkeys/src/_recorder-chord.ts": "23e1cb41b60c41c6f4b81f9de7e788ad5b263d02acc524f78d4096879eead1a6"
       },
-      "head": "00bc7643c72d5de35b8f214f9be9cb20e5de421a",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Crash and silent-failure fixes covered by tests; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites pass"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/src/_recorder-chord.ts"]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
       "fingerprint": "38b5b292f0b5970d80856bdac43e365f06b9a371b85094ee392a944d61b72d22",
@@ -17777,14 +17748,14 @@
       "evidence": ["e2e/support/fixtures.ts"]
     },
     "source:e2e/browser/held-keys-and-recorder.spec.ts": {
-      "fingerprint": "f3f8bc370682794cc1bf971f15823dc057a4a3f9a3c0af9238504029516923b1",
+      "fingerprint": "d00927f6723aed8e582ecec0631cfcfa91dd4c83c642914eab468b22e7953eaa",
       "snapshot": {
-        "e2e/browser/held-keys-and-recorder.spec.ts": "ef337cae14ba8e4d643ce76f262cbcf5b947f3626caad77d9a467dd38486e0d3"
+        "e2e/browser/held-keys-and-recorder.spec.ts": "f70769b902405af89db87383c0aa1477c41a71747a55c4d39fe94fbde4b063ae"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
     },
     "source:packages/hotkeys/tests/recorder-tab.test.ts": {
       "fingerprint": "c00d323dde5a54c220a53d205f31ce6c0ce87018dd49bca5f6e0eb5a8b605ccc",
@@ -18679,14 +18650,14 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "ba45c7d6c915d6edfdbb473829b085d169705f1b87acf13dff79e004b4014121",
+      "fingerprint": "8daecb2ff6810d31940c2b91f9b0328b79931cf6e226a866e0e66783da4e1845",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "05e4f8c9241d00e8eefd60288a8e7e1c976e9c0ef16b4c186b36c1db31887191"
+        "e2e/layouts/more-layouts.spec.ts": "e8990f4d7ff5531239e4db9dde78f930f7d1753d3bce5052dea20da01d0eefe3"
       },
-      "head": "26983f5ef5c3fb0c158c02f5442937f8669c412c",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Matching fixes covered by unit, e2e and real-layout tests; no skill guidance changes.",
-      "evidence": ["Docker real-layout suite 238/238, core 1,954 tests"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["e2e/layouts/more-layouts.spec.ts"]
     },
     "source:e2e/playwright.adapters.config.ts": {
       "fingerprint": "78b6d7f3510be3aec5691c58dfc68dd800ca71d5b34254301eea3293adbeefad",
@@ -18803,13 +18774,13 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
-      "fingerprint": "78d1d6b9d47306d3075ef8b3abecccd9e089c401932103a01007f581e08f8c41",
+      "fingerprint": "85e9d156774a6cd3be55fd95fb2789227941c56795190c56b67d1c1d9676bc1f",
       "snapshot": {
-        "packages/hotkeys/tests/alt-graph.test.ts": "71b3eeb5c8776a21f71867ce8cccaf077c05b08ea54b4a09932af8befe2b59d6"
+        "packages/hotkeys/tests/alt-graph.test.ts": "1be5e182c83f35e9061b3d1e3998496f7f111cc5ef4d74d999c7a8a05ae2fab7"
       },
-      "head": "64035d6dff014cf516a25c11430bb8d6bdfdf471",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Bug fix or regression test with no change to documented API or skill guidance.",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
       "evidence": ["packages/hotkeys/tests/alt-graph.test.ts"]
     },
     "source:packages/hotkeys/tests/aria-widgets.test.ts": {
@@ -18859,14 +18830,14 @@
       "evidence": ["packages/hotkeys/tests/hotkey-recorder-steps.test.ts"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "4fbb859d30456b325690ad5614f48feb9f6156eed6a0ddfcbd991183746dc7c0",
+      "fingerprint": "e4c10ae0949949292942a6cfe14bf66510c00ed7b781f07a0e7c06bdd8cc3b0e",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "f700bcfc0df387e4739e216f1303fec8ce6fd45536d72ce2abd2472efc85a85d"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "2e7247134a98e9d9968fdf94a35986b86b36e24e89c6ea0a4fd156319172e30f"
       },
-      "head": "e9031094e0b830b2af9d82d6ae8b24d36ac207d9",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recording guard: held repeats of a recorded press stay suppressed for hotkeys; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
       "fingerprint": "30631b65172be55b9e20ee5715d647c2bfe6c78cdcce17c5e0615ee217548e1d",
@@ -19768,13 +19739,13 @@
       "evidence": ["packages/hotkeys/src/_dev.ts"]
     },
     "source:e2e/browser/macos-reported-keys.spec.ts": {
-      "fingerprint": "cd7900c5c55284f16d6c5338d179bd456da8550b3f9c0d4756843afc6a61081a",
+      "fingerprint": "ef1a4b6ad4e82adf42683872114e03a4d158c772b5576cae6f0813811e46cb58",
       "snapshot": {
-        "e2e/browser/macos-reported-keys.spec.ts": "1637c855321180b96d433acc5abe8e093225ce69e2ffe6e63b6eec4e48fa0bf2"
+        "e2e/browser/macos-reported-keys.spec.ts": "4674f4dfd6e6bd4fa2e8773b7e8b17ca8ccae688f75fb6b9625a3de9759d67c3"
       },
-      "head": "f8a1f08596e7712addb6d514c7771fa61b78ca7e",
-      "outcome": "out-of-scope",
-      "reason": "Test code for the macOS Option and Cmd+Shift matching rules, AltGr in sequences, and the removed key Sets; it carries no guidance for library users.",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "no-change",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
       "evidence": ["e2e/browser/macos-reported-keys.spec.ts"]
     },
     "source:packages/hotkeys/src/_chord.ts": {
@@ -19864,13 +19835,13 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:e2e/layouts/alt-graph.spec.ts": {
-      "fingerprint": "f2b5312c1798b0280d6dde6f92d11f61c749838f08dba89ea79b5acdfa40b4b7",
+      "fingerprint": "1d818886e7a3303a598c6cee6dade34a01bdda7891c28ad9c695395a6745fb83",
       "snapshot": {
-        "e2e/layouts/alt-graph.spec.ts": "2ca44389a7997c80788ac2d254bf3b6dd8f0360a731dab8dcf59d498eac60e1f"
+        "e2e/layouts/alt-graph.spec.ts": "9271c5effa82dc7f1c0800bcf4acf3ae7aa28c2486bf70ffef63e5a15cb7dd50"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Tests for the recorder's new default and the conflict check context. Skills don't describe the test suites.",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
       "evidence": ["e2e/layouts/alt-graph.spec.ts"]
     },
     "source:packages/alpine-hotkeys/tests/app-hotkeys.test.ts": {
@@ -19908,14 +19879,14 @@
       ]
     },
     "source:packages/hotkeys/tests/recorder-auto.test.ts": {
-      "fingerprint": "493aafc37c31cc093f859a7a83c6d42314014b70b3a9b35976c808630db7ed06",
+      "fingerprint": "2167a4c8545893ec09237f69949436ad922f84f33ff99fc00314fb4d4070f23c",
       "snapshot": {
-        "packages/hotkeys/tests/recorder-auto.test.ts": "b78c1898c6b6a09e71ac3a1add117457133df836629c661db079bbb0fa2b8090"
+        "packages/hotkeys/tests/recorder-auto.test.ts": "012dc37bc9a2debdb6a6357dc9ac434b2d1cb97af8099e84105a0014c3f02df9"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/recorder-auto.test.ts"]
     },
     "source:packages/octane-hotkeys/src/types.ts": {
       "fingerprint": "7ba9abda31b96b8389f91beec55a07210b5ee0bf21d3c522c9f0628c3ab2b59b",
@@ -21254,14 +21225,14 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:docs/reference/interfaces/HotkeyRecorderActions.md": {
-      "fingerprint": "9085508a1c2fd72abc8dd1c009fd9e67b2c748cbee9389a4cb414fec72f94919",
+      "fingerprint": "6a9eb697b8ceaccdbf23f2b4a39bf279f45ba3bfeaa3a6096bc140cedcbf6fd2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRecorderActions.md": "658287078f8eb91cdd9619781c32944ff8a697a4a225af6100d2e3904be3de7e"
+        "docs/reference/interfaces/HotkeyRecorderActions.md": "2b171586d5f928510ebcf11070d64f04fe8ed94c0df39c8928af554c7ddb684f"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["docs/reference/interfaces/HotkeyRecorderActions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
       "fingerprint": "7918003d1f9c7f2b8f7596d384408697210a4a4a42f42daba14e27f0b0f0748f",
@@ -23840,6 +23811,16 @@
       "outcome": "no-change",
       "reason": "Recording guard: held repeats of a recorded press stay suppressed for hotkeys; no skill guidance changes.",
       "evidence": ["hotkey-recorder.test.ts"]
+    },
+    "source:packages/hotkeys/tests/invariants/recorder-layouts.test.ts": {
+      "fingerprint": "26be851d8c52ebecbb39e7ef8617cb9c8fd6725682358f90dff02b825ab0ff54",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/recorder-layouts.test.ts": "ce747e03f0e069ae3e1fbd6b05049415ef26004be771f69f2de596e3171bec61"
+      },
+      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "outcome": "no-change",
+      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "evidence": ["packages/hotkeys/tests/invariants/recorder-layouts.test.ts"]
     }
   }
 }

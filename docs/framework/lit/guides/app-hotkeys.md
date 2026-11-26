@@ -159,7 +159,7 @@ class ShortcutRow extends LitElement {
 }
 ```
 
-Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, a recorded `Shift+[Slash]` and a declared `?` are one key press, and only the key press shows that.
+Pass the recorder's `context` to `findConflicts` and `setCustomHotkey`. It holds the key press that made the recording, so the check also finds an app hotkey that is written differently but fires for the same press. On a US keyboard, `Shift+[Slash]`, recorded by code or saved by an earlier version, and a declared `?` are one key press, and only the key press shows that.
 
 | Member | Description |
 | --- | --- |

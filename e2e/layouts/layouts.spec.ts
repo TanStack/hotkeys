@@ -78,13 +78,13 @@ describeLayouts('Layout', {
         keys: 'Shift+Digit1',
         matches: ['1', 'Shift+1'],
         parsed: 'Shift+1',
-        recorded: 'Shift+[Digit1]',
+        recorded: '1',
       },
       {
         keys: 'Control+Digit1',
         matches: ['Mod+1'],
         parsed: 'Mod+&',
-        recorded: 'Mod+&',
+        recorded: 'Mod+1',
       },
       // The 6 key types "-", so Control+- zooms out instead of firing Mod+6
       { keys: 'Control+Digit6', matches: [], parsed: 'Mod+-' },
@@ -114,7 +114,7 @@ describeLayouts('Layout', {
         keys: 'Shift+Digit7',
         matches: ['/', 'Shift+7'],
         parsed: 'Shift+/',
-        recorded: 'Shift+[Digit7]',
+        recorded: '/',
       },
       // The US "/" position types "-" and Control+- zooms out
       { keys: 'Slash', matches: [], parsed: '-', recorded: '-' },

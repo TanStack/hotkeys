@@ -47,7 +47,7 @@ class ShortcutRecorder extends LitElement {
 
 The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `HotkeyController`, and label it with `FormatForDisplayController`.
 
-Some presses have no name that means the same thing on every platform. The recorder records those by the key's position, in brackets: Shift+/ records `Shift+[Slash]`, and Option+1 on macOS records `Alt+[Digit1]`, even though it types `¡`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
+The recorder writes what the user typed, as you would by hand: Shift+/ records `?`, and Ctrl+Shift+/ or Cmd+Shift+/ records `Mod+?`. With Control, Command or Alt, a digit-row key records its digit, so AZERTY Ctrl+& records `Mod+1`. When the typed character changes with the platform or layout, the recorder records the key's position, in brackets: Option+/ on macOS records `Alt+[Slash]`, even though it types `÷`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
 The controller adds itself to the element, requests an update whenever its state changes, and has the recorder's state and controls:
 
@@ -209,7 +209,7 @@ detectConflicts: {
 }
 ```
 
-Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, a recorded `Shift+[Slash]` and a registered `?` are the same press. The check also tests each registered hotkey against the key presses that made the recording, so it finds these.
+Two hotkeys can be written differently and still fire for the same key press. On a US keyboard, `Shift+[Slash]`, recorded by code or saved by an earlier version, and a registered `?` are the same press. The check also tests each registered hotkey against the key presses that made the recording, so it finds these.
 
 A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
 
@@ -221,7 +221,7 @@ A conflict check finds hotkeys that could collide. It can't promise which callba
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | The user pressed a whitespace character that can't be recorded |
 | `'missing-code'` | The key press had no physical `code`, and the recorder can't record it another way |
-| `'alt-graph'` | The user pressed an `AltGr` combination that the recorder can't record |
+| `'alt-graph'` | The user pressed an `AltGr` combination that typed no character to record, or any `AltGr` combination with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
@@ -305,7 +305,7 @@ class ShortcutSettings extends LitElement {
 | `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |
 | `idleTimeoutMs` | None | With `maxSteps: Infinity`, commits after this many milliseconds without a new step. The timer starts after the first chord. |
-| `recordBy` | `'auto'` | Records the key by name where it has one and by position otherwise (`'auto'`), always by position (`'code'`), or always by the character it types (`'key'`) |
+| `recordBy` | `'auto'` | Records what the key typed, written as by hand, and by position where that changes with the platform or layout (`'auto'`), always by position (`'code'`), or always by the character it types (`'key'`) |
 | `ignoreInputs` | `true` | Lets typing in text fields pass through while recording |
 | `recordTab` | `false` | Records Tab and Shift+Tab instead of letting them cancel and move focus |
 | `validate` | None | Accepts or rejects a recording. See [Reject hotkeys you don't want](#reject-hotkeys-you-dont-want). |

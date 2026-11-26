@@ -66,6 +66,9 @@ export const KEYCODES = {
   Numpad5: 84,
   Numpad8: 80,
   NumpadDecimal: 91,
+  NumpadEnter: 104,
+  NumpadAdd: 86,
+  NumpadSubtract: 82,
   Enter: 36,
   Backspace: 22,
   // Keys for the shifted-symbol and Q-key cases

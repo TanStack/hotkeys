@@ -81,4 +81,22 @@ test.describe('keys as macOS reports them', () => {
     await press(page, { key: '/', code: 'Slash', keyCode: 191, metaKey: true })
     expect(await hk.firedNames()).toEqual(['help', 'comment'])
   })
+
+  test('Cmd+Shift+/ fires Mod+?, as Ctrl+Shift+/ does on Windows', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.register('help', 'Mod+?', { platform: 'mac' })
+    await press(page, {
+      key: '/',
+      code: 'Slash',
+      keyCode: 191,
+      metaKey: true,
+      shiftKey: true,
+    })
+    // Without Shift, Cmd+/ typed `/`
+    await press(page, { key: '/', code: 'Slash', keyCode: 191, metaKey: true })
+    expect(await hk.firedNames()).toEqual(['help'])
+  })
 })

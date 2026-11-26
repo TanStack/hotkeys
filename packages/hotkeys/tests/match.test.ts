@@ -1,5 +1,6 @@
 import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { describe, expect, it, vi } from 'vitest'
+import { matchKeyboardEvent } from '../src/_match'
 import { normalizeKeyName } from '../src/constants'
 import { HotkeyManager } from '../src/hotkey-manager'
 import {
@@ -8,6 +9,7 @@ import {
   createMultiHotkeyChordHandler,
   matchesKeyboardEvent,
 } from '../src/match'
+import { parseHotkey } from '../src/parse'
 import type { KeyOptions } from '@tanstack/hotkeys-test-utils'
 import type { CanonicalModifier, HotkeyChord, HotkeyPlatform } from '../src'
 
@@ -1374,6 +1376,50 @@ describe('matchesKeyboardEvent', () => {
         expect(matchesKeyboardEvent(event, `Mod+${key}`, 'mac')).toBe(false)
       },
     )
+
+    it.each([
+      ['/', 'Slash', '?'],
+      ['=', 'Equal', '+'],
+      ['-', 'Minus', '_'],
+      ['[', 'BracketLeft', '{'],
+      [';', 'Semicolon', ':'],
+      ["'", 'Quote', '"'],
+      ['`', 'Backquote', '~'],
+    ] as const)(
+      'Cmd+Shift+%s fires the character US Shift types there, as on Windows',
+      (key, code, shifted) => {
+        const event = cmdShift(key, code)
+        expect(matchesKeyboardEvent(event, `Mod+${shifted}`, 'mac')).toBe(true)
+        expect(matchesKeyboardEvent(event, `Mod+Shift+${shifted}`, 'mac')).toBe(
+          false,
+        )
+        // The exact spelling ranks first
+        expect(
+          matchKeyboardEvent(
+            event,
+            parseHotkey(`Mod+Shift+${key}`, 'mac'),
+            'mac',
+          ).score,
+        ).toBeGreaterThan(
+          matchKeyboardEvent(event, parseHotkey(`Mod+${shifted}`, 'mac'), 'mac')
+            .score,
+        )
+      },
+    )
+
+    it('leaves `,` and `.` alone', () => {
+      // Most layouts with them in the US position type `;` and `:` with
+      // Shift there, and put `<` and `>` on another key
+      expect(matchesKeyboardEvent(cmdShift(',', 'Comma'), 'Mod+<', 'mac')).toBe(
+        false,
+      )
+      expect(
+        matchesKeyboardEvent(cmdShift('.', 'Period'), 'Mod+>', 'mac'),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(cmdShift(',', 'Comma'), 'Mod+Shift+,', 'mac'),
+      ).toBe(true)
+    })
 
     it('still fires without Shift', () => {
       const event = createKeyboardEvent('/', { metaKey: true, code: 'Slash' })

@@ -37,7 +37,7 @@ function ShortcutRecorder() {
 }
 ```
 
-With the default `recordBy: 'auto'`, the recorder outputs portable strings just like you write by hand: `Mod+S` for Command+S on macOS or Control+S on Windows and Linux. It falls back to physical bracketed codes (`Shift+[Slash]`, `Alt+[Digit1]`) for presses whose characters vary across OSes or layouts. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules, or set `recordBy: 'code'` (always physical) or `recordBy: 'key'` (always typed character).
+With the default `recordBy: 'auto'`, the recorder outputs portable strings just like you write by hand: `Mod+S` for Command+S on macOS or Control+S on Windows and Linux. It records what the press typed (`?` for Shift+/, `Mod+1` for AZERTY Ctrl+&), and falls back to physical bracketed codes (`Alt+[Slash]` for macOS Option+/) for presses whose characters vary across OSes or layouts. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules, or set `recordBy: 'code'` (always physical) or `recordBy: 'key'` (always typed character).
 
 | Property or method | Description |
 | --- | --- |
@@ -174,7 +174,7 @@ useHotkeyRecorder({
 })
 ```
 
-By default, `detectConflicts` checks every enabled `keydown` registration across all scopes. A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step (so `['G', 'H']` and `['G', 'S']` do not conflict). It compares underlying keypresses so `Shift+[Slash]` catches `?`. Pass an options object to narrow the check:
+By default, `detectConflicts` checks every enabled `keydown` registration across all scopes. A recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a chord equal to its first step (so `['G', 'H']` and `['G', 'S']` do not conflict). It compares underlying keypresses so `Shift+[Slash]`, recorded by code, catches `?`. Pass an options object to narrow the check:
 
 ```tsx
 detectConflicts: {
@@ -197,7 +197,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | User pressed a whitespace character that can't be recorded |
 | `'missing-code'` | Key event had no physical `code` when needed |
-| `'alt-graph'` | Unrecordable `AltGr` combination |
+| `'alt-graph'` | `AltGr` combination that typed no character, or any with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
