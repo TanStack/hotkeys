@@ -97,6 +97,10 @@ useEffect(() => {
   document.addEventListener('pointerdown', onPointerDown, true)
   return () => document.removeEventListener('pointerdown', onPointerDown, true)
 }, [recorder.isRecording, recorder.cancelRecording])
+
+<button ref={ref} onClick={recorder.startRecording}>
+  {recorder.isRecording ? 'Press keys...' : 'Record'}
+</button>
 ```
 
 Shortcuts that the browser or the operating system keeps, such as `Mod+T`, `Mod+N`, and `Mod+W` in Chrome or most `Win` shortcuts on Windows, never reach the page. The recorder can't see them, so it can't reject them either.

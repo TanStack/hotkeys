@@ -4,6 +4,7 @@ import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { syncRecorderOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { useEffect, useRef, useState } from 'react'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useIsomorphicLayoutEffect } from './_useIsomorphicLayoutEffect'
 import { useSelector } from './_useSelector'
 import type {
   Hotkey,
@@ -82,8 +83,12 @@ export function useHotkeyRecorder(
     )
   }
 
-  // Sync options on every render so callbacks always see the latest values
-  syncRecorderOptions(recorderRef.current, mergedOptions)
+  // Sync options after every committed render, before the next key event, so
+  // a render React discards can't change the recorder
+  const recorderForSync = recorderRef.current
+  useIsomorphicLayoutEffect(() => {
+    syncRecorderOptions(recorderForSync, mergedOptions)
+  })
 
   const recorder = recorderRef.current
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)

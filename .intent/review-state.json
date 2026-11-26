@@ -67,11 +67,11 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "e926ab5f42764c9c294d2a91370d5649f55d6a1d6dd0e0792c6a4925f24d15cf",
+      "fingerprint": "110d71303d7da46f3887916d93c5ba4f5e6b184f7591cece355526c146b70bb7",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "5be795613e5f7a2d517a664bb342c7f37a0a506028f0e61fdc5aa90370e2194e",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "13ee9ea179b956b8ea66a1eeade80af824634c8c8492df6092ab3bae67239c66",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "d4397323acb50682dc4a981b2ef983d45710d3d4c002ee260f8a795b7980890b",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "8e2e9d370aac6ed522fea184c2a58219a7b719a21fc9d53697325adf40551276",
         "packages/hotkeys/src/app-hotkeys.ts": "1ced30763496f94998f801f26c51847743cf50f09fb02012b08f0339c0b6cfc0",
@@ -86,12 +86,10 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
-      "outcome": "updated",
-      "reason": "setCustomHotkey now refuses invalid values and warns in development; the skill says so and points to null for unbinding.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md line 56; app-hotkeys.ts"
-      ]
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
+      "outcome": "no-change",
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
       "fingerprint": "984d4177e59a60835c5906715370ac7678b946ca4a7d58ac43f33e5bb9e02e70",
@@ -234,7 +232,7 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "1b49b14fb704b7c4d8a177a08677dfb63fb4dea059c607b75e4dc082a0a30c3b",
+      "fingerprint": "ace4530cb330df73749a2d1c42a96c9339b5d0c949abb6bd7d75ea2dacd7b500",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "79248cbcc9320b70185be8311b76332de3b9de2793cfa0b88ea56848d073bd92",
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
@@ -243,16 +241,14 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "a221afbf74805ee0e0e40c82d2d3733164fc1c884dfbe4aa8176323121811075",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "3acc9fa620080397ab733579ebf0d460631986715d75d010f87a7cad0a1a2e9b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "e94698f33c760444d9eb3bc04a922184994f94dda43a779b9abbab97cd1da426",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "78dc96dcc7127235a29ec03fb41920503bda7838b8e54b878cf5b7320d2c8f6b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes and the syncRecorderOptions helper; the skill does not describe recorder cancel, blur, keyup handling or option syncing.",
-      "evidence": [
-        "git grep in packages/*/skills finds no recorder lifecycle guidance"
-      ]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
       "fingerprint": "d5b3c8d5e762bb689fdbfd5df7b18753d35417258fdbd9c31e3755db39fea608",
@@ -276,7 +272,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "ab503472a696420dee129811aaade25311cf23791221e5c7e9232ad002655ae9",
+      "fingerprint": "8a33dc9a569731c984826c1f7ffc8fc8fdedca82fab8c985c3a2605d286e67ee",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -295,7 +291,7 @@
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "bc4f0c5523633a78e9fc779e893025188d15fa1cc616d0f68e7bd699b8f0dfa4",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "5be795613e5f7a2d517a664bb342c7f37a0a506028f0e61fdc5aa90370e2194e",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "13ee9ea179b956b8ea66a1eeade80af824634c8c8492df6092ab3bae67239c66",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
@@ -395,7 +391,7 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "a221afbf74805ee0e0e40c82d2d3733164fc1c884dfbe4aa8176323121811075",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "3acc9fa620080397ab733579ebf0d460631986715d75d010f87a7cad0a1a2e9b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "e94698f33c760444d9eb3bc04a922184994f94dda43a779b9abbab97cd1da426",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "78dc96dcc7127235a29ec03fb41920503bda7838b8e54b878cf5b7320d2c8f6b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7d9baffc9b4643da50529c2c86359707f3773bf2c9e025b01a90a8b005d55c99",
@@ -407,12 +403,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Bug fixes and small additive options; no new skill needed.",
-      "evidence": [
-        "cancelOnBlur and context.platform are documented in the guides"
-      ]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -2794,14 +2788,14 @@
       ]
     },
     "source:packages/react-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "c37b5f7db089647c316badb5cb66e8f14b41a600be13d4d05e57394fa72cdeaf",
+      "fingerprint": "4644711a2a1cb9804d182dacdfaf47bb11acbede23734dfeb4dcfa65b4e2f65c",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "8c08a743c0c5401b296399e111c52a98628a0637019285faff14da67cf20b509"
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "f3dd16adf224ce90934229112b167decdb9364849f58ee5d344d1ee47d684ebd"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:packages/react-hotkeys/src/useHotkeyRegistrations.ts": {
       "fingerprint": "d84f438bbfbc165d2bbf5ea5aa38bcc53d21977bb0b32151a2c1510459456db0",
@@ -2929,16 +2923,14 @@
       ]
     },
     "source:docs/framework/react/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "ec0bd255f94f652bb5133035f11256d64465133c50de9b95ff2e2067d7026a32",
+      "fingerprint": "0df426e386576a0367c8e9926e83b15251e409a7f558ea2559a2458467b63c9a",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "423bc2a44b67820240e72ed2a95aa0743064ad0a86cd2c23df543aa5bca5099c"
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "c96110dd57bed250b574e13d7e2a781a056d17d0a58ac49bed4edbcd7d6cf198"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyRegistrations.md": {
       "fingerprint": "aba386a227156965e33eb0afce4cc0db9d0debb4c136a7dac93e19c4d9f36b55",
@@ -3003,16 +2995,14 @@
       "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
-      "fingerprint": "326ef4b8a15acb9e3ed8840ab180cb953f54de73059831a244fa4b75278d3d35",
+      "fingerprint": "b9d3396ebfaffeda8c19201ad8498f480fe7f363e84ba15174756542ff664841",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": "dc8be2b5a7d3412cedfcef2343d7bd6a674aeb1d64c293e594d69a3880a7ec3c"
+        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": "f3e76ddbabaf011071ad2e2b6504560e5bd3d8044be6222d27a4b14687ac6107"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md": {
       "fingerprint": "7fccf5f633e8e0d217165c9ea49ceae96c556f4fa6029335377a33aa60825c09",
@@ -4096,16 +4086,14 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeyRecorder.md": {
-      "fingerprint": "56d33f8ae55db8be095a374751e2d9e66d0c7e7a0ff3ecb4f4e5cded90b7da07",
+      "fingerprint": "35ca99ce0de9d30d6735f034eb95dcd4f690f3b892811af841bfbf44b2902b98",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "7cbb072b32fcb114db078161a4da82c0a0e89616dd85b9ab94514451433f2544"
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "d88963b80b01150c0c722d60b07001f5321eeac0311b3fbd1ff99643f5bb802b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeys.md": {
       "fingerprint": "b814f3e1e6a7b5ce0daf8ca46963f43f14b58cb35983edd48423b5013813f953",
@@ -11838,14 +11826,14 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b2c5af4f0edab37e3c5b1bfb1f04274d70195928ff60358b68a22b5876698172",
+      "fingerprint": "7193acb7dbce66cafeaa26dfdf81e8cc973fc9562cf5517ec6c593ec9717973d",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "ff2f83b3ac4b307f773f211be4fd68769ec5ff75a71ae5825e9c592fd8ce6fa1"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "c401fd6d0e5cb9d3f3d905f9284eb2e12cb5ad8c9114dc4329c27a74f686a60f"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "ff7e221e6129f28058dff7f07a65181459e9c3d92f896c46fe95a1f60911008a",
@@ -11884,14 +11872,14 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "97bfbe598c4e0dfc8cffff979a14cb1e86b8658ce0bfc7dbcc98705e3a485fce",
+      "fingerprint": "4fa8a39883baba8d3bccad0b190294e6c0ad6de2a4430ef2551a582995ea307b",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "ab1dbae4961bdbb4b58a6d5c95a269ad6bfd2453d1798d13515a9a0885e74842"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "6921bd9102af868ef0f55662d398a82f35bb1b37a1396fa181b44e50ee165e65"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
       "fingerprint": "9c732a63395c8a182613975b5407c1fedc02f1c0b43c1b6054c32e64e1356a1e",
@@ -11986,14 +11974,14 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "5b5c6b012573c34ab49cc9fa19ee7590bb7176c0ebb6684f1042c7ccf410bdea",
+      "fingerprint": "829b80dda6f5465702503dfcf395b15126c0c2acc5b5679e14c270dc323451b9",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "930057c4509715fd752c30ed11afcc519b5bfdc39fc7cc137b895b68f0c6ffff"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "f8e3f7e3e9347cd9ffa9fd819028d74549403171ba72dfef2c30f47ddc006c8f"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "0df2af88647ddeaac6454bc7f5d408739b4214832ed3b4e59581d64475d1073d",
@@ -18871,14 +18859,14 @@
       "evidence": ["packages/hotkeys/tests/hotkey-recorder-steps.test.ts"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "18fab8b9161aceb874070f944f2fbfd53b6d23dfad90503db477db7b5e873454",
+      "fingerprint": "4151993bc0bea4767140f43844273e51e5d1c744496f752ef567dac62b1156e2",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "338dce5521a4239a2ea5f58ed65ffb5c98997d3f18c7a65b5053671e35c9ce1c"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "bd3f43eb0e737963874463968ac4924fa53051e5750ca0027e73b835f9f3e8bd"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
       "fingerprint": "30631b65172be55b9e20ee5715d647c2bfe6c78cdcce17c5e0615ee217548e1d",
@@ -23844,14 +23832,14 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:packages/hotkeys/src/_recording-guard.ts": {
-      "fingerprint": "d052fba4c758baf779e4ec2c3ca38f48edaa56017e577225f3a96d7f38a91748",
+      "fingerprint": "74856a27e114c1def4dc08668bd8466f396c8d1c33f4f9b3ee2d337ca4fe13bc",
       "snapshot": {
-        "packages/hotkeys/src/_recording-guard.ts": "d360681b231f97b38046fdd999dd087d310b80f5e07c45303095483894f4e341"
+        "packages/hotkeys/src/_recording-guard.ts": "151dd67fd71eb1e42778d5b51547f418fd92da562da4177d2a77bfee4388e74a"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "7bba634c6fe0eea1054d177cb5707eb81cc23cde",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Review follow-ups: guard edge cases, React option timing, Svelte seeding, guide samples; no skill guidance changes.",
+      "evidence": ["hotkey-recorder.test.ts"]
     }
   }
 }

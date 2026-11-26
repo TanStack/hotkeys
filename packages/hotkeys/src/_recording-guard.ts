@@ -2,7 +2,7 @@ import { MODIFIER_KEYS, normalizeKeyName } from './constants'
 
 // Shared only by recorders and dispatchers. Does not own bindings or preferences.
 // One recorder records at a time; dispatch resumes after it ends.
-type Session = { cancel: () => void }
+type Session = { cancel: () => void; stop: () => void }
 const sessions = new Set<Session>()
 // Remember consumed event objects through the remainder of their DOM dispatch.
 const captured = new WeakSet<KeyboardEvent>()
@@ -25,9 +25,10 @@ function release(event: KeyboardEvent): void {
   const id = identity(event)
   if (pending.delete(id)) captured.add(event)
   if (stopped.delete(id)) event.stopPropagation()
-  // macOS can swallow the main key's keyup while Command is held.
-  // Releasing a modifier ends that chord, as in KeyStateTracker.
-  if (MODIFIER_KEYS.has(normalizeKeyName(event.key))) {
+  // macOS can swallow the main key's keyup while Command is held, so
+  // releasing Command ends that chord. Other modifiers don't swallow keyups,
+  // so a key still held after them keeps its guard.
+  if (normalizeKeyName(event.key) === 'Meta') {
     for (const [id, key] of pending) {
       if (!MODIFIER_KEYS.has(key)) {
         pending.delete(id)
@@ -39,7 +40,11 @@ function release(event: KeyboardEvent): void {
 }
 /** Hides the repeats of a stopped press, which go on after a recording commits. */
 function repeat(event: KeyboardEvent): void {
-  if (event.repeat && stopped.has(identity(event))) event.stopPropagation()
+  if (event.repeat && stopped.has(identity(event))) {
+    // A held arrow key would still scroll the page
+    event.preventDefault()
+    event.stopPropagation()
+  }
 }
 /** Clears pending releases when focus loss prevents the browser from delivering them. */
 function blur(): void {
@@ -62,7 +67,10 @@ function cleanup(): void {
  * recorded for two shortcuts.
  */
 export function beginRecording(owner: Session): void {
-  for (const other of sessions) other.cancel()
+  for (const other of [...sessions]) other.cancel()
+  // An onCancel that started its recorder again loses to this one, without
+  // its callbacks running again.
+  for (const other of [...sessions]) other.stop()
   sessions.add(owner)
   recordingStarted?.()
   if (!listening && typeof document !== 'undefined') {

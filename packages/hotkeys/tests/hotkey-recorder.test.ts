@@ -875,3 +875,60 @@ describe('HotkeyRecorder and held keys around a recording', () => {
     expect(page.seen).toEqual([])
   })
 })
+
+describe('HotkeyRecorder guard edge cases', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+  })
+
+  // Hold Control, press Escape to cancel, release Control, then Escape.
+  it('keeps hiding a held key release after another modifier is released', () => {
+    const released: Array<string> = []
+    const onKeyup = (event: KeyboardEvent) => released.push(event.key)
+    document.addEventListener('keyup', onKeyup)
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel: vi.fn() })
+    keydown({
+      key: 'Control',
+      code: 'ControlLeft',
+      ctrlKey: true,
+      target: document.body,
+    })
+    recorder.start()
+    keydown({
+      key: 'Escape',
+      code: 'Escape',
+      ctrlKey: true,
+      target: document.body,
+    })
+    keyup({ key: 'Control', code: 'ControlLeft', target: document.body })
+    keyup({ key: 'Escape', code: 'Escape', target: document.body })
+    document.removeEventListener('keyup', onKeyup)
+    expect(released).toEqual(['Control'])
+  })
+
+  it('prevents the default action of repeats after a commit', () => {
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    recorder.start()
+    keydown({ key: 'ArrowDown', code: 'ArrowDown', target: document.body })
+    const repeat = keydown({
+      key: 'ArrowDown',
+      code: 'ArrowDown',
+      repeat: true,
+      target: document.body,
+    })
+    expect(repeat.defaultPrevented).toBe(true)
+  })
+
+  it('takes over from a recorder whose onCancel starts it again', () => {
+    const a: HotkeyRecorder = createRecorder({
+      onRecord: vi.fn(),
+      onCancel: () => a.start(),
+    })
+    const b = createRecorder({ onRecord: vi.fn() })
+    a.start()
+    b.start()
+    expect(a.store.state.isRecording).toBe(false)
+    expect(b.store.state.isRecording).toBe(true)
+  })
+})

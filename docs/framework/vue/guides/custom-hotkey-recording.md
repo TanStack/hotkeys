@@ -102,7 +102,9 @@ A click elsewhere on the page doesn't cancel, because the recorder doesn't know 
 
 ```ts
 const button = ref<HTMLButtonElement | null>(null)
-const { isRecording, cancelRecording } = useHotkeyRecorder({ onRecord })
+const { isRecording, startRecording, cancelRecording } = useHotkeyRecorder({
+  onRecord,
+})
 
 watchEffect((onCleanup) => {
   if (!isRecording.value) return
@@ -112,6 +114,12 @@ watchEffect((onCleanup) => {
   document.addEventListener('pointerdown', onPointerDown, true)
   onCleanup(() => document.removeEventListener('pointerdown', onPointerDown, true))
 })
+```
+
+```vue
+<button ref="button" @click="startRecording">
+  {{ isRecording ? 'Press keys...' : 'Record' }}
+</button>
 ```
 
 Shortcuts that the browser or the operating system keeps, such as `Mod+T`, `Mod+N`, and `Mod+W` in Chrome or most `Win` shortcuts on Windows, never reach the page. The recorder can't see them, so it can't reject them either.

@@ -23,6 +23,9 @@ class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
 
   constructor(options: HotkeySequenceRecorderOptions) {
     this.#recorder = new HotkeyRecorder(options)
+    // Records the starting keys, so an option dropped before the first effect
+    // stops applying
+    syncRecorderOptions(this.#recorder, options)
     this.#subscribe = createStoreSubscriber(this.#recorder.store)
   }
 
