@@ -2,6 +2,7 @@ import {
   createHotkeyRecorder,
   createHotkeysScope,
   hotkeysPlugin,
+  isModifierKey,
 } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
 import type {
@@ -245,6 +246,12 @@ class ShortcutListItem {
   constructor(public props: () => ShortcutListItemProps) {}
   init() {
     this.heldKeys = this.hotkeysScope.createHeldKeys()
+  }
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
   }
   destroy() {
     this.hotkeysScope.destroy()

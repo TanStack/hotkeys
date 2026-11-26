@@ -9,7 +9,7 @@ title: createHotkeyBindings
 function createHotkeyBindings(adapterOptions?): object;
 ```
 
-Defined in: [adapter.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L99)
+Defined in: [adapter.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L101)
 
 Reconciles adapter registrations while retaining handles for option updates.
 Adapters for frameworks that delegate key events, such as React, pass

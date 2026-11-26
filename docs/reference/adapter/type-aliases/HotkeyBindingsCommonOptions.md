@@ -9,6 +9,6 @@ title: HotkeyBindingsCommonOptions
 type HotkeyBindingsCommonOptions = HotkeyCommonOptions;
 ```
 
-Defined in: [adapter.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L92)
+Defined in: [adapter.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L94)
 
 Options shared by every definition. Each option applies only to the kinds that support it.

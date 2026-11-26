@@ -362,7 +362,9 @@ it('resets capture sequence progress while recording', () => {
   const recorder = new HotkeyRecorder({ onRecord: vi.fn() })
   recorders.push(recorder)
   recorder.start()
+  // The recorder stops the keydown at the window; its release resets progress.
   press(child, 'keydown', 'x')
+  press(child, 'keyup', 'x')
   expect(
     (manager.registrations.state.get(handle.id) as HotkeySequenceRegistration)
       .currentIndex,

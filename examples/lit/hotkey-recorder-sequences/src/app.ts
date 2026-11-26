@@ -4,6 +4,7 @@ import {
   HotkeyRecorderController,
   HotkeyRegistrationsController,
   getHotkeyManager,
+  isModifierKey,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
@@ -239,6 +240,10 @@ export class MyApp extends LitElement {
 
   render() {
     const formatForDisplay = this.formatForDisplay.format
+    // Held modifiers in chord order, labeled for the platform
+    const heldModifierLabel = formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
 
     return html`
       <div class="app">
@@ -323,21 +328,10 @@ export class MyApp extends LitElement {
                                             )}
                                           </span>
                                         `
-                                      : this.heldKeys.value.length > 0
+                                      : heldModifierLabel
                                         ? html`
                                             <div class="held-hotkeys">
-                                              ${this.heldKeys.value.map(
-                                                (key, index) => html`
-                                                  ${
-                                                    index > 0
-                                                      ? html`<span class="plus"
-                                                          >+</span
-                                                        >`
-                                                      : nothing
-                                                  }
-                                                  <kbd>${key}</kbd>
-                                                `,
-                                              )}
+                                              <kbd>${heldModifierLabel}</kbd>
                                             </div>
                                           `
                                         : html`

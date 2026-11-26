@@ -77,6 +77,7 @@ it('passes only physical identity to recorder validation', () => {
       kind: 'chord',
       event: expect.any(KeyboardEvent),
       parsedChord: { ...modifiers, code: 'KeyS' },
+      platform: 'mac',
     })
   } finally {
     recorder.destroy()

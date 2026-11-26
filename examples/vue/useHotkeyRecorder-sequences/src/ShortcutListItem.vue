@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { useFormatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
-import type { HotkeySequence } from '@tanstack/vue-hotkeys'
+import {
+  isModifierKey,
+  useFormatForDisplay,
+  useHeldKeys,
+} from '@tanstack/vue-hotkeys'
+import { computed } from 'vue'
+import type { Hotkey, HotkeySequence } from '@tanstack/vue-hotkeys'
 import type { Shortcut } from './types'
 
 defineProps<{
@@ -22,6 +27,10 @@ defineEmits<{
 
 const formatForDisplay = useFormatForDisplay()
 const heldKeys = useHeldKeys()
+// Held modifiers in chord order, labeled for the platform
+const heldModifierLabel = computed(() =>
+  formatForDisplay(heldKeys.value.filter(isModifierKey).join('+') as Hotkey),
+)
 </script>
 
 <template>
@@ -69,11 +78,8 @@ const heldKeys = useHeldKeys()
           <span v-if="liveSteps.length > 0" class="held-hotkeys">{{
             formatForDisplay(liveSteps)
           }}</span>
-          <div v-else-if="heldKeys.length > 0" class="held-hotkeys">
-            <template v-for="(key, index) in heldKeys" :key="key">
-              <span v-if="index > 0" class="plus">+</span>
-              <kbd>{{ key }}</kbd>
-            </template>
+          <div v-else-if="heldModifierLabel" class="held-hotkeys">
+            <kbd>{{ heldModifierLabel }}</kbd>
           </div>
           <span v-else class="recording-text">Press chords, then Enter...</span>
         </div>

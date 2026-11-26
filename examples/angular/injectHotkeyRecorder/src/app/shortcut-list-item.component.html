@@ -4,16 +4,9 @@
     <div class="shortcut-hotkey">
       @if (isRecording()) {
         <div class="recording-indicator">
-          @if (heldKeys().length > 0) {
+          @if (heldModifierLabel()) {
             <div class="held-hotkeys">
-              @for (key of heldKeys(); track key; let i = $index) {
-                @if (i > 0) {
-                  <span class="plus">+</span>
-                }
-                <kbd>{{
-                  formatForDisplay({ key: key }, { useSymbols: true })
-                }}</kbd>
-              }
+              <kbd>{{ heldModifierLabel() }}</kbd>
             </div>
           } @else {
             <span class="recording-text">Press any key combination...</span>

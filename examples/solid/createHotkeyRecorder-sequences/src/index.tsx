@@ -9,6 +9,7 @@ import {
   createHotkeys,
   createHotkeyRecorder,
   HotkeysProvider,
+  isModifierKey,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { createSignal, Show, For } from 'solid-js'
@@ -394,6 +395,9 @@ function ShortcutListItem(props: {
 }) {
   const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = () =>
+    formatForDisplay(heldKeys().filter(isModifierKey).join('+') as Hotkey)
 
   return (
     <div class={`shortcut-item ${props.isEditing ? 'recording' : ''}`}>
@@ -436,13 +440,9 @@ function ShortcutListItem(props: {
                 <span class="held-hotkeys">
                   {formatForDisplay(props.liveSteps)}
                 </span>
-              ) : heldKeys().length > 0 ? (
+              ) : heldModifierLabel() ? (
                 <div class="held-hotkeys">
-                  {heldKeys().flatMap((key, index) =>
-                    index > 0
-                      ? [<span class="plus">+</span>, <kbd>{key}</kbd>]
-                      : [<kbd>{key}</kbd>],
-                  )}
+                  <kbd>{heldModifierLabel()}</kbd>
                 </div>
               ) : (
                 <span class="recording-text">Press chords, then Enter...</span>

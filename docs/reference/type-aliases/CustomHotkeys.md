@@ -9,7 +9,7 @@ title: CustomHotkeys
 type CustomHotkeys<T> = { -readonly [K in keyof T]?: Hotkey | null };
 ```
 
-Defined in: [app-hotkeys.ts:163](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L163)
+Defined in: [app-hotkeys.ts:164](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L164)
 
 The user's hotkeys that differ from the declared defaults, keyed by app
 hotkey id. This is the shape to save. `null` means the user unbound it.

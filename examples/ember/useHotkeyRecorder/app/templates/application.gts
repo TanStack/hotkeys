@@ -10,11 +10,11 @@ import {
   useHotkeys,
   useHotkeyRegistrations,
   useHeldKeys,
+  isModifierKey,
 } from '@tanstack/ember-hotkeys'
 import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
-const gt = (a: number, b: number) => a > b
 const or = <T, U>(a: T, b: U) => a || b
 interface Shortcut {
   id: string
@@ -322,6 +322,12 @@ class RegistrationsViewer extends Component {
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
   formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
+  }
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
   }
@@ -362,11 +368,8 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
         </div>
         <div class='shortcut-hotkey'>
           {{#if this.args.isEditing}}<div class='recording-indicator'>
-              {{#if (gt this.heldKeys.value.length 0)}}<div class='held-hotkeys'>
-                  {{#each this.heldKeys.value as |key index|}}
-                    {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
-                    <kbd>{{key}}</kbd>
-                  {{/each}}
+              {{#if this.heldModifierLabel}}<div class='held-hotkeys'>
+                  <kbd>{{this.heldModifierLabel}}</kbd>
                 </div>{{else}}<span class='recording-text'>
                   Press any key combination...
                 </span>{{/if}}

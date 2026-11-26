@@ -9,6 +9,6 @@ title: AppHotkeyChordOptions
 type AppHotkeyChordOptions = Pick<HotkeyChordOptions, DeclaredOptionKeys | "requireReset">;
 ```
 
-Defined in: [app-hotkeys.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L37)
+Defined in: [app-hotkeys.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L38)
 
 Declared options for an app hotkey whose default is a chord.

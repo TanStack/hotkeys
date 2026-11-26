@@ -469,6 +469,7 @@ describe('onRecord context', () => {
       kind: 'chord',
       event,
       parsedChord: expect.objectContaining({ key: 'S', ctrl: true }),
+      platform: 'windows',
     })
   })
 
@@ -490,7 +491,41 @@ describe('onRecord context', () => {
         expect.objectContaining({ key: 'G' }),
         expect.objectContaining({ key: 'H' }),
       ],
+      platform: 'windows',
     })
+  })
+
+  // A macOS Control+S is the Windows Mod+S, and a Windows Win+S is the
+  // macOS Mod+S, so an app that syncs bindings stores the platform too
+  it.each<[HotkeyPlatform, Press, string]>([
+    ['mac', { key: 's', code: 'KeyS', ctrlKey: true }, 'Control+S'],
+    ['windows', { key: 's', code: 'KeyS', metaKey: true }, 'Meta+S'],
+    ['mac', { key: 's', code: 'KeyS', metaKey: true }, 'Mod+S'],
+  ])('passes the platform it recorded on (%s)', (platform, press, hotkey) => {
+    const onRecord = vi.fn()
+    record(press, platform, { onRecord })
+    expect(onRecord).toHaveBeenCalledWith(
+      hotkey,
+      expect.objectContaining({ platform }),
+    )
+  })
+
+  it('lets validate reject the modifiers that differ by platform', () => {
+    // The recipe in the recording guide
+    const portable: HotkeyChordRecorderOptions['validate'] = (
+      _hotkey,
+      { parsedChord, platform },
+    ) =>
+      !(platform === 'mac' ? parsedChord.ctrl : parsedChord.meta) ||
+      'Use Ctrl or Cmd, Shift, and Alt.'
+    const press = (platform: HotkeyPlatform, init: Press) =>
+      record(init, platform, { validate: portable })
+    const ctrlS = { key: 's', code: 'KeyS', ctrlKey: true }
+    const metaS = { key: 's', code: 'KeyS', metaKey: true }
+    expect(press('mac', ctrlS).rejection?.reason).toBe('validation')
+    expect(press('windows', metaS).rejection?.reason).toBe('validation')
+    expect(press('mac', metaS).hotkey).toBe('Mod+S')
+    expect(press('windows', ctrlS).hotkey).toBe('Mod+S')
   })
 })
 

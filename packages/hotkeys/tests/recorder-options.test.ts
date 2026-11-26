@@ -99,6 +99,7 @@ it('passes chord or sequence validation context by recorded length', () => {
       expect.objectContaining({ key: 'G' }),
       expect.objectContaining({ key: 'H' }),
     ],
+    platform: 'mac',
   })
   recorder.start()
   press('g', 'KeyG')
@@ -107,5 +108,6 @@ it('passes chord or sequence validation context by recorded length', () => {
     kind: 'chord',
     event: expect.any(KeyboardEvent),
     parsedChord: expect.objectContaining({ key: 'G' }),
+    platform: 'mac',
   })
 })

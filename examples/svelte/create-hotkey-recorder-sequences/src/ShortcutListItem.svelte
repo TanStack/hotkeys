@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { getFormatForDisplay, getHeldKeys } from '@tanstack/svelte-hotkeys'
-  import type { HotkeySequence } from '@tanstack/svelte-hotkeys'
+  import {
+    getFormatForDisplay,
+    getHeldKeys,
+    isModifierKey,
+  } from '@tanstack/svelte-hotkeys'
+  import type { Hotkey, HotkeySequence } from '@tanstack/svelte-hotkeys'
   import type { Shortcut } from './types'
 
   interface Props {
@@ -33,6 +37,10 @@
 
   const formatForDisplay = getFormatForDisplay()
   const heldKeys = getHeldKeys()
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = $derived(
+    formatForDisplay(heldKeys.keys.filter(isModifierKey).join('+') as Hotkey),
+  )
 </script>
 
 <div class="shortcut-item" class:recording={isEditing}>
@@ -71,14 +79,9 @@
         <div class="recording-indicator">
           {#if liveSteps.length > 0}
             <span class="held-hotkeys">{formatForDisplay(liveSteps)}</span>
-          {:else if heldKeys.keys.length > 0}
+          {:else if heldModifierLabel}
             <div class="held-hotkeys">
-              {#each heldKeys.keys as key, index}
-                {#if index > 0}
-                  <span class="plus">+</span>
-                {/if}
-                <kbd>{key}</kbd>
-              {/each}
+              <kbd>{heldModifierLabel}</kbd>
             </div>
           {:else}
             <span class="recording-text">Press chords, then Enter...</span>

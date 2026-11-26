@@ -9,6 +9,6 @@ title: AppHotkeys
 type AppHotkeys = Readonly<Record<string, AppHotkey>>;
 ```
 
-Defined in: [app-hotkeys.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L99)
+Defined in: [app-hotkeys.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L100)
 
 A map of app hotkeys keyed by id.

@@ -1,6 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
+  isModifierKey,
   useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
@@ -367,6 +368,10 @@ function ShortcutListItem({
 }: ShortcutListItemProps) {
   const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = formatForDisplay(
+    heldKeys.filter(isModifierKey).join('+') as Hotkey,
+  )
 
   return (
     <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
@@ -403,14 +408,9 @@ function ShortcutListItem({
         <div className="shortcut-hotkey">
           {isEditing ? (
             <div className="recording-indicator">
-              {heldKeys.length > 0 ? (
+              {heldModifierLabel ? (
                 <div className="held-hotkeys">
-                  {heldKeys.map((key, index) => (
-                    <React.Fragment key={key}>
-                      {index > 0 && <span className="plus">+</span>}
-                      <kbd>{key}</kbd>
-                    </React.Fragment>
-                  ))}
+                  <kbd>{heldModifierLabel}</kbd>
                 </div>
               ) : (
                 <span className="recording-text">

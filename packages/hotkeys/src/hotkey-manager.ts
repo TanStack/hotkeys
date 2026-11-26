@@ -11,7 +11,7 @@ import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
 import { keysEqual } from './_keys'
 import { managerRef } from './_manager-ref'
 import { matchKeyboardEvent } from './_match'
-import { isRecordingEvent } from './_recording-guard'
+import { isRecordingEvent, onRecordingStart } from './_recording-guard'
 import {
   GLOBAL_SCOPE,
   defaultHotkeyOptions,
@@ -658,6 +658,19 @@ export class HotkeyManager {
 
   private constructor() {
     this.#platform = detectPlatform()
+    // The recorder consumes every key while recording, so no sequence in
+    // progress can continue across a recording.
+    onRecordingStart(() => {
+      let changed = false
+      for (const registration of this.registrations.state.values()) {
+        if (registration.kind === 'sequence' && registration.currentIndex > 0) {
+          registration.currentIndex = 0
+          this.#clearSequenceReset(registration.id)
+          changed = true
+        }
+      }
+      if (changed) this.#notify()
+    })
   }
 
   /**

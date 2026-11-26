@@ -1,7 +1,9 @@
-import { Component, input, output } from '@angular/core'
+import { Component, computed, input, output } from '@angular/core'
 import {
   injectFormatForDisplay,
   injectHeldKeys,
+  isModifierKey,
+  type Hotkey,
 } from '@tanstack/angular-hotkeys'
 
 @Component({
@@ -19,4 +21,10 @@ export class ShortcutListItemComponent {
 
   heldKeys = injectHeldKeys()
   readonly formatForDisplay = injectFormatForDisplay()
+  // Held modifiers in chord order, labeled for the platform
+  readonly heldModifierLabel = computed(() =>
+    this.formatForDisplay(
+      this.heldKeys().filter(isModifierKey).join('+') as Hotkey,
+    ),
+  )
 }

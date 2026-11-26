@@ -9,6 +9,6 @@ title: RegisteredAppHotkeyListItem
 type RegisteredAppHotkeyListItem = AppHotkeyListItem<RegisteredAppHotkeys[keyof RegisteredAppHotkeys]>;
 ```
 
-Defined in: [app-hotkeys.ts:394](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L394)
+Defined in: [app-hotkeys.ts:395](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L395)
 
 A cheat sheet row for one of the registered app hotkeys.

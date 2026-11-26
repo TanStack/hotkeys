@@ -441,11 +441,13 @@ With the default `recordBy: 'auto'`, the hotkey recorder writes portable strings
 While recording is active:
 
 - `Escape`, `Tab`, and `Shift+Tab` cancel so keyboard users aren't trapped (`recordTab: true` records Tab instead).
+- The window losing focus cancels and calls `onCancel`: switching apps or tabs, opening browser devtools, clicking into an iframe, or an OS shortcut such as Spotlight. Keys pressed elsewhere never reach the page, so a recording left running would take the first key pressed after coming back (`cancelOnBlur: false` keeps recording). A click elsewhere on the page doesn't cancel.
 - `Backspace` or `Delete` undoes the last sequence step, or clears when empty.
 - `Enter` commits multi-step sequences (`maxSteps: Infinity`).
 - Existing registered hotkeys pause automatically, while typing in other inputs passes through.
 - To show the modifiers held so far, join the held modifier keys from the key state tracker with `+` and pass them to `formatForDisplay`. Leave other keys out, because a string that starts with a non-modifier key formats as empty. It orders them as in a chord: `⌃ ⌥ ⇧ ⌘` on macOS, `Ctrl+Alt+Shift+Win` elsewhere.
 - `AltGr` presses are rejected unless `recordBy: 'key'`, except `AltGr+Home` on Windows which records as `Control+Alt+Home`.
+- Shortcuts that the browser or the operating system keeps never reach the page, so the recorder can't record them and shows no error: `Mod+T`, `Mod+N`, and `Mod+W` in Chrome, `Command+Tab` and `Command+Space` on macOS, and most `Win` shortcuts on Windows. Tell users which keys they can't use, next to the recorder.
 
 ## Held keys reset when the window loses focus
 

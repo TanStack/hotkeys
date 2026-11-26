@@ -92,6 +92,27 @@ Options can also be an accessor, such as `createHotkeyRecorder(() => ({ maxSteps
 | `Tab` or `Shift+Tab` (without `Control`, `Alt`, or `Meta`) | Cancels and lets focus move normally. In a text field, `Tab` moves focus without cancelling. Set `recordTab: true` to record `Tab` instead, and show "Press Escape to cancel" for keyboard accessibility. |
 | `Backspace` or `Delete` (no modifiers) | Removes the last sequence step, or stops and calls `onClear` when empty |
 
+The recorder also cancels and calls `onCancel` when the window loses focus, such as when the user switches apps or tabs, opens browser devtools, or clicks into an iframe. Set `cancelOnBlur: false` to keep recording. While debugging with devtools open, Chrome's **Rendering > Emulate a focused page** setting keeps the page focused.
+
+A click elsewhere on the page doesn't cancel, because the recorder doesn't know which element is your recorder. To cancel on a click outside it, listen for `pointerdown` while recording. Don't rely on the button's `blur` event: Safari and Firefox on macOS don't focus a button when it is clicked.
+
+```tsx
+let button: HTMLButtonElement | undefined
+
+createEffect(recorder.isRecording, (recording) => {
+  if (!recording) return
+  const onPointerDown = (event: PointerEvent) => {
+    if (!button?.contains(event.target as Node)) recorder.cancelRecording()
+  }
+  document.addEventListener('pointerdown', onPointerDown, true)
+  return () => document.removeEventListener('pointerdown', onPointerDown, true)
+})
+
+// <button ref={button} onClick={recorder.startRecording}>...</button>
+```
+
+Shortcuts that the browser or the operating system keeps, such as `Mod+T`, `Mod+N`, and `Mod+W` in Chrome or most `Win` shortcuts on Windows, never reach the page. The recorder can't see them, so it can't reject them either.
+
 Key auto-repeats and IME compositions never add steps. Typing inside other text fields passes through while recording (`Escape` still cancels), unless you pass `ignoreInputs: false` to record inside inputs. Note that `onClear` doesn't delete anything on its own. Decide in your callback whether clearing unbinds the shortcut or resets its default.
 
 ## Validate and check conflicts
@@ -123,6 +144,24 @@ createHotkeyRecorder({
 ```
 
 Rejected recordings keep the recorder active, and rejected sequences keep their captured `steps` so users can edit with `Backspace`.
+
+### Save hotkeys that work on another platform
+
+A recorded hotkey means the same keys on every platform when its modifiers are `Mod`, `Shift`, and `Alt`. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
+
+If your app syncs hotkeys between machines, pick one rule:
+
+- Store each hotkey with the platform it was recorded on, and use it only there. `context.platform` names it.
+- Reject the platform-specific modifiers, so every saved hotkey is portable:
+
+```tsx
+createHotkeyRecorder({
+  validate: (_hotkey, { parsedChord, platform }) =>
+    !(platform === 'mac' ? parsedChord.ctrl : parsedChord.meta) ||
+    'Use Ctrl or Cmd, Shift, and Alt.',
+  onRecord: (hotkey) => saveHotkey(hotkey),
+})
+```
 
 ### Check for conflicts
 
@@ -237,7 +276,8 @@ function ShortcutSettings() {
 | Option | Default | Description |
 | --- | --- | --- |
 | `onRecord` | Required | Called with the recorded `hotkey` and `context` when committed |
-| `onCancel` | None | Called on `Escape`, `Tab`, `Shift+Tab`, or `cancelRecording()` |
+| `onCancel` | None | Called on `Escape`, `Tab`, `Shift+Tab`, the window losing focus, or `cancelRecording()` |
+| `cancelOnBlur` | `true` | Cancels when the window loses focus. Set `false` to keep recording |
 | `onClear` | None | Called when `Backspace` or `Delete` is pressed with no recorded steps |
 | `maxSteps` | `1` | `1` for chords, `Infinity` for sequences |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether `Enter` commits (`'enter'`) or records (`'none'`) |

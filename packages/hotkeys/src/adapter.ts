@@ -43,6 +43,8 @@ import type {
 } from './hotkey-manager'
 import type {
   HotkeyChordRecorderOptions,
+  HotkeyRecorder,
+  HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from './hotkey-recorder'
 import type {
@@ -684,4 +686,24 @@ export function resolveRefTarget(
   return target !== null && typeof target === 'object' && 'current' in target
     ? target.current
     : target
+}
+
+/** The option keys each recorder last received from `syncRecorderOptions`. */
+const syncedRecorderKeys = new WeakMap<HotkeyRecorder, Array<string>>()
+
+/**
+ * Gives a recorder the full set of options an adapter resolved. Unlike
+ * `setOptions`, which merges, an option the caller stopped passing, such as
+ * a conditional `validate`, stops applying.
+ */
+export function syncRecorderOptions(
+  recorder: HotkeyRecorder,
+  options: HotkeyRecorderOptions,
+): void {
+  const next: Record<string, unknown> = { ...options }
+  for (const key of syncedRecorderKeys.get(recorder) ?? []) {
+    if (!(key in next)) next[key] = undefined
+  }
+  syncedRecorderKeys.set(recorder, Object.keys(next))
+  recorder.setOptions(next)
 }

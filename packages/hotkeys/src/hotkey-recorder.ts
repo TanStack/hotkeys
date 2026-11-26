@@ -8,6 +8,7 @@ import {
   beginRecording,
   captureRecordingEvent,
   endRecording,
+  stopRecordingRelease,
 } from './_recording-guard'
 import { createStore } from './_store'
 import { findHotkeyConflicts } from './conflicts'
@@ -89,6 +90,12 @@ export interface HotkeyChordRecorderValidationContext {
   event: KeyboardEvent
   /** The chord with `Mod` resolved for the recorder's platform. */
   parsedChord: ParsedHotkeyChord
+  /**
+   * The platform the chord was recorded on. `Control` recorded on macOS and
+   * `Meta` recorded elsewhere mean other keys on the other platforms, so
+   * store it with the hotkey if users sync bindings across machines.
+   */
+  platform: HotkeyPlatform
 }
 
 /** Validation context for a recorded sequence. */
@@ -98,6 +105,8 @@ export interface HotkeySequenceRecorderValidationContext {
   events: ReadonlyArray<KeyboardEvent>
   /** Each step with `Mod` resolved for the recorder's platform. */
   parsedSequence: Array<ParsedHotkeyChord>
+  /** The platform the sequence was recorded on. */
+  platform: HotkeyPlatform
 }
 
 /**
@@ -137,8 +146,18 @@ export interface HotkeyRecorderActions {
 export type HotkeyRecorderCommitKeys = 'enter' | 'none'
 
 interface HotkeyRecorderBaseOptions extends RecorderOptions {
-  /** Optional callback when recording is cancelled: Escape, or Tab without `recordTab` */
+  /**
+   * Optional callback when recording is cancelled: Escape, Tab without
+   * `recordTab`, or the window losing focus with `cancelOnBlur`
+   */
   onCancel?: () => void
+  /**
+   * Whether to cancel recording when the window loses focus, as when the user
+   * switches apps or tabs, opens browser devtools, or clicks into an iframe.
+   * Keys pressed elsewhere never reach the page. Focus moving to another
+   * element on the page doesn't cancel. Default: true
+   */
+  cancelOnBlur?: boolean
   /**
    * Optional callback when the recording is cleared: Backspace/Delete with no
    * modifiers and no recorded steps
@@ -235,7 +254,8 @@ const initialState: HotkeyRecorderState = {
  * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`.
  * Backspace/Delete removes the last step, and on an empty recording calls
  * `onClear`. Escape cancels. Tab and Shift+Tab cancel and move focus unless
- * `recordTab` is true. A one-step result is a chord string.
+ * `recordTab` is true. The window losing focus cancels unless `cancelOnBlur`
+ * is false. A one-step result is a chord string.
  *
  * State Management:
  * - Uses TanStack Store for reactive state management
@@ -272,6 +292,10 @@ export class HotkeyRecorder {
   #platform: HotkeyPlatform
   #events: Array<KeyboardEvent> = []
   #idleTimer: ReturnType<typeof setTimeout> | null = null
+  // Switching apps or tabs blurs the window
+  #blurHandler = () => {
+    if (this.#options.cancelOnBlur !== false) this.cancel()
+  }
 
   get #options(): ResolvedRecorderOptions {
     return {
@@ -375,7 +399,9 @@ export class HotkeyRecorder {
       }
       event.preventDefault()
       event.stopPropagation()
+      // A repeat continues a press the page may have seen begin.
       if (event.repeat) return
+      stopRecordingRelease(event)
 
       if (event.key === 'Escape') {
         this.cancel()
@@ -445,7 +471,11 @@ export class HotkeyRecorder {
     }
 
     this.#keydownHandler = handler
-    listen(document, 'keydown', handler as EventListener, true)
+    // Window capture runs before page listeners on the document and below, so
+    // a dialog's Escape listener doesn't close it while recording. A listener
+    // that started this recording during a key press doesn't see that press.
+    listen(window, 'keydown', handler as EventListener, true)
+    window.addEventListener('blur', this.#blurHandler)
   }
 
   /**
@@ -481,8 +511,14 @@ export class HotkeyRecorder {
             kind: 'chord',
             event: this.#events[this.#events.length - 1]!,
             parsedChord: parsedSequence[0]!,
+            platform,
           }
-        : { kind: 'sequence', events: [...this.#events], parsedSequence }
+        : {
+            kind: 'sequence',
+            events: [...this.#events],
+            parsedSequence,
+            platform,
+          }
     const accepted = options.validate?.(hotkey, context)
     if (accepted !== undefined && accepted !== true) {
       rejectAndKeepRecording({
@@ -522,7 +558,8 @@ export class HotkeyRecorder {
     this.#clearIdleTimer()
     // Without a document, start() never added a listener
     if (this.#keydownHandler) {
-      document.removeEventListener('keydown', this.#keydownHandler, true)
+      window.removeEventListener('keydown', this.#keydownHandler, true)
+      window.removeEventListener('blur', this.#blurHandler)
       this.#keydownHandler = null
     }
     this.store.setState(() => ({ ...initialState, recordedHotkey }))
@@ -544,6 +581,8 @@ export class HotkeyRecorder {
    * the onCancel callback if provided.
    */
   cancel(): void {
+    // Nothing to cancel while idle, so the last recorded hotkey stays.
+    if (!this.store.state.isRecording) return
     this.#finish(null)
     this.#options.onCancel?.()
   }

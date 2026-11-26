@@ -66,22 +66,12 @@
                       <div class="shortcut-hotkey">
                         <template x-if="props().isEditing">
                           <div class="recording-indicator">
-                            <template x-if="heldKeys.value.length > 0">
+                            <template x-if="heldModifierLabel">
                               <div class="held-hotkeys">
-                                <template
-                                  x-for="(key, index) in (heldKeys.value)"
-                                  :key="key"
-                                >
-                                  <span>
-                                    <template x-if="index > 0">
-                                      <span class="plus">+</span>
-                                    </template>
-                                    <kbd x-text="key"></kbd>
-                                  </span>
-                                </template>
+                                <kbd x-text="heldModifierLabel"></kbd>
                               </div>
                             </template>
-                            <template x-if="!(heldKeys.value.length > 0)">
+                            <template x-if="!heldModifierLabel">
                               <span class="recording-text">
                                 Press any key combination...
                               </span>

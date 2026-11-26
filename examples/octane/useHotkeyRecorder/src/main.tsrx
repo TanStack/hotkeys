@@ -2,6 +2,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
+  isModifierKey,
   useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
@@ -315,6 +316,10 @@ function ShortcutListItem({
 }: ShortcutListItemProps) @{
   const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = formatForDisplay(
+    heldKeys.filter(isModifierKey).join('+') as Hotkey,
+  )
   <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
         <div className="shortcut-item-content">
           <div className="shortcut-action">
@@ -330,12 +335,8 @@ function ShortcutListItem({
           </div>
           <div className="shortcut-hotkey">
             @if (isEditing) { <div className="recording-indicator">
-                @if (heldKeys.length > 0) { <div className="held-hotkeys">
-                    @for (const [index, key] of Array.from(heldKeys.entries()); key key) {
-  <>
-                        @if (index > 0) { <span className="plus">+</span> }
-                        <kbd>{key}</kbd>
-                      </> }
+                @if (heldModifierLabel) { <div className="held-hotkeys">
+                    <kbd>{heldModifierLabel}</kbd>
                   </div> } @else { <span className="recording-text">
                     Press any key combination...
                   </span> }

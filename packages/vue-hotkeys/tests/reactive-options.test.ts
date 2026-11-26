@@ -132,3 +132,33 @@ it('refreshes all provider option groups without replacing registrations or acti
   }
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
 })
+
+it('stops applying a recorder option the caller no longer passes', async () => {
+  const strict = ref(true)
+  const onRecord = vi.fn()
+  let recorder!: ReturnType<typeof useHotkeyRecorder>
+  mount(
+    defineComponent({
+      setup() {
+        recorder = useHotkeyRecorder(() =>
+          strict.value
+            ? { onRecord, validate: () => 'reserved' as const }
+            : { onRecord },
+        )
+        return () => h('div')
+      },
+    }),
+  )
+  strict.value = false
+  await nextTick()
+  recorder.startRecording()
+  document.dispatchEvent(
+    new KeyboardEvent('keydown', {
+      key: 'k',
+      code: 'KeyK',
+      ctrlKey: true,
+      bubbles: true,
+    }),
+  )
+  expect(onRecord).toHaveBeenCalledOnce()
+})

@@ -10,6 +10,7 @@ import {
   useHotkeys,
   useHotkeyRegistrations,
   useHeldKeys,
+  isModifierKey,
 } from '@tanstack/ember-hotkeys'
 import type {
   EmberHotkeyDefinition,
@@ -352,6 +353,12 @@ class RegistrationsViewer extends Component {
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
   formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
+  }
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
   }
@@ -401,13 +408,10 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
           {{#if this.args.isEditing}}<div class='recording-indicator'>
               {{#if (gt this.args.liveSteps.length 0)}}<span class='held-hotkeys'>
                   {{this.liveSequenceText}}
-                </span>{{else if (gt this.heldKeys.value.length 0)}}<div
+                </span>{{else if this.heldModifierLabel}}<div
                   class='held-hotkeys'
                 >
-                  {{#each this.heldKeys.value as |key index|}}
-                    {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
-                    <kbd>{{key}}</kbd>
-                  {{/each}}
+                  <kbd>{{this.heldModifierLabel}}</kbd>
                 </div>{{else}}<span class='recording-text'>
                   Press chords, then Enter...
                 </span>{{/if}}

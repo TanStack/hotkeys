@@ -1,5 +1,6 @@
 import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
 import { hotkeySteps } from './_chord'
+import { canWarn } from './_dev'
 import { ownValue } from './_keys'
 import { GLOBAL_SCOPE } from './_registration'
 import { stepsOverlap } from './_steps'
@@ -599,6 +600,8 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
    * `context` for a recorded hotkey, as for `findConflicts`.
    *
    * @returns Conflicting app hotkeys. When any exist, nothing changes.
+   * Nothing changes either for an unknown id or a value that isn't a valid
+   * hotkey, such as `''`, and both return an empty array.
    */
   setCustomHotkey(
     id: keyof T & string,
@@ -606,8 +609,19 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     recordedWith?: RecordedKeyPresses,
   ): Array<AppHotkey> {
     const appHotkey = this.get(id)
-    if (!appHotkey) return []
-    const next = hotkey === null ? null : simplifyHotkey(hotkey)
+    // Loading drops what it can't parse, so refuse to save it
+    const next = parseCustomHotkey(hotkey)
+    if (!appHotkey || next === undefined) {
+      // Dev-only guard: see `canWarn`
+      if (canWarn && process.env.NODE_ENV !== 'production') {
+        console.warn(
+          appHotkey
+            ? `[hotkeys] setCustomHotkey('${id}') ignored an invalid hotkey: ${JSON.stringify(hotkey)}`
+            : `[hotkeys] setCustomHotkey ignored an unknown app hotkey id: '${id}'`,
+        )
+      }
+      return []
+    }
     if (next !== null) {
       const conflicts = this.findConflicts(id, next, recordedWith)
       if (conflicts.length > 0) return conflicts

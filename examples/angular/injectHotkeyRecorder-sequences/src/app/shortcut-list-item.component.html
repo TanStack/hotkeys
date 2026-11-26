@@ -8,16 +8,9 @@
             <span class="held-hotkeys">{{
               formatForDisplay(liveSteps())
             }}</span>
-          } @else if (heldKeys().length > 0) {
+          } @else if (heldModifierLabel()) {
             <div class="held-hotkeys">
-              @for (key of heldKeys(); track key; let i = $index) {
-                @if (i > 0) {
-                  <span class="plus">+</span>
-                }
-                <kbd>{{
-                  formatForDisplay({ key: key }, { useSymbols: true })
-                }}</kbd>
-              }
+              <kbd>{{ heldModifierLabel() }}</kbd>
             </div>
           } @else {
             <span class="recording-text">Press chords, then Enter…</span>

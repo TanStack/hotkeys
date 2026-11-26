@@ -14,7 +14,7 @@ function isHotkeyHintVisible(
 ): boolean;
 ```
 
-Defined in: [adapter.ts:616](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L616)
+Defined in: [adapter.ts:618](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L618)
 
 Whether a hotkey's hint shows: its modifiers are held and a registration
 that can fire exists. App hotkeys resolve through `appHotkeysStore`.

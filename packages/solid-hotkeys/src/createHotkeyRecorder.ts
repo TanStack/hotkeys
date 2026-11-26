@@ -1,5 +1,9 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { resolveMaybeGetter, withDefaults } from '@tanstack/hotkeys/adapter'
+import {
+  resolveMaybeGetter,
+  syncRecorderOptions,
+  withDefaults,
+} from '@tanstack/hotkeys/adapter'
 import { createRenderEffect, onCleanup } from 'solid-js'
 import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
@@ -84,7 +88,7 @@ export function createHotkeyRecorder(
 
   // Apply the options, and again whenever they change
   createRenderEffect(resolve, (resolved) => {
-    recorder.setOptions(resolved)
+    syncRecorderOptions(recorder, resolved)
   })
 
   return {

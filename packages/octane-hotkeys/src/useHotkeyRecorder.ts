@@ -1,5 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { syncRecorderOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { useLayoutEffect, useRef } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { select, subSlot } from './internal'
@@ -56,7 +56,7 @@ export function useHotkeyRecorder(
   const [recorder, actions] = ref.current
   useLayoutEffect(
     () => {
-      recorder.setOptions(merged)
+      syncRecorderOptions(recorder, merged)
     },
     null,
     subSlot(slot, 'options'),
