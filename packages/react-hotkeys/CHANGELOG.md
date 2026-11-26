@@ -1,5 +1,13 @@
 # @tanstack/react-hotkeys
 
+## 0.27.4
+
+### Patch Changes
+
+- [#307](https://github.com/TanStack/hotkeys/pull/307) [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6) - Hotkeys and provider scopes now stop while a Suspense boundary hides content it already showed, and start again when the content comes back. Before, a hotkey behind the fallback kept firing, and an exclusive `HotkeysProvider` behind it kept other hotkeys suspended. `useHotkey`, `useHotkeys`, and the provider's scope now register in a layout effect, as the Preact adapter already does, so they also register before the browser paints.
+- Updated dependencies [[`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6)]:
+  - @tanstack/hotkeys@0.35.0
+
 ## 0.27.3
 
 ### Patch Changes

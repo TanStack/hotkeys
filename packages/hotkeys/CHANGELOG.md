@@ -1,5 +1,19 @@
 # @tanstack/hotkeys
 
+## 0.35.0
+
+### Minor Changes
+
+- [#307](https://github.com/TanStack/hotkeys/pull/307) [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6) - Remove `conflictBehavior: 'replace'`. It silently unregistered the earlier of two duplicate registrations, so whichever mounted last won and the earlier one never came back, and in framework adapters the next render registered the earlier one again. Use scopes for a hotkey that takes over a key and hands it back, and register a hotkey once at a shared owner when two components would register the same one. `'warn'` (the default), `'error'`, and `'allow'` remain.
+
+- [#307](https://github.com/TanStack/hotkeys/pull/307) [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6) - When the same sequence completes in two active scopes, only the nested or most recently activated scope's sequence fires, as chords already do and as `activateScope` describes. Before, both fired. Sequences in every active scope still advance, so a dialog's `['G', 'G']` doesn't stop a page's `['G', 'I']`, and the scope decides before the match score.
+
+- [#307](https://github.com/TanStack/hotkeys/pull/307) [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6) - A key that continues a sequence in progress can no longer start another sequence. With `['A', 'B', 'C']` and `['B', 'C']` registered, typing A B C now runs only `['A', 'B', 'C']`, as in Vim and VS Code. Chords already worked this way. Two cases change: with `['G', 'G']` and `['G', 'G', 'G']`, `['G', 'G']` starts again on the fourth G and fires on the fifth, and with `['A', 'B', 'C']` and `['B', 'D']`, typing A B D no longer fires `['B', 'D']`.
+
+### Patch Changes
+
+- [#307](https://github.com/TanStack/hotkeys/pull/307) [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6) - A hotkey that a key press registers, enables, or brings into an active scope no longer fires on that same press. Before, pressing Enter on a button that opens a dialog also fired the dialog's `Enter` hotkey, because the dialog registered it, or activated its scope, while the press was still being handled. This also covers a click or focus handler that the key press triggers. A keyup sequence doesn't start on the release of that press either. Holding a key behaves as before, so its auto-repeats still reach hotkeys that registered during the hold, and a keyup hotkey that its own keydown enables, to end a mode, still fires on that release.
+
 ## 0.34.0
 
 ### Minor Changes

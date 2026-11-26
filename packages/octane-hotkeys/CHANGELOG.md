@@ -1,5 +1,12 @@
 # @tanstack/octane-hotkeys
 
+## 0.15.5
+
+### Patch Changes
+
+- Updated dependencies [[`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6), [`15d225f`](https://github.com/TanStack/hotkeys/commit/15d225f5a0883143b484985215675251f6d2cbb6)]:
+  - @tanstack/hotkeys@0.35.0
+
 ## 0.15.4
 
 ### Patch Changes
