@@ -18859,13 +18859,13 @@
       "evidence": ["packages/hotkeys/tests/hotkey-recorder-steps.test.ts"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "b1fbf6199d320050596c6f21c2cf62c4bb935f4751dd788038b550e13ed9ab48",
+      "fingerprint": "aae6743f0762411850e3b7a6517dd1a82069c9d9ff68f1b2187886063b5e23e9",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "a6049fadcf5452efc8f8a7a87ccf7704457c92d60c3bb281654d33138c6b9378"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "63f3a12c4a39215a4f164c0760610723e09db19227ef1b0497475dfc002afced"
       },
-      "head": "c3bf5eef29f362ec3cbdd2cc78db43b19e05d976",
+      "head": "ad3f95cc37d73b534fb69fbe8194de2597cb9685",
       "outcome": "no-change",
-      "reason": "Recording guard refinement for lost keyups; no skill guidance changes.",
+      "reason": "Recording guard refinement for a held key released after Command; no skill guidance changes.",
       "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
@@ -23832,13 +23832,13 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:packages/hotkeys/src/_recording-guard.ts": {
-      "fingerprint": "6699554ba07e6e5b8c1c5bc05fe247e2922cbb3d2acb4ff5158b750d8d4b30b9",
+      "fingerprint": "bcd87acdb980c22c08d531fb5a3e627bc3fd2e2ba409c8744a986902d960b063",
       "snapshot": {
-        "packages/hotkeys/src/_recording-guard.ts": "07b081c1a12d6c7169773d3f8893409069726e3bb5f22370c333f6aaea00770f"
+        "packages/hotkeys/src/_recording-guard.ts": "6715c45929d2d1729289504143460b9f5df046f08dd8074d25adcb068b608b1e"
       },
-      "head": "c3bf5eef29f362ec3cbdd2cc78db43b19e05d976",
+      "head": "ad3f95cc37d73b534fb69fbe8194de2597cb9685",
       "outcome": "no-change",
-      "reason": "Recording guard refinement for lost keyups; no skill guidance changes.",
+      "reason": "Recording guard refinement for a held key released after Command; no skill guidance changes.",
       "evidence": ["hotkey-recorder.test.ts"]
     }
   }

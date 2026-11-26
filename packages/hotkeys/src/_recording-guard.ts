@@ -27,14 +27,11 @@ function release(event: KeyboardEvent): void {
   if (stopped.delete(id)) event.stopPropagation()
   // A key whose keyup never comes, such as one macOS swallows while Command
   // is held, must not block hotkeys, so releasing a modifier ends the chord.
-  // Its keyup stays hidden until it comes, unless Command swallowed it.
-  const modifier = normalizeKeyName(event.key)
-  if (MODIFIER_KEYS.has(modifier)) {
+  // Its keyup stays hidden in case it still comes. A new press of the key
+  // or blur ends that.
+  if (MODIFIER_KEYS.has(normalizeKeyName(event.key))) {
     for (const [id, key] of pending) {
-      if (!MODIFIER_KEYS.has(key)) {
-        pending.delete(id)
-        if (modifier === 'Meta') stopped.delete(id)
-      }
+      if (!MODIFIER_KEYS.has(key)) pending.delete(id)
     }
   }
   cleanup()

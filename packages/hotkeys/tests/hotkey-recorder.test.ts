@@ -907,6 +907,31 @@ describe('HotkeyRecorder guard edge cases', () => {
     expect(released).toEqual(['Control'])
   })
 
+  // Hold Command, press Escape to cancel, release Command, then Escape.
+  it('keeps hiding a held key release after Command is released', () => {
+    const released: Array<string> = []
+    const onKeyup = (event: KeyboardEvent) => released.push(event.key)
+    document.addEventListener('keyup', onKeyup)
+    const recorder = createRecorder({ onRecord: vi.fn(), onCancel: vi.fn() })
+    keydown({
+      key: 'Meta',
+      code: 'MetaLeft',
+      metaKey: true,
+      target: document.body,
+    })
+    recorder.start()
+    keydown({
+      key: 'Escape',
+      code: 'Escape',
+      metaKey: true,
+      target: document.body,
+    })
+    keyup({ key: 'Meta', code: 'MetaLeft', target: document.body })
+    keyup({ key: 'Escape', code: 'Escape', target: document.body })
+    document.removeEventListener('keyup', onKeyup)
+    expect(released).toEqual(['Meta'])
+  })
+
   it('prevents the default action of repeats after a commit', () => {
     const recorder = createRecorder({ onRecord: vi.fn() })
     recorder.start()
