@@ -9,6 +9,7 @@ import {
   createHotkeys,
   createHotkeyRegistrations,
   HotkeysProvider,
+  isModifierKey,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { createSignal, Show, For } from 'solid-js'
@@ -21,8 +22,6 @@ interface Shortcut {
   description: string
   hotkey: Hotkey | ''
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 function createId(): string {
@@ -362,12 +361,9 @@ function ShortcutListItem(props: {
 }) {
   const formatForDisplay = createFormatForDisplay()
   const heldKeys = createHeldKeys()
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
-  const heldModifiers = () =>
-    heldKeys()
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = () =>
+    formatForDisplay(heldKeys().filter(isModifierKey).join('+') as Hotkey)
 
   return (
     <div class={`shortcut-item ${props.isEditing ? 'recording' : ''}`}>
@@ -406,16 +402,9 @@ function ShortcutListItem(props: {
         <div class="shortcut-hotkey">
           {props.isEditing ? (
             <div class="recording-indicator">
-              {heldModifiers().length > 0 ? (
+              {heldModifierLabel() ? (
                 <div class="held-hotkeys">
-                  {heldModifiers().flatMap((key, index) =>
-                    index > 0
-                      ? [
-                          <span class="plus">+</span>,
-                          <kbd>{formatForDisplay({ key })}</kbd>,
-                        ]
-                      : [<kbd>{formatForDisplay({ key })}</kbd>],
-                  )}
+                  <kbd>{heldModifierLabel()}</kbd>
                 </div>
               ) : (
                 <span class="recording-text">Press any key combination...</span>

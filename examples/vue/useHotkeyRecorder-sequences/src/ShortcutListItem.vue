@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { useFormatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
+import {
+  isModifierKey,
+  useFormatForDisplay,
+  useHeldKeys,
+} from '@tanstack/vue-hotkeys'
 import { computed } from 'vue'
-import type { HotkeySequence } from '@tanstack/vue-hotkeys'
+import type { Hotkey, HotkeySequence } from '@tanstack/vue-hotkeys'
 import type { Shortcut } from './types'
 
 defineProps<{
@@ -21,16 +25,11 @@ defineEmits<{
   delete: []
 }>()
 
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
-
 const formatForDisplay = useFormatForDisplay()
 const heldKeys = useHeldKeys()
-// Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-// Ctrl Alt Shift Win elsewhere. The next other key ends the step.
-const heldModifiers = computed(() =>
-  heldKeys.value
-    .filter((key) => MODIFIER_ORDER.includes(key))
-    .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b)),
+// Held modifiers in chord order, labeled for the platform
+const heldModifierLabel = computed(() =>
+  formatForDisplay(heldKeys.value.filter(isModifierKey).join('+') as Hotkey),
 )
 </script>
 
@@ -79,11 +78,8 @@ const heldModifiers = computed(() =>
           <span v-if="liveSteps.length > 0" class="held-hotkeys">{{
             formatForDisplay(liveSteps)
           }}</span>
-          <div v-else-if="heldModifiers.length > 0" class="held-hotkeys">
-            <template v-for="(key, index) in heldModifiers" :key="key">
-              <span v-if="index > 0" class="plus">+</span>
-              <kbd>{{ formatForDisplay({ key }) }}</kbd>
-            </template>
+          <div v-else-if="heldModifierLabel" class="held-hotkeys">
+            <kbd>{{ heldModifierLabel }}</kbd>
           </div>
           <span v-else class="recording-text">Press chords, then Enter...</span>
         </div>

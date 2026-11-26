@@ -4,6 +4,7 @@ import {
   HotkeyRecorderController,
   HotkeyRegistrationsController,
   getHotkeyManager,
+  isModifierKey,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
@@ -16,8 +17,6 @@ interface Shortcut {
   description: string
   hotkey: Hotkey | ''
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 function createId(): string {
@@ -235,11 +234,10 @@ export class MyApp extends LitElement {
 
   render() {
     const formatForDisplay = this.formatForDisplay.format
-    // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-    // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
-    const heldModifiers = this.heldKeys.value
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+    // Held modifiers in chord order, labeled for the platform
+    const heldModifierLabel = formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
 
     return html`
       <div class="app">
@@ -313,23 +311,10 @@ export class MyApp extends LitElement {
                             ? html`
                                 <div class="recording-indicator">
                                   ${
-                                    heldModifiers.length > 0
+                                    heldModifierLabel
                                       ? html`
                                           <div class="held-hotkeys">
-                                            ${heldModifiers.map(
-                                              (key, index) => html`
-                                                ${
-                                                  index > 0
-                                                    ? html`<span class="plus"
-                                                        >+</span
-                                                      >`
-                                                    : nothing
-                                                }
-                                                <kbd
-                                                  >${formatForDisplay({ key })}</kbd
-                                                >
-                                              `,
-                                            )}
+                                            <kbd>${heldModifierLabel}</kbd>
                                           </div>
                                         `
                                       : html`

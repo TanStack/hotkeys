@@ -1,6 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
+  isModifierKey,
   useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
@@ -22,8 +23,6 @@ interface Shortcut {
   /** A chord or a sequence; null when unassigned */
   hotkey: Hotkey | null
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 function createId(): string {
@@ -398,11 +397,10 @@ function ShortcutListItem({
 }: ShortcutListItemProps) {
   const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
-  const heldModifiers = heldKeys
-    .filter((key) => MODIFIER_ORDER.includes(key))
-    .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = formatForDisplay(
+    heldKeys.filter(isModifierKey).join('+') as Hotkey,
+  )
 
   return (
     <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
@@ -443,14 +441,9 @@ function ShortcutListItem({
                 <span className="held-hotkeys">
                   {formatForDisplay(liveSteps)}
                 </span>
-              ) : heldModifiers.length > 0 ? (
+              ) : heldModifierLabel ? (
                 <div className="held-hotkeys">
-                  {heldModifiers.map((key, index) => (
-                    <React.Fragment key={key}>
-                      {index > 0 && <span className="plus">+</span>}
-                      <kbd>{formatForDisplay({ key })}</kbd>
-                    </React.Fragment>
-                  ))}
+                  <kbd>{heldModifierLabel}</kbd>
                 </div>
               ) : (
                 <span className="recording-text">

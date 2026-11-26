@@ -2,6 +2,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
+  isModifierKey,
   useFormatForDisplay,
   useHeldKeys,
   useHotkeyRegistrations,
@@ -20,8 +21,6 @@ interface Shortcut {
   /** A chord or a sequence; null when unassigned */
   hotkey: Hotkey | null
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 
@@ -348,11 +347,10 @@ function ShortcutListItem({
 }: ShortcutListItemProps) @{
   const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
-  const heldModifiers = heldKeys
-    .filter((key) => MODIFIER_ORDER.includes(key))
-    .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = formatForDisplay(
+    heldKeys.filter(isModifierKey).join('+') as Hotkey,
+  )
   <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
         <div className="shortcut-item-content">
           <div className="shortcut-action">
@@ -370,12 +368,8 @@ function ShortcutListItem({
             @if (isEditing) { <div className="recording-indicator">
                 @if (liveSteps.length > 0) { <span className="held-hotkeys">
                     {formatForDisplay(liveSteps)}
-                  </span> } @else { @if (heldModifiers.length > 0) { <div className="held-hotkeys">
-                    @for (const [index, key] of Array.from(heldModifiers.entries()); key key) {
-  <>
-                        @if (index > 0) { <span className="plus">+</span> }
-                        <kbd>{formatForDisplay({ key })}</kbd>
-                      </> }
+                  </span> } @else { @if (heldModifierLabel) { <div className="held-hotkeys">
+                    <kbd>{heldModifierLabel}</kbd>
                   </div> } @else { <span className="recording-text">
                     Press chords, then Enter...
                   </span> } }

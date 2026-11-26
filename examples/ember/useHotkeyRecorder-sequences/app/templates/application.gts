@@ -10,6 +10,7 @@ import {
   useHotkeys,
   useHotkeyRegistrations,
   useHeldKeys,
+  isModifierKey,
 } from '@tanstack/ember-hotkeys'
 import type {
   EmberHotkeyDefinition,
@@ -29,8 +30,6 @@ interface Shortcut {
   /** A chord or a sequence; null when unassigned */
   hotkey: Hotkey | null
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 
@@ -354,13 +353,11 @@ class RegistrationsViewer extends Component {
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
   formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
-  get heldModifierLabels() {
-    return this.heldKeys.value
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
-      .map((key) => this.formatForDisplay({ key }))
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
   }
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
@@ -411,13 +408,10 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
           {{#if this.args.isEditing}}<div class='recording-indicator'>
               {{#if (gt this.args.liveSteps.length 0)}}<span class='held-hotkeys'>
                   {{this.liveSequenceText}}
-                </span>{{else if (gt this.heldModifierLabels.length 0)}}<div
+                </span>{{else if this.heldModifierLabel}}<div
                   class='held-hotkeys'
                 >
-                  {{#each this.heldModifierLabels as |label index|}}
-                    {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
-                    <kbd>{{label}}</kbd>
-                  {{/each}}
+                  <kbd>{{this.heldModifierLabel}}</kbd>
                 </div>{{else}}<span class='recording-text'>
                   Press chords, then Enter...
                 </span>{{/if}}

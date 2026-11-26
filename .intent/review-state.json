@@ -3160,24 +3160,24 @@
       ]
     },
     "source:examples/alpine/createHotkeyRecorder-sequences/src/main.ts": {
-      "fingerprint": "e7546319c61d86da8fd1cc9cf2443e604f6ab13a440633f939319a4b32de4cad",
+      "fingerprint": "d97a2515be2f38ffb5ff2e9c1e14a16056f928616b1e86cd95b468a50339bbcd",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "6551af27ffc8ff623d6db8c8dbea70085cd97062f96e5b8fa339f6f985a51fe9"
+        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "de7d78440d0c7a0986a8139082260744f9a8df6fd5932a5b4bde564d32cc0355"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/alpine/createHotkeyRecorder/src/main.ts": {
-      "fingerprint": "d086ddc960cd8d11f3e97504fe763001e1434316fb3751fae9838ad27e070204",
+      "fingerprint": "dd123a7993ad6d73aa1b2e5703395e80eca112dedc308615f1c658e659d3fff7",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder/src/main.ts": "616c1b0e95e94db820aa21d9d97ded1ae85b24aacec78682e76b7d3277732614"
+        "examples/alpine/createHotkeyRecorder/src/main.ts": "c63a9252b1a05bfbc8d5b41c245e68793eea29eba15c71867f31eb0bebc06cb2"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/alpine/createHotkeys-sequences/src/main.ts": {
       "fingerprint": "41fa53110b9d6c37af1c1e532c788ab33ab3dbaab0c91a0b15c0cc45eda88d2d",
@@ -6390,44 +6390,44 @@
       ]
     },
     "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": {
-      "fingerprint": "589594da777955cc1ece5c9082d416c656e53bca0639dc5e3229ba7ffbaa7100",
+      "fingerprint": "19b12cc6aae91d56a670f1eb9b203be80b8d6234c68be956fb694d9bfc9dee3f",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": "116a3e95f7cb01791e214e63c012d9cc3291df551c1607ccec8bd638bef89a10"
+        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": "5d556fccfa71e2b665e1d4b219b03d4c78f053ce1d28b664fd4b06e9bed545a0"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": {
-      "fingerprint": "2ee33f4353b1cf7768fec0001e2edd218237fcee70ecce48c7fd0826d0318440",
+      "fingerprint": "f8227599580ac8ec04e14585939b7470885623a79487e0232e57602572912b25",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": "de2af061ab4d7ac4053f910a92a142365113e54f53b1f34b8c7b40c70507c364"
+        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": "7cd9b61dfdaaa69b91dbd561ecc9900375f9e87e46a2581bece32b57e52315a9"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": {
-      "fingerprint": "d2afdf89cf3edcd2b30d03bce14cc6011fbfe870b330c570d9669e457eb8ded3",
+      "fingerprint": "2d9d089e17fb465519dfddb9d575f0522605d05e2e188b0059fe79e00bd47a3f",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": "7f60b8c8f909a3f0dc17e5eb1d9c4c2aefd2a125185597fbf0e2428be6476d3e"
+        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": "cd4f93590d1a7cf7a63226afbaa909c1e4d67191dd9b41e758ddb6a11a8175c3"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": {
-      "fingerprint": "e4dd6d5ae870ac482ad6224d381a6c94a4bf2f54b61b65ae7343495c31cdc7d6",
+      "fingerprint": "6d1a5a474e0c213421522ccb5149bf79773882f5cdc97d1467bff35f9065df3e",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": "5cfdfbf6f70400794f4e392fb4888a4b81b65e9f0cb35c0c7ba0c2dc26c06107"
+        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": "055df1358b35529b5dd5aed2dd172e4e522e32ae1ab193ae2212b75cc63a1e9c"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/angular/injectHotkeys/src/app/app.component.ts": {
       "fingerprint": "8b121bda1235a0d9e53e3b99bd9c7aade055d73dac5176caa1f9ed679a18cd91",
@@ -7624,14 +7624,14 @@
       ]
     },
     "source:examples/alpine/createHotkeyRecorder-sequences/index.html": {
-      "fingerprint": "9de37bef83cff3020a79d1413447d13d5bbccd8c78bc85aa37571bcca5d110a7",
+      "fingerprint": "e36baee2b82905f287f33d78b7944839bdfeb9f03a367a51439fac59ae357087",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder-sequences/index.html": "bbe78bd96ed2c8e3580e49de85c0f1688df57c6b6e79081e25a88cdc02ca5f7a"
+        "examples/alpine/createHotkeyRecorder-sequences/index.html": "816c77d83aaf9cf5dcb5269d021f84055c34354c82c09a52624c7a728cc48237"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:knip.json": {
       "fingerprint": "a62250a7d92e10c7e1d1e2dec55fd8bd512bda34f117fb463fe113605d706651",
@@ -14137,24 +14137,24 @@
       ]
     },
     "source:examples/lit/hotkey-recorder-sequences/src/app.ts": {
-      "fingerprint": "f36f8fdcd3ef39495b6896ba1c57c7b69d509afa6bf8209c95bc5af5db8bca3a",
+      "fingerprint": "722d8c54047206f4bcd45282256a79a9a3297b1f1ea91e50bb0fbea0a9227832",
       "snapshot": {
-        "examples/lit/hotkey-recorder-sequences/src/app.ts": "d2af247a0f752654ae8c79a2b37cea58e5e5abd574427cab6380975e9d92d4da"
+        "examples/lit/hotkey-recorder-sequences/src/app.ts": "83a4697f8022841a6f254c543c500d33bd0b8c1a69589b6c709de23b72e058bd"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/lit/hotkey-recorder/src/app.ts": {
-      "fingerprint": "3a426eaca42584e9a054cd74b00720d957ab6eecc6ccd6a8db229b3ca3b9a2c2",
+      "fingerprint": "fadde748370e076a91d5801a506cb0f5d0c16c7da0d0405f21e7da81a16125c9",
       "snapshot": {
-        "examples/lit/hotkey-recorder/src/app.ts": "9bff9131a2958da4347a04341a2a78e1e58daf56b3075376b1420b17ec07900b"
+        "examples/lit/hotkey-recorder/src/app.ts": "4fc516f9293297f65916111b7f25ea304538307ea91eeb869586cf88dabbeed7"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/lit/hotkey-sequences/src/app.ts": {
       "fingerprint": "2add3bfbdc4373690bd8dd80cf5cc24f84258510ae65f3d2ad6149f0db7e65b2",
@@ -14694,14 +14694,14 @@
       ]
     },
     "source:examples/preact/useHotkeyRecorder-sequences/src/index.tsx": {
-      "fingerprint": "22622812762079fafafdbb262eec9a7a55632c4da9f9d7e17a4254181be7023e",
+      "fingerprint": "2ebd1786d1dd31c19fa1a17cabea35a977dec5d0949610429b5265c75dff152a",
       "snapshot": {
-        "examples/preact/useHotkeyRecorder-sequences/src/index.tsx": "ac3517f0c56b97c5867837699c840a384de8004ea5a75c96a799cc02f6f73474"
+        "examples/preact/useHotkeyRecorder-sequences/src/index.tsx": "3623857a65433534e64c73e37d531bf7e015ae2c2f21289e0c0e2a4cec48c30a"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/preact/useHotkeyRecorder-sequences/vite.config.ts": {
       "fingerprint": "b44b1287b98ee6bff84274a35592874f7bb9d3f2f3550fee027f710d46db7462",
@@ -14743,14 +14743,14 @@
       ]
     },
     "source:examples/preact/useHotkeyRecorder/src/index.tsx": {
-      "fingerprint": "d7193eb51780c122f5c4466213de6c50c317c640bf2e7193ad54371ed5462515",
+      "fingerprint": "0633c561f9ab95fe487b0ae5b6e9d365e15a3016e13aefa84f5532e356fd7562",
       "snapshot": {
-        "examples/preact/useHotkeyRecorder/src/index.tsx": "c80a430146a963bf34317f0c4207813c77ceecb78a67fb6b5fbd4a53e50e541d"
+        "examples/preact/useHotkeyRecorder/src/index.tsx": "619b8e50b41cfda38701b825b7f5bd9de5d8e3254ccd21af0e80c068f48d2ddf"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/preact/useHotkeyRecorder/vite.config.ts": {
       "fingerprint": "0784bbb711b3dce60ead1b434ec1f8303e24f3f245a42ad5a449a03540e0ca65",
@@ -15203,14 +15203,14 @@
       ]
     },
     "source:examples/react/useHotkeyRecorder-sequences/src/index.tsx": {
-      "fingerprint": "8422bd4c4d861f9ba31f63ac4e5e8288137dba4e93a0ed45e78745bf96d523d6",
+      "fingerprint": "d4a0d3a8078c3081479d91b3abfb97b0c4ed0ecf2fda83748105e9091daa9642",
       "snapshot": {
-        "examples/react/useHotkeyRecorder-sequences/src/index.tsx": "021b3b6ed37d9f5d87191959fa7b48e3a4ba01dbbbf8114db75ca0098615d245"
+        "examples/react/useHotkeyRecorder-sequences/src/index.tsx": "15caae49bd84f622d245975a9f41784116b3f7b5ae41f090ed12fdb9aed8ae6d"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/react/useHotkeyRecorder-sequences/vite.config.ts": {
       "fingerprint": "e8f3d3cded769c78a905f16a269cb19dc47f4079a62cf50991ef53ec5f56601a",
@@ -15252,14 +15252,14 @@
       ]
     },
     "source:examples/react/useHotkeyRecorder/src/index.tsx": {
-      "fingerprint": "9e035186d0269db02c3068ddca6f8b130cef149806734fa2b44c021706fefb9d",
+      "fingerprint": "c9a04c758d9c1d168c58dafa734a3647256c15abf6a4d444ffefcba83ff54379",
       "snapshot": {
-        "examples/react/useHotkeyRecorder/src/index.tsx": "579e23e87fa37a71f4da3938fcbde49804c1eedbcafeff36ef0d8775bcde5014"
+        "examples/react/useHotkeyRecorder/src/index.tsx": "2a910366fea9370fd5906d16177e3e61e758381b16dadbc4db44e547be965cfd"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/react/useHotkeyRecorder/vite.config.ts": {
       "fingerprint": "f4e15c7c42581f9cd79cabb6e08f1825225171f434bd90520f200d6b91eaf68a",
@@ -15489,14 +15489,14 @@
       ]
     },
     "source:examples/solid/createHotkeyRecorder-sequences/src/index.tsx": {
-      "fingerprint": "0c219964189830d6ef9d0c6d29d44aa2d5c0c8ce6b492fd4ccbb4ca8a920c82a",
+      "fingerprint": "3ec56176ad249b7ca8cb5aed0ec7bb28dd56806306ae20d1c0dba7303e1c9a5d",
       "snapshot": {
-        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx": "f6de496234353b1078a7b780a226316cf2080238fb09a2f73564eaf8ca5cb45c"
+        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx": "ad7aeeb3aad9bd69ee8a7cd06d9f94fce9f026fef60161e970fbd6c92f1743c1"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/solid/createHotkeyRecorder/src/index.css": {
       "fingerprint": "e44720f93161959ff991a22f457250a0481b1769d983c75b3455a4f506bf429a",
@@ -15512,14 +15512,14 @@
       ]
     },
     "source:examples/solid/createHotkeyRecorder/src/index.tsx": {
-      "fingerprint": "0f2d0fa745976cba1f73c49edfe6b09f02235c9f940edd70ee60c41f5bf0be41",
+      "fingerprint": "d6cee9a19abce038552f4e0f33a8d566a002bbb6b40a9d832236443a1efd6366",
       "snapshot": {
-        "examples/solid/createHotkeyRecorder/src/index.tsx": "29bc54d9a10a49f7d33739d0976a5a815042c038bc4580068d0c9a57b9f33c9a"
+        "examples/solid/createHotkeyRecorder/src/index.tsx": "129957fae7f0ce15942d9b6afc81a5c2e4be300cc3e9cb016430192da97d4a85"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/solid/createHotkeys-sequences/src/index.css": {
       "fingerprint": "fee6ae76705c16c7b9e50c725fbb925ad27900e789d70daa6ade9a9b5633c271",
@@ -20711,24 +20711,24 @@
       ]
     },
     "source:examples/ember/useHotkeyRecorder-sequences/app/templates/application.gts": {
-      "fingerprint": "e2213fd1431d95144de89777cb7a816a66a590121cc1108ca23dcadd13b8cefa",
+      "fingerprint": "6308aea26f1ea33871366980c7be966496879195d6259e2bc7bba43753054c94",
       "snapshot": {
-        "examples/ember/useHotkeyRecorder-sequences/app/templates/application.gts": "01ffc10ba0affa1ec97a45212b4b8d29e301008bf4f84bbfafc04ecc13ef8845"
+        "examples/ember/useHotkeyRecorder-sequences/app/templates/application.gts": "bbda924660b10219374bcab3cf0bd7b641a0fcbbc40f210a22384edc40bda63c"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/ember/useHotkeyRecorder/app/templates/application.gts": {
-      "fingerprint": "a73a25d8010a06ccfa36aa21281013c45449fd0fb3500c913331cf2508d4b446",
+      "fingerprint": "4c5f925b4bc88179b25883c20316f35478dc15a9c06337a18cbe4e9e87dd1342",
       "snapshot": {
-        "examples/ember/useHotkeyRecorder/app/templates/application.gts": "a5b0ded7dbe08180b0324f47fdfe3f6f92fba2ef9865de85b4fc2415f70fbf8e"
+        "examples/ember/useHotkeyRecorder/app/templates/application.gts": "06f8260ab16027234bf07f3ecf990919c61a637ba562a75f9363334c6420d483"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/ember/useHotkeys-sequences/app/templates/application.gts": {
       "fingerprint": "22c847fa2302912468e3ef48192c43fb1279a85128ccb2c46468f3cb37765999",
@@ -20757,24 +20757,24 @@
       ]
     },
     "source:examples/octane/useHotkeyRecorder-sequences/src/main.tsrx": {
-      "fingerprint": "057f129e41ed94df7692c48e2d5b7542124fb8dd05c66de1b59b39c922f30e05",
+      "fingerprint": "dbe890e3787a05fef1b8e8fa7108cdf2c7a00fba7026e5d9a582e97380766dc5",
       "snapshot": {
-        "examples/octane/useHotkeyRecorder-sequences/src/main.tsrx": "ad3a0a71b3470a1ed15319b9cb772ac942c359733b3f50e426905eb5d90a68bb"
+        "examples/octane/useHotkeyRecorder-sequences/src/main.tsrx": "69f449f4aae5b7cfcf2e50d079a1c69e02488b07f466154c105985de9f727683"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/octane/useHotkeyRecorder/src/main.tsrx": {
-      "fingerprint": "e8991afc275bfa605c31628fe399c599a157363948ad96adfa05c86649b125ba",
+      "fingerprint": "fd334525cbb510f0a1768aab6c80181465f912cd8d227cc1c3592cba14d31fcd",
       "snapshot": {
-        "examples/octane/useHotkeyRecorder/src/main.tsrx": "6da715c8ba1ac937f2fb0f3c438d09782b87a7eaf99fe3ab46fe30b328b2a9b6"
+        "examples/octane/useHotkeyRecorder/src/main.tsrx": "2aee0cd0fe9a3d5114cff72844d0967bfa96eae45b8f7f9b6c651471b5d5bde9"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/octane/useHotkeys-sequences/src/main.tsrx": {
       "fingerprint": "edfdfffe9e370971c20436c3475fb61cd3e5ac91a194f8e1358ab8ea81b25a3f",
@@ -20790,24 +20790,24 @@
       ]
     },
     "source:examples/svelte/create-hotkey-recorder-sequences/src/ShortcutListItem.svelte": {
-      "fingerprint": "34d72a364e9a8c4f57027198634eed6b5b1b1f1c4c7e7f3dd7074796bba5498c",
+      "fingerprint": "a419fe8f374aecddcd0dcc26b4a742855fe561c51853b7cc68fa55f1ae639823",
       "snapshot": {
-        "examples/svelte/create-hotkey-recorder-sequences/src/ShortcutListItem.svelte": "b45759bff045d6642521a8ab65807823aac1fabd40601de8a1fb6426a3356087"
+        "examples/svelte/create-hotkey-recorder-sequences/src/ShortcutListItem.svelte": "9e8f9f267266df0257b43f0cd92d7e1eb31b01e13bf1f71d1fd53acb6ff14210"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/svelte/create-hotkey-recorder/src/ShortcutListItem.svelte": {
-      "fingerprint": "35d86c759925064e066f4177d7347b9bac7ff7848ea567efeac65e1b8c4c390a",
+      "fingerprint": "a6712797de177de3dc20f3d146bec1efa775e37b570a6a84b99148bc5faf708e",
       "snapshot": {
-        "examples/svelte/create-hotkey-recorder/src/ShortcutListItem.svelte": "6014b36813d9c19d60f7734bbdfcaba1b8263b43c6192a9223d0f4dfdd9c1ebc"
+        "examples/svelte/create-hotkey-recorder/src/ShortcutListItem.svelte": "dc8d3ee8af9df1d99252273374cf1fe02440cb704266c91950bb5c1689fe7b55"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/svelte/create-hotkey/src/App.svelte": {
       "fingerprint": "ec68c6832536efc9cf38e60c2ea8b2aafa8bcd367b16320e50abc41a4af431db",
@@ -20874,14 +20874,14 @@
       ]
     },
     "source:examples/vue/useHotkeyRecorder-sequences/src/ShortcutListItem.vue": {
-      "fingerprint": "067219e168796cebbdb0ff41aaf5dc288caa28bb964397667244c572b36b8a57",
+      "fingerprint": "960eb1b731d8bd17e059015efd14609ef4fbff889d07bbf0980f164c93877859",
       "snapshot": {
-        "examples/vue/useHotkeyRecorder-sequences/src/ShortcutListItem.vue": "3236b4ee728ce921c2abd18029abf7b0fb535f884f259c56ad92d6519464edea"
+        "examples/vue/useHotkeyRecorder-sequences/src/ShortcutListItem.vue": "c0ee01cbb7f15494fbbe371834c4544291889917948ed281cee7d53c6bf3e41e"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/vue/useHotkeyRecorder/src/App.vue": {
       "fingerprint": "4dbbfd17b5f2a252e33fdb25859fbdaaa063d0753394a3b3285b4fdc8c04c84c",
@@ -20896,14 +20896,14 @@
       ]
     },
     "source:examples/vue/useHotkeyRecorder/src/ShortcutListItem.vue": {
-      "fingerprint": "3a9c172c744c173865ecea77f4b72f3262fdcc4790e9f6acb7d9f4457717fae0",
+      "fingerprint": "807ec0bb4f129c48d2094f755db559390f55cc1b6d53fc0fa2d099dc3aeb1aa8",
       "snapshot": {
-        "examples/vue/useHotkeyRecorder/src/ShortcutListItem.vue": "e2c5b9adbf1708feefffe7c7acb36917361a592a3cb44553c3d48fd61fd976b6"
+        "examples/vue/useHotkeyRecorder/src/ShortcutListItem.vue": "0abc4fe91956a5cd87763041978acdf05bb95109b568fa6195b482336979c95e"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:examples/vue/useHotkeys-sequences/src/App.vue": {
       "fingerprint": "d4c76839706d224096e5c65913cc21ca8d439c9dbf91f31262b4ea1aa98b893f",
@@ -23822,14 +23822,14 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:examples/alpine/createHotkeyRecorder/index.html": {
-      "fingerprint": "fbb554b3cd2580d5c9e5eb6344dd43c636b6a43028d7ed4377bef6bd56342cd7",
+      "fingerprint": "41b5dacf9525c20d9cfc3cbd7ced828fee057327261012a22b675433f8356550",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder/index.html": "fc835bf8f719180b02dff6f3d5c9d29912887725fc8e723f3371f9fbdec84070"
+        "examples/alpine/createHotkeyRecorder/index.html": "7e2c1813df13bdc833e0069a01d158e7c62b37205f7cccbe562a7e8f682cc71a"
       },
-      "head": "fc48fc09f82cd285da5e0991948d604cec2a3263",
+      "head": "c6b81aa631523dae17aebc0115e9ef1ee6376cd5",
       "outcome": "no-change",
-      "reason": "Recorder lifecycle fixes, examples and guides; covered by tests.",
-      "evidence": ["Core 2,001 tests, adapter suites, e2e"]
+      "reason": "Recorder examples format held modifiers with formatForDisplay instead of sorting them by hand; no skill guidance changes.",
+      "evidence": ["examples/*/*Recorder*"]
     },
     "source:packages/hotkeys/src/_recording-guard.ts": {
       "fingerprint": "5f47a6caa01f46d6bb86b0cbea929d6ad813c11a20e390ae7e404cdf17f29d30",

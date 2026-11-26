@@ -2,6 +2,7 @@ import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
+  isModifierKey,
   useFormatForDisplay,
   useHeldKeys,
   useHotkeyRecorder,
@@ -19,8 +20,6 @@ interface Shortcut {
   description: string
   hotkey: Hotkey | ''
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 
@@ -317,11 +316,10 @@ function ShortcutListItem({
 }: ShortcutListItemProps) @{
   const formatForDisplay = useFormatForDisplay()
   const heldKeys = useHeldKeys()
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
-  const heldModifiers = heldKeys
-    .filter((key) => MODIFIER_ORDER.includes(key))
-    .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = formatForDisplay(
+    heldKeys.filter(isModifierKey).join('+') as Hotkey,
+  )
   <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
         <div className="shortcut-item-content">
           <div className="shortcut-action">
@@ -337,12 +335,8 @@ function ShortcutListItem({
           </div>
           <div className="shortcut-hotkey">
             @if (isEditing) { <div className="recording-indicator">
-                @if (heldModifiers.length > 0) { <div className="held-hotkeys">
-                    @for (const [index, key] of Array.from(heldModifiers.entries()); key key) {
-  <>
-                        @if (index > 0) { <span className="plus">+</span> }
-                        <kbd>{formatForDisplay({ key })}</kbd>
-                      </> }
+                @if (heldModifierLabel) { <div className="held-hotkeys">
+                    <kbd>{heldModifierLabel}</kbd>
                   </div> } @else { <span className="recording-text">
                     Press any key combination...
                   </span> }

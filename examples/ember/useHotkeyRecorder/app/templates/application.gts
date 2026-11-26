@@ -10,11 +10,11 @@ import {
   useHotkeys,
   useHotkeyRegistrations,
   useHeldKeys,
+  isModifierKey,
 } from '@tanstack/ember-hotkeys'
 import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
-const gt = (a: number, b: number) => a > b
 const or = <T, U>(a: T, b: U) => a || b
 interface Shortcut {
   id: string
@@ -22,8 +22,6 @@ interface Shortcut {
   description: string
   hotkey: Hotkey | ''
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 
@@ -324,13 +322,11 @@ class RegistrationsViewer extends Component {
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
   formatForDisplay = useFormatForDisplay()
   heldKeys = useHeldKeys(this)
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
-  get heldModifierLabels() {
-    return this.heldKeys.value
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
-      .map((key) => this.formatForDisplay({ key }))
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
   }
   get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
@@ -372,11 +368,8 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
         </div>
         <div class='shortcut-hotkey'>
           {{#if this.args.isEditing}}<div class='recording-indicator'>
-              {{#if (gt this.heldModifierLabels.length 0)}}<div class='held-hotkeys'>
-                  {{#each this.heldModifierLabels as |label index|}}
-                    {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
-                    <kbd>{{label}}</kbd>
-                  {{/each}}
+              {{#if this.heldModifierLabel}}<div class='held-hotkeys'>
+                  <kbd>{{this.heldModifierLabel}}</kbd>
                 </div>{{else}}<span class='recording-text'>
                   Press any key combination...
                 </span>{{/if}}

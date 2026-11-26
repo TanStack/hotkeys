@@ -2,6 +2,7 @@ import {
   createHotkeyRecorder,
   createHotkeysScope,
   hotkeysPlugin,
+  isModifierKey,
 } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
 import type {
@@ -23,8 +24,6 @@ interface Shortcut {
   /** A chord or a sequence; null when unassigned */
   hotkey: Hotkey | null
 }
-
-const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
 
 let nextId = 0
 
@@ -248,12 +247,11 @@ class ShortcutListItem {
   init() {
     this.heldKeys = this.hotkeysScope.createHeldKeys()
   }
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the step.
-  get heldModifiers() {
-    return this.heldKeys.value
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b))
+  // Held modifiers in chord order, labeled for the platform
+  get heldModifierLabel() {
+    return this.formatForDisplay(
+      this.heldKeys.value.filter(isModifierKey).join('+') as Hotkey,
+    )
   }
   destroy() {
     this.hotkeysScope.destroy()

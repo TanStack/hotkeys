@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { getFormatForDisplay, getHeldKeys } from '@tanstack/svelte-hotkeys'
+  import {
+    getFormatForDisplay,
+    getHeldKeys,
+    isModifierKey,
+  } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
   import type { Shortcut } from './types'
 
@@ -29,16 +33,11 @@
     onDelete,
   }: Props = $props()
 
-  const MODIFIER_ORDER = ['Control', 'Alt', 'Shift', 'Meta']
-
   const formatForDisplay = getFormatForDisplay()
   const heldKeys = getHeldKeys()
-  // Held modifiers in chord order, with platform labels: ⌃ ⌥ ⇧ ⌘ on macOS,
-  // Ctrl Alt Shift Win elsewhere. The next other key ends the recording.
-  const heldModifiers = $derived(
-    heldKeys.keys
-      .filter((key) => MODIFIER_ORDER.includes(key))
-      .sort((a, b) => MODIFIER_ORDER.indexOf(a) - MODIFIER_ORDER.indexOf(b)),
+  // Held modifiers in chord order, labeled for the platform
+  const heldModifierLabel = $derived(
+    formatForDisplay(heldKeys.keys.filter(isModifierKey).join('+') as Hotkey),
   )
 </script>
 
@@ -76,14 +75,9 @@
     <div class="shortcut-hotkey">
       {#if isEditing}
         <div class="recording-indicator">
-          {#if heldModifiers.length > 0}
+          {#if heldModifierLabel}
             <div class="held-hotkeys">
-              {#each heldModifiers as key, index}
-                {#if index > 0}
-                  <span class="plus">+</span>
-                {/if}
-                <kbd>{formatForDisplay({ key })}</kbd>
-              {/each}
+              <kbd>{heldModifierLabel}</kbd>
             </div>
           {:else}
             <span class="recording-text">Press any key combination...</span>
