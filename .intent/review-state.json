@@ -4350,14 +4350,14 @@
       ]
     },
     "source:.gitignore": {
-      "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
+      "fingerprint": "2362c322fc9b2651fd2b158f775944ecd838ae5e3abb7bf24e84ecd4f71971c6",
       "snapshot": {
-        ".gitignore": "9bb08f48d6ff76283b48a0df3ef663250f937ef5497c16ceefd59a35c38a8842"
+        ".gitignore": "c38d3ddac82dce790729420c3e3cf6a9202cf8711c75677b8c997b8ec8e9458c"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
       "outcome": "out-of-scope",
-      "reason": "Local ignore rules for untracked notes; not part of this change.",
-      "evidence": ["Not committed with this PR."]
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": [".gitignore"]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
       "fingerprint": "0deb2521b481c6d2ad1b555371d90b5a85cbc50cb57b93557e9073da4537a6ea",
@@ -18836,16 +18836,14 @@
       "evidence": ["packages/hotkeys/tests/hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
-      "fingerprint": "30631b65172be55b9e20ee5715d647c2bfe6c78cdcce17c5e0615ee217548e1d",
+      "fingerprint": "9bdf03502ed83aba3696306bb568db6b510e1ab2b8f3a569c520d4c3ddf48354",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "7dfdd7e33c74b37ec82d828a9ae023cf42ece446e7057e876a830137aae41e5c"
+        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "8fdfc986851cffee06827e60b7b03ea0d5b98a848da6c1bd63532b2a919599a8"
       },
-      "head": "5cbf2d91c1a15381ad5af38592181487cbd023d3",
-      "outcome": "updated",
-      "reason": "Merged test/coverage-overhaul: tests from #256 and guidance from #257-#259, reviewed in those PRs",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at 5cbf2d91c1a15381ad5af38592181487cbd023d3"
-      ]
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/event-fuzz.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/fixtures.ts": {
       "fingerprint": "be15e0c5ef99ead69128bca52ffe28e7789431f487a0295fda72f5d6ad201641",
@@ -18858,60 +18856,54 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "060462d610627263728e7343ea9f23f8e4e4e9659729cc0ad5f8ebb0cc45e541",
+      "fingerprint": "3e9fb894f4d64a435b9d03bf62c968d14ce2bd200e10603d33ee73f5095bd43d",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "0e3d36f982b69c8f79e741ac0085322c22a283980612979f0fba8f1242e1cc29"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "e73f80bb418a329c37ed4af49e28cf68ccd1e95fa79828e99e1bff6283207dd8"
       },
-      "head": "263455eae65aaaae54818bf1150f6e32ffd967ec",
-      "outcome": "no-change",
-      "reason": "Test timeout only; no guidance changes.",
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
       "evidence": ["packages/hotkeys/tests/invariants/matching.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
-      "fingerprint": "717614d0339feabf4ff1e849854b2933e5ff5a45883ac69cfde0d59958fa86c0",
+      "fingerprint": "8ad7b01d6722cbd2f1fe23fae0a7172afc42890885863b072a134718b23ac620",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/parse-fuzz.test.ts": "23e1c950e9f9228ccb806836714478055121838ac1b579803450cfb2dc1c182a"
+        "packages/hotkeys/tests/invariants/parse-fuzz.test.ts": "1111a66f9fa05f3a1166de480206565127b51c93c857badf5cd680d79b303ba3"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/parse-fuzz.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/parse-fuzz.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/recorder-match.test.ts": {
-      "fingerprint": "4ec141dbbc394567aeec6101e47e62fd4a02e5175954d013991cb1b77e8f2d41",
+      "fingerprint": "51bcd6dc177042a767a872e4c7ec3af1f023631201767efef32975089947514e",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "c4e12a870251a42a8b5d3fad6f60e9567a9994de63f1acd5f85c310ab539aba9"
+        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "8d79acb7902c53d30c6be52b5762b0975227001c4efa4c57302a27d35261a862"
       },
-      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
       "outcome": "out-of-scope",
-      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
-      ]
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/recorder-match.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {
-      "fingerprint": "f80e36e694dd618f7fc4c34def7ed4afdb2b0c22dbef614801e5884832dced36",
+      "fingerprint": "3251da0edd7950035074a33d6c46d87ebf1cb76dea7996cb9035e943adaa711a",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/round-trip.test.ts": "e93693c81fed98e32cf8b73f9f979f4ebac77fa41f2c0231e2952cfcee2f1dd7"
+        "packages/hotkeys/tests/invariants/round-trip.test.ts": "a9e49f76f649d3f8082c63d5ef0f014c61278897d5c8732e6238201d9e9d555a"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/round-trip.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/round-trip.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": {
-      "fingerprint": "384a6ea1aa43c8df037f5b680396c867c55569c612c622537726afc7ef19febf",
+      "fingerprint": "f9faf7cd4c81e06390e1283f5de9fe7192b5af188d8042be97daba616a9357de",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": "e680d7614bc289a360319c8a82cf4af1cb33a59a2756b334ee0fa0556f6765b3"
+        "packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": "57a79fb2577dd7abed5d08d7046782176c34b7e2c5244ebcf4b213a6c1899bef"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
-      "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/sequence-fuzz.test.ts"]
     },
     "source:packages/hotkeys/tests/recorder-options.test.ts": {
       "fingerprint": "4efa38b608766065daf3a9f4e5879f48e29b5238d8c9eac0ca32e87bd94b1391",
@@ -23083,16 +23075,14 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/layouts.test.ts": {
-      "fingerprint": "0baf324e9f8fc0b8771437a87082d185f5fc1908ee6e53f58efbc48528c8c9bb",
+      "fingerprint": "51190fe1118b341f033f3c5d048782ae9209bf0d5beb48b9a1b08fdcd3408e89",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/layouts.test.ts": "1477ec90c69a2637d73ab495fa673a72ef3dc4a51ff3c3a935be98fc48451bd9"
+        "packages/hotkeys/tests/invariants/layouts.test.ts": "deb2b8d3461cd2a2a7a4ee87e7f2e73eb5d43029dee2b8675e7c39c0f57370a3"
       },
-      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
       "outcome": "out-of-scope",
-      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/layouts.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
-      ]
+      "reason": "Test timeout configuration only; no skill guidance involved.",
+      "evidence": ["packages/hotkeys/tests/invariants/layouts.test.ts"]
     },
     "source:scripts/layout-table/dump-xkb.sh": {
       "fingerprint": "0425d7f60d1a07a1833701a3cff2a7ca45604e8a3b6e8c13999032a1dc537125",
@@ -23807,13 +23797,13 @@
       "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/recorder-layouts.test.ts": {
-      "fingerprint": "26be851d8c52ebecbb39e7ef8617cb9c8fd6725682358f90dff02b825ab0ff54",
+      "fingerprint": "2c0722586f2b3d99f639c25d1c513d30dddb3bc71bcd8e4c3eb32898285fbb04",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/recorder-layouts.test.ts": "ce747e03f0e069ae3e1fbd6b05049415ef26004be771f69f2de596e3171bec61"
+        "packages/hotkeys/tests/invariants/recorder-layouts.test.ts": "153c95723680c741ea1013132c38ae1dc36cd1c123ffd38474d6c574621e8958"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
-      "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "head": "40a7c282ad56fa8d1e118983258e52d30bd890e2",
+      "outcome": "out-of-scope",
+      "reason": "Test timeout configuration only; no skill guidance involved.",
       "evidence": ["packages/hotkeys/tests/invariants/recorder-layouts.test.ts"]
     }
   }
