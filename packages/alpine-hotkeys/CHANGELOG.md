@@ -1,5 +1,12 @@
 # @tanstack/alpine-hotkeys
 
+## 0.15.6
+
+### Patch Changes
+
+- Updated dependencies [[`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`b6ecd58`](https://github.com/TanStack/hotkeys/commit/b6ecd587ecbefe5e0ed667ec6dbbf843cf36577b), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497)]:
+  - @tanstack/hotkeys@0.36.0
+
 ## 0.15.5
 
 ### Patch Changes

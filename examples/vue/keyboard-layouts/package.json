@@ -11,12 +11,12 @@
     "test:types": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@tanstack/vue-hotkeys": "^0.25.5",
+    "@tanstack/vue-hotkeys": "^0.25.6",
     "vue": "^3.5.45"
   },
   "devDependencies": {
     "@tanstack/vue-devtools": "^0.2.29",
-    "@tanstack/vue-hotkeys-devtools": "^0.13.17",
+    "@tanstack/vue-hotkeys-devtools": "^0.13.18",
     "@vitejs/plugin-vue": "^6.0.10",
     "typescript": "6.0.3",
     "vite": "^8.3.7",

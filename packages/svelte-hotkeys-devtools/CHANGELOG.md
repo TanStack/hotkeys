@@ -1,5 +1,12 @@
 # @tanstack/svelte-hotkeys-devtools
 
+## 0.5.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.12.3
+
 ## 0.5.17
 
 ### Patch Changes
