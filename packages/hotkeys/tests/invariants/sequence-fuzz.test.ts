@@ -8,6 +8,11 @@ import {
 } from '../../src'
 import type { HotkeySequenceRegistrationView } from '../../src'
 
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
+
 // Random key presses, releases, repeats and pauses against sequences on fake
 // timers. A small model of the documented rules says what should fire:
 // - each step must follow the last one within `timeout` ms;

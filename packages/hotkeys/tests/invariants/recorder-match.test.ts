@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
@@ -15,6 +15,11 @@ import {
 } from './fixtures'
 import type { Hotkey, HotkeyChord, RecorderRejection } from '../../src'
 import type { EventCase, Platform } from './fixtures'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // A chord the recorder stores from a key press must match that same key
 // press, both through the matcher and as a registered hotkey.

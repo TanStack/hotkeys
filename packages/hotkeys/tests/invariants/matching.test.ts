@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, matchesKeyboardEvent, parseHotkey } from '../../src'
 import { normalizeKeyName } from '../../src/constants'
 import {
@@ -11,6 +11,11 @@ import {
 } from './fixtures'
 import type { HotkeyOptions } from '../../src'
 import type { EventCase, Platform } from './fixtures'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // How a key press matches chords: modifiers must be exact, composition and
 // keyCode 229 never match, repeats respect requireReset and sequences, and a

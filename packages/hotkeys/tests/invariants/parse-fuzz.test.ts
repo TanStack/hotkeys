@@ -1,5 +1,5 @@
 import fc from 'fast-check'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   formatForDisplay,
   formatHotkey,
@@ -9,6 +9,11 @@ import {
   validateHotkey,
 } from '../../src'
 import { KEY_TOKENS, PLATFORMS } from './fixtures'
+
+// Property tests take well under a second each here, but CI runs several
+// packages' tests at once on a small runner, which makes them 20 to 30 times
+// slower than the 5 s default allows.
+vi.setConfig({ testTimeout: 60_000 })
 
 // Arbitrary strings through the parser, validator and formatters. Runs are
 // seeded, so a failure reproduces; fast-check prints the shrunk input. Set
