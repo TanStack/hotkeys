@@ -18859,13 +18859,13 @@
       "evidence": ["packages/hotkeys/tests/hotkey-recorder-steps.test.ts"]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "aae6743f0762411850e3b7a6517dd1a82069c9d9ff68f1b2187886063b5e23e9",
+      "fingerprint": "4fbb859d30456b325690ad5614f48feb9f6156eed6a0ddfcbd991183746dc7c0",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "63f3a12c4a39215a4f164c0760610723e09db19227ef1b0497475dfc002afced"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "f700bcfc0df387e4739e216f1303fec8ce6fd45536d72ce2abd2472efc85a85d"
       },
-      "head": "ad3f95cc37d73b534fb69fbe8194de2597cb9685",
+      "head": "e9031094e0b830b2af9d82d6ae8b24d36ac207d9",
       "outcome": "no-change",
-      "reason": "Recording guard refinement for a held key released after Command; no skill guidance changes.",
+      "reason": "Recording guard: held repeats of a recorded press stay suppressed for hotkeys; no skill guidance changes.",
       "evidence": ["hotkey-recorder.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
@@ -23832,13 +23832,13 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:packages/hotkeys/src/_recording-guard.ts": {
-      "fingerprint": "bcd87acdb980c22c08d531fb5a3e627bc3fd2e2ba409c8744a986902d960b063",
+      "fingerprint": "5f47a6caa01f46d6bb86b0cbea929d6ad813c11a20e390ae7e404cdf17f29d30",
       "snapshot": {
-        "packages/hotkeys/src/_recording-guard.ts": "6715c45929d2d1729289504143460b9f5df046f08dd8074d25adcb068b608b1e"
+        "packages/hotkeys/src/_recording-guard.ts": "0f86e070255f5bc6d7e7eeaffbf8de593aea2bca7b010358ce1b5a60b4f207be"
       },
-      "head": "ad3f95cc37d73b534fb69fbe8194de2597cb9685",
+      "head": "e9031094e0b830b2af9d82d6ae8b24d36ac207d9",
       "outcome": "no-change",
-      "reason": "Recording guard refinement for a held key released after Command; no skill guidance changes.",
+      "reason": "Recording guard: held repeats of a recorded press stay suppressed for hotkeys; no skill guidance changes.",
       "evidence": ["hotkey-recorder.test.ts"]
     }
   }

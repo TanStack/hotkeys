@@ -108,7 +108,12 @@ export function stopRecordingRelease(event: KeyboardEvent): void {
 }
 /** Whether managers should suppress callbacks for this recording session or captured chord. */
 export function isRecordingEvent(event: KeyboardEvent): boolean {
+  const id = identity(event)
   return (
-    sessions.size > 0 || captured.has(event) || pending.has(identity(event))
+    sessions.size > 0 ||
+    captured.has(event) ||
+    pending.has(id) ||
+    // Repeats of a recorded press still held after a modifier released
+    (!!event.repeat && stopped.has(id))
   )
 }

@@ -982,6 +982,26 @@ describe('HotkeyRecorder and a key release that never comes', () => {
     expect(callback).toHaveBeenCalledOnce()
   })
 
+  it('keeps a window capture hotkey from firing on repeats of a recorded key', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('[KeyS]', callback, {
+      target: window,
+      capture: true,
+    })
+    const recorder = createRecorder({ onRecord: vi.fn(), platform: 'windows' })
+    recorder.start()
+    keydown({
+      key: 'Control',
+      code: 'ControlLeft',
+      ctrlKey: true,
+      target: document.body,
+    })
+    keydown({ key: 's', code: 'KeyS', ctrlKey: true, target: document.body })
+    keyup({ key: 'Control', code: 'ControlLeft', target: document.body })
+    keydown({ key: 's', code: 'KeyS', repeat: true, target: document.body })
+    expect(callback).not.toHaveBeenCalled()
+  })
+
   it("lets the page see a later press's release of the same key", () => {
     const released: Array<string> = []
     const onKeyup = (event: KeyboardEvent) => released.push(event.key)
