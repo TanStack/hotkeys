@@ -1,5 +1,13 @@
 # @tanstack/preact-hotkeys
 
+## 0.24.6
+
+### Patch Changes
+
+- [#309](https://github.com/TanStack/hotkeys/pull/309) [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497) - A recorder option that a component stops passing, such as a `validate` passed only in a strict mode, now stops applying. Before, the recorder kept the old value, so it kept rejecting recordings. The new `syncRecorderOptions` helper in `@tanstack/hotkeys/adapter` does this for every adapter. Angular already handled this and now uses the same helper.
+- Updated dependencies [[`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`b6ecd58`](https://github.com/TanStack/hotkeys/commit/b6ecd587ecbefe5e0ed667ec6dbbf843cf36577b), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497), [`05be129`](https://github.com/TanStack/hotkeys/commit/05be1291a103f39c2570697d44e8df5e039f4497)]:
+  - @tanstack/hotkeys@0.36.0
+
 ## 0.24.5
 
 ### Patch Changes

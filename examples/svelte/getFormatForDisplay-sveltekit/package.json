@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "@tanstack/svelte-hotkeys": "0.25.5",
+    "@tanstack/svelte-hotkeys": "0.25.6",
     "svelte": "^5.57.3"
   },
   "devDependencies": {
