@@ -178,7 +178,7 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "df10eae8b78a60f0ce7ebd55ff4951b4b52751d4b8788987586fab38bd740113",
+      "fingerprint": "9030b3ab60677e6479a804e654a5904eb102ef504c9976488397c91d6d79146a",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
@@ -188,7 +188,7 @@
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "385d854adc343c9f55c84431a8e59ee19f51d8350f386c1891b889be7471ad8f",
+        "packages/react-hotkeys/src/useHotkeys.ts": "dc5c0c35ace425e87231ef0515b050ee5a7c75b4d0bac546ff0894f54bcf8360",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -207,10 +207,10 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "0ec9eae8bb43633621ff1910f5181a94939c3e0d",
+      "head": "04caadd657dad4bab302200042915d298bd8d5d4",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the mount guard and React ref retry; no skill guidance changes.",
-      "evidence": ["press-start.test.ts and hidden-content.test.tsx"]
+      "reason": "React retry errors reach error boundaries; no skill guidance changes.",
+      "evidence": ["hidden-content.test.tsx"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
       "fingerprint": "52f8880e1abd66f78b2032b41fb09cbf33a3ef1d2a03a08bfc5e8b97c493de36",
@@ -274,7 +274,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "745430b094b32c88c30410f7b1f68bc8c8847cdd55669be588723fd31cc15086",
+      "fingerprint": "34f73022758f3d2841b6c455e4a781b37a7bee96580d98cf6f6a7379b1094a52",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -364,7 +364,7 @@
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "ff91b4424b19002470d381b9b3bbee0b2df7a66b3ca60b4bf7e338b944fedb21",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "863185672c9c9aaa86c4a28f49707fa3332fba1826ab7a37a43405c667caae93",
         "packages/react-hotkeys/src/useHotkey.ts": "2222a3625e2a3b52f178681f6373be6a7dc278d2b5dff56ed833050f767b6e56",
-        "packages/react-hotkeys/src/useHotkeys.ts": "385d854adc343c9f55c84431a8e59ee19f51d8350f386c1891b889be7471ad8f",
+        "packages/react-hotkeys/src/useHotkeys.ts": "dc5c0c35ace425e87231ef0515b050ee5a7c75b4d0bac546ff0894f54bcf8360",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -405,10 +405,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "20040667eec1bf86303fb6738985749c0db2f38db67fd9c34dd9ec1f52306899",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "0ec9eae8bb43633621ff1910f5181a94939c3e0d",
+      "head": "04caadd657dad4bab302200042915d298bd8d5d4",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the mount guard and React ref retry; no skill guidance changes.",
-      "evidence": ["press-start.test.ts and hidden-content.test.tsx"]
+      "reason": "React retry errors reach error boundaries; no skill guidance changes.",
+      "evidence": ["hidden-content.test.tsx"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -23954,14 +23954,14 @@
       "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:packages/react-hotkeys/tests/hidden-content.test.tsx": {
-      "fingerprint": "d87a801356b1e3da095065f2927904d8d16e12c8d1e7a85053108837a6bbc058",
+      "fingerprint": "6b96a2f81ae6d8f89c08ad7853fa3fc87e2a5cc8c094584ab482b6febc30fcd4",
       "snapshot": {
-        "packages/react-hotkeys/tests/hidden-content.test.tsx": "07a18bb196f098ca136c667138d4216275174d9666b4223a365760a8c180d1b7"
+        "packages/react-hotkeys/tests/hidden-content.test.tsx": "2e29e6d521d733b26582e64791c85d15e3c75817d156efb645a4d222eeda9d0c"
       },
-      "head": "0ec9eae8bb43633621ff1910f5181a94939c3e0d",
+      "head": "04caadd657dad4bab302200042915d298bd8d5d4",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the mount guard and React ref retry; no skill guidance changes.",
-      "evidence": ["press-start.test.ts and hidden-content.test.tsx"]
+      "reason": "React retry errors reach error boundaries; no skill guidance changes.",
+      "evidence": ["hidden-content.test.tsx"]
     },
     "source:packages/octane-hotkeys/tests/ref-targets.tsrx": {
       "fingerprint": "eb8e447f3b20db72f7bfb9425b9a5c6532aa0c103126afa046c7239f205db490",

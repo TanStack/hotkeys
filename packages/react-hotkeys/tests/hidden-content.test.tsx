@@ -3,7 +3,7 @@
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/react'
 import React, { StrictMode, Suspense, useRef, useState } from 'react'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
 
@@ -65,6 +65,57 @@ describe('hotkeys inside hidden content', () => {
     await Promise.resolve()
     pressPanel(getByTestId('panel'))
     expect(fired).toEqual(['save'])
+  })
+
+  it('reports a conflict found on the retry to the error boundary', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    class Boundary extends React.Component<
+      { children: React.ReactNode },
+      { failed: boolean }
+    > {
+      state = { failed: false }
+      static getDerivedStateFromError() {
+        return { failed: true }
+      }
+      render() {
+        return this.state.failed ? (
+          <p data-testid="failed">failed</p>
+        ) : (
+          this.props.children
+        )
+      }
+    }
+    function Strict({
+      target,
+    }: {
+      target: React.RefObject<HTMLDivElement | null>
+    }) {
+      useHotkey('Mod+S', () => {}, {
+        platform: 'mac',
+        target,
+        conflictBehavior: 'error',
+      })
+      return null
+    }
+    function Conflicting() {
+      const ref = useRef<HTMLDivElement>(null)
+      return (
+        <div ref={ref}>
+          <Strict target={ref} />
+          <Strict target={ref} />
+        </div>
+      )
+    }
+    const view = render(
+      <Boundary>
+        <Conflicting />
+      </Boundary>,
+    )
+    await act(async () => {
+      await Promise.resolve()
+    })
+    expect(view.queryByTestId('failed')).not.toBeNull()
+    vi.restoreAllMocks()
   })
 
   it('registers it again when Suspense shows the unchanged content again', async () => {

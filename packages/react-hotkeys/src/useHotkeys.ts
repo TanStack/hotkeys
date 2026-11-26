@@ -5,7 +5,7 @@ import {
   prepareHotkeyDefinitions,
   resolveRefTarget,
 } from '@tanstack/hotkeys/adapter'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import { useCommitEffect } from './_useCommitEffect'
@@ -77,6 +77,9 @@ export function useHotkeys(
   const bindingsRef = useRef<ReturnType<typeof createHotkeyBindings> | null>(
     null,
   )
+  // An error from the ref retry, rethrown during render for error boundaries.
+  const [retryError, setRetryError] = useState<{ error: unknown }>()
+  if (retryError) throw retryError.error
 
   // Publish registrations, callbacks, and options in the commit, never during
   // render. Returns whether a ref target was still unset.
@@ -105,7 +108,12 @@ export function useHotkeys(
     // bindings were destroyed by then.
     if (update()) {
       queueMicrotask(() => {
-        if (bindingsRef.current === bindings) update()
+        if (bindingsRef.current !== bindings) return
+        try {
+          update()
+        } catch (error) {
+          setRetryError({ error })
+        }
       })
     }
   })
