@@ -19851,13 +19851,13 @@
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": {
-      "fingerprint": "7f4e01f808d61eb76309e6ce76c7ac7567e3199d61ca770f7e2b291970fd8fd4",
+      "fingerprint": "26c3c20b88507937a755d65144a668863018a35baafced5f0cc16d1174fd957c",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": "9a2e8531529621a7e94cfec8eb468a713eba68112d8a8a7906bbc06a65c3713b"
+        "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": "cc5771e08afecf8f6c110e0981633318ec03e8b0955d299459719d1b9679ce67"
       },
-      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "head": "d8b30e7a2de76168aa5adbbbf4f8b114baa30770",
       "outcome": "out-of-scope",
-      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "reason": "Test assertion made platform-independent; no skill guidance involved.",
       "evidence": [
         "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts"
       ]

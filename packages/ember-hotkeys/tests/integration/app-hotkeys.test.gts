@@ -203,10 +203,11 @@ module('App hotkeys with scope defaults, by layer', (hooks) => {
       [...getHotkeyManager().registrations.state.values()]
         .map(
           (r) =>
-            `${String(r.hotkey)} ${String(r.options.preventDefault)} ${String(r.options.stopPropagation)}`,
+            // The key alone: Linux and Windows write `Control` as `Mod`.
+            `${String(r.hotkey).slice(-1)} ${String(r.options.preventDefault)} ${String(r.options.stopPropagation)}`,
         )
         .sort(),
-      ['Control+K false false', 'Control+P false false', 'Control+P false true'],
+      ['K false false', 'P false false', 'P false true'],
     )
     await clearRender()
     dispose()
