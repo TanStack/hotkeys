@@ -282,8 +282,8 @@ describe.each(PLATFORMS)('matching on %s', (platform) => {
       }
     }
     expect(log.report()).toEqual([])
-    // About 1 s locally, but far longer on a loaded CI runner
-  }, 30_000)
+    // About 1 s locally, but past 30 s on a loaded CI runner
+  }, 120_000)
 
   it('a keyup hotkey fires once when a modifier is released first', () => {
     const log = failureLog()

@@ -18862,16 +18862,14 @@
       "evidence": ["No skill references this file"]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "0a31387313496444ec0f33cf0d39b962599d02ac126dd8b818132d3a711fb85a",
+      "fingerprint": "060462d610627263728e7343ea9f23f8e4e4e9659729cc0ad5f8ebb0cc45e541",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "d2993749924f557e321ba9c78c9cca309e6b78be8907216422a1ff9874ffd9ac"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "0e3d36f982b69c8f79e741ac0085322c22a283980612979f0fba8f1242e1cc29"
       },
-      "head": "6305200d4b2fc98a6b0f9dd64da148a067a16163",
-      "outcome": "out-of-scope",
-      "reason": "Test-only change: invariant tests count hotkey callbacks with a plain counter instead of vi.fn() and one sweep gets an explicit timeout. No public API, option, or runtime behavior changes.",
-      "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 6305200d4b2fc98a6b0f9dd64da148a067a16163"
-      ]
+      "head": "263455eae65aaaae54818bf1150f6e32ffd967ec",
+      "outcome": "no-change",
+      "reason": "Test timeout only; no guidance changes.",
+      "evidence": ["packages/hotkeys/tests/invariants/matching.test.ts"]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
       "fingerprint": "717614d0339feabf4ff1e849854b2933e5ff5a45883ac69cfde0d59958fa86c0",
