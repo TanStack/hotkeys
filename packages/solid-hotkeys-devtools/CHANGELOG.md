@@ -1,5 +1,12 @@
 # @tanstack/solid-hotkeys-devtools
 
+## 0.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.12.3
+
 ## 0.14.2
 
 ### Patch Changes
