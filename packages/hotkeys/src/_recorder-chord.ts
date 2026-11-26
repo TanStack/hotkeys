@@ -72,8 +72,10 @@ export function hotkeyChordFromKeydown(
   }
   // An `Unidentified` key has no name to record. Code mode records its
   // position. A dead key, or a key that isn't written like a key name, is
-  // recorded only when asked for by key.
+  // recorded only when asked for by key. AltGr that typed nothing, such as
+  // AltGr+Home on Linux, fires no hotkey, so it records nothing.
   return parsed.key &&
+    !(normalized.altGraph && !altGraphTypedCharacter(normalized)) &&
     parsed.key !== 'Unidentified' &&
     (recordBy === 'key' ||
       (parsed.key !== 'Dead' && isKeyNameShape(parsed.key)))

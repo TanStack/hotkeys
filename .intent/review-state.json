@@ -63,11 +63,11 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "4fe4b6dfc97242a16cbd7f5cb0fe4314ca8375d33c682cfed8903ba0564d9e0d",
+      "fingerprint": "1944acdfb0e8ddc6bfe0fce3a87b26106ed3d9d347b858f7c89b1e210e59a745",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "afde3705876b91f6987779a9ca146c754aea5d131c65b39c8e00eef4b2c8d779",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "e55069ddf5698526c49d8bb27161a77373845d92970e13bb3d43e608223253e6",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
         "packages/hotkeys/src/app-hotkeys.ts": "ef6787cf1077c6d25a6760e7fad13b7a8f23a4571d5986ab74b2e7fa075f0c92",
@@ -82,21 +82,19 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
-      "outcome": "updated",
-      "reason": "Recorder output and the macOS Command+Shift rule changed; the skill text now states what the recorder writes and which macOS bindings fire.",
-      "evidence": [
-        "packages/hotkeys/src/_recorder-chord.ts, packages/hotkeys/src/_match.ts, docs/guides/sensible-defaults.md"
-      ]
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
+      "outcome": "no-change",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
+      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "af9fb622ac0ee62704f8b4f62c321ea377071f373c96c57ac0970cb16ed64dbf",
+      "fingerprint": "cc686aef154102df9740cec94aeee68afa120974d92216df678992c7f756d180",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
-        "docs/guides/sensible-defaults.md": "c749c470ddf46f50f0d39876b92fd405cf19d3b9df22532e9cad95b02edd24b5",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "4cc8408f3b438fb8b303db74eb4fd5ccfd949ca2c7b3c1133c2fba831c26ecc6",
+        "docs/guides/sensible-defaults.md": "f98f033675708206872b230bad37e16334a09b4dcab6a3119bab9f5d6014ea40",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "3f107f5591433d1a6ca8c65c4652b4c7a47796c01d7e28d6338d387b9d6f496d",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/hotkey-manager.ts": "dde5bcfc98f4f961452a7addcb2be073dbc7c2bd7f3870e16ea9070be2a0a778",
@@ -111,12 +109,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "updated",
-      "reason": "Recorder output and the macOS Command+Shift rule changed; the skill text now states what the recorder writes and which macOS bindings fire.",
-      "evidence": [
-        "packages/hotkeys/src/_recorder-chord.ts, packages/hotkeys/src/_match.ts, docs/guides/sensible-defaults.md"
-      ]
+      "reason": "Narrowed the macOS Mod+! / Mod+< claim to the US Cmd+Shift presses and recommended the shifted binding alongside.",
+      "evidence": ["packages/hotkeys/src/_match.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "86c2dfff4d5ed7ff73b8b1ec51dd036a1443d49063d7fb230e8adf04f03a35d4",
@@ -268,7 +264,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "252b71d97f69f8ce4945b5b4e4171e20dcf39ac7ea477ba647b53b280be0ba8e",
+      "fingerprint": "4771927973d4b20d7acffb6e20542414ff7da9cfa01cb13afc037e4510677e87",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
@@ -287,7 +283,7 @@
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "3f611925b7aa3f21506b8f2cf5e943523ad395e1bb49e535a6c8f785d3246efa",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "afde3705876b91f6987779a9ca146c754aea5d131c65b39c8e00eef4b2c8d779",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "e55069ddf5698526c49d8bb27161a77373845d92970e13bb3d43e608223253e6",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "445939ab4d9967b16ddd76ba3cb3639680fa552ea74be684136c8581b5d6db11",
         "docs/framework/react/guides/hotkeys.md": "a7891b1b331411057749a927758001ac935fa84da4e9ce2a461ab450203f6302",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
@@ -298,7 +294,7 @@
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "docs/guides/sensible-defaults.md": "c749c470ddf46f50f0d39876b92fd405cf19d3b9df22532e9cad95b02edd24b5",
+        "docs/guides/sensible-defaults.md": "f98f033675708206872b230bad37e16334a09b4dcab6a3119bab9f5d6014ea40",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
@@ -326,7 +322,7 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "4cc8408f3b438fb8b303db74eb4fd5ccfd949ca2c7b3c1133c2fba831c26ecc6",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "3f107f5591433d1a6ca8c65c4652b4c7a47796c01d7e28d6338d387b9d6f496d",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "ef6787cf1077c6d25a6760e7fad13b7a8f23a4571d5986ab74b2e7fa075f0c92",
@@ -399,10 +395,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "No new skill or domain; the recorder changes fit the existing app-hotkeys and hotkeys-core skills.",
-      "evidence": ["_artifacts/domain_map.yaml"]
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
+      "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -6604,13 +6600,13 @@
       "evidence": ["packages/hotkeys/tests/parse.test.ts"]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "96fb682157cd01b735864d709ffac89576f1b4a1bd8ef5956fb880e5ea3c9a53",
+      "fingerprint": "8f6c63bdbf1e092640f0d7266ad8137a3fe5bcba33d26656cc4d95b7e923b8e0",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "c1e02ee2ebb28c502faa361b388362b88020dc60eafaf07f467e97df470ce050"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "4e46444245348175599088d8c0524b8051f68ea55aa819670ec651f018082494"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
@@ -7324,13 +7320,13 @@
       "evidence": ["tests/listen.test.ts and key-state-tracker tests"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "e15b71e2d757754e45a7168553a076c524b5a46a88527c87bc7f62314c5d6fff",
+      "fingerprint": "0f525b3375489ed84066984a25299f840666f009ea62c09f6c21d390800383d8",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "eb227fda12d1cf77e065323e911ba01b3306953bf04ea2a202b506a6b67a1ae1"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "db50c1f441ee56622cdb7d0e838d7d2a90030c64d2fc6b26eae6063d63a492c9"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/alpine/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7518,13 +7514,13 @@
       ]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f2d1257a1a917da6d0efd73fd2b54b389098f4f9c40f32cdafba5fc90046d463",
+      "fingerprint": "b1f9754457cd3e9b94b85c26402f8f28a6adcb166ab6682ad09c629739d5b7e5",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "56e9215fe32dcfed63a8fb0bde801165f0d9af9117c4968ebd60407fe0e0c636"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "77e99c8d44e5e9f9750353d03b3cbaec899d107ab1a3e9e77f69f21ca66ff20b"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/ember/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7550,13 +7546,13 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f550b45c68f61fb92e9ad20fe188c517e713c14419f07be71bce0327c76328f6",
+      "fingerprint": "97f456be9ce7fe61d5babfb6350daf90e76f2658e351320abdcc1ab0a514a979",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "9d3ccab7c922ba2ebc2f023114baf0d05197fecf45ee9df9e6e03715d5a1bb36"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "e7a6254364093c38491f18b213c4bd2aa42d54482d0b1a80b83f9c98d480f1e2"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/lit/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11758,13 +11754,13 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "715842164facbd0f6731714087ee92a9cd096e122d9c87ed15bd7fe5c6e4cd38",
+      "fingerprint": "4fb9907f6bfed42e78de1214243808f6693335853e0b42edb90715110b51e91f",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "ad1f57f4addc324b0640b3b00791b93236192610787495b585b510df11f760c3"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "98bbf82589aa6ccbc3b9c2e4a4fda139ea65ba6c84f2c0b0e89629dabaf9635c"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/angular/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11804,13 +11800,13 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "98d39ebb960329078a1e573336638d0f7d2d5e198c33a1edee2f5f5c892827bc",
+      "fingerprint": "4e1094dd86e592c78ce6dd628737a1f2b0f020003f70598b78f72a6d7813a54b",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "bd2d115d2aa2efb4ae4567b3e484d6487bf6962c559c2d0426c23bee6fe6461c"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "91e73ac8045e3851da48cfe4e88914279bfaa438ce2fc14517606db63aac2632"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/octane/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11850,33 +11846,33 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b86186326e8131e238b05f5ca652c22bd65938182348a01383b7c722b904fb9b",
+      "fingerprint": "3381bac1486f31674a9e6c2878b6860767a616e875fcb302b155d08ade192d86",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "6479ad3fbac367bfbbe17a163233e1cf369b3b06cb5d55c4fe9cd8687636bbbd"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "3121ffd066b73f2ec0cb7f5d1a301e730eef38164d6b2d9052c86421d5593d4d"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/preact/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "0add146e7c88fed2cc6fcdbee1feddad61a3ed47e787b1da35204a1fb885a9e4",
+      "fingerprint": "ee1b6358b15896643eccc89a43e9804bf9d3f98581123233188acfba15256b9d",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "2b937ca66a573bc727f04ef66d9691d67147ebb9efcef2531385ad03c5b2c86a"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "91444f1647038e1c17bade7261615b4e05723bb524abf916c683b63423e40414"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/solid/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "1fcd1726bb878ea52f8884ef04868ec00758484efcdc43fc8354d231de5990ca",
+      "fingerprint": "e3aa3774e60b950f62f875a90e909d212a284eb9bc3ed6668edd1329cd4e52dd",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "d73db0a34c6b7448333bce394717130dc916def1fc4381cd5fb73a3e79d6630a"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "60a9a7bc610101029d38582126183795a8aaba00fc72daa2177c933108ad8486"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/svelte/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11952,13 +11948,13 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "ee0f3e72976673af494bf4557cdd8e1462bc76b99d98e61e9a7b2355b74072d5",
+      "fingerprint": "543347304fe7d9ca645782fc8be2e2fcfc32caf7d458756cac39a3c0b49d9b85",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "ecb9a2ad717efce41e08f1d7a2322e95281f34a5fd12f837386b213b6cb229e1"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "153d198f196f9f7dcfac68cfbbf9a848ff5fd544532a7dcca02cb1dec71c8eac"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["docs/framework/vue/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -12139,13 +12135,13 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "5461a3ccbe492ab1e37a62a48309305c8e7d0558a87c921231f77ece7be8959d",
+      "fingerprint": "28ecc6da9e0a5d06877dc0f53488808422867ca33368c7b74a49477718a998b2",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "23e1cb41b60c41c6f4b81f9de7e788ad5b263d02acc524f78d4096879eead1a6"
+        "packages/hotkeys/src/_recorder-chord.ts": "a7b169f130ce1ba712607cc41533a5add5a2de9fd5745de6a6139bebdefebb08"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["packages/hotkeys/src/_recorder-chord.ts"]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
@@ -19877,13 +19873,13 @@
       ]
     },
     "source:packages/hotkeys/tests/recorder-auto.test.ts": {
-      "fingerprint": "2167a4c8545893ec09237f69949436ad922f84f33ff99fc00314fb4d4070f23c",
+      "fingerprint": "97bf79f1a470c3ff3ad0de1f16bfd389eb43487d4e5f8c8b8ff0c6b5d5af33cf",
       "snapshot": {
-        "packages/hotkeys/tests/recorder-auto.test.ts": "012dc37bc9a2debdb6a6357dc9ac434b2d1cb97af8099e84105a0014c3f02df9"
+        "packages/hotkeys/tests/recorder-auto.test.ts": "395728509c145773e7b8f32c5d85f6152aa888de17ac03a091a8ba5e1e189f51"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "5bcd4898b0e990c8d96442fd585623ceed6e9009",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Guide wording and an AltGr recorder fix; no other skill states these details.",
       "evidence": ["packages/hotkeys/tests/recorder-auto.test.ts"]
     },
     "source:packages/octane-hotkeys/src/types.ts": {

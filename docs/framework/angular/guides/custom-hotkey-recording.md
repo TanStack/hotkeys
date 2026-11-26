@@ -41,7 +41,7 @@ export class ShortcutRecorderComponent {
 }
 ```
 
-With the default `recordBy: 'auto'`, the recorder outputs portable strings, written like a hand-typed string. Command+S on macOS and Control+S on Windows and Linux both record `Mod+S`. It records what the press typed, such as `?` for Shift+/ and `Mod+1` for AZERTY Ctrl+&. For presses whose characters vary across platforms or layouts, it falls back to physical bracketed codes, such as `Alt+[Slash]` for macOS Option+/. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules. Set `recordBy: 'code'` to always record the physical key, or `recordBy: 'key'` to always record the typed character. Pass the result straight to `injectHotkey`, and label it with `injectFormatForDisplay`.
+With the default `recordBy: 'auto'`, the recorder outputs portable strings, written like a hand-typed string. Command+S on macOS and Control+S on Windows and Linux both record `Mod+S`. It records what the press typed, such as `?` for Shift+/ and `Mod+1` for AZERTY Ctrl+&. For the few presses whose character the browser reports differently by platform, it falls back to physical bracketed codes, such as `Alt+[Slash]` for macOS Option+/. A recorded character such as `@` fires wherever the layout types it, which can be a different key. See [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) for the full rules. Set `recordBy: 'code'` to always record the physical key, or `recordBy: 'key'` to always record the typed character. Pass the result straight to `injectHotkey`, and label it with `injectFormatForDisplay`.
 
 `injectHotkeyRecorder` returns the recorder's state and controls. State members are signals:
 
@@ -211,7 +211,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return value) |
 | `'whitespace'` | The user pressed a whitespace character, which can't be recorded |
 | `'missing-code'` | The key press had no physical `code` when one was needed |
-| `'alt-graph'` | An `AltGr` combination that typed no character to record, or any `AltGr` combination with `recordBy: 'code'` |
+| `'alt-graph'` | An `AltGr` combination that typed no character to record, or any `AltGr` combination with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, so that press records `Mod+Alt+Home` instead |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 

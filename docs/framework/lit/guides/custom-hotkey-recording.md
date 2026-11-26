@@ -47,7 +47,7 @@ class ShortcutRecorder extends LitElement {
 
 The recorder writes the hotkey the way you would write it by hand. Command+S on macOS, or Control+S on Windows and Linux, records `Mod+S` on any keyboard layout. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `HotkeyController`, and label it with `FormatForDisplayController`.
 
-The recorder writes what the user typed, as you would by hand: Shift+/ records `?`, and Ctrl+Shift+/ or Cmd+Shift+/ records `Mod+?`. With Control, Command or Alt, a digit-row key records its digit, so AZERTY Ctrl+& records `Mod+1`. When the typed character changes with the platform or layout, the recorder records the key's position, in brackets: Option+/ on macOS records `Alt+[Slash]`, even though it types `÷`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
+The recorder writes what the user typed, as you would by hand: Shift+/ records `?`, and Ctrl+Shift+/, or Cmd+Shift+/ on the US `/` key, records `Mod+?`. With Control, Command or Alt, a digit-row key records its digit, so AZERTY Ctrl+& records `Mod+1`. For the few presses whose character the browser reports differently by platform, the recorder records the key's position, in brackets: Option+/ on macOS records `Alt+[Slash]`, even though it types `÷`. A recorded character such as `@` fires wherever the layout types it, which can be a different key. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) lists these cases. Set `recordBy: 'code'` to record every key by position, or `recordBy: 'key'` to record the character every press types. Recording by position needs a physical code, so it rejects a press that has none.
 
 The controller adds itself to the element, requests an update whenever its state changes, and has the recorder's state and controls:
 
@@ -221,7 +221,7 @@ A conflict check finds hotkeys that could collide. It can't promise which callba
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | The user pressed a whitespace character that can't be recorded |
 | `'missing-code'` | The key press had no physical `code`, and the recorder can't record it another way |
-| `'alt-graph'` | The user pressed an `AltGr` combination that typed no character to record, or any `AltGr` combination with `recordBy: 'code'` |
+| `'alt-graph'` | The user pressed an `AltGr` combination that typed no character to record, or any `AltGr` combination with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, so that press records `Mod+Alt+Home` instead |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 

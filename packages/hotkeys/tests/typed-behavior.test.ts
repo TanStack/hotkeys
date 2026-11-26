@@ -489,7 +489,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
         "fired": "521107fc5cde7e55",
-        "recorded": "303e0c225e7a0bb7",
+        "recorded": "b6c6180e6b95f438",
         "recorders": "d41678909cd59a0e",
       }
     `)

@@ -524,6 +524,13 @@ describe('recordBy: auto', () => {
     // A dead key typed nothing yet
     const dead = { key: 'Dead', code: 'BracketRight', altGraph: true }
     expect(record(dead, 'linux').rejection).toEqual({ reason: 'alt-graph' })
+    // AltGr+Home typed nothing, and `Home` alone wouldn't fire on it, with or
+    // without a code
+    for (const code of ['Home', '']) {
+      const home = record({ key: 'Home', code, altGraph: true }, 'linux')
+      expect(home.hotkey).toBeUndefined()
+      expect(home.rejection).toEqual({ reason: 'alt-graph' })
+    }
   })
 
   it('ignores a key on a modifier position', () => {
