@@ -23811,13 +23811,13 @@
       "evidence": [".github/workflows/ember-compat.yml"]
     },
     "source:docs/framework/alpine/reference/functions/hotkeyDirective.md": {
-      "fingerprint": "db25efb920361a0a7079cc745ec608b3694a0600a4c2ba94c0188e863adf1708",
+      "fingerprint": "5b0a44d19d2e7d38f5428372b4de094e537c678519786c1daf154239d24e89e6",
       "snapshot": {
-        "docs/framework/alpine/reference/functions/hotkeyDirective.md": "79dc735f572f22d45df45713f243f574d186c084d1840448cb12275f1837a9e5"
+        "docs/framework/alpine/reference/functions/hotkeyDirective.md": "51e55637d537e1155dbc21c451a95992bf47d87726a00f31dbcdb711642c8701"
       },
-      "head": "5d2f7394791b8dce8376f98f336c98a12d51bcef",
+      "head": "7604b394c7e089d1310768db2b04f7ff5701a2d4",
       "outcome": "out-of-scope",
-      "reason": "Generated reference page; autofix added the source link. The Alpine skill was reviewed in its own item.",
+      "reason": "Generated reference page; autofix updated the source line number.",
       "evidence": [
         "docs/framework/alpine/reference/functions/hotkeyDirective.md"
       ]
