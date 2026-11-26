@@ -78,7 +78,7 @@ Start with the [Alpine Quick Start](./framework/alpine/quick-start) and [Alpine 
 
 # Ember
 
-Requires Ember 6.8.3 or newer (excluding 6.9.0 and 6.10.0), and works with Vite (Embroider) or classic `ember-cli` with `ember-auto-import`. Register hotkeys in strict-mode `.gts` components and pass the component as owner to state readers and recorders.
+Requires Ember 4.12 or newer, and works with Vite (Embroider) or classic `ember-cli` with `ember-auto-import` 2. Register hotkeys in strict-mode `.gts` components and pass the component as owner to state readers and recorders.
 
 Start with the [Ember Quick Start](./framework/ember/quick-start) and [Ember guides](./framework/ember/guides/hotkeys). Ember ships the hotkeys adapter only and has no dedicated devtools package.
 

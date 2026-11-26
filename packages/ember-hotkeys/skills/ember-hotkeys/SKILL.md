@@ -78,7 +78,7 @@ export default class Editor extends Component {
 
 The package also re-exports `@tanstack/hotkeys`, such as `matchesKeyboardEvent` and `defineAppHotkeys`. Its plain `formatForDisplay` export is deprecated: use `useFormatForDisplay()` in components. Outside a component, call the plain function and pass `platform`.
 
-The helpers are template helpers, not JavaScript functions. State readers take the component as their owner, and their state is read through `.value`, or `.hotkeys` for registrations. Use Ember 6.8.3 or newer, except 6.9.0 and 6.10.0, and strict-mode `.gts` components.
+The helpers are template helpers, not JavaScript functions. State readers take the component as their owner, and their state is read through `.value`, or `.hotkeys` for registrations. Use Ember 4.12 or newer and strict-mode `.gts` components.
 
 ## Pitfalls
 

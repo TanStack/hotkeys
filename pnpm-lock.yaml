@@ -4625,6 +4625,12 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
     devDependencies:
+      '@alpinejs/csp':
+        specifier: 3.17.5
+        version: 3.17.5
+      '@alpinejs/morph':
+        specifier: 3.17.5
+        version: 3.17.5
       '@tanstack/hotkeys-test-utils':
         specifier: workspace:*
         version: link:../../test-utils
@@ -5199,6 +5205,12 @@ packages:
   '@algolia/requester-node-http@5.61.0':
     resolution: {integrity: sha512-CA+6MlgPkjSlGQpx+rLBSnHFy8pyYpGEjs7Yp0kVzOC6RM5jq99Z4KGOuplcNZBjQlM521t0nEvKLxFOv2NSZA==}
     engines: {node: '>= 14.0.0'}
+
+  '@alpinejs/csp@3.17.5':
+    resolution: {integrity: sha512-7e5lYgzJJL2eZ7esnx+E7wtxws+VDs9em9ztttZ+AQAYEng2bABHFp2SUga0wt84RyfL7hc6B+S/RGglXsPf6w==}
+
+  '@alpinejs/morph@3.17.5':
+    resolution: {integrity: sha512-3/zvG152HGW/sIuvOKMojKc0sH+quIFjMArKuG8vT07x5I7R90iVmwCtCZgE+9+7BJoop9q00maNd7nvHIA5Fw==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -18787,6 +18799,12 @@ snapshots:
     dependencies:
       '@algolia/client-common': 5.61.0
 
+  '@alpinejs/csp@3.17.5':
+    dependencies:
+      '@vue/reactivity': 3.5.45
+
+  '@alpinejs/morph@3.17.5': {}
+
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.13
@@ -31376,10 +31394,6 @@ snapshots:
       source-map-js: 1.2.2
 
   powershell-utils@0.2.1: {}
-
-  preact-render-to-string@6.8.2(preact@10.29.8):
-    dependencies:
-      preact: 10.29.8(preact-render-to-string@6.8.2)
 
   preact-render-to-string@6.8.2(preact@11.2.0):
     dependencies:

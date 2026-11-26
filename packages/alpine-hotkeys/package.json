@@ -50,6 +50,8 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
+    "@alpinejs/csp": "3.17.5",
+    "@alpinejs/morph": "3.17.5",
     "@tanstack/hotkeys-test-utils": "workspace:*",
     "@types/alpinejs": "^3.17.0",
     "alpinejs": "^3.17.5"

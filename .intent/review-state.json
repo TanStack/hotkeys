@@ -3,11 +3,11 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "ca9e3bb36fb667aa2f169fb0626252b647add734e6510a7aeddd7070149e833b",
+      "fingerprint": "804b8de7a86bba49dd1be3cc53be282bf2faa01e624962e4e6bc5b82730d265d",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
-        "docs/framework/alpine/quick-start.md": "08a69d1ed0415b4f2a85205b1de96565dcf97ef24d75cb5c6df991e531ba5cc0",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
+        "docs/framework/alpine/quick-start.md": "822d70174d351fa7b2fe2e773b4fb3a2b558191386001025cdf2efac7b0c7854",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3d671158016cfd0e71c7338f7258976d1bf46ed0e2b7c0b31b4415c809f65a6d",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -17,10 +17,13 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
-      "outcome": "no-change",
-      "reason": "The framework skill points to its guides and states no recorder output strings or macOS Command rules that changed.",
-      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "updated",
+      "reason": "Added the x-hotkey directive: install line, API row, morph pitfall, and the CSP build method-name form.",
+      "evidence": [
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
+        "docs/framework/alpine/quick-start.md"
+      ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
       "fingerprint": "237317989c8ce962bdca3471aac65f256d472f58d2d2160bc0cf6e6089927c2d",
@@ -43,13 +46,13 @@
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "b9a8c8816fb7e610041ed1989459417b1d26537a20284a41ecc65734455521ec",
+      "fingerprint": "a0bae934e8fa3df1d8ba52835e06e401cdf8550a453e0d60807bd27ac1213f05",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "0bb08f63eb9974ff3d8a0f408a3db321e16f8c6f285b1bbccd6e6b0a940ca4a7",
         "docs/framework/ember/quick-start.md": "2c8dc08cae925871408200ef4636adbac20cb23312d18773d726ca340c91f0e1",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d315094e211499a2fb4d3bb83a1918a734458c150df9594416d1e412d88f7da6",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "96848b2a04a5bd52bd89107127d8c5799f0c06d2859cfb4fd6dbdda12fba4325",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
-        "packages/ember-hotkeys/src/createHotkeysScope.ts": "850d665576c1f9f53e20d2654cb84a99a5e9fe7bfd190f9642133a6f1d3b41ee",
+        "packages/ember-hotkeys/src/createHotkeysScope.ts": "d7ff70b05c966c0cc62fa41254c8a0b40d4cb96cd081be5eb49878a3e148cbac",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
         "packages/ember-hotkeys/src/onHotkeys.ts": "a0ef3d3d1065ea4a28021827b363701a7efd2bb07606f9689fe58259080decc2",
         "packages/ember-hotkeys/src/useAppHotkeys.ts": "03a087b01789fb3297056d28a1452bafa1d07de44bc66a496d588436fcea6962",
@@ -57,10 +60,13 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
-      "outcome": "no-change",
-      "reason": "The framework skill points to its guides and states no recorder output strings or macOS Command rules that changed.",
-      "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "updated",
+      "reason": "The Ember version floor is now 4.12. The scope defaults order change matches what the skill and the App Hotkeys guide already say.",
+      "evidence": [
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
+        "docs/framework/ember/guides/app-hotkeys.md"
+      ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
       "fingerprint": "343a2d27fffcd7519a96ee497f9a4c8dcf2805157dbf564d3ead99060b77c0e8",
@@ -264,13 +270,13 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "9363e19207473b8ea4acb3cc257b5670b2730a17a7de958b100b42529ed07fae",
+      "fingerprint": "8e4fdda349b42d650d2e340e9bea5946e5410db677ff484ea72b89e5da3a5c1e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "3dfe15cd5f88bff08bfe9492e7487f709fcec25af7576a7e81729433e6d1ebef",
         "_artifacts/skill_tree.yaml": "9bebee27767490316a1ef51cbb8fe40d20e22a57de71fae4c7c3b0b5131472c1",
         "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
-        "docs/framework/alpine/quick-start.md": "08a69d1ed0415b4f2a85205b1de96565dcf97ef24d75cb5c6df991e531ba5cc0",
+        "docs/framework/alpine/quick-start.md": "822d70174d351fa7b2fe2e773b4fb3a2b558191386001025cdf2efac7b0c7854",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "3460ac6a9e5c544bfaa7c901aee1772e0b4122f4d942493998b132747929f97c",
         "docs/framework/angular/quick-start.md": "6853a3618a349160d18f61b97e8996c3ad4709930d4048192a724afa0b291690",
         "docs/framework/ember/guides/app-hotkeys.md": "0bb08f63eb9974ff3d8a0f408a3db321e16f8c6f285b1bbccd6e6b0a940ca4a7",
@@ -295,7 +301,7 @@
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "341b593efd34c0aa68c02dc95f186513d5c15139711d85c4827681ecab6af390",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
         "docs/guides/sensible-defaults.md": "96163627a03c50b44d62f49ee35eae4609445b3d7d928283391dacf79a250b6c",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "6e1357a1219003b43fa74242cb5671ab0aaf5c3ffd24dcad00f571f1bd829004",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3d671158016cfd0e71c7338f7258976d1bf46ed0e2b7c0b31b4415c809f65a6d",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -311,9 +317,9 @@
         "packages/angular-hotkeys/src/injectHotkey.ts": "1e7974556713a47a9641a97466e2c5218ec4adb65efed4cec1b163756e2b9734",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "8b4271888eee532d0674a6b6d034cdc76e06e6080988418fceb5e43756cdcaef",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d315094e211499a2fb4d3bb83a1918a734458c150df9594416d1e412d88f7da6",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "96848b2a04a5bd52bd89107127d8c5799f0c06d2859cfb4fd6dbdda12fba4325",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
-        "packages/ember-hotkeys/src/createHotkeysScope.ts": "850d665576c1f9f53e20d2654cb84a99a5e9fe7bfd190f9642133a6f1d3b41ee",
+        "packages/ember-hotkeys/src/createHotkeysScope.ts": "d7ff70b05c966c0cc62fa41254c8a0b40d4cb96cd081be5eb49878a3e148cbac",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
         "packages/ember-hotkeys/src/onHotkeys.ts": "a0ef3d3d1065ea4a28021827b363701a7efd2bb07606f9689fe58259080decc2",
         "packages/ember-hotkeys/src/useAppHotkeys.ts": "03a087b01789fb3297056d28a1452bafa1d07de44bc66a496d588436fcea6962",
@@ -395,10 +401,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
-      "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["_artifacts"]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "updated",
+      "reason": "Alpine and Ember skills updated for the directive and the Ember 4.12 floor.",
+      "evidence": [
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -1120,14 +1129,14 @@
       ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "dfa0f9f0f3d607cac55d227f9014132d0880b156422fce188488cda58ee94c5f",
+      "fingerprint": "a5aa978486678d25c698f8a31c14fcc36c3dc409c2e68c703c6f3e5d351ccad1",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "6bc5ffd1d483ac2c9885f46977c1ccfc865b287184c9f8df2f03cb08e8ceb716"
+        "docs/framework/alpine/guides/hotkeys.md": "3c531778c995dd3bd60314067134188f2547e5dd3bf3cdc4af69e31c75019933"
       },
-      "head": "1a7f595fd145e732f18293cbf39856b7f8f27017",
-      "outcome": "no-change",
-      "reason": "Dispatch and sequence fixes, replace removal, and guide updates; no skill guidance changes.",
-      "evidence": ["Core, adapter and e2e suites; battery 159/159"]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/framework/alpine/guides/hotkeys.md"]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
       "fingerprint": "e03e407cde6dd6ae5a8d42bc8ae25df1cf109025b5c2bdcd8d2590450d082d8d",
@@ -2621,16 +2630,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/config.json": {
-      "fingerprint": "23636769e54496747115ab5c2523987322da0ad0aad39a94684b0c695a7badd6",
+      "fingerprint": "f6d629e8af41c449a4f985ccffd9603d8a7703e94bdaab8f970a7f979289f9a2",
       "snapshot": {
-        "docs/config.json": "0ed70206117287e307db8337b3c280e22b337ba6e94ab02a4c8ee690138c7460"
+        "docs/config.json": "47426a418635a1d5950f8f317fd4d1e7eabedf6403c7bb5dea3f1744dc7f5a91"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
-      "outcome": "no-change",
-      "reason": "Documentation reorganization and prose rewrite only; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/config.json at bb8531891694fb630be3c91872f10a8377870d66"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/config.json"]
     },
     "source:docs/devtools.md": {
       "fingerprint": "232bcf1c213622a4999fe9df77361090e77aa99e113bbb4ed747456499b52d08",
@@ -2645,16 +2652,14 @@
       ]
     },
     "source:docs/installation.md": {
-      "fingerprint": "1dae2dfc5b0788601c2cfb1f1e6737a45f1fecfd420eafc958e85bf36b3c7b90",
+      "fingerprint": "33f00e0b358171abfa19d4307e29aeccf6c1e1bf1485cd472c2cec98d04fc4fa",
       "snapshot": {
-        "docs/installation.md": "32486ee11e8358922275a3bddc1fad77a6d72161bac22a845b8c4e16fabf9a21"
+        "docs/installation.md": "4a33dfac18204c2284d5d683d783405e522d98e62ae5e8ab4b9f8bf7cf86510e"
       },
-      "head": "bb8531891694fb630be3c91872f10a8377870d66",
-      "outcome": "no-change",
-      "reason": "Reorganized and rewrote core and framework guides and extracted dedicated SSR and testing guides; no public API, option, or runtime behavior changes, so skill guidance remains accurate.",
-      "evidence": [
-        "Changed: docs/installation.md at bb8531891694fb630be3c91872f10a8377870d66"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/installation.md"]
     },
     "source:nx.json": {
       "fingerprint": "e014971f835053ffc5ccbd92101c2526f8b5f2893ec5585cb893ea2283872953",
@@ -4350,14 +4355,14 @@
       ]
     },
     "source:.gitignore": {
-      "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
+      "fingerprint": "2362c322fc9b2651fd2b158f775944ecd838ae5e3abb7bf24e84ecd4f71971c6",
       "snapshot": {
-        ".gitignore": "9bb08f48d6ff76283b48a0df3ef663250f937ef5497c16ceefd59a35c38a8842"
+        ".gitignore": "c38d3ddac82dce790729420c3e3cf6a9202cf8711c75677b8c997b8ec8e9458c"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
       "outcome": "out-of-scope",
-      "reason": "Local ignore rules for untracked notes; not part of this change.",
-      "evidence": ["Not committed with this PR."]
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": [".gitignore"]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
       "fingerprint": "0deb2521b481c6d2ad1b555371d90b5a85cbc50cb57b93557e9073da4537a6ea",
@@ -5318,16 +5323,14 @@
       ]
     },
     "source:packages/ember-hotkeys/src/utils.ts": {
-      "fingerprint": "b2f3a6eae9a3500c775d5de248e0755d799499f73e1fbfc844f49850e3f98fbd",
+      "fingerprint": "e8b36d6adff3d41ed7788b4a442c0c210213402c7df738b9de8dc73e49a6bc46",
       "snapshot": {
-        "packages/ember-hotkeys/src/utils.ts": "dcb960b2ae9055e343b8b8a099d132a52b05c867ae1b915118a8984a1ec1e8d4"
+        "packages/ember-hotkeys/src/utils.ts": "1122f6dde9115e8f35e37681f6b03a499818a2748187e631e2a6974d1517f542"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/ember-hotkeys/src/utils.ts"]
     },
     "source:packages/ember-hotkeys/tsconfig.docs.json": {
       "fingerprint": "5a0b923213eb2824c82df256d6984612e872d6f45f1df1166b5f9035067a6e5f",
@@ -5822,28 +5825,24 @@
       ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
-      "fingerprint": "9f52c68f9d48ad5889e49faa5ee199109a997e3947638000527fc77350f81943",
+      "fingerprint": "a2f28a7e6ba804d3ba49e7bdfe4e7a237fb2cd0f57a448456aa55b44c88b5093",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkey.md": "1c6ab1b7c7f26f0a17fe4a8547b0f249b0fe1cb6b901b6b1b5f925193fae1b17"
+        "docs/framework/ember/reference/classes/useHotkey.md": "ae7ebc77c5eb66a53d8db0d8ac751c95283c1bb75b5758e755b12d4fc5247604"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: docs/framework/ember/reference/classes/useHotkey.md at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/framework/ember/reference/classes/useHotkey.md"]
     },
     "source:docs/framework/ember/reference/classes/useHotkeys.md": {
-      "fingerprint": "930d791aa75f2793c2d2f8ef3fc133aa44d3af5a7f0d53a32a791fbc52e57caf",
+      "fingerprint": "80b57856a54b6e58595872939a4837481aa8b0bcc342ef87e2cdef27b9dcb5ae",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkeys.md": "32d21321491f4453f375d8aa019829dd19440d4ce69dabcf7c7ed6564c1021cc"
+        "docs/framework/ember/reference/classes/useHotkeys.md": "7ec477e4076912b6dfd111e40daaf0766b3c6cd13a878ebc3c33e46aad8a7ee8"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: docs/framework/ember/reference/classes/useHotkeys.md at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/framework/ember/reference/classes/useHotkeys.md"]
     },
     "source:docs/reference/functions/assertValidHotkey.md": {
       "fingerprint": "6bba59302cab1aff80e5160f74a8a77765665dc0e51957e5647b5ed4ec1c7c6f",
@@ -7094,16 +7093,14 @@
       ]
     },
     "source:packages/ember-hotkeys/src/bindings.ts": {
-      "fingerprint": "69616f637a63090b7b61a7e1533f572289631180fa767d898525d87b98f1c513",
+      "fingerprint": "70b8bd9c73c0069ae64c1a7d3fb1b6b616f678d849f01698e368e80e27f340bd",
       "snapshot": {
-        "packages/ember-hotkeys/src/bindings.ts": "155264a2ac80629fdcb2c55480caf16f5342cef95c15145852611ad3e56fffd0"
+        "packages/ember-hotkeys/src/bindings.ts": "97260de87f4cabe5c73b33d2aedc5f9aeaecd854b2b085ea042fcaecb60e56d1"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/ember-hotkeys/src/bindings.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/unset-options.test.gts": {
       "fingerprint": "4beda11b9126af1148ee9786e807ee58e20445e2830582417b79bf16ce88139c",
@@ -7362,16 +7359,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/index.md": {
-      "fingerprint": "f6d515c74ab3cfdd84eb40560b335b86c54e9a85ca44bc3d3d2a39ab6280bd24",
+      "fingerprint": "b194d3230da948a9a61b8ec95978f0fa37399b99a9c111b0f8bfcb48a31bb4a7",
       "snapshot": {
-        "docs/framework/alpine/reference/index.md": "4ea3d1cdb584e0a5eaf0a38bd8ab0d6f9fcd5a7d4d101bdc9b4a3e98e05b18d1"
+        "docs/framework/alpine/reference/index.md": "9ff0228c3b2d39fc10b33676e848be30f7f02d487ce07eb2a8c846d4922a9696"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
-      "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["docs/framework/alpine/reference/index.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHeldKeyCodes.md": {
       "fingerprint": "1efff674856f6bc630b76ab066be37b9652a8e8880ede5d099a4d28c1759b707",
@@ -7608,29 +7603,24 @@
       "evidence": ["examples/*/*Recorder*"]
     },
     "source:knip.json": {
-      "fingerprint": "a62250a7d92e10c7e1d1e2dec55fd8bd512bda34f117fb463fe113605d706651",
+      "fingerprint": "f5d8dcbdcd1b022476415d3bf758d58fef837874d937535825975775ece95c8f",
       "snapshot": {
-        "knip.json": "21632fa1e78cb846a87fb00fe37635a6ee7b2521e3543e3f5e7a6db008ab63ea"
+        "knip.json": "b03848efb8f121f2be27688292205d66cad414694635d089bfbf03fec0eb1b6c"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
-      "evidence": [
-        "Changed: knip.json at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["knip.json"]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
-      "fingerprint": "58c2365e8c460cb692e85c461090e292c52da2bbda31e27b6bab78bbdd2b47a9",
+      "fingerprint": "01dee7d5937b6f9f44e6b5ceeb1149f741438304d8ad0c32ea291e59bb6f22e6",
       "snapshot": {
-        "packages/alpine-hotkeys/src/index.ts": "ed1d39eff041713b9adce6e6bb447eb33893d8ce904d4093026a885d6401c2b8"
+        "packages/alpine-hotkeys/src/index.ts": "271395ed12723450a1247172aa7f4db0ba0cb57173944f4fee37a18f90757db4"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Source of the deprecated formatForDisplay export, a new label primitive, or JSDoc for them. The framework skill describes the label primitive and the deprecation.",
-      "evidence": [
-        "packages/alpine-hotkeys/src/index.ts",
-        "git diff 7d9cccc3 -- packages/alpine-hotkeys/src/index.ts"
-      ]
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/alpine-hotkeys/src/index.ts"]
     },
     "source:packages/alpine-hotkeys/tests/effect-errors.test.ts": {
       "fingerprint": "87c77797e849ee672ca0662e839bdf35a31183c03b68b076bbaba1e946ef029e",
@@ -8430,13 +8420,13 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "f7308362d4c2dcb06c96658008d21e9ba276ea6e04a5241e1bfe25b203cf72dc",
+      "fingerprint": "f40caefcf983c054d2491cae70a560467bd77048e319f42110af427bad3844d2",
       "snapshot": {
-        "e2e/README.md": "ffad339ff541ed86742a1218d4e8e1c5babd34904a556224f92fe25fbb5ac4a4"
+        "e2e/README.md": "64e0a057a61864f17287c9b392cad4727933776d6c5f3eca1a0ae55bc5ae7fa1"
       },
-      "head": "2a213433c30909be875835beb9224c70d6da5eaa",
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
       "outcome": "out-of-scope",
-      "reason": "Test code and test documentation for development warnings; it carries no guidance for library users.",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
       "evidence": ["e2e/README.md"]
     },
     "source:e2e/playwright.ssr.config.ts": {
@@ -19861,15 +19851,15 @@
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": {
-      "fingerprint": "c0a09eca64d87cbf7e135eda6018b41a81e9a9652e78db71d21e5c9c07fdcf94",
+      "fingerprint": "7f4e01f808d61eb76309e6ce76c7ac7567e3199d61ca770f7e2b291970fd8fd4",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": "3e11f4d2d65879b4f4b35dd7b23119741de9cd1c9d0ad46c81bb30d08c696783"
+        "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts": "9a2e8531529621a7e94cfec8eb468a713eba68112d8a8a7906bbc06a65c3713b"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
-      "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "packages/ember-hotkeys/tests/integration/app-hotkeys.test.gts"
       ]
     },
     "source:packages/hotkeys/tests/recorder-auto.test.ts": {
@@ -20123,13 +20113,13 @@
       ]
     },
     "source:packages/ember-hotkeys/src/keyboardLayout.ts": {
-      "fingerprint": "7d148682f02173c2957c9d4c44e48170e9d20aec3c6a30071bf1df8d93e07bce",
+      "fingerprint": "f328f72ae18176cb3999cfa593f2d97b46a56ef1a3512eb29dd55e0951fc4adf",
       "snapshot": {
-        "packages/ember-hotkeys/src/keyboardLayout.ts": "0257d32102fe4b712a685d67aa4892990596d6494cb6df67434be9db354096ce"
+        "packages/ember-hotkeys/src/keyboardLayout.ts": "a4312e3226af8170301f5e9932569816440f1ed24a2c2cf2a4e2f7f691fba82f"
       },
-      "head": "f993101815a9a769d0456da75313e68d89a19ff0",
-      "outcome": "no-change",
-      "reason": "Source for keyboard layout labels. The label primitive rows updated in this review cover the behavior.",
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
       "evidence": ["packages/ember-hotkeys/src/keyboardLayout.ts"]
     },
     "source:packages/ember-hotkeys/src/useKeyboardLayout.ts": {
@@ -23815,6 +23805,138 @@
       "outcome": "no-change",
       "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
       "evidence": ["packages/hotkeys/tests/invariants/recorder-layouts.test.ts"]
+    },
+    "source:.github/workflows/ember-compat.yml": {
+      "fingerprint": "3f32465e4aa29188af13c6fe90ed8eb2cc03d54f284433d483496a48001665eb",
+      "snapshot": {
+        ".github/workflows/ember-compat.yml": "491a0ec1fc145f6555d6f2e86c14b8a847ba2929670ffddd8111f9f2bf40ef62"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": [".github/workflows/ember-compat.yml"]
+    },
+    "source:docs/framework/alpine/reference/functions/hotkeyDirective.md": {
+      "fingerprint": "94c01d5a118cc90e6f540152eb2471834bdb89c848658a63c54746b2a60ce541",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/hotkeyDirective.md": "cbd6647c1b969132aa05da968423088144f9afe9e0d787f0ecf7c96b3ca071a1"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": [
+        "docs/framework/alpine/reference/functions/hotkeyDirective.md"
+      ]
+    },
+    "source:e2e/ember-compat/app/components/probe.hbs": {
+      "fingerprint": "d18ef94bdd3d54e6031f8d6729411dc7448409c6c6140a8ab0c6e5c887dc6761",
+      "snapshot": {
+        "e2e/ember-compat/app/components/probe.hbs": "e68d150880adc5b5c818d047039c552aaa01fa1c509f08d4c7ca93555ef7473a"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/ember-compat/app/components/probe.hbs"]
+    },
+    "source:e2e/ember-compat/app/components/probe.js": {
+      "fingerprint": "5dcfb0475df6531747bf1af351edf17e86fbce41359378e8e8f9c7e8cc1a8105",
+      "snapshot": {
+        "e2e/ember-compat/app/components/probe.js": "34c8fd6fbfa2ed1842b4cdea011c86a6f4b98a2d8f1c52fbffb6740797717b71"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/ember-compat/app/components/probe.js"]
+    },
+    "source:e2e/ember-compat/app/helpers/use-hotkey.js": {
+      "fingerprint": "a4f0ca6ad5bf4c91b0cad957c8b6e68d79df4978f225735c08579cb0d0bae91d",
+      "snapshot": {
+        "e2e/ember-compat/app/helpers/use-hotkey.js": "d883bd6fb80b624e7713d3f3623b8fb38feb0bb1d5cad0344e2938635636b4eb"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/ember-compat/app/helpers/use-hotkey.js"]
+    },
+    "source:e2e/ember-compat/app/modifiers/on-hotkey.js": {
+      "fingerprint": "cd73f18f01f505cfae84482df10189768c6cbbcabed9b228883376ec5f927c84",
+      "snapshot": {
+        "e2e/ember-compat/app/modifiers/on-hotkey.js": "a535d2c814fdf5a3428dd54824076b4e1d4dde147cc83c7693e2f3b3ed6712b9"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/ember-compat/app/modifiers/on-hotkey.js"]
+    },
+    "source:e2e/ember-compat/tests/integration/probe-test.js": {
+      "fingerprint": "2044c8544deba0ff0589652ce5a570466f140cc85ef2b89f519a30811d8cc88a",
+      "snapshot": {
+        "e2e/ember-compat/tests/integration/probe-test.js": "52dfa5e9f98c3f536e910711d810706ada218280398fd395221e9f7e7dea44d3"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/ember-compat/tests/integration/probe-test.js"]
+    },
+    "source:e2e/scripts/ember-compat.ts": {
+      "fingerprint": "e3814d1f14c1d580c7212e15f239c2d796a3440e413e8378de9a1b6310ca2126",
+      "snapshot": {
+        "e2e/scripts/ember-compat.ts": "9b4bb5f4ad0089881491e6fa0ac3aa54afbac7aaf8801b542c5aacf6c7e4ff7a"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["e2e/scripts/ember-compat.ts"]
+    },
+    "source:packages/alpine-hotkeys/src/hotkeyDirective.ts": {
+      "fingerprint": "10095995d0233286caee2e2ef2be648d3fde3f29adadcd7748c4565bf5e02aff",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/hotkeyDirective.ts": "57407b2b2c281140b8f793bfb3c1058b481708381e5acf67d1aa13fffdec5c73"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/alpine-hotkeys/src/hotkeyDirective.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/alpine-plugins.d.ts": {
+      "fingerprint": "ed56e74cbd1bc3196c9cca5b983edae6f65d3e89d6a265590b198c083ec8fd14",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/alpine-plugins.d.ts": "5372fda910724c874a7418a1de75178c7c21f3864ac41f3e482ff9704527c174"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/alpine-hotkeys/tests/alpine-plugins.d.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/csp-build.test.ts": {
+      "fingerprint": "557495d51ae66fa28f3480435186f08657f650ef9e430b47a0579070acb61aa3",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/csp-build.test.ts": "7abeeefbdc2a5e82ab6b1c8752cae35b90f0a688b136f8ebfd1d4ac67dc3417e"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/alpine-hotkeys/tests/csp-build.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/hotkey-directive.test.ts": {
+      "fingerprint": "7ba45532c05b6de56039df29d5f48ec242f8dc75965b98cd386932ef993a9e46",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/hotkey-directive.test.ts": "eca43d3f8ae6520ed43e80a5534ae3898c29465352512ea0cc455f575eb7befd"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/alpine-hotkeys/tests/hotkey-directive.test.ts"]
+    },
+    "source:packages/ember-hotkeys/src/tracked.ts": {
+      "fingerprint": "36fd15298a16d6da406565c2de4bf1e051d9e0c64a42ecb4a64a28f5e9e79494",
+      "snapshot": {
+        "packages/ember-hotkeys/src/tracked.ts": "9c31e9e412ebf54901cd444118bdcc09663315164d42b36759e36eaeae52868e"
+      },
+      "head": "a0d13335f6d9976ac25ead467b4658185c741b51",
+      "outcome": "out-of-scope",
+      "reason": "Source, test, CI, or generated docs change; the skills that cover it were reviewed in their own items.",
+      "evidence": ["packages/ember-hotkeys/src/tracked.ts"]
     }
   }
 }

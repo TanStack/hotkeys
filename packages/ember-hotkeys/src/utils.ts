@@ -1,9 +1,9 @@
 import { registerDestructor } from '@ember/destroyable'
-import { trackedObject } from '@ember/reactive/collections'
 import {
   getPublishedAppHotkeysStore,
   subscribePublishedAppHotkeys,
 } from '@tanstack/hotkeys/adapter'
+import { trackedVersion } from './tracked'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type { DefaultHotkeysOptions } from './types'
@@ -16,7 +16,7 @@ export function select<T, TSelected>(
   store: Pick<Store<T>, 'state' | 'subscribe'>,
   selector: (value: T) => TSelected,
 ) {
-  const state = trackedObject({ version: 0 })
+  const state = trackedVersion()
   let last: TSelected | undefined
   // Invalidate consumers only when the selected value changes. The getter
   // still runs the selector while tracking, so getter inputs stay tracked.
@@ -43,7 +43,7 @@ export function select<T, TSelected>(
 export function trackPublishedAppHotkeys(
   owner: object,
 ): () => AppHotkeysStore | null {
-  const state = trackedObject({ version: 0 })
+  const state = trackedVersion()
   registerDestructor(
     owner,
     subscribePublishedAppHotkeys(() => {

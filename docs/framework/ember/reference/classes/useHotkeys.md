@@ -1633,6 +1633,9 @@ coalesced manner.
   \| ((`positional`, `options`) => `void`)
   \| `Owner`
   \| `DirtyableTag`
+  \| ((...`args`) => `any`)
+  \| (() => `void`)
+  \| (() => `string`)
   \| ((`properties`) => `void`)
   \| (() => `void`)
   \| ((...`args`) => `this`)
@@ -1668,9 +1671,6 @@ coalesced manner.
   \| ((`keyName`, `decrement?`) => `number`)
   \| ((`keyName`) => `boolean`)
   \| (\<`K`\>(`key`) => `unknown`)
-  \| ((...`args`) => `any`)
-  \| (() => `void`)
-  \| (() => `string`)
   \| `undefined`
 
 ##### Parameters

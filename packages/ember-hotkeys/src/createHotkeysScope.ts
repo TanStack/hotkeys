@@ -1,8 +1,8 @@
 import {
-  definedOptions,
   mergeHotkeysProviderDefaults,
   resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
+import { classDefaults } from './bindings'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
@@ -39,38 +39,14 @@ export function createHotkeysScope(
       undefined,
     )
   const scope: EmberHotkeysScope = {
-    onHotkey: class extends OnHotkey {
-      override modify(
-        ...[element, args, options]: Parameters<OnHotkey['modify']>
-      ) {
-        super.modify(element, args, {
-          ...definedOptions(defaults().hotkey, options),
-        })
-      }
-    },
-    onHotkeys: class extends OnHotkeys {
-      override modify(
-        ...[element, args, options]: Parameters<OnHotkeys['modify']>
-      ) {
-        super.modify(element, args, {
-          ...definedOptions(defaults().hotkey, options),
-        })
-      }
-    },
-    useHotkey: class extends UseHotkey {
-      override compute(...[args, options]: Parameters<UseHotkey['compute']>) {
-        super.compute(args, {
-          ...definedOptions(defaults().hotkey, options),
-        })
-      }
-    },
-    useHotkeys: class extends UseHotkeys {
-      override compute(...[args, options]: Parameters<UseHotkeys['compute']>) {
-        super.compute(args, {
-          ...definedOptions(defaults().hotkey, options),
-        })
-      }
-    },
+    onHotkey: class extends OnHotkey {},
+    onHotkeys: class extends OnHotkeys {},
+    useHotkey: class extends UseHotkey {},
+    useHotkeys: class extends UseHotkeys {},
+  }
+  const hotkeyDefaults = () => defaults().hotkey
+  for (const helper of Object.values(scope)) {
+    classDefaults.set(helper, hotkeyDefaults)
   }
   scopeDefaults.set(scope, defaults)
   return scope

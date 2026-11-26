@@ -43,9 +43,33 @@ Destroying the owner unregisters every hotkey it created. The adapter runs in th
 
 That's all a hotkey needs. Shared defaults, scopes, and the other features later in this guide are optional, so add them as your app grows.
 
+### Use the `x-hotkey` directive
+
+To register a hotkey in markup, install `hotkeyDirective` and name the hotkey with modifiers. The expression runs when the hotkey fires, with `$event` set to the keyboard event:
+
+```ts
+import Alpine from 'alpinejs'
+import { hotkeyDirective } from '@tanstack/alpine-hotkeys'
+
+Alpine.plugin(hotkeyDirective)
+Alpine.start()
+```
+
+```html
+<div x-data="{ count: 0 }" x-hotkey.mod.s="count++">
+  Saved <span x-text="count"></span> times
+</div>
+```
+
+HTML lowercases attribute names, so write each part in lowercase and multi-word keys with dashes: `x-hotkey.mod.shift.k`, `x-hotkey.escape`, `x-hotkey.arrow-up`, `x-hotkey.f2`. Write modifiers before their key. Each key ends a step, so `x-hotkey.g.h` is the sequence `['G', 'H']`, and `x-hotkey.s.mod`, with no key after `mod`, registers nothing.
+
+The hotkey uses the built-in defaults and lives as long as the attribute. Alpine removes it with its element, and when a morph changes or removes the attribute, as Livewire does on every update. For options, a hotkey that changes with state, or a key that can't be written in an attribute name, such as `?` or `[KeyW]`, use `$hotkeys` or an owner from `createHotkeysScope`.
+
+`hotkeyDirective` is a separate plugin from `hotkeysPlugin`. A page that only uses `x-hotkey` doesn't ship the owners and readers that `$hotkeys` holds.
+
 ### Use the `$hotkeys` magic
 
-The plugin also adds the `$hotkeys` magic, which registers hotkeys from markup:
+`hotkeysPlugin` also adds the `$hotkeys` magic, which takes the same arguments as an owner from `createHotkeysScope`:
 
 ```html
 <div x-data="{ count: 0 }" x-init="$hotkeys.createHotkey('Mod+S', () => count++)">
@@ -56,6 +80,26 @@ The plugin also adds the `$hotkeys` magic, which registers hotkeys from markup:
 `$hotkeys` is an owner that the plugin destroys with its element. It uses the built-in defaults. Register each hotkey with either `$hotkeys` or your own owner, not both.
 
 Call `$hotkeys.create*` in `x-init` or `init()`, and read `.value` anywhere. In a reactive expression such as `x-text`, each evaluation calls `create*` again and adds a new subscription.
+
+Alpine runs `x-init` again when a morph changes it, but `$hotkeys` keeps its registrations until its element is removed. On pages that Livewire or `Alpine.morph` updates, a changed `x-init` hotkey stays registered next to the new one. Use `x-hotkey`, or an `Alpine.data` component that destroys its owner in `destroy()`, on those pages.
+
+### Alpine's CSP build
+
+The CSP build of Alpine, `@alpinejs/csp`, can't parse arrow functions, so `x-init="$hotkeys.createHotkey('Mod+S', () => save())"` registers nothing. Move the callback into an `Alpine.data` component, and name the method in `x-hotkey`:
+
+```ts
+Alpine.data('editor', () => ({
+  save() {
+    // ...
+  },
+}))
+```
+
+```html
+<div x-data="editor" x-hotkey.mod.s="save"></div>
+```
+
+A call such as `x-hotkey.mod.s="save()"` needs `@alpinejs/csp` 3.15 or newer, because older CSP builds only run a method by name. The `init()` pattern from [Register a hotkey](#register-a-hotkey) also works, because the callback lives in JavaScript, not in markup.
 
 ## Register several hotkeys
 

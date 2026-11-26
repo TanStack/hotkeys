@@ -17,10 +17,10 @@
       "ignoreDependencies": [
         "@ember/component",
         "@ember/destroyable",
-        "@ember/reactive",
         "@ember/runloop",
         "@ember/routing",
         "@embroider/shared-internals",
+        "@glimmer/tracking",
         "@glint/tsserver-plugin",
         "@tanstack/hotkeys-test-utils"
       ]
@@ -29,7 +29,7 @@
       "ignore": ["tests/custom-hooks/**"]
     },
     "e2e": {
-      "ignore": ["adapters/shared/**"]
+      "ignore": ["adapters/shared/**", "ember-compat/**"]
     }
   }
 }

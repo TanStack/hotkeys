@@ -2,13 +2,14 @@
 
 Browser tests for `@tanstack/hotkeys`, run with Playwright against the library source.
 
-| Suite                           | Command                        | Browsers                        | Keys                                            |
-| ------------------------------- | ------------------------------ | ------------------------------- | ----------------------------------------------- |
-| Browser behavior (`browser/`)   | `pnpm test:e2e`                | Chromium, Firefox, WebKit       | Playwright's simulated keyboard                 |
-| Adapters (`adapters/`)          | `pnpm test:e2e:adapters`       | Chromium, Firefox, WebKit       | Playwright's simulated keyboard                 |
-| Keyboard layouts (`layouts/`)   | `pnpm test:e2e:layouts:docker` | Chromium, Firefox               | Real key presses through Linux keyboard layouts |
-| Server rendering (`ssr/`)       | `pnpm test:e2e:ssr`            | Chromium                        | Playwright's simulated keyboard                 |
-| Real input, nightly (`native/`) | `pnpm test:e2e:native`         | Chromium, Edge, Chrome, Firefox | Real key presses on Windows, Wayland, and ibus  |
+| Suite                                 | Command                                | Browsers                        | Keys                                            |
+| ------------------------------------- | -------------------------------------- | ------------------------------- | ----------------------------------------------- |
+| Browser behavior (`browser/`)         | `pnpm test:e2e`                        | Chromium, Firefox, WebKit       | Playwright's simulated keyboard                 |
+| Adapters (`adapters/`)                | `pnpm test:e2e:adapters`               | Chromium, Firefox, WebKit       | Playwright's simulated keyboard                 |
+| Keyboard layouts (`layouts/`)         | `pnpm test:e2e:layouts:docker`         | Chromium, Firefox               | Real key presses through Linux keyboard layouts |
+| Server rendering (`ssr/`)             | `pnpm test:e2e:ssr`                    | Chromium                        | Playwright's simulated keyboard                 |
+| Ember compatibility (`ember-compat/`) | `pnpm test:e2e:ember-compat <version>` | Chrome                          | Synthetic events in Ember's test runner         |
+| Real input, nightly (`native/`)       | `pnpm test:e2e:native`                 | Chromium, Edge, Chrome, Firefox | Real key presses on Windows, Wayland, and ibus  |
 
 Run the commands from the repository root or from `e2e/`. Install browsers once with `pnpm --filter @tanstack/hotkeys-e2e exec playwright install`.
 
@@ -52,6 +53,14 @@ For each example and for a Mac and a Windows user agent, the tests check that:
 - Hotkeys and format options work after hydration.
 
 To add an example, add it to `ssr/examples.ts` with an unused port and the command that starts its production server.
+
+## Ember compatibility
+
+The Ember adapter supports `ember-source` 4.12 and newer, but its own tests run on a recent Ember only. This check runs it in a classic ember-cli app on an older Ember. `scripts/ember-compat.ts` generates the app with the given ember-cli version, copies in the probe component and test from `ember-compat/`, installs the packed core and adapter, and runs `ember test`. The test registers a hotkey with the `useHotkey` helper and one with the `onHotkey` modifier, fires both, reads held keys, a key hold and a hint, and checks that teardown unregisters everything.
+
+Run `pnpm test:e2e:ember-compat "~4.12.0"` from the repository root: it builds the core and the adapter, then runs the check. Run `pnpm --filter @tanstack/hotkeys-e2e test:e2e:ember-compat "~4.12.0"` to skip the build. A second argument sets the `ember-source` version. The app is generated in a temporary folder and needs network access. The check uses Chrome; set `TESTEM_BROWSER="Headless Edge"` where only Edge is installed.
+
+CI runs it on 4.12 and 5.12 for pull requests that change the core source or the Ember adapter, and after each merge to `main`.
 
 ## Keyboard layouts
 

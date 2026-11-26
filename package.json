@@ -38,6 +38,7 @@
     "test:e2e:adapters": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-e2e-app-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:adapters",
     "test:e2e:layouts": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts",
     "test:e2e:layouts:docker": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts:docker",
+    "test:e2e:ember-compat": "nx run @tanstack/ember-hotkeys:build && pnpm --filter @tanstack/hotkeys-e2e test:e2e:ember-compat",
     "test:e2e:ssr": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-example-*-format-for-display-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:ssr",
     "test:eslint": "nx affected --target=test:eslint --exclude=examples/**",
     "test:oxlint": "nx affected --target=test:oxlint --exclude=examples/**",
@@ -193,14 +194,23 @@
       "limit": "12 KB"
     },
     {
+      "name": "Alpine hotkeyDirective",
+      "path": "packages/alpine-hotkeys/dist/index.js",
+      "import": "{ hotkeyDirective }",
+      "ignore": [
+        "alpinejs"
+      ],
+      "limit": "10 KB"
+    },
+    {
       "name": "Ember useHotkey",
       "path": "packages/ember-hotkeys/dist/index.js",
       "import": "{ useHotkey }",
       "ignore": [
         "@ember/component/helper",
         "@ember/destroyable",
-        "@ember/reactive/collections",
         "@ember/runloop",
+        "@glimmer/tracking",
         "ember-modifier",
         "ember-source"
       ],
