@@ -211,7 +211,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return value) |
 | `'whitespace'` | The user pressed a whitespace character, which can't be recorded |
 | `'missing-code'` | The key press had no physical `code` when one was needed |
-| `'alt-graph'` | An `AltGr` combination that typed no character to record, or, with `recordBy: 'code'`, any `AltGr` combination the browser reports as `AltGr`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, so no mode rejects that press: it records `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
+| `'alt-graph'` | An `AltGr` combination that typed no character to record, or, with `recordBy: 'code'`, any other `AltGr` combination. On Windows, the recorder treats `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, so no mode rejects that press: it records `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 

@@ -448,7 +448,7 @@ While recording is active:
 - `Enter` commits multi-step sequences (`maxSteps: Infinity`).
 - Existing registered hotkeys pause automatically, while typing in other inputs passes through.
 - To show the modifiers held so far, join the held modifier keys from the key state tracker with `+` and pass them to `formatForDisplay`. Leave other keys out, because a string that starts with a non-modifier key formats as empty. It orders them as in a chord: `⌃ ⌥ ⇧ ⌘` on macOS, `Ctrl+Alt+Shift+Win` elsewhere.
-- `AltGr` presses record the character they typed. `recordBy: 'code'` rejects them, and every mode rejects `AltGr` that typed nothing new, except on Windows, which reports `AltGr` with a key it doesn't change, such as `Home` or `F`, as a Control+Alt shortcut: `AltGr+Home` records `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'`.
+- `AltGr` presses record the character they typed. `recordBy: 'code'` rejects them, and every mode rejects `AltGr` that typed nothing new, except on Windows, where the recorder treats `AltGr` with a key it doesn't change, such as `Home` or `F`, as a Control+Alt shortcut: `AltGr+Home` records `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'`.
 - Shortcuts that the browser or the operating system keeps never reach the page, so the recorder can't record them and shows no error: `Mod+T`, `Mod+N`, and `Mod+W` in Chrome, `Command+Tab` and `Command+Space` on macOS, and most `Win` shortcuts on Windows. Tell users which keys they can't use, next to the recorder.
 
 ## Held keys reset when the window loses focus

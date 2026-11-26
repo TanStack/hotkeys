@@ -48,9 +48,9 @@ export type RecorderKeyMode = 'auto' | 'code' | 'key'
  * - `'alt-graph'`: AltGr was held and typed nothing the mode can record:
  *   recording by code rejects every AltGr press, `'auto'` rejects a dead key,
  *   and both `'auto'` and `'key'` reject AltGr that typed nothing new, such
- *   as AltGr+Home on Linux, because no hotkey matches that press. Windows
- *   reports AltGr with a key it doesn't change as Control+Alt, which no mode
- *   rejects: AltGr+Home records `Mod+Alt+Home`, or `Mod+Alt+[Home]` by code.
+ *   as AltGr+Home on Linux, because no hotkey matches that press. On
+ *   Windows, AltGr with a key it doesn't change counts as Control+Alt, which
+ *   no mode rejects: AltGr+Home records `Mod+Alt+Home`, or `Mod+Alt+[Home]` by code.
  * - `'missing-code'`: the event has no usable physical key code. Recording by
  *   code always needs one. `recordBy: 'auto'` records what the press typed
  *   instead, and rejects only a press that typed nothing it can record.
