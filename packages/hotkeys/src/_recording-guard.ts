@@ -25,14 +25,15 @@ function release(event: KeyboardEvent): void {
   const id = identity(event)
   if (pending.delete(id)) captured.add(event)
   if (stopped.delete(id)) event.stopPropagation()
-  // macOS can swallow the main key's keyup while Command is held, so
-  // releasing Command ends that chord. Other modifiers don't swallow keyups,
-  // so a key still held after them keeps its guard.
-  if (normalizeKeyName(event.key) === 'Meta') {
+  // A key whose keyup never comes, such as one macOS swallows while Command
+  // is held, must not block hotkeys, so releasing a modifier ends the chord.
+  // Its keyup stays hidden until it comes, unless Command swallowed it.
+  const modifier = normalizeKeyName(event.key)
+  if (MODIFIER_KEYS.has(modifier)) {
     for (const [id, key] of pending) {
       if (!MODIFIER_KEYS.has(key)) {
         pending.delete(id)
-        stopped.delete(id)
+        if (modifier === 'Meta') stopped.delete(id)
       }
     }
   }
@@ -40,7 +41,11 @@ function release(event: KeyboardEvent): void {
 }
 /** Hides the repeats of a stopped press, which go on after a recording commits. */
 function repeat(event: KeyboardEvent): void {
-  if (event.repeat && stopped.has(identity(event))) {
+  const id = identity(event)
+  if (!event.repeat) {
+    // A new press of the key, so the old one's keyup isn't coming
+    stopped.delete(id)
+  } else if (stopped.has(id)) {
     // A held arrow key would still scroll the page
     event.preventDefault()
     event.stopPropagation()
@@ -54,7 +59,12 @@ function blur(): void {
 }
 /** Detaches shared listeners once neither active sessions nor pending releases need them. */
 function cleanup(): void {
-  if (listening && sessions.size === 0 && pending.size === 0) {
+  if (
+    listening &&
+    sessions.size === 0 &&
+    pending.size === 0 &&
+    stopped.size === 0
+  ) {
     window.removeEventListener('keyup', release, true)
     window.removeEventListener('keydown', repeat, true)
     window.removeEventListener('blur', blur)

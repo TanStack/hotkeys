@@ -932,3 +932,42 @@ describe('HotkeyRecorder guard edge cases', () => {
     expect(b.store.state.isRecording).toBe(true)
   })
 })
+
+describe('HotkeyRecorder and a key release that never comes', () => {
+  afterEach(() => {
+    instances.splice(0).forEach((recorder) => recorder.destroy())
+    window.dispatchEvent(new Event('blur'))
+  })
+
+  it('stops blocking hotkeys on the key once a modifier is released', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('[KeyS]', callback)
+    const recorder = createRecorder({ onRecord: vi.fn(), platform: 'windows' })
+    recorder.start()
+    keydown({
+      key: 'Control',
+      code: 'ControlLeft',
+      ctrlKey: true,
+      target: document.body,
+    })
+    keydown({ key: 's', code: 'KeyS', ctrlKey: true, target: document.body })
+    // The S keyup is lost; only Control's arrives
+    keyup({ key: 'Control', code: 'ControlLeft', target: document.body })
+    keydown({ key: 's', code: 'KeyS', target: document.body })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
+  it("lets the page see a later press's release of the same key", () => {
+    const released: Array<string> = []
+    const onKeyup = (event: KeyboardEvent) => released.push(event.key)
+    const recorder = createRecorder({ onRecord: vi.fn() })
+    recorder.start()
+    keydown({ key: 'a', code: 'KeyA', target: document.body })
+    // The A keyup is lost; the user presses A again later
+    document.addEventListener('keyup', onKeyup)
+    keydown({ key: 'a', code: 'KeyA', target: document.body })
+    keyup({ key: 'a', code: 'KeyA', target: document.body })
+    document.removeEventListener('keyup', onKeyup)
+    expect(released).toEqual(['a'])
+  })
+})
