@@ -139,12 +139,12 @@ Rejected recordings keep the recorder active, and rejected sequences keep their 
 
 ### Save hotkeys that work on another platform
 
-A recorded hotkey means the same keys on every platform when its modifiers are `Mod`, `Shift`, and `Alt`. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
+A recorded hotkey's modifiers mean the same keys on every platform when they are `Mod`, `Shift`, and `Alt`. Its key follows the layout, so a recorded character such as `@` can sit on a different key. The recorder writes Command on macOS and Control elsewhere as `Mod`. The other two modifiers stay platform-specific: Control+S recorded on a Mac is `Control+S`, which on Windows is the same press as `Mod+S`, and the Windows key recorded on Windows is `Meta`, which on a Mac is Command.
 
 If your app syncs hotkeys between machines, pick one rule:
 
 - Store each hotkey with the platform it was recorded on, and use it only there. `context.platform` names it.
-- Reject the platform-specific modifiers, so every saved hotkey is portable:
+- Reject the platform-specific modifiers, so every saved hotkey's modifiers work on every platform:
 
 ```tsx
 useHotkeyRecorder({
@@ -192,7 +192,7 @@ detectConflicts: {
 | `'validation'` | Rejected by your `validate` callback (`message` holds your return string) |
 | `'whitespace'` | User pressed a whitespace character that can't be recorded |
 | `'missing-code'` | Key event had no physical `code` when needed |
-| `'alt-graph'` | `AltGr` combination that typed no character, or any with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, recorded as `Mod+Alt+Home` |
+| `'alt-graph'` | `AltGr` combination that typed no character, or any with `recordBy: 'code'`. Windows reports `AltGr` with a key it doesn't change, such as `Home`, as Control+Alt, recorded as `Mod+Alt+Home`, or `Mod+Alt+[Home]` with `recordBy: 'code'` |
 
 `findHotkeyConflicts(hotkey, options)` runs the same conflict check outside a recording and returns `HotkeyConflict` objects (`{ registration }`) wrapping matching [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
