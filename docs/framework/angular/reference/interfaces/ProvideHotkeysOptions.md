@@ -17,7 +17,7 @@ Options for `provideHotkeys`.
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [hotkeys-provider.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L81)
+Defined in: [hotkeys-provider.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L85)
 
 Every app hotkey, from `defineAppHotkeys`. Listed by
 `injectAppHotkeyList` whether or not they are registered.
@@ -33,7 +33,7 @@ optional customHotkeys?: MaybeGetter<
 | undefined>;
 ```
 
-Defined in: [hotkeys-provider.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L88)
+Defined in: [hotkeys-provider.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L92)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -90,7 +90,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [hotkeys-provider.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L90)
+Defined in: [hotkeys-provider.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L94)
 
 Called with the custom hotkeys after every change, ready to save.
 
@@ -115,6 +115,18 @@ optional scope?: MaybeGetter<string | undefined>;
 Defined in: [hotkeys-provider.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L72)
 
 See `HotkeysProviderScopeProps['scope']`. Getters, here and for
-`exclusive` and `enabled`, run in the provider's injection context, so
+`exclusive`, `enabled`, and `suspendCharacterKeys`, run in the provider's injection context, so
 they can `inject()` the component that provides them and read its
 signals.
+
+***
+
+### suspendCharacterKeys?
+
+```ts
+optional suspendCharacterKeys?: MaybeGetter<boolean | undefined>;
+```
+
+Defined in: [hotkeys-provider.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L78)
+
+See `HotkeysProviderScopeProps['suspendCharacterKeys']`.

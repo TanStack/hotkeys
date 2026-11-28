@@ -22,6 +22,7 @@ import type {
   RegisteredAppHotkeyListItem,
   RegisteredAppHotkeys,
   Target,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
@@ -157,6 +158,42 @@ export interface AlpineHotkeys {
    * ```
    */
   createFormatForDisplay: () => typeof formatForDisplay
+  /**
+   * Returns `formatForAria` with the scope's `platform` as the default, or
+   * the detected platform without one. Use its value for
+   * `aria-keyshortcuts`, so screen readers announce the shortcut. It returns
+   * `undefined` for a multi-step sequence or no hotkey, so `x-bind` omits the
+   * attribute. An explicit `platform` option wins.
+   *
+   * Physical bindings such as `[KeyQ]` name the key the user presses in
+   * Chromium browsers, once the keyboard layout has loaded, the same way as
+   * `createFormatForDisplay`. A `layoutMap` passed to the returned function
+   * wins.
+   *
+   * Create it once, then call the returned function anywhere.
+   *
+   * @example
+   * ```ts
+   * Alpine.data('searchButton', () => {
+   *   const hotkeys = createHotkeysScope()
+   *   const formatForAria = hotkeys.createFormatForAria()
+   *
+   *   return {
+   *     get shortcut() {
+   *       return formatForAria('Mod+K')
+   *     },
+   *     destroy() {
+   *       hotkeys.destroy()
+   *     },
+   *   }
+   * })
+   * ```
+   *
+   * ```html
+   * <button x-data="searchButton" :aria-keyshortcuts="shortcut">Search</button>
+   * ```
+   */
+  createFormatForAria: () => typeof formatForAria
   /**
    * Read the browser's keyboard layout through `.value`, or `null` until it
    * loads and in browsers that don't report one. The layout maps each physical

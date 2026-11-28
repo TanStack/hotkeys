@@ -25,12 +25,14 @@ title: "@tanstack/solid-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
 ## Functions
 
 - [createAppHotkeyList](functions/createAppHotkeyList.md)
+- [createFormatForAria](functions/createFormatForAria.md)
 - [createFormatForDisplay](functions/createFormatForDisplay.md)
 - [createHeldKeyCodes](functions/createHeldKeyCodes.md)
 - [createHeldKeys](functions/createHeldKeys.md)

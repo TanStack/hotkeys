@@ -2,7 +2,7 @@ import {
   createFormatForDisplay,
   resolveMaybeGetter,
 } from '@tanstack/hotkeys/adapter'
-import { KeyboardLayoutController } from './keyboard-layout'
+import { FormatterLayout } from './_formatter-layout'
 import type {
   HotkeyPlatform,
   MaybeGetter,
@@ -59,7 +59,7 @@ export interface FormatForDisplayControllerOptions {
  */
 export class FormatForDisplayController implements ReactiveController {
   /** Reads the layout for the host, unless `keyboardLayout` is false. */
-  private _layout: KeyboardLayoutController | undefined
+  private _layout: FormatterLayout
 
   /**
    * Formats a hotkey as a label, with the controller's platform and the
@@ -68,8 +68,7 @@ export class FormatForDisplayController implements ReactiveController {
    */
   public format: typeof formatForDisplay = createFormatForDisplay(
     () => this._read().platform,
-    () =>
-      (this._read().keyboardLayout !== false && this._layout?.value) || null,
+    () => this._layout.value,
   )
 
   /**
@@ -80,17 +79,21 @@ export class FormatForDisplayController implements ReactiveController {
     private _host: ReactiveControllerHost,
     private _options: MaybeGetter<FormatForDisplayControllerOptions> = {},
   ) {
+    this._layout = new FormatterLayout(
+      _host,
+      () => this._read().keyboardLayout !== false,
+    )
     this._host.addController(this)
   }
 
   /** Starts reading the layout, unless `keyboardLayout` is false. */
   public hostConnected(): void {
-    this._sync()
+    this._layout.sync()
   }
 
   /** Follows a `keyboardLayout` option that a host property changed. */
   public hostUpdate(): void {
-    this._sync()
+    this._layout.sync()
   }
 
   /**
@@ -99,23 +102,11 @@ export class FormatForDisplayController implements ReactiveController {
    * `removeController` alone leaves it active.
    */
   public dispose(): void {
-    this._layout?.dispose()
-    this._layout = undefined
+    this._layout.dispose()
     this._host.removeController(this)
   }
 
   private _read(): FormatForDisplayControllerOptions {
     return resolveMaybeGetter(this._options)
-  }
-
-  private _sync(): void {
-    if (this._read().keyboardLayout === false) {
-      this._layout?.dispose()
-      this._layout = undefined
-      return
-    }
-    // The layout controller joins the host, which connects and disconnects
-    // it. It loads the layout only while the host is connected.
-    this._layout ??= new KeyboardLayoutController(this._host)
   }
 }

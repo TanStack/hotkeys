@@ -14,6 +14,7 @@
     scope={provider.scope}
     enabled={provider.enabled}
     exclusive={provider.exclusive}
+    suspendCharacterKeys={provider.suspendCharacterKeys}
     appHotkeys={provider.appHotkeys}
     customHotkeys={provider.customHotkeys as never}
     defaultOptions={{ platform: provider.platform, hotkey: provider.hotkey }}

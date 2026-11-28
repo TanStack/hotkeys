@@ -8,7 +8,7 @@ description: Register keyboard shortcuts in Alpine components with createHotkey 
 
 ## Chords and sequences
 
-A hotkey is one of two kinds:
+A hotkey is one of these kinds:
 
 - A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
 - A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.
@@ -249,7 +249,7 @@ Alpine.data('richTextEditor', () => ({
 </div>
 ```
 
-The shared `target` makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets. Passing the array as a getter lets `enabled` follow `canUndo`.
+The shared `target` makes every hotkey in the list listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets. Passing the array as a getter lets `enabled` follow `canUndo`.
 
 Options merge in this order: the owner's defaults, then the shared options, then each definition's options.
 

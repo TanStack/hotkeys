@@ -11,7 +11,7 @@ function useHotkeysContext():
   | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:201](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L201)
+Defined in: [HotkeysProvider.tsx:208](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L208)
 
 ## Returns
 

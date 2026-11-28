@@ -11,6 +11,7 @@
     scope,
     exclusive,
     enabled,
+    suspendCharacterKeys,
   }: HotkeysProviderProps = $props()
 
   setHotkeysContextSource(() => ({
@@ -21,6 +22,7 @@
     scope,
     exclusive,
     enabled,
+    suspendCharacterKeys,
   }))
 </script>
 

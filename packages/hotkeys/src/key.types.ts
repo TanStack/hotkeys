@@ -1,4 +1,4 @@
-import type { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_named-keys'
+import type { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_constants'
 import type { UsKeys } from './key-sets/us'
 import type { Register } from './register'
 

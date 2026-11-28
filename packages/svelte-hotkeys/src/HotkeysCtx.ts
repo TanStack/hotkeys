@@ -6,6 +6,7 @@ import {
 import { createContext } from 'svelte'
 import {
   activateScopeWhileMounted,
+  suspendCharacterKeysWhileMounted,
   syncAppHotkeysStore,
 } from './internal.svelte.js'
 import type {
@@ -160,6 +161,8 @@ export function setHotkeysContextSource(
       parent: parent?.defaultOptions.hotkey?.scope,
     })
   })
+  // Suspend character key shortcuts while mounted, as the user's setting asks.
+  suspendCharacterKeysWhileMounted(() => source().suspendCharacterKeys)
   return context
 }
 

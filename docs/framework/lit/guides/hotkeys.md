@@ -8,7 +8,7 @@ The `@hotkey` decorator registers a keyboard shortcut for a method while its ele
 
 ## Chords and sequences
 
-A hotkey is one of two kinds:
+A hotkey is one of these kinds:
 
 - A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
 - A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.

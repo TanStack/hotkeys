@@ -1,4 +1,4 @@
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { getHotkeyManager, publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
   createAppHotkeysStore,
@@ -120,6 +120,7 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   scope,
   exclusive = false,
   enabled = true,
+  suspendCharacterKeys = false,
 }: HotkeysProviderProps<T>) {
   const parent = useContext(HotkeysContext) ?? NO_PARENT
   // App hotkeys compare hotkeys, such as for conflicts, on this platform.
@@ -150,6 +151,13 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   useLayoutEffect(() => {
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
+
+  // Suspend character key shortcuts while mounted, as the user's setting asks.
+  useLayoutEffect(() => {
+    return suspendCharacterKeys
+      ? getHotkeyManager().suspendCharacterKeys()
+      : undefined
+  }, [suspendCharacterKeys])
 
   // Keep the latest callback, platform, and saved custom hotkeys. Saved data
   // with the same value, such as an inline JSON.parse, keeps the user's

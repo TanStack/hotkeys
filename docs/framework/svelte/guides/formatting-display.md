@@ -30,7 +30,7 @@ Call `getFormatForDisplay` at the top level of a component's `<script>`. It retu
 </button>
 ```
 
-The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `getFormatForDisplay` fills in two things for you:
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `getFormatForDisplay` fills in the following for you:
 
 - **Platform.** Reads the nearest `HotkeysProvider`, or detects it from `navigator` when there is none.
 - **Keyboard layout.** For physical codes such as `[KeyW]`, reads the user's keyboard layout in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
@@ -155,6 +155,31 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including on the server.
 
+## Format for `aria-keyshortcuts`
+
+`getFormatForAria()` returns a function that formats a hotkey for the [`aria-keyshortcuts`](https://w3c.github.io/aria/#aria-keyshortcuts) attribute so screen readers can announce it. It uses the same platform and keyboard layout as the display formatter. See [Accessibility](./accessibility#announce-shortcuts-to-screen-readers) for where to place the attribute.
+
+```svelte
+<script lang="ts">
+  import { getFormatForAria, getFormatForDisplay } from '@tanstack/svelte-hotkeys'
+
+  const formatForAria = getFormatForAria()
+  const formatForDisplay = getFormatForDisplay()
+</script>
+
+<button aria-keyshortcuts={formatForAria('Mod+K')}>
+  Search <kbd>{formatForDisplay('Mod+K')}</kbd>
+</button>
+```
+
+The output uses the key names from the ARIA specification:
+
+- **Modifiers.** `Mod` becomes `Meta` on macOS and `Control` elsewhere. Modifiers use `Control`, `Alt`, `Shift`, and `Meta` in that order before the key, so `Mod+Shift+P` formats as `Shift+Meta+P` on macOS.
+- **Keys.** Keys use `KeyboardEvent.key` values (`K`, `/`, `Escape`, `ArrowUp`), with `Space` for the space bar and `Plus` for the plus key. A physical binding names the key at that position from the user's keyboard layout where the browser reports it, so `[KeyQ]` formats as `Q`, or `A` on a French AZERTY keyboard. A logical hotkey's punctuation stays as written, so `'?'` formats as `?` rather than the `Shift+/` you press on a US keyboard. The key that types `?` depends on the layout. To name the key, bind it physically, such as `Shift+[Slash]`.
+- **No value.** Returns `undefined` for a multi-step sequence, a standalone modifier, an empty or `null` hotkey, or a physical code with no key name such as `[NumpadMemoryAdd]`, so Svelte omits the attribute. ARIA has no syntax for multi-step sequences.
+
+For a control with two shortcuts, join both formatted values with a space, such as `Control+K /`.
+
 ## Server-side rendering
 
 Pass `platform` to `HotkeysProvider` from the incoming request so the server renders the right labels, or render labels only in the browser on static pages. See [SSR & Hydration](./ssr) for SvelteKit, Astro, and static page examples.
@@ -173,6 +198,8 @@ The plain function takes the same options as the function from `getFormatForDisp
 
 > [!NOTE]
 > `formatForDisplay` is marked `@deprecated` so editor autocomplete nudges component code toward `getFormatForDisplay`. Outside components, calling it directly is expected.
+
+For `aria-keyshortcuts` outside a component, call `formatForAria` directly with `platform` and an optional `layoutMap`. For example, `formatForAria('Mod+S', { platform: 'mac' })` returns `'Meta+S'`. Like `formatForDisplay`, the plain export is marked `@deprecated`, so editors point component code to the adapter's formatter.
 
 ## Parse, compare, and store hotkeys
 

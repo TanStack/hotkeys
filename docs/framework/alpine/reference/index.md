@@ -25,6 +25,7 @@ title: "@tanstack/alpine-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 
 ## Functions

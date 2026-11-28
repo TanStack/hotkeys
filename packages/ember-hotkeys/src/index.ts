@@ -11,8 +11,10 @@ export * from './useHotkeyScopesState'
 export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 export * from './useFormatForDisplay'
+export * from './useFormatForAria'
 // Replaces the core export, to point components to the utility
 export { formatForDisplay } from './formatForDisplay'
+export { formatForAria } from './formatForAria'
 export * from './useKeyboardLayout'
 
 export * from './types'

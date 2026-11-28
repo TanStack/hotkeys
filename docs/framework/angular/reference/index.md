@@ -26,6 +26,7 @@ title: "@tanstack/angular-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HOTKEYS\_INJECTION\_TOKEN](variables/HOTKEYS_INJECTION_TOKEN.md)
 
@@ -35,6 +36,7 @@ title: "@tanstack/angular-hotkeys"
 - [injectAppHotkeys](functions/injectAppHotkeys.md)
 - [injectCustomHotkeys](functions/injectCustomHotkeys.md)
 - [injectDefaultHotkeysOptions](functions/injectDefaultHotkeysOptions.md)
+- [injectFormatForAria](functions/injectFormatForAria.md)
 - [injectFormatForDisplay](functions/injectFormatForDisplay.md)
 - [injectHeldKeyCodes](functions/injectHeldKeyCodes.md)
 - [injectHeldKeys](functions/injectHeldKeys.md)

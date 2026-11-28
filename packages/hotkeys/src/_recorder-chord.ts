@@ -1,4 +1,5 @@
 import { isCodeName, isKeyNameShape, isModifierCode } from './_chord'
+import { US_SHIFTED, US_UNSHIFTED } from './_constants'
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
@@ -7,7 +8,7 @@ import {
   normalizeKeyboardEvent,
 } from './_keyboard-event'
 import { isAsciiLetter, isLatinLetter, isPrintableKey } from './_keys'
-import { US_SHIFTED, US_UNSHIFTED, matchKeyboardEvent } from './_match'
+import { matchKeyboardEvent } from './_match'
 import { isSingleLetterKey } from './constants'
 import { normalizeHotkey, parseKeyboardEvent } from './parse'
 import type { RecorderKeyMode, RecorderRejection } from './hotkey-recorder'

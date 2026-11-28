@@ -17,6 +17,7 @@ import type {
 import type {
   HotkeyRegistrationView,
   OctaneHotkeyRecorder,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/octane-hotkeys'
 
@@ -129,12 +130,17 @@ const harness: ConformanceHarness = {
 
   mountFormat({ platform }) {
     let format!: typeof formatForDisplay
+    let formatAria!: typeof formatForAria
     const view = render(FormatView, {
       provider: platform ? { platform } : undefined,
-      ready: (value: typeof formatForDisplay) => (format = value),
+      ready: (value: typeof formatForDisplay, aria: typeof formatForAria) => {
+        format = value
+        formatAria = aria
+      },
     })
     return {
       format: (hotkey, options) => format(hotkey, options ?? {}),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
       unmount: view.unmount,
     }
   },

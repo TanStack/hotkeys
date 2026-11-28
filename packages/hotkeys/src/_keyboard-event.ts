@@ -1,4 +1,5 @@
 import { isModifierCode, modifierAlias } from './_chord'
+import { NAMED_CODE_KEYS } from './_constants'
 import { ownValue } from './_keys'
 import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
 import type { NormalizedKeyboardEvent } from './key.types'
@@ -123,16 +124,7 @@ export function codeToLogicalKey(code: string): string | undefined {
   const punctuation = ownValue(PUNCTUATION_CODE_MAP, code)
   if (punctuation !== undefined) return punctuation
 
-  const named: Record<string, string> = {
-    NumpadAdd: '+',
-    NumpadSubtract: '-',
-    NumpadMultiply: '*',
-    NumpadDivide: '/',
-    NumpadDecimal: '.',
-    NumpadEnter: 'Enter',
-    Space: 'Space',
-  }
-  return ownValue(named, code)
+  return ownValue(NAMED_CODE_KEYS, code)
 }
 
 /**

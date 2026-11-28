@@ -53,6 +53,55 @@ defineGroup({
       },
     },
     {
+      title:
+        'suspends character key shortcuts while suspendCharacterKeys is set',
+      async run({ harness, expect, press }) {
+        const letter = spy()
+        const save = spy()
+        const hotkeys = [
+          { hotkey: 'K' as const, callback: letter },
+          { hotkey: 'Mod+S' as const, callback: save },
+        ]
+        const view = await harness.mountHotkeys({
+          form: 'single',
+          hotkeys,
+          provider: { suspendCharacterKeys: true },
+        })
+        expect(registered().map(({ status }) => status)).toEqual([
+          'suspended',
+          'active',
+        ])
+        await press({ key: 'k', code: 'KeyK' })
+        await press(mod('s'))
+        expect([letter.calls.length, save.calls.length]).toEqual([0, 1])
+        await view.update({ provider: { suspendCharacterKeys: false } })
+        await press({ key: 'k', code: 'KeyK' })
+        expect(letter.calls).toHaveLength(1)
+        await view.update({ provider: { suspendCharacterKeys: true } })
+        expect(getHotkeyManager().scopes.state.characterKeysSuspended).toBe(
+          true,
+        )
+        await view.unmount()
+        // Unmounting the provider releases its suspension.
+        expect(getHotkeyManager().scopes.state.characterKeysSuspended).toBe(
+          false,
+        )
+      },
+    },
+    {
+      title: 'suspends character keys even while the provider is disabled',
+      async run({ harness, expect }) {
+        await harness.mountHotkeys({
+          form: 'single',
+          hotkeys: [{ hotkey: 'K', callback: spy() }],
+          provider: { suspendCharacterKeys: true, enabled: false },
+        })
+        expect(getHotkeyManager().scopes.state.characterKeysSuspended).toBe(
+          true,
+        )
+      },
+    },
+    {
       title: 'suspends its hotkeys when the provider is disabled at runtime',
       async run({ harness, expect, press }) {
         const callback = spy()

@@ -1,9 +1,15 @@
 import {
   assertLogicalKey,
+  chordHasKey,
   modifierAlias,
   physicalCodeOf,
   splitChordParts,
 } from './_chord'
+import {
+  CODE_ONLY_NAMES,
+  INTL_KEY_LABELS,
+  NUMPAD_KEY_VALUES,
+} from './_constants'
 import { codeToLogicalKey } from './_keyboard-event'
 import { ownValue } from './_keys'
 import { warnServerPlatform } from './_server'
@@ -16,7 +22,7 @@ import {
   PUNCTUATION_KEY_DISPLAY_LABELS,
   WINDOWS_MODIFIER_LABELS,
 } from './display-labels'
-import { normalizeHotkey } from './parse'
+import { normalizeHotkey, parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { ParsedHotkeyChord, RegisterableHotkeyChord } from './hotkey.types'
 import type { CanonicalModifier } from './key.types'
@@ -215,14 +221,16 @@ function formatChordParts(
 }
 
 /**
- * Fallback labels for keys with no US equivalent, from the legends the UI
- * Events code spec gives: `\` on UK ISO keyboards, and `\` (ろ) and `¥` on
- * Japanese keyboards. Display only; matching never uses them.
+ * The key a layout map gives for a physical code, or undefined for a missing
+ * or empty entry. Layout entries are what the key types, so their case and
+ * whitespace names are normalized like event keys.
  */
-const INTL_KEY_LABELS: Readonly<Record<string, string>> = {
-  IntlBackslash: '\\',
-  IntlRo: '\\',
-  IntlYen: '¥',
+function layoutKey(
+  code: string,
+  layoutMap: FormatDisplayOptions['layoutMap'],
+): string | undefined {
+  const mapped = layoutMap?.get(code)
+  return mapped ? normalizeKeyName(mapped) : undefined
 }
 
 function formatKey(
@@ -248,10 +256,9 @@ function formatKey(
   // Shorten conventional position labels for display only; stored identity is unchanged.
   const numpad = code?.startsWith('Numpad') ?? false
   let displayKey = code ?? segment
-  const mappedKey = code ? options.layoutMap?.get(code) : undefined
+  const mappedKey = code ? layoutKey(code, options.layoutMap) : undefined
   if (mappedKey) {
-    // Layout entries are logical labels; normalize their case and whitespace names.
-    displayKey = normalizeKeyName(mappedKey)
+    displayKey = mappedKey
   } else if (code) {
     // The extra ISO and JIS keys have no US key: use their keycap legends.
     const intl = ownValue(INTL_KEY_LABELS, code)
@@ -296,4 +303,105 @@ export interface FormatDisplayOptions {
   separatorToken?: string | null
   /** Separator between sequence steps. Default: a space. */
   sequenceSeparator?: string
+}
+
+/** Options for formatting a hotkey for `aria-keyshortcuts`. */
+export interface FormatAriaOptions {
+  /**
+   * The target platform, for resolving `Mod`. Without it, `formatForAria`
+   * detects the platform in the browser and uses `'linux'` on a server.
+   */
+  platform?: HotkeyPlatform
+  /**
+   * An already-resolved code-to-key map, such as KeyboardLayoutMap or Map.
+   * Used only for physical bindings, to name the key the user presses.
+   * Missing or empty entries use the key at that position on a US keyboard.
+   */
+  layoutMap?: { get: (code: string) => string | undefined }
+}
+
+/**
+ * A key as `aria-keyshortcuts` names it, or undefined when it has no name
+ * there. The spec spells the plus key `Plus` and the space bar `Space`,
+ * because `+` and spaces separate its tokens.
+ */
+function ariaKeyName(key: string): string | undefined {
+  const name = normalizeKeyName(key)
+  if (name === '+') return 'Plus'
+  return name && !/\s/.test(name) ? name : undefined
+}
+
+/** The key a physical code presses, for `aria-keyshortcuts`. */
+function ariaCodeName(
+  code: string,
+  layoutMap: FormatAriaOptions['layoutMap'],
+): string | undefined {
+  const key =
+    layoutKey(code, layoutMap) ??
+    ownValue(INTL_KEY_LABELS, code) ??
+    codeToLogicalKey(code) ??
+    ownValue(NUMPAD_KEY_VALUES, code) ??
+    (CODE_ONLY_NAMES.test(code) ? undefined : code)
+  return key === undefined ? undefined : ariaKeyName(key)
+}
+
+/**
+ * Formats a hotkey for an `aria-keyshortcuts` attribute so screen readers can
+ * announce the shortcut. `Mod+K` becomes `Meta+K` on macOS and `Control+K`
+ * elsewhere.
+ *
+ * Modifiers use the ARIA names (`Control`, `Alt`, `Shift`, `Meta`) and come
+ * before the key. Keys use `KeyboardEvent.key` values, such as `K`, `/`,
+ * `Escape`, or `ArrowUp`, with `Space` for the space bar and `Plus` for the
+ * plus key. A physical binding names the key at that position, so `[KeyQ]`
+ * becomes `Q`, or the key from `layoutMap` such as `A` on a French AZERTY
+ * keyboard. Logical punctuation stays as written, so `'?'` stays `?` even
+ * where it takes Shift to type.
+ *
+ * Returns `undefined` when the hotkey has no ARIA form, so the attribute is
+ * omitted. This applies to empty or `null` hotkeys, multi-step sequences,
+ * standalone modifiers, and physical codes with no key value such as
+ * `[NumpadMemoryAdd]`. A one-step sequence formats like its chord.
+ *
+ * For a control with two shortcuts, join both formatted values with a space.
+ * In a server-rendered app, use your adapter's formatter or pass `platform`.
+ * Without a `platform` option, `formatForAria` uses `'linux'` on the server,
+ * like `formatForDisplay`.
+ *
+ * @param hotkey - A hotkey string, raw object, parsed chord, or nothing
+ * @param options - The platform and keyboard layout
+ * @returns The attribute value, or `undefined` when there is none
+ *
+ * @example
+ * ```ts
+ * formatForAria('Mod+K', { platform: 'mac' }) // 'Meta+K'
+ * formatForAria('Mod+Shift+P', { platform: 'windows' }) // 'Control+Shift+P'
+ * formatForAria('Shift+Space') // 'Shift+Space'
+ * formatForAria(['G', 'H']) // undefined
+ * ```
+ */
+export function formatForAria(
+  hotkey: DisplayHotkey | null | undefined,
+  options: FormatAriaOptions = {},
+): string | undefined {
+  if (!hotkey) return undefined
+  let chord: DisplayHotkeyChord
+  if (Array.isArray(hotkey)) {
+    // A sequence has no ARIA form: a shortcut is keys pressed together.
+    if (hotkey.length !== 1) return undefined
+    chord = (hotkey as ReadonlyArray<DisplayHotkeyChord>)[0]!
+  } else {
+    chord = hotkey as DisplayHotkeyChord
+  }
+  const parsed = parseHotkey(chord, options.platform ?? detectDisplayPlatform())
+  if (!chordHasKey(parsed)) return undefined
+  const key =
+    parsed.code !== undefined
+      ? ariaCodeName(parsed.code, options.layoutMap)
+      : ariaKeyName(parsed.key)
+  if (key === undefined) return undefined
+  return [
+    ...MODIFIER_ORDER.filter((modifier) => parsed.modifiers.includes(modifier)),
+    key,
+  ].join('+')
 }

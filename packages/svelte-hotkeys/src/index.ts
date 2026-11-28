@@ -24,6 +24,8 @@ export type {
 } from './HotkeysCtx.js'
 export * from './getHotkeyHint.svelte.js'
 export * from './getFormatForDisplay.js'
+export * from './getFormatForAria.js'
 // Replaces the core export, to point components to `getFormatForDisplay`
 export { formatForDisplay } from './formatForDisplay.js'
+export { formatForAria } from './formatForAria.js'
 export * from './getKeyboardLayout.svelte.js'

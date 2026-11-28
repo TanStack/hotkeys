@@ -1,4 +1,4 @@
-import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
+import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_constants'
 import type {
   EditingKey,
   FunctionKey,

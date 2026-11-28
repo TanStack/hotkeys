@@ -274,9 +274,9 @@ export class RichTextEditorComponent {
 }
 ```
 
-The shared `target` makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets. Passing the array as a function lets `enabled` follow the `canUndo` signal.
+The shared `target` makes every hotkey in the list listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets. Passing the array as a function lets `enabled` follow the `canUndo` signal.
 
-Options merge in three layers: defaults from the provider first, then the shared options, then per-item options.
+Options merge in layers: defaults from the provider first, then the shared options, then per-item options.
 
 ### Build the list from data
 

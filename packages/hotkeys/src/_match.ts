@@ -1,3 +1,4 @@
+import { US_SHIFTED, US_UNSHIFTED } from './_constants'
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
@@ -16,10 +17,6 @@ import { detectPlatform } from './platform'
 import type { ParsedHotkeyChord } from './hotkey.types'
 import type { KeyIdentity, NormalizedKeyboardEvent } from './key.types'
 import type { HotkeyPlatform } from './platform'
-
-/** What US Shift types on each punctuation key, and the key itself. */
-export const US_SHIFTED = '~_+{}|:"<>?'
-export const US_UNSHIFTED = "`-=[]\\;',./"
 
 /**
  * How a key event matched a chord. The score ranks matches of one key press:

@@ -11,7 +11,7 @@ title: formatHotkey
 function formatHotkey(parsed): string;
 ```
 
-Defined in: [format.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L39)
+Defined in: [format.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L45)
 
 Converts a parsed hotkey back to a string, with each platform modifier
 spelled out, such as `Control+Shift+S`. A parsed chord returns a string, and
@@ -43,7 +43,7 @@ formatHotkey(parseHotkey(['G', 'Mod+K'], 'mac')) // ['G', 'Meta+K']
 function formatHotkey(parsed): string[];
 ```
 
-Defined in: [format.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L40)
+Defined in: [format.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L46)
 
 Converts a parsed hotkey back to a string, with each platform modifier
 spelled out, such as `Control+Shift+S`. A parsed chord returns a string, and
@@ -75,7 +75,7 @@ formatHotkey(parseHotkey(['G', 'Mod+K'], 'mac')) // ['G', 'Meta+K']
 function formatHotkey(parsed): string | string[];
 ```
 
-Defined in: [format.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L43)
+Defined in: [format.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L49)
 
 Converts a parsed hotkey back to a string, with each platform modifier
 spelled out, such as `Control+Shift+S`. A parsed chord returns a string, and

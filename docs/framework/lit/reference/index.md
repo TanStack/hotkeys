@@ -8,6 +8,7 @@ title: "@tanstack/lit-hotkeys"
 ## Classes
 
 - [AppHotkeysController](classes/AppHotkeysController.md)
+- [FormatForAriaController](classes/FormatForAriaController.md)
 - [FormatForDisplayController](classes/FormatForDisplayController.md)
 - [HeldKeyCodesController](classes/HeldKeyCodesController.md)
 - [HeldKeysController](classes/HeldKeysController.md)
@@ -21,6 +22,7 @@ title: "@tanstack/lit-hotkeys"
 
 ## Interfaces
 
+- [FormatForAriaControllerOptions](interfaces/FormatForAriaControllerOptions.md)
 - [FormatForDisplayControllerOptions](interfaces/FormatForDisplayControllerOptions.md)
 
 ## Type Aliases
@@ -36,6 +38,7 @@ title: "@tanstack/lit-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 
 ## Functions

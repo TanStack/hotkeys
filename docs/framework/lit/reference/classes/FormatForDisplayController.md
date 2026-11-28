@@ -50,7 +50,7 @@ class SaveButton extends LitElement {
 new FormatForDisplayController(_host, _options?): FormatForDisplayController;
 ```
 
-Defined in: [controllers/format-for-display.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L79)
+Defined in: [controllers/format-for-display.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L78)
 
 #### Parameters
 
@@ -385,7 +385,7 @@ formatForDisplay(['G', 'H'])
 dispose(): void;
 ```
 
-Defined in: [controllers/format-for-display.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L101)
+Defined in: [controllers/format-for-display.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L104)
 
 Releases the controller now and removes it from its host, with the
 layout controller it added. Use it to remove a controller early: Lit's
@@ -403,7 +403,7 @@ layout controller it added. Use it to remove a controller early: Lit's
 hostConnected(): void;
 ```
 
-Defined in: [controllers/format-for-display.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L87)
+Defined in: [controllers/format-for-display.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L90)
 
 Starts reading the layout, unless `keyboardLayout` is false.
 
@@ -425,7 +425,7 @@ ReactiveController.hostConnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/format-for-display.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L92)
+Defined in: [controllers/format-for-display.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/format-for-display.ts#L95)
 
 Follows a `keyboardLayout` option that a host property changed.
 

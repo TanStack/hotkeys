@@ -9,7 +9,7 @@ title: createHotkeysScope
 function createHotkeysScope(defaultOptions?): AlpineHotkeys;
 ```
 
-Defined in: [createHotkeysScope.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeysScope.ts#L27)
+Defined in: [createHotkeysScope.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/createHotkeysScope.ts#L28)
 
 Owns Alpine effects and Store subscriptions, with optional shared defaults.
 App hotkeys come from `provideAppHotkeys`. Call destroy from x-data's

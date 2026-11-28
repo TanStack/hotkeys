@@ -1,4 +1,5 @@
 import { splitChordParts } from './_chord'
+import { INITIAL_RECORDER_STATE } from './_constants'
 import { isTypingEvent } from './_event-target'
 import { resolveMaybeGetter } from './_getter'
 import { isModifierPress, normalizeKeyboardEvent } from './_keyboard-event'
@@ -243,12 +244,6 @@ type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
   idleTimeoutMs?: number
 }
 
-const initialState: HotkeyRecorderState = {
-  isRecording: false,
-  steps: [],
-  recordedHotkey: null,
-}
-
 /**
  * Framework-agnostic class for recording keyboard shortcuts.
  *
@@ -286,8 +281,9 @@ const initialState: HotkeyRecorderState = {
  * ```
  */
 export class HotkeyRecorder {
-  readonly store: Store<HotkeyRecorderState> =
-    createStore<HotkeyRecorderState>(initialState)
+  readonly store: Store<HotkeyRecorderState> = createStore<HotkeyRecorderState>(
+    INITIAL_RECORDER_STATE,
+  )
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
   #optionsSource: MaybeGetter<HotkeyRecorderOptions>
@@ -363,7 +359,10 @@ export class HotkeyRecorder {
 
     // Ending a recording cleared its idle timer and events
     beginRecording(this)
-    this.store.setState(() => ({ ...initialState, isRecording: true }))
+    this.store.setState(() => ({
+      ...INITIAL_RECORDER_STATE,
+      isRecording: true,
+    }))
 
     const handler = (event: KeyboardEvent) => {
       // Ending the recording removes this listener, but happy-dom still runs a
@@ -565,7 +564,7 @@ export class HotkeyRecorder {
       window.removeEventListener('blur', this.#blurHandler)
       this.#keydownHandler = null
     }
-    this.store.setState(() => ({ ...initialState, recordedHotkey }))
+    this.store.setState(() => ({ ...INITIAL_RECORDER_STATE, recordedHotkey }))
   }
 
   /**

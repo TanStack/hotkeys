@@ -10,7 +10,7 @@ import {
 } from '@tanstack/hotkeys-test-utils/conformance'
 import {
   createHotkeysScope, onHotkey, onHotkeys, provideAppHotkeys,
-  useFormatForDisplay, useHeldKeyCodes, useHeldKeys, useHotkey, useHotkeyHint,
+  useFormatForAria, useFormatForDisplay, useHeldKeyCodes, useHeldKeys, useHotkey, useHotkeyHint,
   useHotkeyRecorder, useHotkeyRegistrations, useHotkeys, useKeyHold,
 } from '@tanstack/ember-hotkeys'
 import type {
@@ -265,8 +265,14 @@ const harness: ConformanceHarness = {
   },
 
   mountFormat({ platform }) {
-    const format = useFormatForDisplay(platform ? createHotkeysScope({ platform }) : undefined)
-    return { format: (hotkey, options) => format(hotkey, options ?? {}), unmount: () => {} }
+    const scope = platform ? createHotkeysScope({ platform }) : undefined
+    const format = useFormatForDisplay(scope)
+    const formatAria = useFormatForAria(scope)
+    return {
+      format: (hotkey, options) => format(hotkey, options ?? {}),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
+      unmount: () => {},
+    }
   },
 }
 

@@ -9,7 +9,7 @@ title: RecorderRejectionReason
 type RecorderRejectionReason = "alt-graph" | "missing-code" | "whitespace" | "validation" | "conflict";
 ```
 
-Defined in: [hotkey-recorder.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L62)
+Defined in: [hotkey-recorder.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L63)
 
 Why the recorder rejected a key press or a recording:
 

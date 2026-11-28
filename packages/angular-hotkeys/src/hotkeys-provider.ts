@@ -9,7 +9,7 @@ import {
   signal,
   untracked,
 } from '@angular/core'
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { getHotkeyManager, publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
   createAppHotkeysStore,
@@ -65,7 +65,7 @@ export interface ProvideHotkeysOptions {
   defaultOptions?: MaybeGetter<HotkeysProviderOptions>
   /**
    * See `HotkeysProviderScopeProps['scope']`. Getters, here and for
-   * `exclusive` and `enabled`, run in the provider's injection context, so
+   * `exclusive`, `enabled`, and `suspendCharacterKeys`, run in the provider's injection context, so
    * they can `inject()` the component that provides them and read its
    * signals.
    */
@@ -74,6 +74,10 @@ export interface ProvideHotkeysOptions {
   exclusive?: MaybeGetter<HotkeysProviderScopeProps['exclusive']>
   /** See `HotkeysProviderScopeProps['enabled']`. */
   enabled?: MaybeGetter<HotkeysProviderScopeProps['enabled']>
+  /** See `HotkeysProviderScopeProps['suspendCharacterKeys']`. */
+  suspendCharacterKeys?: MaybeGetter<
+    HotkeysProviderScopeProps['suspendCharacterKeys']
+  >
   /**
    * Every app hotkey, from `defineAppHotkeys`. Listed by
    * `injectAppHotkeyList` whether or not they are registered.
@@ -195,6 +199,12 @@ function createHotkeysContext(
     effect((onCleanup) => {
       const key = scopeKey()
       if (key) onCleanup(activateHotkeysProviderScope(key))
+    })
+    // Suspend character key shortcuts while this injector lives, as the
+    // user's setting asks.
+    const suspend = computed(() => !!read(options.suspendCharacterKeys))
+    effect((onCleanup) => {
+      if (suspend()) onCleanup(getHotkeyManager().suspendCharacterKeys())
     })
   }
 

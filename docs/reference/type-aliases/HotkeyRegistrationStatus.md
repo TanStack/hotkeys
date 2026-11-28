@@ -9,10 +9,11 @@ title: HotkeyRegistrationStatus
 type HotkeyRegistrationStatus = "active" | "suspended" | "disabled";
 ```
 
-Defined in: [hotkey-manager.ts:240](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L240)
+Defined in: [hotkey-manager.ts:241](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L241)
 
 Whether a registration is on. Focus isn't checked: a registration on an
 element also needs focus inside that element to fire.
 - `'active'`: enabled, and its scope is active
-- `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope
+- `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope,
+  or it is a character key shortcut while `suspendCharacterKeys` is in effect
 - `'disabled'`: registered with `enabled: false`

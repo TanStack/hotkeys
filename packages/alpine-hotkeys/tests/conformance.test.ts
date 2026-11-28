@@ -246,10 +246,12 @@ const harness: ConformanceHarness = {
   async mountFormat({ platform }) {
     const { hotkeys, unmount } = owner(() => ({ platform }))
     const formatForDisplay = hotkeys.createFormatForDisplay()
+    const formatForAria = hotkeys.createFormatForAria()
     await settle()
     return {
       format: (hotkey, formatOptions) =>
         formatForDisplay(hotkey, formatOptions ?? {}),
+      formatAria: (hotkey, options) => formatForAria(hotkey, options),
       unmount,
     }
   },

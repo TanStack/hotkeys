@@ -30,6 +30,7 @@ title: "@tanstack/ember-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 
 ## Functions
@@ -38,6 +39,7 @@ title: "@tanstack/ember-hotkeys"
 - [useAppHotkeyList](functions/useAppHotkeyList.md)
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)
+- [useFormatForAria](functions/useFormatForAria.md)
 - [useFormatForDisplay](functions/useFormatForDisplay.md)
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)

@@ -9,4 +9,4 @@ title: MultiHotkeyChordHandler
 type MultiHotkeyChordHandler = { [K in HotkeyChord]?: HotkeyCallback<HotkeyChordCallbackContext> };
 ```
 
-Defined in: [match.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L134)
+Defined in: [match.ts:135](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L135)

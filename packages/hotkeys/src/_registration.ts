@@ -1,23 +1,8 @@
+import { NON_TYPING_KEY, NUMPAD_KEY_VALUES } from './_constants'
 import { canWarn } from './_dev'
+import { codeToLogicalKey, isTypedText } from './_keyboard-event'
+import { ownValue } from './_keys'
 import type { ConflictBehavior, ParsedHotkeyChord } from './hotkey.types'
-
-/** The scope of hotkeys that do not name one. It is always active unless an exclusive scope is active. */
-export const GLOBAL_SCOPE = 'global'
-
-/**
- * Default options for hotkey/sequence registration.
- * Omitted: platform, target (resolved at registration), requireReset (HotkeyManager only).
- */
-export const defaultHotkeyOptions = {
-  capture: false,
-  preventDefault: true,
-  stopPropagation: true,
-  eventType: 'keydown' as const,
-  enabled: true,
-  ignoreInputs: 'auto' as const,
-  conflictBehavior: 'warn' as ConflictBehavior,
-  scope: GLOBAL_SCOPE as string,
-}
 
 /**
  * Merges option layers left to right. A key set to `undefined` keeps the
@@ -51,12 +36,6 @@ export function withDefaults<T extends object>(
 }
 
 /**
- * Function keys (`F1` to `F24`) and media keys: the audio, browser, launch,
- * and playback keys. They type nothing, and a text field does nothing with them.
- */
-const NON_TYPING_KEY = /^(F([1-9]|1\d|2[0-4])$|Audio|Browser|Launch|Media)/
-
-/**
  * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).
  * Ctrl/Meta shortcuts, Escape, function keys, and media keys fire in inputs,
  * with any modifiers. Other single keys and Shift/Alt combos are ignored.
@@ -69,6 +48,34 @@ export function getDefaultIgnoreInputs(
   if (key === 'Escape') return false // Close modal, etc.
   if (NON_TYPING_KEY.test(key)) return false // F5, Shift+F10, MediaPlayPause
   return true // Single keys, Shift+key, Alt+key
+}
+
+/** Whether a key, or the key at a physical position, types a character. */
+function typesCharacter(chord: ParsedHotkeyChord): boolean {
+  // The extra ISO and JIS keys type characters, such as `\` and `¥`.
+  if (chord.code?.startsWith('Intl')) return true
+  const key =
+    chord.code === undefined
+      ? chord.key
+      : (codeToLogicalKey(chord.code) ??
+        ownValue(NUMPAD_KEY_VALUES, chord.code))
+  return key === 'Space' || (key !== undefined && isTypedText(key))
+}
+
+/**
+ * Whether a hotkey is a character key shortcut in the WCAG 2.1.4 sense: every
+ * step is a key that types a character (a letter, digit, punctuation mark, or
+ * symbol, or the space bar), alone or with Shift. Control, Alt, and Meta make
+ * a chord a modifier shortcut, and keys such as Escape, Enter, arrows, and F1
+ * type nothing.
+ */
+export function isCharacterKeyShortcut(
+  steps: ReadonlyArray<ParsedHotkeyChord>,
+): boolean {
+  return steps.every(
+    (chord) =>
+      !chord.ctrl && !chord.alt && !chord.meta && typesCharacter(chord),
+  )
 }
 
 /**

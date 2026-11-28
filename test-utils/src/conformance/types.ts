@@ -3,6 +3,7 @@ import type {
   AppHotkeys,
   CustomHotkeys,
   DisplayHotkey,
+  FormatAriaOptions,
   FormatDisplayOptions,
   HeldModifierOptions,
   Hotkey,
@@ -105,6 +106,7 @@ export interface ConformanceProvider {
   scope?: string
   enabled?: boolean
   exclusive?: boolean | { allow: Array<string> }
+  suspendCharacterKeys?: boolean
   appHotkeys?: AppHotkeys
   customHotkeys?: CustomHotkeys<AppHotkeys> | null
   platform?: HotkeyPlatform
@@ -190,6 +192,11 @@ export interface FormatSpec {
 export interface FormatHandle {
   /** The label, or labels for a sequence, from the adapter's format function. */
   format: (hotkey: DisplayHotkey, options?: FormatDisplayOptions) => unknown
+  /** The `aria-keyshortcuts` value from the adapter's ARIA formatter. */
+  formatAria: (
+    hotkey: DisplayHotkey | null | undefined,
+    options?: FormatAriaOptions,
+  ) => string | undefined
   unmount: () => MaybePromise<void>
 }
 

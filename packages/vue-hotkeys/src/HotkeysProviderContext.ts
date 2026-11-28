@@ -1,4 +1,4 @@
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { getHotkeyManager, publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
   createAppHotkeysStore,
@@ -70,6 +70,10 @@ export interface ProvideHotkeysContextOptions {
   exclusive?: MaybeRefOrGetter<HotkeysProviderScopeProps['exclusive']>
   /** See `HotkeysProviderScopeProps['enabled']`. */
   enabled?: MaybeRefOrGetter<HotkeysProviderScopeProps['enabled']>
+  /** See `HotkeysProviderScopeProps['suspendCharacterKeys']`. */
+  suspendCharacterKeys?: MaybeRefOrGetter<
+    HotkeysProviderScopeProps['suspendCharacterKeys']
+  >
   /**
    * Every app hotkey, from `defineAppHotkeys`. It can start as `undefined` and
    * arrive later, such as from a lazy import. Later changes update the
@@ -189,6 +193,15 @@ export function provideHotkeysContext(
       scopeKey,
       (key, _, onCleanup) => {
         if (key) onCleanup(activateHotkeysProviderScope(key))
+      },
+      { immediate: true },
+    )
+    // Suspend character key shortcuts while mounted, as the user's setting
+    // asks.
+    watch(
+      () => !!toValue(options.suspendCharacterKeys),
+      (suspend, _, onCleanup) => {
+        if (suspend) onCleanup(getHotkeyManager().suspendCharacterKeys())
       },
       { immediate: true },
     )

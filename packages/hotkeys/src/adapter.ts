@@ -19,8 +19,10 @@ import {
 // Stateless once loaded, apart from a collator created on first use, so a
 // copy per entry is fine.
 import { chordHasKey } from './_chord'
+// Constants only, so a copy per entry is fine.
+import { defaultHotkeyOptions } from './_constants'
 import { canWarn } from './_dev'
-import { defaultHotkeyOptions, definedOptions } from './_registration'
+import { definedOptions } from './_registration'
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
 import type {
@@ -29,7 +31,7 @@ import type {
   CustomHotkeyActions,
   RegisteredAppHotkeys,
 } from './app-hotkeys'
-import type { DisplayHotkey, FormatDisplayOptions } from './format'
+import type { DisplayHotkey } from './format'
 import type { HeldModifierOptions } from './hint'
 import type {
   ActivateHotkeyScopeOptions,
@@ -430,6 +432,18 @@ export interface HotkeysProviderScopeProps {
    * providers nested in it, without unmounting. Defaults to true.
    */
   enabled?: boolean
+  /**
+   * While mounted, suspend document-level character key shortcuts across the
+   * app, including hotkeys such as `K`, `?`, `Shift+K`, `Space`, or
+   * `['G', 'H']` that use only keys that type a character. Wire this option to
+   * a user setting so people who use speech input or press keys by accident
+   * can turn single-key shortcuts off for WCAG 2.1.4 (Character Key
+   * Shortcuts). Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys
+   * such as `Escape` or `F1`, and hotkeys targeted at an element keep working.
+   * This option applies even when the provider sets `enabled` to `false`. See
+   * `HotkeyManager.suspendCharacterKeys`. Defaults to `false`.
+   */
+  suspendCharacterKeys?: boolean
 }
 
 /**
@@ -631,23 +645,56 @@ export function isHotkeyHintVisible(
   )
 }
 
+/** The options a formatter takes from its adapter: a platform and a layout. */
+interface FormatterOptions {
+  platform?: HotkeyPlatform
+  layoutMap?: { get: (code: string) => string | undefined }
+}
+
+/**
+ * Returns `format`, such as `formatForDisplay` or `formatForAria`, with a
+ * provider's platform and keyboard layout used when the call doesn't pass
+ * them. Only a hotkey that names a physical key reads `getLayoutMap`, so
+ * other hotkeys don't depend on the layout.
+ *
+ * @example
+ * ```ts
+ * const format = createFormatter(formatForAria, () => provider.platform, () => layoutMap)
+ * ```
+ */
+export function createFormatter<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- each formatter's own hotkey and return types
+  TFormat extends (hotkey: any, options?: FormatterOptions) => unknown,
+>(
+  format: TFormat,
+  getPlatform: () => HotkeyPlatform | undefined,
+  getLayoutMap: () => KeyboardLayoutMap | null | undefined,
+): TFormat {
+  return ((
+    hotkey: DisplayHotkey | null | undefined,
+    options?: FormatterOptions,
+  ) =>
+    format(hotkey, {
+      ...options,
+      platform: options?.platform ?? getPlatform(),
+      layoutMap:
+        options?.layoutMap ??
+        (hotkey && namesPhysicalKey(hotkey)
+          ? (getLayoutMap() ?? undefined)
+          : undefined),
+    })) as TFormat
+}
+
 /**
  * A `formatForDisplay` that uses a provider's platform and keyboard layout
- * when the call doesn't pass them. Only a label that names a physical key
- * reads `getLayoutMap`, so other labels don't depend on the layout.
+ * when the call doesn't pass them. Same as
+ * `createFormatter(formatForDisplay, getPlatform, getLayoutMap)`.
  */
 export function createFormatForDisplay(
   getPlatform: () => HotkeyPlatform | undefined,
   getLayoutMap: () => KeyboardLayoutMap | null | undefined,
 ): typeof formatForDisplay {
-  return ((hotkey: DisplayHotkey, options?: FormatDisplayOptions) =>
-    formatForDisplay(hotkey, {
-      ...options,
-      platform: options?.platform ?? getPlatform(),
-      layoutMap:
-        options?.layoutMap ??
-        (namesPhysicalKey(hotkey) ? (getLayoutMap() ?? undefined) : undefined),
-    })) as typeof formatForDisplay
+  return createFormatter(formatForDisplay, getPlatform, getLayoutMap)
 }
 
 /**

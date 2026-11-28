@@ -253,6 +253,10 @@ export const appHotkeys = defineAppHotkeys({
 
 For UI that Svelte doesn't render, such as a dialog from another library, activate a scope on the hotkey manager. See [Activate a scope](./hotkey-manager#activate-a-scope).
 
+## Suspend character key shortcuts
+
+Pass `suspendCharacterKeys` to `HotkeysProvider` to pause document-level character key shortcuts, such as `K` or `['G', 'H']`, across the app while the prop is `true`. Suspended hotkeys report the status `'suspended'`, like hotkeys in an inactive scope, and the prop applies even when `enabled` is `false`. Wire it to a user setting as shown in [Accessibility](./accessibility#let-users-turn-off-character-key-shortcuts).
+
 ## Inspect scopes
 
 The [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive. To read the same state in your own UI, see [Read scope state](./hotkey-manager#read-scope-state).

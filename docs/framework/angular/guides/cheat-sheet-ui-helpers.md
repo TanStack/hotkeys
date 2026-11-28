@@ -90,7 +90,7 @@ export class ShortcutListComponent {
 Filtering by `meta?.name` omits unnamed helper shortcuts, such as a dialog's `Escape`. Checking `status === 'active'` hides paused shortcuts:
 
 - `'active'` means the hotkey is enabled and in an active scope
-- `'suspended'` means it is enabled, but its [scope](./provide-hotkeys-and-scopes) is inactive or suspended by an exclusive scope
+- `'suspended'` means it is enabled, but its [scope](./provide-hotkeys-and-scopes) is inactive or suspended by an exclusive scope, or it is a character key shortcut while [character keys are suspended](./accessibility#turn-them-off)
 - `'disabled'` means `enabled: false` was set
 
 Each entry also includes `id`, `hotkey`, `options`, `target`, and `triggerCount`. Chord entries (`kind === 'chord'`) add `parsedChord`, and sequence entries (`kind === 'sequence'`) add `parsedSequence` and `matchedStepCount` (used in [Show sequences in your UI](./sequences#show-sequences-in-your-ui)). If several components register the same shortcut, such as rows in a list, each registration appears as its own entry.
@@ -126,7 +126,7 @@ export class CheatSheetComponent {
 | Status | Meaning |
 | --- | --- |
 | `'active'` | At least one enabled registration in an active scope |
-| `'suspended'` | Enabled registrations exist, but none in an active scope |
+| `'suspended'` | Enabled registrations exist, but none can fire: their scope is inactive, or character keys are suspended |
 | `'disabled'` | Registered, but every registration has `enabled: false` |
 | `'inactive'` | Has a hotkey assigned, but no component has registered it yet |
 | `'unbound'` | No hotkey assigned (`null`) |

@@ -1,4 +1,8 @@
-import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
+import {
+  detectPlatform,
+  formatForAria,
+  formatForDisplay,
+} from '@tanstack/hotkeys'
 import { mod, modDown, modUp } from '../keys'
 import { defineGroup, spy } from '../suite'
 import type { Hotkey } from '@tanstack/hotkeys'
@@ -313,6 +317,51 @@ defineGroup({
           formatForDisplay('Mod+Shift+S', { platform: detectPlatform() }),
         )
         expect(view.format(['G', 'H'])).toBe(formatForDisplay(['G', 'H']))
+      },
+    },
+  ],
+})
+
+defineGroup({
+  name: 'format for aria',
+  requires: ['format'],
+  cases: [
+    {
+      title: 'formats on the provider platform',
+      requires: ['provider-defaults'],
+      async run({ harness, expect }) {
+        const mac = await harness.mountFormat!({ platform: 'mac' })
+        expect(mac.formatAria('Mod+S')).toBe('Meta+S')
+        await mac.unmount()
+        const windows = await harness.mountFormat!({ platform: 'windows' })
+        expect(windows.formatAria('Mod+S')).toBe('Control+S')
+      },
+    },
+    {
+      title: 'lets a platform passed to format win over the provider',
+      requires: ['provider-defaults'],
+      async run({ harness, expect }) {
+        const view = await harness.mountFormat!({ platform: 'mac' })
+        expect(view.formatAria('Mod+S', { platform: 'windows' })).toBe(
+          'Control+S',
+        )
+      },
+    },
+    {
+      title: 'uses the detected platform without a provider',
+      async run({ harness, expect }) {
+        const view = await harness.mountFormat!({})
+        expect(view.formatAria('Mod+Shift+S')).toBe(
+          formatForAria('Mod+Shift+S', { platform: detectPlatform() }),
+        )
+      },
+    },
+    {
+      title: 'returns undefined for a sequence or no hotkey',
+      async run({ harness, expect }) {
+        const view = await harness.mountFormat!({})
+        expect(view.formatAria(['G', 'H'])).toBe(undefined)
+        expect(view.formatAria(null)).toBe(undefined)
       },
     },
   ],

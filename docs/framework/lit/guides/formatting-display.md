@@ -31,7 +31,7 @@ class SaveButton extends LitElement {
 }
 ```
 
-The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The controller fills in two things for you:
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The controller fills in the following for you:
 
 - **The platform** from the controller's `platform` option, or the detected platform without one.
 - **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
@@ -162,6 +162,40 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including on the server.
 
+## Format for `aria-keyshortcuts`
+
+`FormatForAriaController` provides a `format` function for the [`aria-keyshortcuts`](https://w3c.github.io/aria/#aria-keyshortcuts) attribute so screen readers can announce a shortcut. It uses the same platform and keyboard layout as `FormatForDisplayController`. See [Accessibility](./accessibility#announce-shortcuts-to-screen-readers) for where to place the attribute.
+
+```ts
+import { LitElement, html } from 'lit'
+import { ifDefined } from 'lit/directives/if-defined.js'
+import {
+  FormatForAriaController,
+  FormatForDisplayController,
+} from '@tanstack/lit-hotkeys'
+
+class SearchButton extends LitElement {
+  private formatForAria = new FormatForAriaController(this)
+  private formatForDisplay = new FormatForDisplayController(this)
+
+  render() {
+    return html`
+      <button aria-keyshortcuts=${ifDefined(this.formatForAria.format('Mod+K'))}>
+        Search <kbd>${this.formatForDisplay.format('Mod+K')}</kbd>
+      </button>
+    `
+  }
+}
+```
+
+The output uses the key names from the ARIA specification:
+
+- **Modifiers.** `Mod` becomes `Meta` on macOS and `Control` elsewhere. Modifiers use `Control`, `Alt`, `Shift`, and `Meta` in that order before the key, so `Mod+Shift+P` formats as `Shift+Meta+P` on macOS.
+- **Keys.** Keys use `KeyboardEvent.key` values (`K`, `/`, `Escape`, `ArrowUp`), with `Space` for the space bar and `Plus` for the plus key. A physical binding names the key at that position from the user's keyboard layout where the browser reports it, so `[KeyQ]` formats as `Q`, or `A` on a French AZERTY keyboard. A logical hotkey's punctuation stays as written, so `'?'` formats as `?` rather than the `Shift+/` you press on a US keyboard. The key that types `?` depends on the layout. To name the key, bind it physically, such as `Shift+[Slash]`.
+- **No value.** Returns `undefined` for a multi-step sequence, a standalone modifier, an empty or `null` hotkey, or a physical code with no key name such as `[NumpadMemoryAdd]`, so `ifDefined` omits the attribute. ARIA has no syntax for multi-step sequences.
+
+For a control with two shortcuts, join both formatted values with a space, such as `Control+K /`.
+
 ## Server-side rendering
 
 With Lit SSR, the server doesn't know the user's platform, so server-rendered labels use `'linux'` unless the element sets a `platform`. Give the element a `platform` property, and set it from the request's `User-Agent` header. See [SSR & Hydration](./ssr) for the full setup and a note on caching.
@@ -179,6 +213,8 @@ formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
 The plain function takes the same options as the controller's `format`. It doesn't read a controller's options, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
 
 The export is marked deprecated so that your editor points element code to the controller. Outside an element, it is the function to use.
+
+For `aria-keyshortcuts` outside an element, call `formatForAria` directly with `platform` and an optional `layoutMap`. For example, `formatForAria('Mod+S', { platform: 'mac' })` returns `'Meta+S'`. Like `formatForDisplay`, the plain export is marked `@deprecated`, so editors point element code to the adapter's formatter.
 
 ## Parse, compare, and store hotkeys
 

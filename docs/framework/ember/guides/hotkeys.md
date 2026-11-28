@@ -4,11 +4,11 @@ id: hotkeys
 description: Register keyboard shortcuts in Ember with the useHotkey and useHotkeys helpers and the onHotkey modifier. Write chords and sequences, set options, turn hotkeys on and off, and listen on one element.
 ---
 
-The `useHotkey` template helper registers a keyboard shortcut while it is rendered, and `useHotkeys` registers several. The `onHotkey` and `onHotkeys` modifiers do the same for the element they're attached to. All four take the same hotkeys and options. To register hotkeys outside Ember components, use the [hotkey manager](./hotkey-manager).
+The `useHotkey` template helper registers a keyboard shortcut while it is rendered, and `useHotkeys` registers several. The `onHotkey` and `onHotkeys` modifiers do the same for the element they're attached to. They all take the same hotkeys and options. To register hotkeys outside Ember components, use the [hotkey manager](./hotkey-manager).
 
 ## Chords and sequences
 
-A hotkey is one of two kinds:
+A hotkey is one of these kinds:
 
 - A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
 - A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords. In a template, build the array with the `array` helper from `@ember/helper`.
@@ -274,7 +274,7 @@ export default class RichTextEditor extends Component {
 }
 ```
 
-The `onHotkeys` modifier also makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains the modifiers.
+The `onHotkeys` modifier also makes every hotkey in the list listen on the editor only. [Hotkey targets](#hotkey-targets) explains the modifiers.
 
 Options merge in this order: `createHotkeysScope` defaults, then the shared options, then each definition's options.
 

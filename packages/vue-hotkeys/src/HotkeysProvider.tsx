@@ -32,6 +32,8 @@ const providerProps = {
   },
   /** See `HotkeysProviderScopeProps['enabled']`. */
   enabled: { type: Boolean, default: true },
+  /** See `HotkeysProviderScopeProps['suspendCharacterKeys']`. */
+  suspendCharacterKeys: { type: Boolean, default: false },
 }
 
 const providerEmits = {
@@ -50,6 +52,7 @@ const component = defineComponent({
       scope: () => props.scope,
       exclusive: () => props.exclusive,
       enabled: () => props.enabled,
+      suspendCharacterKeys: () => props.suspendCharacterKeys,
       onCustomHotkeysChange: (custom) => emit('customHotkeysChange', custom),
     })
     return () => slots.default?.()

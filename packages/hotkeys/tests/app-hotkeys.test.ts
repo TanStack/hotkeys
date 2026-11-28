@@ -9,7 +9,8 @@ import {
   resolveAppHotkey,
   toHotkeyRegistrationView,
 } from '../src'
-import { namesPhysicalKey } from '../src/adapter'
+import { createFormatter, namesPhysicalKey } from '../src/adapter'
+import { formatForAria as coreFormatForAria } from '../src/format'
 import type {
   AppHotkey,
   CustomHotkeys,
@@ -268,6 +269,29 @@ describe('adapter helpers', () => {
     // The `[` and `]` characters name keys of their own
     expect(namesPhysicalKey('Mod+[')).toBe(false)
     expect(namesPhysicalKey('Mod+]')).toBe(false)
+  })
+
+  it('binds a formatter to the platform and layout it is given', () => {
+    let layoutReads = 0
+    const formatForAria = createFormatter(
+      coreFormatForAria,
+      () => 'mac',
+      () => {
+        layoutReads++
+        return new Map([['KeyQ', 'a']])
+      },
+    )
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    expect(formatForAria(null)).toBe(undefined)
+    // Only a physical key reads the layout.
+    expect(layoutReads).toBe(0)
+    expect(formatForAria('Mod+[KeyQ]')).toBe('Meta+A')
+    expect(layoutReads).toBe(1)
+    // Options passed to the call win.
+    expect(formatForAria('Mod+K', { platform: 'windows' })).toBe('Control+K')
+    expect(
+      formatForAria('[KeyQ]', { layoutMap: new Map([['KeyQ', 'q']]) }),
+    ).toBe('Q')
   })
 
   it('resolves an app hotkey from the store by id', () => {
