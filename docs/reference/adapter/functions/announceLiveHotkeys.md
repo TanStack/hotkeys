@@ -12,12 +12,13 @@ function announceLiveHotkeys(format, getRegistrations): (hotkey, options) => str
 Defined in: [adapter.ts:700](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L700)
 
 Wraps an ARIA formatter so it returns `undefined` for a hotkey that can't
-fire, so screen readers announce only working shortcuts. A hotkey can fire
-when an enabled registration of it is in an active scope and isn't a
-suspended character key. A hotkey nothing has registered isn't announced.
-Focus isn't checked, because the attribute sits on the control the
-shortcut acts on. Read the adapter's registrations reactively in
-`getRegistrations`, so the value updates when they change.
+fire, so screen readers announce only working shortcuts. A hotkey counts
+when any enabled registration in an active scope announces the same keys,
+so a disabled control's shortcut is still announced while another
+registration uses it. Suspended character keys and hotkeys nothing has
+registered aren't announced. Focus isn't checked, because the attribute
+sits on the control the shortcut acts on. Read the adapter's registrations
+reactively in `getRegistrations`, so the value updates when they change.
 
 ## Parameters
 

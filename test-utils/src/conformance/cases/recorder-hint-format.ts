@@ -6,7 +6,7 @@ import {
 } from '@tanstack/hotkeys'
 import { mod, modDown, modUp } from '../keys'
 import { defineGroup, spy } from '../suite'
-import type { Hotkey } from '@tanstack/hotkeys'
+import type { Hotkey, HotkeyPlatform } from '@tanstack/hotkeys'
 
 defineGroup({
   name: 'hotkey recorder',
@@ -331,10 +331,11 @@ defineGroup({
       title: 'formats on the provider platform',
       requires: ['provider-defaults'],
       async run({ harness, expect }) {
-        register('Mod+S')
+        register('Mod+S', 'mac')
         const mac = await harness.mountFormat!({ platform: 'mac' })
         expect(mac.formatAria('Mod+S')).toBe('Meta+S')
         await mac.unmount()
+        register('Mod+S', 'windows')
         const windows = await harness.mountFormat!({ platform: 'windows' })
         expect(windows.formatAria('Mod+S')).toBe('Control+S')
       },
@@ -343,7 +344,7 @@ defineGroup({
       title: 'lets a platform passed to format win over the provider',
       requires: ['provider-defaults'],
       async run({ harness, expect }) {
-        register('Mod+S')
+        register('Mod+S', 'windows')
         const view = await harness.mountFormat!({ platform: 'mac' })
         expect(view.formatAria('Mod+S', { platform: 'windows' })).toBe(
           'Control+S',
@@ -386,7 +387,10 @@ defineGroup({
   ],
 })
 
-/** Registers a hotkey with the manager, so the ARIA formatter announces it. */
-function register(hotkey: Hotkey) {
-  return getHotkeyManager().register(hotkey, () => {})
+/**
+ * Registers a hotkey with the manager, so the ARIA formatter announces it. A
+ * registration matches only on the platform it resolves `Mod` for.
+ */
+function register(hotkey: Hotkey, platform?: HotkeyPlatform) {
+  return getHotkeyManager().register(hotkey, () => {}, { platform })
 }

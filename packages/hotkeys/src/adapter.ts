@@ -2,7 +2,6 @@
 // bundles each entry on its own, and a relative import would give this entry
 // a second HotkeyManager and app hotkeys factory.
 import {
-  areHotkeysEqual,
   detectPlatform,
   formatForDisplay,
   getAppHotkeyRegistrationOptions,
@@ -690,12 +689,13 @@ export function createFormatter<
 
 /**
  * Wraps an ARIA formatter so it returns `undefined` for a hotkey that can't
- * fire, so screen readers announce only working shortcuts. A hotkey can fire
- * when an enabled registration of it is in an active scope and isn't a
- * suspended character key. A hotkey nothing has registered isn't announced.
- * Focus isn't checked, because the attribute sits on the control the
- * shortcut acts on. Read the adapter's registrations reactively in
- * `getRegistrations`, so the value updates when they change.
+ * fire, so screen readers announce only working shortcuts. A hotkey counts
+ * when any enabled registration in an active scope announces the same keys,
+ * so a disabled control's shortcut is still announced while another
+ * registration uses it. Suspended character keys and hotkeys nothing has
+ * registered aren't announced. Focus isn't checked, because the attribute
+ * sits on the control the shortcut acts on. Read the adapter's registrations
+ * reactively in `getRegistrations`, so the value updates when they change.
  */
 export function announceLiveHotkeys(
   format: typeof formatForAria,
@@ -703,21 +703,17 @@ export function announceLiveHotkeys(
 ): typeof formatForAria {
   return (hotkey, options) => {
     const value = format(hotkey, options)
-    if (value === undefined) return undefined
-    // A parsed chord compares by its normalized string.
-    const wanted =
-      typeof hotkey === 'object' && 'modifiers' in hotkey!
-        ? normalizeHotkey(hotkey)
-        : (hotkey as RegisterableHotkey)
-    return getRegistrations().some(
-      (registration) =>
-        registration.status === 'active' &&
-        areHotkeysEqual(
-          registration.hotkey,
-          wanted,
-          registration.options.platform,
-        ),
-    )
+    // A registration matches when it announces the same keys on its own
+    // platform, so `Mod+S` registered for Windows doesn't match `Meta+S`.
+    return value !== undefined &&
+      getRegistrations().some(
+        (registration) =>
+          registration.status === 'active' &&
+          format(registration.hotkey, {
+            ...options,
+            platform: registration.options.platform,
+          }) === value,
+      )
       ? value
       : undefined
   }

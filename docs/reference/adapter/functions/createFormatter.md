@@ -13,7 +13,7 @@ function createFormatter<TFormat>(
 ): TFormat;
 ```
 
-Defined in: [adapter.ts:668](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L668)
+Defined in: [adapter.ts:667](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L667)
 
 Returns `format`, such as `formatForDisplay` or `formatForAria`, with a
 provider's platform and keyboard layout used when the call doesn't pass

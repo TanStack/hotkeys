@@ -206,3 +206,18 @@ it.each(readControllers)(
     expect(requestUpdate).not.toHaveBeenCalled()
   },
 )
+
+it('renders again when a registrations host reconnects after a change', async () => {
+  const host = document.createElement('lifecycle-plain-host') as PlainHost
+  const registrations = new HotkeyRegistrationsController(host)
+  document.body.append(host)
+  const handle = getHotkeyManager().register('K', () => {})
+  expect(registrations.hotkeys).toHaveLength(1)
+  host.remove()
+  handle.unregister()
+  const requestUpdate = vi.spyOn(host, 'requestUpdate')
+  document.body.append(host)
+  expect(registrations.hotkeys).toHaveLength(0)
+  expect(requestUpdate).toHaveBeenCalled()
+  host.remove()
+})

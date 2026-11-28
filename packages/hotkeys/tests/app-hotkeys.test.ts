@@ -6,6 +6,7 @@ import {
   getAppHotkeyRegistrationOptions,
   isAppHotkey,
   isCustomHotkey,
+  parseHotkey,
   resolveAppHotkey,
   toHotkeyRegistrationView,
 } from '../src'
@@ -332,6 +333,25 @@ describe('adapter helpers', () => {
     manager.register('Mod+J', () => {}, { platform: 'mac', target: element })
     expect(formatForAria('Mod+J')).toBe('Meta+J')
     element.remove()
+  })
+
+  it('matches a hotkey on the platform each side resolves it on', () => {
+    const manager = HotkeyManager.getInstance()
+    const formatForAria = announceLiveHotkeys(
+      createFormatter(
+        coreFormatForAria,
+        () => 'windows',
+        () => null,
+      ),
+      () => getHotkeyRegistrationViews(manager.registrations.state),
+    )
+    // A Windows Mod+S listens for Control, so Meta+S on macOS isn't live.
+    manager.register('Mod+S', () => {}, { platform: 'windows' })
+    expect(formatForAria('Mod+S')).toBe('Control+S')
+    expect(formatForAria('Mod+S', { platform: 'mac' })).toBe(undefined)
+    // A parsed chord keeps the modifiers it was parsed with.
+    manager.register('Control+K', () => {}, { platform: 'mac' })
+    expect(formatForAria(parseHotkey('Control+K', 'windows'))).toBe('Control+K')
   })
 
   it('resolves an app hotkey from the store by id', () => {

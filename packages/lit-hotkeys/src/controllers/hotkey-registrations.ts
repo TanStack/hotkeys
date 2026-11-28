@@ -44,6 +44,8 @@ export class HotkeyRegistrationsController implements ReactiveController {
     const manager = getHotkeyManager()
     const read = () => getHotkeyRegistrationViews(manager.registrations.state)
     this._hotkeys = read()
+    // Registrations may have changed while the host was disconnected.
+    this._host.requestUpdate()
     if (isServer()) return
     const subscription = manager.registrations.subscribe(() => {
       this._hotkeys = read()

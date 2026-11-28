@@ -31,7 +31,10 @@ import {
   selector: 'app-search-button',
   template: `
     @let hotkey = appHotkeys()['search.open'].hotkey;
-    <button [attr.aria-keyshortcuts]="formatForAria(hotkey)">
+    <button
+      (click)="openSearch()"
+      [attr.aria-keyshortcuts]="formatForAria(hotkey)"
+    >
       Search
       @if (hotkey) {
         <kbd>{{ formatForDisplay(hotkey) }}</kbd>
@@ -60,7 +63,7 @@ export class SearchButton {
 Follow these rules when you add the attribute:
 
 - **Attach it to the target control.** Put `aria-keyshortcuts` on the button the shortcut activates or the field it focuses. The attribute only announces the shortcut, so register the hotkey as usual.
-- **Announce only working shortcuts.** The formatter returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, or character keys are suspended, so the attribute comes and goes with the shortcut. The hotkey has to be registered, so server-rendered HTML has no attribute until the hotkey registers in the browser.
+- **Announce only working shortcuts.** The formatter returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, or character keys are suspended, so the attribute comes and goes with the shortcut. It checks whether any registration of the hotkey can fire, so if this control's action is disabled while another action uses the same keys, the attribute stays. Leave the attribute off yourself in that case. The hotkey has to be registered, so server-rendered HTML has no attribute until the hotkey registers in the browser.
 - **Keep the visible label.** Render a `<kbd>` label alongside the attribute from the same hotkey so sighted and screen reader users see the same shortcut.
 - **Document sequences in text.** ARIA has no syntax for multi-step sequences such as `['G', 'H']`, so the formatter returns `undefined` and `[attr.aria-keyshortcuts]` omits the attribute. List sequences in a [cheat sheet](./cheat-sheet-ui-helpers) instead.
 - **Read from app hotkeys.** Pass the binding from [app hotkeys](./app-hotkeys) so `aria-keyshortcuts` updates when the user rebinds the shortcut.
@@ -94,7 +97,7 @@ export const appConfig: ApplicationConfig = {
 }
 ```
 
-Angular creates a provider when something under it first injects it, so a provider that nothing injects never suspends. Put `suspendCharacterKeys` on the application's `provideHotkeys`, which Angular creates as soon as any hotkey registers.
+Angular creates a provider when something under it first injects it, and the setting applies from then on. Put `suspendCharacterKeys` on the application's `provideHotkeys`. Hotkeys registered with `injectHotkey` and the other inject functions inject it first, so they're always covered. A hotkey registered directly with `getHotkeyManager().register()` isn't suspended until a component first injects the provider.
 
 Suspensions are counted. Character key shortcuts stay off while any active provider evaluates `suspendCharacterKeys` to `true`, and they resume when the last one is destroyed or its value becomes `false`. `suspendCharacterKeys` applies even when the provider sets `enabled: false`. Outside a provider, call `getHotkeyManager().suspendCharacterKeys()`, which returns a function that resumes them.
 

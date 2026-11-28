@@ -29,7 +29,10 @@ Alpine.data('searchButton', () => {
 
   return {
     init() {
-      hotkeys.createHotkey('Mod+K', () => openSearch())
+      hotkeys.createHotkey('Mod+K', () => this.search())
+    },
+    search() {
+      openSearch()
     },
     get shortcut() {
       return formatForAria('Mod+K')
@@ -45,7 +48,7 @@ Alpine.data('searchButton', () => {
 ```
 
 ```html
-<button x-data="searchButton" :aria-keyshortcuts="shortcut">
+<button x-data="searchButton" @click="search()" :aria-keyshortcuts="shortcut">
   Search <kbd x-text="label"></kbd>
 </button>
 ```
@@ -53,7 +56,7 @@ Alpine.data('searchButton', () => {
 Follow these rules when you add the attribute:
 
 - **Attach it to the target control.** Put `aria-keyshortcuts` on the button the shortcut activates or the field it focuses. The attribute only announces the shortcut, so register the hotkey as usual.
-- **Announce only working shortcuts.** The formatter returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, or character keys are suspended, so the attribute comes and goes with the shortcut. The hotkey has to be registered, so server-rendered HTML has no attribute until the hotkey registers in the browser.
+- **Announce only working shortcuts.** The formatter returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, or character keys are suspended, so the attribute comes and goes with the shortcut. It checks whether any registration of the hotkey can fire, so if this control's action is disabled while another action uses the same keys, the attribute stays. Leave the attribute off yourself in that case. The hotkey has to be registered, so server-rendered HTML has no attribute until the hotkey registers in the browser.
 - **Keep the visible label.** Render a `<kbd>` label alongside the attribute from the same hotkey so sighted and screen reader users see the same shortcut.
 - **Document sequences in text.** ARIA has no syntax for multi-step sequences such as `['G', 'H']`, so the formatter returns `undefined` and `:aria-keyshortcuts` omits the attribute. List sequences in a [cheat sheet](./cheat-sheet-ui-helpers) instead.
 - **Read from app hotkeys.** Pass the binding from [app hotkeys](./app-hotkeys) so `aria-keyshortcuts` updates when the user rebinds the shortcut.

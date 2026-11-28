@@ -9,7 +9,7 @@ title: activateHotkeysProviderScope
 function activateHotkeysProviderScope(key): () => void;
 ```
 
-Defined in: [adapter.ts:558](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L558)
+Defined in: [adapter.ts:557](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L557)
 
 Activates the scope described by a key from `getHotkeysProviderScopeKey`.
 Returns a function that releases the activation.
