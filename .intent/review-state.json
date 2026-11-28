@@ -64,16 +64,16 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "83791d578bf1f162126a820b137de75eadfdf55c1b667a2870c382992b7a286f",
+      "fingerprint": "e2d0e040d522e22528fd434b2a5d1198d57363873c394c191b6da14467b50bf7",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "b948d7b4d028cd0453f3ea35be7424042dd7e404f6c3c27be9bea118f8275275",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eef2d16cc30894e6ed4a31538bda0eb4fafbfec9c82758b81bbee16157f77d73",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
         "packages/hotkeys/src/app-hotkeys.ts": "4fc089bf6f3f247d8ccd6cc819571d945f45e95271e5169707a6c29d7ec6011f",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-recorder.ts": "89451078c5a2c139c75a730dc44b651e92229595d2956cb96ef1e525bb1de735",
+        "packages/hotkeys/src/hotkey-recorder.ts": "b506d0407d03ad71ef82599fb31688479ecc062a51574bba64ee3c4eeaa0cc74",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "1d40680b6046115e8c7c71f474e3487fc953b82220e0f5809b01f39c0ca12206",
@@ -83,15 +83,15 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "b2737e75bede6906ccd9a3cc555aba8cdce1003093c6700bad552551f62d9814",
+      "fingerprint": "fff34216282aa1f8b2363fe28f3aab43c6ab4df9162d29ec0a11cb84630e4b9e",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
@@ -100,7 +100,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "f7522e6fcc2173cbaf0d6f3293e6e6233d891c3032ec022f8c582997f1a213c8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "c2957eaac34ca431832069156504cf7434dcb96d5227bcb7cbb2129dc8e979bd",
-        "packages/hotkeys/src/hotkey-manager.ts": "37d275dc3e93f968c37d721aee12b19b059fb3b18ffa618ccc0bcfc516d4d89e",
+        "packages/hotkeys/src/hotkey-manager.ts": "a4ea7bbb7619b1f86d5a9a4db124df5d16f4dd43f6a50b15c3fe984b7fe9c45c",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -112,11 +112,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: packages/hotkeys/src/hotkey-manager.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -261,7 +261,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "a59d90fa085beaedb379ca7989c412d457ebb6d8d446620978b9f708ebf18d18",
+      "fingerprint": "820c83e4043baea45ea57dc9ea013ee827389c4a00072726b88bdd22899c4fd4",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "f599f1f45212638ba62f1cee4e234e47353b422cec1fec5c525208d23cc52d34",
@@ -280,7 +280,7 @@
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "b948d7b4d028cd0453f3ea35be7424042dd7e404f6c3c27be9bea118f8275275",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eef2d16cc30894e6ed4a31538bda0eb4fafbfec9c82758b81bbee16157f77d73",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
@@ -324,8 +324,8 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "c2957eaac34ca431832069156504cf7434dcb96d5227bcb7cbb2129dc8e979bd",
         "packages/hotkeys/src/app-hotkeys.ts": "4fc089bf6f3f247d8ccd6cc819571d945f45e95271e5169707a6c29d7ec6011f",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "37d275dc3e93f968c37d721aee12b19b059fb3b18ffa618ccc0bcfc516d4d89e",
-        "packages/hotkeys/src/hotkey-recorder.ts": "89451078c5a2c139c75a730dc44b651e92229595d2956cb96ef1e525bb1de735",
+        "packages/hotkeys/src/hotkey-manager.ts": "a4ea7bbb7619b1f86d5a9a4db124df5d16f4dd43f6a50b15c3fe984b7fe9c45c",
+        "packages/hotkeys/src/hotkey-recorder.ts": "b506d0407d03ad71ef82599fb31688479ecc062a51574bba64ee3c4eeaa0cc74",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "326b0a1ddd9579c65389e755d5a2e0a69512ef7f91aca21bda7db9c0ddb51521",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -392,11 +392,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -652,27 +652,27 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "61c3cd3e56dcce863d12b3e6e1286cc2cafe8dd9f341f2f17dbd90c2306c268e",
+      "fingerprint": "edb0416d091f29a75085d86839213f2b44bab4fe89c9018e0047025b2fdb9ff5",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "2f6e7df6a2462ce0dd1d5fd1aa8d0c89821a25cb405c048438604a2c15d74b18"
+        "docs/reference/classes/HotkeyManager.md": "cac5059cd16d43dfbc471f1a9292658a466d4a8196ab71f800ed3a1033c8763c"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyManager.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/reference/classes/HotkeyManager.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "7e75fc80b3f954a9f5489622b9b52674494e77daffe34acf47eb5517035e0868",
+      "fingerprint": "298a12801cb40dd7fc29fe94113b1910edd751f5f36cfb580573a561c956fcfa",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "e0de6593b8d4bd5c8dbaa4f4589c3644949be33dc41059d94d575404faeafca9"
+        "docs/reference/functions/getHotkeyManager.md": "4e609bc4fafd7c86d20bd70a844f57a66c091ef0b794de8341de5e7002e1f5bc"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/reference/functions/getHotkeyManager.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/reference/functions/getHotkeyManager.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1216,15 +1216,15 @@
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "fb78f70479cd11f839d6a518e077419d62499bd3406f55be3708268f3244f0b3",
+      "fingerprint": "8af549063c0dd6b188a75202eb4fab44b7a4ba6e096e95efcf671d7f779a92a2",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "5a69f9a1a22416e0b1634eadd61584d44bf11acf243c419ed7d57a2100a0737c"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "37017979fd06ff88b4bd1fe5384e3e12a584fd194e97564c8e97cec219ae4650"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
@@ -1278,15 +1278,15 @@
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "ca84fb759f6584fac3e8a0f90ffdac3a4f254049ba8d889a0fc65403b0c7db89",
+      "fingerprint": "ebfc54c7dfe3f7c72b294e4fe6c83355b5be1bb97f9e1e0c3357065b4a9acce0",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "c3066a4bff4d2578f52dc457044fee6ccac9d9546838c09e6bb3b962fa248e35"
+        "docs/reference/interfaces/HotkeyScopesState.md": "b5efcf6d270eed74f2dae49b38d670a1a37d6e70cff95f8bc1fd31706c2d882d"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/reference/interfaces/HotkeyScopesState.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/reference/interfaces/HotkeyScopesState.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
@@ -4136,15 +4136,15 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "8f9d0893a8cf2b5ad24afa972017af52bd98a0f2c6c40293b6680cf84dfb5464",
+      "fingerprint": "934632be1d073dc03e0ce788b24d32fadccdf137b3ba34cc3cd87683728510f4",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "8a903e602641701b9aa5ab647bbbb27053d94fde390b5389e12724a37288e4d1"
+        "docs/reference/classes/HotkeyRecorder.md": "2afde164fd9dc14b977fd777f2d4d34f9ba5d90e7cacf1543adbf397a6c7a5aa"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/reference/classes/HotkeyRecorder.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/reference/classes/HotkeyRecorder.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
@@ -7339,15 +7339,15 @@
       ]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "33fe237a0e9315ffa609d98499e95289090e043bc7a963a88732a0275f9cd01b",
+      "fingerprint": "d4dcc8f02461b67f14bdc51640b33f6a8dd8cf2b67b401ee2fbe98c458acd91b",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "071de7445db797c1caf6e2220d00605ab1796c8274358f4339105fe986f52853"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "fc318526768622a2df691ae37649e31aa3a0c1b91447f62b0348e8fd86e3fcc5"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7375,15 +7375,15 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "d0a963847539ff87b4c939ac17f0b422f04e742fac736cc2c2ee47fc913eb323",
+      "fingerprint": "ce392febf357e4770ccfce7caa958d476c2a31a4f54b9f1029feddf1786b54c5",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "28a667509000148238398f23445cd8139cee205f04d1fbc27bdfac544dfe608a"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "16f966a7da579db2bf27a61a62688a184ef5ba12e957716767d65f8715eb8544"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11212,15 +11212,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/delegated-handlers.test.ts": {
-      "fingerprint": "c50dc8e7d17603c7c8541b84b5a1d0d4ee30424be9cd8f95f5ae1b873e6acd83",
+      "fingerprint": "d6b3ac18aad502c5af53d7f47bd875261c3429add8421e21312efe28eea25b01",
       "snapshot": {
-        "packages/hotkeys/tests/delegated-handlers.test.ts": "c63475d8a07b483dc9b7a5a34b6c2d4f7957177f95d88da4a5b3e7be167200f1"
+        "packages/hotkeys/tests/delegated-handlers.test.ts": "06ab643ba94079591f5d28338b87d947503b68e522a740818cb6c2ec8ab95334"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: packages/hotkeys/tests/delegated-handlers.test.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: packages/hotkeys/tests/delegated-handlers.test.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:packages/octane-hotkeys/tests/element-order.test.ts": {
@@ -11554,15 +11554,15 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "ebbe22efdafc2ad319af24445611f849f8ffcc77c2b8b17e8c4c4a56a739d288",
+      "fingerprint": "3eb4eb4ff1d270c3871bfa25c47eda3cdc06e8ce0d88b895abc163ed030b7a7f",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "f72eea948edc0d60ee307caee33c38a63f2601b2966bdbfc9bdf9d7347b2839c"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "b171c94e01663ca6a51d0a04574333179088367a0c51c8be8434c07b070f14f5"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11600,15 +11600,15 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "53036c80017961ad0b8b977166b62100e4616acf9517cfd459a5915ae331141b",
+      "fingerprint": "6b7047fd97011ee7e896c2ebc1d9aad4a17c4264325b824b23b920f3beffb9da",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "68b7f54d1b186f2e55e1396f1475f0e43e8ace646e49524a6b5197285561ef9b"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "b9e6ad4a72fce71eab82419929d0ab68e64fce0b495016b6537c6bfacb54d0fb"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11648,39 +11648,39 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "62a1c7af67023f0c24f97afd2ec59e9dc006c00e3144c1820f5780651a01510b",
+      "fingerprint": "3ff620656720072750117a9f58dd30e4877212c2d7ee48115326d8832d599a32",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "ccb34efdcb4a29fc2115bd62436ea555d87406c6f28761a415d0a2b21acf333b"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "a9a4a43e2cb073a1636da9259701e938ed39f2db90a8d22632cead6e8dd1313c"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "a00686da54d9d4cf62b45823c088b4bd788dd24fbb699e569cfddc0df4c9d8ff",
+      "fingerprint": "28f609900a017169453fd522086059f8cb16dc57534bf258f1562debace2a9f9",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "6a26133f24c6a47f6c3f4fc649606085df7be8297d8d55caab4fcf01b9d032f3"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "35d239d92668b4d95daf9edf89eac7feb0e6abcd54fe0766683329301310bab3"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "1db57776772a7fe4694617645846350ee9a64077a61ecb128aebe7977354ce35",
+      "fingerprint": "d4ec63240de13bb7a09d0910139c514e5808af50bbfb7403fcc1486eb6c0bfab",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "e53df6110bd93af1c714f68f23d905220eaee82279a1df8a34d9422b98f7a17c"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "8346da7ec5833b1f4c62e0dd4285518be3c0fe2342e7c883b937d1015ec001a3"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11754,15 +11754,15 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "76de9bee3af0ebc7a43cc7d71da3e07263552c897391d91678042945909e388e",
+      "fingerprint": "54776ae32f84be9bae37315a8c79f7b36d8f7d587fff0c1e7050055fabd2471d",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "eabcbbf853157d6c6b6bc07415ec7e61bcc8e3229bbc559ad6c4daeb5436b922"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "70a9619d0dac82656f6abe680f5fb4ce85b442d79dcb4103402ce6dcf1b6db99"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -25613,15 +25613,15 @@
       "evidence": ["test-utils/src/key-locks.ts"]
     },
     "source:packages/hotkeys/tests/recorder-window.test.ts": {
-      "fingerprint": "dc95aeca6e926fb58af67cffb0b7b46581726f361883ec2f58c50685a4d22a02",
+      "fingerprint": "1eb4cb0f8ed46178c23ab77d219e466cf8624855633f61c874823ea17f530b90",
       "snapshot": {
-        "packages/hotkeys/tests/recorder-window.test.ts": "383260d32e6dab48ead374983c344166bd7e1379c1231e416966414b0b9631d4"
+        "packages/hotkeys/tests/recorder-window.test.ts": "3b256e2e3f9fcbd25a12b451056a6d4e6efbc5af525175576aafde68406eade3"
       },
-      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Changed: packages/hotkeys/tests/recorder-window.test.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+        "Changed: packages/hotkeys/tests/recorder-window.test.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:packages/solid-hotkeys/tests/portal-mount.test.tsx": {

@@ -188,7 +188,7 @@
       "ignore": [
         "lit"
       ],
-      "limit": "10 KB"
+      "limit": "10.25 KB"
     },
     {
       "name": "Alpine createHotkeysScope + hotkeysPlugin",

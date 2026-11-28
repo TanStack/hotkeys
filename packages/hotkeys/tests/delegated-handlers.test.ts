@@ -410,6 +410,24 @@ describe('afterDelegatedHandlers after the target moves', () => {
     ])
   })
 
+  it('moves its listener on focus when the page stops focusin', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel)
+    const other = frameDocument()
+    other.body.append(panel)
+    other.addEventListener('focusin', (event) => event.stopPropagation(), true)
+    const addNew = vi.spyOn(other, 'addEventListener')
+    cleanups.push(() => addNew.mockRestore())
+
+    child.dispatchEvent(new FocusEvent('focusin', { bubbles: true }))
+    child.dispatchEvent(new FocusEvent('focus'))
+
+    expect(addNew.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+  })
+
   it('keeps following for the hotkeys left on an element after one unregisters', () => {
     const { panel, child } = panelWithChild()
     const k = register('K', panel)
@@ -426,6 +444,7 @@ describe('afterDelegatedHandlers after the target moves', () => {
     expect(
       remove.mock.calls.map(([type, , capture]) => [type, capture]),
     ).toEqual([
+      ['focus', true],
       ['focusin', true],
       ['keydown', true],
       ['keyup', true],

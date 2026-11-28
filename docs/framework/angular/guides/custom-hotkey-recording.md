@@ -117,8 +117,10 @@ export class ShortcutRecorderComponent {
           this.recorder.cancelRecording()
         }
       }
-      document.addEventListener('pointerdown', onPointerDown, true)
-      onCleanup(() => document.removeEventListener('pointerdown', onPointerDown, true))
+      // The button's document, which can be a Picture-in-Picture window
+      const doc = this.host.nativeElement.ownerDocument
+      doc.addEventListener('pointerdown', onPointerDown, true)
+      onCleanup(() => doc.removeEventListener('pointerdown', onPointerDown, true))
     })
   }
 }

@@ -378,9 +378,10 @@ export class HotkeyRecorder {
         : target.defaultView
     // A closed window, or a document without one, sends no key events.
     if (!view || view.closed) return
-    this.#view = view
     // Ending a recording cleared its idle timer and events
     beginRecording(this, view)
+    // After beginRecording: another recorder's onCancel can stop this one
+    this.#view = view
     this.store.setState(() => ({
       ...INITIAL_RECORDER_STATE,
       isRecording: true,

@@ -116,16 +116,17 @@ private onPointerDown = (event: PointerEvent) => {
 }
 
 updated() {
+  // The element's document, which can be a Picture-in-Picture window
   if (this.recorder.isRecording) {
-    document.addEventListener('pointerdown', this.onPointerDown, true)
+    this.ownerDocument.addEventListener('pointerdown', this.onPointerDown, true)
   } else {
-    document.removeEventListener('pointerdown', this.onPointerDown, true)
+    this.ownerDocument.removeEventListener('pointerdown', this.onPointerDown, true)
   }
 }
 
 disconnectedCallback() {
   super.disconnectedCallback()
-  document.removeEventListener('pointerdown', this.onPointerDown, true)
+  this.ownerDocument.removeEventListener('pointerdown', this.onPointerDown, true)
 }
 ```
 

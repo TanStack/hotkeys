@@ -99,8 +99,10 @@ useEffect(() => {
   const onPointerDown = (event: PointerEvent) => {
     if (!ref.current?.contains(event.target as Node)) recorder.cancelRecording()
   }
-  document.addEventListener('pointerdown', onPointerDown, true)
-  return () => document.removeEventListener('pointerdown', onPointerDown, true)
+  // The button's document, which can be a Picture-in-Picture window
+  const doc = ref.current?.ownerDocument ?? document
+  doc.addEventListener('pointerdown', onPointerDown, true)
+  return () => doc.removeEventListener('pointerdown', onPointerDown, true)
 }, [recorder.isRecording, recorder.cancelRecording])
 
 return (

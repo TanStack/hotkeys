@@ -113,8 +113,10 @@ watchEffect((onCleanup) => {
   const onPointerDown = (event: PointerEvent) => {
     if (!button.value?.contains(event.target as Node)) cancelRecording()
   }
-  document.addEventListener('pointerdown', onPointerDown, true)
-  onCleanup(() => document.removeEventListener('pointerdown', onPointerDown, true))
+  // The button's document, which can be a Picture-in-Picture window
+  const doc = button.value?.ownerDocument ?? document
+  doc.addEventListener('pointerdown', onPointerDown, true)
+  onCleanup(() => doc.removeEventListener('pointerdown', onPointerDown, true))
 })
 ```
 

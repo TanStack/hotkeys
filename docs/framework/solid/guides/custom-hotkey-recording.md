@@ -106,8 +106,10 @@ createEffect(recorder.isRecording, (recording) => {
   const onPointerDown = (event: PointerEvent) => {
     if (!button?.contains(event.target as Node)) recorder.cancelRecording()
   }
-  document.addEventListener('pointerdown', onPointerDown, true)
-  return () => document.removeEventListener('pointerdown', onPointerDown, true)
+  // The button's document, which can be a Picture-in-Picture window
+  const doc = button?.ownerDocument ?? document
+  doc.addEventListener('pointerdown', onPointerDown, true)
+  return () => doc.removeEventListener('pointerdown', onPointerDown, true)
 })
 
 // <button ref={button} onClick={recorder.startRecording}>...</button>

@@ -497,9 +497,10 @@ function movesAfterDelegatedHandlers(options: HotkeyOptions): boolean {
 /**
  * When an element target checks whether it moved. Focus enters the element
  * before a key press there, so the new window's listeners are in place before
- * that press starts. Key events cover presses dispatched without focus.
+ * that press starts. `focus` covers a page that stops `focusin`, and key
+ * events cover presses dispatched without focus.
  */
-const FOLLOW_EVENTS = ['focusin', 'keydown', 'keyup'] as const
+const FOLLOW_EVENTS = ['focus', 'focusin', 'keydown', 'keyup'] as const
 
 function followsRoot({
   target,

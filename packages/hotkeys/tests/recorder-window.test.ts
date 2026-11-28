@@ -201,4 +201,26 @@ describe('HotkeyRecorder with a target window', () => {
     keydown({ key: 'k', code: 'KeyK', target: document.body })
     expect(hotkey).toHaveBeenCalledTimes(1)
   })
+
+  it("stops listening in its window when another recorder's onCancel stops it while it starts", () => {
+    const view = otherWindow()
+    const onRecord = vi.fn()
+    const second = createRecorder({ onRecord, target: view })
+    createRecorder({
+      onRecord: vi.fn(),
+      onCancel: () => second.stop(),
+    }).start()
+    second.start()
+    second.stop()
+    // Recording again elsewhere must not hear the first window
+    second.setOptions({ target: undefined })
+    second.start()
+    keydown({
+      key: 's',
+      code: 'KeyS',
+      metaKey: true,
+      target: view.document.body,
+    })
+    expect(onRecord).not.toHaveBeenCalled()
+  })
 })

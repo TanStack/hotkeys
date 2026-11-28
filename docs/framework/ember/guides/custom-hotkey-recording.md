@@ -112,8 +112,10 @@ export default class ShortcutRecorder extends Component {
       const onPointerDown = (event: PointerEvent) => {
         if (!element.contains(event.target as Node)) this.recorder.cancelRecording()
       }
-      document.addEventListener('pointerdown', onPointerDown, true)
-      return () => document.removeEventListener('pointerdown', onPointerDown, true)
+      // The button's document, which can be a Picture-in-Picture window
+      const doc = element.ownerDocument
+      doc.addEventListener('pointerdown', onPointerDown, true)
+      return () => doc.removeEventListener('pointerdown', onPointerDown, true)
     },
   )
 
