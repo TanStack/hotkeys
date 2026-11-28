@@ -163,6 +163,14 @@ interface HotkeyRecorderBaseOptions extends RecorderOptions {
    */
   cancelOnBlur?: boolean
   /**
+   * The window to record key presses in, or its document, such as a
+   * Picture-in-Picture window that holds the recorder's button. Recording
+   * listens only there, and `cancelOnBlur` follows that window. Closing the
+   * window cancels, and a closed window doesn't start recording. Read when
+   * recording starts. Default: the page's `window`
+   */
+  target?: Window | Document | null
+  /**
    * Optional callback when the recording is cleared: Backspace/Delete with no
    * modifiers and no recorded steps
    */
@@ -286,6 +294,8 @@ export class HotkeyRecorder {
   )
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
+  /** The window the current recording listens in. */
+  #view: Window | null = null
   #optionsSource: MaybeGetter<HotkeyRecorderOptions>
   #optionOverrides: Partial<ResolvedRecorderOptions> = {}
   #platform: HotkeyPlatform
@@ -295,6 +305,9 @@ export class HotkeyRecorder {
   #blurHandler = () => {
     if (this.#options.cancelOnBlur !== false) this.cancel()
   }
+
+  // A closed window can't send the keys that would end the recording.
+  #closeHandler = () => this.cancel()
 
   get #options(): ResolvedRecorderOptions {
     return {
@@ -357,8 +370,18 @@ export class HotkeyRecorder {
       return
     }
 
+    const { target } = this.#options
+    const view = !target
+      ? window
+      : 'document' in target
+        ? target
+        : target.defaultView
+    // A closed window, or a document without one, sends no key events.
+    if (!view || view.closed) return
     // Ending a recording cleared its idle timer and events
-    beginRecording(this)
+    beginRecording(this, view)
+    // After beginRecording: another recorder's onCancel can stop this one
+    this.#view = view
     this.store.setState(() => ({
       ...INITIAL_RECORDER_STATE,
       isRecording: true,
@@ -378,7 +401,7 @@ export class HotkeyRecorder {
       if (
         this.#options.ignoreInputs !== false &&
         event.key !== 'Escape' &&
-        isTypingEvent(event, document)
+        isTypingEvent(event, view.document)
       )
         return
 
@@ -476,8 +499,9 @@ export class HotkeyRecorder {
     // Window capture runs before page listeners on the document and below, so
     // a dialog's Escape listener doesn't close it while recording. A listener
     // that started this recording during a key press doesn't see that press.
-    listen(window, 'keydown', handler as EventListener, true)
-    window.addEventListener('blur', this.#blurHandler)
+    listen(view, 'keydown', handler as EventListener, true)
+    view.addEventListener('blur', this.#blurHandler)
+    view.addEventListener('pagehide', this.#closeHandler)
   }
 
   /**
@@ -560,10 +584,12 @@ export class HotkeyRecorder {
     this.#clearIdleTimer()
     // Without a document, start() never added a listener
     if (this.#keydownHandler) {
-      window.removeEventListener('keydown', this.#keydownHandler, true)
-      window.removeEventListener('blur', this.#blurHandler)
+      this.#view?.removeEventListener('keydown', this.#keydownHandler, true)
+      this.#view?.removeEventListener('blur', this.#blurHandler)
+      this.#view?.removeEventListener('pagehide', this.#closeHandler)
       this.#keydownHandler = null
     }
+    this.#view = null
     this.store.setState(() => ({ ...INITIAL_RECORDER_STATE, recordedHotkey }))
   }
 

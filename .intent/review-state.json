@@ -64,16 +64,16 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "31c19197baac62ebbe9de02e02143a5b3fe821e4c3112bb4637b5a6f5673354e",
+      "fingerprint": "e2d0e040d522e22528fd434b2a5d1198d57363873c394c191b6da14467b50bf7",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "250869e7fcbb8af8e78b01538662198a2668151ced170ee37ed881da4a6f0693",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eef2d16cc30894e6ed4a31538bda0eb4fafbfec9c82758b81bbee16157f77d73",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
         "packages/hotkeys/src/app-hotkeys.ts": "4fc089bf6f3f247d8ccd6cc819571d945f45e95271e5169707a6c29d7ec6011f",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-recorder.ts": "bcb4f1e3940abb28b3611ee59d43c6545489dec15fd02b4d070b06ebd725f4bc",
+        "packages/hotkeys/src/hotkey-recorder.ts": "b506d0407d03ad71ef82599fb31688479ecc062a51574bba64ee3c4eeaa0cc74",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "1d40680b6046115e8c7c71f474e3487fc953b82220e0f5809b01f39c0ca12206",
@@ -83,13 +83,15 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "The skill describes no registration statuses; the changed sources only touch the ARIA formatters and the status comment.",
-      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-recorder.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "2082661f12c18305f510c0809ebe52fc47e99e313e8e2b90e0455a431ca02b6d",
+      "fingerprint": "fff34216282aa1f8b2363fe28f3aab43c6ab4df9162d29ec0a11cb84630e4b9e",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
@@ -98,7 +100,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "f7522e6fcc2173cbaf0d6f3293e6e6233d891c3032ec022f8c582997f1a213c8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "c2957eaac34ca431832069156504cf7434dcb96d5227bcb7cbb2129dc8e979bd",
-        "packages/hotkeys/src/hotkey-manager.ts": "ebe90882990b299a83201ec93d78b82711ca9b2ecc96924de1cf4701eaa096d1",
+        "packages/hotkeys/src/hotkey-manager.ts": "a4ea7bbb7619b1f86d5a9a4db124df5d16f4dd43f6a50b15c3fe984b7fe9c45c",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -110,10 +112,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
-      "outcome": "updated",
-      "reason": "Added the key lock state helper next to the held-key helpers, with its null-until-reported behavior; the testing reference explains faking isTrusted and getModifierState for lock state tests",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/references/testing.md"]
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
+      "outcome": "no-change",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "a496914b60e56de77a476ccaa4667aef730b9c987330015dc20b405ea51deb89",
@@ -257,7 +261,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "89772ef90e5da5297886e3a39521ee83b6ad01c4287f75cdc74d0e06b4aec223",
+      "fingerprint": "820c83e4043baea45ea57dc9ea013ee827389c4a00072726b88bdd22899c4fd4",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
         "_artifacts/skill_spec.md": "f599f1f45212638ba62f1cee4e234e47353b422cec1fec5c525208d23cc52d34",
@@ -276,7 +280,7 @@
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "250869e7fcbb8af8e78b01538662198a2668151ced170ee37ed881da4a6f0693",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "eef2d16cc30894e6ed4a31538bda0eb4fafbfec9c82758b81bbee16157f77d73",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
         "docs/framework/react/guides/sequences.md": "35a2042e6adb52cca5c10ad36a8cbe65783b38be3383af612f368007a5f4b724",
@@ -320,8 +324,8 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "c2957eaac34ca431832069156504cf7434dcb96d5227bcb7cbb2129dc8e979bd",
         "packages/hotkeys/src/app-hotkeys.ts": "4fc089bf6f3f247d8ccd6cc819571d945f45e95271e5169707a6c29d7ec6011f",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "ebe90882990b299a83201ec93d78b82711ca9b2ecc96924de1cf4701eaa096d1",
-        "packages/hotkeys/src/hotkey-recorder.ts": "bcb4f1e3940abb28b3611ee59d43c6545489dec15fd02b4d070b06ebd725f4bc",
+        "packages/hotkeys/src/hotkey-manager.ts": "a4ea7bbb7619b1f86d5a9a4db124df5d16f4dd43f6a50b15c3fe984b7fe9c45c",
+        "packages/hotkeys/src/hotkey-recorder.ts": "b506d0407d03ad71ef82599fb31688479ecc062a51574bba64ee3c4eeaa0cc74",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "326b0a1ddd9579c65389e755d5a2e0a69512ef7f91aca21bda7db9c0ddb51521",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
@@ -388,10 +392,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Lock state is part of the existing held-key helper area in every adapter skill; no new skill, domain, or task",
-      "evidence": ["_artifacts/skill_tree.yaml"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -646,24 +652,28 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "3226c84c119da6a5191ae311b8263ad539dc419628b7b3b72def14a50d80ca13",
+      "fingerprint": "edb0416d091f29a75085d86839213f2b44bab4fe89c9018e0047025b2fdb9ff5",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "3a4c1c77c8902a2854341673dda0dd0de83830730296408b121a6a5797969a2f"
+        "docs/reference/classes/HotkeyManager.md": "cac5059cd16d43dfbc471f1a9292658a466d4a8196ab71f800ed3a1033c8763c"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/classes/HotkeyManager.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "31f744e6f9ce9bc76e0a665e6d19bf006c6003a506e247c0ccc83c0ce269e04c",
+      "fingerprint": "298a12801cb40dd7fc29fe94113b1910edd751f5f36cfb580573a561c956fcfa",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "aae7ff5221fd0b84965c9cb49b8cbb1dc75cb3a6732b5684ecfd12e8fd1bc1f2"
+        "docs/reference/functions/getHotkeyManager.md": "4e609bc4fafd7c86d20bd70a844f57a66c091ef0b794de8341de5e7002e1f5bc"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/functions/getHotkeyManager.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "e576c33ec891eff09138d3a05b3c29fffc60c984b7f4e88a1dca3848a899cdc5",
@@ -1196,158 +1206,150 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "f24c7f6d047b65ac3da233e206cf90111e68aeb9f3ea6d74709ecbae5b3cbbbe",
+      "fingerprint": "9b9027570727a24bbf017b3e02938381f64262c231fc6837a86c3ed4148b9077",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "2255c92a1744c6cfd82e6d0d0cb25ea7f7aab558a30a5ce2a4d3f7b7e99769ac"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "7c7c10d710354f3d41aa0ee570c7e3f1b1a2fcb145d32c2a90aaaea4cb1a2f2d"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "019c99ba9d30425c11a2597e153457a3a03521cae32204428a7738b2be5b091e",
+      "fingerprint": "8af549063c0dd6b188a75202eb4fab44b7a4ba6e096e95efcf671d7f779a92a2",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "27d2f7b5c5d6991efc3f74730cb56c772b56251a87e335a77df9374940137727"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "37017979fd06ff88b4bd1fe5384e3e12a584fd194e97564c8e97cec219ae4650"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/interfaces/ActivateHotkeyScopeOptions.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "f712a1bf4a1dcda09398081f9bc8b9d4470fdbe8ab18c80890cc804166a18524",
+      "fingerprint": "a0f51e164ae75891dbd6cacce36ebe00cf393b0296f8214a1589af056bafa231",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "c5425d8a1b62d8ab04f95e1caf28fd0df71f46495924e1c3b74457a1bf9e1a15"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d13739017932d266ef6b037629b7d7945efa65da21b302c46dc1e64a0b62ca9c"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "b2c5613910c18cd60e73e6e6b6a449e3e586470e5f6486b42e800117f648b7db",
+      "fingerprint": "5c0cd2d4baaa0d1bbeefa95e9fd8fb0bb15394ccd75c150dd4ad97ffe5fdc88a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "f469d312983a02d2ccfbe4973e119eb2389d8b4cc3ded4939199ce88778f1f8a"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "b12632a8bbacd4fff663e944e6314ac4ddb0434f3983d741553c26bd8f033873"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "2192989cfe86b10a0e01df63a1f616b33dd1e57aa44df476adac9c1e6367f6b1",
+      "fingerprint": "d7067f4222930d0981cd4645626ca3a895975ced42f53c8f1c0a9ddbffd77684",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "eab5f5665ec1224e7f607ac38e459df8260f0bff12c953b8bb66e8486c0d3b0c"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "e43f1bae67e1690135fd8b7d4580dc5e3d006ed68940d3e63ed87867b71af6fd"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "b7ae33e551d92247be58eb3c654eaccfb2157a2cbea83cfc46c95327e4d6710e",
+      "fingerprint": "b7c833400975fd74f29f48699439be048fe09245fcc97f71deb6d173378d2163",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "b20f3249f832792b4c120172a94aaa6c72b24c62266ea44a9e7cab01089ab3ef"
+        "docs/reference/interfaces/HotkeyOptions.md": "b404010b44b92033c4b4f833ce7d7d012cc5c510f68b9145fd804dc120c7d174"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "1f90c0b60de795c5bfcaea24a22c36b96ec2d2e8a5dd71eb40ba115cb5a8fcfc",
+      "fingerprint": "2e7e864ac98be46860a749f6d32e1616d90836c45df3857a683dbe3b6d0ff55c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "9fcf0d95725be1733bcfdbb5716676ba348f03a7edb22de485165fb1aeca609d"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "94c1545833dfff0625aa43dd176e8655f44d5cab26dd1aeaf749380f6857800a"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "bcdbaf9ba98d535d8c153d4d3469b03fb983ee6f830fd51ad6374f12a1615d8e",
+      "fingerprint": "ebfc54c7dfe3f7c72b294e4fe6c83355b5be1bb97f9e1e0c3357065b4a9acce0",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "f192279133dec0d435ad6f4f912af2e1ce8a0f88fa301cf99c499d98311bfb56"
+        "docs/reference/interfaces/HotkeyScopesState.md": "b5efcf6d270eed74f2dae49b38d670a1a37d6e70cff95f8bc1fd31706c2d882d"
       },
-      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyScopesState.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "f33b7ae1ffc44e3ed6c2be5be5b80c5804c084ec9604ce746e05c34f63657474",
+      "fingerprint": "7d111ea38041ca2ac20faca230a4fd60a0cc080162135d04191e96e60769936b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "681795b952780fc014293a6fa94f6c2fd03c0b09dea5ac07134d32d04bcdbf6f"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "d4be09f4cd104d64e43379a7d8fbeb868adc512c0126286e5fee84242ba40ed8"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "c58ea718fa938c0d20aec8993ec0b385ab13aa5e8091f55df0c11ecc3dc85562",
+      "fingerprint": "c00193a2f86bc1d95efcf036052a8bd12e9fbf7b086cf87824993c7b8a9a4f81",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "e72f6691a8442ca60ad101939b28a298773dd22a812d98307c4917c326a9621f"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "29741fba0bf3c8fcccc1f0b18a31fb456523e2c72a3018c66e11a0c23b0546ec"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "53d0ac314611f0d44afa7d748c9840cb8a06f25ed5076c2b33117d5ae28ed82b",
+      "fingerprint": "6d9c292ef3625587c11586ff80c81930f6ea54dbbacd4ce74599f12e2a35a41e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "74a4ddc0062566d9a8c5384e0d121600630ef9aa2f9c97979490d16ae68c6c60"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "73b6655398fa493d0231133a854db4f1ee47bd106256c8302e3c862e0e1b5d0d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "38950492ef9f3bf113731ae01c658b65f5e7c7184e17bea9fd68230c3ad82525",
+      "fingerprint": "479ba2029071650e0fe473dd1dae5ae6d3790cdb93fbac8a3fe370c7641274e4",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "d1f00295b1c298272e1573836c0b9c817b0c151a168578ddd1bcf8ad9912a106"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "c0a74519f7ed6e8478f93064ba67272752eb99e58c21a76e9ec4401f7da18e8a"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "3bd8782d08f8834eba10480d9490763eed620d80c081eb05a346cfe51ac0300d",
+      "fingerprint": "73bce928f7402a00b0348cd5b8451e0c0281736589fb5704540875faadf8b922",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "7b94fa2e2efd832b172ee9fa8e2defb170ea37c40ad55ebf9c5b2f5685c5e2e6"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "363a72cfc6fd7a2765b1a755c84fb67e9324970d220273642dd5751fbf8e5e99"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "b55f3ff2f061503c9fb2505565c44ea7158365409acbbe933f75c45e86b97793",
+      "fingerprint": "5eac8581a783bf8447976057dec2a67dbbac31b232f4e32b8526d8872f471589",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "92bc09a30f19f9b29b443e7bcf01e0ef6c1f8740f4ad8ea78ed27f56e91ade47"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "e3d1fe462774e5646dfa09692d6f87541151d574865f8e03bbfcc670ab23912a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "011684afe5907d27165dfb091296b5de70c411f5014df83ef2ea5a6ebb08cc49",
@@ -1950,14 +1952,14 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "224516b2f9aa1fda4d5ff3723228d8fc539537fd0e4fa24b6291605b419fc89e",
+      "fingerprint": "2302d75eb1448e37fc9045b1e475e647778d49f8acc178830f5ba3f1599ff0c3",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "ed87d33999dd03c1301f50292c63bf6b1d76108493d8b6fa11a72cc28c8e20af"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "3e3e531be4fc5012c42db469708e6ba4e208f023ef3d3c64659c40475cef3b4c"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -4134,14 +4136,16 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "2400c1b31661d7836eaf3a44250dc39f2f93cbcb7718c56a5bdc8b3823885cb3",
+      "fingerprint": "934632be1d073dc03e0ce788b24d32fadccdf137b3ba34cc3cd87683728510f4",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "aab1b03f48127e5cdcf72e591b6ea8ea41166010c489398bf8791310b8b91c72"
+        "docs/reference/classes/HotkeyRecorder.md": "2afde164fd9dc14b977fd777f2d4d34f9ba5d90e7cacf1543adbf397a6c7a5aa"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/classes/HotkeyRecorder.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
       "fingerprint": "394b648ffc52be332ca1ab001ee62311b653f8162c126029f9856e8728ebdbc4",
@@ -4989,14 +4993,16 @@
       "evidence": ["docs/reference/functions/getKeyStateTracker.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "58b67699d05176d327b34c83507476486790e02d1b367f1f46399ffd50c8ec73",
+      "fingerprint": "fd0b2dd8743d343df98a3b70b492d17dc5f9ceeda46337619b88ebc80432d773",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "a6e37c96beb06fd8d0b418c50acc6393da9b873c983c9cd765cdcced60c24898"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "9afc5da0751f3c729d059c228f6ca971e8c5197c38032ab1db94d5918465d21c"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeyChordRecorderOptions.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
       "fingerprint": "1c949e0f783c83ba59de744b3e294420fa42279b13670e03a0b1b74e9217f363",
@@ -5019,14 +5025,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "f82c0755f74935787b22cfbb47183966172a244c7534b523ef89f763cac8fd9a",
+      "fingerprint": "e79ebec9fb8657dcc26600f3c3234f0ca9086ceca1ff032d0e11713c026d1ce9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "d3ee542445905dde4efef722e9acabe04342f284711f9aaca061eb8410b360b1"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "caf50ae4634467d36a2dd2575395f68d0f4a2e8aca954a1f348b3aac023fb747"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/interfaces/HotkeySequenceRecorderOptions.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
       "fingerprint": "e577ab8c58c0c073803b8cdb161870ae2d991cec8f8e7c46a7e9fafc1327c823",
@@ -5089,14 +5097,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "de413fbd14dabf15093f27c68a71c318e7cbdc8dcb9afdac94b50b9b706453b6",
+      "fingerprint": "d354f9569d4eff602fe328f2c65be227dc2420962af3e77365465a36ee92b59b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "634a20ce976ff6442dd3b4acd5da4b08461b0105f8f16ae1275034a6b31ff533"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "072cebb839d27dee1d8b7c9407628bc090fdcaa90cb2ed4bbff9a2da3829eb0e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/HotkeyRecorderOptions.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
       "fingerprint": "50277a157515f6d9a5091030abc038486cbc00aa8154f5aea9edf643fcd70cea",
@@ -7103,15 +7113,15 @@
       "evidence": ["packages/vue-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "dcffc5426be62a365d241e8086ff88f01e259d528a9d7c068325ab097c691424",
+      "fingerprint": "8a51e16771a1ce1f0315a0f1a5c897086284d5979bcffc72418e9c29eff236e7",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "e90902d0fe118d2d112a7dc8319cd0faa198ae700bd9e8b23f54de2b801011aa"
+        "packages/hotkeys/src/_target-listeners.ts": "39a0ca154b1dc5bfe6907108e1ca1603388b8a3153820eaa41bd033240aea5bc"
       },
-      "head": "8fe3c166293c8a4cc6eb3f6f88bcd044fb726590",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the mount guard and React ref targets; no skill guidance changes.",
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
       "evidence": [
-        "press-start.test.ts and hidden-content.test.tsx regression tests"
+        "Changed: packages/hotkeys/src/_target-listeners.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
       ]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
@@ -7135,14 +7145,16 @@
       "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "f33a4871aea2cf62b22b851b424770dcf81db3f249e71aa553ef38748423d2c6",
+      "fingerprint": "8e7a45bc7b88515e187c67c9ee35e9e7efdb25db467b9fb8891536d08073c02d",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "8d93e699a41554e85295daa8f42fe14b4f1ba906a35b14c2310c1b66b927efa5"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "68441b2cdcbf83556196ad0f4c6d856da204b4bb3d0a6a6f1633f37d305c34ef"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/alpine/guides/custom-hotkey-recording.md"]
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
       "fingerprint": "bd52ad132e2053a8ff821daf06fa40dbe0f8468aaec9472cfef0a0ce5805bd62",
@@ -7327,14 +7339,16 @@
       ]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "c3333f06e73f612dd943055cfc80be6c08fce51b6feb862db60a7b28c1637710",
+      "fingerprint": "d4dcc8f02461b67f14bdc51640b33f6a8dd8cf2b67b401ee2fbe98c458acd91b",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "abfe143814dfc4388ddb993867d5618f8fbd36fb97009f0f9bde2c9dad1ddb2b"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "fc318526768622a2df691ae37649e31aa3a0c1b91447f62b0348e8fd86e3fcc5"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/ember/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
       "fingerprint": "4c01d74c0ffbb8c81803d1501956d23831ad4973c11675c7bea85328e09a11d3",
@@ -7361,14 +7375,16 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "d4271739a56f6b2418b4380e3e686451081442662bbb919db0708f2458615901",
+      "fingerprint": "81a4250128dd2ccbfef1591530b35991a0b5a81d90dd7657cc5fc3afbd3f5a98",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "ab5b7b7e7ed1d5c39666e43f2fc21f25723bf67a098bbcf419e7a3826fba7331"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "f0452e0e1a15debe0cca111e509bd5d837806e838d0a3863d8474ddca33b1c13"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "264669937b5f362e29c77cfc7e9a6aa6ca24fe1a",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/lit/guides/custom-hotkey-recording.md"]
+      "reason": "Lit guide example keeps the document its outside-click listener is on; no skill covers it",
+      "evidence": [
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 264669937b5f362e29c77cfc7e9a6aa6ca24fe1a"
+      ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
       "fingerprint": "bc2085b4fe87bd750b8ec98dc1d35361a784ba12a40c3352dfaea3f27519af10",
@@ -8214,14 +8230,16 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "aea95f4a468218f55a0f29afc6592e3850bf4637e782ad4dbeba6805e59ebc18",
+      "fingerprint": "216ee9117d3a9955f34430ae338f2f9f9e8ecf25541e106454b8620df369ef63",
       "snapshot": {
-        "e2e/README.md": "507d4b0c3a926df68f16b56ad7be649faba3bd17d03df61e5309fb16272d36ac"
+        "e2e/README.md": "153b32e72f8a93aed264e3e54ab78c599980c65830489cd0e4ad3a0cd2a29587"
       },
-      "head": "fa5664a5cecd519fc36453981e66c13049959fa4",
-      "outcome": "out-of-scope",
-      "reason": "Directive key normalization, its test, and an e2e README note; the Alpine skill does not describe key normalization.",
-      "evidence": ["e2e/README.md"]
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "outcome": "no-change",
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: e2e/README.md at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/playwright.ssr.config.ts": {
       "fingerprint": "8c34f92dda39a8b81205fa9089794964e8adf061907fdd30ba8725cf30e1deca",
@@ -11194,15 +11212,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/delegated-handlers.test.ts": {
-      "fingerprint": "8a443555888ab891a1885f42447dd8e4b7245811e3e33a5a9dad369f365ac93a",
+      "fingerprint": "d6b3ac18aad502c5af53d7f47bd875261c3429add8421e21312efe28eea25b01",
       "snapshot": {
-        "packages/hotkeys/tests/delegated-handlers.test.ts": "8b934b5c21b390d0f7e7895d1238aa13dc82a7612ba14f6f1e7fb945a1eace5f"
+        "packages/hotkeys/tests/delegated-handlers.test.ts": "06ab643ba94079591f5d28338b87d947503b68e522a740818cb6c2ec8ab95334"
       },
-      "head": "1f0a2c627c4a18f005762600966a81e9b8daef3a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Refactor to shared types and helpers, generated reference docs, and an example type fix; no guidance changes.",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
       "evidence": [
-        "Behavior and public names are unchanged; reference docs are regenerated by pnpm generate-docs."
+        "Changed: packages/hotkeys/tests/delegated-handlers.test.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
       ]
     },
     "source:packages/octane-hotkeys/tests/element-order.test.ts": {
@@ -11536,14 +11554,16 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "3a4cf80ff7c063db1e043b4162b97118b5721ddb4df4cefcda1f18ee2472b368",
+      "fingerprint": "3eb4eb4ff1d270c3871bfa25c47eda3cdc06e8ce0d88b895abc163ed030b7a7f",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "d4a5b58c600a5991577a5e1a3ec328edfba060781e4e9824b73943a93ce963b2"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "b171c94e01663ca6a51d0a04574333179088367a0c51c8be8434c07b070f14f5"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/angular/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "5f75049947abd0007e83d78ffc33f4dcbf4b6b8a374f8243e24946d4e3d1d98d",
@@ -11580,14 +11600,16 @@
       ]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "e12a030655afdef53ee3e0dc4c547b2dad9cef9937b8a8dbf9155c3515c53443",
+      "fingerprint": "6b7047fd97011ee7e896c2ebc1d9aad4a17c4264325b824b23b920f3beffb9da",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "9ca480566f45332b73fc2963bf5e73960dc98e5622a85b97594155f43e016051"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "b9e6ad4a72fce71eab82419929d0ab68e64fce0b495016b6537c6bfacb54d0fb"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/octane/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "ff7e221e6129f28058dff7f07a65181459e9c3d92f896c46fe95a1f60911008a",
@@ -11626,34 +11648,40 @@
       ]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "7fe9d04e45b62a0b8ccae678d0eadd4adbf7cad5f58b4b3fd51f1fb71582a0e9",
+      "fingerprint": "3ff620656720072750117a9f58dd30e4877212c2d7ee48115326d8832d599a32",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "faea2d1c6bc3539c65e100949ef655a38409f741c567f4cac3a98d86148bcaa8"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "a9a4a43e2cb073a1636da9259701e938ed39f2db90a8d22632cead6e8dd1313c"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/preact/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "4d1d84b497828fdaedbe760fa6f21661fea9512dac170a31293e059750610cd5",
+      "fingerprint": "28f609900a017169453fd522086059f8cb16dc57534bf258f1562debace2a9f9",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "82f412fdc343b2dfec05cd82e07f1fd9fcbab2741583128805cf53fec44118be"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "35d239d92668b4d95daf9edf89eac7feb0e6abcd54fe0766683329301310bab3"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/solid/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "99bb5931aff6db3ea66255835feb4d807a94a62da891a7a08cf77325b67cb242",
+      "fingerprint": "d4ec63240de13bb7a09d0910139c514e5808af50bbfb7403fcc1486eb6c0bfab",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "4089f74b6cd12bd976b8bf37a0d0f3522985b8508904079c2569106e9b1eec13"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "8346da7ec5833b1f4c62e0dd4285518be3c0fe2342e7c883b937d1015ec001a3"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/svelte/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
       "fingerprint": "8fe5e73db20916113f27570e3ddd2015cf4df4fd61e9285f8b2baeb5ad09831c",
@@ -11726,14 +11754,16 @@
       ]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "1c017ed6b99eb83d845722361f6bbf30a23f6aa87a71dae3680a34f4482a74fb",
+      "fingerprint": "54776ae32f84be9bae37315a8c79f7b36d8f7d587fff0c1e7050055fabd2471d",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "054b2c643d02a67bc85fc04252137540970acdd55137e1cdf4c783d04725f0e7"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "70a9619d0dac82656f6abe680f5fb4ce85b442d79dcb4103402ce6dcf1b6db99"
       },
-      "head": "b6df86ecbe091533369f326371ffc01b536bc37a",
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
       "outcome": "no-change",
-      "reason": "Wording on how the recorder treats Windows AltGr; skills do not state it.",
-      "evidence": ["docs/framework/vue/guides/custom-hotkey-recording.md"]
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "0df2af88647ddeaac6454bc7f5d408739b4214832ed3b4e59581d64475d1073d",
@@ -17878,46 +17908,52 @@
       ]
     },
     "source:e2e/adapters/adapters.spec.ts": {
-      "fingerprint": "52b52954cd36febbbe5fd02d5bb994423ecb5031cb595ba8110c527ac3b2021f",
+      "fingerprint": "aa10911cbeb79fa48d0decf82929ecede2cb02ccab66b85b006624593ee6916b",
       "snapshot": {
-        "e2e/adapters/adapters.spec.ts": "8ca8a28d2b83f064e914a99216c40cb8decc2379edfb536f963e5524e5a3f174"
+        "e2e/adapters/adapters.spec.ts": "e05594512ee9553251fbdc4c6f60576417e6084fe741a696f9be8a5456a4f197"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
-      "evidence": ["e2e/adapters/adapters.spec.ts"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/adapters.spec.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps.ts": {
-      "fingerprint": "adafd06c5380836f0837f4e424c15cccabb615aac05198e290f84dd2d8d52240",
+      "fingerprint": "37c7fb10245fe9fac562b4cd72669c83cdabad0a182b996ae37176805c265a00",
       "snapshot": {
-        "e2e/adapters/apps.ts": "4ddd98bb54e7b6181be4c1f1e0d282bf35a30330473b7e96869317a1d7812e64"
+        "e2e/adapters/apps.ts": "69e903855c3d2e81fe0654af9bb6975f8a6d7491d0bd04d983c3861b01a4b899"
       },
-      "head": "49fc872fffa19d2a83a9e8a70ba02254b5290f5e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Removed private tracker IDs from test names, comments and test docs; the known-bug skip convention now names a GitHub issue. No guidance change",
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
       "evidence": [
-        "Changed: e2e/adapters/apps.ts at 49fc872fffa19d2a83a9e8a70ba02254b5290f5e"
+        "Changed: e2e/adapters/apps.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
       ]
     },
     "source:e2e/adapters/apps/alpine/index.html": {
-      "fingerprint": "849878bd30be85a786087eee1478eaca229672d5a55d7523df57068790fdbd5d",
+      "fingerprint": "758c01fa2f49280852fb6247638feb9faccfa02f7fb592e18c3ad1d95708da43",
       "snapshot": {
-        "e2e/adapters/apps/alpine/index.html": "9f30a2236c9f2cbfd34f980724fdf31f0c006a1fd5b0374941e252b06df50fc3"
+        "e2e/adapters/apps/alpine/index.html": "181855b35fa8a4283f39e06c08251008587459afc458cf87b36d34a0ba9b4e02"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/alpine/index.html"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/alpine/index.html at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/alpine/src/main.ts": {
-      "fingerprint": "905aa84a488d6755fceaa2b2fe632db6d8c74f3d9bb2a52a84404cd4447cff57",
+      "fingerprint": "57193cc116df3bf0957c8a9cafd248e5fc9887c3785a6748d0562378e4c48f9f",
       "snapshot": {
-        "e2e/adapters/apps/alpine/src/main.ts": "c3cfb729aee6c904b81e4e0358c171e2f549d49ca5b0acfa278b65fe20d1e77d"
+        "e2e/adapters/apps/alpine/src/main.ts": "bd96b09f8220407f7bdbb6cb8bb3527efdd56dacb30e6e03da7bfc17cf6df587"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
-      "evidence": ["e2e/adapters/apps/alpine/src/main.ts"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/alpine/src/main.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/alpine/vite.config.ts": {
       "fingerprint": "812c2b3ee26bcd9d2edd12e888acb5dd11475ff31a4976dc132eedfdefd6b276",
@@ -17944,14 +17980,16 @@
       ]
     },
     "source:e2e/adapters/apps/angular/src/main.ts": {
-      "fingerprint": "136bd94707024923e9096d0ebd606b3a2ca9f33bb9dd371df9631cf620c71534",
+      "fingerprint": "93dea652e955fe4a4f8ad6f35b1e27f2f61247cd5171c0fcf5f03d03b70848f2",
       "snapshot": {
-        "e2e/adapters/apps/angular/src/main.ts": "38b09509059e1355fb8a2d4c02bc5330b23967ea4aebb77ce8c41e51864b01f0"
+        "e2e/adapters/apps/angular/src/main.ts": "e1ab0cc2fc7f6f9d7bba9e0904f990e99439fcee9bc6585187b5b2b0026b7dc8"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
-      "evidence": ["e2e/adapters/apps/angular/src/main.ts"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/angular/src/main.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/angular/vite.config.ts": {
       "fingerprint": "784b8eb5334ccd515ea1bd621023924d6fa88ad7c8d101e72e49fc619fc91a7f",
@@ -18002,14 +18040,16 @@
       ]
     },
     "source:e2e/adapters/apps/ember/app/templates/application.gts": {
-      "fingerprint": "7fc46f0b7d2364c4716d65a18744d5de0fce1835630d111cfcda7fafc8001d4f",
+      "fingerprint": "30e5aecd3612c762374ae9f38f1668ea88d9a76626b2b6f0a7ab5e6ce7446d7e",
       "snapshot": {
-        "e2e/adapters/apps/ember/app/templates/application.gts": "65883209ce9979a2b2283b003ad09192aa5421d0d92f5d508165cdc40aafaba5"
+        "e2e/adapters/apps/ember/app/templates/application.gts": "32d8844a54a9577a373301532e447abec7a310e1e09fe58cf8bc1d8214d7fe32"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
-      "evidence": ["e2e/adapters/apps/ember/app/templates/application.gts"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/app/templates/application.gts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/ember/babel.config.js": {
       "fingerprint": "1763e9b651c303c561b662d431ef98f0e81a6d8845d0d0a7615c54b201af75de",
@@ -18060,14 +18100,16 @@
       ]
     },
     "source:e2e/adapters/apps/lit/src/main.ts": {
-      "fingerprint": "47c02e61fee9fac17272db671616589a6354376ba71706bcab6427ef2ec43867",
+      "fingerprint": "053b9adab58fe3545260272dfb6716ab641ffe19ead4939c237d36cc8c224a50",
       "snapshot": {
-        "e2e/adapters/apps/lit/src/main.ts": "1888bc3c29145bd82aadaef77c747f582965cc73ec27940f4cae5f53edca19d9"
+        "e2e/adapters/apps/lit/src/main.ts": "ab2a52ef01171e799642fec3aa7bcad08e34f8c53a6bed2b67b19423b12d206d"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/lit/src/main.ts"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/lit/src/main.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/lit/vite.config.ts": {
       "fingerprint": "f3d3b5fcb9e868cf94b3b638ea28c59f853f5c3b7dce04fd1cec9b09605cdc0f",
@@ -18094,14 +18136,16 @@
       ]
     },
     "source:e2e/adapters/apps/octane/src/main.tsrx": {
-      "fingerprint": "472dad6c1c2b8ecd56c2877e0e33aa4513cfcea11b51f54374e94049efedab16",
+      "fingerprint": "d1951c3125f015dd71bbb8aed20bc00331cc0cbc249dab6f8fbe8a5f412be506",
       "snapshot": {
-        "e2e/adapters/apps/octane/src/main.tsrx": "84e891cd08c666b6ea77137ca92a2f4f43e3801bcb5407382fd96b631160ce3e"
+        "e2e/adapters/apps/octane/src/main.tsrx": "51a45f5403a6027c9dca772b08a04c9b0353d4ab3c3e82789c7e2921196bd20b"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
-      "evidence": ["e2e/adapters/apps/octane/src/main.tsrx"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/octane/src/main.tsrx at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/octane/vite.config.ts": {
       "fingerprint": "398c42206a3d5932dbc8505cc36abcf28afe79c60100f8dabab5e6ec4d71aae7",
@@ -18128,14 +18172,16 @@
       ]
     },
     "source:e2e/adapters/apps/preact/src/main.tsx": {
-      "fingerprint": "4a574cf96ad34ab9c3fa2398145706ff92e6003dee60420b8adef9ae12524c49",
+      "fingerprint": "44750b5e77d20706f47e0481d5b97b3dae400581e8b352238e4ef0e609aab6e9",
       "snapshot": {
-        "e2e/adapters/apps/preact/src/main.tsx": "07f9506bf89fc51748f5e344c85c926f398edaecaa028c904ce53f63757e4b52"
+        "e2e/adapters/apps/preact/src/main.tsx": "98a5c2ffc9d9c62321504da77ecf28a22a1ff517534ad4664929173c66a38d6b"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/preact/src/main.tsx"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/preact/src/main.tsx at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/preact/vite.config.ts": {
       "fingerprint": "e83a8d72b4aa0dbf1f51f1bb744c1d17a179554f7f66ea57a7206f0f52b19180",
@@ -18162,14 +18208,16 @@
       ]
     },
     "source:e2e/adapters/apps/react/src/main.tsx": {
-      "fingerprint": "0745eaa17ede4a507ebd24d68ffe0bb9454876a8fe42b5d6db01ccd6517087b8",
+      "fingerprint": "a00da3b5b1363acf23cf7e14fef59594423bbc52798f356d35d88406ab98c210",
       "snapshot": {
-        "e2e/adapters/apps/react/src/main.tsx": "4f8eaa2ae71f91b3a5e15b896e2c803ae2349918ec33fdf0caca47b729bd4777"
+        "e2e/adapters/apps/react/src/main.tsx": "34d86bda4a43368ad30c22c66d6e70cc5a21ff6b846ecba2b02695bad87dce5c"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/react/src/main.tsx"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/react/src/main.tsx at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/react/vite.config.ts": {
       "fingerprint": "e75ceff92f0e98a0f4674517abf6afdda4ce8dfe4a92640551d3f254d28cd459",
@@ -18196,14 +18244,16 @@
       ]
     },
     "source:e2e/adapters/apps/solid/src/main.tsx": {
-      "fingerprint": "999f5797110c89b96a8c4e85031d3315b9181d51e074939bf96922afe5a46d65",
+      "fingerprint": "564a0d2e2bedcbd8613831ec125f8cea0ef1d558fb1ada4aa8364da6779c4a5e",
       "snapshot": {
-        "e2e/adapters/apps/solid/src/main.tsx": "601108eba6fe745bfc69e837afa8ee644aa83f333c94a620194645847c8fd257"
+        "e2e/adapters/apps/solid/src/main.tsx": "c9be1846366eacfcbca1a6781a9dda7f70aa92df0e089189c3f1b5333530a8fc"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/solid/src/main.tsx"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/solid/src/main.tsx at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/solid/vite.config.ts": {
       "fingerprint": "fe7a2c3ba69a237e45cc79cde77daf7a78f0e38e1ab1e5b0e1f42599017895c2",
@@ -18228,14 +18278,16 @@
       ]
     },
     "source:e2e/adapters/apps/svelte/src/App.svelte": {
-      "fingerprint": "812afd2d9ea67eb847fba7ffa56485a9ba08c452001918c4ac22b5cfa94fbe8e",
+      "fingerprint": "2220ee61ffbbaafebdd9a9522edfc26b69055f608c044d96997c10f7081b56e0",
       "snapshot": {
-        "e2e/adapters/apps/svelte/src/App.svelte": "6181be78c5c8858246c0a3013f80bd86b5599459c77068695778fc91821f6a3b"
+        "e2e/adapters/apps/svelte/src/App.svelte": "e7bb1d84db3207e87875db1559e13f1b138e9910096d0f2cb4bba298d2a7a5ba"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/svelte/src/App.svelte"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/src/App.svelte at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/svelte/src/HotkeyHost.svelte": {
       "fingerprint": "53254a6edb6f35e2911931138dd1554e9ee57d450b42611acab19b9322b48430",
@@ -18298,14 +18350,16 @@
       ]
     },
     "source:e2e/adapters/apps/vue/src/App.vue": {
-      "fingerprint": "22a6da02ab95f7e8b85f52c558ef15c02fae225f54522f3773088d976f74eeab",
+      "fingerprint": "ab1efb2a33149dd64cec2ae9a18d705758d082dd910b8f7851f75d1d30186d55",
       "snapshot": {
-        "e2e/adapters/apps/vue/src/App.vue": "0d21c27478e07783b2fe3635cf676441dbd33e69a673c850a49cd085275562d6"
+        "e2e/adapters/apps/vue/src/App.vue": "7205c144ddcf7831b183b76c70cce3f57df06abf01e80af6333b833fd0198e49"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
-      "evidence": ["e2e/adapters/apps/vue/src/App.vue"]
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/src/App.vue at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:e2e/adapters/apps/vue/src/HotkeyHost.vue": {
       "fingerprint": "6e4644e06562f6abdfbbeaffc00fffa0f6b6376f5e1cd0095e4860f94d9dc0fc",
@@ -18344,15 +18398,15 @@
       ]
     },
     "source:e2e/adapters/shared/fixture.ts": {
-      "fingerprint": "aab2c6e40ab5e62ecaa68dfd387dd0805c973674a9d232b4c0bb05db7bf181a0",
+      "fingerprint": "b908ed0e7f04b516686990f392437437b9566e8f38427d23250d7492a9d8bfaf",
       "snapshot": {
-        "e2e/adapters/shared/fixture.ts": "ba86d58f768bf7f50715e7fdc58c44ba7cc217d712221d14bbd844bd086289e9"
+        "e2e/adapters/shared/fixture.ts": "00447be1cbbc9d866c007d167245a794ac54d4136fe71a9c49f7b572a77777cd"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Browser and adapter tests for hotkeys whose element moves to another window; no guidance changes",
       "evidence": [
-        "Changed: e2e/adapters/shared/fixture.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/adapters/shared/fixture.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
       ]
     },
     "source:e2e/browser/sequences-and-scopes.spec.ts": {
@@ -19196,16 +19250,14 @@
       ]
     },
     "source:test-utils/src/conformance/cases/hotkeys.ts": {
-      "fingerprint": "f425df7536f860bcd7a7a5786abb8c7c8254ac60b9b19f014719331d1476b221",
+      "fingerprint": "e85b621df76d0a8d2bb2ab39540d4ca738cd4e8ad6739b931f98436bf8740c75",
       "snapshot": {
-        "test-utils/src/conformance/cases/hotkeys.ts": "be66f3efbf78f7258415928c1d012fc14c37445cd33fafa4a3ba4d353d2c90cd"
+        "test-utils/src/conformance/cases/hotkeys.ts": "5df91797fc6cf0035f4961a1a5c054a10c4afa16c2daf2cb229199c086ad55b5"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
-      "evidence": [
-        "Changed: test-utils/src/conformance/cases/hotkeys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["test-utils/src/conformance/cases/hotkeys.ts"]
     },
     "source:test-utils/src/conformance/cases/provider.ts": {
       "fingerprint": "9e4c80644ec59c9e30f4c10a3a44865d053c17c34d6b4d4231ca249283231a6d",
@@ -19218,13 +19270,13 @@
       "evidence": ["test-utils/src/conformance/cases/provider.ts"]
     },
     "source:test-utils/src/conformance/cases/recorder-hint-format.ts": {
-      "fingerprint": "cdc0ac4b9990c5ce9635f830d59ac9c91232700f42f70b8161f561556629bab6",
+      "fingerprint": "40c1473bc68e35606f0b2e80ff4b69962b09c81f859ea8c880526ef72ba391f0",
       "snapshot": {
-        "test-utils/src/conformance/cases/recorder-hint-format.ts": "c4ef2ad708289b690037838e08f50fb3b73abcc491d6afad639d1dcbfc0138e0"
+        "test-utils/src/conformance/cases/recorder-hint-format.ts": "92e5bb060dbcc9cfc2db0cda4b5bdc4a7ffcae0e2149a5a9abd1fe5801be3d00"
       },
-      "head": "6f837e4d688f72b762181737c4589fbde7606b36",
-      "outcome": "out-of-scope",
-      "reason": "Test change; it describes no library behavior the guidance covers.",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "outcome": "no-change",
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
       "evidence": ["test-utils/src/conformance/cases/recorder-hint-format.ts"]
     },
     "source:test-utils/src/conformance/cases/registrations.ts": {
@@ -20923,14 +20975,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "ff6392c2f03f62ba975264d6ab2c09a2f42471ed6ba260aa3f5663a8a11b5ca9",
+      "fingerprint": "dd82d065846f7d94d51ceb8546e81996ee2e10dc1a94d2c6a58fe4ff5cacd57a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "96b2c82c28c983cf735346b3e5e83e7017a11ab94b0beac31077f45ff322fc2f"
+        "docs/reference/interfaces/HotkeyRegistrationsResult.md": "5f30aafb6c67cab7f53518f6003aca3bbef3d211f76d503c3568695690b1b5b1"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationsResult.md"]
     },
     "source:docs/reference/interfaces/KeyIdentity.md": {
       "fingerprint": "46885e2ce6f4b0697372e058a902f4df9526f7a9c0141ea4a5c48ce2996ae2d2",
@@ -20943,16 +20995,14 @@
       "evidence": ["No skill references this file"]
     },
     "source:docs/reference/type-aliases/HotkeyCommonOptions.md": {
-      "fingerprint": "bd874701c792556376995aa0f0077363f239b44fa3fc3f77334c4ae4d10f8d72",
+      "fingerprint": "2ea9bb6df39f64b52eef15bf1c552fad877c54f2d535f30cfdefec4cd48f3ab1",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyCommonOptions.md": "36258311e6d189878822ed88e11af2d3dd7051e12adebcf728d50cb06e93211f"
+        "docs/reference/type-aliases/HotkeyCommonOptions.md": "72bf46f0972176229761ffe1d59b2b0d544fb74dfc3c1f703a082997e864573f"
       },
-      "head": "75b6c798a9a07d3f902d5899b5536220ea30ceec",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Docs, tests, and the ignoreInputs auto resolution for function and media keys; the core skill covers the rule.",
-      "evidence": [
-        "hotkeys-core SKILL.md defaults row updated in the same change"
-      ]
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["docs/reference/type-aliases/HotkeyCommonOptions.md"]
     },
     "source:docs/reference/type-aliases/HotkeyEventType.md": {
       "fingerprint": "77566ac36b19334c8808de76cdad5afd1e02377a468ea87daf2c01d2e4aac4fe",
@@ -23467,14 +23517,16 @@
       "evidence": ["examples/*/*Recorder*"]
     },
     "source:packages/hotkeys/src/_recording-guard.ts": {
-      "fingerprint": "5f47a6caa01f46d6bb86b0cbea929d6ad813c11a20e390ae7e404cdf17f29d30",
+      "fingerprint": "2a57c925e1cdfa9e9601b240f1d1e7b407a5cc4687d83e725815d5a57ed670d0",
       "snapshot": {
-        "packages/hotkeys/src/_recording-guard.ts": "0f86e070255f5bc6d7e7eeaffbf8de593aea2bca7b010358ce1b5a60b4f207be"
+        "packages/hotkeys/src/_recording-guard.ts": "4944513e51eef4004674279d860da3e28fa4ad50414b54ed2aa360223520f76f"
       },
-      "head": "e9031094e0b830b2af9d82d6ae8b24d36ac207d9",
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
       "outcome": "no-change",
-      "reason": "Recording guard: held repeats of a recorded press stay suppressed for hotkeys; no skill guidance changes.",
-      "evidence": ["hotkey-recorder.test.ts"]
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: packages/hotkeys/src/_recording-guard.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     },
     "source:packages/hotkeys/tests/invariants/recorder-layouts.test.ts": {
       "fingerprint": "2c0722586f2b3d99f639c25d1c513d30dddb3bc71bcd8e4c3eb32898285fbb04",
@@ -25559,6 +25611,40 @@
       "outcome": "no-change",
       "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
       "evidence": ["test-utils/src/key-locks.ts"]
+    },
+    "source:packages/hotkeys/tests/recorder-window.test.ts": {
+      "fingerprint": "1eb4cb0f8ed46178c23ab77d219e466cf8624855633f61c874823ea17f530b90",
+      "snapshot": {
+        "packages/hotkeys/tests/recorder-window.test.ts": "3b256e2e3f9fcbd25a12b451056a6d4e6efbc5af525175576aafde68406eade3"
+      },
+      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
+      "outcome": "no-change",
+      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/recorder-window.test.ts at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/portal-mount.test.tsx": {
+      "fingerprint": "84992ab90725823f23352db1cbfe9629da8b2499e116a6dfe80e2033b6f4d6fe",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/portal-mount.test.tsx": "1b14e3608294a44df1cacecb89696a8c976bdba9f748f7b824e79c9955f7e6bf"
+      },
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "outcome": "no-change",
+      "reason": "Docs, generated reference, or tests for the element-follow fix and the recorder target option. The skills that cover them were reviewed without changes.",
+      "evidence": ["packages/solid-hotkeys/tests/portal-mount.test.tsx"]
+    },
+    "source:e2e/browser/other-window.spec.ts": {
+      "fingerprint": "ad92630c83dea20800036d2f30636d6642dafa396ff41efa164e4aab55d12c36",
+      "snapshot": {
+        "e2e/browser/other-window.spec.ts": "c5eee3a9ef38190fc4c468369cfb1aaf6e2e939e3b8043487c7390e7f575a156"
+      },
+      "head": "a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a",
+      "outcome": "no-change",
+      "reason": "Recorder target now cancels when its window closes; element hotkeys follow their element on focus. Skills don't cover the recorder target or listener placement, so no guidance changes",
+      "evidence": [
+        "Changed: e2e/browser/other-window.spec.ts at a3fc3ae3a058631dfe821a04edf4cf0cce49fb0a"
+      ]
     }
   }
 }

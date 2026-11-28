@@ -115,6 +115,110 @@ for (const app of adapterApps) {
       await expect(page.locator('#held-keys')).toHaveText('')
     })
 
+    // A popup from `window.open` is a real second window, as when an app
+    // moves a panel into a pop-out or Document Picture-in-Picture window.
+    test('an element hotkey follows its element into a popup window and back', async ({
+      page,
+      openApp,
+    }) => {
+      const fixture = await openApp(app)
+      await expect.poll(() => fixture.registrationsOf('L')).toHaveLength(1)
+      const popup = await fixture.openPopup()
+      await page.evaluate(() => {
+        const host = document.getElementById('element-host')!
+        // Kept so the element goes back where the framework rendered it
+        ;(window as { hostPlace?: [Node, Node | null] }).hostPlace = [
+          host.parentNode!,
+          host.nextSibling,
+        ]
+        window.fixturePopup!.document.body.append(host)
+      })
+      await popup.locator('#element-host').focus()
+      await popup.keyboard.press('l')
+      expect(await fixture.takeLog()).toEqual(['element hotkey'])
+
+      await page.evaluate(() => {
+        const [parent, next] = (window as { hostPlace?: [Node, Node | null] })
+          .hostPlace!
+        const host =
+          window.fixturePopup!.document.getElementById('element-host')!
+        parent.insertBefore(host, next)
+      })
+      await page.bringToFront()
+      await page.focus('#element-host')
+      await page.keyboard.press('l')
+      expect(await fixture.takeLog()).toEqual(['element hotkey'])
+    })
+
+    // The TanStack Devtools Picture-in-Picture case: the framework moves the
+    // same nodes to the new mount, and the hotkey doesn't register again.
+    if (app.portal === 'movable') {
+      test('a hotkey in a portal keeps firing after the portal mounts in a popup window and back', async ({
+        page,
+        openApp,
+      }) => {
+        const fixture = await openApp(app)
+        await expect.poll(() => fixture.registrationsOf('P')).toHaveLength(1)
+        const ids = await fixture.registrationIdsOf('P')
+        await page.focus('#portal-host')
+        await page.keyboard.press('p')
+        expect(await fixture.takeLog()).toEqual(['portal hotkey'])
+
+        // Playwright's Firefox doesn't focus an element in the popup that
+        // still had focus in this page when it moved there.
+        await page.evaluate(() =>
+          (document.activeElement as HTMLElement).blur(),
+        )
+        const popup = await fixture.openPopup()
+        await fixture.portalInto('popup')
+        await expect(popup.locator('#portal-host')).toHaveCount(1)
+        await expect(page.locator('#portal-host')).toHaveCount(0)
+        await popup.locator('#portal-host').focus()
+        await popup.keyboard.press('p')
+        expect(await fixture.takeLog()).toEqual(['portal hotkey'])
+        expect(await fixture.registrationIdsOf('P')).toEqual(ids)
+
+        await fixture.portalInto('page')
+        await expect(page.locator('#portal-host')).toHaveCount(1)
+        await page.bringToFront()
+        await page.focus('#portal-host')
+        await page.keyboard.press('p')
+        expect(await fixture.takeLog()).toEqual(['portal hotkey'])
+        expect(await fixture.registrationIdsOf('P')).toEqual(ids)
+      })
+    }
+
+    // The effects inside the portal run before the parent's, so its hotkeys
+    // register while the container is outside the page. React handles the
+    // child's key events from a listener on the container; Preact listens on
+    // the child itself.
+    if (app.portal === 'detached') {
+      test('a hotkey in a portal registered before its container is in the page runs after the framework key handler', async ({
+        page,
+        openApp,
+      }) => {
+        const fixture = await openApp(app)
+        await expect.poll(() => fixture.registrationsOf('P')).toHaveLength(1)
+        await expect
+          .poll(() => fixture.registrationsOf('Shift+P'))
+          .toHaveLength(1)
+        await page.focus('#portal-child')
+        await page.keyboard.press('p')
+        expect(await fixture.takeLog()).toEqual([
+          'portal keydown',
+          'portal hotkey',
+        ])
+        // The handler stops Shift+P before it reaches the hotkey
+        await page.keyboard.press('Shift+P')
+        expect(await fixture.takeLog()).toEqual(['portal keydown'])
+        await page.keyboard.press('p')
+        expect(await fixture.takeLog()).toEqual([
+          'portal keydown',
+          'portal hotkey',
+        ])
+      })
+    }
+
     // Playwright can't turn on the OS Caps Lock: Chromium and WebKit report
     // it off. This checks that real input reaches the lock state helper.
     test('key lock state follows real input and resets on blur', async ({

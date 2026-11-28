@@ -20,6 +20,8 @@ const recorder = useHotkeyRecorder({ onRecord: setRecorded })
 const shiftHeld = useKeyHold('Shift')
 const heldKeys = useHeldKeys()
 const capsLock = useKeyLockState('CapsLock')
+const elementHost = ref<HTMLDivElement | null>(null)
+useHotkey('L', () => logCall('element hotkey'), { target: elementHost })
 
 onMounted(() => {
   exposeFixture(
@@ -42,4 +44,5 @@ onMounted(() => {
   <div id="caps-lock">
     {{ capsLock === null ? 'unknown' : capsLock ? 'on' : 'off' }}
   </div>
+  <div id="element-host" ref="elementHost" tabindex="0" />
 </template>

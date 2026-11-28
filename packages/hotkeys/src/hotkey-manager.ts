@@ -10,6 +10,7 @@ import {
 } from './_event-target'
 import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
 import { keysEqual } from './_keys'
+import { listen } from './_listen'
 import { managerRef } from './_manager-ref'
 import { matchKeyboardEvent } from './_match'
 import { isRecordingEvent, onRecordingStart } from './_recording-guard'
@@ -152,9 +153,10 @@ export interface HotkeyOptions {
    * Run after key handlers that a framework calls from one listener on its
    * root or the document, such as React's `onKeyDown`, so handlers inside the
    * target run first and can stop the hotkey. An element target then listens
-   * on its document, or on its closed shadow root, instead of the element. A
-   * stop by an earlier listener there skips the hotkey. Applies only to the
-   * bubble phase.
+   * on its document, or on its closed shadow root, instead of the element,
+   * and follows the element when it moves to another document or shadow
+   * root, such as a Picture-in-Picture window. A stop by an earlier listener
+   * there skips the hotkey. Applies only to the bubble phase.
    * Adapters for frameworks that delegate key events set this.
    */
   afterDelegatedHandlers?: boolean
@@ -471,6 +473,11 @@ function listenerTarget({
   ) {
     return target
   }
+  return rootOf(target)
+}
+
+/** An element's document, or the closed shadow root that holds it. */
+function rootOf(target: HTMLElement): ListenerTarget {
   let root = target.getRootNode() as ListenerTarget
   while ('host' in root && root.mode === 'open') {
     root = root.host.getRootNode() as ListenerTarget
@@ -481,6 +488,25 @@ function listenerTarget({
 /** Whether a registration's shared listener moves after listeners added before it joins. */
 function movesAfterDelegatedHandlers(options: HotkeyOptions): boolean {
   return !!options.afterDelegatedHandlers && !options.capture
+}
+
+/**
+ * Whether a registration listens on its element's root, which changes when
+ * the element moves to another document or shadow root.
+ */
+/**
+ * When an element target checks whether it moved. Focus enters the element
+ * before a key press there, so the new window's listeners are in place before
+ * that press starts. `focus` covers a page that stops `focusin`, and key
+ * events cover presses dispatched without focus.
+ */
+const FOLLOW_EVENTS = ['focus', 'focusin', 'keydown', 'keyup'] as const
+
+function followsRoot({
+  target,
+  options,
+}: Pick<HotkeyRegistration, 'target' | 'options'>): boolean {
+  return movesAfterDelegatedHandlers(options) && !isDocumentLevel(target)
 }
 
 /** Steps with Mod already resolved for the registration's platform. */
@@ -667,6 +693,14 @@ export class HotkeyManager {
   #scopeLiveDuring = new Map<string, Event>()
   /** Where each registration listens, kept so cleanup finds a target that moved documents. */
   #listenerTargets = new Map<string, ListenerTarget>()
+  /**
+   * Capture listeners on element targets that listen on their root. An
+   * element can move to another document or shadow root without registering
+   * again, as when a portal moves into a Picture-in-Picture window. Focus and
+   * key events reach it before its root, so its registrations move their
+   * listener to the new root first.
+   */
+  #followers = new Map<Target, { ids: Set<string>; listener: EventListener }>()
   /** Events that continue a sequence in progress, decided before any listener runs. */
   #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
   /**
@@ -1129,6 +1163,7 @@ export class HotkeyManager {
       movesAfterDelegatedHandlers(registration.options),
     )
     this.#listenerTargets.set(id, listenOn)
+    if (followsRoot(registration)) this.#follow(registration.target, id)
     this.#markLive(id)
 
     this.registrations.setState((prev) => new Map(prev).set(id, registration))
@@ -1197,6 +1232,11 @@ export class HotkeyManager {
           ) {
             manager.#listeners.add(to, capture, id, true)
           }
+          const follows = followsRoot({ target: reg.target, options })
+          if (follows !== followsRoot(reg)) {
+            if (follows) manager.#follow(reg.target, id)
+            else manager.#unfollow(reg.target, id)
+          }
           // Enabled, or moved into an active scope. A keyup chord enabled by
           // its own keydown, to end a mode, still gets that press's release.
           if (
@@ -1240,7 +1280,44 @@ export class HotkeyManager {
       id,
     )
     this.#listenerTargets.delete(id)
+    this.#unfollow(registration.target, id)
     this.#clearSequenceReset(id)
+  }
+
+  /** Moves a registration's listener to its element's root when it changes. */
+  #follow(target: Target, id: string): void {
+    let follower = this.#followers.get(target)
+    if (!follower) {
+      const ids = new Set<string>()
+      const listener: EventListener = () => {
+        // Every registration here listens on the same root.
+        const to = rootOf(target as HTMLElement)
+        for (const followerId of ids) {
+          const from = this.#listenerTargets.get(followerId)
+          if (!from || to === from) continue
+          // A listener added to the root during dispatch still runs when the
+          // event gets there, after the handlers delegated there.
+          this.#listeners.remove(from, false, followerId)
+          this.#listeners.add(to, false, followerId, true)
+          this.#listenerTargets.set(followerId, to)
+        }
+        // A closed shadow root stays the root when its host moves windows.
+        this.#listeners.recount(to)
+      }
+      for (const type of FOLLOW_EVENTS) listen(target, type, listener, true)
+      follower = { ids, listener }
+      this.#followers.set(target, follower)
+    }
+    follower.ids.add(id)
+  }
+
+  #unfollow(target: Target, id: string): void {
+    const follower = this.#followers.get(target)
+    if (!follower?.ids.delete(id) || follower.ids.size) return
+    for (const type of FOLLOW_EVENTS) {
+      target.removeEventListener(type, follower.listener, true)
+    }
+    this.#followers.delete(target)
   }
 
   /**
@@ -2063,6 +2140,12 @@ export class HotkeyManager {
     this.#sequenceResetTimers.clear()
     this.#listeners.destroy()
     this.#listenerTargets.clear()
+    for (const [target, { listener }] of this.#followers) {
+      for (const type of FOLLOW_EVENTS) {
+        target.removeEventListener(type, listener, true)
+      }
+    }
+    this.#followers.clear()
     this.#pendingReleases.clear()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)

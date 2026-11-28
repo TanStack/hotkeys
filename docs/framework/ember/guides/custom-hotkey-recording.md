@@ -95,6 +95,8 @@ Options can also be a getter, such as `useHotkeyRecorder(this, () => ({ maxSteps
 
 The recorder also cancels and calls `onCancel` when the window loses focus, such as when the user switches apps or tabs, opens browser devtools, or clicks into an iframe. Set `cancelOnBlur: false` to keep recording. While debugging with devtools open, Chrome's **Rendering > Emulate a focused page** setting keeps the page focused.
 
+To record in another window, such as a Picture-in-Picture window that holds the recorder's button, pass that window or its document as `target`. The recorder reads `target` when recording starts, listens only in that window, and cancels when that window loses focus or closes. A closed window doesn't start recording.
+
 A click elsewhere on the page doesn't cancel, because the recorder doesn't know which element is your recorder. To cancel on a click outside it, listen for `pointerdown` while recording, for example in a modifier. Don't rely on the button's `blur` event: Safari and Firefox on macOS don't focus a button when it is clicked.
 
 ```gts
@@ -110,8 +112,10 @@ export default class ShortcutRecorder extends Component {
       const onPointerDown = (event: PointerEvent) => {
         if (!element.contains(event.target as Node)) this.recorder.cancelRecording()
       }
-      document.addEventListener('pointerdown', onPointerDown, true)
-      return () => document.removeEventListener('pointerdown', onPointerDown, true)
+      // The button's document, which can be a Picture-in-Picture window
+      const doc = element.ownerDocument
+      doc.addEventListener('pointerdown', onPointerDown, true)
+      return () => doc.removeEventListener('pointerdown', onPointerDown, true)
     },
   )
 
@@ -304,6 +308,7 @@ export default class ShortcutSettings extends Component {
 | `onRecord` | Required | Called with the recorded hotkey when a recording commits, and with the same context as `validate` |
 | `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, when the window loses focus, or when you call `cancelRecording()` |
 | `cancelOnBlur` | `true` | Cancels the recording when the window loses focus. Set `false` to keep recording. |
+| `target` | `window` | The window, or its document, to record in, such as a Picture-in-Picture window. |
 | `onClear` | None | Called when the user presses Backspace or Delete with nothing recorded |
 | `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |

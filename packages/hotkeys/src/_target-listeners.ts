@@ -137,6 +137,17 @@ export class TargetListeners {
     this.#processed = new WeakMap()
   }
 
+  /** Moves a target's groups to the window it is in now. */
+  recount(target: ListenerTarget): void {
+    const view = getTargetDocument(target as Target).defaultView
+    for (const group of this.#targets.get(target)?.values() ?? []) {
+      if (group.view === view) continue
+      this.#countWindow(view, 1)
+      this.#countWindow(group.view, -1)
+      group.view = view
+    }
+  }
+
   /**
    * Counts a group added to or removed from a window. While the window has
    * groups, a capture listener there reads what an Escape press closes before

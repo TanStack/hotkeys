@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
     createHotkey,
+    createHotkeyAttachment,
     createHotkeyRecorder,
     detectPlatform,
     getHeldKeys,
@@ -20,6 +21,9 @@
   const shiftHeld = getIsKeyHeld('Shift')
   const capsLock = getKeyLockState('CapsLock')
   const heldKeys = getHeldKeys()
+  const elementHotkey = createHotkeyAttachment('L', () =>
+    logCall('element hotkey'),
+  )
 
   onMount(() => {
     exposeFixture(
@@ -43,3 +47,5 @@
 <div id="caps-lock">
   {capsLock.value === null ? 'unknown' : capsLock.value ? 'on' : 'off'}
 </div>
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div id="element-host" tabindex="0" {@attach elementHotkey}></div>

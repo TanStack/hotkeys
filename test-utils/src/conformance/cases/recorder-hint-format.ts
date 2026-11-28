@@ -60,6 +60,25 @@ defineGroup({
       },
     },
     {
+      title: 'records in the window given as target',
+      async run({ harness, expect, press }) {
+        // Stands in for a Picture-in-Picture window, which test DOMs can't open
+        const other = Object.assign(new EventTarget(), {
+          document: document.implementation.createHTMLDocument(),
+        }) as unknown as Window
+        const onRecord = spy<[Hotkey]>()
+        const recorder = await harness.mountRecorder!({
+          options: { onRecord, target: other },
+        })
+        await recorder.start()
+        await press(mod('a'))
+        await press(mod('s', { target: other }))
+        // Ends the guard on the held keys, whose keyups the test doesn't send
+        other.dispatchEvent(new Event('blur'))
+        expect(onRecord.calls.map(([hotkey]) => hotkey)).toEqual(['Mod+S'])
+      },
+    },
+    {
       title: 'stops without calling onCancel',
       async run({ harness, expect }) {
         const onCancel = spy()

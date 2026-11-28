@@ -57,7 +57,7 @@
     {
       "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "15 KB"
+      "limit": "15.25 KB"
     },
     {
       "name": "HotkeyManager",
@@ -179,7 +179,7 @@
         "@angular/core",
         "@angular/common"
       ],
-      "limit": "10 KB"
+      "limit": "10.25 KB"
     },
     {
       "name": "Lit hotkey decorator",
@@ -188,7 +188,7 @@
       "ignore": [
         "lit"
       ],
-      "limit": "10 KB"
+      "limit": "10.25 KB"
     },
     {
       "name": "Alpine createHotkeysScope + hotkeysPlugin",
@@ -229,7 +229,7 @@
       "ignore": [
         "octane"
       ],
-      "limit": "10 KB"
+      "limit": "10.25 KB"
     },
     {
       "name": "React devtools in production",

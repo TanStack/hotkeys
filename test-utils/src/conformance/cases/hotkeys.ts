@@ -146,6 +146,31 @@ function casesFor(form: HotkeysSpec['form']): Array<ConformanceCase> {
       },
     },
     {
+      title:
+        'keeps listening after its target element moves to another document',
+      requires: ['element-target'],
+      async run({ harness, expect, press }) {
+        const callback = spy()
+        const view = await harness.mountHotkeys(
+          one('Mod+K', callback, { target: 'element' }),
+        )
+        const element = view.element()
+        const parent = element.parentNode!
+        const next = element.nextSibling
+        // Such as a portal moved into a Picture-in-Picture window
+        const other = document.implementation.createHTMLDocument()
+        other.body.append(element)
+        try {
+          await press(mod('k', { target: element }))
+          await press(mod('k', { target: element }))
+        } finally {
+          // The framework removes the element from where it rendered it.
+          parent.insertBefore(element, next)
+        }
+        expect(callback.calls).toHaveLength(2)
+      },
+    },
+    {
       title: 'fires on keyup with eventType keyup',
       async run({ harness, expect, press, release }) {
         const callback = spy()

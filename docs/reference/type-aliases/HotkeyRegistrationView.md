@@ -11,7 +11,7 @@ type HotkeyRegistrationView =
   | HotkeySequenceRegistrationView;
 ```
 
-Defined in: [hotkey-manager.ts:276](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L276)
+Defined in: [hotkey-manager.ts:278](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L278)
 
 Public view of a hotkey registration for display and introspection.
 Narrow with `kind` to read chord- or sequence-specific fields.

@@ -1,4 +1,4 @@
-import { createRoot, useEffect, useState } from 'octane'
+import { createRoot, useEffect, useRef, useState } from 'octane'
 import {
   detectPlatform,
   getHotkeyManager,
@@ -25,6 +25,8 @@ function App() @{
   const shiftHeld = useKeyHold('Shift')
   const heldKeys = useHeldKeys()
   const capsLock = useKeyLockState('CapsLock')
+  const elementHost = useRef<HTMLDivElement | null>(null)
+  useHotkey('L', () => logCall('element hotkey'), { target: elementHost })
 
   useEffect(() => {
     exposeFixture({ getHotkeyManager, detectPlatform }, {
@@ -41,6 +43,7 @@ function App() @{
     <div id="shift-held">{shiftHeld ? 'held' : 'released'}</div>
     <div id="held-keys">{heldKeys.join('+')}</div>
     <div id="caps-lock">{capsLock === null ? 'unknown' : capsLock ? 'on' : 'off'}</div>
+    <div id="element-host" ref={elementHost} tabIndex={0} />
   </div>
 }
 

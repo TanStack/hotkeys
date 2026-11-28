@@ -9,7 +9,7 @@ title: HotkeyRegistrationStatus
 type HotkeyRegistrationStatus = "active" | "suspended" | "disabled";
 ```
 
-Defined in: [hotkey-manager.ts:241](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L241)
+Defined in: [hotkey-manager.ts:243](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L243)
 
 Whether a registration is on. Focus isn't checked: a registration on an
 element also needs focus inside that element to fire.

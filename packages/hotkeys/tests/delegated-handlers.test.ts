@@ -1,4 +1,4 @@
-import { keydown } from '@tanstack/hotkeys-test-utils'
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import type { HotkeyChordOptions } from '../src/hotkey-manager'
@@ -310,5 +310,177 @@ describe('afterDelegatedHandlers listener placement', () => {
     keydown({ key: 'k', target: child })
 
     expect(log).toEqual(['delegated'])
+  })
+})
+
+describe('afterDelegatedHandlers after the target moves', () => {
+  /** A same-origin iframe's document, like a Picture-in-Picture window's. */
+  function frameDocument(): Document {
+    const iframe = document.createElement('iframe')
+    document.body.append(iframe)
+    return iframe.contentDocument!
+  }
+
+  it('follows its element into another document', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel)
+    keydown({ key: 'k', target: child })
+    const other = frameDocument()
+    other.body.append(panel)
+
+    child.focus()
+    keydown({ key: 'k', target: child })
+    keydown({ key: 'k', target: child })
+
+    expect(log).toEqual(['hotkey', 'hotkey', 'hotkey'])
+  })
+
+  it('runs after handlers delegated in the new document', () => {
+    const { panel, child } = panelWithChild()
+    register('K', panel)
+    register('J', panel, {}, 'J')
+    const other = frameDocument()
+    const delegated = (event: Event) => {
+      const { key } = event as KeyboardEvent
+      log.push(`delegated ${key}`)
+      if (key === 'j') event.stopPropagation()
+    }
+    other.addEventListener('keydown', delegated)
+    other.body.append(panel)
+
+    child.focus()
+    keydown({ key: 'k', target: child })
+    keydown({ key: 'j', target: child })
+
+    expect(log).toEqual(['delegated k', 'K', 'delegated j'])
+  })
+
+  it('follows its element into a closed shadow root', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel)
+    const host = document.createElement('div')
+    document.body.append(host)
+    host.attachShadow({ mode: 'closed' }).append(panel)
+
+    keydown({ key: 'k', target: child })
+
+    expect(log).toEqual(['hotkey'])
+  })
+
+  it('stops listening in the old document and leaves no listener after unregistering', () => {
+    const { panel, child } = panelWithChild()
+    const handle = register('hotkey', panel)
+    const other = frameDocument()
+    other.body.append(panel)
+    const removeOld = vi.spyOn(document, 'removeEventListener')
+    const removeNew = vi.spyOn(other, 'removeEventListener')
+    cleanups.push(
+      () => removeOld.mockRestore(),
+      () => removeNew.mockRestore(),
+    )
+
+    keydown({ key: 'k', target: child })
+    expect(removeOld.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+    handle.unregister()
+    keydown({ key: 'k', target: child })
+
+    expect(removeNew.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+    expect(log).toEqual(['hotkey'])
+  })
+
+  it('moves its listener when focus enters the element, before a key press', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel)
+    const other = frameDocument()
+    other.body.append(panel)
+    const addNew = vi.spyOn(other, 'addEventListener')
+    cleanups.push(() => addNew.mockRestore())
+
+    child.dispatchEvent(new FocusEvent('focusin', { bubbles: true }))
+
+    expect(addNew.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+  })
+
+  it('moves its listener on focus when the page stops focusin', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel)
+    const other = frameDocument()
+    other.body.append(panel)
+    other.addEventListener('focusin', (event) => event.stopPropagation(), true)
+    const addNew = vi.spyOn(other, 'addEventListener')
+    cleanups.push(() => addNew.mockRestore())
+
+    child.dispatchEvent(new FocusEvent('focusin', { bubbles: true }))
+    child.dispatchEvent(new FocusEvent('focus'))
+
+    expect(addNew.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+  })
+
+  it('keeps following for the hotkeys left on an element after one unregisters', () => {
+    const { panel, child } = panelWithChild()
+    const k = register('K', panel)
+    const j = register('J', panel, {}, 'J')
+    k.unregister()
+    frameDocument().body.append(panel)
+
+    keydown({ key: 'k', target: child })
+    keydown({ key: 'j', target: child })
+    const remove = vi.spyOn(panel, 'removeEventListener')
+    j.unregister()
+
+    expect(log).toEqual(['J'])
+    expect(
+      remove.mock.calls.map(([type, , capture]) => [type, capture]),
+    ).toEqual([
+      ['focus', true],
+      ['focusin', true],
+      ['keydown', true],
+      ['keyup', true],
+    ])
+  })
+
+  it('follows its element once setOptions turns the option on, and stops once it turns off', () => {
+    const { panel, child } = panelWithChild()
+    const handle = register('hotkey', panel, { afterDelegatedHandlers: false })
+    handle.setOptions({ afterDelegatedHandlers: true })
+    const other = frameDocument()
+    other.body.append(panel)
+
+    keydown({ key: 'k', target: child })
+    handle.setOptions({ afterDelegatedHandlers: false })
+    const remove = vi.spyOn(panel, 'removeEventListener')
+    handle.unregister()
+
+    expect(log).toEqual(['hotkey'])
+    // Only the element's own listener is left to remove.
+    expect(
+      remove.mock.calls.map(([type, , capture]) => [type, capture]),
+    ).toEqual([
+      ['keydown', false],
+      ['keyup', false],
+    ])
+  })
+
+  it('fires a keyup hotkey after its element moves', () => {
+    const { panel, child } = panelWithChild()
+    register('hotkey', panel, { eventType: 'keyup' })
+    frameDocument().body.append(panel)
+
+    keydown({ key: 'k', target: child })
+    keyup({ key: 'k', target: child })
+
+    expect(log).toEqual(['hotkey'])
   })
 })
