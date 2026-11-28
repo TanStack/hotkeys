@@ -3,6 +3,7 @@ import {
   HotkeysProvider,
   useAppHotkeyList,
   useAppHotkeys,
+  useFormatForAria,
   useHeldKeyCodes,
   useHeldKeys,
   useHotkey,
@@ -23,7 +24,14 @@ import {
 import { useCallback, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { appHotkeys } from './app-hotkeys'
-import { ActivityContext, Hint, Modal, useFormatHotkey } from './shared'
+import {
+  ActivityContext,
+  CharacterKeysContext,
+  Hint,
+  Modal,
+  useCharacterKeysSetting,
+  useFormatHotkey,
+} from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
@@ -40,7 +48,7 @@ const pages = [
 
 const statusLabels = {
   active: 'Active',
-  suspended: 'Suspended by another scope',
+  suspended: 'Suspended by another scope or the single-key setting',
   disabled: 'Disabled',
   inactive: 'Not on this page',
   unbound: 'Unbound',
@@ -70,6 +78,7 @@ function ShortcutPanel({ onClose }: { onClose: () => void }) {
  */
 function ShortcutList({ onClose }: { onClose: () => void }) {
   const formatHotkey = useFormatHotkey()
+  const formatForAria = useFormatForAria()
   const appHotkeys = useAppHotkeys()
   // The panel's scope is newer than 'global', so this handles the toggle
   // hotkey while the panel is open instead of the layout's registration.
@@ -94,6 +103,7 @@ function ShortcutList({ onClose }: { onClose: () => void }) {
               <tr>
                 <th>Action</th>
                 <th>Hotkey</th>
+                <th>Announced as</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -110,6 +120,12 @@ function ShortcutList({ onClose }: { onClose: () => void }) {
                     <td>
                       {formatHotkey(appHotkey.hotkey)}
                       {isCustom && <small> (custom)</small>}
+                    </td>
+                    <td>
+                      {/* What a screen reader hears from aria-keyshortcuts.
+                          Hotkeys that can't fire, such as sequences or
+                          suspended hotkeys, aren't announced. */}
+                      {formatForAria(appHotkey.hotkey) ?? 'Not announced'}
                     </td>
                     <td>
                       {statusLabels[status]}
@@ -149,6 +165,8 @@ function ShortcutList({ onClose }: { onClose: () => void }) {
 function Layout() {
   const navigate = useNavigate()
   const appHotkeys = useAppHotkeys()
+  const formatForAria = useFormatForAria()
+  const characterKeys = useCharacterKeysSetting()
   const [showShortcuts, setShowShortcuts] = useState(false)
   const [activity, setActivity] = useState<Array<string>>([])
   const log = useCallback((message: string) => {
@@ -185,14 +203,33 @@ function Layout() {
               to={page.to}
               activeOptions={{ exact: true }}
               activeProps={{ className: 'active' }}
+              aria-keyshortcuts={formatForAria(
+                appHotkeys[page.hotkeyId].hotkey,
+              )}
             >
               {page.label} <Hint id={page.hotkeyId} />
             </Link>
           ))}
         </nav>
-        <button onClick={() => setShowShortcuts(true)} aria-haspopup="dialog">
+        <button
+          onClick={() => setShowShortcuts(true)}
+          aria-haspopup="dialog"
+          aria-keyshortcuts={formatForAria(appHotkeys['panel.toggle'].hotkey)}
+        >
           Show shortcuts <Hint id="panel.toggle" />
         </button>
+        <label>
+          <input
+            type="checkbox"
+            checked={characterKeys.enabled}
+            onChange={(e) => characterKeys.setEnabled(e.target.checked)}
+          />{' '}
+          Single-key shortcuts
+        </label>
+        <small>
+          Turn off to suspend shortcuts made only of keys that type a character,
+          such as the G G sequence (WCAG 2.1.4).
+        </small>
       </header>
       {showShortcuts && (
         <ShortcutPanel onClose={() => setShowShortcuts(false)} />
@@ -253,6 +290,7 @@ declare module '@tanstack/react-router' {
 }
 
 const STORAGE_KEY = 'tanstack-hotkeys-kitchen-sink-custom-hotkeys'
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
 
 function loadCustomHotkeys(): CustomHotkeys | null {
   try {
@@ -268,17 +306,31 @@ function loadCustomHotkeys(): CustomHotkeys | null {
  * server without changing any route.
  */
 function App() {
+  const [characterKeys, setCharacterKeys] = useState(
+    () => localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off',
+  )
+  const characterKeysSetting = {
+    enabled: characterKeys,
+    setEnabled: (enabled: boolean) => {
+      localStorage.setItem(CHARACTER_KEYS_KEY, enabled ? 'on' : 'off')
+      setCharacterKeys(enabled)
+    },
+  }
   return (
-    <HotkeysProvider
-      appHotkeys={appHotkeys}
-      customHotkeys={loadCustomHotkeys()}
-      onCustomHotkeysChange={(customHotkeys) =>
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(customHotkeys))
-      }
-      defaultOptions={{ hotkey: { requireReset: true } }}
-    >
-      <RouterProvider router={router} />
-    </HotkeysProvider>
+    <CharacterKeysContext.Provider value={characterKeysSetting}>
+      <HotkeysProvider
+        appHotkeys={appHotkeys}
+        customHotkeys={loadCustomHotkeys()}
+        onCustomHotkeysChange={(customHotkeys) =>
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(customHotkeys))
+        }
+        defaultOptions={{ hotkey: { requireReset: true } }}
+        // The setting applies app-wide while this provider is mounted.
+        suspendCharacterKeys={!characterKeys}
+      >
+        <RouterProvider router={router} />
+      </HotkeysProvider>
+    </CharacterKeysContext.Provider>
   )
 }
 

@@ -2,6 +2,7 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
+  useFormatForAria,
   useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
@@ -11,15 +12,19 @@ import {
   useKeyHold,
 } from '@tanstack/vue-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/vue-hotkeys-devtools'
-import { computed, onUnmounted, provide, ref } from 'vue'
+import { computed, inject, onUnmounted, provide, ref } from 'vue'
 import Editor from './Editor.vue'
 import Formatting from './Formatting.vue'
 import Hint from './Hint.vue'
 import Recording from './Recording.vue'
 import Sequences from './Sequences.vue'
 import Tickets from './Tickets.vue'
+import type { Ref } from 'vue'
 
 const formatForDisplay = useFormatForDisplay()
+const formatForAria = useFormatForAria()
+// Provided by index.ts, which passes it to the root provider.
+const characterKeys = inject<Ref<boolean>>('characterKeys', ref(true))
 
 const pages = [
   { path: '/', name: 'Tickets', component: Tickets, hotkey: 'Alt+[Digit1]' },
@@ -97,12 +102,24 @@ useHotkey(
         :key="p.path"
         :href="`#${p.path}`"
         :class="{ active: path === p.path }"
+        :aria-keyshortcuts="formatForAria(p.hotkey)"
         >{{ p.name }} <Hint :hotkey="p.hotkey"
       /></a>
     </nav>
-    <button @click="show = !show">
+    <button
+      @click="show = !show"
+      :aria-keyshortcuts="formatForAria('Alt+Shift+[KeyK]')"
+    >
       {{ show ? 'Hide' : 'Show' }} shortcuts
     </button>
+    <label>
+      <input type="checkbox" v-model="characterKeys" />
+      Single-key shortcuts
+    </label>
+    <small>
+      Turn off to suspend shortcuts made only of keys that type a character,
+      such as the G G sequence (WCAG 2.1.4).
+    </small>
   </header>
   <section v-if="show">
     <h2>Live registry</h2>

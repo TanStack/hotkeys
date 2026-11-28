@@ -2,6 +2,7 @@ import { createRoot, createContext, useCallback, useContext, useEffect, useState
 
 import {
   HotkeysProvider,
+  useFormatForAria,
   useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
@@ -37,6 +38,15 @@ const rejectionText = ({ reason, message }: RecorderRejection) =>
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
 
+/**
+ * The user's "Single-key shortcuts" setting. While it is off, the root
+ * provider suspends character key shortcuts, such as the G G sequence.
+ */
+const CharacterKeysContext = createContext({
+  enabled: true,
+  setEnabled: (_enabled: boolean) => {},
+})
+
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },
   { to: '/editor', label: 'Editor', shortcut: 'Alt+[Digit2]' },
@@ -53,6 +63,8 @@ function Hint({ hotkey }: { hotkey: RegisterableHotkey }) @{
 
 function Layout() @{
   const formatForDisplay = useFormatForDisplay()
+  const formatForAria = useFormatForAria()
+  const characterKeys = useContext(CharacterKeysContext)
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
   useEffect(() => {
     const onPopState = () => setCurrentPath(window.location.pathname)
@@ -97,12 +109,20 @@ function Layout() @{
           </p>
           <nav aria-label="Examples">
             @for (const page of pages; key page.to) {
-  <a href={page.to} className={currentPath === page.to ? 'active' : ''} onClick={(e) => { e.preventDefault(); navigate({ to: page.to }) }}>{page.label} <Hint hotkey={page.shortcut} /></a> }
+  <a href={page.to} className={currentPath === page.to ? 'active' : ''} aria-keyshortcuts={formatForAria(page.shortcut)} onClick={(e) => { e.preventDefault(); navigate({ to: page.to }) }}>{page.label} <Hint hotkey={page.shortcut} /></a> }
           </nav>
-          <button onClick={() => setShowShortcuts((value) => !value)} aria-expanded={showShortcuts}>
+          <button onClick={() => setShowShortcuts((value) => !value)} aria-expanded={showShortcuts} aria-keyshortcuts={formatForAria('Alt+Shift+[KeyK]')}>
             {showShortcuts ? 'Hide' : 'Show'} shortcuts{' '}
             <Hint hotkey="Alt+Shift+[KeyK]" />
           </button>
+          <label>
+            <input type="checkbox" checked={characterKeys.enabled} onInput={(e) => characterKeys.setEnabled(e.currentTarget.checked)} />{' '}
+            Single-key shortcuts
+          </label>
+          <small>
+            Turn off to suspend shortcuts made only of keys that type a character,
+            such as the G G sequence (WCAG 2.1.4).
+          </small>
         </header>
         @if (showShortcuts) { <section aria-label="Registered shortcuts">
             <h2>Registered shortcuts</h2>
@@ -363,7 +383,8 @@ function Sequences() @{
         <h2>Sequences</h2>
         <p>
           Try the physical G position twice, G then I, or hold Shift and press R
-          then T.
+          then T. Every step is a key that types a character, so turning off
+          Single-key shortcuts in the header suspends all three.
         </p>
         <label>
           Time between steps: {timeout} ms{' '}
@@ -602,8 +623,24 @@ function Formatting() @{
       </section>
 }
 
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+
+/** Holds the Single-key shortcuts setting, which the root provider reads. */
 function Root() @{
-<HotkeysProvider defaultOptions={{ hotkey: { requireReset: true } }}><Layout /></HotkeysProvider>
+  const [characterKeys, setCharacterKeys] = useState(
+    () => localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off',
+  )
+  const characterKeysSetting = {
+    enabled: characterKeys,
+    setEnabled: (enabled: boolean) => {
+      localStorage.setItem(CHARACTER_KEYS_KEY, enabled ? 'on' : 'off')
+      setCharacterKeys(enabled)
+    },
+  }
+  // The setting applies app-wide while this provider is mounted.
+  <CharacterKeysContext value={characterKeysSetting}>
+    <HotkeysProvider defaultOptions={{ hotkey: { requireReset: true } }} suspendCharacterKeys={!characterKeys}><Layout /></HotkeysProvider>
+  </CharacterKeysContext>
 }
 
 const root = createRoot(document.getElementById('root')!)

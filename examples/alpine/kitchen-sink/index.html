@@ -18,6 +18,7 @@
             <a
               :href="page.to"
               :class="currentPath === page.to ? 'active' : ''"
+              :aria-keyshortcuts="formatForAria(page.shortcut)"
               @click.prevent="navigate({ to: page.to })"
             >
               <span x-text="`${page.label} `"></span>
@@ -38,6 +39,7 @@
         <button
           @click="showShortcuts = !showShortcuts"
           :aria-expanded="showShortcuts"
+          :aria-keyshortcuts="formatForAria('Alt+Shift+[KeyK]')"
         >
           <span
             x-text="` ${showShortcuts ? 'Hide' : 'Show'} shortcuts  `"
@@ -54,6 +56,18 @@
             </template>
           </span>
         </button>
+        <label>
+          <input
+            type="checkbox"
+            :checked="characterKeys"
+            @change="setCharacterKeys($event.target.checked)"
+          />
+          Single-key shortcuts
+        </label>
+        <small>
+          Turn off to suspend shortcuts made only of keys that type a character,
+          such as the G G sequence (WCAG 2.1.4).
+        </small>
       </header>
       <template x-if="showShortcuts">
         <section aria-label="Registered shortcuts">
@@ -191,7 +205,9 @@
                   <h2>Sequences</h2>
                   <p>
                     Try the physical G position twice, G then I, or hold Shift
-                    and press R then T.
+                    and press R then T. Every step is a key that types a
+                    character, so turning off Single-key shortcuts in the header
+                    suspends all three.
                   </p>
                   <label>
                     <span

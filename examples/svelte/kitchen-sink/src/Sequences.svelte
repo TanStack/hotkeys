@@ -44,7 +44,8 @@
   <h2>Sequences</h2>
   <p>
     Physical G then G, G then I, or Shift + R then Shift + T. Repeats do not
-    advance steps.
+    advance steps. Every step is a key that types a character, so turning off
+    Single-key shortcuts in the header suspends all three.
   </p>
   <label
     >Timeout: {timeout} ms
