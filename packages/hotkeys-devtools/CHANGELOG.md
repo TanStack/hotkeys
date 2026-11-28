@@ -1,5 +1,26 @@
 # @tanstack/hotkeys-devtools
 
+## 1.13.0
+
+### Minor Changes
+
+- [#316](https://github.com/TanStack/hotkeys/pull/316) [`2bfc5f1`](https://github.com/TanStack/hotkeys/commit/2bfc5f11dae08c4f996cf761db1bfc8db8caf6a8) - Track whether Caps Lock, Num Lock, and Scroll Lock are on. `KeyStateTracker` adds `locks` to its store state and a `getKeyLockState(key)` method. Each value is `true`, `false`, or `null`. It stays `null` until the user presses a key, clicks, or moves the mouse, because browsers can't report lock state on page load. It goes back to `null` when the window loses focus or the page is hidden. Num Lock and Scroll Lock are always `null` on macOS and iOS, where browsers don't report them. The tracker reads lock state only from real user input.
+
+  Each framework adapter provides a reactive helper for reading lock state:
+
+  - `useKeyLockState` (React, Preact, Octane, Vue, Ember)
+  - `createKeyLockState` (Solid, and on Alpine scopes)
+  - `getKeyLockState` (Svelte)
+  - `injectKeyLockState` (Angular)
+  - `KeyLockStateController` (Lit)
+
+  The devtools panel shows each lock as on, off, unknown, or unavailable next to the held keys.
+
+### Patch Changes
+
+- Updated dependencies [[`2bfc5f1`](https://github.com/TanStack/hotkeys/commit/2bfc5f11dae08c4f996cf761db1bfc8db8caf6a8)]:
+  - @tanstack/hotkeys@0.38.0
+
 ## 1.12.4
 
 ### Patch Changes

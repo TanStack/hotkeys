@@ -11,13 +11,13 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/preact-hotkeys": "^0.25.0",
+    "@tanstack/preact-hotkeys": "^0.26.0",
     "preact": "^11.2.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
     "@tanstack/preact-devtools": "0.10.16",
-    "@tanstack/preact-hotkeys-devtools": "^0.13.19",
+    "@tanstack/preact-hotkeys-devtools": "^0.13.20",
     "typescript": "6.0.3",
     "vite": "^8.3.7"
   }
