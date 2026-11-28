@@ -23648,13 +23648,13 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/variables/formatForAria.md": {
-      "fingerprint": "92de8fb3e13f1cc795b8a61b36a67a832184936d5d7878a8517ccd44dd736926",
+      "fingerprint": "5e0f2fb7181690020e55001c1a3596c4a94ef68ce8d14cc77f7034862ba80bbf",
       "snapshot": {
-        "docs/framework/alpine/reference/variables/formatForAria.md": "d1084ef50b1e83f25c89c33fe6baad202f8b5072abf24ee5edcf1a5c1183c9d8"
+        "docs/framework/alpine/reference/variables/formatForAria.md": "33a3bd1274b64b3f02e84b33aafcba0c4e639cb54af205a1afd0cb821edbcd17"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/guides/accessibility.md": {
@@ -23668,23 +23668,23 @@
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForAria.md": {
-      "fingerprint": "0d46058c1dd7eaf59e43a97b6d24f256fb8a987f04d4e9ef03a4e53ea2a54ceb",
+      "fingerprint": "bfe89bfbfd66e5297d3cb1918ab46debe7541b402cdbdfaae5c3cf0915de31ec",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectFormatForAria.md": "92c698f3a3051895d92b173b2d89db1470a3fd3000f73088c667690d33f855d3"
+        "docs/framework/angular/reference/functions/injectFormatForAria.md": "f51785c742b9cd03fba891404223a0f8c51cf0d5ee91aab228db07fbfc03fabe"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/variables/formatForAria.md": {
-      "fingerprint": "0fc4c115b6056422159fbd0631452fdd36b2717f4c422fb2db25d97f21a44a46",
+      "fingerprint": "8e2918f3f714ee73879c92b19fabfdc80206ff89af3f3cd75f8d985a56417c76",
       "snapshot": {
-        "docs/framework/angular/reference/variables/formatForAria.md": "ebc6008021d4e956ffb7bf3b1ede395b9982dd1f4505b76ba7274e98ef059911"
+        "docs/framework/angular/reference/variables/formatForAria.md": "8390aca16d0dbf92577117ec3539666f67f8af111228b91835a852626828cb1d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/accessibility.md": {
@@ -23698,23 +23698,23 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/functions/useFormatForAria.md": {
-      "fingerprint": "bcb8150341631306fff4952cdc417b7fa45fe7dcd41ef7282ef8c377898a2f61",
+      "fingerprint": "9a7e6765075841376fb45e63bc77965eacf773d6c3fb4a62dac1e3f9bb199bb6",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForAria.md": "6c1ca21283466c34bcd32d3d88b8cbb3a66a78406182724a1e12e76033c0198d"
+        "docs/framework/ember/reference/functions/useFormatForAria.md": "3f932e923e7ea385423b226c8375d4500f9eac90024d56c8b13fe8ad035faefd"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/variables/formatForAria.md": {
-      "fingerprint": "179ef93cc90820cc3714c376d4cfe0fd7ce6ef1ace0a4a7cb1208900a8ed3d96",
+      "fingerprint": "0a7dacc42c2a8a3da95501911b03db5f723210bb025906747c9e6c8b43c32065",
       "snapshot": {
-        "docs/framework/ember/reference/variables/formatForAria.md": "33297e90a2930e5f8cc922264e722f04fee1a56c5b456d8a488c4c216af00c4e"
+        "docs/framework/ember/reference/variables/formatForAria.md": "4a89a2db67785acfca6df5ca5b79556b59cdd28a3dbe09ce0414db383b236eba"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/accessibility.md": {
@@ -23728,33 +23728,33 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/FormatForAriaController.md": {
-      "fingerprint": "17ff8724fdcf1559246da9adeebd87f7f5b057f6447c9fef275314f74b1404aa",
+      "fingerprint": "ab381f258794285b4d5a2b250da809c4dfd45ad17f4cbaca2c08e7f227b08b83",
       "snapshot": {
-        "docs/framework/lit/reference/classes/FormatForAriaController.md": "a47b80847a76bf2869896c35856bbb2b77200e0295a47fd71435c4254be625f4"
+        "docs/framework/lit/reference/classes/FormatForAriaController.md": "bf1a40ccb419f802059d4e523b9a6cf7318068063efc3ebbf1aaf6d61ff2207f"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": {
-      "fingerprint": "b5f0b0ff2c2f2f35d3ddb26222decbd86f892cd5ae32042f84c44f49aa9729ad",
+      "fingerprint": "408839d5dc01e31cf9af05ec7bfe89eb1667a11850cc90b440077b86034c09d8",
       "snapshot": {
-        "docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": "6706454f0c4beaf667609e19c538e6e9efcb6858fb1fe7ba66db3608c89f7cfa"
+        "docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": "3b08766eba74f304a0fee3bc498d91de6459f3bf7ebb03a5c9d91dcc86403d2a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/variables/formatForAria.md": {
-      "fingerprint": "1df4be43e65e6247fdc1234ad228fa57783ed307c62f93dce99a5661b3b8617e",
+      "fingerprint": "8ca78f6928e9790d6ec1ea52b8741d92695a00d4f72fba5e5107d458deb30a87",
       "snapshot": {
-        "docs/framework/lit/reference/variables/formatForAria.md": "9695c997982a397627f1a33c434024e19b5a23f09d9b2688d2143a56924a9c28"
+        "docs/framework/lit/reference/variables/formatForAria.md": "9bc944853cca1050ba7b3ccdeffc7545033ddeb921a54e95d15b37220d46e3c4"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/accessibility.md": {
@@ -23768,23 +23768,23 @@
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForAria.md": {
-      "fingerprint": "96a9e316c5669f1c06a32f0a3947b9a509d4e065cf08acd6e389cf8a6e811946",
+      "fingerprint": "3102df2b721779c7dbff03b18ad0e73e4982c8695b44801644866fdf594e8dd2",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useFormatForAria.md": "1cfffca44cafa8b6e3749bfd808bec39e5a86f84203c1bf348974d9a92c68a77"
+        "docs/framework/octane/reference/functions/useFormatForAria.md": "1c5731232dfd9dcf17a340711b6d160d1a84ec2fcf8cc0305947899b8e27d369"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/reference/variables/formatForAria.md": {
-      "fingerprint": "9bf09d55635c32a4a52eac8d4472a92504dd1ec2c55fef0bac049349b435c74d",
+      "fingerprint": "bca71673d7ccde8327838da6e7a6266452ad0529f7f4a09fd58a7982a691b466",
       "snapshot": {
-        "docs/framework/octane/reference/variables/formatForAria.md": "f22323fa1ec897af5dc733e4fb88249f94f16f6bf5741e7406f341dd717bb02b"
+        "docs/framework/octane/reference/variables/formatForAria.md": "580aaa978e536de662e9828953205440daf995be2796dbc9510a62c634550947"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/accessibility.md": {
@@ -23798,23 +23798,23 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/reference/functions/useFormatForAria.md": {
-      "fingerprint": "4ba2373218c1ece7541ad48767d1fd78acdf5fcec5d4664a8d4a71470b33f836",
+      "fingerprint": "3013a1b9d40187707b02d0e8474601fe3974c1409c0ac0c6d2213e1f4fd000e5",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useFormatForAria.md": "e700b92366cf0a7c92989da3f0265df1471f5265ddac3e55950ad1dcf5f5395b"
+        "docs/framework/preact/reference/functions/useFormatForAria.md": "f5ab76a12415cad476d70b89985715e896da7c392924c40648054554656b0a95"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/reference/variables/formatForAria.md": {
-      "fingerprint": "211ed7c26a85d64457d6ad80d0d3420b030a08ee33edd1b87beef33f72ee1acf",
+      "fingerprint": "a2ee4f41245515eb3b3ac39b1c6cca6605cd39637d0080b6f8ef08bc5878fb83",
       "snapshot": {
-        "docs/framework/preact/reference/variables/formatForAria.md": "f22323fa1ec897af5dc733e4fb88249f94f16f6bf5741e7406f341dd717bb02b"
+        "docs/framework/preact/reference/variables/formatForAria.md": "8500f275aafc3a169a4e5a6988e78dcbee926eebf983034365fe2b3a93ac13bf"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/guides/accessibility.md": {
@@ -23828,23 +23828,23 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/reference/functions/useFormatForAria.md": {
-      "fingerprint": "aa06bb2e99c59d878e2bff188bedc5a33fa9e2f67118eef77386654c6f85f864",
+      "fingerprint": "35f8929b1df49589f51d13a557c4fd2ab44f13bf83f07dfec85c41716e4980c9",
       "snapshot": {
-        "docs/framework/react/reference/functions/useFormatForAria.md": "631e747991600e12cf98fd38909af7dd0e6d76a788c3146a3f39dcd30a03fa26"
+        "docs/framework/react/reference/functions/useFormatForAria.md": "a5d511e415e1edcb25aed074cf16aa9a26af9b7a2b4a4e04c280592d0d5b8b76"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/reference/variables/formatForAria.md": {
-      "fingerprint": "187c1958448f9f2a370a9cb214820610fbb0ccc0133ff6aa4ad1d1adf4c89edb",
+      "fingerprint": "54e315dede60cddbe97de93f2a1b0d69c18710312384a0911809c50bdbdb0982",
       "snapshot": {
-        "docs/framework/react/reference/variables/formatForAria.md": "f22323fa1ec897af5dc733e4fb88249f94f16f6bf5741e7406f341dd717bb02b"
+        "docs/framework/react/reference/variables/formatForAria.md": "9ead2f7e2de168e2dd69f91571946921027cb58b8ab28139072a5981cdd49b5e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/accessibility.md": {
@@ -23858,23 +23858,23 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/functions/createFormatForAria.md": {
-      "fingerprint": "1b163c3599ee87f8cade77a6aa89533247b470599142ce90011d2662c62dfbf2",
+      "fingerprint": "9b26413d8e5678f3a201de397783379da228782cd8a8b4dc88f9748508060e4b",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createFormatForAria.md": "49f309c0ea46d9423921e8d214dc7cb24d3e4e6520ffb19d4898cfe01aa369b9"
+        "docs/framework/solid/reference/functions/createFormatForAria.md": "df0853d940dddd21556e2c2c3ccc3663b39d2f85640f8cd87aa7fe8efc1f7cc2"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/variables/formatForAria.md": {
-      "fingerprint": "78f4eff9b1bf93b5c82b586c704eb21bd4098980c7808d9f23c8d6e0abe54888",
+      "fingerprint": "b40d70d15fe79eb443b0c39c4bd17680cecb64ad6a9bcf571768b5c0b37f8398",
       "snapshot": {
-        "docs/framework/solid/reference/variables/formatForAria.md": "23e2f41d87c28c950397ac5ba6fdf55c04728e3dcb90b7f8d811c356ae30c7af"
+        "docs/framework/solid/reference/variables/formatForAria.md": "aacaa104d1aa892e43c9f910ca5092a9ffae7b76f69ef31bca56bd0c0d14b113"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/accessibility.md": {
@@ -23888,23 +23888,23 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForAria.md": {
-      "fingerprint": "4eb713b0cf89372b76cb509b61eebbc7a2fc2d580c0c1202aa13960b88443122",
+      "fingerprint": "0aee463e013e3ef4499f705685ae8619eded477a1a52a693bc70dca5bc69a596",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForAria.md": "0f4bc6f18a336b684b28a7e0d176498bc8a37d8704676a83e8bf727a55ed7935"
+        "docs/framework/svelte/reference/functions/getFormatForAria.md": "ab8023c707c9ef1a033114b2ea71918d074e11a921df3cfe3b3186e3d53305ab"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/variables/formatForAria.md": {
-      "fingerprint": "1ed9d8404b0a98422f6a30fdb778fb86f53a6567e58258b8bea50d26ee10ed15",
+      "fingerprint": "7a766a495d1adae714d4a2a9a720a7b7c015232757afde7bbe43447394c2a5a9",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/formatForAria.md": "d6f9b400f738be9fd533e6f768f648524b88fd4ab464c04914684b5a40254b58"
+        "docs/framework/svelte/reference/variables/formatForAria.md": "958dd9fe74eebeddf6c3b5a95b1a0030c06ac33369249c9e6682f21cce0dccf4"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/guides/accessibility.md": {
@@ -23918,23 +23918,23 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useFormatForAria.md": {
-      "fingerprint": "8a2ecb829f38ccb927a7dabdcff4f75435458d897136fc0990c0cebaa5ece294",
+      "fingerprint": "b46254e851e25680152f49f48e064cce17481197c7b89f244b0cbf9c005162c5",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForAria.md": "d7456becf080cced82b7ca74ca7e91f68c56b8cddc3db8b0aaaf78099ef83157"
+        "docs/framework/vue/reference/functions/useFormatForAria.md": "929e66befaefb83a40caa792a618280ae0c1d18f7da9c313d32a7359918dac49"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/variables/formatForAria.md": {
-      "fingerprint": "6107dc0d21805de6acce7d42f4afa8ec97de21aab425183d8bfce110014043b3",
+      "fingerprint": "680ebca2e153b376694d47cb39e3541cd72a5c4743e8cf05250627f0ee4bdb94",
       "snapshot": {
-        "docs/framework/vue/reference/variables/formatForAria.md": "f22323fa1ec897af5dc733e4fb88249f94f16f6bf5741e7406f341dd717bb02b"
+        "docs/framework/vue/reference/variables/formatForAria.md": "84daafbf0f673ff929973c3acd8296eb6a39257a853390e539a5a046b6f8a308"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createFormatter.md": {
