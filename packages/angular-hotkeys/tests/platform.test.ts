@@ -8,6 +8,7 @@ import { TestBed } from '@angular/core/testing'
 import {
   HotkeyManager,
   detectPlatform,
+  formatForAria as coreFormatForAria,
   formatForDisplay as coreFormatForDisplay,
 } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -139,8 +140,9 @@ describe('provider platform', () => {
   })
 })
 
-describe('the deprecated formatForDisplay export', () => {
+describe('the deprecated formatForDisplay and formatForAria exports', () => {
   it('is the core function', () => {
     expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
+    expect(adapter.formatForAria).toBe(coreFormatForAria)
   })
 })

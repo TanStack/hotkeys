@@ -1,5 +1,6 @@
 import {
   HotkeyManager,
+  formatForAria as coreFormatForAria,
   formatForDisplay as coreFormatForDisplay,
 } from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
@@ -100,8 +101,9 @@ describe('provider platform', () => {
   })
 })
 
-describe('the deprecated formatForDisplay export', () => {
+describe('the deprecated formatForDisplay and formatForAria exports', () => {
   it('is the core function', () => {
     expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
+    expect(adapter.formatForAria).toBe(coreFormatForAria)
   })
 })
