@@ -100,6 +100,8 @@ See the [useHeldKeys example](../examples/useHeldKeys) and [useKeyHold example](
 Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `useKeyHold('CapsLock')` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `useKeyLockState`:
 
 ```tsx
+import { useKeyLockState } from '@tanstack/react-hotkeys'
+
 const capsLock = useKeyLockState('CapsLock') // true, false, or null
 
 return <span role="status">{capsLock ? 'Caps Lock is on' : ''}</span>

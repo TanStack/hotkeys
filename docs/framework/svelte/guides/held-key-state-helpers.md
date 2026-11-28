@@ -102,6 +102,8 @@ Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `getIsKeyHeld
 
 ```svelte
 <script lang="ts">
+  import { getKeyLockState } from '@tanstack/svelte-hotkeys'
+
   const capsLock = getKeyLockState('CapsLock') // value: true, false, or null
 </script>
 

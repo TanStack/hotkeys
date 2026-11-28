@@ -38,6 +38,12 @@ function onPlatform(platform: HotkeyPlatform) {
   vi.stubGlobal('navigator', { platform: '', userAgent })
 }
 
+/** The held key part of the tracker state, without the lock states. */
+function heldState(tracker: KeyStateTracker) {
+  const { heldKeys, heldCodes } = tracker.store.state
+  return { heldKeys, heldCodes }
+}
+
 /** Dispatches a mouse event as real user input. */
 function dispatchMouse(
   type: 'mousemove' | 'mousedown',
@@ -171,7 +177,7 @@ describe('KeyStateTracker', () => {
       const tracker = KeyStateTracker.getInstance()
 
       expect(tracker.store).toBeDefined()
-      expect(tracker.store.state).toMatchObject({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('should update store state on key changes', () => {
@@ -416,12 +422,12 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
       dispatchKey('keyup', 'Shift', 'ShiftRight', { shiftKey: true })
-      expect(tracker.store.state).toMatchObject({
+      expect(heldState(tracker)).toEqual({
         heldKeys: ['Shift'],
         heldCodes: { Shift: 'ShiftLeft' },
       })
       dispatchKey('keyup', 'Shift', 'ShiftLeft')
-      expect(tracker.store.state).toMatchObject({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('clears both stale physical modifiers and code-less modifiers', () => {
@@ -430,7 +436,7 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
       dispatchKey('keydown', 'Meta', '', { shiftKey: true, metaKey: true })
       dispatchMouse('mousemove')
-      expect(tracker.store.state).toMatchObject({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('removes only released modifiers and publishes one final state per keyboard event', () => {
@@ -459,7 +465,7 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       dispatchKey('keydown', 'a', 'KeyA', { shiftKey: true })
       dispatchKey('keydown', 'a', 'KeyA', { repeat: true })
-      expect(tracker.store.state).toMatchObject({
+      expect(heldState(tracker)).toEqual({
         heldKeys: ['A'],
         heldCodes: { A: 'KeyA' },
       })
@@ -502,7 +508,7 @@ describe('KeyStateTracker', () => {
       dispatchMouse('mousemove')
       dispatchMouse('mousedown')
       expect(listener).not.toHaveBeenCalled()
-      expect(tracker.store.state).toMatchObject({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
       subscription.unsubscribe()
     })
 
@@ -560,7 +566,7 @@ describe('KeyStateTracker', () => {
         const tracker = KeyStateTracker.getInstance()
         dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
         document.dispatchEvent(trusted(new Event(type, { bubbles: true })))
-        expect(tracker.store.state).toMatchObject({
+        expect(heldState(tracker)).toEqual({
           heldKeys: ['Shift'],
           heldCodes: { Shift: 'ShiftLeft' },
         })
@@ -728,6 +734,17 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
       const { heldKeys, heldCodes } = tracker.store.state
       lockMouse('mousemove', { CapsLock: true })
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+      expect(tracker.store.state.heldKeys).toBe(heldKeys)
+      expect(tracker.store.state.heldCodes).toBe(heldCodes)
+    })
+
+    it('keeps held key arrays on a keyup that only changes lock state', () => {
+      const tracker = KeyStateTracker.getInstance()
+      document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
+      const { heldKeys, heldCodes } = tracker.store.state
+      // Caps Lock was pressed before the tracker started, so only its keyup arrives.
+      lockKey('keyup', 'CapsLock', { CapsLock: true })
       expect(tracker.getKeyLockState('CapsLock')).toBe(true)
       expect(tracker.store.state.heldKeys).toBe(heldKeys)
       expect(tracker.store.state.heldCodes).toBe(heldCodes)

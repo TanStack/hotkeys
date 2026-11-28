@@ -44,7 +44,7 @@ Lock keys toggle instead of being held. `createKeyHold('CapsLock')` answers a di
 
 ## Why the value starts as `null`
 
-Browsers have no API that reports lock state when the page loads. The state comes only with input events, through `event.getModifierState()`. The key state tracker reads it from keydown, keyup, mousedown, and mousemove events, so every lock is `null` until the user presses a key, clicks, or moves the mouse over the page. From then on, the value follows the user's input.
+Browsers have no API that reports lock state when the page loads. The state comes only with input events, through `event.getModifierState()`. The key state tracker reads it from keydown, keyup, mousedown, and mousemove events, so every lock is `null` until the user presses a key, clicks, or moves the mouse over the focused page. From then on, the value follows the user's input.
 
 The tracker reads only trusted events, the ones the browser creates from real input. It ignores events dispatched by page code, such as `element.dispatchEvent(new KeyboardEvent('keydown'))`, because those report every lock as off.
 
@@ -54,7 +54,7 @@ Num Lock and Scroll Lock stay `null` on macOS and iOS. See [Browser and platform
 
 ## Why it resets when the window loses focus
 
-Every lock goes back to `null` when the window loses focus or the page is hidden, such as when the user switches to another tab or app. The user can toggle a lock in another app, so the last value the page saw may no longer be true. The next key press, click, or mouse move over the page reports the lock again.
+Every lock goes back to `null` when the window loses focus or the page is hidden, such as when the user switches to another tab or app. The user can toggle a lock in another app, so the last value the page saw may no longer be true. Once the window has focus again, the next key press, click, or mouse move over the page reports the lock again. The tracker ignores mouse events while the window doesn't have focus.
 
 Held keys reset at the same moments. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 

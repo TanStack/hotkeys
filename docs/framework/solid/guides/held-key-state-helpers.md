@@ -111,6 +111,8 @@ See the [createHeldKeys example](../examples/createHeldKeys) and [createKeyHold 
 Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `createKeyHold('CapsLock')()` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `createKeyLockState`:
 
 ```tsx
+import { createKeyLockState } from '@tanstack/solid-hotkeys'
+
 const capsLock = createKeyLockState('CapsLock') // capsLock(): true, false, or null
 
 return <span role="status">{capsLock() ? 'Caps Lock is on' : ''}</span>

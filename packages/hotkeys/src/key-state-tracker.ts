@@ -158,7 +158,9 @@ export class KeyStateTracker {
 
     const onKeyup = (event: KeyboardEvent) => {
       if (isKeyless(event)) return
-      this.#readLocks(event)
+      const locksChanged = this.#readLocks(event)
+      // A keyup only removes entries, so a smaller map means held keys changed.
+      const size = this.#heldEntries.size
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
       this.#heldEntries.delete(identity)
@@ -180,7 +182,7 @@ export class KeyStateTracker {
         this.#releaseNonModifiers()
       }
 
-      this.#syncState()
+      this.#publish(this.#heldEntries.size !== size, locksChanged)
     }
 
     // A native context menu takes focus without a blur, so the keyup of a

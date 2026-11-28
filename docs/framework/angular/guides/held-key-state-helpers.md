@@ -117,6 +117,8 @@ See the [injectHeldKeys example](../examples/injectHeldKeys) and the [injectKeyH
 Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `injectKeyHold('CapsLock')()` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `injectKeyLockState`:
 
 ```ts
+import { injectKeyLockState } from '@tanstack/angular-hotkeys'
+
 readonly capsLock = injectKeyLockState('CapsLock') // capsLock(): true, false, or null
 ```
 

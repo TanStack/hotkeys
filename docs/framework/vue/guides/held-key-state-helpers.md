@@ -105,6 +105,8 @@ Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `useKeyHold('
 
 ```vue
 <script setup lang="ts">
+import { useKeyLockState } from '@tanstack/vue-hotkeys'
+
 const capsLock = useKeyLockState('CapsLock') // value: true, false, or null
 </script>
 

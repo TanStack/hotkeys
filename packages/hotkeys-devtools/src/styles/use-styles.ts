@@ -45,6 +45,9 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       border: 1px solid ${t(colors.gray[200], colors.darkGray[700])};
       display: flex;
       align-items: center;
+      /* The held keys, locks, and layout chip wrap to new rows when narrow. */
+      flex-wrap: wrap;
+      row-gap: ${size[2]};
       gap: ${size[3]};
       padding: ${size[3]} ${size[3]};
       flex-shrink: 0;
@@ -64,7 +67,7 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       align-items: center;
       gap: ${size[1.5]};
       flex-wrap: wrap;
-      flex: 1;
+      flex: 1 1 120px;
       min-width: 0;
     `,
     panelsContainer: css`
@@ -146,6 +149,7 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       align-items: center;
       gap: ${size[1.5]};
       flex-shrink: 0;
+      flex-wrap: wrap;
     `,
     lockChip: css`
       display: inline-flex;

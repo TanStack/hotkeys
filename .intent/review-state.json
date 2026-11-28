@@ -3800,13 +3800,13 @@
       "evidence": ["packages/vue-hotkeys/tests/useKeyHold.test.ts"]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
-      "fingerprint": "529466ed8b8bb17a0bb9717dfdc0395d24bdf4824d8d5c09e2160530b41cc7ac",
+      "fingerprint": "e089512052c106419eb6092144a124fb7a328cc143d5fd3586ad43be12bb2e67",
       "snapshot": {
-        "docs/framework/lit/guides/held-key-state-helpers.md": "4e5bb726fb6ebb04a429165d21f45744d57ea0f174c1ce257859d8fb02a094c3"
+        "docs/framework/lit/guides/held-key-state-helpers.md": "a7c4f797ec85859509546a4d85c27842520d501ccb7da5d769262f1f23475cb4"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/lit/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
@@ -4959,13 +4959,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "8d3fe34b6072dfbd4480cb59690e778ab4fffa68ae263648ea6a7b7b52ca9ed9",
+      "fingerprint": "0e5b612b8d6ab2c662a03c5223ae223d83e2ed238032cf265f3c3aff91765945",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "f3fa61d584358f990a32c9bc766f26724be0e90d6417b450fca423104fb591d6"
+        "docs/reference/classes/KeyStateTracker.md": "25c33404d419be98128820033b0a22450f09801fe3f618718f7fd7697f5ed0b5"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages regenerated after JSDoc wording fixes",
+      "reason": "Generated API reference pages",
       "evidence": ["docs/reference/classes/KeyStateTracker.md"]
     },
     "source:docs/reference/functions/checkHotkey.md": {
@@ -4979,13 +4979,13 @@
       "evidence": ["docs/reference/functions/checkHotkey.md"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "1c3eb337584b2a5c536da130d7e86dcf95ef289cc130c6160e147b84f880a250",
+      "fingerprint": "7ae70e78e1c0a3247386a9a9a5665489ccf717e341f123f6539cf24701d364b7",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "83e9804a02b578df8647a24e0392b908a83d978a598cf9e9e4853a7d7a888b1e"
+        "docs/reference/functions/getKeyStateTracker.md": "c3110112c33809c4eabaca2c0792f78fd6cbde989993a3ae3ac2cba816def53f"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages regenerated after JSDoc wording fixes",
+      "reason": "Generated API reference pages",
       "evidence": ["docs/reference/functions/getKeyStateTracker.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
@@ -5275,13 +5275,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "47b168a6b582793f8dd6887453de75cd7466a5887ca1022742edfc23521b58ed",
+      "fingerprint": "c888a29cee115445c46f974b5d0608a641a5523b157b47b28f6a84695a4be10e",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "1160a391e1e9128d69f320424cb3b0f33c30446b355a07d53d1c82ccd013c6c9"
+        "packages/hotkeys/src/key-state-tracker.ts": "44739919fbc1b76fcc608f0ecb2bfa49aabaca3cf1407f5beab04a64384eed90"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["packages/hotkeys/src/key-state-tracker.ts"]
     },
     "source:packages/hotkeys/src/validate.ts": {
@@ -5941,13 +5941,13 @@
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
-      "fingerprint": "d8e79dfb3535748ec4d77681e76137dcb6ceed600e93aee0a2132a67e0fffb36",
+      "fingerprint": "0b8c61574a5ad5881e906c5a96fd9454b2e8b83f3d9330314fc086eec2949058",
       "snapshot": {
-        "docs/framework/angular/guides/held-key-state-helpers.md": "55a883b5c8f1778f4bba5692f7359585119423758ffbdc116227feecdbd6de27"
+        "docs/framework/angular/guides/held-key-state-helpers.md": "ee71ca076f0238d1edf0b75f788dd78665aeac33bd322a1d3c4a4fd21c239d1d"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/angular/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
@@ -5961,13 +5961,13 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
-      "fingerprint": "47443b70106e6fb526cd6b65f23b3b76bd2b3620a66bcbb3e2dc41e5a64bdb91",
+      "fingerprint": "8079b7a98f07df0f507cced4bd54b1e08d434c972e4910ebdc07fba6ae5681c9",
       "snapshot": {
-        "docs/framework/ember/guides/held-key-state-helpers.md": "4ddf338a2e81fded6edcd543ee6ca57bfc36488b5e15dec9b661be0c508940ba"
+        "docs/framework/ember/guides/held-key-state-helpers.md": "efa2848c2e432af71a52f9f5dd4112c44fffd405c516460a1b707e1e535a38dd"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/ember/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
@@ -5991,13 +5991,13 @@
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
-      "fingerprint": "45220842d06ea41f70a9a244b2208dc2d30f015e893841437530f8f974a0c663",
+      "fingerprint": "b67eee15ca4ec6eb15a056c147ffd1210b98a189feefae5e92e501fad7a3ecc0",
       "snapshot": {
-        "docs/framework/octane/guides/held-key-state-helpers.md": "cd180b1159527c9e209a3cbd73454d5f15005b12a7729aad11d8fb4b31e14c66"
+        "docs/framework/octane/guides/held-key-state-helpers.md": "d11cffc2fe7c3a46297e741009ff91f9731ac63ced216064414697f95a2f9105"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/octane/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
@@ -6011,13 +6011,13 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
-      "fingerprint": "afa3a294045421733589373bca6f7800b8a00af6268fce2a186495955d4de585",
+      "fingerprint": "fd096c76800dbcb6247afeded75c6f28e2fd1244427afa89a8d097a563999609",
       "snapshot": {
-        "docs/framework/preact/guides/held-key-state-helpers.md": "8c012cf330aa255bcad96cfd6cb79ab84105fbb3aef1fc1d5aa7c6d8271210df"
+        "docs/framework/preact/guides/held-key-state-helpers.md": "ae8900cf1af5f33595bdd38fcc5ad7589a44e472b2b588565f8457e7794424de"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/preact/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
@@ -6031,13 +6031,13 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
-      "fingerprint": "00d14c5c855e4e65a14bfb297de21e1060d2326cb9582bbf10baa6d720f6fb44",
+      "fingerprint": "f717673508e03501fdab23a87678c65ac06dda40b01d6089384ee349763aba06",
       "snapshot": {
-        "docs/framework/react/guides/held-key-state-helpers.md": "285bb40cd9e85bfb8750bfeb926719f527c9345378dc274956e865b05ca8478e"
+        "docs/framework/react/guides/held-key-state-helpers.md": "58df0687ff1c1edb483038ceafb49323466d5b6123895dd64a4fc5b8e3e20c44"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
@@ -6051,13 +6051,13 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
-      "fingerprint": "d793edf258724f5778c4645c66dc035a4be18fdf1d7b6577be981f5b458dd576",
+      "fingerprint": "0c93c7849efe2bae18d3174e8f54bb29f7f74dddcd9c0fee74db60ecb9410678",
       "snapshot": {
-        "docs/framework/solid/guides/held-key-state-helpers.md": "9ce7056011b539c9fcf2864e9e7d76a0918b904ba16cfefee68646df26273b01"
+        "docs/framework/solid/guides/held-key-state-helpers.md": "ec6f40e0f8dad1a9a204ff852457a931938095677c073ac80315aaa5673df65d"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/solid/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
@@ -6071,13 +6071,13 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
-      "fingerprint": "46c8b519d34418983ce6e2816fd66efe13f978b4cf1694aa6d1ac6d9a5d451ac",
+      "fingerprint": "fe1ea172979df9b9cbe5df5e52d41a3c9b91d68907af6fcb6e55dd74d940d929",
       "snapshot": {
-        "docs/framework/svelte/guides/held-key-state-helpers.md": "c369a019b0a576e8f49069c0a142d3056a8105b05f9d800bd12574bb0ed4d92e"
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "17191683bc3ae06ab0efa3e5c3fccf8609d921963957ee2fade3217da1e2fe73"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/svelte/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
@@ -6091,13 +6091,13 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
-      "fingerprint": "b3520da75a31d73af27519ff7c33c0c0766bc9ebf927a72e0c4ffdd2e13a9e3f",
+      "fingerprint": "bb14579b2991b155a88e1ad92871ba400eee6112ddcefc9356a640777be771a5",
       "snapshot": {
-        "docs/framework/vue/guides/held-key-state-helpers.md": "d976c3b365485e27eb8a5015eba9ef3b9374cb6b0769921f094a3688891937bc"
+        "docs/framework/vue/guides/held-key-state-helpers.md": "b1cb598a47fa8a6271718b6af461060d0166fb7f9e02e1d76bab683291ade3ff"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/vue/guides/held-key-state-helpers.md"]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
@@ -7125,13 +7125,13 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "03518eacb160b43fade82a541e620283f2fb8da9cf09c3d3cbcec922f260a360",
+      "fingerprint": "40e453233dbb0ec914640c8f0a6974181dff3ade9f42349f6f7f6bac341b5763",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "f5dbf59eb4e49ebc1793791dda1319b66b437ab37690ea8c03e8c2a898f79112"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "b484de60ff63b1d0422b22b1f691ea83cf0dbcbca46438557e7c0d65d1d1d87b"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
@@ -11893,13 +11893,13 @@
       "evidence": ["packages/hotkeys-devtools/src/_issues.ts"]
     },
     "source:packages/hotkeys-devtools/src/styles/use-styles.ts": {
-      "fingerprint": "b965b6268c690a8bc72a77666dab28ac71b76be0c858d601f13e4eef9dddd9d0",
+      "fingerprint": "53b10be1f13973a52b44c1221ae99ae953abb0873865a69c381ffa881493f72c",
       "snapshot": {
-        "packages/hotkeys-devtools/src/styles/use-styles.ts": "a455f32457c064ac62e32bec9e117c66cfe9c7c5bf9dc34f8e1cfb5ad50d96d3"
+        "packages/hotkeys-devtools/src/styles/use-styles.ts": "e4cc6fd9ff4b404e81ab01c3e5d0ad69755e1ec8db70d71de29e172717cab4a4"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["packages/hotkeys-devtools/src/styles/use-styles.ts"]
     },
     "source:packages/hotkeys-devtools/tests/registrations.test.tsx": {
@@ -24273,23 +24273,23 @@
       "evidence": ["README.md"]
     },
     "source:docs/framework/alpine/guides/key-lock-state.md": {
-      "fingerprint": "7a4a502223af4f8360d4bd304dc32adef67a0123b419b91c6c1075fcb1e3c269",
+      "fingerprint": "cce2ff798c7e5554a1673d8166cf8934fedc985825b0816fb5c514483f31a69d",
       "snapshot": {
-        "docs/framework/alpine/guides/key-lock-state.md": "f1a139b7a2aa567e0b6286b9bc905864cd045d413bdecc94f7671b81e0b004e6"
+        "docs/framework/alpine/guides/key-lock-state.md": "d53a7c662311905ffbf19e70fe2db5e57804b6e666df321b044c1d19914a7e30"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/alpine/guides/key-lock-state.md"]
     },
     "source:docs/framework/angular/guides/key-lock-state.md": {
-      "fingerprint": "4aa7148420483944efccc09ba80d7954a8c66e82a86bfdd1d1a25db151c42535",
+      "fingerprint": "5690ce92aace3c003b17514fb183ae8ea7eae85f97c8f5d01ae6024aadc8c7f1",
       "snapshot": {
-        "docs/framework/angular/guides/key-lock-state.md": "cf5e3fd7b11b57f0334989184926bffa457ad637e8bdb00b5b1f1511622ffb94"
+        "docs/framework/angular/guides/key-lock-state.md": "e7a85282bc36d5e107e95afd914adcb12e0b7abc391a1b3884e50ba249280d2c"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/angular/guides/key-lock-state.md"]
     },
     "source:docs/framework/angular/reference/functions/injectKeyLockState.md": {
@@ -24305,13 +24305,13 @@
       ]
     },
     "source:docs/framework/ember/guides/key-lock-state.md": {
-      "fingerprint": "72cbc90a72ab11780ca87ce3c75727caf5652ce6834f3ee63c645eb1f5000488",
+      "fingerprint": "5438081349b6e2d9a3b5a0dac61da0c78dc69e15e77a69861cc3b6812e5b3bdf",
       "snapshot": {
-        "docs/framework/ember/guides/key-lock-state.md": "f0034b63d1f9485c799b7bc17d371f96e60b95500bc42e1be51478d8af7475af"
+        "docs/framework/ember/guides/key-lock-state.md": "afdf9cfda716f73baecb6547d9d1402685ca347c2c61c21e7e1d6f8eef5ebc95"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/ember/guides/key-lock-state.md"]
     },
     "source:docs/framework/ember/reference/functions/useKeyLockState.md": {
@@ -24327,13 +24327,13 @@
       ]
     },
     "source:docs/framework/lit/guides/key-lock-state.md": {
-      "fingerprint": "743b84ccce7f7aa9f44099b46f5cddec657850570f71c2c285faaa2b74cf0dc7",
+      "fingerprint": "d0c8d648f22cbacf67bdcc65a5befe9034a56cadda10d2ed29cc7ed74331d310",
       "snapshot": {
-        "docs/framework/lit/guides/key-lock-state.md": "86dcd7f8e9d6dceed36e030ac028fdb2e21e374d31d313fa4c073f5d8f863966"
+        "docs/framework/lit/guides/key-lock-state.md": "6520fbf7b5e4020a1a29b07c47f52d928762e6d7b9bd0764811a76c80d6efc96"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/lit/guides/key-lock-state.md"]
     },
     "source:docs/framework/lit/reference/classes/KeyLockStateController.md": {
@@ -24349,13 +24349,13 @@
       ]
     },
     "source:docs/framework/octane/guides/key-lock-state.md": {
-      "fingerprint": "4e1f9322040e1122b6a7e6fd6becc91c351602d964dd7e97713134a3ce0c18e8",
+      "fingerprint": "1665396132dc93faf285e78c79534df36f8439bff6284a2de15676e5b6e9bc66",
       "snapshot": {
-        "docs/framework/octane/guides/key-lock-state.md": "16cc506193e5ce262dd2e46f18b448d50f78b1a7ef0b6cc36c03f5ce52e97763"
+        "docs/framework/octane/guides/key-lock-state.md": "28d37f2155286f15359e16f2f2407422bb6ebd3ef79a1d172344d571c1ecbec6"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Covered by the key lock state rows added to each adapter skill and the core testing reference; no further guidance change",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/octane/guides/key-lock-state.md"]
     },
     "source:docs/framework/octane/reference/functions/useKeyLockState.md": {
@@ -24371,13 +24371,13 @@
       ]
     },
     "source:docs/framework/preact/guides/key-lock-state.md": {
-      "fingerprint": "fa6a5419bee94fd878d195ee104dc24952136e6ece0e671bab320ac2422801ee",
+      "fingerprint": "92e5f168a628c474cb929f122ec8a04ed22cfdba8452bf931d714ddb620afade",
       "snapshot": {
-        "docs/framework/preact/guides/key-lock-state.md": "b3bd653d2a50b883150e3675e057eb79462b7029f9fa1405522093ba97e57515"
+        "docs/framework/preact/guides/key-lock-state.md": "cbb250fee273e5d62f92395e9409c5aa22b9815fdcd0718d350f349cf0b6301a"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/preact/guides/key-lock-state.md"]
     },
     "source:docs/framework/preact/reference/functions/useKeyLockState.md": {
@@ -24393,13 +24393,13 @@
       ]
     },
     "source:docs/framework/react/guides/key-lock-state.md": {
-      "fingerprint": "c21a4a4c36d7bb87e989a8c0beb8a6117863746f629506672c89fbbc936a5659",
+      "fingerprint": "41db0c8d9a088b257d713e82a8ec35a7e505880d2c3615bf80efc9c406a7ccee",
       "snapshot": {
-        "docs/framework/react/guides/key-lock-state.md": "e0f782db80008907965efbfb3c1310bb79f45d7998354911558dcb4d0e526157"
+        "docs/framework/react/guides/key-lock-state.md": "6b32d2b0dead5a2a9818b36ec9971e03562489b4bab0232b30ba222234359fd5"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/react/guides/key-lock-state.md"]
     },
     "source:docs/framework/react/reference/functions/useKeyLockState.md": {
@@ -24415,13 +24415,13 @@
       ]
     },
     "source:docs/framework/solid/guides/key-lock-state.md": {
-      "fingerprint": "c930ab792540ce7fea5389430a89729de1cfb6bd872995fb8658fa49ed1cc488",
+      "fingerprint": "607e33ab826b9dbe3418752c17e71a4113fd786d3dc6ab56a69cb27dd7c8d36e",
       "snapshot": {
-        "docs/framework/solid/guides/key-lock-state.md": "1d88ea908b0da1945799a0e90ba7d3b263452d35632c4d58308638d3857e3de7"
+        "docs/framework/solid/guides/key-lock-state.md": "a27b4dd3501ff687da84fc369c736727628fbf42ff7291f0ac97c1cb0aed5f41"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/solid/guides/key-lock-state.md"]
     },
     "source:docs/framework/solid/reference/functions/createKeyLockState.md": {
@@ -24437,13 +24437,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/key-lock-state.md": {
-      "fingerprint": "5d74c04aa8c90e87cefc6c5438503e15d178b9a600fd821d4ecec2896b3439af",
+      "fingerprint": "6daa32e3a6cdf20fdcf3cbd11a64ebeffc527995a4094d70f4da2115d21c1029",
       "snapshot": {
-        "docs/framework/svelte/guides/key-lock-state.md": "26c15ff800defcfa7abf9d92b464e26912de3cece46e37b1a6283b30b85f4909"
+        "docs/framework/svelte/guides/key-lock-state.md": "e65d131091b825b4c165e815f3b8264d42d859971fbba877ddaf4ecbea0106af"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/svelte/guides/key-lock-state.md"]
     },
     "source:docs/framework/svelte/reference/functions/getKeyLockState.md": {
@@ -24471,13 +24471,13 @@
       ]
     },
     "source:docs/framework/vue/guides/key-lock-state.md": {
-      "fingerprint": "763616b5879c118e514bcf17740da06023473cfbeef261a0dfcedb8987e2ec0f",
+      "fingerprint": "a4c0e59f2ab2706810fedb496bbf5f7813f28fa9e07566b3d86154289036afe6",
       "snapshot": {
-        "docs/framework/vue/guides/key-lock-state.md": "1c03f2e6f13ca1fd3142c660a951ee2cc4dde34078417badfb74164f1ece7fb8"
+        "docs/framework/vue/guides/key-lock-state.md": "c70d56361e3f9d92f99d84fcc48482271847978be27a54a279a1212118efe258"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "473beaf979c5e4bd6b51c3b8708675588d7cca60",
       "outcome": "no-change",
-      "reason": "Review fixes: one store publish per event, unfocused mouse events ignored, wording; the skill guidance still matches",
+      "reason": "Review fixes: keyup publishes only on change, doc imports, focus wording, wrapping top bar; skill guidance unchanged",
       "evidence": ["docs/framework/vue/guides/key-lock-state.md"]
     },
     "source:docs/framework/vue/reference/functions/useKeyLockState.md": {

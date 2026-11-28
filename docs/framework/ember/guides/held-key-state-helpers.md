@@ -118,6 +118,8 @@ The [useHeldKeys example](../examples/useHeldKeys) shows held keys and their cod
 Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. The `value` of `useKeyHold(this, 'CapsLock')` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `useKeyLockState`:
 
 ```gts
+import { useKeyLockState } from '@tanstack/ember-hotkeys'
+
 capsLock = useKeyLockState(this, 'CapsLock') // value: true, false, or null
 
 <template>

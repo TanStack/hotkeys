@@ -120,6 +120,8 @@ The [held-keys example](../examples/held-keys) shows held keys and their codes, 
 Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. A `KeyHoldController` value is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `KeyLockStateController`:
 
 ```ts
+import { KeyLockStateController } from '@tanstack/lit-hotkeys'
+
 private capsLock = new KeyLockStateController(this, 'CapsLock') // value: true, false, or null
 
 render() {
