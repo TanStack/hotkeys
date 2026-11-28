@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/ember-hotkeys",
-  "version": "0.14.6",
+  "version": "0.15.0",
   "description": "Ember adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",

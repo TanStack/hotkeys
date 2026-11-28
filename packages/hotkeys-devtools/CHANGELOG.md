@@ -1,5 +1,18 @@
 # @tanstack/hotkeys-devtools
 
+## 1.12.4
+
+### Patch Changes
+
+- [#315](https://github.com/TanStack/hotkeys/pull/315) [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e) - Add `HotkeyManager.suspendCharacterKeys()` and the `suspendCharacterKeys` provider option so apps can let users turn off character key shortcuts for WCAG 2.1.4.
+
+  A character key shortcut is a document-level hotkey whose every step types a character, alone or with `Shift`, such as `'K'`, `'?'`, `'Shift+K'`, `'Space'`, or `['G', 'H']`. While suspended, those hotkeys do not fire and report the status `'suspended'`. Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys such as `Escape` or `F1`, and hotkeys targeted at an element keep working.
+
+  Suspensions are counted like scope activations, and `HotkeyScopesState` now includes `characterKeysSuspended`. Bind the provider option to a user setting with `<HotkeysProvider suspendCharacterKeys={!settings.characterKeyShortcuts}>` (or `provideHotkeys({ suspendCharacterKeys })` in Angular).
+
+- Updated dependencies [[`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e), [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e)]:
+  - @tanstack/hotkeys@0.37.0
+
 ## 1.12.3
 
 ### Patch Changes
