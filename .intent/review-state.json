@@ -3,11 +3,11 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "10a7edef342bebeeefee178d3a50925791d2e8eccdaaf514dfe91ac3193694f6",
+      "fingerprint": "255ec26bb6b0e45fb6015eb584821783aa57b34efcfeb96c577fc7ed5a1ce768",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
         "docs/framework/alpine/quick-start.md": "822d70174d351fa7b2fe2e773b4fb3a2b558191386001025cdf2efac7b0c7854",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "d4243313588ee68e2ca5a0189dfd16b05b75262265306784db3c37a7f0318314",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "71ca5c6882ed176e66bcedc59baa96c5bb495c226f434070d7979551b7815f44",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -17,35 +17,35 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "7173169a92b25edbc8e3a50a195023deece08752d6d1e87f08d81ac41220e962",
+      "fingerprint": "7aae0c0a61af428fdda33f884609ebc70649ece4850d52c239b6b5456fcde285",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2cf7b561968f2caf257fd4676221a4f89f26ee039560b03c6731d37e851b0239",
         "docs/framework/angular/quick-start.md": "6853a3618a349160d18f61b97e8996c3ad4709930d4048192a724afa0b291690",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9c737709235d87d3f18489b2d89c94d1288316c45a5f4651480ecd5d0eb783d7",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "46f6499fe577a5c5e5078451e41879b635cb64b55b101af90e274b286c6ca248",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "afe63a82c2e4b9269b0fece249317a1ad197481cb8d4ae434c5da48d64f0a2b5",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "c352df2bfcec7a6e083dad60fd7581ef510a7fe4a06ac475ee321541352d8413",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "0c9f8e12b58925b0b0aade3b5700658501eab39ef617ef14f893d6ca0803c3d2",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "4be08715cf59eeefc5c07d5dd77c2abfd60bdd5d9a4cab57d8c7fb39e632d257",
         "packages/angular-hotkeys/src/injectHotkey.ts": "1e7974556713a47a9641a97466e2c5218ec4adb65efed4cec1b163756e2b9734",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "8b4271888eee532d0674a6b6d034cdc76e06e6080988418fceb5e43756cdcaef",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "4376ed38a207509dd109338e6a1279c6f9c44edad1bce36d9a6b641eec6dcc44",
+      "fingerprint": "655a765d46da9570725f43a42c3ce566b4879d88ffdc6108b0c7f71b75b2d705",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "0bb08f63eb9974ff3d8a0f408a3db321e16f8c6f285b1bbccd6e6b0a940ca4a7",
         "docs/framework/ember/quick-start.md": "2c8dc08cae925871408200ef4636adbac20cb23312d18773d726ca340c91f0e1",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d3279d78ba5fdd2df0f30ded4a25bd88117129c8fcfde252cf6cbf286a8321b5",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba01bc3f8ac09141f1f5c33adf1c7052bd78ecf5c20c83060cb554a5ab3525bf",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "d7ff70b05c966c0cc62fa41254c8a0b40d4cb96cd081be5eb49878a3e148cbac",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -55,16 +55,16 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "67e6ac60574e3d510f8d6199a5eb92303b6315051d1fb8a42decf75dcebc070b",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "fe0231cfc032a528e1bc98389a81541d6d77d4cf2e4bf5c729286be8545b7817",
+      "fingerprint": "31c19197baac62ebbe9de02e02143a5b3fe821e4c3112bb4637b5a6f5673354e",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "2a4d9591eb6d721bca63a50385ef93c2a651785bc45dfa453f5a628c9e577b84",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
         "docs/framework/react/guides/custom-hotkey-recording.md": "250869e7fcbb8af8e78b01538662198a2668151ced170ee37ed881da4a6f0693",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "da21229bee202a356943a92987ab971eb5157d4a51639a48e67122e8c25e6f3c",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "cee8af22374e484878c9f148d4fee911de4239700961ffb8a00880e779aa6f67",
@@ -80,13 +80,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "The skill describes no registration statuses or recorder state. The changed sources only update the 'suspended' status comment and move the recorder's initial state into the internal constants module.",
+      "reason": "The skill describes no registration statuses; the changed sources only touch the ARIA formatters and the status comment.",
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "ec9b9dcc0b46c027e14265a6cadbc6c5fbd33e2c61c8a7b013ae5a3127eea8fa",
+      "fingerprint": "bfb37c8ddbaac1014655cf2539b09a218177023a544bd63904574edc1ad7f0ef",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
@@ -95,7 +95,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "f7522e6fcc2173cbaf0d6f3293e6e6233d891c3032ec022f8c582997f1a213c8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
-        "packages/hotkeys/src/hotkey-manager.ts": "73ec1aeee7e75edcfa27149d3015f706da732cd867ef3db6afd1f257980fc0be",
+        "packages/hotkeys/src/hotkey-manager.ts": "ebe90882990b299a83201ec93d78b82711ca9b2ecc96924de1cf4701eaa096d1",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,68 +107,68 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
-      "outcome": "updated",
-      "reason": "Replaced the advice to pass enabled for WCAG 2.1.4 with suspendCharacterKeys, and added rows for a hand-written aria-keyshortcuts value and a hand-written single-key off switch.",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "outcome": "no-change",
+      "reason": "The core skill's rows for aria-keyshortcuts and suspendCharacterKeys still hold; the changes are adapter formatter behavior and docs wording.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "7bd0669b0a83ee504a22eac778e690a677bdb0c46b97b389f17d64bb89ef0d92",
+      "fingerprint": "3105f272866100f17cf5314285b4ebdc355476d3465f79b64180aa8baa3adecb",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "28e5957604e21250f70aa925a6576f820dd0be2957b209557064d013e45abb94",
         "docs/framework/lit/quick-start.md": "23152e6740cda01b503a85357b6cca35d948ae23d9dc4703c7fddc3b53c354f3",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "1696e5520ba1ce1dd07ead07ba52a3c5dd53ccc1cb5391aff4548bb8a5c2954a",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "bac95b213bba7964e1f973684027a06c8722e88a11d4b8f2e301e143cd570e9a",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "b597a0682f4b4168794cef6a0f3f512649b01cd1796d059e220d73bee58968a4",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "8e437236054499fbf7ca29019bbff0f951841bf711d72956217a1fa381b8b5cf",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "79d2602f8855075599d0fb7250e865a3b525eda5a5dc274a3c386edd1abe734e",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "025cea9edee4bf41ea46a1aa2861463f94f19b4f2d0ae685361961da72f65e28",
+      "fingerprint": "127c156c48524631edd245c7dd13c26907561b8ec15794200f35ff8ebacfa38a",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "9cbd09514a6d869bb2a9da0b57b743a2fe5b233bc13f330a369316fc4c820f4b",
         "docs/framework/octane/quick-start.md": "239e2bc768ad1a9ebb0c6c972756d23ff6d78752d9355da6bb566eb4cd1591d1",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "dd517c2b2614ef6d2a7adbf7e59d4f4323509d01ad6ca1da5ca17ecf22521e39",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "f9cbf6dd4b548db4fc2bd8ad6589510160842fd1fd9f45cdb64e423f26d7482c",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "ddb3f0f9457fa245b29e8cf8e98088a3bafbf493e4d702a6228795f6ee358442",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "000f3421ab5f99e66516a73283c83814a1fb5d72f517fefccc1eacf0dd891ce5",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "e8b50b1c87560fd3d0169596405121326bd64b3f99108f83cf87c4d18802eed8",
         "packages/octane-hotkeys/src/useHotkey.ts": "7fad592ebe66e2c1822d2ca4018263d560aee41ba4334d9940dfd67b3ad44b09",
         "packages/octane-hotkeys/src/useHotkeys.ts": "a6ce6be008bc44382444ed9c11e1e8fcee6901b49e58d40d3ce6c88e64e4f084"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "d2df79b13313e90746b330bdad8b2f0f288b7eeb2554b317464a5ce3d59efd10",
+      "fingerprint": "da9755a3130b4a87531be55d5fce2ffc4b7fba927995f2c919c1ab4535c9807e",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "1bc452334df3ef96debf4377310266eca28dbc6330f38a403521c50e45fd076b",
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "feb35f7074c0d661ecb882418a8bb4614696aea2f380b3d613f2486bea52384c",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "5b1b89a8f6da83f2a42f99aeb32f0f5fd3aa96383b19027d42aa03cab6ab6a52",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "e28a5865d89549981131050565cbf6a9e9d7ed658c3d9254036d09888b5e42cb",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "0163a1bed2fa773280547ee5ae2a41172fe2ae8a0cac0e54d51833cde0e34531",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "493b6e75c203964b8f3b4e9ff455938d0dbfb041e3a44961164452ff9b1dde8c",
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys. Removed src/utils.ts, which no longer exists, from the sources.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "7efadf87ba0b2dd1beea571f9b88308f777db1a1bc5b7606005a73a75d502ef1",
+      "fingerprint": "00d6060684abe8030076d8e75d23d17b7a0ca789578294c5115009ef38f087c6",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/quick-start.md": "f6024d88aae3520c0457cf3d8590a5cad61e9c5a9ff9278528cfebaedc523c49",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "d83a8d4abcf4103fc75c5cfe4c2abd3c1ac6976c9a91cf58d98b66496bd2c75c",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "ddbd147610148807ecd9ab079abe3cb48ed476182f77c6b76dcf2e07f1a9cb20",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "fdd85693fa9b1d84341a0152601c606ca2be92d33e66019472d78029661dca78",
@@ -193,34 +193,34 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "94db0a4720e2f5829ceed0d2d8015d5ef55b174dcb5210aeb2f926a2243d7745",
+      "fingerprint": "c8816f78f6c0e4c17f76c3c445037eacce8ccbf1465ee9f72bd25ee486d22f95",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "bb0d2f900a842db0783c98be2e7aba49ddbc8e5230534ca4dbe3434663ade674",
         "docs/framework/solid/quick-start.md": "0f52444f47723a9340efdb2369a18dc6ede31b9afcdc0d8dc9344343bc5a4f5f",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "bf70f4bb8b1c14e5a44fda637d27795e70cde0b36e44d526e0fdacc5809b1dfb",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "785a04e7979042bfde32ff12647b2969d384d2af71d2904dfbe99d312a2fbc96",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "06ca96422058799bbc2ef9b266fcbc790265ef0313f704763ed48d91a6ef597c",
         "packages/solid-hotkeys/src/appHotkeys.ts": "4494eabd3760ecc81a40936e03e34ea9a7ad26fb3998668b34d5f2c0cdd25136",
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
         "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "f24acc3400daedb2229116ff9bcc3f7f24fa1631b31c943a5d7b458089b6c8bd",
+      "fingerprint": "07da37c1e3554c58c6919813d40a6130746a73e8490f56a229b62f522a86f04c",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "5d2c01722fa2357435fe3216c462071f8c8815ebe21ef9acfbabf620e2335103",
         "docs/framework/svelte/quick-start.md": "d1995321a1c5032843ee5a802f3b699fa41cee6d17dd6f3c9349faed3c663b12",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d231d28b756c1c7252f52d12b04654dddc6c0323352a7c38c821cc9d9f428669",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "03bae3471e9d7b1b2a9ad2f8c7ec0541f6e0896b8a72be0e34be98d013d8b54c",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "f60367e6667d76633886af1398807b5ad54e4586e58b41b2f6d7ee180ab0e1c4",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "4fd46081dcce520aea19e850e1443f696353419940bc9a9801bd073817a6a585",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "abd035cea0913fb80716bd04b710267118c83ec761081b5de97047a2f98f5ce0",
@@ -229,17 +229,17 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "26e89aecdbf3a1f9083418f932483d9d1fce36436525c3caead3de68ca32b77b",
+      "fingerprint": "7f38c07c0297d14406c1eb5966e1393587fba07121619eb8b16e8860f184b90e",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "939a50350a1f9bd8d80f4b0ef903293a8441bf783991af28d96c57da0efb2564",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "642d1655c9e10de79b7da415f36f0fead499bf9c4b4e79da7c28d1da52edad09",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "edb2b4a66eb3f114ae6cfe515e213fff896c215ac51fb3a1d92b1e8315bfd81e",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "9ff677a8ff993fb9a8e749e6885cbff28fd08bd1dc0f8d0150da19d29ec18736",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "c7b37b66dc4310be828619997ced75f1b6e4f6a8d7606bf3404c5f8abc5f2528",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "2cc7eaec4d348401d36c7b1a06903e91b13ee41c3057eb2d0f7bda55f6c9fa3a",
@@ -248,16 +248,16 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Added the ARIA formatter row and said the plain formatForAria export is deprecated. The provider row lists suspendCharacterKeys.",
+      "reason": "The ARIA formatter row says it returns undefined while the hotkey can't fire. The provider row says suspendCharacterKeys applies app-wide.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "83c999ae8c49f4f2ece9656ee2747a840b02bed57b3f33f96e83037aa8147b16",
+      "fingerprint": "e4526c20687ced11e57d76c864c0d79e0226753e3379d1772b35403aab532857",
       "snapshot": {
         "_artifacts/domain_map.yaml": "9020ca258eebcb3575acad17ed5fc62d53306d6e07d6dc6456c006fd8f05f94b",
-        "_artifacts/skill_spec.md": "f109428cfe3a7f501f8abde692a886be76636a12d5c6b0b4149c5e9ee0d44513",
+        "_artifacts/skill_spec.md": "f599f1f45212638ba62f1cee4e234e47353b422cec1fec5c525208d23cc52d34",
         "_artifacts/skill_tree.yaml": "28586eb71e346a16cbaa064559562cb08199a684904db6dd0684251428afd35e",
         "docs/framework/alpine/guides/app-hotkeys.md": "e0077fbe45936d6b81d61d778dc212b4a4e0cfa7df1bd99ecfd2470db1c842aa",
         "docs/framework/alpine/quick-start.md": "822d70174d351fa7b2fe2e773b4fb3a2b558191386001025cdf2efac7b0c7854",
@@ -272,7 +272,7 @@
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "1bc452334df3ef96debf4377310266eca28dbc6330f38a403521c50e45fd076b",
         "docs/framework/preact/quick-start.md": "247a2beda75d6c50bc0345aa8a9ef0a247e588fe8f4cfe7ea7733c6c8c9f15db",
         "docs/framework/react/guides/app-hotkeys.md": "307e6ced70379adc2abec5094404136c6c68753009605a83d890f1d15af257d9",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "2a4d9591eb6d721bca63a50385ef93c2a651785bc45dfa453f5a628c9e577b84",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "88c1bb4b24c6c93efb741489fc8d027352c1a2ef33927706fa8e39c7938803a2",
         "docs/framework/react/guides/custom-hotkey-recording.md": "250869e7fcbb8af8e78b01538662198a2668151ced170ee37ed881da4a6f0693",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "57039ef29571e18c058ea77d104140e33c9b7fbda7de561c4d77247a47a566ce",
         "docs/framework/react/guides/hotkeys.md": "4f49e8ef1873ac0f85ed63f7c7f3d5fe6d0561b510dbe42c6a593217335ff1db",
@@ -285,7 +285,7 @@
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "939a50350a1f9bd8d80f4b0ef903293a8441bf783991af28d96c57da0efb2564",
         "docs/framework/vue/quick-start.md": "00e4e57173a5e03a8299398a1611e0a309738b0563f69e765bc10cda8fa95be1",
         "docs/guides/sensible-defaults.md": "a6f0399f730a2f4742f206efb08517f2493db96b098e76b4082686a07c1c229f",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "d4243313588ee68e2ca5a0189dfd16b05b75262265306784db3c37a7f0318314",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "71ca5c6882ed176e66bcedc59baa96c5bb495c226f434070d7979551b7815f44",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "0fb12f409b5aec0999df3799f86d116b24d4d4d00131041e63d59264a7af1c98",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4b3745b96bdbf7971347bd930b9525b740abfffbd72dfed556d36cc0cbfa6757",
         "packages/alpine-hotkeys/src/createHotkey.ts": "bd60563781632082d7a6be702d7761f0652e45afc36ac8aa1efae1106ae98556",
@@ -294,14 +294,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "4521cc6c2abb1706bdd2b73e158e67b2eef7f5d325e22b1f50b65cf473b56905",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9c737709235d87d3f18489b2d89c94d1288316c45a5f4651480ecd5d0eb783d7",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "46f6499fe577a5c5e5078451e41879b635cb64b55b101af90e274b286c6ca248",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "afe63a82c2e4b9269b0fece249317a1ad197481cb8d4ae434c5da48d64f0a2b5",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "c352df2bfcec7a6e083dad60fd7581ef510a7fe4a06ac475ee321541352d8413",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "0c9f8e12b58925b0b0aade3b5700658501eab39ef617ef14f893d6ca0803c3d2",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "4be08715cf59eeefc5c07d5dd77c2abfd60bdd5d9a4cab57d8c7fb39e632d257",
         "packages/angular-hotkeys/src/injectHotkey.ts": "1e7974556713a47a9641a97466e2c5218ec4adb65efed4cec1b163756e2b9734",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "8b4271888eee532d0674a6b6d034cdc76e06e6080988418fceb5e43756cdcaef",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "c923eba82e55ee9f0357ea0c355eca05719c0aea806a9acbb2b4de55d2d20d42",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d3279d78ba5fdd2df0f30ded4a25bd88117129c8fcfde252cf6cbf286a8321b5",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba01bc3f8ac09141f1f5c33adf1c7052bd78ecf5c20c83060cb554a5ab3525bf",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "46d43786e0d2a5fca97c203f3e998bb6295ce45c16f181612973fd3788c1acc8",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "d7ff70b05c966c0cc62fa41254c8a0b40d4cb96cd081be5eb49878a3e148cbac",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -317,28 +317,28 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "4fc089bf6f3f247d8ccd6cc819571d945f45e95271e5169707a6c29d7ec6011f",
         "packages/hotkeys/src/conflicts.ts": "005f63fdfa139d51203306ef9b3fb83ebf76ddd22553162a5262827a5e9d0921",
-        "packages/hotkeys/src/hotkey-manager.ts": "73ec1aeee7e75edcfa27149d3015f706da732cd867ef3db6afd1f257980fc0be",
+        "packages/hotkeys/src/hotkey-manager.ts": "ebe90882990b299a83201ec93d78b82711ca9b2ecc96924de1cf4701eaa096d1",
         "packages/hotkeys/src/hotkey-recorder.ts": "bcb4f1e3940abb28b3611ee59d43c6545489dec15fd02b4d070b06ebd725f4bc",
         "packages/hotkeys/src/match.ts": "d94dfcb1665ef00c77c07972948d482827bb8707c74ebc8bf39246834b548e16",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "1696e5520ba1ce1dd07ead07ba52a3c5dd53ccc1cb5391aff4548bb8a5c2954a",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "bac95b213bba7964e1f973684027a06c8722e88a11d4b8f2e301e143cd570e9a",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "3c5b805f628d0b14361e43944283f3b7271362cc5831def6406e677ce21f2678",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "b597a0682f4b4168794cef6a0f3f512649b01cd1796d059e220d73bee58968a4",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "8e437236054499fbf7ca29019bbff0f951841bf711d72956217a1fa381b8b5cf",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "79d2602f8855075599d0fb7250e865a3b525eda5a5dc274a3c386edd1abe734e",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "dd517c2b2614ef6d2a7adbf7e59d4f4323509d01ad6ca1da5ca17ecf22521e39",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "f9cbf6dd4b548db4fc2bd8ad6589510160842fd1fd9f45cdb64e423f26d7482c",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "ddb3f0f9457fa245b29e8cf8e98088a3bafbf493e4d702a6228795f6ee358442",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "000f3421ab5f99e66516a73283c83814a1fb5d72f517fefccc1eacf0dd891ce5",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "e8b50b1c87560fd3d0169596405121326bd64b3f99108f83cf87c4d18802eed8",
         "packages/octane-hotkeys/src/useHotkey.ts": "7fad592ebe66e2c1822d2ca4018263d560aee41ba4334d9940dfd67b3ad44b09",
         "packages/octane-hotkeys/src/useHotkeys.ts": "a6ce6be008bc44382444ed9c11e1e8fcee6901b49e58d40d3ce6c88e64e4f084",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "feb35f7074c0d661ecb882418a8bb4614696aea2f380b3d613f2486bea52384c",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "5b1b89a8f6da83f2a42f99aeb32f0f5fd3aa96383b19027d42aa03cab6ab6a52",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "e28a5865d89549981131050565cbf6a9e9d7ed658c3d9254036d09888b5e42cb",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "0163a1bed2fa773280547ee5ae2a41172fe2ae8a0cac0e54d51833cde0e34531",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "493b6e75c203964b8f3b4e9ff455938d0dbfb041e3a44961164452ff9b1dde8c",
         "packages/preact-hotkeys/src/useHotkey.ts": "5ba81a7d4b3919dea427287ac728516b75ebcd49e3e2a7b9c5bca29fc92f012d",
         "packages/preact-hotkeys/src/useHotkeys.ts": "94635ce9d32395201b7b140ca1bfd7bc5d8cf22a72709fc4e4f9383b30e359cb",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "d83a8d4abcf4103fc75c5cfe4c2abd3c1ac6976c9a91cf58d98b66496bd2c75c",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "ddbd147610148807ecd9ab079abe3cb48ed476182f77c6b76dcf2e07f1a9cb20",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "61b0ecf75e33407b23df56c9aa121af21c9710f6ea5fd40f7778805ce88a9933",
         "packages/react-hotkeys/src/AppHotkeysProvider.tsx": "b75dd646421fc7f5f5fa868607aa342aeb0b55c109c1adc666d78d968b1fad1a",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "fdd85693fa9b1d84341a0152601c606ca2be92d33e66019472d78029661dca78",
@@ -362,13 +362,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "3441296dea51490188d34991428fe2b8bf11ce6fafbdf6e2f7595ff7082f1400",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "7163ed96e6694c745461f0edaf296b353906cfdb868f9c5df7d08ee01a4ba0ea",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "bf70f4bb8b1c14e5a44fda637d27795e70cde0b36e44d526e0fdacc5809b1dfb",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "785a04e7979042bfde32ff12647b2969d384d2af71d2904dfbe99d312a2fbc96",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "336b062c42f81d57ef2da8a5a1432976298fb90b8fb8a40121c38a8a0eda7c3c",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "06ca96422058799bbc2ef9b266fcbc790265ef0313f704763ed48d91a6ef597c",
         "packages/solid-hotkeys/src/appHotkeys.ts": "4494eabd3760ecc81a40936e03e34ea9a7ad26fb3998668b34d5f2c0cdd25136",
         "packages/solid-hotkeys/src/createHotkey.ts": "17bbb96271aa4c1a7cef5741edf199a367a6d7ecef5a328b1be6b43ff052b349",
         "packages/solid-hotkeys/src/createHotkeys.ts": "2370f32eb6740eb8799417fc233ac3c36a5f6470b1f439de05c29002fc545176",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d231d28b756c1c7252f52d12b04654dddc6c0323352a7c38c821cc9d9f428669",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "03bae3471e9d7b1b2a9ad2f8c7ec0541f6e0896b8a72be0e34be98d013d8b54c",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "f60367e6667d76633886af1398807b5ad54e4586e58b41b2f6d7ee180ab0e1c4",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "4fd46081dcce520aea19e850e1443f696353419940bc9a9801bd073817a6a585",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "abd035cea0913fb80716bd04b710267118c83ec761081b5de97047a2f98f5ce0",
@@ -376,7 +376,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "78dc96dcc7127235a29ec03fb41920503bda7838b8e54b878cf5b7320d2c8f6b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "dcc7112c4a11a36198083d3f9c18dd6d5cdddb10248ed65ee14b8ff15f0c4757",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "5ec9bad56cc543b56d985c56324f5cb557e5fee624b209e8361a0002e4fd888e",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "642d1655c9e10de79b7da415f36f0fead499bf9c4b4e79da7c28d1da52edad09",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "edb2b4a66eb3f114ae6cfe515e213fff896c215ac51fb3a1d92b1e8315bfd81e",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "9ff677a8ff993fb9a8e749e6885cbff28fd08bd1dc0f8d0150da19d29ec18736",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "c7b37b66dc4310be828619997ced75f1b6e4f6a8d7606bf3404c5f8abc5f2528",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "2cc7eaec4d348401d36c7b1a06903e91b13ee41c3057eb2d0f7bda55f6c9fa3a",
@@ -385,10 +385,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "f9090de677350d72ae3e1732eab11e5b89b5cf00021f2cc5e88d2fe3f2fb743d",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "396283cd8abc76484f077bb08fc49d36fb03a68a",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "updated",
-      "reason": "Synced skill_tree.yaml after removing src/utils.ts from the Preact skill's sources.",
-      "evidence": ["_artifacts/skill_tree.yaml"]
+      "reason": "Logged that the ARIA formatters announce only hotkeys that can fire and that the provider option applies app-wide.",
+      "evidence": ["_artifacts/skill_spec.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -647,23 +647,23 @@
       ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "2067e8dbb522c58125239f473e3279234b39647e91228e14964d0e70dd3dfb9c",
+      "fingerprint": "3226c84c119da6a5191ae311b8263ad539dc419628b7b3b72def14a50d80ca13",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "66ee059d2587dc6f69723eb2b80604625ee90557dd7de235d77118c9eb1e7f54"
+        "docs/reference/classes/HotkeyManager.md": "3a4c1c77c8902a2854341673dda0dd0de83830730296408b121a6a5797969a2f"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "99bf92198eba0ac8b85a6d7314e7313c74373b0a20f06a7b14ec4fa09ebbbd4d",
+      "fingerprint": "31f744e6f9ce9bc76e0a665e6d19bf006c6003a506e247c0ccc83c0ce269e04c",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "5abbeec50fb5f62d3eef803b5b3a1d8a00ab740db4b2d33ea773583afa343493"
+        "docs/reference/functions/getHotkeyManager.md": "aae7ff5221fd0b84965c9cb49b8cbb1dc75cb3a6732b5684ecfd12e8fd1bc1f2"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1200,23 +1200,23 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "3e21fbc0ca83cbbbe2792bffa137775cce814c7a3eb9fbe31bffdf2d18d52afd",
+      "fingerprint": "f24c7f6d047b65ac3da233e206cf90111e68aeb9f3ea6d74709ecbae5b3cbbbe",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "f0a78fe4788cb8d369022a2f0d7087fd0ad6b787a99ccab7180cc39b50e240ff"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "2255c92a1744c6cfd82e6d0d0cb25ea7f7aab558a30a5ce2a4d3f7b7e99769ac"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "420028b74eccccee887f9947008f45d8e1a43bf398f8db3ef28849319794d8e7",
+      "fingerprint": "019c99ba9d30425c11a2597e153457a3a03521cae32204428a7738b2be5b091e",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "7f650916782ff773633a9aaa12199bd5cf6424e83456594c53d6fb5ca6f04ad9"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "27d2f7b5c5d6991efc3f74730cb56c772b56251a87e335a77df9374940137727"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
@@ -1266,23 +1266,23 @@
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "dfdf0936c0cf23ab03c888fb22bfc3735d6cdea8c375d3b39a2a8edb76b79b92",
+      "fingerprint": "1f90c0b60de795c5bfcaea24a22c36b96ec2d2e8a5dd71eb40ba115cb5a8fcfc",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "ab9c70bb0e6031c45bb4d59e03261b3bc6cb2d3c44de73ffadb531a1606ed97d"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "9fcf0d95725be1733bcfdbb5716676ba348f03a7edb22de485165fb1aeca609d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "bb32ac0f79e785f6d65707d91d6121a83d1fffbe745bc951599778aa281562ae",
+      "fingerprint": "bcdbaf9ba98d535d8c153d4d3469b03fb983ee6f830fd51ad6374f12a1615d8e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "1b75896137d4ae2f47c0859125d29e9fb6d5a5cf8acbe5f9109daf1313c38085"
+        "docs/reference/interfaces/HotkeyScopesState.md": "f192279133dec0d435ad6f4f912af2e1ce8a0f88fa301cf99c499d98311bfb56"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
@@ -1376,13 +1376,13 @@
       "evidence": ["Core, adapter and e2e suites; battery 159/159"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "07c770edd0703de40fe67f017432fd7bb7a203ca42591a3f7afbcd1971195003",
+      "fingerprint": "e832e1f6055a34407f8265ea2b25f10f263212a811cc4b79e9cb5ba2f69ef2c3",
       "snapshot": {
-        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "14e92d8d8f3d5fe1a16f07137e8f0635b804bdc64f492562ce22fe85f52d77ae"
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "1ee31d07defcabed449264b315a632b82a8e38d907f70c960e9f8fdcd409e04a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/hotkey-manager.md": {
@@ -1456,23 +1456,23 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": {
-      "fingerprint": "2f10c05548b48a513e7ab2d5a5856b6dda880237e0877280fd6b0081b3b43ecb",
+      "fingerprint": "0897afab6eb6731380b99b0e594efd9542061988f44ffdf0134d5e46f5e8bc65",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "a0328ae30cb1da7115f476e0f0c2efd1bc68367f85e4adc3b2cbe37ba7cf707b"
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "926ef092369544f8e8ea8cb41dec552cebc96ee115ec192920d8fcc21b8ead2a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "65d10489485df5ac54b97e3474dd02eac8ee3740304e2c47e0a9085b0e10356b",
+      "fingerprint": "8676efda0d25efdace29a052cfbaab60656e022e807da470adaeaabd4ea21ffa",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "015c382da7b17c41179fa9e8f217427b008bc18c8073cf59be287d7d983440db"
+        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "f1d54cb33a444c5c040d1ac7b89bfef5dd883d7bc2931e00dca61032e956cc1b"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": {
@@ -1550,13 +1550,13 @@
       ]
     },
     "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "e4ab2aefe6ff5c1365124f08ca2dfe1ae27598bcd123b109ade38356cffedbcf",
+      "fingerprint": "626f3dabc220f3c5206dd4407b718f99a0e093251cfaaa0ef9370e2b7a0884a4",
       "snapshot": {
-        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "eac3778d2844c0617750bd221b2d8a0bce97b8c63e75595953a1716a4a36a699"
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "9deb533913692419cf944926e2e1afa598cedf0bc3330f567d5a2a84fed31c8f"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/guides/hotkey-manager.md": {
@@ -1590,13 +1590,13 @@
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "339461150558a45fa4694314071856eb90548f2f84c9356e71ebc9e35ced64d9",
+      "fingerprint": "7c6a12e074d89bf0d553c5859e33e10f26ed32fe662dec4a185b41aab2f25462",
       "snapshot": {
-        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "ffd4cb4aea1fa25732f75d2b7691f4b8909ac462c953365c69535b0ec6c9d7b7"
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "43c651b42ca539643693dae861680b8ebd3a05feabd4774b61307c02de3acefc"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/hotkey-manager.md": {
@@ -1630,13 +1630,13 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "ecb94433e5c8b5304d19b196a8fd0059ed10a4e256657f97b4079f2d4a1d7187",
+      "fingerprint": "0be8dbfa45e6aac82889d526de532e7764ae5402b71ce194c7c4ea73643ed3dc",
       "snapshot": {
-        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "f25189bc9f6837b3272ede97c18e22bef6c09e5b42c3636e508d393c4f8fed89"
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "df1e89f98686209da4804b0a1d5eaee0d693f1bd2626a7a6b56f2482806880fa"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/hotkey-manager.md": {
@@ -1670,13 +1670,13 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "72f3938c8a0c9fc936f58d1ba5904b940b47b8e6430add241b567cd5fe588837",
+      "fingerprint": "7e42cac93baa54fee613ea1375ff656740e094fe266ef2d76f7c81ab81947571",
       "snapshot": {
-        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "db6f499957bec727ae1350d234de024ce3f2f0b8e8e141c2f8cd95070d4cb745"
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "366fb3c9b9580e02a21fa1a3aa78c9fd9c68d595e720d008465af298264de79b"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkey-manager.md": {
@@ -1710,13 +1710,13 @@
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "aa97059295167a3fef6d2eac78316f2d6a06f8d564c4639e097d90541dfca448",
+      "fingerprint": "4868cec8d8b0b8e933a9f59707e6c1967bb005765ed3fea3bde8b0e3158d9cb5",
       "snapshot": {
-        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "c04d5a86e91a0c8c3c373991f207ce792985f01e748f34099ff7e5ef70015ecd"
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "47810e8e0773a641c2ffd472489952e4d1a9f2743314e5be8ace579bb88d9a92"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/hotkey-manager.md": {
@@ -1780,13 +1780,13 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "1f111f603a481ab33dd12044a257e20856a6333c61d86567341d694d9b6db6b5",
+      "fingerprint": "74fb4c7d2e3198415f44f1206a8a1486bc80b91fd00743d90e39bdf549de26d0",
       "snapshot": {
-        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "b07bb93bdcd80fab8dc853598a166c0abc3aea6f81aa442004f95b0055b7ce2b"
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "987d7f23894425666d70dd1b31147bd65662bfe5138d2759bba4fd39cdf9ec69"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/hotkey-manager.md": {
@@ -1820,13 +1820,13 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "e0aa02695b2329b43d971978488f378481816e60a19c146bc6f756134221098d",
+      "fingerprint": "edd796c19b5372975bd1b67fa1f22191962a2886c2ac29a197a4733a907ff7fb",
       "snapshot": {
-        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "07613524325c2293d33a718a6da73fa6d856e8a864649ee0c8d08e7e2ad9e3c1"
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "3591dfdd502f67ac193eaf0fc32927996ad78afdf2b51295e6e075564edf6188"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/hotkey-manager.md": {
@@ -1870,13 +1870,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/cheat-sheet-ui-helpers.md": {
-      "fingerprint": "fddefc37cf82298fe07352563885f464342aaa1d10fc7cee9bbc033fc173ccde",
+      "fingerprint": "eb40c6373978c62151c9b14a1e6c27ffc06e8afea37929815de92860970da5c5",
       "snapshot": {
-        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "8e2873469d8f359e3d8a582b1428cbd760892ba1a157a0bcc4fbe39736d7cf7a"
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "e46a2021eb818545ffd5727e5e034469ea56537f7a4e101c783e7b6dc23f8d56"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/guides/hotkey-manager.md": {
@@ -1940,13 +1940,13 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeyScopesState.ts"]
     },
     "source:packages/alpine-hotkeys/src/types.ts": {
-      "fingerprint": "0c3f3df09bda7fc93de62ba878222ce6ddaa6c4b3730aefe43b96dcaa6e957bf",
+      "fingerprint": "89b5a65115980a88593ed2902d8be219efbfa3be4beddd352ac1aa07749dbdb4",
       "snapshot": {
-        "packages/alpine-hotkeys/src/types.ts": "e8c9115117cbf6a2844d751fa083b0ba1b712fe58ebdb4092be7d607b347d44e"
+        "packages/alpine-hotkeys/src/types.ts": "84b9da0df01d22db946dc106fc3d256d89a4a7af9046db490f6386b70b80768c"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/index.ts": {
@@ -4236,33 +4236,33 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "1f9448554ed469e55eea73aeceeda4360bd310b715ae89301b79b382aab3b182",
+      "fingerprint": "7b7cd03ab2e3ffc4a88c796c40561c68276b41472c5ce4abd2c58eed27e612dd",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "9112ee8e42cd92c042bbdb6aeb2c3de5367f1005c4d343d7f2c29fb90dd6b00b"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "0144ccda9c23202663a8ce67320c14f580cd9f4860a8af3a86115e626605b604"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "dd66637149ddfcaba92914ac1f69a634a56f399396941a481ee8f8b94b15559c",
+      "fingerprint": "708a2e6d0f1ed48bf562c646ab8b6e08f2d560c008ce45dcc7fcf3b04fd90c65",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "ff19dceca487a3610de615f5851d1f6d1659eafdbcc514b1203206d43e55127d"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "0467d76d4d78b39b0d47757a9b36d282acb4e687ef3833e94e947ab333585352"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "1809526453a99209a7fd82f67d9199c1d2c918fb4d7ff725aba1461dd5ebc3f0",
+      "fingerprint": "562097078f2012a8c79ae9dbebc8b57e9be4140a0d6e382057eded1755ff3b90",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "efa7446ae321d7d200fb0bb009684f97d44544c79cf1c306ecf8ba9cfec07c9c"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "93d144f5ebb7c7451f0e4cdb6c51949cd84e46faaaca74a06bcfc83afa06cbcb"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
@@ -4686,13 +4686,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "d9ebe1fdf76cc1d590ba5f3d0eeac77063dbe625c29686c38a784a22bc555d87",
+      "fingerprint": "9380ec5e386e46c8b382864722413d9d53daabb3c9761c3b23a95b799776d665",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "69cd9cdbd6773ad78c9c005d846c83f6943e7cc5482dbb38d82cc9f5fae21c66"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "ee0467a6bf369ea325160b45d36e899e97a9e951f758e2357aedd84f1a8c6e47"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createAppHotkeysStore.md": {
@@ -4706,13 +4706,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/createHotkeyBindings.md": {
-      "fingerprint": "03beef853185e265894e3a913d15bd7f0e7defcd56f84473daca1208451ef54a",
+      "fingerprint": "7ec5ae9ffc20b111da7d3d61b90afce0790497637cf0fd82c7b710434a98e1ee",
       "snapshot": {
-        "docs/reference/adapter/functions/createHotkeyBindings.md": "88c74101fef887f53c4d0eb848378b3fa6c4a0d14222bef02936199cd9b7c0f7"
+        "docs/reference/adapter/functions/createHotkeyBindings.md": "2cf8f727ec24fbf72f693f98979f9dc9a0403ab32d6206b581c4c8c540c0367e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
@@ -4726,163 +4726,163 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "3934a4c64a45ce3446a6480cb54a09e734b5c908f5be19fb99dd6ce75be590cb",
+      "fingerprint": "16d6534ae75df016f581d8267649b785da332ec91f0537b26549fd664bd8ea02",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "b8335b7bfcc26f0fdbabab0f1012f874811e18218e0978db8aa5945a088ef628"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "e33bdc4b465855d692ade262cf679edfb1de556bd111258d9ff1b9be4d6fb6a8"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "fb3208df3d0747f04603cb58e5ebbc30366a69d86a683980969e0c1905d3bc86",
+      "fingerprint": "41fdd7e0cedae60497f2d72c5ca286e91ef61f373aa8763a23e32e2f0aef35e4",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "1dd4d1a379feac6941b32e201bda057008c791b9a110e7599793cb7612ac7754"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "dae28ba6dc5dba5bb277380364701505f45905cca983891b0c3c4b3c5b2ebc6a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "6687df29d85ac7c3b1ccf469edd8375dd4d40b0d2fb960dba79c35873eec1a74",
+      "fingerprint": "e86db512bc37b1a3ef1f45cec3afd242fe8622312cbab87f820cd17e48c5911e",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "268b4ee2b2cfac030c8a443c300e051dec5382fb072c75350244a3f47c0873fc"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "f8cfb142870b839d2907dbd19cb7cf5192b5f8374eebf83323fdf0d277c4e7bf"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "9806701f72c684fab80105b8f5bf78608452a9d6515e8cdc761a65cb57bf7aa1",
+      "fingerprint": "bfc8d368f9dda0f89c9425f33ca537c6eb7b2aaa3ce5f6ed00ec08d6180ba920",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "5e16521404bed2630b9530a70f7bfa4d6d1384fad9aee7b84cb13490654f0dc6"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "9567491fa67e7fe2d11e433599027c4362e10e2b83ae58d50e69d41bd56c1f35"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/index.md": {
-      "fingerprint": "1b868131bcc75bd7a16b001c01543d1050bc0b7a60409b17af2ef9d5520f589c",
+      "fingerprint": "76c86a54179e9b6f61e3ebcb61ec07dd1a062c079f8027261e76c69798fa52da",
       "snapshot": {
-        "docs/reference/adapter/index.md": "c51d19c88ca9d9e606517bbfd242ee752ead58292438c3a01c86ae14a4a88f74"
+        "docs/reference/adapter/index.md": "d2cda94f3d10fe272b822ffbaba80464df8784fc498e982b42092a00c518e78c"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "46dba8c7806af351e6f84a5b998a44c306c96c500ffb1eb387a14a80d36367d0",
+      "fingerprint": "8bd9fc9e3659b1d2c8318100c46de06ca6c4c597055fc9754b4bc0f1d1e5dab7",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "7e6196be79571040aca18e49f3ccd0a5fe48e393fa2705db93f4e9144283ca08"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "f97685f1b234f1accd67f27cecef1667d7d3a391ac61773ad2283615b8bbf99f"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "71a327cdbb09921a74253654d0bfd35a27d3b47d77b377158a8c947abe237bdb",
+      "fingerprint": "cf91df10d0ee993e30898f72947fd7034b0d26837636f2313fe57835b1f63fa1",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "45c3530a25f49d81881876612ed4ab7f44830cf8004cd6cbefe075fa0921de0b"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "fc7eb9d0ed5775ab4fc9d41f4deb85e42a17dfd23cae04fe34975d5c15a5c283"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
-      "fingerprint": "4c1b5920f88ade80a8305ccecc0596cafc9a3838ae97b1b81f7a497da840e274",
+      "fingerprint": "21eeeed81a4638e6395c0d5c161d5820b53680dd660b09afce15cbe17736a0de",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "4eeae2469a49211f851dd6b556104d2d70abbe63e1849025365472258c77d997"
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "93746515e9f6fd0b17035ca233e7862c8fca63816ac16dace12cff76ee3653b1"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterChordOptions.md": {
-      "fingerprint": "819bea7a1d795124aba3c7e5645c9b07a26e9046bd22c5175b17ff9bb27beed4",
+      "fingerprint": "95143acf205d9beacb611642ea7b7695b3cc13c1c7471bfe5d88132350269c1f",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "a956d729f7295fda6d8b9ce63edc31a0c0128a86a48faf9c04f256fde88ac961"
+        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "140d2fbaf42fbf955005c05ceed27ce0cd34cea722d8b23cb5cb0fdd226e2b9b"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterCommonOptions.md": {
-      "fingerprint": "e31113778b430e160e48adb9075cf2d4a0bf71da221609c1282fc1c7577c4c5e",
+      "fingerprint": "2709fc56dd0ec6b0835c2450170ab7760638ce80a0d0108a7f6592eef31bec4e",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "4f5cc9dfd799ce9be8065cae16cb1d0366d63168ae112e976e50df5d8226b719"
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "35e37bfa9df01db7e959be63648e6f4b953fd745c29d70c2d1c53c8f241ef1be"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": {
-      "fingerprint": "2fd2626f7ed2616132ba73605695cb544937e451e99437438c51f43ba2dd9d10",
+      "fingerprint": "18daad831b01cb4fd87a82e58f0fb5a2b7411ec3058791ba0f6357155e3a2aa3",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "9e3cf064b05d16b7ec7164001c672708849958631a931474c1739fffc602de37"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "d8c4fbfe47aa709bf021425478f96ba12dd374ce8edb9133ed4fe7c35fd5fdc8"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": {
-      "fingerprint": "2844f1d4ef705b2e6b1e998212df67c66b609c1bf751d9ef666955a555e27664",
+      "fingerprint": "8ae2a6a1dd0a46a819fc8eea177c1dd234fd67a85e076e55e17913deb7351b56",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "be5754db9a42314f1becab7885e0f0bab5e602444d1796100c18fa7f773ee245"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "462425585b63af8f6855e70a8ff7088f93d8234f85b9787c821b7adc4d931b0a"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterOptionsFor.md": {
-      "fingerprint": "e4d8db060d5fd39e6c81fb2c08f60f8ff57103cea908b31bbb6c176fdea39c91",
+      "fingerprint": "9d4c02da1773a9d21cf75f2626e4e1f621717557a2d4e11e77776d36ae5ee83d",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "bb387b2365167842ad3a3e058c23934c9b2a6646f30426c25e735600f1001693"
+        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "1788a2a4ac0ed50202b267932ac650822c0d1ff467858fc3650e907cc2ecc605"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": {
-      "fingerprint": "f8d715cd4252722542eacf7466b00841a76ccd8362eb7d3f9cfa089024d4eae3",
+      "fingerprint": "b11b97077e0f3fd06d1c7edd844789ce7f4661c7e5770fc4c44888e18caf5b0a",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "4a753370c5cfdde31ba41c8e2e56204885ad4e9ada9f13aef5661c87bb8a5840"
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "21558539cb900c25f444151c681965cce5ac1e8fc2539d552bcb1af86c9ee701"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": {
-      "fingerprint": "905f99b1a5fb8fcfd2ce4e22c633a7b882725d0fe85456b295cb7a181175c54d",
+      "fingerprint": "5ae2db68be7aaf95aec3599ded9fd0903aa7153ecf010f97a385bdb3c3eab3bf",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "8d99ff651e292c643567585193804cd89ac561e7a80b6cce90cf3e40111a95e2"
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "6bf8a2d6ce80fca8f991ca573e745d06a1cdd3fa9acea5d8d159b5f18e5628f2"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyDefinition.md": {
-      "fingerprint": "85b0a0a85b437467efb40e724d3073b8f1a5d2d098c1fb544723dc48fcc77697",
+      "fingerprint": "036fb6a8bea69f43a8276bd98852e1f036968162499bdd13549577dbb0f9976d",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "e9c949faf4ed9446cacb0fdc7fbe883c79b645c9b2c051e8f3ff97d75f996e06"
+        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "c91cbd58fe1a287da85d30e3b4e101571a7ba0c7df4417137d0413e3b3223c73"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
@@ -4896,13 +4896,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
-      "fingerprint": "597d03d04478329b5fed41269d35b686ce41d335b4ff9589078f80f122f6ecaa",
+      "fingerprint": "0219ab2d10ca512634d5577834947a33d605da0e855187a6d878b32dadb57034",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/WithTarget.md": "8c0bdfdcf6bec37ed1757fb1a2f8505f703a94eee21f32a2f16c0906282305df"
+        "docs/reference/adapter/type-aliases/WithTarget.md": "ad596d95aa422b60d8d7d7ec8bab6af2cd142f82c6ffdcdaa51a91d5e30f0f42"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
@@ -5214,13 +5214,13 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "1fbe5a4af4201221ede858081a546aa5f9c916751d9a002ab9c70df543903819",
+      "fingerprint": "182addfda77b0c7c4c1e66641de129d3f68523780520272b21488e33f6c85b0f",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "30978725bedbcc125f040f4ebcd9b59456cf5f165a177b72e040df3885bbeaba"
+        "packages/hotkeys/src/adapter.ts": "e79bf39334e713a679c85df2cb9d10a0455453e213a3ff91f81fa523c34639b3"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
@@ -5860,13 +5860,13 @@
       "evidence": ["packages/hotkeys/tests/key-tables.test.ts"]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "259d5963a55b251e6a4508c1dd2a4920624dbd4d2a9ebce0b26c661d6fe4e86c",
+      "fingerprint": "8ac43449c35bc9ebe2dc9d033c00ac09a5f517dfb72baf7ebde9aa7b934e44dd",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "20d4b3ba6ff23843f610a3d0c161ee78c22a5bdad82042afb0521aa22e043f8e"
+        "docs/framework/alpine/guides/formatting-display.md": "9e127e5e36868915d10ec58aff2a1084c85a389c2f67ca04478ce1a2f4440ceb"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
@@ -5882,13 +5882,13 @@
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "a938e930e5dce63538660940c3253c935163017a7817d6019eed7b459530247a",
+      "fingerprint": "177e4aa1daf6e022f1d89db0f0db554b8a584ae9fad05d3dc8e7c254ca3909d8",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "c046f1fa997e8209c5c3c00ef8d46eec72bd72963240cf457b76fa2e451a9b07"
+        "docs/framework/angular/guides/formatting-display.md": "a18d72902915a042ce23c1950c28c24953324b8e5784d6998c5058e89ea954bd"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -5904,13 +5904,13 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "0cc835c9316f898994b541acb72f00522793a7650843613c9335d4b23d198b07",
+      "fingerprint": "cc128f2a3f4e2a7dd93d3ef2fb81401e41290a13149e981596147783928ef9e2",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "91a79e1c3ac555145f81a267f8cad3139416155c300f687919aa98ee6b9ebb0c"
+        "docs/framework/ember/guides/formatting-display.md": "a4ccc57e51dce9462b0082d584d8087168d69214bce068a589de9ea09d693617"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -5926,23 +5926,23 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "dfa524e7a594ac827bc93b88a168e738ab9072c784c44a3c9c0b3a0e0d819eb3",
+      "fingerprint": "f45ac668860945e634c0e1c7cc51b839f8bbfb75fc4b7dbe1e6fe646d79d7836",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "4515dbcef78b7d65798c088df38cb4c49451779c66e3840a4f067c0427662d5f"
+        "docs/framework/lit/guides/formatting-display.md": "5401425f321ffbc3a1fd4a8ddb173a781cc153428b9db1d7ce633e49edb29b17"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "02c2a7565083a90bee70ac37e3b9d3ced73457d286837f03b8f73a419b6a2cd5",
+      "fingerprint": "9e362e77fb49f98a7c542815852b33b4813dc2a5289a3fe5e074c3b40ff86d06",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "69e5d8bd79f07d86b992b244aa88d0a1b77c5c3f9e01f5bbd69723a6af9c25cc"
+        "docs/framework/octane/guides/formatting-display.md": "ab18eb8c27a3f258aa6a8c06c9e0ff8477fcdb6f9c9e64b3c4d844e012019a2d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -5958,13 +5958,13 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "fc9520e07628c8de96be2dfc8d56bf7e43e127eb781e97c6f08e308e06bd6f26",
+      "fingerprint": "45c6b2c377a6b7bf5522f9f043a8a7bce66f59b5c0bb1d45978e4c34c0f68277",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "07bfebd483a5e3dd4ea8cc42382475c7644ab5135a8a94a04da80d31089d035d"
+        "docs/framework/preact/guides/formatting-display.md": "da906ea918b7767c8605eca075ba3579f7f43028ce3ba5a9a4014dd0db88cb37"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -5980,13 +5980,13 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "82f2ce5bced8b3498a27e68c5ef22f9a72d6da468e0a263076dec5a342692f50",
+      "fingerprint": "f6d8ec665cfa7170e74e571397e09f6466876ce2c29b4635f0ddb6595de147d4",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "afc9a07509c0f0867c8cbd7ab16b734f17ed9014b0ef341f6325e842f33c4487"
+        "docs/framework/react/guides/formatting-display.md": "1b555a7ed4b2a9dfa38c7d2ad48317516d2713ff589bd37502013a9a974ee81e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6002,13 +6002,13 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "8d941b27edab5d41ae093b949af5c726b6711662bd2961f54774847b56914131",
+      "fingerprint": "ed231b95d9aa895e4fc2ec63abcb4fbd3b5a4c8eb0a8d283021b2ab5c7f2d8ca",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "70d9d9e025e3400536a1fbbc609eea4ea9d12e3913f882adfb3d4ad2e9f0c194"
+        "docs/framework/solid/guides/formatting-display.md": "c711df92c70bcfec58de4a3f1b506005379aed938635612070150c860087ed14"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6024,13 +6024,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "a631469ad1a036ea8345a31405a9f989ac9ed81cbd6b59039b604a36d16a5233",
+      "fingerprint": "28078aaa901d77a4345dd4310bb5c85474e661bb5aed6a7d1c4c94310522c930",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "9ba2fecca5ac57daa1c4c30d97c4ca40101db7153e18382458c27f3741292112"
+        "docs/framework/svelte/guides/formatting-display.md": "7dc40351ba813dd844d40db0efe74f288f223773c2387158a5a3b2261ab98602"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6046,13 +6046,13 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "34f47e2cffa11b50baf2a286b16f43186ab58c65d011f6eb811c5de5b79365d3",
+      "fingerprint": "a0c3fe37c7e427aabb8e98740e440768237c256529147c8d4400129c883ffea9",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "ea2e68904ddc043ab0f6f22203bb4aa38264629dc32bf194857d8b2e9bafef29"
+        "docs/framework/vue/guides/formatting-display.md": "b01e6d4b096d1ba014dc8d7b0e15aaa652c014dc00af636644dfeb173f738de2"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -6921,11 +6921,11 @@
       ]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "a4174eb13810776169f4c8543a0502423b6b21fe0b554cd3f0cf9fc05e59dac1",
+      "fingerprint": "00b948fd64eb7393b709d35e645bcd9ae6db4f1170fd64a023a095e416007f03",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "aa985f4095f6fa2baea2106c8319c08e50d05203874ae1441a95b286b547e080"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "f74d16f51835f188e1ecf6220fab9178547c841dabfc6bc7fbd5ce7be4938ab2"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "out-of-scope",
       "reason": "Test change; it describes no library behavior the guidance covers.",
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
@@ -7794,13 +7794,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
-      "fingerprint": "4e6a3d51a52683210c380bb32ea642e85a7d26dfa579357f3f8d9205085c5015",
+      "fingerprint": "17be1064ac963943726c010887d4fbcfd4643bc3dc8f983371ab1a071cfd6909",
       "snapshot": {
-        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "0e4cd6dd614522ec7afa4d90611ce20711c585f146df4f050377fd43caeb2b1d"
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "7e37f7766d918f60916577fc7637ccf289bbf25b79fbd3aa229b571adf0a6901"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/detectPlatform.md": {
@@ -19234,11 +19234,11 @@
       "evidence": ["test-utils/src/conformance/cases/provider.ts"]
     },
     "source:test-utils/src/conformance/cases/recorder-hint-format.ts": {
-      "fingerprint": "4625dda2e3a176dcd911f5c86d3d385810242f580b4d704157ed0fd796ddbdcf",
+      "fingerprint": "4686f79a398da73729aa486e4683fd0dfe572f70fad506f96b3cc2188085d6e9",
       "snapshot": {
-        "test-utils/src/conformance/cases/recorder-hint-format.ts": "1e345cf92682f755ba2fcf77e34cbe9503b82978f3ddfb041ea91a996084341d"
+        "test-utils/src/conformance/cases/recorder-hint-format.ts": "a55c1e81055e69c1d6fca332492463b8fb0e19633661654dcb4d2890e525239c"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "out-of-scope",
       "reason": "Test change; it describes no library behavior the guidance covers.",
       "evidence": ["test-utils/src/conformance/cases/recorder-hint-format.ts"]
@@ -19751,13 +19751,13 @@
       ]
     },
     "source:docs/reference/adapter/functions/namesPhysicalKey.md": {
-      "fingerprint": "f090b22c0cbbe3fbf22ff6ff9b94bcc14c1cc18b62d8031e09ad9b8514e8bd45",
+      "fingerprint": "d255c42797bb422b00859a216b6bc18d07374e0c21435bb6444249aeb14b99bb",
       "snapshot": {
-        "docs/reference/adapter/functions/namesPhysicalKey.md": "debbc1c3c3ffb2cc179c7a52b94f6bbb4ca85b32fe77a8eb17c0a1cde1d88a3c"
+        "docs/reference/adapter/functions/namesPhysicalKey.md": "fface5129b3f31426f4e00402d83e27d210b4e5a59e80577839e17d16de9b190"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/getKeyboardLayoutStore.md": {
@@ -20788,73 +20788,73 @@
       ]
     },
     "source:docs/reference/adapter/functions/bindCustomHotkeyActions.md": {
-      "fingerprint": "adb3f44d87aa04109f3a8adba6a618e6e0c17f1cf1d419e50f57be0d4ce5cc9a",
+      "fingerprint": "7c77dcaa91821ee6b7354bc3f87eb5be3c596ca814147851cc88f556a25449f9",
       "snapshot": {
-        "docs/reference/adapter/functions/bindCustomHotkeyActions.md": "f2985c1348b452bf3a026f3a0e6b217f824540e7ed57ac125bcf4e7d4c019cf5"
+        "docs/reference/adapter/functions/bindCustomHotkeyActions.md": "d785189a34229352677c1cb0f8e1748adaed335518e6e6f03b4fc62de00a962f"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createFormatForDisplay.md": {
-      "fingerprint": "e6a3f3f8e6adadbcb4a9a5539c3b1aeee5a0ff456bb2dbfc5d342a4df06fb263",
+      "fingerprint": "67d17d935a711a645f13660c3364b27d09349af785aa4b962cc4e6863dc55de9",
       "snapshot": {
-        "docs/reference/adapter/functions/createFormatForDisplay.md": "e87f86f54fed4f463bc8bc0995e30ed57c564bf659b2f29fb12c727ea1fcfa3a"
+        "docs/reference/adapter/functions/createFormatForDisplay.md": "7c29a7482bfc85a78a69f7ff9a01f6ee18b6326840afe0f919586a1a1b813092"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/followKeyboardLayout.md": {
-      "fingerprint": "71c2bca96f21b584eb3a20ebbffe3a6e6cb0478da005b952f33c8fd8d8323ba0",
+      "fingerprint": "95ec3336c69c053d7684fdbd592eeec716b56117fcaeb5e367ccbdd1d5c076f7",
       "snapshot": {
-        "docs/reference/adapter/functions/followKeyboardLayout.md": "ac33a1daedb1fe5ef227a87ae888a3cfd9bdd683804e3ab3bca3dab1fd817c69"
+        "docs/reference/adapter/functions/followKeyboardLayout.md": "2944f06430f6deca48f8151cd1db46265cf95772f82cae8ab212221ff8038381"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/getHotkeyRegistrationViews.md": {
-      "fingerprint": "48d495c7b8c32f7836610b6f218bb7ca4d7661a7ca0e5971a53213baa3d8dc85",
+      "fingerprint": "e4531edb21828ce242e6fb5d9b0e7859d43d26523d7134de36860f6264224313",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeyRegistrationViews.md": "fb39d0119f6e242096de6b6e7d6e4456ff2a233ee6b7d0ba3c752fd4ff906848"
+        "docs/reference/adapter/functions/getHotkeyRegistrationViews.md": "48c258504710de2ffe9a0461237dc6204c6a2267ec3289bb43ee2ab228f9b613"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": {
-      "fingerprint": "81b79eee1c3a506df1305b3f31d1eccadd608670f7d79b371aebe980affdca21",
+      "fingerprint": "89a916760764f23fbca19da04017c717597f91f58b42765b4d24eb4305103c46",
       "snapshot": {
-        "docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": "c80ce01ccd66e4c89b088cd94e6807d34b7d2f3c898c4061a053dc6db558e72b"
+        "docs/reference/adapter/functions/getPublishedAppHotkeysStore.md": "8f719299db5c9d791f771f945a7bbe9eff4672405514b19603d3e05e96764ec8"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/isHotkeyHintVisible.md": {
-      "fingerprint": "110be93765cec3dfd818c19b8ce81a52de5e3f7728a142c3a4e1d0fdee67cc45",
+      "fingerprint": "0f76e230d823363a182a745299aa5b28b6d0b067b3924727c0eb4ff7336fd9c8",
       "snapshot": {
-        "docs/reference/adapter/functions/isHotkeyHintVisible.md": "eea11a7b3049b0c620c7873e13f4231596b223a7f89114d956047ac15b322ac6"
+        "docs/reference/adapter/functions/isHotkeyHintVisible.md": "f6151a25e0e4cbd1364ce89755bc4d80e2600a33e2db369a3ee00cad8e510eab"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/requireAppHotkeysStore.md": {
-      "fingerprint": "21c2540cf60bc03896bf325e1b4a21cb393892a8a302c0c8b015f341f65febb6",
+      "fingerprint": "7b83541a2bf1a47d67a5108fd9e61379d791aaf29812351ade366b52b2c4e65e",
       "snapshot": {
-        "docs/reference/adapter/functions/requireAppHotkeysStore.md": "6d920a8ab09456abafacc12fa900027d9f80cd7248b8401fc6b96f87cc84e9b9"
+        "docs/reference/adapter/functions/requireAppHotkeysStore.md": "6b54ee28c8f162f2c0381cc571da95270a1c74d9412d3a5061d81727b0de80ab"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/resolveMaybeGetter.md": {
@@ -20870,53 +20870,53 @@
       ]
     },
     "source:docs/reference/adapter/functions/resolveRefTarget.md": {
-      "fingerprint": "3c48737a2c2dc1734dd4ee6ed541f6e24660af7c47e2ddf7c92dbdee8e8a7add",
+      "fingerprint": "ec9e87004bdbd39498d8ca444510784049983a218b41ca3af1a73cf6c9edd5f1",
       "snapshot": {
-        "docs/reference/adapter/functions/resolveRefTarget.md": "1592da6f4a18e365197d24e367e1b30941ec64f3d924569b7ce5a18946a8a298"
+        "docs/reference/adapter/functions/resolveRefTarget.md": "743555da5c505625ecab2e7289da6e4d576eb8c1e3f2440598f3900e279cf788"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysContextValue.md": {
-      "fingerprint": "fc28f7a2db12e2461af6d2344cf581102b26fc80e524d6fc4f98d7bc9fca5e98",
+      "fingerprint": "bf2d77450fbc6b52567c6ee9feb6e6eee1af4c7b1ade225b211b22aada1ba2f4",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysContextValue.md": "3ae98b7d6ff5d20edfaa34f4fa6caadfd294958c16b1389e4ba2372dd3157ee2"
+        "docs/reference/adapter/interfaces/HotkeysContextValue.md": "5b6f862b7c38bad78a98063b021e35ad3254019d378fa33b5b84c56fc38a56da"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": {
-      "fingerprint": "fa37500c89502c70007dcf2e9b9649424b3818fd8165050623a638b06ac70595",
+      "fingerprint": "747d29173560e4f5c06b63d60f44f589dcd965eebf4b99c32495c3772743d6f8",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": "dc9f4d3b137a593ec279a42a570b6fbc4c84fba4f1cd0a9360c7b84788e8ae96"
+        "docs/reference/adapter/interfaces/HotkeysDefaultOptions.md": "0b432baffedd663f90f9518766b3a40802f707cdf06701950c8700f41e71b334"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": {
-      "fingerprint": "883f9ffbbeb12171e621bfcfa5e00657e9abefe3196233bdd2b7861943ee008e",
+      "fingerprint": "8407a8587895ecbf21962cd8cbf383816f4ee8f85f2481b32f127ef951fb9024",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": "9c908d649992e3d517b56f1bdf1de89fb747c16c54bb8e6966b35cb97bd13195"
+        "docs/reference/adapter/type-aliases/HotkeyRecorderDefaults.md": "431c00ea68238004e91f5149734260075948af933d12912c09095fce3811fe41"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/RefTarget.md": {
-      "fingerprint": "46a3b91fe8420ff318d4237f6843d4bb41d5c4eff343ac54221a54434d5df4e2",
+      "fingerprint": "e3520d49f967d1c1b3b8c471109d7150c3fec5c97222cd5c55ccdf82cf849167",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/RefTarget.md": "ba93f3737ad74245cada115f78387575e6bd2ba1224bd811baa6e75fb36604b2"
+        "docs/reference/adapter/type-aliases/RefTarget.md": "c613f79d808a42e04513afa008995db81fd7f3d3e7fe5ea9eeb031d2efad85e9"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/CustomHotkeyActions.md": {
@@ -23466,13 +23466,13 @@
       "evidence": ["Internal file, not exported"]
     },
     "source:docs/reference/adapter/functions/syncRecorderOptions.md": {
-      "fingerprint": "7a513d83fb5db5530344074abf381d9521058b25efeb60fe1f689ed589353cae",
+      "fingerprint": "6533f9291598c873513f2a94a618c981b9b864a3af933807b6410d83453ffbe5",
       "snapshot": {
-        "docs/reference/adapter/functions/syncRecorderOptions.md": "d8e5696dfdb8c74728d394440b01127bed721d186b311135145f6b242e46231c"
+        "docs/reference/adapter/functions/syncRecorderOptions.md": "57b03fd47d8fe10ae44bc8130ad0d11e38740be643360499358ff2e2ac42bf24"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/createHotkeyRecorder/index.html": {
@@ -23638,13 +23638,13 @@
       "evidence": ["packages/ember-hotkeys/src/tracked.ts"]
     },
     "source:docs/framework/alpine/guides/accessibility.md": {
-      "fingerprint": "d5eb308b46048f32d0d392688113d0fb0e4864ee3d28613bf580f51e181cada8",
+      "fingerprint": "98eea90f99f526a605c02854d44bb2e1e34c7b10bde49489d82e4381ad192a42",
       "snapshot": {
-        "docs/framework/alpine/guides/accessibility.md": "4cf9282ea9bf8320fa4367351bda13141d2ba2643b63f38dbab0fce4ffa2c5c8"
+        "docs/framework/alpine/guides/accessibility.md": "41a292d67bc7fde371acc59cdaf4f53ad799a3c5093d0410db037903d5e35383"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/variables/formatForAria.md": {
@@ -23658,23 +23658,23 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/guides/accessibility.md": {
-      "fingerprint": "832ef7d04675e3472b74a0fc28aa833dfbc1e148265c1fc452d840622520583b",
+      "fingerprint": "e8c03bc815acf6200544cb00911b122c12e24260d2252bc0f10d6d8140d7b293",
       "snapshot": {
-        "docs/framework/angular/guides/accessibility.md": "a038f64752498cb2276ae91ba2170c9d7f2e5626b7bda7298f777c14fd4e6350"
+        "docs/framework/angular/guides/accessibility.md": "f69b5245bb1f3c38ef2c319b4b6ba3a8751500b8633f081205c4576a60b15254"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForAria.md": {
-      "fingerprint": "bfe89bfbfd66e5297d3cb1918ab46debe7541b402cdbdfaae5c3cf0915de31ec",
+      "fingerprint": "7b39aeb4543890d8cf417f1e5499668f336900bea1afdda614484707c2f32ad5",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectFormatForAria.md": "f51785c742b9cd03fba891404223a0f8c51cf0d5ee91aab228db07fbfc03fabe"
+        "docs/framework/angular/reference/functions/injectFormatForAria.md": "565a67480759c2fdba2fbdce3bace6cf8112110e778ddf1be160be63d0c87f70"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/angular/reference/variables/formatForAria.md": {
@@ -23688,23 +23688,23 @@
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/guides/accessibility.md": {
-      "fingerprint": "6b893c03529296e4313346919d1fa3ca8781f1f062303c98f908777089741a18",
+      "fingerprint": "011d1bbe36d7a816050f8a89614e61ef0ce6c32b59bf68d6eee83c6b60d7fcf7",
       "snapshot": {
-        "docs/framework/ember/guides/accessibility.md": "480c6eb526efd587f7b2e155d3e642095a8048a327c4007f940e8aa117e10d10"
+        "docs/framework/ember/guides/accessibility.md": "e148e691b893199b4c1fb597b6a245566f85b912722589ca6c87e4fe7f07ebb5"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/functions/useFormatForAria.md": {
-      "fingerprint": "9a7e6765075841376fb45e63bc77965eacf773d6c3fb4a62dac1e3f9bb199bb6",
+      "fingerprint": "61f2c4bc56d7fabd543c74d5191ef21063ef325627f93af7a780e19e0f4e4845",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForAria.md": "3f932e923e7ea385423b226c8375d4500f9eac90024d56c8b13fe8ad035faefd"
+        "docs/framework/ember/reference/functions/useFormatForAria.md": "1ab3508645e7657f66f2ccb7453b16c8e6b39c272fe15083ce4b8cb8b6f2c63f"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/variables/formatForAria.md": {
@@ -23718,33 +23718,33 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/accessibility.md": {
-      "fingerprint": "eb20b5b4224a39dce4bd8e5d2ef44880abf893ba9a870e20350273cf83b0dd34",
+      "fingerprint": "ef51dd6a272fca12fec9fa351b70b6ce0c6c5adf6f50f74de6c69dbf69ff13b5",
       "snapshot": {
-        "docs/framework/lit/guides/accessibility.md": "4e8d78648586763c11d9f585315ce1a11aab09f3294b7bebbf9e571cf263d6c8"
+        "docs/framework/lit/guides/accessibility.md": "101c69df13fd0755edbd2150261193b108b05161088819e6fe3abb1c4d8be853"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/FormatForAriaController.md": {
-      "fingerprint": "ab381f258794285b4d5a2b250da809c4dfd45ad17f4cbaca2c08e7f227b08b83",
+      "fingerprint": "baa08a20ea3fecc0aaf78d8cb29a8da60f3c015bb477e13a6ecf048235652d3e",
       "snapshot": {
-        "docs/framework/lit/reference/classes/FormatForAriaController.md": "bf1a40ccb419f802059d4e523b9a6cf7318068063efc3ebbf1aaf6d61ff2207f"
+        "docs/framework/lit/reference/classes/FormatForAriaController.md": "a2e031a2fc5674f05f37df2c916489c2cc4345f02e700a2714aca55b168b925b"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": {
-      "fingerprint": "408839d5dc01e31cf9af05ec7bfe89eb1667a11850cc90b440077b86034c09d8",
+      "fingerprint": "5f2c38ffe473dd098f22cc2dd90719d0c6eac9f024590cc97709ed50d9379737",
       "snapshot": {
-        "docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": "3b08766eba74f304a0fee3bc498d91de6459f3bf7ebb03a5c9d91dcc86403d2a"
+        "docs/framework/lit/reference/interfaces/FormatForAriaControllerOptions.md": "24b213aafd6db0b5132e451b952b01715c3dad12e1cfd83440532b2cb42f7537"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/reference/variables/formatForAria.md": {
@@ -23758,23 +23758,23 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/accessibility.md": {
-      "fingerprint": "74baebd825dc169786c8dd968badf6a9f99f6b1713ccf9baa650c0c8ed1444da",
+      "fingerprint": "745929ec868486ed8776d4466706fc0d47735bd59037d92ecc05fa6b913e8f66",
       "snapshot": {
-        "docs/framework/octane/guides/accessibility.md": "3be7dbbe45709dc393d15ef76dfd13a8b6cba20fa6b8a41856f6ce61474956e4"
+        "docs/framework/octane/guides/accessibility.md": "a3fbff537e9ea945d1bb25521c108e1dd85e022a7dfe3d1704f6fdfb60dba5e3"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForAria.md": {
-      "fingerprint": "3102df2b721779c7dbff03b18ad0e73e4982c8695b44801644866fdf594e8dd2",
+      "fingerprint": "ce9b775b23b28f57289d5513023821be4d99f07d0e5c467a956af5b3649ba975",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useFormatForAria.md": "1c5731232dfd9dcf17a340711b6d160d1a84ec2fcf8cc0305947899b8e27d369"
+        "docs/framework/octane/reference/functions/useFormatForAria.md": "398e2d9fd6dd797835844901c9b8e49b5610d95bcd62bc129a6376c8428c4f35"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/reference/variables/formatForAria.md": {
@@ -23788,23 +23788,23 @@
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/accessibility.md": {
-      "fingerprint": "370ac18a4e05c3f7a5d1a2d19cd331c30fd29dfe1fb440e5d079cc42e48302ab",
+      "fingerprint": "45c3c181e8feefe7222927ad0ac37883986a1d425fc0e87a4adc61e71b550543",
       "snapshot": {
-        "docs/framework/preact/guides/accessibility.md": "b3c49869976cbc2e63129e4443245b881d8614fa8d6e575814f67315e65efe44"
+        "docs/framework/preact/guides/accessibility.md": "61a559c0fc08323e2d4b4e709715cb0d06bae48401e9d84224693f11874ef083"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/reference/functions/useFormatForAria.md": {
-      "fingerprint": "3013a1b9d40187707b02d0e8474601fe3974c1409c0ac0c6d2213e1f4fd000e5",
+      "fingerprint": "8f339ee3c842b54f0dcb483e190aef02be5cd7e177ab4590684e2acea008b5d4",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useFormatForAria.md": "f5ab76a12415cad476d70b89985715e896da7c392924c40648054554656b0a95"
+        "docs/framework/preact/reference/functions/useFormatForAria.md": "f90bf00c5fa037251f380177ee29e024abe8f4d55b437fac4594a59772977198"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/reference/variables/formatForAria.md": {
@@ -23818,23 +23818,23 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/guides/accessibility.md": {
-      "fingerprint": "c63bf6af0080e07bb793587a8954ee7c3126b2b0e736f9fdae9b6b1094e1ddb5",
+      "fingerprint": "f715c50cf418d9743a8277a4114bf4ffc3d50c3815aa5861dc242523fe65d300",
       "snapshot": {
-        "docs/framework/react/guides/accessibility.md": "92fdec1ed4173f95ac2cb5e3790740eb137347f10d5b194fa95a87c93038cba4"
+        "docs/framework/react/guides/accessibility.md": "7eb7bde654f35871a3977372458a8558375d2b1c7a34dc96cfc5051c8aaf858d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/reference/functions/useFormatForAria.md": {
-      "fingerprint": "35f8929b1df49589f51d13a557c4fd2ab44f13bf83f07dfec85c41716e4980c9",
+      "fingerprint": "a3df2982bed406589f23a6bc4a7a6e89f9d482b37ebc880fa236609e53149dad",
       "snapshot": {
-        "docs/framework/react/reference/functions/useFormatForAria.md": "a5d511e415e1edcb25aed074cf16aa9a26af9b7a2b4a4e04c280592d0d5b8b76"
+        "docs/framework/react/reference/functions/useFormatForAria.md": "b04a403eac9dd9f0d76f8bdc62cb0ad42e4698533b745397bc6a3ee40b9ac03e"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/react/reference/variables/formatForAria.md": {
@@ -23848,23 +23848,23 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/guides/accessibility.md": {
-      "fingerprint": "b3c317edaa4424cd1f8bd850a8dee1be813574421def46f74fbae4891b6a6f88",
+      "fingerprint": "553033a1f54b5d639ffba05cd6dded5b2097a9e4f90d43089ee8bc14054e2283",
       "snapshot": {
-        "docs/framework/solid/guides/accessibility.md": "96393b5388d291990e8fd127efcb2788c36b0adb05a4d4cccf8dd8ae80ea3f3b"
+        "docs/framework/solid/guides/accessibility.md": "bde8f652518f2ae0709f0e2394f813e1d99967f4d90a93b1089e476aee65e55e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/functions/createFormatForAria.md": {
-      "fingerprint": "9b26413d8e5678f3a201de397783379da228782cd8a8b4dc88f9748508060e4b",
+      "fingerprint": "294ef13f6b75411fd25aac9f4d5c0feaa76538c46e699b2fafb11d13863bbefa",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createFormatForAria.md": "df0853d940dddd21556e2c2c3ccc3663b39d2f85640f8cd87aa7fe8efc1f7cc2"
+        "docs/framework/solid/reference/functions/createFormatForAria.md": "939a60e395284950e220e5e0be230b15507ad4fcf31222c2eac8bd2ff89dd6f1"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/solid/reference/variables/formatForAria.md": {
@@ -23878,23 +23878,23 @@
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/accessibility.md": {
-      "fingerprint": "51044a5b7f269e8193ac7a578a84207761b07865eb69cdfc063d814eb9498e61",
+      "fingerprint": "9a274a856a881457bd973f62e9bf44c0e8cbbe088270d273d372b63ff315a6e5",
       "snapshot": {
-        "docs/framework/svelte/guides/accessibility.md": "33dc227eb879ca8a67976657c7b0cd5d3fb93474a896c03e16efbcd1c650a805"
+        "docs/framework/svelte/guides/accessibility.md": "498774ee40d4e204a33c57034a44fad610f797fca1bb92e9b2003c9d37940564"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForAria.md": {
-      "fingerprint": "0aee463e013e3ef4499f705685ae8619eded477a1a52a693bc70dca5bc69a596",
+      "fingerprint": "a7c3c92040f2ac2b87d0fcfe1dd03d5bb12d2d1b459017b184fc2da62376b73b",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForAria.md": "ab8023c707c9ef1a033114b2ea71918d074e11a921df3cfe3b3186e3d53305ab"
+        "docs/framework/svelte/reference/functions/getFormatForAria.md": "b46c65e341fb6a8756e5de95c956dbb14ca84520211fddb603828a48c4482398"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/variables/formatForAria.md": {
@@ -23908,23 +23908,23 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/guides/accessibility.md": {
-      "fingerprint": "98b204126d70a8a5c3adf05efee7494ba191caae4c325c810c6d2fa28fa07eaf",
+      "fingerprint": "85144599bb223c78334ef3c840e56556589b67f0fa5cbea88234a4c512fee844",
       "snapshot": {
-        "docs/framework/vue/guides/accessibility.md": "b4fcbf09393139823ff44c77588b88421c41d0a58e85e830b991add96fbc9de3"
+        "docs/framework/vue/guides/accessibility.md": "07efef1cdaf692e4d55086b4577738d52bdae0c416e287f6a86483b2fcd3f552"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Guide change for formatForAria, suspendCharacterKeys, the Accessibility guide, or list wording. The skill reflects the API changes.",
+      "reason": "Guide or changeset wording for review feedback. The skill reflects the behavior changes.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useFormatForAria.md": {
-      "fingerprint": "b46254e851e25680152f49f48e064cce17481197c7b89f244b0cbf9c005162c5",
+      "fingerprint": "f573ae75000d4afbb19fc62a8cfc96c459272aa1ea12e0340f3d0ea7f566e092",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForAria.md": "929e66befaefb83a40caa792a618280ae0c1d18f7da9c313d32a7359918dac49"
+        "docs/framework/vue/reference/functions/useFormatForAria.md": "0a8c3586c4cfd8ec5932bd102a983e29e97872fe34b4a5b9063bac0fba3bd035"
       },
-      "head": "4c73ae775cc52a41a1ba05a60750cfed3de991a1",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page; the docs build added the GitHub source link to \"Defined in\". The skill covers the API.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/variables/formatForAria.md": {
@@ -23938,13 +23938,13 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createFormatter.md": {
-      "fingerprint": "d62db71d21a3822264cc84c91e69a83f431e0ab51dc41a691665abcdfeacd00a",
+      "fingerprint": "9d4b5ae9c265daad8548371731489bc8f46f8f2394b4b993a712818e71b79bca",
       "snapshot": {
-        "docs/reference/adapter/functions/createFormatter.md": "1ce2b36f8cc604a25e6c05c3ca398508d0b2b3c4463483a9764ffff72ffb1e35"
+        "docs/reference/adapter/functions/createFormatter.md": "0dd269071ebb2381a417829bb7171aaa5111f985d7e18b98c0cf268909907c33"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Regenerated reference page. The skills cover the formatForAria, createFormatter, and suspendCharacterKeys API changes.",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/formatForAria.md": {
@@ -23968,13 +23968,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/alpine-hotkeys/src/createFormatForAria.ts": {
-      "fingerprint": "c3a80076b68117afa2d89e4fff7771d2a4b33cff8b1bdcaa03a15027d987889d",
+      "fingerprint": "02504c990852362497132cd38a14f89dc5609131308d67e3115193bcb99741c1",
       "snapshot": {
-        "packages/alpine-hotkeys/src/createFormatForAria.ts": "a869a04c473ad43bb93321f68bbc98902e9dbaa8404ab6dc1d0d59067abb5487"
+        "packages/alpine-hotkeys/src/createFormatForAria.ts": "cff721031de7bd5682622eb0b37cf357ff5b77c03d590065ea75729d02d7c890"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:packages/alpine-hotkeys/src/formatForAria.ts": {
@@ -23998,13 +23998,13 @@
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/injectFormatForAria.ts": {
-      "fingerprint": "574c9626668ff6294b07da48421d38fae7cbf8d629013782a1cf5b51791e050d",
+      "fingerprint": "d913955f18d9d602b62440d01aeea255415a67641558ebd3da858db89b3ae5bd",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectFormatForAria.ts": "6e33051a6606bdca8b174fa2b7cd4839b20867e3017ce93d15c4d3deb5e88115"
+        "packages/angular-hotkeys/src/injectFormatForAria.ts": "90c93371bae5303196ca79d0d05d350ceda1765b96a7bc38c6157d8f35931c32"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "source:packages/ember-hotkeys/src/_formatter.ts": {
@@ -24028,13 +24028,13 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:packages/ember-hotkeys/src/useFormatForAria.ts": {
-      "fingerprint": "b5728308e8a148cc766c90a2dda47154753cbdae16d73b14427e76f21e93fbc7",
+      "fingerprint": "3af409a1b9d9174770ed38a8364584c3b2b1134902be33bc1cde477b9be108de",
       "snapshot": {
-        "packages/ember-hotkeys/src/useFormatForAria.ts": "af75261400ac137e34466d7dacf26e4828c60adc1d78ebc7ab0c3257ee23b005"
+        "packages/ember-hotkeys/src/useFormatForAria.ts": "55f8d087e1ed6c5d31e48639202f516fc58ea6a22d7a3a8bbfa88f7a69fd13b5"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/tests/scopes.test.ts": {
@@ -24058,11 +24058,11 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/character-keys.test.ts": {
-      "fingerprint": "bb7d60b2c5fee7916c952b6bfab5c60437773dfd700a3ed95d7132983b309886",
+      "fingerprint": "058681164af1f6d1c9783bb837ecc9d589eb76f795bfe03f779fdfa9187357a3",
       "snapshot": {
-        "packages/hotkeys/tests/character-keys.test.ts": "30fe57e0f30c65f70b86d1392639acc5e15507d0eefc47542cda5a7b6ee3f953"
+        "packages/hotkeys/tests/character-keys.test.ts": "eccf2b3764c5569a8759887cbac9e2472e55f37f4af5a1e8f780c96e66f7c3c7"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "out-of-scope",
       "reason": "Test change; it describes no library behavior the guidance covers.",
       "evidence": ["packages/hotkeys/tests/character-keys.test.ts"]
@@ -24088,13 +24088,13 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/format-for-aria.ts": {
-      "fingerprint": "7ef0e62e48363fe38a8ff1e1e8036a402ec48ee032356666b6055d7991f40538",
+      "fingerprint": "be325b6bc3be928d6707a671912fb1c058bccd6229a96eb4c23c1b000e6f05b9",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/format-for-aria.ts": "e3b007c95c843fd16f5b589740782c814ad71f791a4ae6422da183741f057ae2"
+        "packages/lit-hotkeys/src/controllers/format-for-aria.ts": "79633185a74a13760591efe86cc948891cca622a9545fd9687544a9b96619c41"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/format-for-aria.ts": {
@@ -24128,13 +24128,13 @@
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:packages/octane-hotkeys/src/useFormatForAria.ts": {
-      "fingerprint": "4724b430d7dff1e35e1f59733959651bfc9656e23f01aca2d54d2b8a10615ed5",
+      "fingerprint": "81ca40685a4c71444ae18fba91036a2b503d404161fa8e2bd83f9e98b3642063",
       "snapshot": {
-        "packages/octane-hotkeys/src/useFormatForAria.ts": "9607c4e4b334b3bab57e69c26355f34d281a413fa9d919e2a1368b2b7af81b9c"
+        "packages/octane-hotkeys/src/useFormatForAria.ts": "58d0a35c051fa417be91b4dae1b39ac62df50a5accba90c92341996df67c368d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:packages/preact-hotkeys/src/formatForAria.ts": {
@@ -24148,13 +24148,13 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:packages/preact-hotkeys/src/useFormatForAria.ts": {
-      "fingerprint": "19e5bd0760f2dd57a82635f50b0adf8ed15b8404a39794288320e36bfb6de54b",
+      "fingerprint": "23dafaa15f4705fe682942a7f854b991e932e42a43bd392fc00af11fd0f6ca5d",
       "snapshot": {
-        "packages/preact-hotkeys/src/useFormatForAria.ts": "36ab3b5af441ac5b095c9899fd0ba1687cf89cef7bbca711666bf8044c83c320"
+        "packages/preact-hotkeys/src/useFormatForAria.ts": "1d5e866f8225efbfe972db7460f8c1e79cdb7155f84b52f548339d80c386ca10"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "source:packages/react-hotkeys/src/formatForAria.ts": {
@@ -24168,23 +24168,23 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:packages/react-hotkeys/src/useFormatForAria.ts": {
-      "fingerprint": "215b7f00a193e0b4f27825efc5e1796b5eba541e2b34bc6ae58bed977de8422b",
+      "fingerprint": "9f6cfc1f847c408e3610931e6f8caca74801a3219726b677c0edcb5efc2e69c6",
       "snapshot": {
-        "packages/react-hotkeys/src/useFormatForAria.ts": "41b026b42f6927f42cbc518e557fcfce30eb52599f76f1441ace4c5d7735cefa"
+        "packages/react-hotkeys/src/useFormatForAria.ts": "4315d0ab1eff1a8364dbdda91bdcb4a3296b32ceedf5a77ea0a4a1d39438dd4d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/src/createFormatForAria.ts": {
-      "fingerprint": "2bcd8d7cb47e89db84ef08bf527dbad1208d9f64397c6e9c2d4cfe2b355dc8c1",
+      "fingerprint": "885464e8d7d61b73d642195294fb9fec01c505cbc90fd4aa037ac0abf6c6db78",
       "snapshot": {
-        "packages/solid-hotkeys/src/createFormatForAria.ts": "4f72521a71ca59f036baa0727164a7f389abbfdc7186fe20aa370eef877194ed"
+        "packages/solid-hotkeys/src/createFormatForAria.ts": "54b7d597e63bb3768bf364b298b1b56b65e41469987fa56fb30f68e49cf3427d"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "source:packages/solid-hotkeys/src/formatForAria.ts": {
@@ -24208,13 +24208,13 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/src/getFormatForAria.ts": {
-      "fingerprint": "9cba30301cd04e94b963b48201b2f22b573f720ae3c76b1ccacd9c05c13175f6",
+      "fingerprint": "b5d283b08666784b8e59a3899ead28e687aa02ccb79346ab6ed05e3a1b0b193d",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getFormatForAria.ts": "a00409cf405346f91e90aba28a1f7ca6cfca43a100af44627304fe3f71e7c960"
+        "packages/svelte-hotkeys/src/getFormatForAria.ts": "9d89e7765b6eb5e0519ca8a3580d13797e8718b05b1ea52de92323a7ebf5bd0e"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys/src/formatForAria.ts": {
@@ -24228,14 +24228,34 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys/src/useFormatForAria.ts": {
-      "fingerprint": "1087ff3ce3ff543d6602b63fc5c1cbba8bd2ed48033e4ae55f6bd5e71f151244",
+      "fingerprint": "e55a1b8d6eefeb02b4ae72d6a46bc32a26504ccb1fea082e658815420d23dc73",
       "snapshot": {
-        "packages/vue-hotkeys/src/useFormatForAria.ts": "6275f7ce0f365ab3793d67dd3bb87ec021ba8b519c0ccf4fd65115fac49a060f"
+        "packages/vue-hotkeys/src/useFormatForAria.ts": "8a5a8e7d37dab6c128cab839aeb830a4d9ded252905877806a911b374fbad880"
       },
-      "head": "cd1c66aab538ccac294e72ee36ae4466fa9b2d2b",
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
       "outcome": "no-change",
-      "reason": "Source for formatForAria, createFormatter, or suspendCharacterKeys. The skill's updated rows cover the change.",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/reference/adapter/functions/announceLiveHotkeys.md": {
+      "fingerprint": "8e902bc0ba74cc8d01aeab03de2ca50ad63ac7560098d4e866e6198a0e760be9",
+      "snapshot": {
+        "docs/reference/adapter/functions/announceLiveHotkeys.md": "2e8b0548d46115f7d5ee812bb11322b1db10639e1a3197f3c3120a157af072fe"
+      },
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "outcome": "no-change",
+      "reason": "Regenerated reference page. The skills cover the ARIA formatter and suspension changes.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/ember-hotkeys/src/_registrations.ts": {
+      "fingerprint": "296d5ef348c277d5b9c7b9c41de49e90a7b23f26278bd2781eff0e6c29e147f9",
+      "snapshot": {
+        "packages/ember-hotkeys/src/_registrations.ts": "0b5eb09981b3e018511bcbf57c5a9158f6a245fdc137b139a07c966316ef9f0c"
+      },
+      "head": "95c311c273b9eb8df7854d28123f76b64fef478a",
+      "outcome": "no-change",
+      "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
+      "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     }
   }
 }
