@@ -18,18 +18,33 @@ export interface AdapterApp {
    * title, each with its GitHub issue, such as `{ 'a sequence…': '#123' }`.
    */
   knownBugs?: Record<string, string>
+  /**
+   * The portal this app renders, for a framework that has one (see
+   * `shared/fixture.ts`).
+   */
+  portal?: 'movable' | 'detached'
 }
 
 export const adapterApps: Array<AdapterApp> = [
-  { name: 'react', folder: 'react' },
+  { name: 'react', folder: 'react', portal: 'detached' },
   // StrictMode mounts, unmounts and remounts every effect once in development
-  { name: 'react (StrictMode)', folder: 'react', query: '?strict' },
-  { name: 'preact', folder: 'preact' },
+  {
+    name: 'react (StrictMode)',
+    folder: 'react',
+    query: '?strict',
+    portal: 'detached',
+  },
+  { name: 'preact', folder: 'preact', portal: 'detached' },
   // Preact's StrictMode is a Fragment: it doesn't double-mount. Kept so the
   // Preact app runs the same tree as React's.
-  { name: 'preact (StrictMode)', folder: 'preact', query: '?strict' },
+  {
+    name: 'preact (StrictMode)',
+    folder: 'preact',
+    query: '?strict',
+    portal: 'detached',
+  },
   { name: 'vue', folder: 'vue' },
-  { name: 'solid', folder: 'solid' },
+  { name: 'solid', folder: 'solid', portal: 'movable' },
   { name: 'svelte', folder: 'svelte' },
   { name: 'angular', folder: 'angular' },
   { name: 'lit', folder: 'lit' },
@@ -67,6 +82,10 @@ async function serveApps(page: Page): Promise<void> {
 
 /** Typed access to the app's `window.fixture`. */
 function fixtureFor(page: Page) {
+  const registrationsOf = async (hotkey: string) =>
+    (await page.evaluate(() => window.fixture!.registrations())).filter(
+      (registration) => registration.hotkey === hotkey,
+    )
   const call = <TKey extends 'setShown' | 'setEnabled' | 'setHotkey'>(
     method: TKey,
     arg: Parameters<Fixture[TKey]>[0],
@@ -82,6 +101,24 @@ function fixtureFor(page: Page) {
     setEnabled: (enabled: boolean) => call('setEnabled', enabled),
     setHotkey: (hotkey: string) => call('setHotkey', hotkey),
     startRecording: () => page.evaluate(() => window.fixture!.startRecording()),
+    /**
+     * Opens an empty popup window from the page, kept as
+     * `window.fixturePopup`.
+     */
+    openPopup: async (): Promise<Page> => {
+      const opened = page.waitForEvent('popup')
+      await page.evaluate(() => {
+        window.fixturePopup = window.open('', 'popup', 'width=400,height=300')!
+      })
+      return opened
+    },
+    /** Mounts the movable portal in the popup, or back in the page. */
+    portalInto: (where: 'popup' | 'page') =>
+      page.evaluate((intoPopup) => {
+        window.fixture!.portalInto!(
+          intoPopup ? window.fixturePopup!.document : null,
+        )
+      }, where === 'popup'),
     /** Names logged by callbacks, in order. Clears the log. */
     takeLog: () => page.evaluate(() => window.fixture!.log.splice(0)),
     recorded: () => page.evaluate(() => window.fixture!.recorded),
@@ -90,10 +127,14 @@ function fixtureFor(page: Page) {
     /** Registrations of one hotkey, such as `K` or `G G`. */
     registrationsOf: async (
       hotkey: string,
-    ): Promise<Array<FixtureRegistration>> =>
-      (await page.evaluate(() => window.fixture!.registrations())).filter(
-        (registration) => registration.hotkey === hotkey,
-      ),
+    ): Promise<Array<Omit<FixtureRegistration, 'id'>>> =>
+      (await registrationsOf(hotkey)).map(({ hotkey, enabled }) => ({
+        hotkey,
+        enabled,
+      })),
+    /** The manager's ids for one hotkey's registrations. */
+    registrationIdsOf: async (hotkey: string): Promise<Array<string>> =>
+      (await registrationsOf(hotkey)).map(({ id }) => id),
   }
 }
 

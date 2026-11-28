@@ -35,6 +35,9 @@ These tests run every framework adapter in a real browser. Each adapter has a sm
 - A sequence fires.
 - The recorder records a chord.
 - Key hold and held keys follow the keyboard.
+- An element-targeted hotkey keeps firing after its element moves into a popup window and back.
+
+Two more tests run only for apps with a `portal` entry in `adapters/apps.ts`. In Solid, a `Portal` whose `mount` switches to a popup window keeps its hotkey without registering again. In React and Preact, a hotkey in a portal whose container joins the page after the hotkey registers still runs after the framework's `onKeyDown`, which can stop it.
 
 React also runs everything under `StrictMode` (`?strict`), which mounts, unmounts and remounts each effect. Preact's `StrictMode` is a Fragment, so its `?strict` run matches the plain one.
 

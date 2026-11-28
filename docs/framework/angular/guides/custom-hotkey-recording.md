@@ -100,6 +100,8 @@ Options can also be a getter, such as `injectHotkeyRecorder(() => ({ maxSteps: I
 
 The recorder also cancels and calls `onCancel` when the window loses focus, such as when the user switches apps or tabs, opens browser devtools, or clicks into an iframe. Set `cancelOnBlur: false` to keep recording. While debugging with devtools open, Chrome's **Rendering > Emulate a focused page** setting keeps the page focused.
 
+To record in another window, such as a Picture-in-Picture window that holds the recorder's button, pass that window or its document as `target`. The recorder reads `target` when recording starts, listens only in that window, and cancels when that window loses focus or closes. A closed window doesn't start recording.
+
 A click elsewhere on the page doesn't cancel, because the recorder doesn't know which element is your recorder. To cancel on a click outside it, listen for `pointerdown` while recording. Don't rely on the button's `blur` event: Safari and Firefox on macOS don't focus a button when it is clicked.
 
 ```ts
@@ -291,6 +293,7 @@ export class ShortcutSettingsComponent {
 | `onRecord` | Required | Called with the recorded `hotkey` and `context` when a recording commits |
 | `onCancel` | None | Called on `Escape`, `Tab`, `Shift+Tab`, the window losing focus, or `cancelRecording()` |
 | `cancelOnBlur` | `true` | Cancels when the window loses focus. Set `false` to keep recording |
+| `target` | `window` | The window, or its document, to record in, such as a Picture-in-Picture window |
 | `onClear` | None | Called when `Backspace` or `Delete` is pressed with no recorded steps |
 | `maxSteps` | `1` | `1` for chords, `Infinity` for sequences |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether `Enter` commits (`'enter'`) or records as a step (`'none'`) |

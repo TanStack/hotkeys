@@ -1,6 +1,9 @@
 import '@angular/compiler'
 import {
   Component,
+  Directive,
+  ElementRef,
+  inject,
   provideZonelessChangeDetection,
   signal,
 } from '@angular/core'
@@ -38,9 +41,20 @@ const HotkeyHost = Component({
   },
 )
 
+// Listens on the element it's applied to
+const ElementHotkey = Directive({ selector: '[elementHotkey]' })(
+  class ElementHotkey {
+    constructor() {
+      injectHotkey('L', () => logCall('element hotkey'), {
+        target: inject(ElementRef),
+      })
+    }
+  },
+)
+
 const App = Component({
   selector: 'app-root',
-  imports: [HotkeyHost],
+  imports: [HotkeyHost, ElementHotkey],
   template: `
     @if (shown()) {
       <hotkey-host />
@@ -49,6 +63,7 @@ const App = Component({
     <div id="shift-held">{{ shiftHeld() ? 'held' : 'released' }}</div>
     <div id="held-keys">{{ heldKeys().join('+') }}</div>
     <div id="caps-lock">{{ capsLock() === null ? 'unknown' : capsLock() ? 'on' : 'off' }}</div>
+    <div id="element-host" tabindex="0" elementHotkey></div>
   `,
 })(
   class App {

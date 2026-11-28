@@ -27,8 +27,13 @@ Alpine.data('app', () => {
     shiftHeld: scope.createKeyHold('Shift'),
     capsLock: scope.createKeyLockState('CapsLock'),
     heldKeys: scope.createHeldKeys(),
-    init(this: AppData) {
+    init(this: AppData & { $refs: Record<string, HTMLElement> }) {
       scope.createHotkey(['G', 'G'], () => logCall('sequence'))
+      scope.createHotkey(
+        'L',
+        () => logCall('element hotkey'),
+        () => ({ target: this.$refs.elementHost }),
+      )
       exposeFixture(
         { getHotkeyManager, detectPlatform },
         {

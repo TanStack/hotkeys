@@ -1,4 +1,4 @@
-import { render } from '@solidjs/web'
+import { Portal, render } from '@solidjs/web'
 import {
   createHeldKeys,
   createHotkey,
@@ -21,6 +21,16 @@ function HotkeyHost(props: { hotkey: string; enabled: boolean }) {
   return <div id="hotkey-host" />
 }
 
+function PortalHost() {
+  const [host, setHost] = createSignal<HTMLDivElement | null>(null)
+  createHotkey(
+    'P',
+    () => logCall('portal hotkey'),
+    () => ({ target: host() }),
+  )
+  return <div id="portal-host" ref={setHost} tabindex={0} />
+}
+
 function App() {
   const [shown, setShown] = createSignal(true)
   const [enabled, setEnabled] = createSignal(true)
@@ -30,6 +40,16 @@ function App() {
   const shiftHeld = createKeyHold('Shift')
   const capsLock = createKeyLockState('CapsLock')
   const heldKeys = createHeldKeys()
+  const [elementHost, setElementHost] = createSignal<HTMLDivElement | null>(
+    null,
+  )
+  createHotkey(
+    'L',
+    () => logCall('element hotkey'),
+    () => ({ target: elementHost() }),
+  )
+  // Changing the mount moves the same nodes there
+  const [portalMount, setPortalMount] = createSignal<HTMLElement>(document.body)
 
   onSettled(() => {
     exposeFixture(
@@ -39,6 +59,7 @@ function App() {
         setEnabled,
         setHotkey,
         startRecording: () => recorder.startRecording(),
+        portalInto: (target) => setPortalMount((target ?? document).body),
       },
     )
   })
@@ -54,6 +75,10 @@ function App() {
       <div id="caps-lock">
         {capsLock() === null ? 'unknown' : capsLock() ? 'on' : 'off'}
       </div>
+      <div id="element-host" ref={setElementHost} tabindex={0} />
+      <Portal mount={portalMount()}>
+        <PortalHost />
+      </Portal>
     </>
   )
 }

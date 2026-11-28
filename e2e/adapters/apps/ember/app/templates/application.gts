@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking'
 import {
   detectPlatform,
   getHotkeyManager,
+  onHotkey,
   useHeldKeys,
   useHotkey,
   useHotkeyRecorder,
@@ -32,6 +33,7 @@ class App extends Component {
 
   sequence = ['G', 'G'] as const
   onSequence = () => logCall('sequence')
+  onElementHotkey = () => logCall('element hotkey')
   recorder = useHotkeyRecorder(this, { onRecord: setRecorded })
   shiftHeld = useKeyHold(this, 'Shift')
   capsLock = useKeyLockState(this, 'CapsLock')
@@ -68,6 +70,7 @@ class App extends Component {
     <div id='shift-held'>{{if this.shiftHeld.value 'held' 'released'}}</div>
     <div id='held-keys'>{{this.heldKeysText}}</div>
     <div id='caps-lock'>{{this.capsLockText}}</div>
+    <div id='element-host' tabindex='0' {{onHotkey 'L' this.onElementHotkey}}></div>
   </template>
 }
 

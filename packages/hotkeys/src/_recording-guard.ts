@@ -10,7 +10,8 @@ const captured = new WeakSet<KeyboardEvent>()
 const pending = new Map<string, string>()
 // Keys whose keydown the recorder stopped, so the page doesn't see their keyup either.
 const stopped = new Set<string>()
-let listening = false
+// Windows with the shared listeners: each window a recording started in.
+const listening = new Set<Window>()
 // The manager's handler for a recording that starts, set by the manager.
 let recordingStarted: (() => void) | undefined
 /** Sets what runs when a recording starts, such as resetting sequences in progress. */
@@ -48,7 +49,10 @@ function repeat(event: KeyboardEvent): void {
     event.stopPropagation()
   }
 }
-/** Clears pending releases when focus loss prevents the browser from delivering them. */
+/**
+ * Clears pending releases when focus loss, or a recording window closing,
+ * prevents the browser from delivering them.
+ */
 function blur(): void {
   pending.clear()
   stopped.clear()
@@ -56,36 +60,35 @@ function blur(): void {
 }
 /** Detaches shared listeners once neither active sessions nor pending releases need them. */
 function cleanup(): void {
-  if (
-    listening &&
-    sessions.size === 0 &&
-    pending.size === 0 &&
-    stopped.size === 0
-  ) {
-    window.removeEventListener('keyup', release, true)
-    window.removeEventListener('keydown', repeat, true)
-    window.removeEventListener('blur', blur)
-    listening = false
+  if (sessions.size === 0 && pending.size === 0 && stopped.size === 0) {
+    for (const view of listening) {
+      view.removeEventListener('keyup', release, true)
+      view.removeEventListener('keydown', repeat, true)
+      view.removeEventListener('blur', blur)
+      view.removeEventListener('pagehide', blur)
+    }
+    listening.clear()
   }
 }
 /**
  * Pauses application shortcut dispatch and starts tracking releases for this
- * recorder. Starting one cancels any other, so one key press can't be
- * recorded for two shortcuts.
+ * recorder in the window it records in. Starting one cancels any other, so
+ * one key press can't be recorded for two shortcuts.
  */
-export function beginRecording(owner: Session): void {
+export function beginRecording(owner: Session, view: Window): void {
   for (const other of [...sessions]) other.cancel()
   // An onCancel that started its recorder again loses to this one, without
   // its callbacks running again.
   for (const other of [...sessions]) other.stop()
   sessions.add(owner)
   recordingStarted?.()
-  if (!listening && typeof document !== 'undefined') {
+  if (!listening.has(view)) {
     // Window capture, like the recorder's keydown listener
-    window.addEventListener('keyup', release, true)
-    window.addEventListener('keydown', repeat, true)
-    window.addEventListener('blur', blur)
-    listening = true
+    view.addEventListener('keyup', release, true)
+    view.addEventListener('keydown', repeat, true)
+    view.addEventListener('blur', blur)
+    view.addEventListener('pagehide', blur)
+    listening.add(view)
   }
 }
 /** Ends a session while retaining guards for keys still held after commit or cancellation. */

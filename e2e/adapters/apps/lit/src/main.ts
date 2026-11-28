@@ -8,6 +8,7 @@ import {
   getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, html } from 'lit'
+import { createRef, ref } from 'lit/directives/ref.js'
 import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
 import type { Hotkey } from '@tanstack/lit-hotkeys'
 
@@ -59,6 +60,7 @@ class FixtureApp extends LitElement {
   shiftHeld = new KeyHoldController(this, 'Shift')
   capsLock = new KeyLockStateController(this, 'CapsLock')
   heldKeys = new HeldKeysController(this)
+  elementHost = createRef<HTMLDivElement>()
 
   constructor() {
     super()
@@ -66,6 +68,12 @@ class FixtureApp extends LitElement {
     this.enabled = true
     this.hotkey = 'K'
     new HotkeyController(this, ['G', 'G'], () => logCall('sequence'))
+    new HotkeyController(
+      this,
+      'L',
+      () => logCall('element hotkey'),
+      () => ({ target: this.elementHost.value }),
+    )
   }
 
   protected override createRenderRoot() {
@@ -100,6 +108,7 @@ class FixtureApp extends LitElement {
       <div id="caps-lock">
         ${this.capsLock.value === null ? 'unknown' : this.capsLock.value ? 'on' : 'off'}
       </div>
+      <div id="element-host" ${ref(this.elementHost)} tabindex="0"></div>
     `
   }
 }

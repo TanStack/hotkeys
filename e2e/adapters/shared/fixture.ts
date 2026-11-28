@@ -10,6 +10,22 @@
 //   shows `yes` while it records and `no` otherwise
 // - `#shift-held` showing `held` or `released` from the adapter's key hold
 // - `#held-keys` showing the adapter's held keys joined with `+`
+// - `#element-host`, always rendered with `tabindex="0"`, and an `L` hotkey
+//   targeted at it through the adapter's element target API, such as a ref,
+//   an attachment, a directive, or a modifier; it calls
+//   `logCall('element hotkey')`
+//
+// Apps whose framework has a portal render `#portal-host` inside one, as
+// `portal` in `apps.ts` says:
+// - `'movable'`: a portal whose mount `portalInto` switches between this
+//   page's body and another window's body. A `P` hotkey targeted at
+//   `#portal-host` calls `logCall('portal hotkey')`.
+// - `'detached'`: a portal into a container that a parent effect appends to
+//   `document.body`, so the hotkeys register while the container is
+//   detached. `P` and `Shift+P` hotkeys targeted at `#portal-host` call
+//   `logCall('portal hotkey')`. A framework key handler on `#portal-child`,
+//   a focusable element inside it, calls `logCall('portal keydown')` for P
+//   and stops propagation for Shift+P.
 
 /** What an app passes to `exposeFixture`. Each call updates framework state. */
 export interface FixtureControls {
@@ -17,10 +33,17 @@ export interface FixtureControls {
   setEnabled: (enabled: boolean) => void
   setHotkey: (hotkey: string) => void
   startRecording: () => void
+  /**
+   * Mounts the `'movable'` portal in `target`'s body, or in this page's body
+   * for `null`.
+   */
+  portalInto?: (target: Document | null) => void
 }
 
 /** A registration as the specs see it. */
 export interface FixtureRegistration {
+  /** The manager's id, which changes when the hotkey registers again. */
+  id: string
   hotkey: string
   enabled: boolean
 }
@@ -56,6 +79,8 @@ declare global {
     fixture?: Fixture
     fixtureLog?: Array<string>
     fixtureRecorded?: unknown
+    /** The popup window a spec opened from this page. */
+    fixturePopup?: Window
   }
 }
 
@@ -86,15 +111,14 @@ export function exposeFixture(
       return window.fixtureRecorded
     },
     registrations: () =>
-      [
-        ...(
-          core.getHotkeyManager() as ManagerLike
-        ).registrations.state.values(),
-      ].map((registration) => ({
-        hotkey: Array.isArray(registration.hotkey)
-          ? registration.hotkey.join(' ')
-          : registration.hotkey,
-        enabled: registration.options.enabled !== false,
-      })),
+      [...(core.getHotkeyManager() as ManagerLike).registrations.state].map(
+        ([id, registration]) => ({
+          id,
+          hotkey: Array.isArray(registration.hotkey)
+            ? registration.hotkey.join(' ')
+            : registration.hotkey,
+          enabled: registration.options.enabled !== false,
+        }),
+      ),
   }
 }
