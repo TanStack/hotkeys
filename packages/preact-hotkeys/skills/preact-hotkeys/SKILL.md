@@ -18,7 +18,6 @@ sources:
   - src/useHotkeys.ts
   - src/HotkeysProvider.tsx
   - src/useAppHotkeys.ts
-  - src/utils.ts
   - TanStack/hotkeys:docs/framework/preact/quick-start.md
   - TanStack/hotkeys:docs/framework/preact/guides/hotkeys-provider-and-scopes.md
 requires:
