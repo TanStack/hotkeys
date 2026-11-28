@@ -289,6 +289,10 @@ For UI that Vue doesn't render, such as a dialog from another library, activate 
 
 `HotkeysProvider` and `provideHotkeysContext` need a component, because they use `provide` and `onMounted`. A hotkey registered in an `effectScope` outside a component can't read a provider's defaults, scope, or app hotkeys. Pass `scope` in its options instead. See [Choose a scope for one hotkey](#choose-a-scope-for-one-hotkey).
 
+## Suspend character key shortcuts
+
+Pass `suspend-character-keys` to `HotkeysProvider` (or `suspendCharacterKeys` to `provideHotkeysContext`) to pause document-level character key shortcuts, such as `K` or `['G', 'H']`, across the app while the value is `true`. Suspended hotkeys report the status `'suspended'`, like hotkeys in an inactive scope, and the option applies even when `enabled` is `false`. Wire it to a user setting as shown in [Accessibility](./accessibility#let-users-turn-off-character-key-shortcuts).
+
 ## Inspect scopes
 
 The [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive. To read the same state in your own UI, see [Read scope state](./hotkey-manager#read-scope-state).

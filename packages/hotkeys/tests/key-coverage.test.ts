@@ -7,7 +7,7 @@ import {
   parseHotkey,
   validateHotkey,
 } from '../src'
-import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
+import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_constants'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import { FUNCTION_KEY_NAMES } from './typed-keys'
 import type {

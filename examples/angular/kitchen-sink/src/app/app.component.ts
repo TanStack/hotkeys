@@ -9,6 +9,7 @@ import {
   viewChild,
 } from '@angular/core'
 import {
+  injectFormatForAria,
   injectFormatForDisplay,
   injectHeldKeyCodes,
   injectHeldKeys,
@@ -45,6 +46,22 @@ export class Activity {
   readonly messages = signal<Array<string>>([])
   log(message: string) {
     this.messages.update((items) => [message, ...items].slice(0, 6))
+  }
+}
+
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+
+/**
+ * The user's "Single-key shortcuts" setting. While it is off, the root
+ * provider in app.config.ts suspends character key shortcuts, such as the
+ * G G sequence.
+ */
+@Injectable({ providedIn: 'root' })
+export class CharacterKeysSetting {
+  readonly enabled = signal(localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off')
+  setEnabled(enabled: boolean) {
+    localStorage.setItem(CHARACTER_KEYS_KEY, enabled ? 'on' : 'off')
+    this.enabled.set(enabled)
   }
 }
 
@@ -244,7 +261,8 @@ export class Editor {
     <h2>Sequences</h2>
     <p>
       Physical G then G, G then I, or Shift + R then Shift + T. Repeats do not
-      advance steps.
+      advance steps. Every step is a key that types a character, so turning off
+      Single-key shortcuts in the header suspends all three.
     </p>
     <label
       >Timeout: {{ timeout() }} ms
@@ -556,14 +574,33 @@ export class Formatting {
       </p>
       <nav>
         @for (page of pages; track page.path) {
-          <a [href]="'#' + page.path" [class.active]="path() === page.path"
+          <a
+            [href]="'#' + page.path"
+            [class.active]="path() === page.path"
+            [attr.aria-keyshortcuts]="formatForAria(page.hotkey)"
             >{{ page.name }} <shortcut-hint [hotkey]="page.hotkey"
           /></a>
         }
       </nav>
-      <button (click)="show.set(!show())">
+      <button
+        (click)="show.set(!show())"
+        [attr.aria-keyshortcuts]="formatForAria('Alt+Shift+[KeyK]')"
+      >
         {{ show() ? 'Hide' : 'Show' }} shortcuts
       </button>
+      <label>
+        <input
+          #characterKeysBox
+          type="checkbox"
+          [checked]="characterKeys.enabled()"
+          (change)="characterKeys.setEnabled(characterKeysBox.checked)"
+        />
+        Single-key shortcuts
+      </label>
+      <small>
+        Turn off to suspend shortcuts made only of keys that type a character,
+        such as the G G sequence (WCAG 2.1.4).
+      </small>
     </header>
     @if (show()) {
       <section>
@@ -643,6 +680,7 @@ export class AppComponent {
   readonly path = signal(location.hash.slice(1) || '/')
   readonly show = signal(false)
   readonly activity = inject(Activity)
+  readonly characterKeys = inject(CharacterKeysSetting)
   readonly keys = injectHeldKeys()
   readonly codes = injectHeldKeyCodes()
   readonly shift = injectKeyHold('Shift')
@@ -651,6 +689,7 @@ export class AppComponent {
   )
   readonly registrations = injectHotkeyRegistrations()
   readonly formatForDisplay = injectFormatForDisplay()
+  readonly formatForAria = injectFormatForAria()
   bindingLabel = (reg: ReturnType<typeof this.registrations>[number]) =>
     this.formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   constructor() {

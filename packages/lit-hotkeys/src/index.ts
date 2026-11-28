@@ -6,3 +6,4 @@ export * from './decorators'
 export * from './controllers'
 // Replaces the core export, to point elements to the controller
 export { formatForDisplay } from './format-for-display'
+export { formatForAria } from './format-for-aria'

@@ -1,7 +1,5 @@
+import { SERVER_AGENT } from './_constants'
 import { canWarn } from './_dev'
-
-// Server runtimes that define `navigator` describe the server, not the user.
-const SERVER_AGENT = /^(?:Node\.js\/|Deno\/|Bun\/|Cloudflare-Workers)/
 
 /** Whether this runs on a server: no `navigator`, or a server runtime's. */
 export function isServerRuntime(): boolean {

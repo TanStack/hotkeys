@@ -1,4 +1,5 @@
 import {
+  FormatForAriaController,
   FormatForDisplayController,
   HeldKeyCodesController,
   HeldKeysController,
@@ -7,11 +8,13 @@ import {
   HotkeyRecorderController,
   HotkeyRegistrationsController,
   KeyHoldController,
+  getHotkeyManager,
   hotkey,
   isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
 import { LitElement, html } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
+import { ifDefined } from 'lit/directives/if-defined.js'
 import type {
   Hotkey,
   HotkeyPlatform,
@@ -30,6 +33,21 @@ const rejectionText = ({ reason, message }: RecorderRejection) =>
     validation: 'This hotkey is not allowed.',
     conflict: 'This hotkey is already in use.',
   }[reason]
+
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+let resumeCharacterKeys: (() => void) | undefined
+
+// Applies the user's "Single-key shortcuts" setting (WCAG 2.1.4). While it is
+// off, the manager suspends character key shortcuts app-wide, such as the G G
+// sequence. Suspensions are counted, so this keeps one and resumes it once.
+function setCharacterKeyShortcuts(on: boolean) {
+  if (on) {
+    resumeCharacterKeys?.()
+    resumeCharacterKeys = undefined
+  } else {
+    resumeCharacterKeys ??= getHotkeyManager().suspendCharacterKeys()
+  }
+}
 
 // Light DOM keeps the shared example CSS small and makes scoped targets easy to inspect.
 class DemoElement extends LitElement {
@@ -311,7 +329,8 @@ class Sequences extends DemoElement {
       <h2>Sequences</h2>
       <p>
         Physical G then G, G then I, or Shift + R then Shift + T. Repeats do not
-        advance steps.
+        advance steps. Every step is a key that types a character, so turning
+        off Single-key shortcuts in the header suspends all three.
       </p>
       <label
         >G sequence timeout: ${this.timeout} ms
@@ -625,17 +644,26 @@ class App extends DemoElement {
   ] as const
   @state() private path = location.hash.slice(1) || '/'
   @state() private show = false
+  @state() private characterKeys =
+    localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off'
   @state() private activity: Array<string> = []
   private keys = new HeldKeysController(this)
   private codes = new HeldKeyCodesController(this)
   private shift = new KeyHoldController(this, 'Shift')
   private registry = new HotkeyRegistrationsController(this)
   private formatForDisplay = new FormatForDisplayController(this)
+  private formatForAria = new FormatForAriaController(this)
   private updatePath = () => {
     this.path = location.hash.slice(1) || '/'
   }
+  private toggleCharacterKeys = (event: Event) => {
+    this.characterKeys = (event.target as HTMLInputElement).checked
+    localStorage.setItem(CHARACTER_KEYS_KEY, this.characterKeys ? 'on' : 'off')
+    setCharacterKeyShortcuts(this.characterKeys)
+  }
   constructor() {
     super()
+    setCharacterKeyShortcuts(this.characterKeys)
     for (const page of this.pages)
       this.addController(
         new HotkeyController(
@@ -700,6 +728,9 @@ class App extends DemoElement {
               html`<a
                 href=${`#${page.path}`}
                 class=${this.path === page.path ? 'active' : ''}
+                aria-keyshortcuts=${ifDefined(
+                  this.formatForAria.format(page.hotkey),
+                )}
                 >${page.name}
                 <shortcut-hint .hotkey=${page.hotkey}></shortcut-hint
               ></a>`,
@@ -709,9 +740,24 @@ class App extends DemoElement {
           @click=${() => {
             this.show = !this.show
           }}
+          aria-keyshortcuts=${ifDefined(
+            this.formatForAria.format('Alt+Shift+[KeyK]'),
+          )}
         >
           ${this.show ? 'Hide' : 'Show'} shortcuts
         </button>
+        <label
+          ><input
+            type="checkbox"
+            .checked=${this.characterKeys}
+            @change=${this.toggleCharacterKeys}
+          />
+          Single-key shortcuts</label
+        >
+        <small>
+          Turn off to suspend shortcuts made only of keys that type a character,
+          such as the G G sequence (WCAG 2.1.4).
+        </small>
       </header>
       ${
         this.show

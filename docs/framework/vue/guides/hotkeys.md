@@ -243,9 +243,9 @@ useHotkeys(
 </template>
 ```
 
-The shared `target` makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets.
+The shared `target` makes every hotkey in the list listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets.
 
-Options merge in three layers: defaults from the provider first, then the shared options, then per-item options.
+Options merge in layers: defaults from the provider first, then the shared options, then per-item options.
 
 ### Build the list from data
 

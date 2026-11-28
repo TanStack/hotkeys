@@ -4,6 +4,7 @@ import { act, cleanup, render } from '@testing-library/react'
 import React, { useRef } from 'react'
 import {
   HotkeysProvider,
+  useFormatForAria,
   useFormatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
@@ -17,6 +18,7 @@ import {
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
@@ -225,8 +227,10 @@ const harness: ConformanceHarness = {
 
   mountFormat({ platform }) {
     let format!: typeof formatForDisplay
+    let formatAria!: typeof formatForAria
     function FormatView() {
       format = useFormatForDisplay()
+      formatAria = useFormatForAria()
       return null
     }
     const view = render(
@@ -236,6 +240,7 @@ const harness: ConformanceHarness = {
     )
     return {
       format: (hotkey, formatOptions) => format(hotkey, formatOptions ?? {}),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
       unmount: () => view.unmount(),
     }
   },

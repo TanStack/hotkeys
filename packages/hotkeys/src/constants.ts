@@ -152,3 +152,6 @@ export function normalizeKeyName(key: string): string {
 
   return key === ' ' ? 'Space' : key
 }
+
+/** Default timeout between sequence steps (in milliseconds). */
+export const DEFAULT_SEQUENCE_TIMEOUT = 1000

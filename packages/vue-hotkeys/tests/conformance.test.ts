@@ -5,6 +5,7 @@ import {
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import { createApp, defineComponent, h, nextTick, ref, shallowRef } from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
+import { useFormatForAria } from '../src/useFormatForAria'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHeldKeyCodes } from '../src/useHeldKeyCodes'
 import { useHeldKeys } from '../src/useHeldKeys'
@@ -18,6 +19,7 @@ import type {
   HotkeyRegistrationView,
   IndividualKey,
   RegisterableHotkey,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
@@ -220,9 +222,11 @@ const harness: ConformanceHarness = {
 
   async mountFormat({ platform }) {
     let format!: typeof formatForDisplay
+    let formatAria!: typeof formatForAria
     const Format = defineComponent({
       setup() {
         format = useFormatForDisplay()
+        formatAria = useFormatForAria()
         return () => null
       },
     })
@@ -232,6 +236,7 @@ const harness: ConformanceHarness = {
     )
     return {
       format: (hotkey, formatOptions) => format(hotkey, formatOptions ?? {}),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
       unmount: view.unmount,
     }
   },

@@ -182,6 +182,7 @@ describe('adapter entry', () => {
     ].map((match) => match[1])
     expect(relative.sort()).toEqual([
       './_chord',
+      './_constants',
       './_dev',
       './_getter',
       './_registration',

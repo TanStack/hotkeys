@@ -2,6 +2,7 @@ import { Dynamic, render } from '@solidjs/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
+  createFormatForAria,
   createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
@@ -43,6 +44,15 @@ const rejectionText = ({ reason, message }: RecorderRejection) =>
   }[reason]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
+
+/**
+ * The user's "Single-key shortcuts" setting. While it is off, the root
+ * provider suspends character key shortcuts, such as the G G sequence.
+ */
+const CharacterKeysContext = createContext({
+  enabled: (): boolean => true,
+  setEnabled: (_enabled: boolean) => {},
+})
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },
   { to: '/editor', label: 'Editor', shortcut: 'Alt+[Digit2]' },
@@ -63,6 +73,8 @@ function Hint(props: { hotkey: RegisterableHotkey }) {
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
   const formatForDisplay = createFormatForDisplay()
+  const formatForAria = createFormatForAria()
+  const characterKeys = useContext(CharacterKeysContext)
   const [path, setPath] = createSignal(location.hash.slice(1) || '/')
   onSettled(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
@@ -110,7 +122,11 @@ function Layout() {
         </p>
         <nav aria-label="Examples">
           {pages.map((page) => (
-            <a href={`#${page.to}`} class={path() === page.to ? 'active' : ''}>
+            <a
+              href={`#${page.to}`}
+              class={path() === page.to ? 'active' : ''}
+              aria-keyshortcuts={formatForAria(page.shortcut)}
+            >
               {page.label} <Hint hotkey={page.shortcut} />
             </a>
           ))}
@@ -118,10 +134,23 @@ function Layout() {
         <button
           onClick={() => setShowShortcuts((value) => !value)}
           aria-expanded={showShortcuts() ? 'true' : 'false'}
+          aria-keyshortcuts={formatForAria('Alt+Shift+[KeyK]')}
         >
           {showShortcuts() ? 'Hide' : 'Show'} shortcuts{' '}
           <Hint hotkey="Alt+Shift+[KeyK]" />
         </button>
+        <label>
+          <input
+            type="checkbox"
+            checked={characterKeys.enabled()}
+            onChange={(e) => characterKeys.setEnabled(e.currentTarget.checked)}
+          />{' '}
+          Single-key shortcuts
+        </label>
+        <small>
+          Turn off to suspend shortcuts made only of keys that type a character,
+          such as the G G sequence (WCAG 2.1.4).
+        </small>
       </header>
       {showShortcuts() && (
         <section aria-label="Registered shortcuts">
@@ -433,7 +462,8 @@ function Sequences() {
       <h2>Sequences</h2>
       <p>
         Try the physical G position twice, G then I, or hold Shift and press R
-        then T.
+        then T. Every step is a key that types a character, so turning off
+        Single-key shortcuts in the header suspends all three.
       </p>
       <label>
         Time between steps: {timeout()} ms{' '}
@@ -752,12 +782,32 @@ const routeComponents: Record<string, () => JSX.Element> = {
   '/recording': Recording,
   '/formatting': Formatting,
 }
-const dispose = render(
-  () => (
-    <HotkeysProvider defaultOptions={{ hotkey: { requireReset: true } }}>
-      <Layout />
-    </HotkeysProvider>
-  ),
-  document.getElementById('root')!,
-)
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+
+/** Holds the Single-key shortcuts setting, which the root provider reads. */
+function App() {
+  const [characterKeys, setCharacterKeys] = createSignal(
+    localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off',
+  )
+  const characterKeysSetting = {
+    enabled: characterKeys,
+    setEnabled: (enabled: boolean) => {
+      localStorage.setItem(CHARACTER_KEYS_KEY, enabled ? 'on' : 'off')
+      setCharacterKeys(enabled)
+    },
+  }
+  return (
+    <CharacterKeysContext value={characterKeysSetting}>
+      <HotkeysProvider
+        defaultOptions={{ hotkey: { requireReset: true } }}
+        // The setting applies app-wide while this provider is mounted.
+        suspendCharacterKeys={!characterKeys()}
+      >
+        <Layout />
+      </HotkeysProvider>
+    </CharacterKeysContext>
+  )
+}
+
+const dispose = render(() => <App />, document.getElementById('root')!)
 import.meta.hot?.dispose(dispose)

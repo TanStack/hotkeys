@@ -41,7 +41,13 @@ interface HotkeysDevtoolsContextType {
 const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   registrations: () => [],
   appHotkeys: () => [],
-  scopes: () => ({ active: [], exclusive: null, allowed: [], suspended: [] }),
+  scopes: () => ({
+    active: [],
+    exclusive: null,
+    allowed: [],
+    suspended: [],
+    characterKeysSuspended: false,
+  }),
   heldKeys: () => [],
   heldCodes: () => ({}),
   sequenceProgressNow: () => Date.now(),

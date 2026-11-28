@@ -34,7 +34,7 @@ The packages you install determine which skills are available:
 | `@tanstack/hotkeys` | `hotkeys-core`, `app-hotkeys` | Defaults versus raw `keydown` listeners, `enabled`, scopes, targets, sequences, testing, app hotkeys, and recording |
 | `@tanstack/<framework>-hotkeys` | `<framework>-hotkeys` | Framework bindings (such as `useHotkey` or `createHotkey`), provider scopes, pitfalls, and wiring app hotkeys |
 
-Framework skills ship for all 10 adapters (React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, and Octane) under `node_modules/<package>/skills/<skill-name>/SKILL.md`. Task-specific guides live in `references/` and stay unloaded until needed, such as `references/scopes.md` for stacked dialogs.
+Framework skills ship for every adapter (React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, and Octane) under `node_modules/<package>/skills/<skill-name>/SKILL.md`. Task-specific guides live in `references/` and stay unloaded until needed, such as `references/scopes.md` for stacked dialogs.
 
 ## Step 1: Install TanStack Hotkeys
 

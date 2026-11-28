@@ -27,7 +27,7 @@ export default class SaveButton extends Component {
 }
 ```
 
-The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The utility fills in two things for you:
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. The utility fills in the following for you:
 
 - **The platform** from the `createHotkeysScope` scope you pass it, or the detected platform without one.
 - **The user's keyboard layout**, for physical keys, in Chromium browsers. See [Label physical keys for the user's keyboard](#label-physical-keys-for-the-users-keyboard).
@@ -162,6 +162,42 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only. `keyLabels` works anywhere, including in FastBoot.
 
+## Format for `aria-keyshortcuts`
+
+`useFormatForAria()` returns a function that formats a hotkey for the [`aria-keyshortcuts`](https://w3c.github.io/aria/#aria-keyshortcuts) attribute so screen readers can announce it. It uses the same platform and keyboard layout as the display formatter. See [Accessibility](./accessibility#announce-shortcuts-to-screen-readers) for where to place the attribute.
+
+```gts
+import Component from '@glimmer/component'
+import { on } from '@ember/modifier'
+import { useFormatForAria, useFormatForDisplay } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeysScope } from '@tanstack/ember-hotkeys'
+
+class SearchButton extends Component<{ Args: { hotkeys: EmberHotkeysScope } }> {
+  formatForAria = useFormatForAria(this.args.hotkeys)
+  formatForDisplay = useFormatForDisplay(this.args.hotkeys)
+  search = () => openSearch()
+
+  <template>
+    {{this.args.hotkeys.useHotkey 'Mod+K' this.search}}
+    <button
+      type="button"
+      aria-keyshortcuts={{this.formatForAria "Mod+K"}}
+      {{on "click" this.search}}
+    >
+      Search <kbd>{{this.formatForDisplay "Mod+K"}}</kbd>
+    </button>
+  </template>
+}
+```
+
+The output uses the key names from the ARIA specification:
+
+- **Modifiers.** `Mod` becomes `Meta` on macOS and `Control` elsewhere. Modifiers use `Control`, `Alt`, `Shift`, and `Meta` in that order before the key, so `Mod+Shift+P` formats as `Shift+Meta+P` on macOS.
+- **Keys.** Keys use `KeyboardEvent.key` values (`K`, `/`, `Escape`, `ArrowUp`), with `Space` for the space bar and `Plus` for the plus key. A physical binding names the key at that position from the user's keyboard layout where the browser reports it, so `[KeyQ]` formats as `Q`, or `A` on a French AZERTY keyboard. A logical hotkey's punctuation stays as written, so `'?'` formats as `?` rather than the `Shift+/` you press on a US keyboard. The key that types `?` depends on the layout. For punctuation that takes `Shift` to type, pass your own `aria-keyshortcuts` value for the layout, or use a physical binding such as `Shift+[Slash]`, which also changes which key the hotkey matches.
+- **No value.** Returns `undefined` for a multi-step sequence, a standalone modifier, an empty or `null` hotkey, or a physical code with no key name such as `[NumpadMemoryAdd]`, so Glimmer omits the attribute. ARIA has no syntax for multi-step sequences. The adapter's formatter also returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, character keys are suspended, or nothing has registered it, so a screen reader doesn't announce a shortcut that no registration can fire. The plain `formatForAria` function only formats.
+
+For a control with two shortcuts, join both formatted values with a space, such as `Control+K /`.
+
 ## Server-side rendering
 
 The server doesn't know the user's platform, so labels rendered in FastBoot use `'linux'` unless a scope sets `platform`. Pass a `createHotkeysScope` scope with `platform: detectPlatform(userAgent)` to `useFormatForDisplay`, or render labels only in the browser. See [SSR & Hydration](./ssr) for the FastBoot, Prember, and caching details.
@@ -179,6 +215,8 @@ formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
 The plain function takes the same options as the function from the utility. It doesn't read a scope, and it uses only the `layoutMap` you pass. Without a `platform`, it detects one in the browser and uses `'linux'` on a server. To give it the user's layout, call `loadKeyboardLayout()` in the browser, and read the layout from `getKeyboardLayoutStore()`.
 
 The export is marked deprecated so that your editor points component code to the utility. Outside a component, it is the function to use.
+
+For `aria-keyshortcuts` outside a component, call `formatForAria` directly with `platform` and an optional `layoutMap`. For example, `formatForAria('Mod+S', { platform: 'mac' })` returns `'Meta+S'`. Like `formatForDisplay`, the plain export is marked `@deprecated`, so editors point component code to the adapter's formatter.
 
 ## Parse, compare, and store hotkeys
 

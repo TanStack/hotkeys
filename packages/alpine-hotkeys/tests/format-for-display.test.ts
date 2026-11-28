@@ -1,4 +1,7 @@
-import { formatForDisplay as coreFormatForDisplay } from '@tanstack/hotkeys'
+import {
+  formatForAria as coreFormatForAria,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
 import Alpine from 'alpinejs'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as adapter from '../src'
@@ -315,8 +318,9 @@ describe("the scope's platform", () => {
   })
 })
 
-describe('the deprecated formatForDisplay export', () => {
+describe('the deprecated formatForDisplay and formatForAria exports', () => {
   it('is the core function', () => {
     expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
+    expect(adapter.formatForAria).toBe(coreFormatForAria)
   })
 })

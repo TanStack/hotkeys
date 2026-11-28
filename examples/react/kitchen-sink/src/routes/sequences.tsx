@@ -54,7 +54,9 @@ function Sequences() {
       <h2>Sequences</h2>
       <p>
         Try the physical G position twice, G then I, or hold Shift and press R
-        then T. Rebind any of them on the Shortcuts route.
+        then T. Rebind any of them on the Shortcuts route. Every step is a key
+        that types a character, so turning off Single-key shortcuts in the
+        header suspends all three.
       </p>
       <label>
         Time between steps: {timeout} ms{' '}

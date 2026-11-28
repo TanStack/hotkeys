@@ -1,6 +1,7 @@
 import { chordHasKey, hotkeySteps, parsedChordsEqual } from './_chord'
 import { isSequenceStep, keepsSequenceProgress } from './_keyboard-event'
 import { matchKeyboardEvent } from './_match'
+import { DEFAULT_SEQUENCE_TIMEOUT } from './constants'
 import { formatHotkey } from './format'
 import { parseHotkey } from './parse'
 import { detectPlatform } from './platform'
@@ -217,9 +218,6 @@ export function areHotkeysEqual(
     )
   )
 }
-
-/** Default timeout between sequence steps (in milliseconds). */
-export const DEFAULT_SEQUENCE_TIMEOUT = 1000
 
 /**
  * Creates a simple sequence matcher for one-off use.

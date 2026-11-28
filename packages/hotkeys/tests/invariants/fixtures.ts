@@ -1,5 +1,5 @@
 import { keyEvent } from '@tanstack/hotkeys-test-utils'
-import { SHARED_NAMED_KEYS } from '../../src/_named-keys'
+import { SHARED_NAMED_KEYS } from '../../src/_constants'
 import { findLayout, layoutPress, layoutsFor } from '../fixtures/layout-events'
 import { TYPED_KEYS } from '../typed-keys'
 import type { HotkeyPlatform } from '../../src'

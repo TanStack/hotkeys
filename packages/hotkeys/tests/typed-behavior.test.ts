@@ -12,8 +12,8 @@ import {
   parseHotkey,
   validateHotkey,
 } from '../src'
+import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_constants'
 import { normalizeKeyboardEvent } from '../src/_keyboard-event'
-import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import {
   EDITING_KEY_NAMES,

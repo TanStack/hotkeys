@@ -4,9 +4,12 @@ import { hash } from '@ember/helper'
 import { clearRender, render, settled } from '@ember/test-helpers'
 import { setupRenderingTest } from 'ember-qunit'
 import { module, test } from 'qunit'
-import { formatForDisplay as coreFormatForDisplay } from '@tanstack/hotkeys'
 import {
-  createHotkeysScope, formatForDisplay, useFormatForDisplay, useHotkeyRecorder,
+  formatForAria as coreFormatForAria,
+  formatForDisplay as coreFormatForDisplay,
+} from '@tanstack/hotkeys'
+import {
+  createHotkeysScope, formatForAria, formatForDisplay, useFormatForDisplay, useHotkeyRecorder,
   HotkeyManager, KeyStateTracker,
 } from '@tanstack/ember-hotkeys'
 
@@ -100,8 +103,9 @@ module('Scope platform', (hooks) => {
   })
 })
 
-module('The deprecated formatForDisplay export', () => {
+module('The deprecated formatForDisplay and formatForAria exports', () => {
   test('is the core function', (assert) => {
     assert.strictEqual(formatForDisplay, coreFormatForDisplay)
+    assert.strictEqual(formatForAria, coreFormatForAria)
   })
 })

@@ -2,6 +2,7 @@
 
 import {
   HotkeyManager,
+  formatForAria as coreFormatForAria,
   formatForDisplay as coreFormatForDisplay,
 } from '@tanstack/hotkeys'
 import { act, render, renderHook } from '@testing-library/react'
@@ -157,8 +158,9 @@ describe('provider platform', () => {
   })
 })
 
-describe('the deprecated formatForDisplay export', () => {
+describe('the deprecated formatForDisplay and formatForAria exports', () => {
   it('is the core function', () => {
     expect(adapter.formatForDisplay).toBe(coreFormatForDisplay)
+    expect(adapter.formatForAria).toBe(coreFormatForAria)
   })
 })

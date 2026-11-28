@@ -260,7 +260,7 @@ function RichTextEditor() {
 }
 ```
 
-Options merge in three layers: provider defaults first, then shared `createHotkeys` options, then per-item options.
+Options merge in layers: provider defaults first, then shared `createHotkeys` options, then per-item options.
 
 ### Build the list from data
 

@@ -57,13 +57,13 @@
     {
       "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "14.5 KB"
+      "limit": "15 KB"
     },
     {
       "name": "HotkeyManager",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ getHotkeyManager }",
-      "limit": "8.5 KB"
+      "limit": "9 KB"
     },
     {
       "name": "HotkeyRecorder",
@@ -88,6 +88,12 @@
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ formatForDisplay }",
       "limit": "3 KB"
+    },
+    {
+      "name": "formatForAria",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ formatForAria }",
+      "limit": "2 KB"
     },
     {
       "name": "Provider without app hotkeys",
@@ -123,7 +129,7 @@
         "react",
         "react-dom"
       ],
-      "limit": "11.5 KB"
+      "limit": "12 KB"
     },
     {
       "name": "Preact useHotkey",
@@ -191,7 +197,7 @@
       "ignore": [
         "alpinejs"
       ],
-      "limit": "12 KB"
+      "limit": "12.5 KB"
     },
     {
       "name": "Alpine hotkeyDirective",

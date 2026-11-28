@@ -1,6 +1,7 @@
 import {
   createHotkeyRecorder,
   createHotkeysScope,
+  getHotkeyManager,
   hotkeysPlugin,
   isHotkeySequence,
 } from '@tanstack/alpine-hotkeys'
@@ -30,6 +31,21 @@ const rejectionText = ({ reason, message }: RecorderRejection) =>
 
 // Gives every hotkeys scope the app's Alpine instance.
 Alpine.plugin(hotkeysPlugin)
+
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+let resumeCharacterKeys: (() => void) | undefined
+
+// Applies the user's "Single-key shortcuts" setting (WCAG 2.1.4). While it is
+// off, the manager suspends character key shortcuts app-wide, such as the G G
+// sequence. Suspensions are counted, so this keeps one and resumes it once.
+function setCharacterKeyShortcuts(on: boolean) {
+  if (on) {
+    resumeCharacterKeys?.()
+    resumeCharacterKeys = undefined
+  } else {
+    resumeCharacterKeys ??= getHotkeyManager().suspendCharacterKeys()
+  }
+}
 
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },
@@ -61,9 +77,11 @@ class Layout {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
   private cleanups: Array<() => void> = []
   formatForDisplay = this.hotkeysScope.createFormatForDisplay()
+  formatForAria = this.hotkeysScope.createFormatForAria()
   pages = pages
   currentPath: string = window.location.pathname
   showShortcuts = false
+  characterKeys = localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off'
   activity: Array<string> = []
   keys!: AlpineHotkeyState<Array<string>>
   codes!: AlpineHotkeyState<Record<string, string>>
@@ -75,6 +93,11 @@ class Layout {
   }
   log(message: string) {
     this.activity = [message, ...this.activity].slice(0, 6)
+  }
+  setCharacterKeys(on: boolean) {
+    this.characterKeys = on
+    localStorage.setItem(CHARACTER_KEYS_KEY, on ? 'on' : 'off')
+    setCharacterKeyShortcuts(on)
   }
   get hotkeys() {
     return this.registrationState0.hotkeys
@@ -93,6 +116,7 @@ class Layout {
   init() {
     this.navigate = this.navigate.bind(this)
     this.log = this.log.bind(this)
+    setCharacterKeyShortcuts(this.characterKeys)
     this.keys = this.hotkeysScope.createHeldKeys()
     this.codes = this.hotkeysScope.createHeldKeyCodes()
     this.shift = this.hotkeysScope.createKeyHold('Shift')

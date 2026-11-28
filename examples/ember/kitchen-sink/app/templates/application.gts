@@ -5,6 +5,8 @@ import { registerDestructor } from '@ember/destroyable'
 import { on } from '@ember/modifier'
 import {
   createHotkeysScope,
+  getHotkeyManager,
+  useFormatForAria,
   useFormatForDisplay,
   isHotkeySequence,
   useHotkeyHint,
@@ -44,6 +46,23 @@ const {
   useHotkeys,
 } = createHotkeysScope({ hotkey: { requireReset: true } })
 
+const CHARACTER_KEYS_KEY = 'tanstack-hotkeys-kitchen-sink-character-keys'
+let resumeCharacterKeys: (() => void) | undefined
+
+/**
+ * Applies the user's "Single-key shortcuts" setting (WCAG 2.1.4). While it is
+ * off, the manager suspends character key shortcuts app-wide, such as the G G
+ * sequence. Suspensions are counted, so this keeps one and resumes it once.
+ */
+function setCharacterKeyShortcuts(on: boolean) {
+  if (on) {
+    resumeCharacterKeys?.()
+    resumeCharacterKeys = undefined
+  } else {
+    resumeCharacterKeys ??= getHotkeyManager().suspendCharacterKeys()
+  }
+}
+
 const eq = (a: unknown, b: unknown) => a === b
 const or = <T, U>(a: T, b: U) => a || b
 const not = (a: unknown) => !a
@@ -70,6 +89,9 @@ class Hint extends Component<{
 
 class Layout extends Component {
   formatForDisplay = useFormatForDisplay()
+  formatForAria = useFormatForAria()
+  @tracked characterKeys: boolean =
+    localStorage.getItem(CHARACTER_KEYS_KEY) !== 'off'
   @tracked currentPath: string = window.location.pathname
   @tracked showShortcuts: boolean = false
   @tracked activity: Array<string> = []
@@ -80,6 +102,11 @@ class Layout extends Component {
   navigateToPage = (page: (typeof pages)[number], e: Event) => {
     e.preventDefault()
     this.navigate({ to: page.to })
+  }
+  updateCharacterKeys = (e: Event) => {
+    this.characterKeys = (e.currentTarget as HTMLInputElement).checked
+    localStorage.setItem(CHARACTER_KEYS_KEY, this.characterKeys ? 'on' : 'off')
+    setCharacterKeyShortcuts(this.characterKeys)
   }
   toggleShortcuts = () => (this.showShortcuts = !this.showShortcuts)
   formatRegistration = (reg: HotkeyRegistrationView) =>
@@ -127,6 +154,7 @@ class Layout extends Component {
     (this.showShortcuts = !this.showShortcuts)
   constructor(...args: ConstructorParameters<typeof Component>) {
     super(...args)
+    setCharacterKeyShortcuts(this.characterKeys)
     const onPopState = () => {
       this.currentPath = window.location.pathname
     }
@@ -153,17 +181,31 @@ class Layout extends Component {
         {{#each pages key='to' as |page|}}<a
             href={{page.to}}
             class={{if (eq this.currentPath page.to) 'active' ''}}
+            aria-keyshortcuts={{this.formatForAria page.shortcut}}
             {{on 'click' (fn this.navigateToPage page)}}
           >{{page.label}} <Hint @hotkey={{page.shortcut}} /></a>{{/each}}
       </nav>
       <button
         {{on 'click' this.toggleShortcuts}}
         aria-expanded={{this.showShortcuts}}
+        aria-keyshortcuts={{this.formatForAria 'Alt+Shift+[KeyK]'}}
       >
         {{if this.showShortcuts 'Hide' 'Show'}}
         shortcuts
         <Hint @hotkey='Alt+Shift+[KeyK]' />
       </button>
+      <label>
+        <input
+          type='checkbox'
+          checked={{this.characterKeys}}
+          {{on 'input' this.updateCharacterKeys}}
+        />
+        Single-key shortcuts
+      </label>
+      <small>
+        Turn off to suspend shortcuts made only of keys that type a character,
+        such as the G G sequence (WCAG 2.1.4).
+      </small>
     </header>
     {{#if this.showShortcuts}}<section aria-label='Registered shortcuts'>
         <h2>Registered shortcuts</h2>
@@ -503,7 +545,8 @@ class Sequences extends Component<{
       <h2>Sequences</h2>
       <p>
         Try the physical G position twice, G then I, or hold Shift and press R then
-        T.
+        T. Every step is a key that types a character, so turning off Single-key
+        shortcuts in the header suspends all three.
       </p>
       <label>
         Time between steps:

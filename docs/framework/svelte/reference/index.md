@@ -37,6 +37,7 @@ title: "@tanstack/svelte-hotkeys"
 ## Variables
 
 - [DEFAULT\_OPTIONS](variables/DEFAULT_OPTIONS.md)
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
 
@@ -51,6 +52,7 @@ title: "@tanstack/svelte-hotkeys"
 - [getAppHotkeys](functions/getAppHotkeys.md)
 - [getCustomHotkeys](functions/getCustomHotkeys.md)
 - [getDefaultHotkeysOptions](functions/getDefaultHotkeysOptions.md)
+- [getFormatForAria](functions/getFormatForAria.md)
 - [getFormatForDisplay](functions/getFormatForDisplay.md)
 - [getHeldKeyCodesMap](functions/getHeldKeyCodesMap.md)
 - [getHeldKeys](functions/getHeldKeys.md)

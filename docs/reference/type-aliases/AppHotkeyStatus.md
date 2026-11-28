@@ -12,11 +12,12 @@ type AppHotkeyStatus =
   | "unbound";
 ```
 
-Defined in: [app-hotkeys.ts:374](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L374)
+Defined in: [app-hotkeys.ts:375](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L375)
 
 Status of an app hotkey in the running app.
 - `'active'`: at least one enabled registration
-- `'suspended'`: has an enabled registration, but none in an active scope
+- `'suspended'`: has an enabled registration, but none can fire: its scope is
+  inactive, or it is a character key shortcut while character keys are suspended
 - `'disabled'`: registered, but every registration has `enabled: false`
 - `'inactive'`: has a hotkey, but nothing has registered it
 - `'unbound'`: no hotkey assigned

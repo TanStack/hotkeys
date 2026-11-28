@@ -1,15 +1,5 @@
-import { detectPlatform } from '@tanstack/hotkeys'
-import {
-  createFormatForDisplay,
-  getServerPlatformSnapshot,
-} from '@tanstack/hotkeys/adapter'
-import { useCallback, useSyncExternalStore } from 'octane'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
-import { subSlot } from './internal'
-import { useKeyboardLayout } from './useKeyboardLayout'
-import type { KeyboardLayoutMap, formatForDisplay } from '@tanstack/hotkeys'
-
-const subscribe = () => () => {}
+import { formatForDisplay } from '@tanstack/hotkeys'
+import { useFormatter } from './_useFormatter'
 
 /**
  * Returns `formatForDisplay` with the platform from `HotkeysProvider`, or the
@@ -41,24 +31,6 @@ const subscribe = () => () => {}
  */
 export function useFormatForDisplay(): typeof formatForDisplay
 export function useFormatForDisplay(slot?: symbol): typeof formatForDisplay {
-  const provided = useDefaultHotkeysOptions().platform
-  // The provider's platform also goes in the server snapshot, so a server
-  // render with a platform does not warn.
-  const platform = useSyncExternalStore(
-    subscribe,
-    () => provided ?? detectPlatform(),
-    () => provided ?? getServerPlatformSnapshot(),
-    subSlot(slot, 'platform'),
-  )
-  const layoutMap = (
-    useKeyboardLayout as (slot: symbol) => KeyboardLayoutMap | null
-  )(subSlot(slot, 'layout'))
-  return useCallback(
-    createFormatForDisplay(
-      () => platform,
-      () => layoutMap,
-    ),
-    [platform, layoutMap],
-    subSlot(slot, 'format'),
-  )
+  // Display tags stay unprefixed, as they were before the ARIA formatter.
+  return useFormatter(formatForDisplay, '', slot)
 }

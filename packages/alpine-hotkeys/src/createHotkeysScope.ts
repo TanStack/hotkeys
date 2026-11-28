@@ -3,6 +3,7 @@ import {
   createAppHotkeys,
   createCustomHotkeys,
 } from './createAppHotkeys'
+import { createFormatForAria } from './createFormatForAria'
 import { createFormatForDisplay } from './createFormatForDisplay'
 import { createHeldKeyCodes } from './createHeldKeyCodes'
 import { createHeldKeys } from './createHeldKeys'
@@ -43,6 +44,7 @@ export function createHotkeysScope(
       createHotkeyRegistrations(scope, ...args),
     createHotkeyScopesState: () => createHotkeyScopesState(scope),
     createFormatForDisplay: () => createFormatForDisplay(scope),
+    createFormatForAria: () => createFormatForAria(scope),
     createKeyboardLayout: () => createKeyboardLayout(scope),
     createAppHotkeys: () => createAppHotkeys(scope),
     createAppHotkeyList: () => createAppHotkeyList(scope),

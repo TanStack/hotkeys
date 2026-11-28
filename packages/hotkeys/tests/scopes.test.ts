@@ -216,6 +216,7 @@ describe('hotkey scopes', () => {
       exclusive: 'dialog',
       allowed: [],
       suspended: ['global', 'editor'],
+      characterKeysSuspended: false,
     })
     press()
     press(document.body, 'k', 'KeyK')

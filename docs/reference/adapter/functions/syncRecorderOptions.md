@@ -9,7 +9,7 @@ title: syncRecorderOptions
 function syncRecorderOptions(recorder, options): void;
 ```
 
-Defined in: [adapter.ts:699](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L699)
+Defined in: [adapter.ts:780](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L780)
 
 Gives a recorder the full set of options an adapter resolved. Unlike
 `setOptions`, which merges, an option the caller stopped passing, such as

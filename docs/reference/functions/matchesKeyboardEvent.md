@@ -13,7 +13,7 @@ function matchesKeyboardEvent(
 ): boolean;
 ```
 
-Defined in: [match.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L59)
+Defined in: [match.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L60)
 
 Checks if a KeyboardEvent matches a hotkey.
 

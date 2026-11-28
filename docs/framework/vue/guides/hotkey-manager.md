@@ -91,7 +91,7 @@ close.unregister()
 releaseScope()
 ```
 
-`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released. `activateScope` takes two options:
+`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released. `activateScope` takes these options:
 
 - `exclusive` suspends every other scope, including `'global'`, while this scope is active. Pass `{ allow: ['global'] }` to keep the listed scopes working.
 - `parent` names the scope this one is nested in, so this scope takes precedence over it. The default is `'global'`.
@@ -122,6 +122,17 @@ const scopes = useHotkeyScopesState()
 ```
 
 The [devtools](../../../devtools) show the same scope state without any code.
+
+## Suspend character key shortcuts
+
+Call `manager.suspendCharacterKeys()` to pause document-level hotkeys made only of keys that type a character, such as `K`, `Shift+/`, or `['G', 'H']`. Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys such as `Escape`, and hotkeys targeted at an element keep working. Suspensions are counted like scope activations, so character key shortcuts stay suspended until every returned resume function runs:
+
+```ts
+const resume = manager.suspendCharacterKeys()
+resume()
+```
+
+Read `manager.scopes.state.characterKeysSuspended` to check whether character keys are suspended. Inside components, pass `suspend-character-keys` to `HotkeysProvider` (or `suspendCharacterKeys` to `provideHotkeysContext`) instead. See [Accessibility](./accessibility#let-users-turn-off-character-key-shortcuts).
 
 ## Reset sequence progress
 

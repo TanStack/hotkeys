@@ -7,6 +7,7 @@ import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import { For, createMemo, createSignal, flush } from 'solid-js'
 import {
   HotkeysProvider,
+  createFormatForAria,
   createFormatForDisplay,
   createHeldKeyCodes,
   createHeldKeys,
@@ -22,6 +23,7 @@ import type {
   HotkeyRegistrationView,
   IndividualKey,
   RegisterableHotkey,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
@@ -44,6 +46,7 @@ function withProvider(
       scope={provider()?.scope}
       enabled={provider()?.enabled}
       exclusive={provider()?.exclusive}
+      suspendCharacterKeys={provider()?.suspendCharacterKeys}
       appHotkeys={provider()?.appHotkeys}
       customHotkeys={provider()?.customHotkeys as never}
       defaultOptions={{
@@ -213,17 +216,20 @@ const harness: ConformanceHarness = {
 
   mountFormat({ platform }) {
     let format!: typeof formatForDisplay
+    let formatAria!: typeof formatForAria
     const view = render(() =>
       withProvider(
         () => (platform ? { platform } : undefined),
         () => {
           format = createFormatForDisplay()
+          formatAria = createFormatForAria()
           return null
         },
       ),
     )
     return {
       format: (hotkey, formatOptions) => format(hotkey, formatOptions ?? {}),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
       unmount: () => view.unmount(),
     }
   },

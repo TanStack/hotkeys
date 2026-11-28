@@ -21,6 +21,7 @@ describe('devtools scopes', () => {
       exclusive: null,
       allowed: [],
       suspended: [],
+      characterKeysSuspended: false,
     })
     expect(
       groups.map((g) => [g.scope, g.status, g.registrations.length]),
@@ -38,6 +39,7 @@ describe('devtools scopes', () => {
       exclusive: 'dialog',
       allowed: [],
       suspended: ['global', 'editor'],
+      characterKeysSuspended: false,
     }
     expect(groupByScope(registrations, state).map((g) => g.status)).toEqual([
       'exclusive',
@@ -54,6 +56,7 @@ describe('devtools scopes', () => {
       exclusive: 'dialog',
       allowed: ['global'],
       suspended: ['editor'],
+      characterKeysSuspended: false,
     }
     expect(
       groupByScope(registrations, state).map((g) => [g.scope, g.status]),

@@ -9,7 +9,7 @@ title: namesPhysicalKey
 function namesPhysicalKey(hotkey): boolean;
 ```
 
-Defined in: [adapter.ts:559](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L559)
+Defined in: [adapter.ts:575](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L575)
 
 Whether a hotkey to display names a physical position, such as `[KeyQ]` or
 `{ code: 'KeyQ' }`. Only those labels follow the keyboard layout. A label

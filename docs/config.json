@@ -147,10 +147,6 @@
               "to": "guides/sensible-defaults"
             },
             {
-              "label": "Formatting & Display",
-              "to": "framework/react/guides/formatting-display"
-            },
-            {
               "label": "HotkeysProvider & Scopes",
               "to": "framework/react/guides/hotkeys-provider-and-scopes"
             }
@@ -170,10 +166,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/preact/guides/formatting-display"
             },
             {
               "label": "HotkeysProvider & Scopes",
@@ -197,10 +189,6 @@
               "to": "guides/sensible-defaults"
             },
             {
-              "label": "Formatting & Display",
-              "to": "framework/solid/guides/formatting-display"
-            },
-            {
               "label": "HotkeysProvider & Scopes",
               "to": "framework/solid/guides/hotkeys-provider-and-scopes"
             }
@@ -220,10 +208,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/angular/guides/formatting-display"
             },
             {
               "label": "provideHotkeys & Scopes",
@@ -247,10 +231,6 @@
               "to": "guides/sensible-defaults"
             },
             {
-              "label": "Formatting & Display",
-              "to": "framework/vue/guides/formatting-display"
-            },
-            {
               "label": "HotkeysProvider & Scopes",
               "to": "framework/vue/guides/hotkeys-provider-and-scopes"
             }
@@ -270,10 +250,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/lit/guides/formatting-display"
             }
           ]
         },
@@ -291,10 +267,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/svelte/guides/formatting-display"
             },
             {
               "label": "HotkeysProvider & Scopes",
@@ -316,10 +288,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/alpine/guides/formatting-display"
             }
           ]
         },
@@ -337,10 +305,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/ember/guides/formatting-display"
             }
           ]
         },
@@ -358,10 +322,6 @@
             {
               "label": "Sensible Defaults",
               "to": "guides/sensible-defaults"
-            },
-            {
-              "label": "Formatting & Display",
-              "to": "framework/octane/guides/formatting-display"
             },
             {
               "label": "HotkeysProvider & Scopes",
@@ -388,6 +348,10 @@
               "to": "framework/react/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/react/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/react/guides/cheat-sheet-ui-helpers"
             },
@@ -398,6 +362,10 @@
             {
               "label": "Held Keys",
               "to": "framework/react/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/react/guides/accessibility"
             }
           ]
         },
@@ -413,6 +381,10 @@
               "to": "framework/preact/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/preact/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/preact/guides/cheat-sheet-ui-helpers"
             },
@@ -423,6 +395,10 @@
             {
               "label": "Held Keys",
               "to": "framework/preact/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/preact/guides/accessibility"
             }
           ]
         },
@@ -438,6 +414,10 @@
               "to": "framework/solid/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/solid/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/solid/guides/cheat-sheet-ui-helpers"
             },
@@ -448,6 +428,10 @@
             {
               "label": "Held Keys",
               "to": "framework/solid/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/solid/guides/accessibility"
             }
           ]
         },
@@ -463,6 +447,10 @@
               "to": "framework/angular/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/angular/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/angular/guides/cheat-sheet-ui-helpers"
             },
@@ -473,6 +461,10 @@
             {
               "label": "Held Keys",
               "to": "framework/angular/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/angular/guides/accessibility"
             }
           ]
         },
@@ -488,6 +480,10 @@
               "to": "framework/vue/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/vue/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/vue/guides/cheat-sheet-ui-helpers"
             },
@@ -498,6 +494,10 @@
             {
               "label": "Held Keys",
               "to": "framework/vue/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/vue/guides/accessibility"
             }
           ]
         },
@@ -513,6 +513,10 @@
               "to": "framework/lit/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/lit/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/lit/guides/cheat-sheet-ui-helpers"
             },
@@ -523,6 +527,10 @@
             {
               "label": "Held Keys",
               "to": "framework/lit/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/lit/guides/accessibility"
             }
           ]
         },
@@ -538,6 +546,10 @@
               "to": "framework/svelte/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/svelte/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/svelte/guides/cheat-sheet-ui-helpers"
             },
@@ -548,6 +560,10 @@
             {
               "label": "Held Keys",
               "to": "framework/svelte/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/svelte/guides/accessibility"
             }
           ]
         },
@@ -563,6 +579,10 @@
               "to": "framework/alpine/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/alpine/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/alpine/guides/cheat-sheet-ui-helpers"
             },
@@ -573,6 +593,10 @@
             {
               "label": "Held Keys",
               "to": "framework/alpine/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/alpine/guides/accessibility"
             }
           ]
         },
@@ -588,6 +612,10 @@
               "to": "framework/ember/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/ember/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/ember/guides/cheat-sheet-ui-helpers"
             },
@@ -598,6 +626,10 @@
             {
               "label": "Held Keys",
               "to": "framework/ember/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/ember/guides/accessibility"
             }
           ]
         },
@@ -613,6 +645,10 @@
               "to": "framework/octane/guides/custom-hotkey-recording"
             },
             {
+              "label": "Formatting & Display",
+              "to": "framework/octane/guides/formatting-display"
+            },
+            {
               "label": "Cheat Sheets",
               "to": "framework/octane/guides/cheat-sheet-ui-helpers"
             },
@@ -623,6 +659,10 @@
             {
               "label": "Held Keys",
               "to": "framework/octane/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Accessibility",
+              "to": "framework/octane/guides/accessibility"
             }
           ]
         }

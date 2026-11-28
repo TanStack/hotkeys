@@ -4,7 +4,7 @@ id: hotkeys
 description: Register keyboard shortcuts in Svelte with createHotkey, createHotkeys, and attachments. Write chords and sequences, set reactive options, turn hotkeys on and off, and listen on one element.
 ---
 
-`createHotkey` registers a keyboard shortcut while the component that calls it is mounted, and `createHotkeys` registers several. For hotkeys that belong to one element, `createHotkeyAttachment` and `createHotkeysAttachment` do the same through `{@attach}`. All four take the same hotkeys and options. To register hotkeys outside Svelte components, use the [hotkey manager](./hotkey-manager).
+`createHotkey` registers a keyboard shortcut while the component that calls it is mounted, and `createHotkeys` registers several. For hotkeys that belong to one element, `createHotkeyAttachment` and `createHotkeysAttachment` do the same through `{@attach}`. They all take the same hotkeys and options. To register hotkeys outside Svelte components, use the [hotkey manager](./hotkey-manager).
 
 ## Chords and sequences
 
@@ -231,9 +231,9 @@ Pass shared options as the second argument. Individual definitions override them
 <div contenteditable {@attach editorHotkeys}></div>
 ```
 
-The attachment also makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains attachments.
+The attachment also makes every hotkey in the list listen on the editor only. [Hotkey targets](#hotkey-targets) explains attachments.
 
-Options merge in three layers: defaults from the provider first, then the shared options, then per-item options.
+Options merge in layers: defaults from the provider first, then the shared options, then per-item options.
 
 ### Build the list from data
 

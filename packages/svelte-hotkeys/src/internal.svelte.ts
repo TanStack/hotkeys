@@ -1,4 +1,4 @@
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { getHotkeyManager, publishAppHotkeysStore } from '@tanstack/hotkeys'
 import { activateHotkeysProviderScope } from '@tanstack/hotkeys/adapter'
 import { createSubscriber } from 'svelte/reactivity'
 import type {
@@ -96,4 +96,17 @@ export function syncAppHotkeysStore(
 export function activateScopeWhileMounted(getKey: () => string | null): void {
   const key = $derived(getKey())
   $effect(() => (key ? activateHotkeysProviderScope(key) : undefined))
+}
+
+/**
+ * Suspends character key shortcuts while the component is mounted and
+ * `getSuspend` returns true.
+ */
+export function suspendCharacterKeysWhileMounted(
+  getSuspend: () => boolean | undefined,
+): void {
+  const suspend = $derived(!!getSuspend())
+  $effect(() =>
+    suspend ? getHotkeyManager().suspendCharacterKeys() : undefined,
+  )
 }

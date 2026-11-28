@@ -40,7 +40,7 @@ Logical bindings like `Mod+S` or `?` match `event.key`, which is the character p
 
 ### When matching falls back to physical position
 
-`event.key` doesn't always tell you which key was pressed, so the matcher falls back to the key's position (`event.code` or keycap identity) in four cases:
+`event.key` doesn't always tell you which key was pressed, so the matcher falls back to the key's position (`event.code` or keycap identity) in these cases:
 
 - **Non-Latin layouts.** On a Russian layout, the `S` key types `ы`. `Mod+S` still matches so shortcuts work without switching layouts.
 - **macOS `Option`.** Option changes characters (`Option+S` types `ß`, German `Option+L` types `@`). `Alt+S` and `Alt+L` still match based on the letter printed on the key (`event.keyCode`, falling back to position when `keyCode` isn't a letter). On a French AZERTY Mac, `Alt+A` fires on the key labeled `A` (the US `Q` position).
@@ -195,14 +195,14 @@ For most shortcuts, setting `preventDefault: 'always'` in your shared defaults i
 Don't use `'always'` on hotkeys you turn off specifically to hand keys back to the browser. Set `preventDefault: true` on those instead:
 
 - **Clipboard and editing chords.** `Mod+C`, `Mod+A`, and `Mod+Z` enabled only while canvas cells are selected would block native copy and undo in text inputs if `'always'` were set.
-- **Single-key shortcuts.** Shortcuts behind an accessibility off switch would keep blocking `Space`, arrow keys, or `/` when turned off.
+- **Single-key shortcuts.** Shortcuts behind an accessibility off switch, including character key shortcuts suspended with `suspendCharacterKeys`, would keep blocking `Space`, arrow keys, or `/` when turned off.
 - **`Tab` hotkeys.** Disabling them would still trap focus.
 
 ## Single-key shortcuts need an off switch
 
 Ignoring text inputs prevents `K` from firing while typing, but speech-input users dictate words as single keystrokes. Under [WCAG 2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html), any shortcut using only letters, numbers, or symbols (including `Shift+K` or a sequence like `['G', 'G']`) must satisfy at least one of these conditions:
 
-- **Turn it off.** Wire `enabled` to a user preference.
+- **Turn it off.** Pass `suspendCharacterKeys` to your provider, or call `getHotkeyManager().suspendCharacterKeys()`, from a user preference. Each framework's Accessibility guide shows how.
 - **Remap it.** Let users add a modifier through app hotkeys and the recorder.
 - **Scope it to focus.** Give it an element `target` so it fires only while that widget is focused.
 

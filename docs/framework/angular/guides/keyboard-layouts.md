@@ -56,7 +56,7 @@ injectHotkey('Mod+Ñ', () => this.search()) // Type error: Spanish isn't registe
 
 ## Available key sets
 
-26 exported sets cover 33 layouts. Identical layouts share aliases, such as `AustrianKeys` and `GermanKeys`. Each set includes characters typed unshifted or with `Shift` across Windows, macOS, and Linux, excluding dead keys and `AltGr` or `Option` characters:
+Identical layouts share a set under several aliases, such as `AustrianKeys` and `GermanKeys`. Each set includes characters typed unshifted or with `Shift` across Windows, macOS, and Linux, excluding dead keys and `AltGr` or `Option` characters:
 
 | Set | Layouts |
 | --- | --- |

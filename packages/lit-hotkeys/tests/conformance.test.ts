@@ -5,6 +5,7 @@ import {
 } from '@tanstack/hotkeys-test-utils/conformance'
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import { LitElement, html } from 'lit'
+import { FormatForAriaController } from '../src/controllers/format-for-aria'
 import { FormatForDisplayController } from '../src/controllers/format-for-display'
 import { HeldKeyCodesController } from '../src/controllers/held-key-codes'
 import { HeldKeysController } from '../src/controllers/held-keys'
@@ -251,10 +252,12 @@ const harness: ConformanceHarness = {
     const host = new ConformanceHost()
     // Lit has no provider: the platform is the controller's own option.
     const formatForDisplay = new FormatForDisplayController(host, { platform })
+    const formatForAria = new FormatForAriaController(host, { platform })
     const view = await attach(host)
     return {
       format: (hotkey, formatOptions) =>
         formatForDisplay.format(hotkey, formatOptions ?? {}),
+      formatAria: (hotkey, options) => formatForAria.format(hotkey, options),
       unmount: view.unmount,
     }
   },

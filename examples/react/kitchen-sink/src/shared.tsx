@@ -19,6 +19,19 @@ export function useActivity() {
 }
 
 /**
+ * The user's "Single-key shortcuts" setting. While it is off, the root
+ * provider suspends character key shortcuts, such as the G G sequence.
+ */
+export const CharacterKeysContext = createContext({
+  enabled: true,
+  setEnabled: (_enabled: boolean) => {},
+})
+
+export function useCharacterKeysSetting() {
+  return useContext(CharacterKeysContext)
+}
+
+/**
  * Returns a function that formats a chord or sequence, or reports that none
  * is assigned.
  */

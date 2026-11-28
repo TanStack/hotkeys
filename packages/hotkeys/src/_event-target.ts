@@ -1,3 +1,19 @@
+import {
+  ACTIVATION_KEYS,
+  CARET_KEYS,
+  COMBOBOX_KEYS,
+  ENTER_KEYS,
+  GRID_KEYS,
+  HORIZONTAL_KEYS,
+  INPUT_KEYS,
+  MENU_KEYS,
+  NAVIGATION_KEYS,
+  RADIO_KEYS,
+  SPACE_KEYS,
+  SPIN_KEYS,
+  TYPEAHEAD,
+  VERTICAL_KEYS,
+} from './_constants'
 import { codeToLogicalKey } from './_keyboard-event'
 import { normalizeKeyName } from './constants'
 import type { Target } from './hotkey.types'
@@ -64,77 +80,6 @@ export function targetHasFocus(target: Target): boolean {
 }
 
 // What blocks a key
-
-// Plain array literals, not spreads, so bundlers can drop lists a build doesn't use
-const VERTICAL = ['ArrowUp', 'ArrowDown']
-const HORIZONTAL = ['ArrowLeft', 'ArrowRight']
-const ENTER = ['Enter']
-const SPACE = ['Space']
-const ACTIVATION = ['Enter', 'Space']
-// Marks widgets that move focus to the item starting with a typed character
-const TYPEAHEAD = 'typeahead'
-const MENU = [
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  'Enter',
-  'Space',
-  TYPEAHEAD,
-]
-const COMBOBOX = [
-  'ArrowUp',
-  'ArrowDown',
-  'Home',
-  'End',
-  'Enter',
-  'Space',
-  TYPEAHEAD,
-]
-const GRID = [
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  'PageUp',
-  'PageDown',
-  'Enter',
-  'Space',
-]
-const RADIOS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
-const NAVIGATION = [
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  'PageUp',
-  'PageDown',
-]
-const SPIN = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown']
-// Read-only text inputs still move the caret and select text
-const CARET = ['ArrowLeft', 'ArrowRight', 'Home', 'End']
-
-/**
- * Input types that aren't text fields, with the keys each one keeps. Browsers
- * report unknown types as `'text'`.
- */
-const INPUT_KEYS: Record<string, ReadonlyArray<string> | undefined> = {
-  button: ACTIVATION,
-  submit: ACTIVATION,
-  reset: ACTIVATION,
-  image: ACTIVATION,
-  color: ACTIVATION,
-  file: ACTIVATION,
-  checkbox: SPACE,
-  radio: RADIOS,
-  range: NAVIGATION,
-}
 
 function getRole(element: Element): string | undefined {
   return element.getAttribute('role')?.trim().split(/\s+/)[0]
@@ -203,20 +148,20 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
     case 'menuitem':
     case 'menuitemcheckbox':
     case 'menuitemradio':
-      return ACTIVATION
+      return ACTIVATION_KEYS
     case 'link':
-      return ENTER
+      return ENTER_KEYS
     case 'checkbox':
     case 'switch':
     case 'radio':
-      return SPACE
+      return SPACE_KEYS
     case 'menu':
     case 'menubar':
     case 'tree':
-      return MENU
+      return MENU_KEYS
     case 'listbox':
       return [
-        ...(orientation === 'horizontal' ? HORIZONTAL : VERTICAL),
+        ...(orientation === 'horizontal' ? HORIZONTAL_KEYS : VERTICAL_KEYS),
         'Home',
         'End',
         'Enter',
@@ -224,10 +169,10 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
         TYPEAHEAD,
       ]
     case 'combobox':
-      return COMBOBOX
+      return COMBOBOX_KEYS
     case 'tablist':
       return [
-        ...(orientation === 'vertical' ? VERTICAL : HORIZONTAL),
+        ...(orientation === 'vertical' ? VERTICAL_KEYS : HORIZONTAL_KEYS),
         'Home',
         'End',
         'Enter',
@@ -235,34 +180,34 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
       ]
     case 'toolbar':
       return [
-        ...(orientation === 'vertical' ? VERTICAL : HORIZONTAL),
+        ...(orientation === 'vertical' ? VERTICAL_KEYS : HORIZONTAL_KEYS),
         'Home',
         'End',
       ]
     case 'grid':
     case 'treegrid':
-      return GRID
+      return GRID_KEYS
     case 'radiogroup':
-      return RADIOS
+      return RADIO_KEYS
     case 'slider':
-      return NAVIGATION
+      return NAVIGATION_KEYS
     case 'spinbutton':
-      return SPIN
+      return SPIN_KEYS
   }
 
   switch (element.localName) {
     case 'button':
     case 'summary':
-      return ACTIVATION
+      return ACTIVATION_KEYS
     case 'input':
       // Only read-only text inputs aren't listed
-      return INPUT_KEYS[(element as HTMLInputElement).type] ?? CARET
+      return INPUT_KEYS[(element as HTMLInputElement).type] ?? CARET_KEYS
     case 'textarea':
       // Only read-only textareas
-      return NAVIGATION
+      return NAVIGATION_KEYS
     case 'a':
     case 'area':
-      return element.hasAttribute('href') ? ENTER : []
+      return element.hasAttribute('href') ? ENTER_KEYS : []
   }
   return []
 }

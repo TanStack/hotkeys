@@ -12,6 +12,7 @@ import { cell } from './conformance/cell.svelte'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type { ConformanceHarness } from '@tanstack/hotkeys-test-utils/conformance'
@@ -150,13 +151,20 @@ const harness: ConformanceHarness = {
 
   mountFormat({ platform }) {
     let format!: typeof formatForDisplay
+    let formatAria!: typeof formatForAria
     const view = render(Wrap, {
       provider: platform ? { platform } : undefined,
       view: Format,
-      props: { ready: (value: typeof formatForDisplay) => (format = value) },
+      props: {
+        ready: (value: typeof formatForDisplay, aria: typeof formatForAria) => {
+          format = value
+          formatAria = aria
+        },
+      },
     })
     return {
       format: (hotkey, formatOptions) => format(hotkey, formatOptions),
+      formatAria: (hotkey, options) => formatAria(hotkey, options),
       unmount: view.unmount,
     }
   },

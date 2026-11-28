@@ -1,13 +1,13 @@
 import { useRef } from 'octane';
 import {
-  HotkeysProvider, useFormatForDisplay, useHeldKeyCodes, useHeldKeys,
+  HotkeysProvider, useFormatForAria, useFormatForDisplay, useHeldKeyCodes, useHeldKeys,
   useHotkey, useHotkeyHint, useHotkeyRecorder, useHotkeyRegistrations,
   useHotkeys, useKeyHold,
 } from '@tanstack/octane-hotkeys';
 import type {
   HeldModifierOptions, HotkeyRecorderOptions, HotkeyRegistrationView,
   IndividualKey, OctaneHotkeyRecorder, RegisterableHotkey, UseHotkeyDefinition,
-  formatForDisplay,
+  formatForAria, formatForDisplay,
 } from '@tanstack/octane-hotkeys';
 import type {
   ConformanceHotkey, ConformanceProvider, HotkeysSpec,
@@ -50,6 +50,7 @@ function Provider({ provider, children }: { provider: ConformanceProvider; child
     scope={provider.scope}
     enabled={provider.enabled}
     exclusive={provider.exclusive}
+    suspendCharacterKeys={provider.suspendCharacterKeys}
     appHotkeys={provider.appHotkeys}
     customHotkeys={provider.customHotkeys as never}
     defaultOptions={{ platform: provider.platform, hotkey: provider.hotkey }}
@@ -100,11 +101,15 @@ export function RecorderView({ provider, options: recorderOptions, ready }: { pr
   }
 }
 
-function Format({ ready }: { ready: (format: typeof formatForDisplay) => void }) @{
-  ready(useFormatForDisplay());
+type FormatReady = (format: typeof formatForDisplay, formatAria: typeof formatForAria) => void;
+
+function Format({ ready }: { ready: FormatReady }) @{
+  const format = useFormatForDisplay();
+  const formatAria = useFormatForAria();
+  ready(format, formatAria);
 }
 
-export function FormatView({ provider, ready }: { provider?: ConformanceProvider; ready: (format: typeof formatForDisplay) => void }) @{
+export function FormatView({ provider, ready }: { provider?: ConformanceProvider; ready: FormatReady }) @{
   @if (provider) {
     <Provider provider={provider}><Format ready={ready} /></Provider>
   } @else {

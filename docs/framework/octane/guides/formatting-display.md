@@ -30,7 +30,7 @@ function SaveButton() @{
 }
 ```
 
-The hook wires up two things automatically:
+The hook wires up the following automatically:
 
 - **Platform.** Reads the nearest `HotkeysProvider`, or detects from `navigator` if there isn't one.
 - **Keyboard layout.** For physical codes like `[KeyW]`, reads the user's keyboard layout in Chromium browsers.
@@ -154,6 +154,36 @@ formatForDisplay('Mod+[KeyQ]', {
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
 
+## Format for `aria-keyshortcuts`
+
+`useFormatForAria()` returns a function that formats a hotkey for the [`aria-keyshortcuts`](https://w3c.github.io/aria/#aria-keyshortcuts) attribute so screen readers can announce it. It uses the same platform and keyboard layout as the display formatter. See [Accessibility](./accessibility#announce-shortcuts-to-screen-readers) for where to place the attribute.
+
+```tsx
+import {
+  useFormatForAria,
+  useFormatForDisplay,
+  useHotkey,
+} from '@tanstack/octane-hotkeys'
+
+function SearchButton({ onSearch }: { onSearch: () => void }) @{
+  useHotkey('Mod+K', onSearch)
+  const formatForAria = useFormatForAria()
+  const formatForDisplay = useFormatForDisplay()
+
+  <button onClick={onSearch} aria-keyshortcuts={formatForAria('Mod+K')}>
+    Search <kbd>{formatForDisplay('Mod+K')}</kbd>
+  </button>
+}
+```
+
+The output uses the key names from the ARIA specification:
+
+- **Modifiers.** `Mod` becomes `Meta` on macOS and `Control` elsewhere. Modifiers use `Control`, `Alt`, `Shift`, and `Meta` in that order before the key, so `Mod+Shift+P` formats as `Shift+Meta+P` on macOS.
+- **Keys.** Keys use `KeyboardEvent.key` values (`K`, `/`, `Escape`, `ArrowUp`), with `Space` for the space bar and `Plus` for the plus key. A physical binding names the key at that position from the user's keyboard layout where the browser reports it, so `[KeyQ]` formats as `Q`, or `A` on a French AZERTY keyboard. A logical hotkey's punctuation stays as written, so `'?'` formats as `?` rather than the `Shift+/` you press on a US keyboard. The key that types `?` depends on the layout. For punctuation that takes `Shift` to type, pass your own `aria-keyshortcuts` value for the layout, or use a physical binding such as `Shift+[Slash]`, which also changes which key the hotkey matches.
+- **No value.** Returns `undefined` for a multi-step sequence, a standalone modifier, an empty or `null` hotkey, or a physical code with no key name such as `[NumpadMemoryAdd]`, so Octane omits the attribute. ARIA has no syntax for multi-step sequences. The adapter's formatter also returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, character keys are suspended, or nothing has registered it, so a screen reader doesn't announce a shortcut that no registration can fire. The plain `formatForAria` function only formats.
+
+For a control with two shortcuts, join both formatted values with a space, such as `Control+K /`.
+
 ## Server-side rendering
 
 To render platform-accurate labels on the server without hydration mismatches or a Linux-label flash on macOS and Windows, pass `platform` to `HotkeysProvider` from the incoming request, or wrap labels in a client-only guard on static pages. See [SSR & Hydration](./ssr) for TanStack Start, Astro, custom server, and static page examples.
@@ -172,6 +202,8 @@ formatForDisplay('Mod+S', { platform }) // '⌘ S' when platform is 'mac'
 
 > [!NOTE]
 > `formatForDisplay` is marked `@deprecated` on the Octane package so editor autocomplete nudges component code toward `useFormatForDisplay()`. Outside components, calling it directly is expected.
+
+For `aria-keyshortcuts` outside a component, call `formatForAria` directly with `platform` and an optional `layoutMap`. For example, `formatForAria('Mod+S', { platform: 'mac' })` returns `'Meta+S'`. Like `formatForDisplay`, the plain export is marked `@deprecated`, so editors point component code to the adapter's formatter.
 
 ## Parse, compare, and store hotkeys
 

@@ -18,6 +18,7 @@ import {
 } from '@tanstack/hotkeys-test-utils/conformance'
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import { provideHotkeys } from '../src/hotkeys-provider'
+import { injectFormatForAria } from '../src/injectFormatForAria'
 import { injectFormatForDisplay } from '../src/injectFormatForDisplay'
 import { injectHeldKeyCodes } from '../src/injectHeldKeyCodes'
 import { injectHeldKeys } from '../src/injectHeldKeys'
@@ -32,6 +33,7 @@ import type { ComponentFixture } from '@angular/core/testing'
 import type {
   IndividualKey,
   RegisterableHotkey,
+  formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
 import type {
@@ -100,6 +102,7 @@ function hotkeysProvider(
       scope: () => provider()?.scope,
       enabled: () => provider()?.enabled,
       exclusive: () => provider()?.exclusive,
+      suspendCharacterKeys: () => provider()?.suspendCharacterKeys,
       customHotkeys: () => provider()?.customHotkeys as never,
       defaultOptions: () => ({
         platform: provider()?.platform,
@@ -300,6 +303,7 @@ const harness: ConformanceHarness = {
   mountFormat({ platform }) {
     class FormatView {
       readonly format: typeof formatForDisplay = injectFormatForDisplay()
+      readonly formatAria: typeof formatForAria = injectFormatForAria()
     }
     const provider = platform ? { platform } : undefined
     const fixture = create(FormatView, {
@@ -309,6 +313,8 @@ const harness: ConformanceHarness = {
     return {
       format: (hotkey, formatOptions) =>
         fixture.componentInstance.format(hotkey, formatOptions),
+      formatAria: (hotkey, options) =>
+        fixture.componentInstance.formatAria(hotkey, options),
       unmount: destroy(fixture),
     }
   },

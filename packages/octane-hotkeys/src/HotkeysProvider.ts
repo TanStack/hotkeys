@@ -1,4 +1,4 @@
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { getHotkeyManager, publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
   createAppHotkeysStore,
@@ -103,6 +103,7 @@ export function HotkeysProvider({
   scope,
   exclusive,
   enabled = true,
+  suspendCharacterKeys = false,
 }: HotkeysProviderProps) {
   const parent = useContext(HotkeysContext)
   const callbackRef = useRef(
@@ -160,6 +161,15 @@ export function HotkeysProvider({
     () => (scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined),
     [scopeKey],
     subSlot(undefined, 'provider-scope'),
+  )
+  // Suspend character key shortcuts while mounted, as the user's setting asks.
+  useLayoutEffect(
+    () =>
+      suspendCharacterKeys
+        ? getHotkeyManager().suspendCharacterKeys()
+        : undefined,
+    [suspendCharacterKeys],
+    subSlot(undefined, 'provider-character-keys'),
   )
   return createElement(HotkeysContext, {
     value: {

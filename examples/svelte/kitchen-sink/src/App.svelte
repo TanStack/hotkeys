@@ -3,13 +3,14 @@
     HotkeysProvider,
     createHotkey,
     createHotkeys,
+    getFormatForAria,
     getFormatForDisplay,
     getHeldKeyCodesMap,
     getHeldKeys,
     getHotkeyRegistrations,
     getIsKeyHeld,
   } from '@tanstack/svelte-hotkeys'
-  import { onMount, setContext } from 'svelte'
+  import { getContext, onMount, setContext } from 'svelte'
   import Editor from './Editor.svelte'
   import Formatting from './Formatting.svelte'
   import Hint from './Hint.svelte'
@@ -45,6 +46,9 @@
     },
   ] as const
   const formatForDisplay = getFormatForDisplay()
+  const formatForAria = getFormatForAria()
+  // Set by Root.svelte, which passes it to the root provider.
+  const characterKeys = getContext<{ enabled: boolean }>('characterKeys')
   let path = $state(location.hash.slice(1) || '/'),
     show = $state(false),
     activity = $state<Array<string>>([])
@@ -88,13 +92,26 @@
     Hold Alt / Option for hints. Route changes mount and unmount registrations.
   </p>
   <nav>
-    {#each pages as p}<a href={`#${p.path}`} class:active={path === p.path}
+    {#each pages as p}<a
+        href={`#${p.path}`}
+        class:active={path === p.path}
+        aria-keyshortcuts={formatForAria(p.hotkey)}
         >{p.name} <Hint hotkey={p.hotkey} /></a
       >{/each}
   </nav>
-  <button onclick={() => (show = !show)}
+  <button
+    onclick={() => (show = !show)}
+    aria-keyshortcuts={formatForAria('Alt+Shift+[KeyK]')}
     >{show ? 'Hide' : 'Show'} shortcuts</button
   >
+  <label>
+    <input type="checkbox" bind:checked={characterKeys.enabled} />
+    Single-key shortcuts
+  </label>
+  <small>
+    Turn off to suspend shortcuts made only of keys that type a character, such
+    as the G G sequence (WCAG 2.1.4).
+  </small>
 </header>
 {#if show}<section>
     <h2>Live registry</h2>

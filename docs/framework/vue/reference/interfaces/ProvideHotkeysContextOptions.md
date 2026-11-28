@@ -19,7 +19,7 @@ optional appHotkeys?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L78)
+Defined in: [HotkeysProviderContext.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L82)
 
 Every app hotkey, from `defineAppHotkeys`. It can start as `undefined` and
 arrive later, such as from a lazy import. Later changes update the
@@ -36,7 +36,7 @@ optional customHotkeys?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L85)
+Defined in: [HotkeysProviderContext.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L89)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -91,7 +91,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L87)
+Defined in: [HotkeysProviderContext.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L91)
 
 Called with the custom hotkeys after every change, ready to save.
 
@@ -116,3 +116,15 @@ optional scope?: MaybeRefOrGetter<string | undefined>;
 Defined in: [HotkeysProviderContext.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L68)
 
 See `HotkeysProviderScopeProps['scope']`.
+
+***
+
+### suspendCharacterKeys?
+
+```ts
+optional suspendCharacterKeys?: MaybeRefOrGetter<boolean | undefined>;
+```
+
+Defined in: [HotkeysProviderContext.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L74)
+
+See `HotkeysProviderScopeProps['suspendCharacterKeys']`.

@@ -1,4 +1,5 @@
 import { chordHasKey, isKeyNameShape, parsedStepsEqual } from './_chord'
+import { GLOBAL_SCOPE, defaultHotkeyOptions } from './_constants'
 import { canWarn } from './_dev'
 import {
   getTargetDocument,
@@ -13,18 +14,17 @@ import { managerRef } from './_manager-ref'
 import { matchKeyboardEvent } from './_match'
 import { isRecordingEvent, onRecordingStart } from './_recording-guard'
 import {
-  GLOBAL_SCOPE,
-  defaultHotkeyOptions,
   definedOptions,
   getDefaultIgnoreInputs,
   handleConflict,
+  isCharacterKeyShortcut,
   optionsEqual,
 } from './_registration'
 import { createStore } from './_store'
 import { TargetListeners } from './_target-listeners'
-import { normalizeKeyName } from './constants'
+import { DEFAULT_SEQUENCE_TIMEOUT, normalizeKeyName } from './constants'
 import { formatHotkey } from './format'
-import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
+import { areHotkeysEqual } from './match'
 import { isHotkeySequence, parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
 import type { KeyboardEventMatch } from './_match'
@@ -234,7 +234,8 @@ export type HotkeyRegistration =
  * Whether a registration is on. Focus isn't checked: a registration on an
  * element also needs focus inside that element to fire.
  * - `'active'`: enabled, and its scope is active
- * - `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope
+ * - `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope,
+ *   or it is a character key shortcut while `suspendCharacterKeys` is in effect
  * - `'disabled'`: registered with `enabled: false`
  */
 export type HotkeyRegistrationStatus = 'active' | 'suspended' | 'disabled'
@@ -282,13 +283,34 @@ export interface HotkeyRegistrationsResult {
   readonly hotkeys: Array<HotkeyRegistrationView>
 }
 
-/** Whether a registration can fire now. Without a manager, scopes don't apply. */
+/**
+ * Whether a target hears key presses from anywhere on the page: the document,
+ * the window, the body, or the root element. A hotkey on any other element
+ * fires only while focus is inside it.
+ */
+function listensPageWide(target: Target): boolean {
+  if (isDocumentLevel(target)) return true
+  const doc = target.ownerDocument
+  return target === doc.body || target === doc.documentElement
+}
+
+/**
+ * Whether a registration can fire now. Without a manager, scopes and
+ * character-key suspension don't apply.
+ */
 function getRegistrationStatus(
-  options: HotkeyOptions,
+  registration: HotkeyRegistration,
   manager: HotkeyManager | null,
 ): HotkeyRegistrationStatus {
+  const { options } = registration
   if (options.enabled === false) return 'disabled'
-  return manager?.isScopeActive(options.scope) === false
+  return manager &&
+    (!manager.isScopeActive(options.scope) ||
+      // A hotkey on an element fires only while it has focus, which WCAG
+      // 2.1.4 already allows, so suspension leaves it alone.
+      (manager.scopes.state.characterKeysSuspended &&
+        listensPageWide(registration.target) &&
+        isCharacterKeyShortcut(resolvedSteps(registration))))
     ? 'suspended'
     : 'active'
 }
@@ -299,7 +321,7 @@ export function toHotkeyRegistrationView(
 ): HotkeyRegistrationView {
   const base = {
     id: reg.id,
-    status: getRegistrationStatus(reg.options, managerRef.current),
+    status: getRegistrationStatus(reg, managerRef.current),
     target: reg.target,
     triggerCount: reg.triggerCount,
     hasFired: reg.hasFired,
@@ -515,6 +537,12 @@ export interface HotkeyScopesState {
    * exclusive, possibly including `'global'`.
    */
   suspended: ReadonlyArray<string>
+  /**
+   * Whether character key shortcuts, such as `K` or `Shift+/`, are suspended
+   * by `suspendCharacterKeys`. Hotkeys on an element other than the body or the
+   * root element are not suspended.
+   */
+  characterKeysSuspended: boolean
 }
 
 /** Options for `HotkeyManager.activateScope`. */
@@ -606,9 +634,11 @@ export class HotkeyManager {
     exclusive: null,
     allowed: [],
     suspended: [],
+    characterKeysSuspended: false,
   })
   #platform: HotkeyPlatform
   #scopeActivations = new Set<ScopeActivation>()
+  #characterKeySuspensions = new Set<object>()
   #scopeActivationCount = 0
   /** Active scopes, lowest precedence first, derived from activations. */
   #scopeOrder: Array<string> = []
@@ -752,6 +782,54 @@ export class HotkeyManager {
     return scope === GLOBAL_SCOPE || this.#scopeOrder.includes(scope)
   }
 
+  /**
+   * Suspends document-level character key shortcuts until you call the
+   * returned function, so apps can let users turn off single-key shortcuts for
+   * WCAG 2.1.4 (Character Key Shortcuts). A character key shortcut is a hotkey
+   * whose every step types a character, alone or with `Shift`, such as `K`,
+   * `?`, `Shift+K`, `Space`, or `['G', 'H']`. Hotkeys with `Control`, `Alt`,
+   * or `Meta`, non-character keys such as `Escape` or `F1`, and hotkeys
+   * targeted at an element other than the body or the root element keep
+   * working. Enabled hotkeys that are suspended report the status
+   * `'suspended'`.
+   *
+   * Suspensions are counted, so character keys stay suspended until every
+   * returned resume function runs. Framework providers call this while mounted
+   * with `suspendCharacterKeys`.
+   *
+   * @example
+   * ```ts
+   * const resume = manager.suspendCharacterKeys()
+   * // `K` and `['G', 'H']` don't fire; `Mod+K` and `Escape` do.
+   * resume()
+   * ```
+   */
+  suspendCharacterKeys(): () => void {
+    const suspension = {}
+    this.#characterKeySuspensions.add(suspension)
+    this.#updateScopes()
+    return () => {
+      if (!this.#characterKeySuspensions.delete(suspension)) return
+      const suspended = [...this.registrations.state.values()].filter(
+        (registration) => !this.#isLive(registration),
+      )
+      this.#updateScopes()
+      // Like opening a scope, the press that resumes character keys doesn't
+      // fire them. A keyup chord still gets the release of its own press.
+      for (const registration of suspended) {
+        if (
+          this.#isLive(registration) &&
+          !(
+            registration.kind === 'chord' &&
+            registration.options.eventType === 'keyup'
+          )
+        ) {
+          this.#markLive(registration.id)
+        }
+      }
+    }
+  }
+
   /** Higher for scopes with higher precedence; `'global'` is 0. */
   #scopeRank(scope: string = GLOBAL_SCOPE): number {
     return this.#scopeOrder.indexOf(scope) + 1
@@ -839,6 +917,7 @@ export class HotkeyManager {
       exclusive: exclusive?.scope ?? null,
       allowed,
       suspended: live ? activated.filter((scope) => !live.has(scope)) : [],
+      characterKeysSuspended: this.#characterKeySuspensions.size > 0,
     }))
     // Registration subscribers, such as cheat sheets, show suspended hotkeys.
     this.#notify()
@@ -846,7 +925,7 @@ export class HotkeyManager {
 
   /** Whether a registration can fire now: enabled, in an active scope. */
   #isLive(registration: HotkeyRegistration): boolean {
-    return getRegistrationStatus(registration.options, this) === 'active'
+    return getRegistrationStatus(registration, this) === 'active'
   }
 
   /**
@@ -1121,8 +1200,8 @@ export class HotkeyManager {
           // Enabled, or moved into an active scope. A keyup chord enabled by
           // its own keydown, to end a mode, still gets that press's release.
           if (
-            getRegistrationStatus(reg.options, manager) !== 'active' &&
-            getRegistrationStatus(options, manager) === 'active' &&
+            getRegistrationStatus(reg, manager) !== 'active' &&
+            getRegistrationStatus({ ...reg, options }, manager) === 'active' &&
             !(reg.kind === 'chord' && options.eventType === 'keyup')
           ) {
             manager.#markLive(id)

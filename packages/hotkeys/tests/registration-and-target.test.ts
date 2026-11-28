@@ -1,10 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { defaultHotkeyOptions } from '../src/_constants'
 import { isInputElement } from '../src/_event-target'
-import {
-  defaultHotkeyOptions,
-  getDefaultIgnoreInputs,
-  handleConflict,
-} from '../src/_registration'
+import { getDefaultIgnoreInputs, handleConflict } from '../src/_registration'
 
 describe('registration and event-target helpers', () => {
   describe('isInputElement', () => {

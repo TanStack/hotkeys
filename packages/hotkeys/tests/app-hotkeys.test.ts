@@ -6,10 +6,17 @@ import {
   getAppHotkeyRegistrationOptions,
   isAppHotkey,
   isCustomHotkey,
+  parseHotkey,
   resolveAppHotkey,
   toHotkeyRegistrationView,
 } from '../src'
-import { namesPhysicalKey } from '../src/adapter'
+import {
+  announceLiveHotkeys,
+  createFormatter,
+  getHotkeyRegistrationViews,
+  namesPhysicalKey,
+} from '../src/adapter'
+import { formatForAria as coreFormatForAria } from '../src/format'
 import type {
   AppHotkey,
   CustomHotkeys,
@@ -268,6 +275,83 @@ describe('adapter helpers', () => {
     // The `[` and `]` characters name keys of their own
     expect(namesPhysicalKey('Mod+[')).toBe(false)
     expect(namesPhysicalKey('Mod+]')).toBe(false)
+  })
+
+  it('binds a formatter to the platform and layout it is given', () => {
+    let layoutReads = 0
+    const formatForAria = createFormatter(
+      coreFormatForAria,
+      () => 'mac',
+      () => {
+        layoutReads++
+        return new Map([['KeyQ', 'a']])
+      },
+    )
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    expect(formatForAria(null)).toBe(undefined)
+    // Only a physical key reads the layout.
+    expect(layoutReads).toBe(0)
+    expect(formatForAria('Mod+[KeyQ]')).toBe('Meta+A')
+    expect(layoutReads).toBe(1)
+    // Options passed to the call win.
+    expect(formatForAria('Mod+K', { platform: 'windows' })).toBe('Control+K')
+    expect(
+      formatForAria('[KeyQ]', { layoutMap: new Map([['KeyQ', 'q']]) }),
+    ).toBe('Q')
+  })
+
+  it('announces only hotkeys that can fire', () => {
+    const manager = HotkeyManager.getInstance()
+    const formatForAria = announceLiveHotkeys(
+      createFormatter(
+        coreFormatForAria,
+        () => 'mac',
+        () => null,
+      ),
+      () => getHotkeyRegistrationViews(manager.registrations.state),
+    )
+    // Nothing has registered it.
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    const handle = manager.register('Mod+K', () => {}, { platform: 'mac' })
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    expect(formatForAria({ key: 'K', mod: true })).toBe('Meta+K')
+    handle.setOptions({ enabled: false })
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    handle.setOptions({ enabled: true })
+    const close = manager.activateScope('dialog', { exclusive: true })
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    close()
+    manager.register('K', () => {}, { platform: 'mac' })
+    expect(formatForAria('K')).toBe('K')
+    const resume = manager.suspendCharacterKeys()
+    expect(formatForAria('K')).toBe(undefined)
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    resume()
+    // A hotkey on an element counts whether or not it has focus.
+    const element = document.createElement('div')
+    document.body.append(element)
+    manager.register('Mod+J', () => {}, { platform: 'mac', target: element })
+    expect(formatForAria('Mod+J')).toBe('Meta+J')
+    element.remove()
+  })
+
+  it('matches a hotkey on the platform each side resolves it on', () => {
+    const manager = HotkeyManager.getInstance()
+    const formatForAria = announceLiveHotkeys(
+      createFormatter(
+        coreFormatForAria,
+        () => 'windows',
+        () => null,
+      ),
+      () => getHotkeyRegistrationViews(manager.registrations.state),
+    )
+    // A Windows Mod+S listens for Control, so Meta+S on macOS isn't live.
+    manager.register('Mod+S', () => {}, { platform: 'windows' })
+    expect(formatForAria('Mod+S')).toBe('Control+S')
+    expect(formatForAria('Mod+S', { platform: 'mac' })).toBe(undefined)
+    // A parsed chord keeps the modifiers it was parsed with.
+    manager.register('Control+K', () => {}, { platform: 'mac' })
+    expect(formatForAria(parseHotkey('Control+K', 'windows'))).toBe('Control+K')
   })
 
   it('resolves an app hotkey from the store by id', () => {

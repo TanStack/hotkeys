@@ -1,12 +1,5 @@
-import { createFormatForDisplay } from '@tanstack/hotkeys/adapter'
-import {
-  layoutEnabled,
-  requestLayout,
-  trackedLayout,
-  untilRendered,
-} from './keyboardLayout'
-import { scopeDefaults } from './utils'
-import type { formatForDisplay } from '@tanstack/hotkeys'
+import { formatForDisplay } from '@tanstack/hotkeys'
+import { bindFormatter } from './_formatter'
 import type { EmberHotkeysScope } from './createHotkeysScope'
 
 /**
@@ -42,25 +35,5 @@ import type { EmberHotkeysScope } from './createHotkeysScope'
 export function useFormatForDisplay(
   scope?: EmberHotkeysScope,
 ): typeof formatForDisplay {
-  const layoutMap = untilRendered(trackedLayout)
-  let requested = false
-  /** The loaded layout, unless the scope turns it off. */
-  const loadedLayout = () => {
-    if (!layoutEnabled(scope)) {
-      requested = false
-      return undefined
-    }
-    // Formatting the first label is what loads the layout.
-    if (!requested) {
-      requested = true
-      requestLayout()
-    }
-    return layoutMap() ?? undefined
-  }
-  // Only a position's label reads the layout, so other labels don't render
-  // again when it loads.
-  return createFormatForDisplay(
-    () => scope && scopeDefaults.get(scope)!().platform,
-    loadedLayout,
-  )
+  return bindFormatter(formatForDisplay, scope)
 }

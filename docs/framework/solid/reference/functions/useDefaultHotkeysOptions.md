@@ -9,7 +9,7 @@ title: useDefaultHotkeysOptions
 function useDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:205](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L205)
+Defined in: [HotkeysProvider.tsx:212](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L212)
 
 ## Returns
 

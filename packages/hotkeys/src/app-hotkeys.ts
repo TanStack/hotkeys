@@ -1,8 +1,8 @@
 import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
 import { hotkeySteps } from './_chord'
+import { GLOBAL_SCOPE } from './_constants'
 import { canWarn } from './_dev'
 import { ownValue } from './_keys'
-import { GLOBAL_SCOPE } from './_registration'
 import { stepsOverlap } from './_steps'
 import { createStore } from './_store'
 import { getHotkeyManager } from './hotkey-manager'
@@ -366,7 +366,8 @@ function hotkeysOverlap(
 /**
  * Status of an app hotkey in the running app.
  * - `'active'`: at least one enabled registration
- * - `'suspended'`: has an enabled registration, but none in an active scope
+ * - `'suspended'`: has an enabled registration, but none can fire: its scope is
+ *   inactive, or it is a character key shortcut while character keys are suspended
  * - `'disabled'`: registered, but every registration has `enabled: false`
  * - `'inactive'`: has a hotkey, but nothing has registered it
  * - `'unbound'`: no hotkey assigned

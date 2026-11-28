@@ -12,7 +12,7 @@ const HotkeysProvider: DefineComponent<typeof providerProps, () => VNode[] | und
 }, ComponentOptionsMixin, ComponentOptionsMixin, typeof providerEmits> = component;
 ```
 
-Defined in: [HotkeysProvider.tsx:98](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L98)
+Defined in: [HotkeysProvider.tsx:101](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L101)
 
 Vue component that provides default options, app hotkeys, and the user's
 custom hotkeys. A new `customHotkeys` value replaces the current custom

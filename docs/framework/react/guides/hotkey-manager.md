@@ -88,7 +88,7 @@ close.unregister()
 releaseScope()
 ```
 
-`activateScope` returns a release function, and a scope remains active until every activation of it has been released. It accepts two options:
+`activateScope` returns a release function, and a scope remains active until every activation of it has been released. It accepts these options:
 
 - `exclusive` suspends every other scope (including `'global'`), or pass `{ allow: ['global'] }` to keep specific scopes active.
 - `parent` names an ancestor scope so this scope takes precedence over it (defaults to `'global'`).
@@ -97,12 +97,13 @@ releaseScope()
 
 Call `manager.isScopeActive(scope)` to check whether a scope can currently fire, or inspect each registration's `status` (see [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen)).
 
-`manager.scopes` is a store with four fields:
+`manager.scopes` is a store with these fields:
 
 - `active`: active scopes ordered lowest-to-highest precedence (`'global'` is always active and omitted here)
 - `exclusive`: currently controlling exclusive scope, or `null`
 - `allowed`: active scopes permitted by the exclusive scope
 - `suspended`: active scopes blocked by an exclusive scope (may include `'global'`)
+- `characterKeysSuspended`: whether character key shortcuts are suspended by `suspendCharacterKeys`
 
 Inside React components, read the same state reactively with `useHotkeyScopesState`:
 
@@ -117,6 +118,17 @@ function KeyboardOwner() {
 ```
 
 The [devtools](../../../devtools) display the same live scope state without writing code.
+
+## Suspend character key shortcuts
+
+Call `manager.suspendCharacterKeys()` to pause document-level hotkeys made only of keys that type a character, such as `K`, `Shift+/`, or `['G', 'H']`. Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys such as `Escape`, and hotkeys targeted at an element keep working. Suspensions are counted like scope activations, so character key shortcuts stay suspended until every returned resume function runs:
+
+```ts
+const resume = manager.suspendCharacterKeys()
+resume()
+```
+
+Read `manager.scopes.state.characterKeysSuspended` to check whether character keys are suspended. Inside components, pass `suspendCharacterKeys` to `HotkeysProvider` instead. See [Accessibility](./accessibility#let-users-turn-off-character-key-shortcuts).
 
 ## Reset sequence progress
 

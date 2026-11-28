@@ -14,11 +14,11 @@ function createFormatForDisplay(getPlatform, getLayoutMap): {
 };
 ```
 
-Defined in: [adapter.ts:639](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L639)
+Defined in: [adapter.ts:727](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L727)
 
 A `formatForDisplay` that uses a provider's platform and keyboard layout
-when the call doesn't pass them. Only a label that names a physical key
-reads `getLayoutMap`, so other labels don't depend on the layout.
+when the call doesn't pass them. Same as
+`createFormatter(formatForDisplay, getPlatform, getLayoutMap)`.
 
 ## Parameters
 

@@ -27,6 +27,7 @@ title: "@tanstack/octane-hotkeys"
 
 ## Variables
 
+- [~~formatForAria~~](variables/formatForAria.md)
 - [~~formatForDisplay~~](variables/formatForDisplay.md)
 
 ## Functions
@@ -36,6 +37,7 @@ title: "@tanstack/octane-hotkeys"
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
+- [useFormatForAria](functions/useFormatForAria.md)
 - [useFormatForDisplay](functions/useFormatForDisplay.md)
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)
