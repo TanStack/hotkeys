@@ -667,73 +667,73 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
-      "fingerprint": "e5b115fc55083a836a5c968897c08a904b2db84bded413a3c85b9fb203b8a1e0",
+      "fingerprint": "e576c33ec891eff09138d3a05b3c29fffc60c984b7f4e88a1dca3848a899cdc5",
       "snapshot": {
-        "examples/alpine/kitchen-sink/index.html": "fe2c523d07d1e842b22db2b80e5423ccde4dd3ff1ec21ea6daeb2f277c53d61b"
+        "examples/alpine/kitchen-sink/index.html": "ec8b11668d1838500df709356835dd55222cb72d3091eca18cab829f0c9a9111"
       },
-      "head": "94358d54fd72a38952b6fb68560b48043a3f8277",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "The kitchen sink's recorder mode toggle gains the new default. No skill refers to it.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/alpine/kitchen-sink/index.html"]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
-      "fingerprint": "74e0a159195d10c9b1a31ce3ce8662c1ffb8ba54175b4b1809099f0072016d9a",
+      "fingerprint": "24761bb4fa3f97b8776aabfde8c5055c668cd04dd71f3165834a656ea7b9bb2c",
       "snapshot": {
-        "examples/alpine/kitchen-sink/src/main.ts": "883db128d1d55fccb362b7aab8caac0d3d784fd37e5f256adcb8a3c5a786c4be"
+        "examples/alpine/kitchen-sink/src/main.ts": "7efe079a4ef80d49a2957987d51eadeeb35ad818d5d95b98ef7dc9fe3facaac4"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
-      "fingerprint": "330681aa68178157b80a37c712263f64dde408566bbe1fff1f147b21deb349df",
+      "fingerprint": "5a8204d56ad5f448284f6b3ba90848ab72708a038831367fcd470c0b6c49bc46",
       "snapshot": {
-        "examples/angular/kitchen-sink/src/app/app.component.ts": "ab887c8257f97e059818648a4de3f2d7b06cce84b251ce7798a32ea201f7351c"
+        "examples/angular/kitchen-sink/src/app/app.component.ts": "cefb995ec490557931d06c3aecef0812e34e74a3aeac78fecf3b875d49cc87b3"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/angular/kitchen-sink/src/app/app.component.ts"]
     },
     "source:examples/ember/kitchen-sink/app/templates/application.gts": {
-      "fingerprint": "c0efa336639683144eb6ca0b680a2b687fda9329faac1d4ea9d3d8d8cd9d2f93",
+      "fingerprint": "1cba789855ab55ce112352f802b35ffdb5d436962aa4e376fed5224aa72cdb96",
       "snapshot": {
-        "examples/ember/kitchen-sink/app/templates/application.gts": "c7494111c1dfc88004ad367d012758a94196d51bf05db3ace406a6c1727e7fab"
+        "examples/ember/kitchen-sink/app/templates/application.gts": "752acf4ad8da44d436ede65d45559dc255fe731f3c8df3d2afb1e2cd64e41257"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/ember/kitchen-sink/app/templates/application.gts"]
     },
     "source:examples/lit/kitchen-sink/src/app.ts": {
-      "fingerprint": "b977531575dfc067d7517c3adadb85d8c9c88f2b9c9442fd556babdb4f0c4bc9",
+      "fingerprint": "bcbf4ea2af535cd1190be1338ec10f53431d637df55223509a4663ddf2de9a11",
       "snapshot": {
-        "examples/lit/kitchen-sink/src/app.ts": "af6e30094daa96fc08566f879f43777161bcbee3aa78aeb87fbb15a1c29803b2"
+        "examples/lit/kitchen-sink/src/app.ts": "8dc83671ea239e62adf071d34da7898a9db1bb265085ed397d5b8326847fadef"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/lit/kitchen-sink/src/app.ts"]
     },
     "source:examples/octane/kitchen-sink/src/main.tsrx": {
-      "fingerprint": "91589b08fc0cc4ec1fcd12c863b08aba6cc3e72a3eb6381ca0a05e1a25129521",
+      "fingerprint": "66d63475e93466b824097164b6f33ee67d766ffedf8fe4fcf36431f1759c594f",
       "snapshot": {
-        "examples/octane/kitchen-sink/src/main.tsrx": "ba4cbb6ecea75293b978a59b61411b5331ecc13382333982456fa55cfb801426"
+        "examples/octane/kitchen-sink/src/main.tsrx": "f31c06f985bea47b871e2ff8ec349140066785a3b65e03537b18fa28bc711f8e"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/octane/kitchen-sink/src/main.tsrx"]
     },
     "source:examples/preact/kitchen-sink/src/index.tsx": {
-      "fingerprint": "0ca59ad164794582837626cf3b2f16df51cb3b30caaec0da6ef65c298ad9263a",
+      "fingerprint": "9935f3d7d6d27264ac355132162b7534326f957c9e0111d59b685d5b4147e1bf",
       "snapshot": {
-        "examples/preact/kitchen-sink/src/index.tsx": "b0e1b87db21bd341c63fb0c173c80f088d59ede988000ce67d66e25ea61489dd"
+        "examples/preact/kitchen-sink/src/index.tsx": "986878bad25428b18907d60bba4a1fab1222792b22769dcd8f8aa3bcd0efa12b"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/preact/kitchen-sink/src/index.tsx"]
     },
     "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
@@ -763,26 +763,23 @@
       ]
     },
     "source:examples/react/kitchen-sink/src/shared.tsx": {
-      "fingerprint": "4123222c02772abc418ea440101ecf856db68c45bce70a97d5d4d3d42c4cf80b",
+      "fingerprint": "294491e0a2d6334c5d32c6180c82821b0fca2c5695c5e1259c57476c75f2b15e",
       "snapshot": {
-        "examples/react/kitchen-sink/src/shared.tsx": "bbe053851bba8290587200e762d79f8d2c5f13990c183188499aa439e66bec45"
+        "examples/react/kitchen-sink/src/shared.tsx": "365fba2f0cfd996c26324efa18555c1a543732f046190bb654e9a63e9b69605d"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/react/kitchen-sink/src/shared.tsx",
-        "git diff 7d9cccc3 -- examples/react/kitchen-sink/src/shared.tsx"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/react/kitchen-sink/src/shared.tsx"]
     },
     "source:examples/solid/kitchen-sink/src/index.tsx": {
-      "fingerprint": "a18f090ae5e793612ab64c9d1526b0758c80bff144c2832c654afe3f03f4d828",
+      "fingerprint": "9f2ed41ca7c6c3a2e196af6c769d3abead603a342506d025bfe73e3aa1e25796",
       "snapshot": {
-        "examples/solid/kitchen-sink/src/index.tsx": "10df8d2f81d092443cd589cd85db4f9f5b6fd6bed6f3796c052bd4360b5617a6"
+        "examples/solid/kitchen-sink/src/index.tsx": "2b1f5795463aa42d51d7ce27dcf4f87e779e5a80bf19560107228156376e7d0e"
       },
-      "head": "05be1291a103f39c2570697d44e8df5e039f4497",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Covered by the app-hotkeys and hotkeys-core skill updates; generated reference, tests, e2e and guide edits need no other skill change.",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
       "evidence": ["examples/solid/kitchen-sink/src/index.tsx"]
     },
     "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
@@ -14658,17 +14655,14 @@
       ]
     },
     "source:examples/react/kitchen-sink/src/index.tsx": {
-      "fingerprint": "b31306cca786d3d263b68bf6dd41f7cc7f2edea1dd7a305a5b60acedebfd659d",
+      "fingerprint": "0bea6ad2a8441c9db60fe682ede882b99f783e2e6149a935562017dfca6fc1c2",
       "snapshot": {
-        "examples/react/kitchen-sink/src/index.tsx": "29a028a8bd297183c5bf64294fdb54ddd5e798ef0c69d6896e32fe0af4a1ef7d"
+        "examples/react/kitchen-sink/src/index.tsx": "72fedc4d521378d3d20d5f1b4ef4c69a332ffd44ad8f710f540e4be9936c4631"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/react/kitchen-sink/src/index.tsx",
-        "git diff 7d9cccc3 -- examples/react/kitchen-sink/src/index.tsx"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/react/kitchen-sink/src/index.tsx"]
     },
     "source:examples/react/kitchen-sink/src/routes/editor.tsx": {
       "fingerprint": "84cd3ad06bbe0eb16ee8be53a3787152e7cd1972925acff19069f98d9bff6c4a",
@@ -14696,17 +14690,14 @@
       ]
     },
     "source:examples/react/kitchen-sink/src/routes/sequences.tsx": {
-      "fingerprint": "26cd937f756fa29557f0720bdcd91be78337ae6d06b7d175557e5c29a2a44008",
+      "fingerprint": "fb4c8dd53f995d1e5ac1b808bd1064b9674660fb3eca77c9efe2824d32eb6d1b",
       "snapshot": {
-        "examples/react/kitchen-sink/src/routes/sequences.tsx": "d651e35f6a9deb63cf162230a96ebcc59892b4335f2822bbf9950b6723ea7f33"
+        "examples/react/kitchen-sink/src/routes/sequences.tsx": "c6e71f5ef22c5d3da598143bf246ac3a9881dadfa11be87f3d71a14de03b7a1a"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/react/kitchen-sink/src/routes/sequences.tsx",
-        "git diff 7d9cccc3 -- examples/react/kitchen-sink/src/routes/sequences.tsx"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/react/kitchen-sink/src/routes/sequences.tsx"]
     },
     "source:examples/react/kitchen-sink/vite.config.ts": {
       "fingerprint": "af8855dbabb3ed7253cf3900478139a7c2bd354f1a058e9f8a1b81a2851b82ce",
@@ -15706,17 +15697,14 @@
       ]
     },
     "source:examples/svelte/kitchen-sink/src/App.svelte": {
-      "fingerprint": "ae15ac65eaa3844ad0600026cfca2c9caa2307358eb95877986d69af04f01ec4",
+      "fingerprint": "ea1c4ebd08ec2b8b645ca2d73f4cd7b6586a63f8ba2cfa9f2b97ee7c69b9a922",
       "snapshot": {
-        "examples/svelte/kitchen-sink/src/App.svelte": "a0acd87ca03a632f663fdf595a12d5169988cd2b852c31ac1dadffefcf0fde89"
+        "examples/svelte/kitchen-sink/src/App.svelte": "f536e0d1cb76f73c05d3a3381e20d4de19bc0ff68e2d0f06ad27f79b1c8026be"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/svelte/kitchen-sink/src/App.svelte",
-        "git diff 7d9cccc3 -- examples/svelte/kitchen-sink/src/App.svelte"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/svelte/kitchen-sink/src/App.svelte"]
     },
     "source:examples/svelte/kitchen-sink/src/Editor.svelte": {
       "fingerprint": "964196b085d6a7c951981e6a2580c1729e87d89ad069ffe7ce653900e4b511f6",
@@ -15757,30 +15745,24 @@
       ]
     },
     "source:examples/svelte/kitchen-sink/src/Root.svelte": {
-      "fingerprint": "037566699bf2f05e1f31ccaeba14ae09d3809c9e7fae601eaa06baad48fa5cf8",
+      "fingerprint": "770210dd43b9400815c072d69a557dd8a732d051b80bf87f0dd6bd800473eae2",
       "snapshot": {
-        "examples/svelte/kitchen-sink/src/Root.svelte": "d51676365f2aba30bc9dd9b0742987dbbeba03d88c369d67d3a665950dbc717f"
+        "examples/svelte/kitchen-sink/src/Root.svelte": "9960f3ddfd8176f5f85ff4973227788b0d8bb197a7bf8109edff1b3ba779abb8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
-      "evidence": [
-        "examples/svelte/kitchen-sink/src/Root.svelte",
-        "lint and build pass"
-      ]
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/svelte/kitchen-sink/src/Root.svelte"]
     },
     "source:examples/svelte/kitchen-sink/src/Sequences.svelte": {
-      "fingerprint": "accde47926ae533ce5c841d285a156b6db2370264d2738c5ef3a4bacb1e0b56c",
+      "fingerprint": "c07b2cfb3f6cdf494b9e1ea9badb8068bdc970c43f29a4da7672f69f12bcd96c",
       "snapshot": {
-        "examples/svelte/kitchen-sink/src/Sequences.svelte": "f69b471fe71d8d101957f2b5ca6113adbf208afdc1068d416e0731ea7a012f7e"
+        "examples/svelte/kitchen-sink/src/Sequences.svelte": "853d245e9d35720672af75af8d9989e3c2730c7f1c8de36ff72a8878925a9bfd"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/svelte/kitchen-sink/src/Sequences.svelte",
-        "git diff 7d9cccc3 -- examples/svelte/kitchen-sink/src/Sequences.svelte"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/svelte/kitchen-sink/src/Sequences.svelte"]
     },
     "source:examples/svelte/kitchen-sink/tsconfig.json": {
       "fingerprint": "9dec9bc69fd5936bc1a6601dadd3b36461c546fe63eb0cc74f93319a0348ddf1",
@@ -15933,17 +15915,14 @@
       ]
     },
     "source:examples/vue/kitchen-sink/src/App.vue": {
-      "fingerprint": "7a1e26be9b2e9daa5f7c06baab234ede529c0141b4eec76602fe53b5d706ef79",
+      "fingerprint": "6376d7c0a8b5cef49f3504c522bdc675a1170d4965389e8f7fbc225c7028d814",
       "snapshot": {
-        "examples/vue/kitchen-sink/src/App.vue": "08ef18a318e03e90ae27a1041b5a7cc90f21c01523f513456fe963ac85ac950b"
+        "examples/vue/kitchen-sink/src/App.vue": "77f1f01095ae3e7a3f9f1756464f46e92017c2c0b2bb7a0e94407681abebb97d"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/vue/kitchen-sink/src/App.vue",
-        "git diff 7d9cccc3 -- examples/vue/kitchen-sink/src/App.vue"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/vue/kitchen-sink/src/App.vue"]
     },
     "source:examples/vue/kitchen-sink/src/Editor.vue": {
       "fingerprint": "1016ccd531e2c82e0e40a41b43168b5094196031bcc4096811126034ce82280f",
@@ -15984,30 +15963,24 @@
       ]
     },
     "source:examples/vue/kitchen-sink/src/Sequences.vue": {
-      "fingerprint": "f12519a1dcf62c76a4ee245d5721a2cd1e566bbfa56b0b7ebc338ac31ff804a0",
+      "fingerprint": "085c05fb4e09b8f67fbf3d2909c2cab1177703b56b932666849602d27612fd39",
       "snapshot": {
-        "examples/vue/kitchen-sink/src/Sequences.vue": "b4ee32a495a594f4807e80ff85c3c033e5884170ab7b7161561690e72bf74102"
+        "examples/vue/kitchen-sink/src/Sequences.vue": "51756762fa1d6340f83a368804a919e0039e11020555207e9963ed14cd9a6f9c"
       },
-      "head": "b627bb89ca8120dc83d9664c938ee06117579761",
-      "outcome": "updated",
-      "reason": "Example now formats labels with the label primitive, with its result named formatForDisplay. The framework skill shows the same pattern.",
-      "evidence": [
-        "examples/vue/kitchen-sink/src/Sequences.vue",
-        "git diff 7d9cccc3 -- examples/vue/kitchen-sink/src/Sequences.vue"
-      ]
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/vue/kitchen-sink/src/Sequences.vue"]
     },
     "source:examples/vue/kitchen-sink/src/index.ts": {
-      "fingerprint": "7f92b912400a4f7ce8fdf9d2f648743e6cef99d837aba171f9c479b3bb5f80c6",
+      "fingerprint": "47ea4e11491abe741a8b628ecb9efe19f632c54bafc7f67b858ef9960b625e59",
       "snapshot": {
-        "examples/vue/kitchen-sink/src/index.ts": "cec11f814cd7808357ed394174c562d212d5679533fd5e90b26036af0c542d9d"
+        "examples/vue/kitchen-sink/src/index.ts": "e090c12293e53cd035955960caceb44a46bc8701a119643deee261059c8ded12"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
       "outcome": "no-change",
-      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
-      "evidence": [
-        "examples/vue/kitchen-sink/src/index.ts",
-        "lint and build pass"
-      ]
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/vue/kitchen-sink/src/index.ts"]
     },
     "source:examples/vue/kitchen-sink/tsconfig.json": {
       "fingerprint": "67a08753b4e4c54c49b42f591a796047bc816e7565c5dfe62e667d2701bc0c37",
@@ -24256,6 +24229,16 @@
       "outcome": "no-change",
       "reason": "Source for the live-only ARIA formatters or the suspension fixes. The skill's rows cover the change.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
+    },
+    "source:examples/angular/kitchen-sink/src/app/app.config.ts": {
+      "fingerprint": "48b3b0a00ec6d137cc2ab8a031bb52ed371ef2ea2cb9257a1efa4f2752d6d60f",
+      "snapshot": {
+        "examples/angular/kitchen-sink/src/app/app.config.ts": "1b65a0e18b4abd36c282bcad6864cf1674b99790306e5dc3c1cfa505f46175fd"
+      },
+      "head": "2ce11095eb91395b30f5ef13a42a0326720c1d66",
+      "outcome": "no-change",
+      "reason": "Kitchen sink example that uses the ARIA formatter and the character key setting; the framework skill already covers both.",
+      "evidence": ["examples/angular/kitchen-sink/src/app/app.config.ts"]
     }
   }
 }
