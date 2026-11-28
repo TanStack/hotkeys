@@ -9,6 +9,7 @@ export * from './getHotkeyRegistrations.svelte.js'
 export * from './getHotkeyScopesState.svelte.js'
 export * from './getHeldKeyCodesMap.svelte.js'
 export * from './getIsKeyHeld.svelte.js'
+export * from './getKeyLockState.svelte.js'
 export * from './getAppHotkeys.svelte.js'
 export { default as HotkeysProvider } from './HotkeysProvider.svelte'
 export {

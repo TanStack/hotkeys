@@ -44,6 +44,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHotkeyScopesState](functions/createHotkeyScopesState.md)
 - [createKeyboardLayout](functions/createKeyboardLayout.md)
 - [createKeyHold](functions/createKeyHold.md)
+- [createKeyLockState](functions/createKeyLockState.md)
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)

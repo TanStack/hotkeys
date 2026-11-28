@@ -5,6 +5,7 @@ import Format from './conformance/Format.svelte'
 import HeldKeysView from './conformance/HeldKeysView.svelte'
 import Hint from './conformance/Hint.svelte'
 import Hotkeys from './conformance/Hotkeys.svelte'
+import KeyLockStateView from './conformance/KeyLockStateView.svelte'
 import Recorder from './conformance/Recorder.svelte'
 import RegistrationsView from './conformance/RegistrationsView.svelte'
 import Wrap from './conformance/Wrap.svelte'
@@ -12,6 +13,7 @@ import { cell } from './conformance/cell.svelte'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  LockKey,
   formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
@@ -64,6 +66,22 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(view.text('keys')),
       codes: () => JSON.parse(view.text('codes')),
       held: () => view.text('held') === 'true',
+      setKey(key) {
+        setKey(key)
+        flushSync()
+      },
+      unmount: view.unmount,
+    }
+  },
+
+  mountKeyLockState(watch) {
+    let setKey!: (key: LockKey) => void
+    const view = render(KeyLockStateView, {
+      watch,
+      ready: (update: typeof setKey) => (setKey = update),
+    })
+    return {
+      value: () => JSON.parse(view.text('lock')),
       setKey(key) {
         setKey(key)
         flushSync()

@@ -114,5 +114,22 @@ for (const app of adapterApps) {
       await expect(page.locator('#shift-held')).toHaveText('released')
       await expect(page.locator('#held-keys')).toHaveText('')
     })
+
+    // Playwright can't turn on the OS Caps Lock: Chromium and WebKit report
+    // it off. This checks that real input reaches the lock state helper.
+    test('key lock state follows real input and resets on blur', async ({
+      page,
+      openApp,
+    }) => {
+      await openApp(app)
+      await expect(page.locator('#caps-lock')).toHaveText('unknown')
+      await page.keyboard.press('a')
+      await expect(page.locator('#caps-lock')).toHaveText('off')
+      await page.evaluate(() => window.dispatchEvent(new Event('blur')))
+      await expect(page.locator('#caps-lock')).toHaveText('unknown')
+      await page.mouse.move(20, 20)
+      await page.mouse.move(40, 40)
+      await expect(page.locator('#caps-lock')).toHaveText('off')
+    })
   })
 }

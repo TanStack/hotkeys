@@ -45,6 +45,9 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       border: 1px solid ${t(colors.gray[200], colors.darkGray[700])};
       display: flex;
       align-items: center;
+      /* The held keys, locks, and layout chip wrap to new rows when narrow. */
+      flex-wrap: wrap;
+      row-gap: ${size[2]};
       gap: ${size[3]};
       padding: ${size[3]} ${size[3]};
       flex-shrink: 0;
@@ -64,7 +67,7 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       align-items: center;
       gap: ${size[1.5]};
       flex-wrap: wrap;
-      flex: 1;
+      flex: 1 1 120px;
       min-width: 0;
     `,
     panelsContainer: css`
@@ -140,6 +143,39 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       text-transform: none;
       line-height: 1;
       margin-top: 2px;
+    `,
+    lockGroup: css`
+      display: flex;
+      align-items: center;
+      gap: ${size[1.5]};
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    `,
+    lockChip: css`
+      display: inline-flex;
+      align-items: baseline;
+      gap: ${size[1]};
+      padding: ${size[0.5]} ${size[2]};
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])};
+      border-radius: ${border.radius.full};
+      background: ${t(colors.white, colors.darkGray[700])};
+      color: ${t(colors.gray[600], colors.gray[400])};
+      font-size: ${fontSize.xs};
+      white-space: nowrap;
+    `,
+    lockChipValue: css`
+      font-weight: ${font.weight.bold};
+    `,
+    lockChipOn: css`
+      border-color: ${t(colors.blue[600], colors.blue[500])};
+      background: ${t(colors.blue[600], colors.blue[500])};
+      color: ${colors.white};
+    `,
+    lockChipUnknown: css`
+      border-style: dashed;
+    `,
+    lockChipUnavailable: css`
+      opacity: 0.55;
     `,
     layoutChip: css`
       /* !important: host page button styles outrank one class */

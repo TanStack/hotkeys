@@ -7,6 +7,7 @@ import {
   useHotkey,
   useHotkeyRecorder,
   useKeyHold,
+  useKeyLockState,
 } from '@tanstack/ember-hotkeys'
 import { exposeFixture, logCall, setRecorded } from '../../../../shared/fixture'
 import type { Hotkey } from '@tanstack/ember-hotkeys'
@@ -33,6 +34,7 @@ class App extends Component {
   onSequence = () => logCall('sequence')
   recorder = useHotkeyRecorder(this, { onRecord: setRecorded })
   shiftHeld = useKeyHold(this, 'Shift')
+  capsLock = useKeyLockState(this, 'CapsLock')
   heldKeys = useHeldKeys(this)
 
   constructor(owner: unknown, args: object) {
@@ -48,6 +50,11 @@ class App extends Component {
     )
   }
 
+  get capsLockText() {
+    const value = this.capsLock.value
+    return value === null ? 'unknown' : value ? 'on' : 'off'
+  }
+
   get heldKeysText() {
     return this.heldKeys.value.join('+')
   }
@@ -60,6 +67,7 @@ class App extends Component {
     <div id='recording'>{{if this.recorder.isRecording 'yes' 'no'}}</div>
     <div id='shift-held'>{{if this.shiftHeld.value 'held' 'released'}}</div>
     <div id='held-keys'>{{this.heldKeysText}}</div>
+    <div id='caps-lock'>{{this.capsLockText}}</div>
   </template>
 }
 

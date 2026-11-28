@@ -25,6 +25,7 @@ Alpine.data('app', () => {
     hotkey: 'K',
     recorder: createHotkeyRecorder(scope, { onRecord: setRecorded }),
     shiftHeld: scope.createKeyHold('Shift'),
+    capsLock: scope.createKeyLockState('CapsLock'),
     heldKeys: scope.createHeldKeys(),
     init(this: AppData) {
       scope.createHotkey(['G', 'G'], () => logCall('sequence'))

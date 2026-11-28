@@ -6,6 +6,7 @@ import {
   defineAppHotkeys,
   publishAppHotkeysStore,
 } from '@tanstack/hotkeys'
+import { withKeyLocks } from '@tanstack/hotkeys-test-utils'
 import { flush } from 'solid-js'
 import { afterEach, describe, expect, it } from 'vitest'
 import {
@@ -41,6 +42,23 @@ afterEach(() => {
 })
 
 describe('devtools live updates', () => {
+  it('follows key lock state', () => {
+    KeyStateTracker.getInstance()
+    const state = mountState()
+    expect(state.keyLocks().CapsLock).toBeNull()
+    document.dispatchEvent(
+      withKeyLocks(new MouseEvent('mousemove', { bubbles: true }), {
+        CapsLock: true,
+      }),
+    )
+    flush()
+    expect(state.keyLocks()).toEqual({
+      CapsLock: true,
+      NumLock: false,
+      ScrollLock: false,
+    })
+  })
+
   it('follows registrations, scopes, held keys, and app hotkeys', () => {
     const manager = HotkeyManager.getInstance()
     KeyStateTracker.getInstance()

@@ -17,6 +17,7 @@ import type {
   HotkeySequenceRecorderOptions,
   IndividualKey,
   KeyboardLayoutMap,
+  LockKey,
   MaybeGetter,
   RegisterableHotkey,
   RegisteredAppHotkeyListItem,
@@ -113,6 +114,44 @@ export interface AlpineHotkeys {
   createHeldKeyCodes: () => AlpineHotkeyState<Record<string, string>>
   /** Read whether a key is held through `.value`. */
   createKeyHold: (key: MaybeGetter<IndividualKey>) => AlpineHotkeyState<boolean>
+  /**
+   * Read whether a lock key, such as Caps Lock, is on through `.value`: `true`
+   * when the lock is on, `false` when it is off, or `null`. Pass
+   * `'CapsLock'`, `'NumLock'`, or `'ScrollLock'`, or a getter.
+   *
+   * Lock keys toggle instead of being held, so this reads the lock state that
+   * the browser reports on key and mouse events. `.value` is `null` until the
+   * user presses a key, clicks, or moves the mouse, after the window loses
+   * focus or the page is hidden, and always for Num Lock and Scroll Lock on macOS and iOS.
+   *
+   * @example
+   * ```ts
+   * Alpine.data('passwordField', () => {
+   *   const hotkeys = createHotkeysScope()
+   *   const capsLock = hotkeys.createKeyLockState('CapsLock')
+   *
+   *   return {
+   *     get capsLockOn() {
+   *       return capsLock.value === true
+   *     },
+   *     destroy() {
+   *       hotkeys.destroy()
+   *     },
+   *   }
+   * })
+   * ```
+   *
+   * ```html
+   * <label x-data="passwordField">
+   *   Password
+   *   <input type="password" />
+   *   <span x-show="capsLockOn" role="status">Caps Lock is on</span>
+   * </label>
+   * ```
+   */
+  createKeyLockState: (
+    key: MaybeGetter<LockKey>,
+  ) => AlpineHotkeyState<boolean | null>
   /**
    * Read whether held modifiers reveal a hotkey through `.value`. No hotkey
    * (`undefined`, `null`, or `''`) is never visible.

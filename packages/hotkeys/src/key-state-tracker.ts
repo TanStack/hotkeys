@@ -17,6 +17,22 @@ export interface KeyStateTrackerState {
    * Useful for debugging which physical key was pressed.
    */
   heldCodes: Record<string, string>
+  /**
+   * Whether each lock key is on. `null` while no browser event has reported
+   * it: until the user presses a key, clicks, or moves the mouse, after the
+   * window loses focus or the page is hidden, and always for Num Lock and Scroll Lock on macOS and
+   * iOS, where browsers don't report them.
+   */
+  locks: Record<LockKey, boolean | null>
+}
+
+/** A lock key that browsers report through `getModifierState()`. */
+export type LockKey = 'CapsLock' | 'NumLock' | 'ScrollLock'
+
+const LOCK_KEYS: Array<LockKey> = ['CapsLock', 'NumLock', 'ScrollLock']
+
+function unknownLocks(): Record<LockKey, boolean | null> {
+  return { CapsLock: null, NumLock: null, ScrollLock: null }
 }
 
 /**
@@ -26,6 +42,7 @@ function getDefaultKeyStateTrackerState(): KeyStateTrackerState {
   return {
     heldKeys: [],
     heldCodes: {},
+    locks: unknownLocks(),
   }
 }
 
@@ -75,6 +92,10 @@ export class KeyStateTracker {
   )
 
   #heldEntries: Map<string, KeyIdentity> = new Map()
+  /** Read once, since mousemove reads lock state many times a second. */
+  #mac = detectPlatform() === 'mac'
+  /** Lock key states, published with the next held key or lock change. */
+  #locks = unknownLocks()
   /** Window listeners as `[type, listener, capture]`, removed together on destroy. */
   #listeners: Array<[string, EventListener, boolean]> = []
 
@@ -117,6 +138,7 @@ export class KeyStateTracker {
 
     const onKeydown = (event: KeyboardEvent) => {
       if (isKeyless(event)) return
+      const locksChanged = this.#readLocks(event)
       let changed = this.#reconcileModifiers(event)
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
@@ -131,11 +153,14 @@ export class KeyStateTracker {
         this.#heldEntries.set(identity, { key, code: event.code })
         changed = true
       }
-      if (changed) this.#syncState()
+      this.#publish(changed, locksChanged)
     }
 
     const onKeyup = (event: KeyboardEvent) => {
       if (isKeyless(event)) return
+      const locksChanged = this.#readLocks(event)
+      // A keyup only removes entries, so a smaller map means held keys changed.
+      const size = this.#heldEntries.size
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
       this.#heldEntries.delete(identity)
@@ -153,11 +178,11 @@ export class KeyStateTracker {
       // such as S after Cmd+S, so releasing Command clears non-modifier keys
       // that would otherwise stay held. Other modifiers and platforms keep
       // their keyups, so a key held while Shift is tapped stays held.
-      if (key === 'Meta' && detectPlatform() === 'mac') {
+      if (key === 'Meta' && this.#mac) {
         this.#releaseNonModifiers()
       }
 
-      this.#syncState()
+      this.#publish(this.#heldEntries.size !== size, locksChanged)
     }
 
     // A native context menu takes focus without a blur, so the keyup of a
@@ -171,15 +196,17 @@ export class KeyStateTracker {
     }
 
     const onMouse = (event: MouseEvent) => {
-      if (this.#reconcileModifiers(event)) this.#syncState()
+      const locksChanged = this.#readLocks(event)
+      this.#publish(this.#reconcileModifiers(event), locksChanged)
     }
 
-    // Clear all keys when window loses focus (keys might be released while not focused)
+    // Clear all keys when window loses focus (keys might be released while
+    // not focused). Lock keys can change in another app, so they're unknown.
     const onBlur = () => {
-      if (this.#heldEntries.size > 0) {
-        this.#heldEntries.clear()
-        this.#syncState()
-      }
+      const locksChanged = this.#updateLocks(unknownLocks())
+      const held = this.#heldEntries.size > 0
+      this.#heldEntries.clear()
+      this.#publish(held, locksChanged)
     }
 
     // Window capture runs before every page listener, and stopPropagation
@@ -228,6 +255,49 @@ export class KeyStateTracker {
     return this.#heldEntries.size !== size
   }
 
+  /**
+   * Reads lock key states from real user input. Events dispatched by page
+   * code report every lock as off. Mouse events still reach an unfocused
+   * window, where a lock can change in another app without a new blur, so
+   * those are skipped. macOS has no Num Lock or Scroll Lock: Chrome reports
+   * them off, and Firefox reports Num Lock for numpad keys.
+   */
+  #readLocks(event: KeyboardEvent | MouseEvent): boolean {
+    if (
+      !event.isTrusted ||
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      !event.getModifierState ||
+      !document.hasFocus()
+    ) {
+      return false
+    }
+    const locks = unknownLocks()
+    for (const key of LOCK_KEYS) {
+      if (key === 'CapsLock' || !this.#mac)
+        locks[key] = event.getModifierState(key)
+    }
+    return this.#updateLocks(locks)
+  }
+
+  /** Stores lock key states for the next publish. Returns whether any changed. */
+  #updateLocks(locks: Record<LockKey, boolean | null>): boolean {
+    if (LOCK_KEYS.every((key) => locks[key] === this.#locks[key])) return false
+    this.#locks = locks
+    return true
+  }
+
+  /**
+   * Publishes one state per event. A held key change rebuilds the held key
+   * state and carries the locks with it. A lock change alone keeps the held
+   * key arrays, so held key selectors don't see a new value.
+   */
+  #publish(heldChanged: boolean, locksChanged: boolean): void {
+    if (heldChanged) this.#syncState()
+    else if (locksChanged) {
+      this.store.setState((state) => ({ ...state, locks: this.#locks }))
+    }
+  }
+
   /** Forgets every held key that isn't a modifier. Returns whether any was held. */
   #releaseNonModifiers(): boolean {
     const size = this.#heldEntries.size
@@ -250,9 +320,11 @@ export class KeyStateTracker {
         entry.code,
       ]),
     )
-    this.store.setState(() => ({
+    this.store.setState((state) => ({
+      ...state,
       heldKeys,
       heldCodes,
+      locks: this.#locks,
     }))
   }
 
@@ -293,6 +365,19 @@ export class KeyStateTracker {
   }
 
   /**
+   * Whether a lock key is on. Returns `null` while no browser event has
+   * reported it: until the user presses a key, clicks, or moves the mouse,
+   * after the window loses focus or the page is hidden, and always for Num Lock and Scroll Lock on
+   * macOS and iOS.
+   *
+   * @param key - `'CapsLock'`, `'NumLock'`, or `'ScrollLock'`
+   * @returns `true` when the lock is on, `false` when it is off, or `null`
+   */
+  getKeyLockState(key: LockKey): boolean | null {
+    return this.store.state.locks[key]
+  }
+
+  /**
    * Checks if any of the given keys are currently held.
    *
    * @param keys - Array of key names to check
@@ -318,6 +403,7 @@ export class KeyStateTracker {
   destroy(): void {
     this.#removeListeners()
     this.#heldEntries.clear()
+    this.#locks = unknownLocks()
     this.store.setState(() => getDefaultKeyStateTrackerState())
   }
 }

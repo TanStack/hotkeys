@@ -17,11 +17,13 @@ import {
   createHotkeyRegistrations,
   createHotkeys,
   createKeyHold,
+  createKeyLockState,
 } from '../src'
 import type { JSX } from '@solidjs/web'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  LockKey,
   RegisterableHotkey,
   formatForAria,
   formatForDisplay,
@@ -101,6 +103,19 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(text('keys')),
       codes: () => JSON.parse(text('codes')),
       held: () => text('held') === 'true',
+      setKey: (next) => void setKey(() => next),
+      unmount: () => view.unmount(),
+    }
+  },
+
+  mountKeyLockState(watch) {
+    const [key, setKey] = createSignal<LockKey>(watch)
+    const view = render(() => {
+      const lock = createKeyLockState(key)
+      return <output data-testid="lock">{JSON.stringify(lock())}</output>
+    })
+    return {
+      value: () => JSON.parse(view.getByTestId('lock').textContent ?? ''),
       setKey: (next) => void setKey(() => next),
       unmount: () => view.unmount(),
     }

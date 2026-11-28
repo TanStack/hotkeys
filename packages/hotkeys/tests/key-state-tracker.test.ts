@@ -1,7 +1,8 @@
-import { keyEvent } from '@tanstack/hotkeys-test-utils'
+import { keyEvent, withKeyLocks } from '@tanstack/hotkeys-test-utils'
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { KeyStateTracker } from '../src/key-state-tracker'
+import type { KeyLocks } from '@tanstack/hotkeys-test-utils'
 import type { HotkeyPlatform } from '../src'
 import type { HotkeyEventType } from '../src/hotkey.types'
 
@@ -35,6 +36,12 @@ function onPlatform(platform: HotkeyPlatform) {
     linux: 'Mozilla/5.0 (X11; Linux x86_64)',
   }[platform]
   vi.stubGlobal('navigator', { platform: '', userAgent })
+}
+
+/** The held key part of the tracker state, without the lock states. */
+function heldState(tracker: KeyStateTracker) {
+  const { heldKeys, heldCodes } = tracker.store.state
+  return { heldKeys, heldCodes }
 }
 
 /** Dispatches a mouse event as real user input. */
@@ -170,7 +177,7 @@ describe('KeyStateTracker', () => {
       const tracker = KeyStateTracker.getInstance()
 
       expect(tracker.store).toBeDefined()
-      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('should update store state on key changes', () => {
@@ -415,12 +422,12 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
       dispatchKey('keyup', 'Shift', 'ShiftRight', { shiftKey: true })
-      expect(tracker.store.state).toEqual({
+      expect(heldState(tracker)).toEqual({
         heldKeys: ['Shift'],
         heldCodes: { Shift: 'ShiftLeft' },
       })
       dispatchKey('keyup', 'Shift', 'ShiftLeft')
-      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('clears both stale physical modifiers and code-less modifiers', () => {
@@ -429,7 +436,7 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
       dispatchKey('keydown', 'Meta', '', { shiftKey: true, metaKey: true })
       dispatchMouse('mousemove')
-      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
     it('removes only released modifiers and publishes one final state per keyboard event', () => {
@@ -444,10 +451,12 @@ describe('KeyStateTracker', () => {
         listener(tracker.store.state),
       )
       dispatchKey('keydown', 'a', 'KeyA', { shiftKey: true })
-      expect(listener).toHaveBeenCalledExactlyOnceWith({
-        heldKeys: ['Shift', 'A'],
-        heldCodes: { Shift: 'ShiftLeft', A: 'KeyA' },
-      })
+      expect(listener).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({
+          heldKeys: ['Shift', 'A'],
+          heldCodes: { Shift: 'ShiftLeft', A: 'KeyA' },
+        }),
+      )
       subscription.unsubscribe()
     })
 
@@ -456,7 +465,7 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       dispatchKey('keydown', 'a', 'KeyA', { shiftKey: true })
       dispatchKey('keydown', 'a', 'KeyA', { repeat: true })
-      expect(tracker.store.state).toEqual({
+      expect(heldState(tracker)).toEqual({
         heldKeys: ['A'],
         heldCodes: { A: 'KeyA' },
       })
@@ -499,7 +508,7 @@ describe('KeyStateTracker', () => {
       dispatchMouse('mousemove')
       dispatchMouse('mousedown')
       expect(listener).not.toHaveBeenCalled()
-      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+      expect(heldState(tracker)).toEqual({ heldKeys: [], heldCodes: {} })
       subscription.unsubscribe()
     })
 
@@ -557,7 +566,7 @@ describe('KeyStateTracker', () => {
         const tracker = KeyStateTracker.getInstance()
         dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
         document.dispatchEvent(trusted(new Event(type, { bubbles: true })))
-        expect(tracker.store.state).toEqual({
+        expect(heldState(tracker)).toEqual({
           heldKeys: ['Shift'],
           heldCodes: { Shift: 'ShiftLeft' },
         })
@@ -622,6 +631,192 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
       document.removeEventListener('visibilitychange', stop)
       expect(tracker.getHeldKeys()).toEqual([])
+    })
+  })
+
+  describe('key lock state', () => {
+    function lockKey(
+      type: HotkeyEventType,
+      key: string,
+      locks: KeyLocks,
+    ): void {
+      document.dispatchEvent(
+        withKeyLocks(keyEvent(type, { key, code: key }), locks),
+      )
+    }
+
+    function lockMouse(type: 'mousemove' | 'mousedown', locks: KeyLocks) {
+      document.dispatchEvent(
+        withKeyLocks(new MouseEvent(type, { bubbles: true }), locks),
+      )
+    }
+
+    beforeEach(() => onPlatform('windows'))
+
+    it('reports every lock as unknown until an event reports it', () => {
+      const tracker = KeyStateTracker.getInstance()
+      expect(tracker.store.state.locks).toEqual({
+        CapsLock: null,
+        NumLock: null,
+        ScrollLock: null,
+      })
+      expect(tracker.getKeyLockState('CapsLock')).toBeNull()
+    })
+
+    it('reads lock state from keydown and keyup', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockKey('keydown', 'CapsLock', { NumLock: true })
+      expect(tracker.store.state.locks).toEqual({
+        CapsLock: false,
+        NumLock: true,
+        ScrollLock: false,
+      })
+      // The lock key's own keyup settles a keydown that reported the old state.
+      lockKey('keyup', 'CapsLock', { CapsLock: true, NumLock: true })
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+    })
+
+    it.each(['mousemove', 'mousedown'] as const)(
+      'reads lock state from %s',
+      (type) => {
+        const tracker = KeyStateTracker.getInstance()
+        lockMouse(type, { ScrollLock: true })
+        expect(tracker.getKeyLockState('ScrollLock')).toBe(true)
+        expect(tracker.getKeyLockState('CapsLock')).toBe(false)
+      },
+    )
+
+    it('ignores events dispatched by page code', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { CapsLock: true })
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true }))
+      document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+    })
+
+    it('publishes only when a lock changes', () => {
+      const tracker = KeyStateTracker.getInstance()
+      let updates = 0
+      const subscription = tracker.store.subscribe(() => updates++)
+      lockMouse('mousemove', { CapsLock: true })
+      lockMouse('mousemove', { CapsLock: true })
+      lockMouse('mousedown', { CapsLock: true })
+      expect(updates).toBe(1)
+      lockMouse('mousemove', {})
+      expect(updates).toBe(2)
+      subscription.unsubscribe()
+    })
+
+    it('publishes lock state and held keys together, once per event', () => {
+      const tracker = KeyStateTracker.getInstance()
+      const states: Array<unknown> = []
+      const subscription = tracker.store.subscribe(() =>
+        states.push(tracker.store.state),
+      )
+      lockKey('keydown', 'Shift', { CapsLock: true })
+      expect(states).toEqual([
+        expect.objectContaining({
+          heldKeys: ['Shift'],
+          locks: { CapsLock: true, NumLock: false, ScrollLock: false },
+        }),
+      ])
+      window.dispatchEvent(new Event('blur'))
+      expect(states).toHaveLength(2)
+      expect(states[1]).toMatchObject({
+        heldKeys: [],
+        locks: { CapsLock: null, NumLock: null, ScrollLock: null },
+      })
+      subscription.unsubscribe()
+    })
+
+    it('keeps held key arrays when only lock state changes', () => {
+      const tracker = KeyStateTracker.getInstance()
+      document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
+      const { heldKeys, heldCodes } = tracker.store.state
+      lockMouse('mousemove', { CapsLock: true })
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+      expect(tracker.store.state.heldKeys).toBe(heldKeys)
+      expect(tracker.store.state.heldCodes).toBe(heldCodes)
+    })
+
+    it('keeps held key arrays on a keyup that only changes lock state', () => {
+      const tracker = KeyStateTracker.getInstance()
+      document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
+      const { heldKeys, heldCodes } = tracker.store.state
+      // Caps Lock was pressed before the tracker started, so only its keyup arrives.
+      lockKey('keyup', 'CapsLock', { CapsLock: true })
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+      expect(tracker.store.state.heldKeys).toBe(heldKeys)
+      expect(tracker.store.state.heldCodes).toBe(heldCodes)
+    })
+
+    it('keeps lock state when held keys change', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { CapsLock: true })
+      // Untrusted events change held keys but report no lock state.
+      document.dispatchEvent(
+        keyEvent('keydown', { key: 'Shift', code: 'ShiftLeft' }),
+      )
+      expect(tracker.getHeldKeys()).toEqual(['Shift'])
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+    })
+
+    it('forgets lock state when the window loses focus', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { CapsLock: true })
+      window.dispatchEvent(new Event('blur'))
+      expect(tracker.getKeyLockState('CapsLock')).toBeNull()
+      expect(tracker.getKeyLockState('NumLock')).toBeNull()
+    })
+
+    it('ignores mouse events while the window is unfocused', () => {
+      const tracker = KeyStateTracker.getInstance()
+      vi.spyOn(document, 'hasFocus').mockReturnValue(false)
+      lockMouse('mousemove', { CapsLock: true })
+      expect(tracker.getKeyLockState('CapsLock')).toBeNull()
+    })
+
+    it('stays unknown when only page code dispatches events', () => {
+      const tracker = KeyStateTracker.getInstance()
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true }))
+      document.dispatchEvent(keyEvent('keydown', { key: 'a', code: 'KeyA' }))
+      expect(tracker.getKeyLockState('CapsLock')).toBeNull()
+    })
+
+    it('keeps lock state when the page becomes visible', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { CapsLock: true })
+      vi.spyOn(document, 'hidden', 'get').mockReturnValue(false)
+      document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
+      expect(tracker.getKeyLockState('CapsLock')).toBe(true)
+    })
+
+    it('forgets lock state when the page is hidden', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { NumLock: true })
+      vi.spyOn(document, 'hidden', 'get').mockReturnValue(true)
+      document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
+      expect(tracker.getKeyLockState('NumLock')).toBeNull()
+    })
+
+    it('leaves Num Lock and Scroll Lock unknown on macOS', () => {
+      onPlatform('mac')
+      const tracker = KeyStateTracker.getInstance()
+      // Firefox on macOS reports Num Lock for every numpad key.
+      lockKey('keydown', '1', { CapsLock: true, NumLock: true })
+      lockMouse('mousemove', { CapsLock: true, ScrollLock: true })
+      expect(tracker.store.state.locks).toEqual({
+        CapsLock: true,
+        NumLock: null,
+        ScrollLock: null,
+      })
+    })
+
+    it('resets lock state when destroyed', () => {
+      const tracker = KeyStateTracker.getInstance()
+      lockMouse('mousemove', { CapsLock: true })
+      tracker.destroy()
+      expect(tracker.getKeyLockState('CapsLock')).toBeNull()
     })
   })
 })

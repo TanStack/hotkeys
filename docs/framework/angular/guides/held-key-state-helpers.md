@@ -111,3 +111,19 @@ export class CanvasComponent {
 Held keys reset automatically when the window loses focus, so a key released after switching apps never stays stuck. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 
 See the [injectHeldKeys example](../examples/injectHeldKeys) and the [injectKeyHold example](../examples/injectKeyHold).
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `injectKeyHold('CapsLock')()` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `injectKeyLockState`:
+
+```ts
+import { injectKeyLockState } from '@tanstack/angular-hotkeys'
+
+readonly capsLock = injectKeyLockState('CapsLock') // capsLock(): true, false, or null
+```
+
+```html
+<span role="status">{{ capsLock() ? 'Caps Lock is on' : '' }}</span>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.

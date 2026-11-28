@@ -98,3 +98,21 @@ function onClick() {
 Held keys reset automatically when the window loses focus, so a key released after switching apps never stays stuck. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 
 See the [useHeldKeys example](../examples/useHeldKeys) and the [useKeyHold example](../examples/useKeyhold).
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `useKeyHold('CapsLock').value` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `useKeyLockState`:
+
+```vue
+<script setup lang="ts">
+import { useKeyLockState } from '@tanstack/vue-hotkeys'
+
+const capsLock = useKeyLockState('CapsLock') // value: true, false, or null
+</script>
+
+<template>
+  <span role="status">{{ capsLock ? 'Caps Lock is on' : '' }}</span>
+</template>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.

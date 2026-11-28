@@ -11,7 +11,7 @@ import {
 import {
   createHotkeysScope, onHotkey, onHotkeys, provideAppHotkeys,
   useFormatForAria, useFormatForDisplay, useHeldKeyCodes, useHeldKeys, useHotkey, useHotkeyHint,
-  useHotkeyRecorder, useHotkeyRegistrations, useHotkeys, useKeyHold,
+  useHotkeyRecorder, useHotkeyRegistrations, useHotkeys, useKeyHold, useKeyLockState,
 } from '@tanstack/ember-hotkeys'
 import type {
   ConformanceHarness, ConformanceHotkey, ConformanceProvider, ConformanceRunner,
@@ -19,7 +19,7 @@ import type {
 } from '@tanstack/hotkeys-test-utils/conformance'
 import type {
   DefaultHotkeysOptions, EmberHotkeyDefinition, EmberHotkeyRecorder,
-  EmberHotkeysScope, HotkeyRegistrationView, IndividualKey,
+  EmberHotkeysScope, HotkeyRegistrationView, IndividualKey, LockKey,
 } from '@tanstack/ember-hotkeys'
 
 // The shared conformance suite (test-utils/src/conformance) on QUnit. One
@@ -74,6 +74,16 @@ class HeldKeysView extends Component<{ Args: { model: HeldKeysModel } }> {
     <output data-testid="codes">{{this.codesText}}</output>
     <output data-testid="held">{{if this.hold.value "true" "false"}}</output>
   </template>
+}
+
+class KeyLockStateModel {
+  @tracked watch: LockKey
+  constructor(watch: LockKey) { this.watch = watch }
+}
+class KeyLockStateView extends Component<{ Args: { model: KeyLockStateModel } }> {
+  lock = useKeyLockState(this, () => this.args.model.watch)
+  get lockText() { return JSON.stringify(this.lock.value) }
+  <template><output data-testid="lock">{{this.lockText}}</output></template>
 }
 
 class RegistrationsModel { latest: Array<HotkeyRegistrationView> = [] }
@@ -169,6 +179,8 @@ const harness: ConformanceHarness = {
   name: 'Ember',
   unsupported: {
     'provider-scope': 'createHotkeysScope sets defaults but has no hotkey scope; use core activateScope',
+    'trusted-test-events':
+      'runs in a real browser, where isTrusted cannot be set; the e2e app covers lock state',
   },
   act: settle,
   async setup() {
@@ -194,6 +206,16 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(text('keys')),
       codes: () => JSON.parse(text('codes')),
       held: () => text('held') === 'true',
+      setKey: (key) => settle(() => (model.watch = key)),
+      unmount,
+    }
+  },
+
+  async mountKeyLockState(watch) {
+    const model = new KeyLockStateModel(watch)
+    const unmount = await show(KeyLockStateView, model)
+    return {
+      value: () => JSON.parse(text('lock')),
       setKey: (key) => settle(() => (model.watch = key)),
       unmount,
     }

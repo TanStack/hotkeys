@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createKeyLockState</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <h1>scope.createKeyLockState</h1>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" />
+          <p
+            role="status"
+            class="warning"
+            x-text="capsLock.value === true ? 'Caps Lock is on' : ''"
+          ></p>
+        </div>
+
+        <div class="locks">
+          <div :class="`lock ${capsLock.value === true ? 'on' : ''}`">
+            <span class="lock-name">Caps Lock</span>
+            <span x-text="describe(capsLock.value)"></span>
+          </div>
+          <div :class="`lock ${numLock.value === true ? 'on' : ''}`">
+            <span class="lock-name">Num Lock</span>
+            <span x-text="describe(numLock.value)"></span>
+          </div>
+          <div :class="`lock ${scrollLock.value === true ? 'on' : ''}`">
+            <span class="lock-name">Scroll Lock</span>
+            <span x-text="describe(scrollLock.value)"></span>
+          </div>
+        </div>
+
+        <p class="note">
+          Unknown until you press a key, click, or move the mouse. Num Lock and
+          Scroll Lock stay unknown on macOS.
+        </p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

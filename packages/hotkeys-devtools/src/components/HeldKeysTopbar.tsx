@@ -7,6 +7,22 @@ import {
   KEYBOARD_LAYOUT_SELECTION_ID,
   keyboardLayoutSummary,
 } from './KeyboardLayoutDetails'
+import type { LockKey } from '@tanstack/hotkeys'
+
+const LOCKS: Array<[LockKey, string]> = [
+  ['CapsLock', 'Caps Lock'],
+  ['NumLock', 'Num Lock'],
+  ['ScrollLock', 'Scroll Lock'],
+]
+
+type LockChipState = 'on' | 'off' | 'unknown' | 'unavailable'
+
+const LOCK_CHIP_TEXT: Record<LockChipState, string> = {
+  on: 'On',
+  off: 'Off',
+  unknown: '?',
+  unavailable: 'n/a',
+}
 
 export function HeldKeysBar(props: {
   selectedId: () => string | null
@@ -50,6 +66,45 @@ export function HeldKeysBar(props: {
             }}
           </For>
         </Show>
+      </div>
+      <div class={styles().lockGroup}>
+        <span class={styles().heldKeysBarHeader}>Locks</span>
+        <For each={LOCKS}>
+          {([key, name]) => {
+            // Browsers on macOS and iOS never report Num Lock or Scroll Lock.
+            const lockState = (): LockChipState => {
+              if (key !== 'CapsLock' && platform === 'mac') return 'unavailable'
+              const value = state.keyLocks()[key]
+              return value === null ? 'unknown' : value ? 'on' : 'off'
+            }
+            const title = () =>
+              ({
+                on: `${name} is on`,
+                off: `${name} is off`,
+                unknown:
+                  'Press a key, click, or move the mouse over the page to read it',
+                unavailable: `macOS and iOS don't report ${name} to web pages`,
+              })[lockState()]
+            return (
+              <span
+                class={clsx(
+                  styles().lockChip,
+                  lockState() === 'on' && styles().lockChipOn,
+                  lockState() === 'unknown' && styles().lockChipUnknown,
+                  lockState() === 'unavailable' && styles().lockChipUnavailable,
+                )}
+                title={title()}
+                role="img"
+                aria-label={`${name}: ${lockState()}`}
+              >
+                <span>{name}</span>
+                <span class={styles().lockChipValue}>
+                  {LOCK_CHIP_TEXT[lockState()]}
+                </span>
+              </span>
+            )
+          }}
+        </For>
       </div>
       <button
         type="button"

@@ -5,6 +5,7 @@ import {
   useHotkey,
   useHotkeyRecorder,
   useKeyHold,
+  useKeyLockState,
 } from '@tanstack/react-hotkeys'
 import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -24,6 +25,7 @@ function App() {
   const recorder = useHotkeyRecorder({ onRecord: setRecorded })
   const shiftHeld = useKeyHold('Shift')
   const heldKeys = useHeldKeys()
+  const capsLock = useKeyLockState('CapsLock')
 
   useEffect(() => {
     exposeFixture(
@@ -43,6 +45,9 @@ function App() {
       <div id="recording">{recorder.isRecording ? 'yes' : 'no'}</div>
       <div id="shift-held">{shiftHeld ? 'held' : 'released'}</div>
       <div id="held-keys">{heldKeys.join('+')}</div>
+      <div id="caps-lock">
+        {capsLock === null ? 'unknown' : capsLock ? 'on' : 'off'}
+      </div>
     </>
   )
 }

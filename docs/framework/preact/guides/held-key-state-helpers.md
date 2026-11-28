@@ -94,3 +94,17 @@ function Canvas() {
 Held keys reset automatically on window blur, tab switch, or macOS `Command` release so keys never stay stuck. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 
 See the [useHeldKeys example](../examples/useHeldKeys) and [useKeyHold example](../examples/useKeyhold).
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `useKeyHold('CapsLock')` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `useKeyLockState`:
+
+```tsx
+import { useKeyLockState } from '@tanstack/preact-hotkeys'
+
+const capsLock = useKeyLockState('CapsLock') // true, false, or null
+
+return <span role="status">{capsLock ? 'Caps Lock is on' : ''}</span>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.

@@ -15,9 +15,11 @@ import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
 import { useHotkeys } from '../src/useHotkeys'
 import { useKeyHold } from '../src/useKeyHold'
+import { useKeyLockState } from '../src/useKeyLockState'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  LockKey,
   RegisterableHotkey,
   formatForAria,
   formatForDisplay,
@@ -140,6 +142,20 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(view.text('keys')),
       codes: () => JSON.parse(view.text('codes')),
       held: () => view.text('held') === 'true',
+      setKey: (next) => settle(() => (key.value = next)),
+      unmount: view.unmount,
+    }
+  },
+
+  async mountKeyLockState(watch) {
+    const key = ref<LockKey>(watch)
+    const view = await render(() => {
+      const value = useKeyLockState(key)
+      return () =>
+        h('output', { 'data-testid': 'lock' }, JSON.stringify(value.value))
+    })
+    return {
+      value: () => JSON.parse(view.text('lock')),
       setKey: (next) => settle(() => (key.value = next)),
       unmount: view.unmount,
     }

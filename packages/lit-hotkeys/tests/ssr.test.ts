@@ -17,6 +17,7 @@ import {
   HotkeyRegistrationsController,
   HotkeyScopesStateController,
   KeyHoldController,
+  KeyLockStateController,
   KeyboardLayoutController,
 } from '../src/controllers'
 
@@ -93,6 +94,7 @@ describe('server rendering', () => {
         new HotkeyRegistrationsController(host),
         new HotkeyScopesStateController(host),
         new KeyHoldController(host, 'Shift'),
+        new KeyLockStateController(host, 'CapsLock'),
         new KeyboardLayoutController(host),
         new FormatForDisplayController(host),
       ]

@@ -364,6 +364,10 @@
               "to": "framework/react/guides/held-key-state-helpers"
             },
             {
+              "label": "Lock Keys",
+              "to": "framework/react/guides/key-lock-state"
+            },
+            {
               "label": "Accessibility",
               "to": "framework/react/guides/accessibility"
             }
@@ -395,6 +399,10 @@
             {
               "label": "Held Keys",
               "to": "framework/preact/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Lock Keys",
+              "to": "framework/preact/guides/key-lock-state"
             },
             {
               "label": "Accessibility",
@@ -430,6 +438,10 @@
               "to": "framework/solid/guides/held-key-state-helpers"
             },
             {
+              "label": "Lock Keys",
+              "to": "framework/solid/guides/key-lock-state"
+            },
+            {
               "label": "Accessibility",
               "to": "framework/solid/guides/accessibility"
             }
@@ -461,6 +473,10 @@
             {
               "label": "Held Keys",
               "to": "framework/angular/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Lock Keys",
+              "to": "framework/angular/guides/key-lock-state"
             },
             {
               "label": "Accessibility",
@@ -496,6 +512,10 @@
               "to": "framework/vue/guides/held-key-state-helpers"
             },
             {
+              "label": "Lock Keys",
+              "to": "framework/vue/guides/key-lock-state"
+            },
+            {
               "label": "Accessibility",
               "to": "framework/vue/guides/accessibility"
             }
@@ -527,6 +547,10 @@
             {
               "label": "Held Keys",
               "to": "framework/lit/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Lock Keys",
+              "to": "framework/lit/guides/key-lock-state"
             },
             {
               "label": "Accessibility",
@@ -562,6 +586,10 @@
               "to": "framework/svelte/guides/held-key-state-helpers"
             },
             {
+              "label": "Lock Keys",
+              "to": "framework/svelte/guides/key-lock-state"
+            },
+            {
               "label": "Accessibility",
               "to": "framework/svelte/guides/accessibility"
             }
@@ -593,6 +621,10 @@
             {
               "label": "Held Keys",
               "to": "framework/alpine/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Lock Keys",
+              "to": "framework/alpine/guides/key-lock-state"
             },
             {
               "label": "Accessibility",
@@ -628,6 +660,10 @@
               "to": "framework/ember/guides/held-key-state-helpers"
             },
             {
+              "label": "Lock Keys",
+              "to": "framework/ember/guides/key-lock-state"
+            },
+            {
               "label": "Accessibility",
               "to": "framework/ember/guides/accessibility"
             }
@@ -659,6 +695,10 @@
             {
               "label": "Held Keys",
               "to": "framework/octane/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Lock Keys",
+              "to": "framework/octane/guides/key-lock-state"
             },
             {
               "label": "Accessibility",
@@ -2800,6 +2840,10 @@
               "to": "framework/react/examples/useKeyhold"
             },
             {
+              "label": "useKeyLockState",
+              "to": "framework/react/examples/useKeyLockState"
+            },
+            {
               "label": "useFormatForDisplay (TanStack Start)",
               "to": "framework/react/examples/useFormatForDisplay-tanstack-start"
             },
@@ -2865,6 +2909,10 @@
               "to": "framework/preact/examples/useKeyhold"
             },
             {
+              "label": "useKeyLockState",
+              "to": "framework/preact/examples/useKeyLockState"
+            },
+            {
               "label": "useFormatForDisplay (Vite SSR)",
               "to": "framework/preact/examples/useFormatForDisplay-vite-ssr"
             },
@@ -2920,6 +2968,10 @@
             {
               "label": "createKeyHold",
               "to": "framework/solid/examples/createKeyHold"
+            },
+            {
+              "label": "createKeyLockState",
+              "to": "framework/solid/examples/createKeyLockState"
             },
             {
               "label": "createFormatForDisplay (SolidStart)",
@@ -2983,6 +3035,10 @@
               "to": "framework/angular/examples/injectKeyHold"
             },
             {
+              "label": "injectKeyLockState",
+              "to": "framework/angular/examples/injectKeyLockState"
+            },
+            {
               "label": "injectFormatForDisplay (Angular SSR)",
               "to": "framework/angular/examples/injectFormatForDisplay-angular-ssr"
             },
@@ -3040,6 +3096,10 @@
               "to": "framework/vue/examples/useKeyhold"
             },
             {
+              "label": "useKeyLockState",
+              "to": "framework/vue/examples/useKeyLockState"
+            },
+            {
               "label": "useFormatForDisplay (Nuxt)",
               "to": "framework/vue/examples/useFormatForDisplay-nuxt"
             },
@@ -3093,6 +3153,10 @@
               "to": "framework/lit/examples/key-hold"
             },
             {
+              "label": "key-lock-state",
+              "to": "framework/lit/examples/key-lock-state"
+            },
+            {
               "label": "Keyboard Layouts",
               "to": "framework/lit/examples/keyboard-layouts"
             }
@@ -3140,6 +3204,10 @@
             {
               "label": "get-is-key-held",
               "to": "framework/svelte/examples/get-is-key-held"
+            },
+            {
+              "label": "get-key-lock-state",
+              "to": "framework/svelte/examples/get-key-lock-state"
             },
             {
               "label": "getFormatForDisplay (SvelteKit)",
@@ -3195,6 +3263,10 @@
               "to": "framework/alpine/examples/createKeyHold"
             },
             {
+              "label": "createKeyLockState",
+              "to": "framework/alpine/examples/createKeyLockState"
+            },
+            {
               "label": "Keyboard Layouts",
               "to": "framework/alpine/examples/keyboard-layouts"
             }
@@ -3238,6 +3310,10 @@
             {
               "label": "useKeyHold",
               "to": "framework/ember/examples/useKeyHold"
+            },
+            {
+              "label": "useKeyLockState",
+              "to": "framework/ember/examples/useKeyLockState"
             },
             {
               "label": "Keyboard Layouts",
@@ -3287,6 +3363,10 @@
             {
               "label": "useKeyHold",
               "to": "framework/octane/examples/useKeyHold"
+            },
+            {
+              "label": "useKeyLockState",
+              "to": "framework/octane/examples/useKeyLockState"
             },
             {
               "label": "useFormatForDisplay (server rendering)",

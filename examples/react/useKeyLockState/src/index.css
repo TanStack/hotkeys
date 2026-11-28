@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h1 {
+  color: #0066cc;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.field input {
+  padding: 8px;
+  font-size: 16px;
+}
+.warning {
+  min-height: 1.5em;
+  margin: 0;
+  color: #b45309;
+  font-weight: bold;
+}
+.locks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.lock {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.lock.on {
+  background: #4caf50;
+  border-color: #388e3c;
+  color: white;
+}
+.lock-name {
+  display: block;
+  font-weight: bold;
+}
+.note {
+  color: #666;
+  font-size: 14px;
+}

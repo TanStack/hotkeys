@@ -662,6 +662,25 @@ importers:
         specifier: ^8.3.7
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
+  examples/alpine/createKeyLockState:
+    dependencies:
+      '@tanstack/alpine-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/alpine-hotkeys
+      alpinejs:
+        specifier: ^3.17.5
+        version: 3.17.5
+    devDependencies:
+      '@types/alpinejs':
+        specifier: ^3.17.0
+        version: 3.17.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/alpine/keyboard-layouts:
     dependencies:
       '@tanstack/alpine-hotkeys':
@@ -1340,6 +1359,82 @@ importers:
         version: 6.0.3
 
   examples/angular/injectKeyHold:
+    dependencies:
+      '@angular/common':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^22.2.5
+        version: 22.2.5
+      '@angular/core':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/forms':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))
+      '@angular/platform-browser-dynamic':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.5)(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)))
+      '@angular/router':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@tanstack/angular-devtools':
+        specifier: ^0.0.14
+        version: 0.0.14(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)
+      '@tanstack/angular-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys
+      '@tanstack/angular-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys-devtools
+      rxjs:
+        specifier: ~7.8.2
+        version: 7.8.2
+      tslib:
+        specifier: ^2.9.1
+        version: 2.9.1
+      zone.js:
+        specifier: ~0.16.3
+        version: 0.16.3
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^22.2.6
+        version: 22.2.6(5432f7557779ecb04866b3af72404aef)
+      '@angular/cli':
+        specifier: ^22.2.6
+        version: 22.2.6(@types/node@26.6.6)(chokidar@5.0.0)
+      '@angular/compiler-cli':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/compiler@22.2.5)(typescript@6.0.3)
+      '@types/jasmine':
+        specifier: ~7.0.0
+        version: 7.0.0
+      jasmine-core:
+        specifier: ~7.0.2
+        version: 7.0.2
+      karma:
+        specifier: ~6.4.4
+        version: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1(supports-color@8.1.1)
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      karma-jasmine-html-reporter:
+        specifier: ~2.3.0
+        version: 2.3.0(jasmine-core@7.0.2)(karma-jasmine@5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)))(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
+  examples/angular/injectKeyLockState:
     dependencies:
       '@angular/common':
         specifier: ^22.2.5
@@ -2319,6 +2414,73 @@ importers:
         specifier: ^8.3.7
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
+  examples/ember/useKeyLockState:
+    dependencies:
+      '@embroider/macros':
+        specifier: 1.21.4
+        version: 1.21.4(@babel/core@7.29.13(supports-color@8.1.1))(@glint/template@1.11.1)(supports-color@8.1.1)
+      '@embroider/router':
+        specifier: 3.0.6
+        version: 3.0.6(@embroider/core@4.6.10(@glint/template@1.11.1)(supports-color@8.1.1))
+      '@glimmer/component':
+        specifier: 2.2.1
+        version: 2.2.1
+      '@tanstack/ember-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/ember-hotkeys
+      decorator-transforms:
+        specifier: 2.4.0
+        version: 2.4.0(@babel/core@7.29.13(supports-color@8.1.1))
+      ember-source:
+        specifier: 7.4.0
+        version: 7.4.0(@glimmer/component@2.2.1)(supports-color@8.1.1)
+      ember-strict-application-resolver:
+        specifier: 0.1.1
+        version: 0.1.1(@babel/core@7.29.13(supports-color@8.1.1))
+    devDependencies:
+      '@babel/core':
+        specifier: 7.29.13
+        version: 7.29.13(supports-color@8.1.1)
+      '@babel/plugin-transform-runtime':
+        specifier: 7.29.7
+        version: 7.29.7(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/plugin-transform-typescript':
+        specifier: 7.29.9
+        version: 7.29.9(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/runtime':
+        specifier: 7.29.13
+        version: 7.29.13
+      '@ember/app-tsconfig':
+        specifier: 2.1.0
+        version: 2.1.0
+      '@embroider/core':
+        specifier: 4.6.10
+        version: 4.6.10(@glint/template@1.11.1)(supports-color@8.1.1)
+      '@glint/ember-tsc':
+        specifier: 1.14.3
+        version: 1.14.3(ember-source@7.4.0(@glimmer/component@2.2.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@glint/template':
+        specifier: 1.11.1
+        version: 1.11.1
+      '@glint/tsserver-plugin':
+        specifier: 2.7.16
+        version: 2.7.16(ember-source@7.4.0(@glimmer/component@2.2.1)(supports-color@8.1.1))(supports-color@8.1.1)
+      '@nullvoxpopuli/ember-vite':
+        specifier: 1.4.0
+        version: 1.4.0(@glint/template@1.11.1)(@types/babel__core@7.20.5)(rollup@4.68.0)(supports-color@8.1.1)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@rollup/plugin-babel':
+        specifier: 7.1.0
+        version: 7.1.0(@babel/core@7.29.13(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.68.0)(supports-color@8.1.1)
+      babel-plugin-ember-template-compilation:
+        specifier: 4.0.1
+        version: 4.0.1
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/lit/held-keys:
     dependencies:
       '@tanstack/lit-hotkeys':
@@ -2400,6 +2562,22 @@ importers:
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/lit/key-hold:
+    dependencies:
+      '@tanstack/lit-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/lit-hotkeys
+      lit:
+        specifier: ^3.3.3
+        version: 3.3.3
+    devDependencies:
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
+  examples/lit/key-lock-state:
     dependencies:
       '@tanstack/lit-hotkeys':
         specifier: workspace:*
@@ -2745,6 +2923,28 @@ importers:
         specifier: ^8.3.7
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
+  examples/octane/useKeyLockState:
+    dependencies:
+      '@tanstack/octane-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/octane-hotkeys
+      octane:
+        specifier: 0.16.7
+        version: 0.16.7(@tsrx/oxc@0.23.0(svelte@5.57.3(@typescript-eslint/types@8.72.1)))(@typescript-eslint/types@8.72.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.23.0
+        version: 0.23.0(svelte@5.57.3(@typescript-eslint/types@8.72.1))
+      '@tsrx/typescript-plugin':
+        specifier: ^0.6.3
+        version: 0.6.3(octane@0.16.7(@tsrx/oxc@0.23.0(svelte@5.57.3(@typescript-eslint/types@8.72.1)))(@typescript-eslint/types@8.72.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(typescript@6.0.3)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/preact/keyboard-layouts:
     dependencies:
       '@tanstack/preact-hotkeys':
@@ -3021,6 +3221,31 @@ importers:
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/preact/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/preact-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys
+      preact:
+        specifier: ^11.2.0
+        version: 11.2.0(preact-render-to-string@6.8.2)
+    devDependencies:
+      '@preact/preset-vite':
+        specifier: ^2.10.6
+        version: 2.10.6(@babel/core@7.29.13(supports-color@8.1.1))(preact@11.2.0)(rollup@4.68.0)(supports-color@8.1.1)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@tanstack/preact-devtools':
+        specifier: 0.10.16
+        version: 0.10.16(csstype@3.2.3)(preact@11.2.0)
+      '@tanstack/preact-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys-devtools
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
+  examples/preact/useKeyLockState:
     dependencies:
       '@tanstack/preact-hotkeys':
         specifier: workspace:*
@@ -3549,6 +3774,40 @@ importers:
         specifier: ^8.3.7
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
+  examples/react/useKeyLockState:
+    dependencies:
+      '@tanstack/react-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys
+      react:
+        specifier: ^19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: ^19.3.1
+        version: 19.3.1(react@19.3.1)
+    devDependencies:
+      '@tanstack/react-devtools':
+        specifier: 0.10.15
+        version: 0.10.15(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@tanstack/react-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys-devtools
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitejs/plugin-react':
+        specifier: ^6.3.0
+        version: 6.3.0(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/react/useKeyhold:
     dependencies:
       '@tanstack/react-hotkeys':
@@ -3799,6 +4058,31 @@ importers:
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/solid/createKeyHold:
+    dependencies:
+      '@solidjs/web':
+        specifier: ^2.0.3
+        version: 2.0.3(solid-js@2.0.3)
+      '@tanstack/solid-devtools':
+        specifier: 0.9.0
+        version: 0.9.0(csstype@3.2.3)(solid-js@2.0.3)
+      '@tanstack/solid-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys
+      '@tanstack/solid-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys-devtools
+      solid-js:
+        specifier: ^2.0.3
+        version: 2.0.3
+    devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.1
+        version: 3.0.1(@babel/core@8.0.5)(@solidjs/web@2.0.3(solid-js@2.0.3))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.1.0))(solid-js@2.0.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
+  examples/solid/createKeyLockState:
     dependencies:
       '@solidjs/web':
         specifier: ^2.0.3
@@ -4089,6 +4373,31 @@ importers:
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/svelte/get-is-key-held:
+    dependencies:
+      '@tanstack/svelte-devtools':
+        specifier: ^0.1.9
+        version: 0.1.9(csstype@3.2.3)(svelte@5.57.3(@typescript-eslint/types@8.72.1))
+      '@tanstack/svelte-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/svelte-hotkeys
+      '@tanstack/svelte-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/svelte-hotkeys-devtools
+      svelte:
+        specifier: ^5.57.3
+        version: 5.57.3(@typescript-eslint/types@8.72.1)
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^7.3.1
+        version: 7.3.1(svelte@5.57.3(@typescript-eslint/types@8.72.1))(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
+  examples/svelte/get-key-lock-state:
     dependencies:
       '@tanstack/svelte-devtools':
         specifier: ^0.1.9
@@ -4570,6 +4879,31 @@ importers:
         version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/vue/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/vue-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys
+      vue:
+        specifier: ^3.5.45
+        version: 3.5.45(typescript@6.0.3)
+    devDependencies:
+      '@tanstack/vue-devtools':
+        specifier: ^0.2.29
+        version: 0.2.29(csstype@3.2.3)
+      '@tanstack/vue-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys-devtools
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.10
+        version: 6.0.10(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.45(typescript@6.0.3))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.7
+        version: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
+  examples/vue/useKeyLockState:
     dependencies:
       '@tanstack/vue-hotkeys':
         specifier: workspace:*
@@ -31394,6 +31728,10 @@ snapshots:
       source-map-js: 1.2.2
 
   powershell-utils@0.2.1: {}
+
+  preact-render-to-string@6.8.2(preact@10.29.8):
+    dependencies:
+      preact: 10.29.8(preact-render-to-string@6.8.2)
 
   preact-render-to-string@6.8.2(preact@11.2.0):
     dependencies:

@@ -125,3 +125,19 @@ For a mouse or wheel event, `event.ctrlKey`, `shiftKey`, `altKey`, and `metaKey`
 Held keys clear when the window loses focus, so a key released after switching apps doesn't stay held. [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus) covers the cases the tracker handles.
 
 The [createHeldKeys example](../examples/createHeldKeys) shows held keys and their codes, and the [createKeyHold example](../examples/createKeyHold) shows modifier indicators.
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. The `value` of `createKeyHold('CapsLock')` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `createKeyLockState`:
+
+```ts
+const capsLock = hotkeys.createKeyLockState('CapsLock') // value: true, false, or null
+
+return { get capsLockOn() { return capsLock.value === true } }
+```
+
+```html
+<span x-show="capsLockOn" role="status">Caps Lock is on</span>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.

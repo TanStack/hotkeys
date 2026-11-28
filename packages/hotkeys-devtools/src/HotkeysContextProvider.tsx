@@ -19,6 +19,7 @@ import type {
   AppHotkeysStore,
   HotkeyRegistrationView,
   HotkeyScopesState,
+  KeyStateTrackerState,
   KeyboardLayoutMap,
 } from '@tanstack/hotkeys'
 import type { Accessor } from 'solid-js'
@@ -32,6 +33,8 @@ interface HotkeysDevtoolsContextType {
   scopes: Accessor<HotkeyScopesState>
   heldKeys: Accessor<Array<string>>
   heldCodes: Accessor<Record<string, string>>
+  /** Whether each lock key is on, or null while the browser hasn't reported it. */
+  keyLocks: Accessor<KeyStateTrackerState['locks']>
   /** Monotonic clock for sequence in-progress UI (updates while a sequence match is active). */
   sequenceProgressNow: Accessor<number>
   /** The browser's keyboard layout, or null where it reports none. */
@@ -50,6 +53,7 @@ const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   }),
   heldKeys: () => [],
   heldCodes: () => ({}),
+  keyLocks: () => ({ CapsLock: null, NumLock: null, ScrollLock: null }),
   sequenceProgressNow: () => Date.now(),
   keyboardLayout: () => null,
 })
@@ -82,6 +86,7 @@ export function HotkeysContextProvider(props: { children: any }) {
   const [heldCodes, setHeldCodes] = createSignal<Record<string, string>>(
     tracker.store.state.heldCodes,
   )
+  const [keyLocks, setKeyLocks] = createSignal(tracker.store.state.locks)
 
   // Subscribe to HotkeyManager registrations store
   onSettled(
@@ -141,6 +146,7 @@ export function HotkeysContextProvider(props: { children: any }) {
       tracker.store.subscribe(() => {
         setHeldKeys(tracker.store.state.heldKeys)
         setHeldCodes(tracker.store.state.heldCodes)
+        setKeyLocks(tracker.store.state.locks)
       }).unsubscribe,
   )
 
@@ -174,6 +180,7 @@ export function HotkeysContextProvider(props: { children: any }) {
         scopes,
         heldKeys,
         heldCodes,
+        keyLocks,
         sequenceProgressNow,
         keyboardLayout,
       }}

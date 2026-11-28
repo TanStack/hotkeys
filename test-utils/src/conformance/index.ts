@@ -1,4 +1,5 @@
 import './cases/held-keys'
+import './cases/key-lock-state'
 import './cases/registrations'
 import './cases/hotkeys'
 import './cases/provider'

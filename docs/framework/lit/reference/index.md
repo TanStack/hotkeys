@@ -19,6 +19,7 @@ title: "@tanstack/lit-hotkeys"
 - [HotkeyScopesStateController](classes/HotkeyScopesStateController.md)
 - [KeyboardLayoutController](classes/KeyboardLayoutController.md)
 - [KeyHoldController](classes/KeyHoldController.md)
+- [KeyLockStateController](classes/KeyLockStateController.md)
 
 ## Interfaces
 

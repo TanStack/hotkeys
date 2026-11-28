@@ -17,6 +17,7 @@ Use the Hotkeys panel to:
 - Watch multi-step sequence progress live as keys are pressed
 - See declared [app hotkeys](./overview#app-hotkeys) before their components mount, including user-customized bindings
 - Monitor held keys in real time
+- Check whether Caps Lock, Num Lock, and Scroll Lock are on, off, or unknown (`?`) in the **Locks** group of the top bar. Num Lock and Scroll Lock show `n/a` on macOS and iOS, where browsers don't report them
 - Trigger hotkey callbacks from the UI without pressing physical keys
 - Inspect each registration's target, event type, and conflict behavior
 

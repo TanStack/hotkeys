@@ -28,10 +28,12 @@ import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
 import { injectHotkeyRegistrations } from '../src/injectHotkeyRegistrations'
 import { injectHotkeys } from '../src/injectHotkeys'
 import { injectKeyHold } from '../src/injectKeyHold'
+import { injectKeyLockState } from '../src/injectKeyLockState'
 import type { ElementRef, Provider, Signal, Type } from '@angular/core'
 import type { ComponentFixture } from '@angular/core/testing'
 import type {
   IndividualKey,
+  LockKey,
   RegisterableHotkey,
   formatForAria,
   formatForDisplay,
@@ -197,6 +199,22 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(text(fixture, 'keys')),
       codes: () => JSON.parse(text(fixture, 'codes')),
       held: () => text(fixture, 'held') === 'true',
+      setKey: (key) => tick(() => fixture.componentInstance.watch.set(key)),
+      unmount: destroy(fixture),
+    }
+  },
+
+  mountKeyLockState(initial) {
+    class KeyLockStateView {
+      readonly watch = signal<LockKey>(initial)
+      readonly lock = injectKeyLockState(() => this.watch())
+      readonly lockText = computed(() => JSON.stringify(this.lock()))
+    }
+    const fixture = create(KeyLockStateView, {
+      template: `<output data-testid="lock">{{ lockText() }}</output>`,
+    })
+    return {
+      value: () => JSON.parse(text(fixture, 'lock')),
       setKey: (key) => tick(() => fixture.componentInstance.watch.set(key)),
       unmount: destroy(fixture),
     }

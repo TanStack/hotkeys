@@ -12,6 +12,10 @@
       <div id="recording" x-text="recorder.isRecording ? 'yes' : 'no'"></div>
       <div id="shift-held" x-text="shiftHeld.value ? 'held' : 'released'"></div>
       <div id="held-keys" x-text="heldKeys.value.join('+')"></div>
+      <div
+        id="caps-lock"
+        x-text="capsLock.value === null ? 'unknown' : capsLock.value ? 'on' : 'off'"
+      ></div>
     </div>
     <script type="module" src="./src/main.ts"></script>
   </body>

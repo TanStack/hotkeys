@@ -7,6 +7,7 @@ import {
   getKeyboardLayoutStore,
   provideAppHotkeys,
 } from '@tanstack/hotkeys'
+import { withKeyLocks } from '@tanstack/hotkeys-test-utils'
 import { LitElement } from 'lit'
 import { afterEach, expect, it, vi } from 'vitest'
 import { AppHotkeysController } from '../src/controllers/app-hotkeys'
@@ -19,6 +20,7 @@ import { HotkeyRecorderController } from '../src/controllers/hotkey-recorder'
 import { HotkeyRegistrationsController } from '../src/controllers/hotkey-registrations'
 import { HotkeyScopesStateController } from '../src/controllers/hotkey-scopes-state'
 import { KeyHoldController } from '../src/controllers/key-hold'
+import { KeyLockStateController } from '../src/controllers/key-lock-state'
 import type { ReactiveController } from 'lit'
 
 class HeldHost extends LitElement {
@@ -127,6 +129,14 @@ const readControllers: Array<
   [string, (host: LitElement) => ReactiveController, () => void]
 > = [
   ['KeyHoldController', (h) => new KeyHoldController(h, 'Shift'), pressShift],
+  [
+    'KeyLockStateController',
+    (h) => new KeyLockStateController(h, 'CapsLock'),
+    () =>
+      document.dispatchEvent(
+        withKeyLocks(new MouseEvent('mousemove'), { CapsLock: true }),
+      ),
+  ],
   ['HeldKeysController', (h) => new HeldKeysController(h), pressShift],
   ['HeldKeyCodesController', (h) => new HeldKeyCodesController(h), pressShift],
   [

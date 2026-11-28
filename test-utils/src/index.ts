@@ -1,5 +1,7 @@
 export { patchAltGraph, withAltGraph } from './alt-graph'
 export { keyEvent, keydown, keyup } from './events'
+export { withKeyLocks } from './key-locks'
+export type { KeyLocks } from './key-locks'
 export type { KeyOptions } from './events'
 export { USER_AGENTS, setTestPlatform, testPlatform } from './platform'
 export type { TestPlatform } from './platform'
