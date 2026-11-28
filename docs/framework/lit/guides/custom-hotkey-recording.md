@@ -115,18 +115,25 @@ private onPointerDown = (event: PointerEvent) => {
   if (!event.composedPath().includes(this)) this.recorder.cancelRecording()
 }
 
+// The document the listener is on, kept in case the element moves
+private listeningIn: Document | null = null
+
+private stopListening() {
+  this.listeningIn?.removeEventListener('pointerdown', this.onPointerDown, true)
+  this.listeningIn = null
+}
+
 updated() {
+  if (!this.recorder.isRecording) return this.stopListening()
+  if (this.listeningIn) return
   // The element's document, which can be a Picture-in-Picture window
-  if (this.recorder.isRecording) {
-    this.ownerDocument.addEventListener('pointerdown', this.onPointerDown, true)
-  } else {
-    this.ownerDocument.removeEventListener('pointerdown', this.onPointerDown, true)
-  }
+  this.listeningIn = this.ownerDocument
+  this.listeningIn.addEventListener('pointerdown', this.onPointerDown, true)
 }
 
 disconnectedCallback() {
   super.disconnectedCallback()
-  this.ownerDocument.removeEventListener('pointerdown', this.onPointerDown, true)
+  this.stopListening()
 }
 ```
 

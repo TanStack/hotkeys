@@ -7375,15 +7375,15 @@
       ]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "ce392febf357e4770ccfce7caa958d476c2a31a4f54b9f1029feddf1786b54c5",
+      "fingerprint": "81a4250128dd2ccbfef1591530b35991a0b5a81d90dd7657cc5fc3afbd3f5a98",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "16f966a7da579db2bf27a61a62688a184ef5ba12e957716767d65f8715eb8544"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "f0452e0e1a15debe0cca111e509bd5d837806e838d0a3863d8474ddca33b1c13"
       },
-      "head": "3339f06c3651c133a2314b979c1d4d3615c43a86",
+      "head": "264669937b5f362e29c77cfc7e9a6aa6ca24fe1a",
       "outcome": "no-change",
-      "reason": "Review fixes: follow on focus too, keep the recorder window when another recorder stops it, guides listen for outside clicks in the button's document. No skill teaches these, so no guidance changes",
+      "reason": "Lit guide example keeps the document its outside-click listener is on; no skill covers it",
       "evidence": [
-        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 3339f06c3651c133a2314b979c1d4d3615c43a86"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at 264669937b5f362e29c77cfc7e9a6aa6ca24fe1a"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
