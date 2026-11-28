@@ -9,11 +9,13 @@ title: injectFormatForAria
 function injectFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: [injectFormatForAria.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectFormatForAria.ts#L36)
+Defined in: [injectFormatForAria.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectFormatForAria.ts#L39)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.
-It returns `undefined` for a multi-step sequence or no hotkey, so an
+It returns `undefined` for a multi-step sequence, no hotkey, or a hotkey
+that can't fire right now (one that is disabled, in a suspended scope, a
+suspended character key, or not registered), so an
 `[attr.aria-keyshortcuts]` binding omits the attribute. Call it in an
 injection context, such as a field initializer; the returned function works
 anywhere, including templates. An explicit `platform` option wins.

@@ -1,15 +1,18 @@
 import { formatForAria } from '@tanstack/hotkeys'
-import { createFormatter } from '@tanstack/hotkeys/adapter'
+import { announceLiveHotkeys, createFormatter } from '@tanstack/hotkeys/adapter'
 import { useMemo } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useHotkeyRegistrations } from './useHotkeyRegistrations'
 import { useKeyboardLayout } from './useKeyboardLayout'
 
 /**
  * Returns `formatForAria` with the platform from `HotkeysProvider`, or the
  * detected platform without one. A `platform` passed to the returned function
  * wins. Use its value for `aria-keyshortcuts`, so screen readers announce the
- * shortcut. It returns `undefined` for a multi-step sequence or no hotkey, so
- * Preact omits the attribute.
+ * shortcut. It returns `undefined` for a multi-step sequence, no hotkey, or a
+ * hotkey that can't fire right now (one that is disabled, in a suspended
+ * scope, a suspended character key, or not registered), so Preact omits the
+ * attribute.
  *
  * Physical bindings such as `[KeyQ]` name the key the user presses in
  * Chromium browsers, once the keyboard layout has loaded. See
@@ -40,13 +43,19 @@ export function useFormatForAria(): typeof formatForAria {
   // Without a provider platform, formatForAria detects it.
   const platform = useDefaultHotkeysOptions().platform
   const layoutMap = useKeyboardLayout()
+  // Re-renders when a registration changes, so the value follows whether
+  // the hotkey can fire.
+  const registrations = useHotkeyRegistrations()
   return useMemo(
     () =>
-      createFormatter(
-        formatForAria,
-        () => platform,
-        () => layoutMap,
+      announceLiveHotkeys(
+        createFormatter(
+          formatForAria,
+          () => platform,
+          () => layoutMap,
+        ),
+        () => registrations,
       ),
-    [platform, layoutMap],
+    [platform, layoutMap, registrations],
   )
 }

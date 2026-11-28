@@ -31,6 +31,7 @@ title: "@tanstack/hotkeys"
 ## Functions
 
 - [activateHotkeysProviderScope](functions/activateHotkeysProviderScope.md)
+- [announceLiveHotkeys](functions/announceLiveHotkeys.md)
 - [bindCustomHotkeyActions](functions/bindCustomHotkeyActions.md)
 - [createAppHotkeysStore](functions/createAppHotkeysStore.md)
 - [createFormatForDisplay](functions/createFormatForDisplay.md)

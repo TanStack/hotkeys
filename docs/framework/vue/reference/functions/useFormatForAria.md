@@ -9,14 +9,15 @@ title: useFormatForAria
 function useFormatForAria(): (hotkey, options?) => string | undefined;
 ```
 
-Defined in: [useFormatForAria.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useFormatForAria.ts#L35)
+Defined in: [useFormatForAria.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useFormatForAria.ts#L37)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.
-It returns `undefined` for a multi-step sequence or no hotkey, so Vue omits
-the attribute. Call in `setup`; the returned function works anywhere, and
-templates update when the provider's platform changes. An explicit
-`platform` option wins.
+It returns `undefined` for a multi-step sequence, no hotkey, or a hotkey
+that can't fire right now (one that is disabled, in a suspended scope, a
+suspended character key, or not registered), so Vue omits the attribute.
+Call in `setup`; the returned function works anywhere, and templates update
+when the provider's platform changes. An explicit `platform` option wins.
 
 Physical bindings such as `[KeyQ]` name the key the user presses in
 Chromium browsers, once the keyboard layout has loaded. See

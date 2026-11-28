@@ -284,6 +284,17 @@ export interface HotkeyRegistrationsResult {
 }
 
 /**
+ * Whether a target hears key presses from anywhere on the page: the document,
+ * the window, the body, or the root element. A hotkey on any other element
+ * fires only while focus is inside it.
+ */
+function listensPageWide(target: Target): boolean {
+  if (isDocumentLevel(target)) return true
+  const doc = target.ownerDocument
+  return target === doc.body || target === doc.documentElement
+}
+
+/**
  * Whether a registration can fire now. Without a manager, scopes and
  * character-key suspension don't apply.
  */
@@ -298,7 +309,7 @@ function getRegistrationStatus(
       // A hotkey on an element fires only while it has focus, which WCAG
       // 2.1.4 already allows, so suspension leaves it alone.
       (manager.scopes.state.characterKeysSuspended &&
-        isDocumentLevel(registration.target) &&
+        listensPageWide(registration.target) &&
         isCharacterKeyShortcut(resolvedSteps(registration))))
     ? 'suspended'
     : 'active'
@@ -528,7 +539,8 @@ export interface HotkeyScopesState {
   suspended: ReadonlyArray<string>
   /**
    * Whether character key shortcuts, such as `K` or `Shift+/`, are suspended
-   * by `suspendCharacterKeys`. Hotkeys on an element are not suspended.
+   * by `suspendCharacterKeys`. Hotkeys on an element other than the body or the
+   * root element are not suspended.
    */
   characterKeysSuspended: boolean
 }
@@ -777,8 +789,9 @@ export class HotkeyManager {
    * whose every step types a character, alone or with `Shift`, such as `K`,
    * `?`, `Shift+K`, `Space`, or `['G', 'H']`. Hotkeys with `Control`, `Alt`,
    * or `Meta`, non-character keys such as `Escape` or `F1`, and hotkeys
-   * targeted at an element keep working. Enabled hotkeys that are suspended
-   * report the status `'suspended'`.
+   * targeted at an element other than the body or the root element keep
+   * working. Enabled hotkeys that are suspended report the status
+   * `'suspended'`.
    *
    * Suspensions are counted, so character keys stay suspended until every
    * returned resume function runs. Framework providers call this while mounted
@@ -796,7 +809,24 @@ export class HotkeyManager {
     this.#characterKeySuspensions.add(suspension)
     this.#updateScopes()
     return () => {
-      if (this.#characterKeySuspensions.delete(suspension)) this.#updateScopes()
+      if (!this.#characterKeySuspensions.delete(suspension)) return
+      const suspended = [...this.registrations.state.values()].filter(
+        (registration) => !this.#isLive(registration),
+      )
+      this.#updateScopes()
+      // Like opening a scope, the press that resumes character keys doesn't
+      // fire them. A keyup chord still gets the release of its own press.
+      for (const registration of suspended) {
+        if (
+          this.#isLive(registration) &&
+          !(
+            registration.kind === 'chord' &&
+            registration.options.eventType === 'keyup'
+          )
+        ) {
+          this.#markLive(registration.id)
+        }
+      }
     }
   }
 

@@ -9,7 +9,12 @@ import {
   resolveAppHotkey,
   toHotkeyRegistrationView,
 } from '../src'
-import { createFormatter, namesPhysicalKey } from '../src/adapter'
+import {
+  announceLiveHotkeys,
+  createFormatter,
+  getHotkeyRegistrationViews,
+  namesPhysicalKey,
+} from '../src/adapter'
 import { formatForAria as coreFormatForAria } from '../src/format'
 import type {
   AppHotkey,
@@ -292,6 +297,41 @@ describe('adapter helpers', () => {
     expect(
       formatForAria('[KeyQ]', { layoutMap: new Map([['KeyQ', 'q']]) }),
     ).toBe('Q')
+  })
+
+  it('announces only hotkeys that can fire', () => {
+    const manager = HotkeyManager.getInstance()
+    const formatForAria = announceLiveHotkeys(
+      createFormatter(
+        coreFormatForAria,
+        () => 'mac',
+        () => null,
+      ),
+      () => getHotkeyRegistrationViews(manager.registrations.state),
+    )
+    // Nothing has registered it.
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    const handle = manager.register('Mod+K', () => {}, { platform: 'mac' })
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    expect(formatForAria({ key: 'K', mod: true })).toBe('Meta+K')
+    handle.setOptions({ enabled: false })
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    handle.setOptions({ enabled: true })
+    const close = manager.activateScope('dialog', { exclusive: true })
+    expect(formatForAria('Mod+K')).toBe(undefined)
+    close()
+    manager.register('K', () => {}, { platform: 'mac' })
+    expect(formatForAria('K')).toBe('K')
+    const resume = manager.suspendCharacterKeys()
+    expect(formatForAria('K')).toBe(undefined)
+    expect(formatForAria('Mod+K')).toBe('Meta+K')
+    resume()
+    // A hotkey on an element counts whether or not it has focus.
+    const element = document.createElement('div')
+    document.body.append(element)
+    manager.register('Mod+J', () => {}, { platform: 'mac', target: element })
+    expect(formatForAria('Mod+J')).toBe('Meta+J')
+    element.remove()
   })
 
   it('resolves an app hotkey from the store by id', () => {

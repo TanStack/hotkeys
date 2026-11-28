@@ -1,6 +1,11 @@
 import { formatForAria } from '@tanstack/hotkeys'
-import { createFormatter, resolveMaybeGetter } from '@tanstack/hotkeys/adapter'
+import {
+  announceLiveHotkeys,
+  createFormatter,
+  resolveMaybeGetter,
+} from '@tanstack/hotkeys/adapter'
 import { FormatterLayout } from './_formatter-layout'
+import { HotkeyRegistrationsController } from './hotkey-registrations'
 import type { HotkeyPlatform, MaybeGetter } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -24,8 +29,10 @@ export interface FormatForAriaControllerOptions {
  * A Lit ReactiveController whose `format` is `formatForAria` with the
  * controller's `platform` option, or the detected platform without one. A
  * `platform` passed to `format` wins. Use its value for `aria-keyshortcuts`
- * with Lit's `ifDefined`, so Lit omits the attribute for a multi-step sequence
- * or no hotkey.
+ * with Lit's `ifDefined`, so Lit omits the attribute for a multi-step
+ * sequence, no hotkey, or a hotkey that can't fire right now (one that is
+ * disabled, in a suspended scope, a suspended character key, or not
+ * registered). The host updates when a registration changes.
  *
  * Physical bindings such as `[KeyQ]` name the key the user presses in
  * Chromium browsers, once the keyboard layout has loaded. The host updates
@@ -52,16 +59,21 @@ export interface FormatForAriaControllerOptions {
 export class FormatForAriaController implements ReactiveController {
   /** Reads the layout for the host, unless `keyboardLayout` is false. */
   private _layout: FormatterLayout
+  /** Updates the host when a registration changes. */
+  private _registrations: HotkeyRegistrationsController
 
   /**
    * Formats a hotkey for `aria-keyshortcuts`, with the controller's platform
    * and the user's keyboard layout filled in. It takes the same options as
    * `formatForAria` and needs no `this`, so it can be passed around.
    */
-  public format: typeof formatForAria = createFormatter(
-    formatForAria,
-    () => this._read().platform,
-    () => this._layout.value,
+  public format: typeof formatForAria = announceLiveHotkeys(
+    createFormatter(
+      formatForAria,
+      () => this._read().platform,
+      () => this._layout.value,
+    ),
+    () => this._registrations.hotkeys,
   )
 
   /**
@@ -76,6 +88,7 @@ export class FormatForAriaController implements ReactiveController {
       _host,
       () => this._read().keyboardLayout !== false,
     )
+    this._registrations = new HotkeyRegistrationsController(_host)
     this._host.addController(this)
   }
 
@@ -96,6 +109,7 @@ export class FormatForAriaController implements ReactiveController {
    */
   public dispose(): void {
     this._layout.dispose()
+    this._registrations.dispose()
     this._host.removeController(this)
   }
 

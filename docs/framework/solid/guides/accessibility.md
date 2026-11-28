@@ -10,9 +10,9 @@ Keyboard shortcuts help people who navigate without a mouse, but shortcuts can g
 
 These protections are on by default:
 
-- **Typing in fields and widgets.** Single keys and `Shift` or `Alt` chords don't fire while focus is in a text field, `<select>`, or `contenteditable` element. Native buttons keep `Enter` and `Space`, links keep `Enter`, and ARIA widgets such as menus, listboxes, tabs, and grids keep their navigation keys. Configure this with `ignoreInputs` (see [Hotkey options](./hotkeys#hotkey-options)).
+- **Typing in fields and widgets.** Single keys and `Shift` or `Alt` chords don't fire while focus is in a text field, `<select>`, or `contenteditable` element. Native buttons keep `Enter` and `Space`, links keep `Enter`, and ARIA widgets such as menus, listboxes, tabs, and grids keep their navigation keys. Configure this with `ignoreInputs` (see [Hotkey options](./hotkeys#hotkey-options)). Hotkeys targeted at the field itself still fire there, and so do `Escape`, function keys, and `Control` or `Meta` chords.
 - **Characters typed with AltGr.** On keyboards where AltGr types characters such as `@` or `€`, typing them doesn't fire `Control+Alt` hotkeys.
-- **Open overlays.** While focus is inside a native `<dialog>`, popover, or ARIA dialog or menu, outer `Escape` hotkeys stay out of the way so the overlay closes first (see [Let an open overlay handle Escape](../../../guides/sensible-defaults.md#let-an-open-overlay-handle-escape)). To suspend all other page hotkeys while a dialog is open, wrap the dialog in an [exclusive scope](./hotkeys-provider-and-scopes#exclusive-scopes).
+- **Open overlays.** While focus is inside an overlay that closes on `Escape`, such as a native `<dialog>`, a light-dismiss popover, or an ARIA dialog or menu, outer `Escape` hotkeys stay out of the way so the overlay closes first. An overlay that closes in your own handler still needs that handler (see [Let an open overlay handle Escape](../../../guides/sensible-defaults.md#let-an-open-overlay-handle-escape)). To suspend all other page hotkeys while a dialog is open, wrap the dialog in an [exclusive scope](./hotkeys-provider-and-scopes#exclusive-scopes).
 
 ## Announce shortcuts to screen readers
 
@@ -22,12 +22,14 @@ Screen readers announce a control's shortcut from its [`aria-keyshortcuts`](http
 import {
   createFormatForAria,
   createFormatForDisplay,
+  createHotkey,
   useAppHotkeys,
 } from '@tanstack/solid-hotkeys'
 import { Show } from 'solid-js'
 
-function SearchButton() {
+function SearchButton(props: { onSearch: () => void }) {
   const appHotkeys = useAppHotkeys()
+  createHotkey(() => appHotkeys()['search.open'], () => props.onSearch())
   const formatForAria = createFormatForAria()
   const formatForDisplay = createFormatForDisplay()
   const hotkey = () => appHotkeys()['search.open'].hotkey
@@ -44,6 +46,7 @@ function SearchButton() {
 Follow these rules when you add the attribute:
 
 - **Attach it to the target control.** Put `aria-keyshortcuts` on the button the shortcut activates or the field it focuses. The attribute only announces the shortcut, so register the hotkey as usual.
+- **Announce only working shortcuts.** The formatter returns `undefined` while the hotkey can't fire, such as when it is disabled, its scope is suspended, or character keys are suspended, so the attribute comes and goes with the shortcut. The hotkey has to be registered, so server-rendered HTML has no attribute until the hotkey registers in the browser.
 - **Keep the visible label.** Render a `<kbd>` label alongside the attribute from the same hotkey so sighted and screen reader users see the same shortcut.
 - **Document sequences in text.** ARIA has no syntax for multi-step sequences such as `['G', 'H']`, so the formatter returns `undefined` and Solid omits the attribute. List sequences in a [cheat sheet](./cheat-sheet-ui-helpers) instead.
 - **Read from app hotkeys.** Pass the binding from [app hotkeys](./app-hotkeys) so `aria-keyshortcuts` updates when the user rebinds the shortcut.
@@ -79,7 +82,9 @@ function App(props: { settings: Accessor<Settings> }) {
 
 Suspensions are counted. Character key shortcuts stay off while any mounted provider sets `suspendCharacterKeys` to `true`, and they resume when the last one unmounts or its prop becomes `false`. `suspendCharacterKeys` applies even when the provider sets `enabled={false}`. Outside a provider, call `getHotkeyManager().suspendCharacterKeys()`, which returns a function that resumes them.
 
-While suspended, an enabled character key shortcut reports the status `'suspended'` (the same as a hotkey in an inactive scope), so a [cheat sheet](./cheat-sheet-ui-helpers) can mark it as off. To display the current toggle state in a settings screen, read `characterKeysSuspended` from [scope state](./hotkey-manager#read-scope-state).
+While suspended, an enabled document-level character key shortcut reports the status `'suspended'` (the same as a hotkey in an inactive scope), so a [cheat sheet](./cheat-sheet-ui-helpers) can mark it as off. Bind the setting's switch to the saved preference, not to the suspension. `characterKeysSuspended` in [scope state](./hotkey-manager#read-scope-state) is `true` while any suspension is in effect, so use it to show whether character key shortcuts work right now.
+
+Suspension stops the callback but not `preventDefault: 'always'`, which keeps blocking the key's browser action. Leave `'always'` off character key shortcuts that users can turn off.
 
 These hotkeys keep working while character keys are suspended:
 
@@ -88,13 +93,13 @@ These hotkeys keep working while character keys are suspended:
 | `Mod+K`, `Control+K`, `Alt+K` | Uses `Control`, `Alt`, or `Meta`. |
 | `Escape`, `Enter`, `Tab`, `ArrowUp`, `F1` | Does not type a character. |
 | `['Mod+K', 'C']` | At least one step uses a modifier or a non-character key. |
-| A hotkey with an element `target` | Fires only while focus is inside that element. |
+| A hotkey with an element `target`, other than the body or the root element | Fires only while focus is inside that element. |
 
 Suspension checks the effective hotkey, so an app hotkey remapped from `K` to `Mod+K` works even while character keys are suspended.
 
 ### Let users remap them
 
-[App hotkeys](./app-hotkeys) with a [shortcut settings screen](./custom-hotkey-recording) meet WCAG 2.1.4 on their own, as long as users can rebind every character key shortcut to one with a modifier. Offering both a toggle and remapping lets users either disable single-key shortcuts or rebind individual ones.
+[App hotkeys](./app-hotkeys) with a [shortcut settings screen](./custom-hotkey-recording) meet WCAG 2.1.4 on their own, as long as users can rebind every character key shortcut to one with `Control`, `Alt`, or `Meta`. Adding `Shift` alone still leaves a character key shortcut. Offering both a toggle and remapping lets users either disable single-key shortcuts or rebind individual ones.
 
 ### Scope them to an element
 

@@ -129,7 +129,7 @@
         "react",
         "react-dom"
       ],
-      "limit": "11.5 KB"
+      "limit": "12 KB"
     },
     {
       "name": "Preact useHotkey",

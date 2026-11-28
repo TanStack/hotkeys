@@ -9,14 +9,15 @@ title: useFormatForAria
 function useFormatForAria(scope?): (hotkey, options) => string | undefined;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useFormatForAria.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useFormatForAria.ts#L35)
+Defined in: [packages/ember-hotkeys/src/useFormatForAria.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useFormatForAria.ts#L38)
 
 Returns `formatForAria` with the scope's `platform` as the default. Use its
 value for `aria-keyshortcuts`, so screen readers announce the shortcut. It
-returns `undefined` for a multi-step sequence or no hotkey, so Glimmer omits
-the attribute. The returned function works anywhere, including templates,
-and reads the scope's defaults when called. An explicit `platform` option
-wins.
+returns `undefined` for a multi-step sequence, no hotkey, or a hotkey that
+can't fire right now (one that is disabled, in a suspended scope, a
+suspended character key, or not registered), so Glimmer omits the attribute.
+The returned function works anywhere, including templates, and reads the
+scope's defaults when called. An explicit `platform` option wins.
 
 Physical bindings such as `[KeyQ]` name the key the user presses in
 Chromium browsers, once the keyboard layout has loaded, the same way as

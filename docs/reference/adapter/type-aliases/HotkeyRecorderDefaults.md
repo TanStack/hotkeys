@@ -9,7 +9,7 @@ title: HotkeyRecorderDefaults
 type HotkeyRecorderDefaults = Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "onRecord" | "validate">>;
 ```
 
-Defined in: [adapter.ts:453](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L453)
+Defined in: [adapter.ts:456](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L456)
 
 Provider defaults for every recorder. Each recorder sets its own
 `maxSteps`, `onRecord`, and `validate`.

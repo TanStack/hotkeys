@@ -2,6 +2,7 @@ import {
   detectPlatform,
   formatForAria,
   formatForDisplay,
+  getHotkeyManager,
 } from '@tanstack/hotkeys'
 import { mod, modDown, modUp } from '../keys'
 import { defineGroup, spy } from '../suite'
@@ -330,6 +331,7 @@ defineGroup({
       title: 'formats on the provider platform',
       requires: ['provider-defaults'],
       async run({ harness, expect }) {
+        register('Mod+S')
         const mac = await harness.mountFormat!({ platform: 'mac' })
         expect(mac.formatAria('Mod+S')).toBe('Meta+S')
         await mac.unmount()
@@ -341,6 +343,7 @@ defineGroup({
       title: 'lets a platform passed to format win over the provider',
       requires: ['provider-defaults'],
       async run({ harness, expect }) {
+        register('Mod+S')
         const view = await harness.mountFormat!({ platform: 'mac' })
         expect(view.formatAria('Mod+S', { platform: 'windows' })).toBe(
           'Control+S',
@@ -350,6 +353,7 @@ defineGroup({
     {
       title: 'uses the detected platform without a provider',
       async run({ harness, expect }) {
+        register('Mod+Shift+S')
         const view = await harness.mountFormat!({})
         expect(view.formatAria('Mod+Shift+S')).toBe(
           formatForAria('Mod+Shift+S', { platform: detectPlatform() }),
@@ -364,5 +368,25 @@ defineGroup({
         expect(view.formatAria(null)).toBe(undefined)
       },
     },
+    {
+      title: 'announces a hotkey only while it can fire',
+      async run({ harness, expect }) {
+        const view = await harness.mountFormat!({})
+        const expected = formatForAria('Mod+K', { platform: detectPlatform() })
+        expect(view.formatAria('Mod+K')).toBe(undefined)
+        let handle!: ReturnType<typeof register>
+        await harness.act(() => (handle = register('Mod+K')))
+        expect(view.formatAria('Mod+K')).toBe(expected)
+        await harness.act(() => handle.setOptions({ enabled: false }))
+        expect(view.formatAria('Mod+K')).toBe(undefined)
+        await harness.act(() => handle.setOptions({ enabled: true }))
+        expect(view.formatAria('Mod+K')).toBe(expected)
+      },
+    },
   ],
 })
+
+/** Registers a hotkey with the manager, so the ARIA formatter announces it. */
+function register(hotkey: Hotkey) {
+  return getHotkeyManager().register(hotkey, () => {})
+}

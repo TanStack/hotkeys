@@ -159,11 +159,13 @@ export interface AlpineHotkeys {
    */
   createFormatForDisplay: () => typeof formatForDisplay
   /**
-   * Returns `formatForAria` with the scope's `platform` as the default, or
-   * the detected platform without one. Use its value for
-   * `aria-keyshortcuts`, so screen readers announce the shortcut. It returns
-   * `undefined` for a multi-step sequence or no hotkey, so `x-bind` omits the
-   * attribute. An explicit `platform` option wins.
+   * Returns `formatForAria` with the scope's `platform` as the default, or the
+   * detected platform without one. Use its value for `aria-keyshortcuts`, so
+   * screen readers announce the shortcut. It returns `undefined` for a
+   * multi-step sequence, no hotkey, or a hotkey that can't fire right now (one
+   * that is disabled, in a suspended scope, a suspended character key, or not
+   * registered), so `x-bind` omits the attribute. An explicit `platform`
+   * option wins.
    *
    * Physical bindings such as `[KeyQ]` name the key the user presses in
    * Chromium browsers, once the keyboard layout has loaded, the same way as

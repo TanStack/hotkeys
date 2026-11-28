@@ -2,6 +2,7 @@
 // bundles each entry on its own, and a relative import would give this entry
 // a second HotkeyManager and app hotkeys factory.
 import {
+  areHotkeysEqual,
   detectPlatform,
   formatForDisplay,
   getAppHotkeyRegistrationOptions,
@@ -31,7 +32,7 @@ import type {
   CustomHotkeyActions,
   RegisteredAppHotkeys,
 } from './app-hotkeys'
-import type { DisplayHotkey } from './format'
+import type { DisplayHotkey, formatForAria } from './format'
 import type { HeldModifierOptions } from './hint'
 import type {
   ActivateHotkeyScopeOptions,
@@ -439,8 +440,10 @@ export interface HotkeysProviderScopeProps {
    * a user setting so people who use speech input or press keys by accident
    * can turn single-key shortcuts off for WCAG 2.1.4 (Character Key
    * Shortcuts). Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys
-   * such as `Escape` or `F1`, and hotkeys targeted at an element keep working.
-   * This option applies even when the provider sets `enabled` to `false`. See
+   * such as `Escape` or `F1`, and hotkeys targeted at an element other than
+   * the body keep working. This option applies even when the provider sets
+   * `enabled` to `false`, and to every hotkey in the app, not only those under
+   * the provider. See
    * `HotkeyManager.suspendCharacterKeys`. Defaults to `false`.
    */
   suspendCharacterKeys?: boolean
@@ -683,6 +686,41 @@ export function createFormatter<
           ? (getLayoutMap() ?? undefined)
           : undefined),
     })) as TFormat
+}
+
+/**
+ * Wraps an ARIA formatter so it returns `undefined` for a hotkey that can't
+ * fire, so screen readers announce only working shortcuts. A hotkey can fire
+ * when an enabled registration of it is in an active scope and isn't a
+ * suspended character key. A hotkey nothing has registered isn't announced.
+ * Focus isn't checked, because the attribute sits on the control the
+ * shortcut acts on. Read the adapter's registrations reactively in
+ * `getRegistrations`, so the value updates when they change.
+ */
+export function announceLiveHotkeys(
+  format: typeof formatForAria,
+  getRegistrations: () => ReadonlyArray<HotkeyRegistrationView>,
+): typeof formatForAria {
+  return (hotkey, options) => {
+    const value = format(hotkey, options)
+    if (value === undefined) return undefined
+    // A parsed chord compares by its normalized string.
+    const wanted =
+      typeof hotkey === 'object' && 'modifiers' in hotkey!
+        ? normalizeHotkey(hotkey)
+        : (hotkey as RegisterableHotkey)
+    return getRegistrations().some(
+      (registration) =>
+        registration.status === 'active' &&
+        areHotkeysEqual(
+          registration.hotkey,
+          wanted,
+          registration.options.platform,
+        ),
+    )
+      ? value
+      : undefined
+  }
 }
 
 /**

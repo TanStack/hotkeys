@@ -17,7 +17,7 @@ Registrations and reactive state owned by one Alpine component.
 createAppHotkeyList: () => AlpineHotkeyState<RegisteredAppHotkeyListItem[]>;
 ```
 
-Defined in: [types.ts:232](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L232)
+Defined in: [types.ts:234](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L234)
 
 Read every app hotkey with its live status through `.value`.
 
@@ -33,7 +33,7 @@ Read every app hotkey with its live status through `.value`.
 createAppHotkeys: () => AlpineHotkeyState<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>;
 ```
 
-Defined in: [types.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L230)
+Defined in: [types.ts:232](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L232)
 
 Read the effective app hotkeys from `provideAppHotkeys` through `.value`.
 
@@ -49,7 +49,7 @@ Read the effective app hotkeys from `provideAppHotkeys` through `.value`.
 createCustomHotkeys: () => AlpineCustomHotkeys;
 ```
 
-Defined in: [types.ts:236](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L236)
+Defined in: [types.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L238)
 
 Read and change the user's custom hotkeys.
 
@@ -65,13 +65,15 @@ Read and change the user's custom hotkeys.
 createFormatForAria: () => (hotkey, options) => string | undefined;
 ```
 
-Defined in: [types.ts:196](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L196)
+Defined in: [types.ts:198](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L198)
 
-Returns `formatForAria` with the scope's `platform` as the default, or
-the detected platform without one. Use its value for
-`aria-keyshortcuts`, so screen readers announce the shortcut. It returns
-`undefined` for a multi-step sequence or no hotkey, so `x-bind` omits the
-attribute. An explicit `platform` option wins.
+Returns `formatForAria` with the scope's `platform` as the default, or the
+detected platform without one. Use its value for `aria-keyshortcuts`, so
+screen readers announce the shortcut. It returns `undefined` for a
+multi-step sequence, no hotkey, or a hotkey that can't fire right now (one
+that is disabled, in a suspended scope, a suspended character key, or not
+registered), so `x-bind` omits the attribute. An explicit `platform`
+option wins.
 
 Physical bindings such as `[KeyQ]` name the key the user presses in
 Chromium browsers, once the keyboard layout has loaded, the same way as
@@ -631,7 +633,7 @@ Read the active, exclusive, allowed, and suspended scopes through `.value`.
 createKeyboardLayout: () => AlpineHotkeyState<KeyboardLayoutMap | null>;
 ```
 
-Defined in: [types.ts:228](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L228)
+Defined in: [types.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L230)
 
 Read the browser's keyboard layout through `.value`, or `null` until it
 loads and in browsers that don't report one. The layout maps each physical
@@ -698,7 +700,7 @@ Read whether a key is held through `.value`.
 destroy: () => void;
 ```
 
-Defined in: [types.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L238)
+Defined in: [types.ts:240](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L240)
 
 Release every registration, subscription, effect, and recorder. Idempotent.
 

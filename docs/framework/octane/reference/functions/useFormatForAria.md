@@ -9,15 +9,16 @@ title: useFormatForAria
 function useFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: [useFormatForAria.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForAria.ts#L31)
+Defined in: [useFormatForAria.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useFormatForAria.ts#L37)
 
 Returns `formatForAria` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function
 wins. Use its value for `aria-keyshortcuts`, so screen readers announce the
-shortcut. It returns `undefined` for a multi-step sequence or no hotkey, so
-Octane omits the attribute. Without a provider platform, server rendering and
-hydration use 'linux', then the client re-renders with the detected
-platform.
+shortcut. It returns `undefined` for a multi-step sequence, no hotkey, or a
+hotkey that can't fire right now (one that is disabled, in a suspended
+scope, a suspended character key, or not registered), so Octane omits the
+attribute. Without a provider platform, server rendering and hydration use
+'linux', then the client re-renders with the detected platform.
 
 Physical bindings such as `[KeyQ]` name the key the user presses in
 Chromium browsers, once the keyboard layout has loaded. See

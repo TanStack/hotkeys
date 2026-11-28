@@ -201,7 +201,9 @@ function createHotkeysContext(
       if (key) onCleanup(activateHotkeysProviderScope(key))
     })
     // Suspend character key shortcuts while this injector lives, as the
-    // user's setting asks.
+    // user's setting asks. Angular creates the context when something under
+    // the provider first injects it, so a provider nothing injects never
+    // suspends.
     const suspend = computed(() => !!read(options.suspendCharacterKeys))
     effect((onCleanup) => {
       if (suspend()) onCleanup(getHotkeyManager().suspendCharacterKeys())

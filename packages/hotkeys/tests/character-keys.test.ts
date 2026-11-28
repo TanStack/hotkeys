@@ -179,6 +179,32 @@ describe('suspendCharacterKeys', () => {
     element.remove()
   })
 
+  it('does not fire on the press that resumes character keys', () => {
+    const manager = HotkeyManager.getInstance()
+    const k = vi.fn()
+    manager.register('K', k, options)
+    const resume = manager.suspendCharacterKeys()
+    const toggle = document.createElement('button')
+    document.body.append(toggle)
+    // A settings control that turns the shortcuts back on during the press.
+    toggle.addEventListener('keydown', () => resume(), { once: true })
+    keydown({ key: 'k', code: 'KeyK', target: toggle })
+    keyup({ key: 'k', code: 'KeyK', target: toggle })
+    expect(k).not.toHaveBeenCalled()
+    press('k', 'KeyK')
+    expect(k).toHaveBeenCalledTimes(1)
+    toggle.remove()
+  })
+
+  it('suspends hotkeys on the body, which fire anywhere on the page', () => {
+    const manager = HotkeyManager.getInstance()
+    const k = vi.fn()
+    manager.register('K', k, { ...options, target: document.body })
+    manager.suspendCharacterKeys()
+    press('k', 'KeyK')
+    expect(k).not.toHaveBeenCalled()
+  })
+
   it('notifies registration subscribers when suspension changes', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('K', () => {}, options)

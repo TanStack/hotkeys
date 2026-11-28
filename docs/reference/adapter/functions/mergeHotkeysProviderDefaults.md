@@ -13,7 +13,7 @@ function mergeHotkeysProviderDefaults<T>(
 ): T;
 ```
 
-Defined in: [adapter.ts:490](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L490)
+Defined in: [adapter.ts:493](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L493)
 
 Merges a provider's default options over its parent's. A provider with a
 `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
