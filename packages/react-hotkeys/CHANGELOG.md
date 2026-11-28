@@ -1,5 +1,30 @@
 # @tanstack/react-hotkeys
 
+## 0.28.0
+
+### Minor Changes
+
+- [#315](https://github.com/TanStack/hotkeys/pull/315) [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e) - Add `formatForAria` to format hotkeys for the `aria-keyshortcuts` attribute. `formatForAria('Mod+K')` returns `'Meta+K'` on macOS and `'Control+K'` elsewhere. Modifiers and keys use the ARIA specification's names, with `Space` for the space bar, `Plus` for the plus key, and the key at that position for physical bindings. Punctuation in a logical hotkey stays as written, so `'?'` gives `?` rather than `Shift+/`. `formatForAria` returns `undefined` for multi-step sequences, standalone modifiers, empty hotkeys, and physical codes with no key value so the attribute is omitted.
+
+  Each framework adapter exports a formatter that fills in the configured platform and the user's keyboard layout, and returns `undefined` while the hotkey can't fire, so screen readers announce only working shortcuts:
+
+  - `useFormatForAria` (React, Preact, Octane, Vue, Ember)
+  - `createFormatForAria` (Solid, and on Alpine scopes)
+  - `getFormatForAria` (Svelte)
+  - `injectFormatForAria` (Angular)
+  - `FormatForAriaController` (Lit)
+
+- [#315](https://github.com/TanStack/hotkeys/pull/315) [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e) - Add `HotkeyManager.suspendCharacterKeys()` and the `suspendCharacterKeys` provider option so apps can let users turn off character key shortcuts for WCAG 2.1.4.
+
+  A character key shortcut is a document-level hotkey whose every step types a character, alone or with `Shift`, such as `'K'`, `'?'`, `'Shift+K'`, `'Space'`, or `['G', 'H']`. While suspended, those hotkeys do not fire and report the status `'suspended'`. Hotkeys with `Control`, `Alt`, or `Meta`, non-character keys such as `Escape` or `F1`, and hotkeys targeted at an element keep working.
+
+  Suspensions are counted like scope activations, and `HotkeyScopesState` now includes `characterKeysSuspended`. Bind the provider option to a user setting with `<HotkeysProvider suspendCharacterKeys={!settings.characterKeyShortcuts}>` (or `provideHotkeys({ suspendCharacterKeys })` in Angular).
+
+### Patch Changes
+
+- Updated dependencies [[`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e), [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e)]:
+  - @tanstack/hotkeys@0.37.0
+
 ## 0.27.5
 
 ### Patch Changes

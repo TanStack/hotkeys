@@ -1,5 +1,26 @@
 # @tanstack/alpine-hotkeys
 
+## 0.16.0
+
+### Minor Changes
+
+- [#312](https://github.com/TanStack/hotkeys/pull/312) [`d7e198d`](https://github.com/TanStack/hotkeys/commit/d7e198dfa6393746fc2fb3217f408cc2412f439e) - Add the `x-hotkey` directive, installed with `Alpine.plugin(hotkeyDirective)`. Name the hotkey with modifiers and give the callback as the expression: `x-hotkey.mod.s="save()"`, `x-hotkey.escape="close()"`, or `x-hotkey.g.h="goHome()"` for a sequence. The hotkey lives as long as the attribute, so a morph that changes or removes it, as Livewire does on every update, replaces or removes the hotkey. A changed `x-init="$hotkeys.createHotkey(...)"` stays registered until its element is removed. With Alpine's CSP build, name a component method: `x-hotkey.mod.s="save"`. A page that only uses `x-hotkey` doesn't ship the `$hotkeys` owners and readers.
+
+- [#315](https://github.com/TanStack/hotkeys/pull/315) [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e) - Add `formatForAria` to format hotkeys for the `aria-keyshortcuts` attribute. `formatForAria('Mod+K')` returns `'Meta+K'` on macOS and `'Control+K'` elsewhere. Modifiers and keys use the ARIA specification's names, with `Space` for the space bar, `Plus` for the plus key, and the key at that position for physical bindings. Punctuation in a logical hotkey stays as written, so `'?'` gives `?` rather than `Shift+/`. `formatForAria` returns `undefined` for multi-step sequences, standalone modifiers, empty hotkeys, and physical codes with no key value so the attribute is omitted.
+
+  Each framework adapter exports a formatter that fills in the configured platform and the user's keyboard layout, and returns `undefined` while the hotkey can't fire, so screen readers announce only working shortcuts:
+
+  - `useFormatForAria` (React, Preact, Octane, Vue, Ember)
+  - `createFormatForAria` (Solid, and on Alpine scopes)
+  - `getFormatForAria` (Svelte)
+  - `injectFormatForAria` (Angular)
+  - `FormatForAriaController` (Lit)
+
+### Patch Changes
+
+- Updated dependencies [[`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e), [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e)]:
+  - @tanstack/hotkeys@0.37.0
+
 ## 0.15.6
 
 ### Patch Changes

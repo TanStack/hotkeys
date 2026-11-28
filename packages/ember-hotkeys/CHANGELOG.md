@@ -1,5 +1,28 @@
 # @tanstack/ember-hotkeys
 
+## 0.15.0
+
+### Minor Changes
+
+- [#312](https://github.com/TanStack/hotkeys/pull/312) [`d7e198d`](https://github.com/TanStack/hotkeys/commit/d7e198dfa6393746fc2fb3217f408cc2412f439e) - Support Ember 4.12 and newer, including the 4.12 and 5.12 LTS lines and ember-source 6.8.0 to 6.8.2, 6.9.0 and 6.10.0. The adapter tracked its state with `@ember/reactive/collections`, which only newer ember-source versions ship. It now uses `@glimmer/tracking`, which every supported version has.
+
+- [#312](https://github.com/TanStack/hotkeys/pull/312) [`d7e198d`](https://github.com/TanStack/hotkeys/commit/d7e198dfa6393746fc2fb3217f408cc2412f439e) - `createHotkeysScope` defaults no longer override an app hotkey's declared options. The helpers and modifiers from a scope put its defaults below the declaration, as the App Hotkeys guide says: scope defaults, then declared options, then call-site options. Before, a scope default such as `preventDefault: true` replaced `preventDefault: false` from `defineAppHotkeys`.
+
+- [#315](https://github.com/TanStack/hotkeys/pull/315) [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e) - Add `formatForAria` to format hotkeys for the `aria-keyshortcuts` attribute. `formatForAria('Mod+K')` returns `'Meta+K'` on macOS and `'Control+K'` elsewhere. Modifiers and keys use the ARIA specification's names, with `Space` for the space bar, `Plus` for the plus key, and the key at that position for physical bindings. Punctuation in a logical hotkey stays as written, so `'?'` gives `?` rather than `Shift+/`. `formatForAria` returns `undefined` for multi-step sequences, standalone modifiers, empty hotkeys, and physical codes with no key value so the attribute is omitted.
+
+  Each framework adapter exports a formatter that fills in the configured platform and the user's keyboard layout, and returns `undefined` while the hotkey can't fire, so screen readers announce only working shortcuts:
+
+  - `useFormatForAria` (React, Preact, Octane, Vue, Ember)
+  - `createFormatForAria` (Solid, and on Alpine scopes)
+  - `getFormatForAria` (Svelte)
+  - `injectFormatForAria` (Angular)
+  - `FormatForAriaController` (Lit)
+
+### Patch Changes
+
+- Updated dependencies [[`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e), [`f9fc17f`](https://github.com/TanStack/hotkeys/commit/f9fc17f0bbb537e70119ec81cec5d3d94294aa8e)]:
+  - @tanstack/hotkeys@0.37.0
+
 ## 0.14.6
 
 ### Patch Changes
