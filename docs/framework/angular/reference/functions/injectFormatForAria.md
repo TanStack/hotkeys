@@ -9,7 +9,7 @@ title: injectFormatForAria
 function injectFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: injectFormatForAria.ts:36
+Defined in: [injectFormatForAria.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectFormatForAria.ts#L36)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.

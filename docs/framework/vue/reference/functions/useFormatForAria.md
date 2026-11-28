@@ -9,7 +9,7 @@ title: useFormatForAria
 function useFormatForAria(): (hotkey, options?) => string | undefined;
 ```
 
-Defined in: useFormatForAria.ts:35
+Defined in: [useFormatForAria.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useFormatForAria.ts#L35)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.

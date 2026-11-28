@@ -9,7 +9,7 @@ title: getFormatForAria
 function getFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getFormatForAria.ts:33
+Defined in: [packages/svelte-hotkeys/src/getFormatForAria.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getFormatForAria.ts#L33)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.

@@ -9,7 +9,7 @@ title: useFormatForAria
 function useFormatForAria(scope?): (hotkey, options) => string | undefined;
 ```
 
-Defined in: packages/ember-hotkeys/src/useFormatForAria.ts:35
+Defined in: [packages/ember-hotkeys/src/useFormatForAria.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useFormatForAria.ts#L35)
 
 Returns `formatForAria` with the scope's `platform` as the default. Use its
 value for `aria-keyshortcuts`, so screen readers announce the shortcut. It

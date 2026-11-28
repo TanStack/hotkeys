@@ -9,7 +9,7 @@ title: useFormatForAria
 function useFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: useFormatForAria.ts:41
+Defined in: [useFormatForAria.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useFormatForAria.ts#L41)
 
 Returns `formatForAria` with the platform from `HotkeysProvider`, or the
 detected platform without one. A `platform` passed to the returned function

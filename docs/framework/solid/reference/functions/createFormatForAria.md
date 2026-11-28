@@ -9,7 +9,7 @@ title: createFormatForAria
 function createFormatForAria(): (hotkey, options) => string | undefined;
 ```
 
-Defined in: createFormatForAria.ts:34
+Defined in: [createFormatForAria.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createFormatForAria.ts#L34)
 
 Returns `formatForAria` with the provider's `platform` as the default. Use
 its value for `aria-keyshortcuts`, so screen readers announce the shortcut.
