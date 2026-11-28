@@ -11,14 +11,14 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/react-hotkeys": "^0.29.0",
+    "@tanstack/react-hotkeys": "^0.29.1",
     "@tanstack/react-router": "^1.170.46",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@tanstack/react-devtools": "0.10.15",
-    "@tanstack/react-hotkeys-devtools": "^0.14.20",
+    "@tanstack/react-hotkeys-devtools": "^0.14.21",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
