@@ -10,8 +10,8 @@
   "dependencies": {
     "@solidjs/web": "^2.0.3",
     "@tanstack/solid-devtools": "0.9.0",
-    "@tanstack/solid-hotkeys": "^0.27.0",
-    "@tanstack/solid-hotkeys-devtools": "^0.14.4",
+    "@tanstack/solid-hotkeys": "^0.28.0",
+    "@tanstack/solid-hotkeys-devtools": "^0.14.5",
     "solid-js": "^2.0.3"
   },
   "devDependencies": {
