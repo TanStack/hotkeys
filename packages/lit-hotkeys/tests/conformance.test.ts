@@ -14,7 +14,12 @@ import { HotkeyHintController } from '../src/controllers/hotkey-hint'
 import { HotkeyRecorderController } from '../src/controllers/hotkey-recorder'
 import { HotkeyRegistrationsController } from '../src/controllers/hotkey-registrations'
 import { KeyHoldController } from '../src/controllers/key-hold'
-import type { IndividualKey, RegisterableHotkey } from '@tanstack/hotkeys'
+import { KeyLockStateController } from '../src/controllers/key-lock-state'
+import type {
+  IndividualKey,
+  LockKey,
+  RegisterableHotkey,
+} from '@tanstack/hotkeys'
 import type {
   ConformanceHarness,
   ConformanceHotkey,
@@ -107,6 +112,24 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(text(host, 'keys')),
       codes: () => JSON.parse(text(host, 'codes')),
       held: () => text(host, 'held') === 'true',
+      setKey: (next) =>
+        settle(() => {
+          key = next
+          host.requestUpdate()
+        }),
+      unmount: view.unmount,
+    }
+  },
+
+  async mountKeyLockState(watch) {
+    const host = new ConformanceHost()
+    let key: LockKey = watch
+    const lock = new KeyLockStateController(host, () => key)
+    host.view = () =>
+      html`<output data-testid="lock">${JSON.stringify(lock.value)}</output>`
+    const view = await attach(host)
+    return {
+      value: () => JSON.parse(text(host, 'lock')),
       setKey: (next) =>
         settle(() => {
           key = next

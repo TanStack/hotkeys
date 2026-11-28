@@ -9,6 +9,6 @@ title: EmberAppHotkeyList
 type EmberAppHotkeyList = EmberHotkeyState<RegisteredAppHotkeyListItem[]>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L39)
+Defined in: [packages/ember-hotkeys/src/types.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/types.ts#L39)
 
 Every app hotkey with its live status.

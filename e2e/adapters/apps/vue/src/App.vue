@@ -6,6 +6,7 @@ import {
   useHotkey,
   useHotkeyRecorder,
   useKeyHold,
+  useKeyLockState,
 } from '@tanstack/vue-hotkeys'
 import { onMounted, ref } from 'vue'
 import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
@@ -18,6 +19,7 @@ useHotkey(['G', 'G'], () => logCall('sequence'))
 const recorder = useHotkeyRecorder({ onRecord: setRecorded })
 const shiftHeld = useKeyHold('Shift')
 const heldKeys = useHeldKeys()
+const capsLock = useKeyLockState('CapsLock')
 
 onMounted(() => {
   exposeFixture(
@@ -37,4 +39,7 @@ onMounted(() => {
   <div id="recording">{{ recorder.isRecording.value ? 'yes' : 'no' }}</div>
   <div id="shift-held">{{ shiftHeld ? 'held' : 'released' }}</div>
   <div id="held-keys">{{ heldKeys.join('+') }}</div>
+  <div id="caps-lock">
+    {{ capsLock === null ? 'unknown' : capsLock ? 'on' : 'off' }}
+  </div>
 </template>

@@ -6,6 +6,7 @@ import {
   HeldKeysView,
   HintView,
   HotkeysView,
+  KeyLockStateView,
   RecorderView,
   RegistrationsView,
 } from './conformance.tsrx'
@@ -63,6 +64,15 @@ const harness: ConformanceHarness = {
       keys: () => JSON.parse(view.text('keys')),
       codes: () => JSON.parse(view.text('codes')),
       held: () => view.text('held') === 'true',
+      setKey: (key) => view.rerender({ watch: key }),
+      unmount: view.unmount,
+    }
+  },
+
+  mountKeyLockState(watch) {
+    const view = render(KeyLockStateView, { watch })
+    return {
+      value: () => JSON.parse(view.text('lock')),
       setKey: (key) => view.rerender({ watch: key }),
       unmount: view.unmount,
     }

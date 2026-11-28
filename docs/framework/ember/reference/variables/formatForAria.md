@@ -9,7 +9,7 @@ title: formatForAria
 const formatForAria: typeof coreFormatForAria = coreFormatForAria;
 ```
 
-Defined in: [packages/ember-hotkeys/src/formatForAria.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/formatForAria.ts#L11)
+Defined in: [packages/ember-hotkeys/src/formatForAria.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/formatForAria.ts#L11)
 
 Formats a hotkey for `aria-keyshortcuts`, without the scope's platform or the
 user's keyboard layout.

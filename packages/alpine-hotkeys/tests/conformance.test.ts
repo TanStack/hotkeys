@@ -6,7 +6,11 @@ import {
 import { vitestRunner } from '@tanstack/hotkeys-test-utils/conformance/vitest'
 import Alpine from 'alpinejs'
 import { createHotkeyRecorder, createHotkeysScope } from '../src'
-import type { IndividualKey, RegisterableHotkey } from '@tanstack/hotkeys'
+import type {
+  IndividualKey,
+  LockKey,
+  RegisterableHotkey,
+} from '@tanstack/hotkeys'
 import type {
   ConformanceHarness,
   ConformanceHotkey,
@@ -85,6 +89,18 @@ const harness: ConformanceHarness = {
       keys: () => [...keys.value],
       codes: () => ({ ...codes.value }),
       held: () => hold.value,
+      setKey: (key) => settle(() => (state.key = key)),
+      unmount,
+    }
+  },
+
+  async mountKeyLockState(watch) {
+    const { hotkeys, unmount } = owner()
+    const state = Alpine.reactive({ key: watch as LockKey })
+    const lock = hotkeys.createKeyLockState(() => state.key)
+    await settle()
+    return {
+      value: () => lock.value,
       setKey: (key) => settle(() => (state.key = key)),
       unmount,
     }

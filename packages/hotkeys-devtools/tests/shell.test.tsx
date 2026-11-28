@@ -5,6 +5,7 @@ import {
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
+import { withKeyLocks } from '@tanstack/hotkeys-test-utils'
 import { flush } from 'solid-js'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import HotkeysDevtools from '../src/components/index'
@@ -249,6 +250,86 @@ describe('held keys bar', () => {
     window.dispatchEvent(new Event('blur'))
     flush()
     expect(ui.querySelectorAll('.heldKeysBar .keyCap')).toHaveLength(0)
+  })
+})
+
+describe('lock keys', () => {
+  const locks = (ui: Element) =>
+    Array.from(ui.querySelectorAll('.heldKeysBar .lockChip'), (chip) => ({
+      text: Array.from(chip.children, text).join(' '),
+      label: chip.getAttribute('aria-label'),
+      title: chip.getAttribute('title'),
+    }))
+  const moveMouse = (state: Parameters<typeof withKeyLocks>[1]) => {
+    document.dispatchEvent(
+      withKeyLocks(new MouseEvent('mousemove', { bubbles: true }), state),
+    )
+    flush()
+  }
+  const onMac = () =>
+    vi.stubGlobal('navigator', {
+      platform: '',
+      userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+    })
+
+  it('shows every lock as unknown until the page reports it', () => {
+    KeyStateTracker.getInstance()
+    const ui = mountPanel()
+    expect(locks(ui).map((chip) => chip.label)).toEqual([
+      'Caps Lock: unknown',
+      'Num Lock: unknown',
+      'Scroll Lock: unknown',
+    ])
+    expect(locks(ui)[0]!.text).toBe('Caps Lock ?')
+    expect(locks(ui)[0]!.title).toBe(
+      'Press a key, click, or move the mouse over the page to read it',
+    )
+  })
+
+  it('follows lock state from real input and forgets it on blur', () => {
+    KeyStateTracker.getInstance()
+    const ui = mountPanel()
+    moveMouse({ CapsLock: true })
+    expect(locks(ui)).toEqual([
+      {
+        text: 'Caps Lock On',
+        label: 'Caps Lock: on',
+        title: 'Caps Lock is on',
+      },
+      {
+        text: 'Num Lock Off',
+        label: 'Num Lock: off',
+        title: 'Num Lock is off',
+      },
+      {
+        text: 'Scroll Lock Off',
+        label: 'Scroll Lock: off',
+        title: 'Scroll Lock is off',
+      },
+    ])
+    window.dispatchEvent(new Event('blur'))
+    flush()
+    expect(locks(ui).map((chip) => chip.text)).toEqual([
+      'Caps Lock ?',
+      'Num Lock ?',
+      'Scroll Lock ?',
+    ])
+  })
+
+  it('marks Num Lock and Scroll Lock unavailable on macOS', () => {
+    onMac()
+    KeyStateTracker.getInstance()
+    const ui = mountPanel()
+    moveMouse({ CapsLock: true, NumLock: true })
+    expect(locks(ui).map((chip) => chip.label)).toEqual([
+      'Caps Lock: on',
+      'Num Lock: unavailable',
+      'Scroll Lock: unavailable',
+    ])
+    expect(locks(ui)[1]).toMatchObject({
+      text: 'Num Lock n/a',
+      title: "macOS and iOS don't report Num Lock to web pages",
+    })
   })
 })
 

@@ -92,3 +92,15 @@ Held keys reset automatically on window blur, tab switch, or macOS `Command` rel
 Held keys clear when the window loses focus, so a key released after switching apps doesn't stay held. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus) for the cases the tracker handles.
 
 See the [useHeldKeys example](../examples/useHeldKeys) and [useKeyHold example](../examples/useKeyHold).
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `useKeyHold('CapsLock')` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `useKeyLockState`:
+
+```tsx
+const capsLock = useKeyLockState('CapsLock') // true, false, or null
+
+<span role="status">{capsLock ? 'Caps Lock is on' : ''}</span>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.

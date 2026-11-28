@@ -15,6 +15,7 @@ import type {
   HotkeyRegistrationView,
   HotkeySequence,
   IndividualKey,
+  LockKey,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
@@ -81,6 +82,12 @@ export type ConformanceFeature =
   | 'recorder'
   | 'hint'
   | 'format'
+  /**
+   * Marking a dispatched event as trusted, which the key lock state cases
+   * need. happy-dom allows it. A real browser doesn't, so a harness that runs
+   * in one covers lock state with real input in the e2e apps instead.
+   */
+  | 'trusted-test-events'
 
 export interface ConformanceHotkeyOptions {
   enabled?: boolean
@@ -140,6 +147,13 @@ export interface HeldKeysHandle {
   /** The key hold value for the watched key. */
   held: () => boolean
   setKey: (key: IndividualKey) => MaybePromise<void>
+  unmount: () => MaybePromise<void>
+}
+
+export interface KeyLockStateHandle {
+  /** The key lock state value for the watched lock key. */
+  value: () => boolean | null
+  setKey: (key: LockKey) => MaybePromise<void>
   unmount: () => MaybePromise<void>
 }
 
@@ -217,6 +231,7 @@ export interface ConformanceHarness {
   /** Runs after each case. Unmounts every view that is still mounted. */
   cleanup: () => MaybePromise<void>
   mountHeldKeys: (watch: IndividualKey) => MaybePromise<HeldKeysHandle>
+  mountKeyLockState: (watch: LockKey) => MaybePromise<KeyLockStateHandle>
   mountRegistrations: () => MaybePromise<RegistrationsHandle>
   mountHotkeys: (spec: HotkeysSpec) => MaybePromise<HotkeysHandle>
   mountRecorder?: (spec: RecorderSpec) => MaybePromise<RecorderHandle>

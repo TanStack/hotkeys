@@ -141,6 +141,38 @@ const stylesFactory = (theme: HotkeysDevtoolsTheme) => {
       line-height: 1;
       margin-top: 2px;
     `,
+    lockGroup: css`
+      display: flex;
+      align-items: center;
+      gap: ${size[1.5]};
+      flex-shrink: 0;
+    `,
+    lockChip: css`
+      display: inline-flex;
+      align-items: baseline;
+      gap: ${size[1]};
+      padding: ${size[0.5]} ${size[2]};
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])};
+      border-radius: ${border.radius.full};
+      background: ${t(colors.white, colors.darkGray[700])};
+      color: ${t(colors.gray[600], colors.gray[400])};
+      font-size: ${fontSize.xs};
+      white-space: nowrap;
+    `,
+    lockChipValue: css`
+      font-weight: ${font.weight.bold};
+    `,
+    lockChipOn: css`
+      border-color: ${t(colors.blue[600], colors.blue[500])};
+      background: ${t(colors.blue[600], colors.blue[500])};
+      color: ${colors.white};
+    `,
+    lockChipUnknown: css`
+      border-style: dashed;
+    `,
+    lockChipUnavailable: css`
+      opacity: 0.55;
+    `,
     layoutChip: css`
       /* !important: host page button styles outrank one class */
       display: inline-flex;

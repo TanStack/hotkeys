@@ -15,7 +15,7 @@ function createHotkey<T>(
 ): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L67)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L67)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -72,7 +72,7 @@ function createHotkey<T>(
 ): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L72)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L72)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from

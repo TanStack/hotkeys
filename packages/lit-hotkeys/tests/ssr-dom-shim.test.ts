@@ -22,6 +22,7 @@ import {
   HotkeyRegistrationsController,
   HotkeyScopesStateController,
   KeyHoldController,
+  KeyLockStateController,
   KeyboardLayoutController,
 } from '../src/controllers'
 import { hotkey } from '../src/decorators'
@@ -61,6 +62,7 @@ class ServerElement extends LitElement {
   registrations = new HotkeyRegistrationsController(this)
   scopes = new HotkeyScopesStateController(this)
   shift = new KeyHoldController(this, 'Shift')
+  capsLock = new KeyLockStateController(this, 'CapsLock')
   layout = new KeyboardLayoutController(this)
   formatForDisplay = new FormatForDisplayController(this, () => ({
     platform: this.platform,

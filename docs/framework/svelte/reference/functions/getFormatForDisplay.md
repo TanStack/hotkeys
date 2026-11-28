@@ -14,7 +14,7 @@ function getFormatForDisplay(): {
 };
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getFormatForDisplay.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getFormatForDisplay.ts#L30)
+Defined in: [packages/svelte-hotkeys/src/getFormatForDisplay.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/getFormatForDisplay.ts#L30)
 
 Returns `formatForDisplay` with the provider's `platform` as the default,
 so labels match the user's platform. Call during component initialization,

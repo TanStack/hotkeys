@@ -11,7 +11,7 @@ function getHotkeysContext():
   | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L169)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/HotkeysCtx.ts#L169)
 
 ## Returns
 

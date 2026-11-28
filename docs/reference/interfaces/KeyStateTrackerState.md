@@ -33,3 +33,18 @@ heldKeys: string[];
 Defined in: [key-state-tracker.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L14)
 
 Array of currently held key names (normalized, e.g. "Control", "A").
+
+***
+
+### locks
+
+```ts
+locks: Record<LockKey, boolean | null>;
+```
+
+Defined in: [key-state-tracker.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L26)
+
+Whether each lock key is on. `null` while no browser event has reported
+it: until the user presses a key, clicks, or moves the mouse, after the
+window loses focus or the page is hidden, and always for Num Lock and Scroll Lock on macOS and
+iOS, where browsers don't report them.

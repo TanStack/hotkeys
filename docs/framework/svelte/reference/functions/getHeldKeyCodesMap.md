@@ -9,7 +9,7 @@ title: getHeldKeyCodesMap
 function getHeldKeyCodesMap(): SvelteHeldKeyCodesMap;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts#L42)
+Defined in: [packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts#L42)
 
 Svelte function that returns reactive access to the map of currently held key names
 to their physical `event.code` values.

@@ -4,6 +4,7 @@ import {
   createHotkey,
   createHotkeyRecorder,
   createKeyHold,
+  createKeyLockState,
   detectPlatform,
   getHotkeyManager,
 } from '@tanstack/solid-hotkeys'
@@ -27,6 +28,7 @@ function App() {
   createHotkey(['G', 'G'], () => logCall('sequence'))
   const recorder = createHotkeyRecorder({ onRecord: setRecorded })
   const shiftHeld = createKeyHold('Shift')
+  const capsLock = createKeyLockState('CapsLock')
   const heldKeys = createHeldKeys()
 
   onSettled(() => {
@@ -49,6 +51,9 @@ function App() {
       <div id="recording">{recorder.isRecording() ? 'yes' : 'no'}</div>
       <div id="shift-held">{shiftHeld() ? 'held' : 'released'}</div>
       <div id="held-keys">{heldKeys().join('+')}</div>
+      <div id="caps-lock">
+        {capsLock() === null ? 'unknown' : capsLock() ? 'on' : 'off'}
+      </div>
     </>
   )
 }

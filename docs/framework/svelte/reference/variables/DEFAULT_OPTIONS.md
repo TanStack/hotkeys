@@ -9,4 +9,4 @@ title: DEFAULT_OPTIONS
 const DEFAULT_OPTIONS: HotkeysProviderOptions = {};
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L75)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/HotkeysCtx.ts#L75)

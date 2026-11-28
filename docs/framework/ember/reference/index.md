@@ -49,3 +49,4 @@ title: "@tanstack/ember-hotkeys"
 - [useHotkeyScopesState](functions/useHotkeyScopesState.md)
 - [useKeyboardLayout](functions/useKeyboardLayout.md)
 - [useKeyHold](functions/useKeyHold.md)
+- [useKeyLockState](functions/useKeyLockState.md)

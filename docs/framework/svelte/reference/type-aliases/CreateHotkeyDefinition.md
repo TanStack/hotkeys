@@ -29,7 +29,7 @@ type CreateHotkeyDefinition =
 };
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L34)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L34)
 
 One hotkey for `createHotkeys`. The hotkey and options may be getters.
 Chords accept `requireReset`; sequences accept `timeout`; hotkeys of unknown

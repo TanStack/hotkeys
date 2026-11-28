@@ -9,7 +9,7 @@ title: getHeldKeys
 function getHeldKeys(): SvelteHeldKeys;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHeldKeys.svelte.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeys.svelte.ts#L38)
+Defined in: [packages/svelte-hotkeys/src/getHeldKeys.svelte.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/getHeldKeys.svelte.ts#L38)
 
 Svelte function that returns reactive access to currently held keyboard keys.
 

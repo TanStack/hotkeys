@@ -117,6 +117,7 @@ title: "@tanstack/hotkeys"
 - [LayoutKey](type-aliases/LayoutKey.md)
 - [LetterKey](type-aliases/LetterKey.md)
 - [LithuanianKeys](type-aliases/LithuanianKeys.md)
+- [LockKey](type-aliases/LockKey.md)
 - [LogicalKey](type-aliases/LogicalKey.md)
 - [MaybeGetter](type-aliases/MaybeGetter.md)
 - [Modifier](type-aliases/Modifier.md)

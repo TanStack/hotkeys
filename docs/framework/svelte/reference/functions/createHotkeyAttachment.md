@@ -15,7 +15,7 @@ function createHotkeyAttachment<T>(
 ): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L99)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L99)
 
 Create an attachment for an element-scoped hotkey: a chord, a sequence, or
 an app hotkey that listens on the attached element. `undefined`, `null`,
@@ -65,7 +65,7 @@ function createHotkeyAttachment<T>(
 ): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L104)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L104)
 
 Create an attachment for an element-scoped hotkey: a chord, a sequence, or
 an app hotkey that listens on the attached element. `undefined`, `null`,

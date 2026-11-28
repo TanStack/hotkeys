@@ -14,7 +14,7 @@ function useFormatForDisplay(scope?): {
 };
 ```
 
-Defined in: [packages/ember-hotkeys/src/useFormatForDisplay.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useFormatForDisplay.ts#L35)
+Defined in: [packages/ember-hotkeys/src/useFormatForDisplay.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useFormatForDisplay.ts#L35)
 
 Returns `formatForDisplay` with the scope's `platform` as the default, so
 labels match the user's platform. The returned function works anywhere,

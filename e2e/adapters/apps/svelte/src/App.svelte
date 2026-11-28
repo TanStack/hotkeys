@@ -6,6 +6,7 @@
     getHeldKeys,
     getHotkeyManager,
     getIsKeyHeld,
+    getKeyLockState,
   } from '@tanstack/svelte-hotkeys'
   import { onMount } from 'svelte'
   import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
@@ -17,6 +18,7 @@
   createHotkey(['G', 'G'], () => logCall('sequence'))
   const recorder = createHotkeyRecorder({ onRecord: setRecorded })
   const shiftHeld = getIsKeyHeld('Shift')
+  const capsLock = getKeyLockState('CapsLock')
   const heldKeys = getHeldKeys()
 
   onMount(() => {
@@ -38,3 +40,6 @@
 <div id="recording">{recorder.isRecording ? 'yes' : 'no'}</div>
 <div id="shift-held">{shiftHeld.held ? 'held' : 'released'}</div>
 <div id="held-keys">{heldKeys.keys.join('+')}</div>
+<div id="caps-lock">
+  {capsLock.value === null ? 'unknown' : capsLock.value ? 'on' : 'off'}
+</div>

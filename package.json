@@ -197,7 +197,7 @@
       "ignore": [
         "alpinejs"
       ],
-      "limit": "12.5 KB"
+      "limit": "13 KB"
     },
     {
       "name": "Alpine hotkeyDirective",

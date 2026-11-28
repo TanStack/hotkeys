@@ -19,6 +19,7 @@ import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
 import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
 import { useKeyHold } from '../src/useKeyHold'
+import { useKeyLockState } from '../src/useKeyLockState'
 import { useKeyboardLayout } from '../src/useKeyboardLayout'
 
 // Counts live subscriptions made by useStoreSelector on any store, including
@@ -104,6 +105,7 @@ const EveryComposable = defineComponent({
     const held = useHeldKeys()
     const codes = useHeldKeyCodes()
     const shift = useKeyHold('Shift')
+    const capsLock = useKeyLockState('CapsLock')
     const hint = useHotkeyHint('Mod+K')
     const registrations = useHotkeyRegistrations()
     const scopes = useHotkeyScopesState()
@@ -116,6 +118,7 @@ const EveryComposable = defineComponent({
           held.value,
           codes.value,
           shift.value,
+          capsLock.value,
           hint.value,
           registrations.value.length,
           scopes.value.active,
@@ -137,7 +140,7 @@ describe('server rendering', () => {
     for (let i = 0; i < 100; i++) {
       html = await renderToString(createSSRApp(EveryComposable))
     }
-    expect(html).toBe('<div>[[],{},false,false,0,[],false,null]</div>')
+    expect(html).toBe('<div>[[],{},false,null,false,0,[],false,null]</div>')
     expect(snapshot()).toEqual(before)
   })
 

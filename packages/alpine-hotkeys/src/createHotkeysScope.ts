@@ -13,6 +13,7 @@ import { createHotkeyRegistrations } from './createHotkeyRegistrations'
 import { createHotkeyScopesState } from './createHotkeyScopesState'
 import { createHotkeys } from './createHotkeys'
 import { createKeyHold } from './createKeyHold'
+import { createKeyLockState } from './createKeyLockState'
 import { createKeyboardLayout } from './createKeyboardLayout'
 import { createScope, ownerScopes } from './scope'
 import type { MaybeGetter } from '@tanstack/hotkeys'
@@ -39,6 +40,7 @@ export function createHotkeysScope(
     createHeldKeys: (...args) => createHeldKeys(scope, ...args),
     createHeldKeyCodes: (...args) => createHeldKeyCodes(scope, ...args),
     createKeyHold: (...args) => createKeyHold(scope, ...args),
+    createKeyLockState: (...args) => createKeyLockState(scope, ...args),
     createHotkeyHint: (...args) => createHotkeyHint(scope, ...args),
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),

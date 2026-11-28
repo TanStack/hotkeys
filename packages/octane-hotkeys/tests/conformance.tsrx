@@ -2,11 +2,11 @@ import { useRef } from 'octane';
 import {
   HotkeysProvider, useFormatForAria, useFormatForDisplay, useHeldKeyCodes, useHeldKeys,
   useHotkey, useHotkeyHint, useHotkeyRecorder, useHotkeyRegistrations,
-  useHotkeys, useKeyHold,
+  useHotkeys, useKeyHold, useKeyLockState,
 } from '@tanstack/octane-hotkeys';
 import type {
   HeldModifierOptions, HotkeyRecorderOptions, HotkeyRegistrationView,
-  IndividualKey, OctaneHotkeyRecorder, RegisterableHotkey, UseHotkeyDefinition,
+  IndividualKey, LockKey, OctaneHotkeyRecorder, RegisterableHotkey, UseHotkeyDefinition,
   formatForAria, formatForDisplay,
 } from '@tanstack/octane-hotkeys';
 import type {
@@ -76,6 +76,11 @@ export function HeldKeysView({ watch }: { watch: IndividualKey }) @{
     <output data-testid="codes">{JSON.stringify(codes)}</output>
     <output data-testid="held">{String(held)}</output>
   </div>
+}
+
+export function KeyLockStateView({ watch }: { watch: LockKey }) @{
+  const value = useKeyLockState(watch);
+  <output data-testid="lock">{JSON.stringify(value)}</output>
 }
 
 export function RegistrationsView({ onValue }: { onValue: (value: Array<HotkeyRegistrationView>) => void }) @{

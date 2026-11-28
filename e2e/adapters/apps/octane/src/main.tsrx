@@ -6,6 +6,7 @@ import {
   useHotkey,
   useHotkeyRecorder,
   useKeyHold,
+  useKeyLockState,
 } from '@tanstack/octane-hotkeys'
 import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
 import type { Hotkey } from '@tanstack/octane-hotkeys'
@@ -23,6 +24,7 @@ function App() @{
   const recorder = useHotkeyRecorder({ onRecord: setRecorded })
   const shiftHeld = useKeyHold('Shift')
   const heldKeys = useHeldKeys()
+  const capsLock = useKeyLockState('CapsLock')
 
   useEffect(() => {
     exposeFixture({ getHotkeyManager, detectPlatform }, {
@@ -38,6 +40,7 @@ function App() @{
     <div id="recording">{recorder.isRecording ? 'yes' : 'no'}</div>
     <div id="shift-held">{shiftHeld ? 'held' : 'released'}</div>
     <div id="held-keys">{heldKeys.join('+')}</div>
+    <div id="caps-lock">{capsLock === null ? 'unknown' : capsLock ? 'on' : 'off'}</div>
   </div>
 }
 

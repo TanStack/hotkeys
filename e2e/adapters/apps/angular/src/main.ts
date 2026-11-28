@@ -12,6 +12,7 @@ import {
   injectHotkey,
   injectHotkeyRecorder,
   injectKeyHold,
+  injectKeyLockState,
 } from '@tanstack/angular-hotkeys'
 import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
 import type { Hotkey } from '@tanstack/angular-hotkeys'
@@ -47,12 +48,14 @@ const App = Component({
     <div id="recording">{{ recorder.isRecording() ? 'yes' : 'no' }}</div>
     <div id="shift-held">{{ shiftHeld() ? 'held' : 'released' }}</div>
     <div id="held-keys">{{ heldKeys().join('+') }}</div>
+    <div id="caps-lock">{{ capsLock() === null ? 'unknown' : capsLock() ? 'on' : 'off' }}</div>
   `,
 })(
   class App {
     shown = signal(true)
     recorder = injectHotkeyRecorder({ onRecord: setRecorded })
     shiftHeld = injectKeyHold('Shift')
+    capsLock = injectKeyLockState('CapsLock')
     heldKeys = injectHeldKeys()
 
     constructor() {

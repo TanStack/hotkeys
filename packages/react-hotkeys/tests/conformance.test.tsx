@@ -14,10 +14,12 @@ import {
   useHotkeyRegistrations,
   useHotkeys,
   useKeyHold,
+  useKeyLockState,
 } from '../src'
 import type {
   HotkeyRegistrationView,
   IndividualKey,
+  LockKey,
   formatForAria,
   formatForDisplay,
 } from '@tanstack/hotkeys'
@@ -127,6 +129,11 @@ function HeldKeysView({ watch }: { watch: IndividualKey }) {
   )
 }
 
+function KeyLockStateView({ watch }: { watch: LockKey }) {
+  const value = useKeyLockState(watch)
+  return <output data-testid="lock">{JSON.stringify(value)}</output>
+}
+
 function RegistrationsView({
   onValue,
 }: {
@@ -155,6 +162,15 @@ const harness: ConformanceHarness = {
       codes: () => JSON.parse(text('codes')),
       held: () => text('held') === 'true',
       setKey: (key) => view.rerender(<HeldKeysView watch={key} />),
+      unmount: () => view.unmount(),
+    }
+  },
+
+  mountKeyLockState(watch) {
+    const view = render(<KeyLockStateView watch={watch} />)
+    return {
+      value: () => JSON.parse(view.getByTestId('lock').textContent ?? ''),
+      setKey: (key) => view.rerender(<KeyLockStateView watch={key} />),
       unmount: () => view.unmount(),
     }
   },

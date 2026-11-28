@@ -3,6 +3,7 @@ import {
   HotkeyController,
   HotkeyRecorderController,
   KeyHoldController,
+  KeyLockStateController,
   detectPlatform,
   getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
@@ -56,6 +57,7 @@ class FixtureApp extends LitElement {
 
   recorder = new HotkeyRecorderController(this, { onRecord: setRecorded })
   shiftHeld = new KeyHoldController(this, 'Shift')
+  capsLock = new KeyLockStateController(this, 'CapsLock')
   heldKeys = new HeldKeysController(this)
 
   constructor() {
@@ -95,6 +97,9 @@ class FixtureApp extends LitElement {
       <div id="recording">${this.recorder.isRecording ? 'yes' : 'no'}</div>
       <div id="shift-held">${this.shiftHeld.value ? 'held' : 'released'}</div>
       <div id="held-keys">${this.heldKeys.value.join('+')}</div>
+      <div id="caps-lock">
+        ${this.capsLock.value === null ? 'unknown' : this.capsLock.value ? 'on' : 'off'}
+      </div>
     `
   }
 }

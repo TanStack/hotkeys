@@ -95,3 +95,17 @@ To inspect held keys inside a click or canvas handler without tracking them, rea
 Held keys reset automatically when the window loses focus, so a key released after switching apps never stays stuck. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
 
 See the [get-held-keys example](../examples/get-held-keys) and the [get-is-key-held example](../examples/get-is-key-held).
+
+## Lock keys
+
+Caps Lock, Num Lock, and Scroll Lock toggle instead of being held. `getIsKeyHeld('CapsLock').held` is `true` only while the key is down, not while Caps Lock is on. To read whether a lock is on, use `getKeyLockState`:
+
+```svelte
+<script lang="ts">
+  const capsLock = getKeyLockState('CapsLock') // value: true, false, or null
+</script>
+
+<span role="status">{capsLock.value ? 'Caps Lock is on' : ''}</span>
+```
+
+The value is `null` until the browser reports the lock. See [Read lock key state](./key-lock-state) for when that happens and which browsers report each lock.
