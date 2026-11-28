@@ -9,7 +9,7 @@ title: formatForAria
 const formatForAria: typeof coreFormatForAria = coreFormatForAria;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/formatForAria.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/formatForAria.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/formatForAria.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/formatForAria.ts#L12)
 
 Formats a hotkey for `aria-keyshortcuts`, without the provider's platform or
 the user's keyboard layout.

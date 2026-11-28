@@ -9,7 +9,7 @@ title: getKeyLockState
 function getKeyLockState(key): SvelteKeyLockState;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getKeyLockState.svelte.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/packages/svelte-hotkeys/src/getKeyLockState.svelte.ts#L54)
+Defined in: [packages/svelte-hotkeys/src/getKeyLockState.svelte.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getKeyLockState.svelte.ts#L54)
 
 Svelte function that returns reactive access to whether a lock key, such as
 Caps Lock, is on.

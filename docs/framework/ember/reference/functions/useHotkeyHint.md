@@ -13,7 +13,7 @@ function useHotkeyHint(
 ): EmberHotkeyState<boolean>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyHint.ts#L27)
+Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L27)
 
 Recomputes for held modifiers and tracked changes to the hotkey or options.
 The hint shows only while the hotkey can fire: some registration of it is

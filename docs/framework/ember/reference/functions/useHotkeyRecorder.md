@@ -15,7 +15,7 @@ function useHotkeyRecorder(
 ): EmberHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L28)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L28)
 
 Creates an owned recorder with autotracked state and current callback
 options. With the default `maxSteps: 1`, the first valid chord is recorded.
@@ -53,7 +53,7 @@ function useHotkeyRecorder(
 ): EmberHotkeyRecorder;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L33)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L33)
 
 Creates an owned recorder with autotracked state and current callback
 options. With the default `maxSteps: 1`, the first valid chord is recorded.
@@ -91,7 +91,7 @@ function useHotkeyRecorder(
 ): EmberHotkeyRecorder;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L40)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L40)
 
 Creates an owned recorder with autotracked state and current callback
 options. With the default `maxSteps: 1`, the first valid chord is recorded.
@@ -129,7 +129,7 @@ function useHotkeyRecorder(
 ): EmberHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L45)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L45)
 
 Creates an owned recorder with autotracked state and current callback
 options. With the default `maxSteps: 1`, the first valid chord is recorded.
@@ -167,7 +167,7 @@ function useHotkeyRecorder(
 ): EmberHotkeyRecorder;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L50)
+Defined in: [packages/ember-hotkeys/src/useHotkeyRecorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyRecorder.ts#L50)
 
 Creates an owned recorder with autotracked state and current callback
 options. With the default `maxSteps: 1`, the first valid chord is recorded.

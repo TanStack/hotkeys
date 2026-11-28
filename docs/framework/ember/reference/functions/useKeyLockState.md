@@ -9,7 +9,7 @@ title: useKeyLockState
 function useKeyLockState(owner, key): EmberHotkeyState<boolean | null>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useKeyLockState.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/packages/ember-hotkeys/src/useKeyLockState.ts#L39)
+Defined in: [packages/ember-hotkeys/src/useKeyLockState.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useKeyLockState.ts#L39)
 
 Returns whether a lock key, such as Caps Lock, is on. Pass the containing
 component as owner to release the subscription on destruction. Getter
