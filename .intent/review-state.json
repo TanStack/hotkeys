@@ -462,13 +462,13 @@
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyHint.md": {
-      "fingerprint": "0e0ed51c485274b46c489e168e597eba44cfb5cc7302a9512784765e14e97d81",
+      "fingerprint": "4c70c832cd12b98c2e7b88cc1494c86d110abb4d575b9c0a47d92736a80eabef",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHotkeyHint.md": "5a07ad155142d8b626828e8aaef3c541d718d4c88bef9322253e664c43f0dbe6"
+        "docs/framework/ember/reference/functions/useHotkeyHint.md": "043dfd01f5ef5605aba8f18ff93cb354c4c8fa33827d6e176425c054edb13e5c"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/framework/lit/guides/hotkey-hints.md": {
@@ -600,23 +600,23 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyHint.md": {
-      "fingerprint": "840e9dd224ddfbd74c2a8c6114d0d18b1744fe55287ad59cc7ff6d39cb2a6215",
+      "fingerprint": "3d82b3d593d370bd8be395863d3e874473244214b3e3f000dfe5715b9eb39cc9",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeyHint.md": "911d6760cc4264dae44e7997774ea96740d042680c24fd2c203aa994ff6a1b5d"
+        "docs/framework/svelte/reference/functions/getHotkeyHint.md": "6a45b5abfe78841c741b0c07a0e57e3a8c6315b960a7969a944a93a4c62f4c0e"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/getHotkeyHint.md"]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": {
-      "fingerprint": "660db7f3411312276ae72ec4bacbae29c79bd9b4876a9334fd97b9b6cb8d9007",
+      "fingerprint": "f554ec3f05a362604ec6971e68446bad020475e83c3baf25cbc1e333607dfb5a",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": "2af874081d56487df55912bcb3526377ad994231c648df73d2ff5643be437d7d"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": "fa2df17e6b1a7d1ba159bf4954cd0c3d6b3490266e57bcedcc2696b4b2586887"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md"
       ]
@@ -1632,13 +1632,13 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "ed1567fcf38f1831d3f4c8ec581c29d3a8b66f434b532a131fa5cc1b117b9c5a",
+      "fingerprint": "f2212051b3da02959e427889075aa04747035b3d870487ee286aba5dcc26d2c9",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHotkeyScopesState.md": "c8858fed9e33880dec4ca0dacbf952d059d37fb72ac10c9d85ae5938f4302319"
+        "docs/framework/ember/reference/functions/useHotkeyScopesState.md": "2f91de4d2efad205745c0481ed92d446b4199655beb58215e42a57a186482283"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useHotkeyScopesState.md"
       ]
@@ -1866,13 +1866,13 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyScopesState.md": {
-      "fingerprint": "cf720e7bbc6d7b5abed0a5f2ac29db654bbff44df56d226af3e17f4537f6a225",
+      "fingerprint": "1a48b873da720be791f5a4c013d40858b7ed63e9ecffd1d0d4618b631ed66f27",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md": "daf97e6d53626511444f13b383bf61b2dd9734b139cb9a05a0c47216851ee036"
+        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md": "5a9f6ac345150027c91bbf404e55bec0ce427930ff3839d591d7e32099a33a03"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHotkeyScopesState.md"
       ]
@@ -1888,13 +1888,13 @@
       "evidence": ["docs/framework/svelte/reference/index.md"]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": {
-      "fingerprint": "e5eb7915f4ff2992cc006fd05dc0b53dfa9cc1a62f4ad94cf408a93e3895232f",
+      "fingerprint": "d498c228313b113f3d645c3f9b463707a67d32493b3adcefa7a082350da1d5cb",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": "b5f600f497c90d291300b97980262b0b58f184f7175d483a44cc2d12dc98ef29"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": "d506cf7ea7fa17f2e2edf216faa226e8c447365257e4236fdb7f84d03423f53d"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md"
       ]
@@ -3523,107 +3523,107 @@
       "evidence": ["packages/vue-hotkeys-devtools/tsconfig.json"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkey.md": {
-      "fingerprint": "2b7a2f474a079b77b29e3baf18c9aa2db45e3e78d44ea28aac90f0a10130f94f",
+      "fingerprint": "9e69535ef07f4573041a63fa661c8b48696b6091a4a2d97188bb480c54952c8c",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkey.md": "63b6cd0e271b3cbe97c910f1906c6170dbd82075af29c9b072d5ab40eee30753"
+        "docs/framework/svelte/reference/functions/createHotkey.md": "531f92a59563a3a7b25ab73e2061109ec3772b5fd57f54ce1eb89902e351f8c3"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/createHotkey.md"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeyAttachment.md": {
-      "fingerprint": "ac9b8bb5ca0a4214e8fc170df02af0b90876fc80580130cab630ba4095e6b24b",
+      "fingerprint": "a870824a7c1ee2ad05c0b244a637a00e5e80959479a6272bc6f461f93c4aba94",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md": "27ddc9665f0942758c85e3c0c29d1e26ce870532b8ae9fc16dc2cfd5f9247488"
+        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md": "d3a05c90cf3d278aea5640a0e00d23acd1bf65d10c4a5edb43f5ca2530a88048"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/createHotkeyAttachment.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": {
-      "fingerprint": "6343df09ef0c1e28e7acbce7b8ae746a6693a7b6282efe36565429682f6bfde1",
+      "fingerprint": "6ecca45c2daa5e47c015c885c3bbcfd0448b45d88153e346c6a5f64ea2ed84a8",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": "a13a54cbf9d265c8dc97318d687b807da2233d64392e27fd576e951752dc93b1"
+        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": "9e17c7ed3ac8b0b30feac1e96c697d3666febbe793cd021c5caacf7d5bbc6def"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": {
-      "fingerprint": "87dd28213db0584967a437c7963da68405c531f7e21f943a6d3821ea74881b16",
+      "fingerprint": "09a2987b8c8c94c32692d39f7b9c607bbcb5db472d52a164a85f143c31aed8e9",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": "e93bc6ccd1fec920b7940f88f7abe55309c47226dabca0f8c3482cba7fb01fff"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": "aa1512d4416769325375b0cdb1e22521a059d7aebc5ee00594a29a38f27af6ba"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": {
-      "fingerprint": "f44f1fecc1f5933d685e123d151b6b75fb8c2dcc208cd838846c78e3383fa613",
+      "fingerprint": "92023dae0fb4a9e7813874b7fc026857818fd40f186de9e213c6caa46a111bfd",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": "0250f0a0aebe7186a2de40396b7fa6031d020ed762f05b1adebe9bf4f57ee347"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": "f426738420e28da265907caff3c0b42581ffff1d870408879ad88040b9bbc952"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": {
-      "fingerprint": "253010e8ff7b14bb810b3d2e0ce04f467e5efe6a9412a6a5a4188713e178fc1b",
+      "fingerprint": "2e2ce0c3c89e902cd5ae756b9fd719fcd8feff08e0008b2bddab5444bd18b768",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": "a4d382c04ec02a60479b4dda64d8565ede95f05d0f2be62d29d390dc98409ed2"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": "4a959b5d0f896a5d7ee27c44ddbd2877945caf78eccf4921ffbeeba05a42ceda"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": {
-      "fingerprint": "d654253627b43f183885dad0b56955ef0c194184ece0a633b53ec4c45a0a3815",
+      "fingerprint": "7b528476b23df44466aca4d54da3793cc06ca70ed0a94953f51efce951eea9b1",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": "172251bb5561f2b8ecee8f46e629a1b8a65934aefdfd09cf7f6a1aff610993bd"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": "ec78481587c34260f70891943801f20a337d0f3673129aa65c1657d76f42ba3c"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": {
-      "fingerprint": "71137014652781d04be164883815617b661dac54369c1ab7ddd0195604e88c71",
+      "fingerprint": "65caf72ca949488c13cca5f6031e040f02a059b7a8b8579c7fd48f9d264f0b40",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": "cac4fbc4cb5cc1f82aea78a871e4e7ff0f16990a50c1a67d7889b0c6fb8b5f54"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": "cdb58c98789cbc95450e845637163d49cc8e145b3d0fe256e6b8c056fe75014a"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": {
-      "fingerprint": "1b0f8e16ea527bdbb3cbb2a8a5346ace7bace13238806cb68c86a4fd847e7012",
+      "fingerprint": "5ae26c5f4f4c08cf4a826f500d2160521a926fdb6095feb465c60dde5cec8347",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": "e46a96757fa4320cdfc7dd90c31d227a5a183e3038275ea88ee832ac99a180b3"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": "ef56b5c8b36661698e4eae7289842c837b6e0fac68265f70738fc14082d4872b"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md"
       ]
@@ -3974,59 +3974,59 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeyRecorder.md": {
-      "fingerprint": "3d5e356eb608b92321f18764545fd823795576313b1df2185881eb20fa176f7b",
+      "fingerprint": "35ca99ce0de9d30d6735f034eb95dcd4f690f3b892811af841bfbf44b2902b98",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "236cac1f0d7ce086661d2a7e30b41277151ed184eefd9c8490ecf56b7458607d"
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "d88963b80b01150c0c722d60b07001f5321eeac0311b3fbd1ff99643f5bb802b"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/createHotkeyRecorder.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeys.md": {
-      "fingerprint": "34d9bbfca9d667076596c17d26846623bef624683a789f19aaae2270717b9f8b",
+      "fingerprint": "b814f3e1e6a7b5ce0daf8ca46963f43f14b58cb35983edd48423b5013813f953",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeys.md": "09d76ca9fb5f62f1374f3e4d0efec1f1f6faf5255a4a9a29d29bae9343414bf4"
+        "docs/framework/svelte/reference/functions/createHotkeys.md": "dff23bdb2e208cb57009e6e7f43db3fed66d6f7d510f8fd26dc247bee591fafd"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/createHotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeysAttachment.md": {
-      "fingerprint": "04e579156e5267e665a99b7d6bf908717d40a1849b634d58047a908c09d97bf5",
+      "fingerprint": "3641b6cec2b26c20210008ce4bf9e66712d4e179a2f29847612433fc35364cea",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "99c227c89089483f56487979d7413687d2eaf3f91f1b1d179d059d3ec2c96114"
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "32e59c12c46f2b63e925c4f6f36d8e76fe691c61ce38485d3c68b98ee25014d9"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/createHotkeysAttachment.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": {
-      "fingerprint": "209a226d9f812c82591c1884aedcb557f4f981f5b6d13dd4257628b02f9e7a24",
+      "fingerprint": "188d53e8fdec059192bad0f1a16d9b213b2e0fdc22e2ea15092e257d2f7c701b",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": "08963078db906691f987de507f11511296999771b9533d8bbee5e9f83cbbc35c"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": "daeddd5e13ad1a892af71cf15fade0f0fb2c9c69b2c40fc1aece71779d313209"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md"
       ]
     },
     "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": {
-      "fingerprint": "e3becd857a370a3bcc9ce867c81525f7a908d85ba9493dae0d2f4ed75f63bfbf",
+      "fingerprint": "c225fdb97e774a58fbef5bd469c0a151a28ccf1a996a5ecf0cf30607a8a38544",
       "snapshot": {
-        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": "3d46c7a23d4b621ab49bd145bc6b1122217233b5594896445699f570fbccbd0f"
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": "2c738a272cb299b070ccc5033d18232c49b39a230aa60193c1a68fccf412de53"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md"
       ]
@@ -4635,85 +4635,85 @@
       "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
-      "fingerprint": "33bb5208dd91b743abe5d64f4d3f383e005701ebf732a1ed9ccc6369ea74626e",
+      "fingerprint": "29818e4c0292fdbdad6935fa738f8be959c85b8b928ef8035ff4dd55c2a88960",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "69da5694670684db2ed193558da6d83ab2ef64f99c5b99771a08461901d90269"
+        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "5990d778249949c52e0f91e2052fc17544f3a9fc10ec6df4a38c4a524cb469e3"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeysContext.md": {
-      "fingerprint": "537b2ffb238a14f98e098f35adddfca7dc9fcec96267cdc3848b4480d5ab327b",
+      "fingerprint": "9adc8c6fe4557f8133d0f349215479f56ad1e2c404798ca3b462aa0f8b318408",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "7c7db398482fb03f0e0d8d7dcb0c989c7cd310e74e7e7e8a20271eac6d2d16c7"
+        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "39705e67b7781bc86774f3fcd1f4601f0abda71d94aa4a56a4a3e2460478b7cc"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHotkeysContext.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/setHotkeysContext.md": {
-      "fingerprint": "9327e82fdb18d443913c2420d982a29b04c3e43e773aeae1e2dbfe90b9aade67",
+      "fingerprint": "bcef4fa01a5231a6cf205d72d8b44d8d707e15f6bb3d53381e2c77988dfda1c6",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "40b06966f6859d2e8c9f0c37f911e633bbd73c50c5ae0d96b2755fdeac2af059"
+        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "844bae920e1417aab103457978e9bf0fa851b96c91c0e90271afa9454f535ef1"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/setHotkeysContext.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": {
-      "fingerprint": "9cbc81646ae25d3d2b77ac1af624dc2f84c1d4dfb1c4ea68a03c6d7dc033e119",
+      "fingerprint": "f69c3e070ff5be2593dc3cfecd2e5c211e8005bf57ffe84c49468c07cf3b0794",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "7d4599f9d84efbf63f4c86d9421473067eb1efaec67587b2c3f0fa6862874835"
+        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "fabf0c90ebcf03b9461806c19dfe616fce489a29a8f2747d10830a7a7be562da"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "1ececcc35b6b7a425828194598bcb6dd4dde28ab3852697a1a7dd2085af1361a",
+      "fingerprint": "07c0d4147976fc3dafaca8714f537d195607f631b711a6266c9c418edc258241",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "f41ffe27fa30006924daa646fe7105dd7b9389685c6358aaacc91c2cf22826d8"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "8ba119e96c977dc6d2cb1a91c03c244fb532da2f80296a38646100a55195c096"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "ae359fce532dd2d493a64fc1699bdd52573cf7067bd2493642ff6737c8140341",
+      "fingerprint": "0b0ad6bfb8d2e117a2e76ce39d2dd9c8c37cb85a19b7d8992a1d73b6410c3c36",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "0f254e2bda8a8ea867be7422aba7bd8e80d85bbbb4fabd6185fc60c60f320513"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "58f79957ac04a5507501c2f2f4408431b0b8b85300282dbafaca12cc50f01af2"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md"
       ]
     },
     "source:docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": {
-      "fingerprint": "28ee7b59767f30b6e891544886490625fcefb6377eec11c816f68f28b58125ce",
+      "fingerprint": "87129c1c7fecb184bce29962cff4d8073fc95d269815c93c4da4c26200aadc09",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "ca4933e763ae77a115b3a1c2598566650fa9701f8d13033488324b3ef2e08e34"
+        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "4536827f4c14abe16aca3bc5720638e4737412a393c2810e79f1ac2e548697b9"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md"
       ]
@@ -5699,23 +5699,23 @@
       ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
-      "fingerprint": "908169c438db2f56e667bcf82976dd7417e847a89bfd8c6d731793186516b585",
+      "fingerprint": "a2f28a7e6ba804d3ba49e7bdfe4e7a237fb2cd0f57a448456aa55b44c88b5093",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkey.md": "2246f5beae0c021d75ada182f0260b35bb2bd021408349dc9e3813b6b2d782f8"
+        "docs/framework/ember/reference/classes/useHotkey.md": "ae7ebc77c5eb66a53d8db0d8ac751c95283c1bb75b5758e755b12d4fc5247604"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/classes/useHotkey.md"]
     },
     "source:docs/framework/ember/reference/classes/useHotkeys.md": {
-      "fingerprint": "f484dd4b71b16b6c25d18f477b043b072db4b75c8340b1a24e280b30f85bb927",
+      "fingerprint": "80b57856a54b6e58595872939a4837481aa8b0bcc342ef87e2cdef27b9dcb5ae",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkeys.md": "b18ea08d1efed45e0bd7c4846977fe74cf11599cc42c6260eaa7464ba700fc73"
+        "docs/framework/ember/reference/classes/useHotkeys.md": "7ec477e4076912b6dfd111e40daaf0766b3c6cd13a878ebc3c33e46aad8a7ee8"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/classes/useHotkeys.md"]
     },
     "source:docs/reference/functions/assertValidHotkey.md": {
@@ -6555,35 +6555,35 @@
       "evidence": ["Core 2,001 tests, adapter suites, e2e"]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
-      "fingerprint": "ba055f1ff5aca16178401234b1429f8d610e81d62520750294efa0c68738f0d8",
+      "fingerprint": "fa2a62ed331dd6c4ca13ae190c0f4b5ef1f0dd3aa9099c95bb0321db3d1ba96e",
       "snapshot": {
-        "docs/framework/ember/reference/classes/onHotkey.md": "a13dca15cab28709b205bf91377b411a3f562f46978f53cf6dc05da97c3055b3"
+        "docs/framework/ember/reference/classes/onHotkey.md": "49ced41a013ced2c730007673b04c93dd6d064f39c0744a9e6aad24f34474b58"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/classes/onHotkey.md"]
     },
     "source:docs/framework/ember/reference/functions/createHotkeysScope.md": {
-      "fingerprint": "a86a9a353793ee82d7f78627bfd81706040c321f883356b004b9b97a202f7b88",
+      "fingerprint": "961bee3bd4ca39262049f347ebae9dbd8fcecce381753b9fe9fb260fb1cc8eb8",
       "snapshot": {
-        "docs/framework/ember/reference/functions/createHotkeysScope.md": "3bd07562f3530c3916f9fd182e83e0c87e18ddfd8e019ec6b3529f3fe852d6b9"
+        "docs/framework/ember/reference/functions/createHotkeysScope.md": "f3dd6bb344cc5be3b1ca32b526708277d16841e06340d2d04713ce0656c2fa88"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/createHotkeysScope.md"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": {
-      "fingerprint": "98119c190e92e19b0d77c260d17dda0dfc756b5778e3399c76ad4a223be4b036",
+      "fingerprint": "bee0cb9dc52ebde5ad5dd0617f9e0c6617c0b1defd1988371a9203031abf5c2f",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": "8430d1640b8204ca2dfbfc97c3c8585b5aefee3f08fc4e60ebcb91df2f1a55c8"
+        "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": "f75b18369a11a498f72e387788b4f5be0521f608e015838d21687a1bc7fd3771"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md"
       ]
@@ -7337,13 +7337,13 @@
       "evidence": ["docs/framework/ember/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "fea52a7e11108a6505e3724d893ed5095b0d6f38ec40579c3f25064ec72dc99a",
+      "fingerprint": "4c01d74c0ffbb8c81803d1501956d23831ad4973c11675c7bea85328e09a11d3",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHotkeyRecorder.md": "8c6e10b7a88060997e73ec4614dbdbe468b280dc74615fd8eac02cd442cd3292"
+        "docs/framework/ember/reference/functions/useHotkeyRecorder.md": "3357172f496a06a365d5370b4a17b6ea70a36e14f3e04232ec9b0585690f0116"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useHotkeyRecorder.md"
       ]
@@ -7734,25 +7734,25 @@
       ]
     },
     "source:docs/framework/ember/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "6838ca18dad7afc6ed9885f59ed5b568c6d7515a4a305a02f6bbc39fe97d9109",
+      "fingerprint": "3a9a73f28a2fd519c77b6763477b14624613aa99a4bc1c099324a54166de5493",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "06bd11da70d8e8e50d0a3e0a892615f2f2373cadc75fcdd73dc641ed164113ac"
+        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "b359f2c6a7d182ef2900b64ed3dbd2c506a566f9768f30825f203651818b8bbb"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useFormatForDisplay.md"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "f0421881ae8bba25f27d4563b9a5d0406471f6c96965890fae2dc0b66a5c7ed1",
+      "fingerprint": "f84ff7fd68855b5ce13cd39f95b1ec93c17afe6ab073f6ac29f16e3f45ddefa9",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "36ecede1d0fa45a440a50f1d0b4698ab1e5a2e13a2420421c25ee4b70b995010"
+        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "de78ecf757a1d2d591fc59a31a9056b94f0500c390093c3d2c63fc325def9e76"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md"
       ]
@@ -7798,13 +7798,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForDisplay.md": {
-      "fingerprint": "f6100697bd813989006a2ce15e54198d57422b634a0f1e1db35a71ad6e990b8a",
+      "fingerprint": "5b47b0ce67d73c81f3117b72c2720cb52b4e0bc0296c7b3f4121016ec345b647",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "76200be3ef91531a25d75dd139b615306d702a6aa2e070bb8a8b5a258534e058"
+        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "2b76ad44f00d8cbed2f5d1c996276a6bf80031b31d4a38263a0dcb2292a1ee83"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getFormatForDisplay.md"
       ]
@@ -11078,37 +11078,37 @@
       "evidence": [".coderabbit.yaml"]
     },
     "source:docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": {
-      "fingerprint": "b414350ac2d17f34c28cf4b8f003bbfa94b2c89d272e5547ae3af6fce20c3599",
+      "fingerprint": "30b5da191ff32afc21826138df6d9687767e61d6ffba4f6d32c2ad33bc88ebb8",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": "c4720f20055428734a48a94d0172338da058c0e40c86387b934ee4b461e1f105"
+        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": "97a356ed89d54a84cd092b06128977fb1e31b6571763d922063e0059f31e9858"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": {
-      "fingerprint": "46ba828b9377b309526c93a8011d50ce0eaf9b19b3c7582cdec7dee0cccc8800",
+      "fingerprint": "f242a5c0473bfbb1a2986e451f1735f86f718974b69e589b52903106aa1942d6",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": "bcd63dd11e619abc4ea56c7682b1db3c649989cbc423ef1b2dcde899160e7810"
+        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": "ea469e08c9f00afe21d28eab8e9e6fb905c2f18fb6d2b91f398c176b967dc197"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeyState.md": {
-      "fingerprint": "e707dd48d86ecfd6f216492ad220d5930a0a9e2104153f6b17346985ff520466",
+      "fingerprint": "6e635dac644b027af086db6d905f7c680df2ea7437150a766ef4bcfde8cb313e",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberHotkeyState.md": "c8c3960e1fc2d7d9583ca96b9a96f202b798feaaa390657d8964610078bf4250"
+        "docs/framework/ember/reference/interfaces/EmberHotkeyState.md": "c8e7e1ba2a2899aba5d1c3a14c9d80e2f7f3ba3ac66e177123cc367a6a7779a7"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/interfaces/EmberHotkeyState.md"
       ]
@@ -11126,49 +11126,49 @@
       ]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": {
-      "fingerprint": "156b6f52769815ea5f8e1702856edb5536cd927133c7626ef5eea8730d3bbd16",
+      "fingerprint": "ddbe248f37acbfb0b6ca5daf60538af07a018ecc46ce5adbd609eeeda0a70e1b",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": "2a116bae188fe599c5191bd24543624755fc4e4366d309d636bfa7231ca8101b"
+        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": "1274836baf53c74978d5ae0b04d0bfd77d90266705b25d86eedcb54119dd81e4"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md"
       ]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": {
-      "fingerprint": "fe9b962ec897ab9ba66b6639322245811791224908b05adc1a92a886546430e4",
+      "fingerprint": "fec073078c200a9a0dbfaa47e7c10da7aebbfb364959a6701dd4a524e1e9f743",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": "1c95f7fd9754a4bde00f9d9ca60fcd0ef6c242aa0918cee5fa40ac7b46ee7293"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": "f82b43720cde6d620f2d0096270603e9bcda9f124a24405cf0494383b791b823"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md"
       ]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": {
-      "fingerprint": "d4c817c20896e50ad19b6428e33757d5cb397ef7513ad71c4d137e680b9f6137",
+      "fingerprint": "f7e2bf1b9d63c7efb162117247d9548cfe43a5a2893c478938cd8dd3b18ebd26",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": "5c3fb05e274e2e3679cd99ff7bf3553c78f1858c224826b94da836e557165951"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": "0e74c13ca3cae35dec3034416446e3e8a005c84408f842b9e966209d20a020f5"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md"
       ]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": {
-      "fingerprint": "2e8b0da9604c03a9d7f58331c1c9afd29b6aa3f4426582eb6239be7590567cf6",
+      "fingerprint": "b5bae823a253d7c48f194fef7e36b67acd8fa6af79f8a2fe4b3026c62ad179ed",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": "e6d3dee00b9d25e46fcfedadd6fb6440154d70af1d0412d6acbd595bbe963b64"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": "802f9b3777d33f29344ae92006717de8898112ab182f59b0b42e8eab825b7b08"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md"
       ]
@@ -11546,35 +11546,35 @@
       "evidence": ["docs/framework/angular/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
-      "fingerprint": "7c5adcd45e009c2917581dcf51cac3c6349e18328f9e5f4fba97a97960843d26",
+      "fingerprint": "5f75049947abd0007e83d78ffc33f4dcbf4b6b8a374f8243e24946d4e3d1d98d",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useAppHotkeyList.md": "5a56f54c70a3489e80c87cb38edae49125c636b54e42d22bacb23866cb5b5405"
+        "docs/framework/ember/reference/functions/useAppHotkeyList.md": "877b2d8c4657eed19529b54958db66490d3fabad67444c3f8d5c5ea3b37f7cff"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useAppHotkeyList.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeys.md": {
-      "fingerprint": "d2731d2c4e2c13f238e227e474b3a1b56b4f792717abfa5f967ff4580277b955",
+      "fingerprint": "c930d04054e437659abc09611037dec01b1f7ceb26ee59bf4dcf824f01f989cd",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useAppHotkeys.md": "36e0ee3e7becf6a92d394551a1b9e7c7ceb29c496a70c4048a05c57486e71739"
+        "docs/framework/ember/reference/functions/useAppHotkeys.md": "bbcbddc4e0757ed1c2b88d4a82d83ee30bbbfd75a75218b1b6fbb94a69c643c3"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/functions/useAppHotkeys.md"]
     },
     "source:docs/framework/ember/reference/functions/useCustomHotkeys.md": {
-      "fingerprint": "abac4701fd36f5c7b3431b8bf76186661ab68d5aec0225497438bbc4bf714733",
+      "fingerprint": "007a8de3a648d21df067eead1dbcb61014b2454e08b11a249e4cb6a2f98bde9c",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useCustomHotkeys.md": "7561959d6196d207de2030470ff1c295560d1b954866ac3a3fa294dbdade73df"
+        "docs/framework/ember/reference/functions/useCustomHotkeys.md": "1b7dce7dbcd70c8c497dbc9ae807412affe471d4ea007f5fe0ad0b36569f2fca"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useCustomHotkeys.md"
       ]
@@ -11656,71 +11656,71 @@
       "evidence": ["docs/framework/svelte/guides/custom-hotkey-recording.md"]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
-      "fingerprint": "9ae3baa50e219a36c42e44cdc2a6977c0a7ea768f5461f68783d96fb6cf45e49",
+      "fingerprint": "8fe5e73db20916113f27570e3ddd2015cf4df4fd61e9285f8b2baeb5ad09831c",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getAppHotkeyList.md": "899bcd4f7285d266a4e105183194d36960c0d842e2cdb18e5acfbe2b339b0d99"
+        "docs/framework/svelte/reference/functions/getAppHotkeyList.md": "39894db9166771b44c9f1a1c56bb32a0dc9ec0921869e77945b750519cef755e"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getAppHotkeyList.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeys.md": {
-      "fingerprint": "f5cb987e824fd700b0c8215966655fd9912ca4f067b96083a7dab43690c87250",
+      "fingerprint": "9aa4ceb60c61a755d23364c98ad8b1e06b633162226949401b7eaa8443d27d0f",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getAppHotkeys.md": "95bce5877f0192a422032614fc58176f0d8e8e9e5b8e2613711e1983ad6f77a7"
+        "docs/framework/svelte/reference/functions/getAppHotkeys.md": "92d598f6a086848d4dfa394c922ae03f8a72cd2a527dfdb04e5bf97c05e3d2e4"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/getAppHotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getCustomHotkeys.md": {
-      "fingerprint": "0ffee12db77fd02ad029827c55af9dd22a08f19e22afb750b277c4256dbf564c",
+      "fingerprint": "ff049c552210209e3f55f7b650bcad5bcf13c334a30e27ec8ae34d025eb9ea53",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getCustomHotkeys.md": "0379823fba0325b7f2e52817fd42e8287670bea674ac82e506c8e702ed2a4730"
+        "docs/framework/svelte/reference/functions/getCustomHotkeys.md": "adf62477bdab88c7cb8a36219738d0de4c22695214e44b5dfbf150c871e21bb1"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getCustomHotkeys.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": {
-      "fingerprint": "934264a723a0a5f516e9570d335ca0a44cf839efcecfe24d9c90f62233b622a1",
+      "fingerprint": "950b3dd2ec222625b1e4743aec35401b83f835de043d9f77f908b4737217f167",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": "816818ee72d3ee0fcaff7635a47624c9b6f3f75fa900395be5697aa265bc5a62"
+        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md": "3545af9a784f94f452da9d6759de68da7547f720a45af32bd0b8d67b1a446b26"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteAppHotkeyList.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": {
-      "fingerprint": "d2a658970944a7b4b04f153f68452855b5a9d967098ba295395781442b020b8e",
+      "fingerprint": "193ed8d10d8a9f52e1c9951ef528a81587e087dac210065261368080a9df189c",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": "e7d6a0560dcaf12d195d99e1b86a6dc8fc600af50f1d8a0206f15723f90a8b9b"
+        "docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md": "911ac175428b078b26c74b116c222e3008611917f29e12000989eda2e5481ce5"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteAppHotkeys.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": {
-      "fingerprint": "f37313b057259befcfe92849809f6f8b8b0b62b4a28e9f9571132a25428a5869",
+      "fingerprint": "02ae8dc9d042c2095f24cd67945c4107e09e0250d99a09747fda5b4c20328a0b",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": "62369644d95e7266c4fd977e70d03ce6f203589a93ba81efe3a793cc94620045"
+        "docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md": "d7a7fe4339cea377f5e9705ae4fe5bcbbd519333033cbab58e11c2e63427a0ce"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteCustomHotkeys.md"
       ]
@@ -12007,67 +12007,67 @@
       ]
     },
     "source:docs/framework/ember/reference/classes/onHotkeys.md": {
-      "fingerprint": "a496a4abfcc85cb9ae70ae0c0e5f4c384e500973d6db88351181a596074140ee",
+      "fingerprint": "0c4236483267bd9b2b1e87d95084f5d47dfdfdca95091eda4c6aef90a09928fa",
       "snapshot": {
-        "docs/framework/ember/reference/classes/onHotkeys.md": "9cbffaaaa2f0bdb0ee220661c2f31d54fbbac95dd8c305ff64df2eef8b37ff05"
+        "docs/framework/ember/reference/classes/onHotkeys.md": "b695e9b5988f29257f5a8ea43b338535f5e4ad2fb3a3f4bbbcbcd7b7324f75d9"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/classes/onHotkeys.md"]
     },
     "source:docs/framework/ember/reference/functions/useHeldKeyCodes.md": {
-      "fingerprint": "dd0d674dac5ca08eddcbbdb197b5837e3ab7234c136c9ea833d66516f460b86e",
+      "fingerprint": "1382137d6047d5e06943504ebd2d35c9ba9d266333577c4335cad9740577c6c6",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHeldKeyCodes.md": "f0c389b119abbb270a145a72bd3689ed5768db9feb2d44668f69c24ff8ed97b0"
+        "docs/framework/ember/reference/functions/useHeldKeyCodes.md": "d3fbcef527b2da5c9024adb9d77abe7fcc709b01daa08907d83f4baa2be0593c"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useHeldKeyCodes.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHeldKeys.md": {
-      "fingerprint": "cac00e0ebf5ceeab96fa7575292438abf2d987d0c5c2e00c5a7889bf009fed38",
+      "fingerprint": "f3248c7fc17904707eb98ae0c190e2551325fb2054b2f68e8932153dc553e534",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHeldKeys.md": "2867827d4803bca25e8275fe32aeb1515f5377d64c0e9e87ff643b70fa16b51e"
+        "docs/framework/ember/reference/functions/useHeldKeys.md": "7c3b68167f653fd924aa59cda60e1b3615794602c9128639987550225600bc35"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/functions/useHeldKeys.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRegistrations.md": {
-      "fingerprint": "323f21afbbe554439b2d6a9148b6777c1d31c1c477ea9867d8e0d829b24ec242",
+      "fingerprint": "112e227475ba1f209643ab4782cf7ce375208edbfa630e05e1604fcb9d85995d",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHotkeyRegistrations.md": "891a26a1d231c1346463184ab84d56feb4a861d942603475128beebc28df1212"
+        "docs/framework/ember/reference/functions/useHotkeyRegistrations.md": "356aafb9b43eace8d3b623d8c61e2c1636efd84d4a707b5985ff1a6c3f1974b9"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useHotkeyRegistrations.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useKeyHold.md": {
-      "fingerprint": "f57a505ae54ab4add221ff9f2e4023dfe48d32b2a3b01944e84e3f50412cd090",
+      "fingerprint": "173acbcf7d3b872eee0851e1ec8f43ae783e9884592b085f795cd800612674b9",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useKeyHold.md": "2bc24ceefb3d05f236610e00c213b315f34faa568f0049e8180aebed3bcd1cf1"
+        "docs/framework/ember/reference/functions/useKeyHold.md": "420a10bd8710a40b6c6e3d8be7080954d3adc9bf8e4681de1ac1d1736255157e"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/functions/useKeyHold.md"]
     },
     "source:docs/framework/ember/reference/type-aliases/ElementHotkeyOptions.md": {
-      "fingerprint": "17bdda37ff223093e4a49861b9b12ac993465dae9dd966c79b42f0ae4bc86de5",
+      "fingerprint": "46f3dc3f6c3059969a971a11b5caca5cfe5b112fef24796e01e20c3bab7490dc",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/ElementHotkeyOptions.md": "540814a6b76e89de41f22dc9864b0448ed714bf4f3c0b3bd5f041f98dc0df7f5"
+        "docs/framework/ember/reference/type-aliases/ElementHotkeyOptions.md": "6c08e4c7d85f784afe977ec581c8f47a493705b8da57a7915e0117e55246ddd3"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/type-aliases/ElementHotkeyOptions.md"
       ]
@@ -12575,93 +12575,93 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md": {
-      "fingerprint": "3caf0b13e36b1761bfc5d239a1128ff218972c9989b73550be3c821cdd0f3e23",
+      "fingerprint": "73fda8be1662329472d5fe64cfe6ad40c08a5153ebf4760647b58dfc963fd3b0",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md": "0f7a24d81f43cff1b10951d6e83f78add25b5818ce41f1b43ca94edad098c832"
+        "docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md": "a1be5b9723f30a8924be90c39ddcd3d73a4880bd67ccd8d71435a88d6051d58f"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHeldKeys.md": {
-      "fingerprint": "adf48dad905a34236c77484d45b745a75a2070e630183065881fab0fd14f89a5",
+      "fingerprint": "6369c9503e88b7c73385f4160bbeb1d1bccf9361f1d82370c8f16953f0bdae94",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHeldKeys.md": "f768f22626e9f9567a16cdd37ecbefa54ef0be28ef57e401295a81f0900cdc72"
+        "docs/framework/svelte/reference/functions/getHeldKeys.md": "af8c5698540ba05c4e021ff933818e0c8770e3a71f8d89b169742fc7b93512da"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/getHeldKeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyRegistrations.md": {
-      "fingerprint": "b2687acb5067f5f8867625efcb6e073c8252adad84371e0058b2630d2b153f8f",
+      "fingerprint": "8ad89baa5ae3ec7afcd3e8a74b975cfa73ffcccf21f75570653f5d66e847e475",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeyRegistrations.md": "88e0dda2fbf75ad8bce31331f4221b9c075f12592ab2443442ca4cf5149bf769"
+        "docs/framework/svelte/reference/functions/getHotkeyRegistrations.md": "73fdbb8be04bf4734107cff8dc1360ab57216f430311e308c3fb0169515f15bc"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHotkeyRegistrations.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getIsKeyHeld.md": {
-      "fingerprint": "96f9da13257f7865204a5b92ff369a313deb174ae37c08ab470c1b956d26c47b",
+      "fingerprint": "8e4a05cedf09b60f68cf24f0f8148ceec7b7a14b15705c113b8794aa65191a1e",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "885b8d1cc5f7198fbbd946d15721167cbc866e4ffe7f76c9fd1dc13bd505f078"
+        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "8f02d863c904fb0b73d1ae52cf30ab6f126552fb81f7a8e4637a65dfe5365715"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/functions/getIsKeyHeld.md"]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": {
-      "fingerprint": "4e7274e6da4a1e95a72bf2e8098cad7f95a0ddae6264420f2dd6384a74afb2c7",
+      "fingerprint": "4ddb2765b3b000fd3da60346cb4487329ecc74a25eb4b9ad2e0590927eb682df",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": "b8b84c3e0544289213a47d73d95140afd3c6ea5c25ec3806a9a7e9c317753c9e"
+        "docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": "8305c917cb16bd91445869ceeebba72567a8c7cfbcd0c78e9193078ce8af31ee"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeyState.md": {
-      "fingerprint": "949757b16de0ca938278e6c7d511cdd7f419f67723b9b1ad351958d1ca63d2c3",
+      "fingerprint": "2a5052f7baad234d8806dd9427a6bdfd3c9fbbe8ba301417cc083fee7616e931",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHeldKeyState.md": "dbfc5423f5d28496dcee0568c82fb24f8daf4cb138176a45de7d9362506230b4"
+        "docs/framework/svelte/reference/interfaces/SvelteHeldKeyState.md": "50dcf54f13f8bbcaa5caf27f14bf3de1532ec1dad60d2d29ab8bea667e647a42"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHeldKeyState.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeys.md": {
-      "fingerprint": "2382ca8cd4180713221473d9adca96d18a11f577549e7ac79b53ca4d48d83fdd",
+      "fingerprint": "bd8f36a5bc3428e8e0961915306c546b4e8a07a95e0852a58d13e3c5423d7393",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHeldKeys.md": "234a39c4cdb9edd5997399d1caddf7d729fedb9094cfd5f960465099486069ea"
+        "docs/framework/svelte/reference/interfaces/SvelteHeldKeys.md": "84b5453bd2109170b140a5789b10eb7f0cc7bdb79406927126ba193785b9c1fa"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHeldKeys.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyRegistrations.md": {
-      "fingerprint": "237cdb1f9d67733ccd194b2e64dee5efa8f53b8fb6c0ec9d250844e45b6970c1",
+      "fingerprint": "78a9e35e455a88507ed4a1a007d38150230198a4cb4ae00d532d07a77d3b75c8",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRegistrations.md": "d49b2b56d3d8569c9d21cae6fa0e1e253884b21783688cfb6c67949444d69b6a"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRegistrations.md": "b2bae87951c399bad59702b6312bc1ec36217a28c5c6a878f07aec10155c356d"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHotkeyRegistrations.md"
       ]
@@ -19622,13 +19622,13 @@
       ]
     },
     "source:docs/framework/ember/reference/functions/useKeyboardLayout.md": {
-      "fingerprint": "ddf01d38da2cb8079d4489569f89784d4c7e3d72e00ab4c7174f9814e0c52ed5",
+      "fingerprint": "75e675e198bc3e14c8e90bb5e05d0c647433af25fbdf3b2f7f7928d7f9c8cad7",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useKeyboardLayout.md": "ca46d091f9544e8c691884485664dc0b646d4d73cdedd91961fe820239563143"
+        "docs/framework/ember/reference/functions/useKeyboardLayout.md": "c0f2ca768c01d30435d0370595ef33572c60e4cf586d4e1ae5ab7d55c30b6273"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useKeyboardLayout.md"
       ]
@@ -19694,25 +19694,25 @@
       ]
     },
     "source:docs/framework/svelte/reference/functions/getKeyboardLayout.md": {
-      "fingerprint": "9670710691004201a9c613d6eea0a0c159bd598327739c1701895f64a7a5e9a1",
+      "fingerprint": "e54c62952f97233dd16d03212f6302087e71ae2dff6fb70206ed6848f37a04b3",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getKeyboardLayout.md": "d718054667f936871ceabc4fb89bd4df32cd66550175c9d311d6abb0140b04ed"
+        "docs/framework/svelte/reference/functions/getKeyboardLayout.md": "c8698d0baccee8c6ec997766bde7577300c9c201a1ec58c700bb06231345175a"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getKeyboardLayout.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": {
-      "fingerprint": "3a33000576ba686cbd20f6f6e096fd9330865c3afc1f8883fce6f0d14ec9d62b",
+      "fingerprint": "e7a79581894da145d400aef64d194a39933ec86a4845f68f8c4dfe349d132868",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": "36209366c6b452edce62c390a8c3a270353ed0c0a33a2eb7a5a55ac10a3d0fde"
+        "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md": "88f3c9b58d167deb2552bc9841cdff2b6048f07af4d6126c639a317e5c37af9e"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteKeyboardLayout.md"
       ]
@@ -20197,13 +20197,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/variables/formatForDisplay.md": {
-      "fingerprint": "23516f4d743d7e0a572e7ebe53528535b6b6482f728e7feebdc440085ca69e8b",
+      "fingerprint": "6bee505d57893313479dc10458e62ccd31b0749db217e860c4c2edc71f63d481",
       "snapshot": {
-        "docs/framework/ember/reference/variables/formatForDisplay.md": "3c187e8f79adf702310e129d9185863f6204447f324375a1a4388634bb9f4542"
+        "docs/framework/ember/reference/variables/formatForDisplay.md": "bb84ad440437e13fd2dfb041907024ed15af9c5d8902b7ab60ae0f94d4692fa0"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/variables/formatForDisplay.md"
       ]
@@ -20281,13 +20281,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/variables/formatForDisplay.md": {
-      "fingerprint": "ca927ad8eac9283f4acc1df636e3fd1decd2d5dea9c2523f0b9ace3fffd34681",
+      "fingerprint": "62288dc1e2652041fc5103ceb44d1cb63146127f837652465103838d9e8376fd",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/formatForDisplay.md": "0de94306af47f7a53644b769236287319b580681efcf4e493c59a322652b36db"
+        "docs/framework/svelte/reference/variables/formatForDisplay.md": "341fe06ae1870e9cb6729a238b98ac70d92a3e58569a2f19e9042e8b8abdf126"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/variables/formatForDisplay.md"
       ]
@@ -23679,25 +23679,25 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "source:docs/framework/ember/reference/functions/useFormatForAria.md": {
-      "fingerprint": "17ac3b58c742b8cd1e9ea09bbaff720dbdd4138e14fc5f6e9d35545d982b7d5e",
+      "fingerprint": "61f2c4bc56d7fabd543c74d5191ef21063ef325627f93af7a780e19e0f4e4845",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForAria.md": "4a122dde1a0817f8bc8ea0ac6a26f7b253258d0d5943c6b5d312ad517afb50a2"
+        "docs/framework/ember/reference/functions/useFormatForAria.md": "1ab3508645e7657f66f2ccb7453b16c8e6b39c272fe15083ce4b8cb8b6f2c63f"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useFormatForAria.md"
       ]
     },
     "source:docs/framework/ember/reference/variables/formatForAria.md": {
-      "fingerprint": "76ee99948cc7109211129b40c241b1c6a882c73873739a448db0ce02236c17be",
+      "fingerprint": "0a7dacc42c2a8a3da95501911b03db5f723210bb025906747c9e6c8b43c32065",
       "snapshot": {
-        "docs/framework/ember/reference/variables/formatForAria.md": "280c1df2bf93ee36f2f1df0031130ca71146cb3c044920a476e6a4c6a119c3db"
+        "docs/framework/ember/reference/variables/formatForAria.md": "4a89a2db67785acfca6df5ca5b79556b59cdd28a3dbe09ce0414db383b236eba"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/ember/reference/variables/formatForAria.md"]
     },
     "source:docs/framework/lit/guides/accessibility.md": {
@@ -23871,25 +23871,25 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForAria.md": {
-      "fingerprint": "32d29797b851cb344126d2f3f6f77a9e5793767cd67c7c42c8977d87757b5ba6",
+      "fingerprint": "a7c3c92040f2ac2b87d0fcfe1dd03d5bb12d2d1b459017b184fc2da62376b73b",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForAria.md": "f31a583ed24bcde8725fde0f901a963d80f711673743cbb63562f4973f5c4e0b"
+        "docs/framework/svelte/reference/functions/getFormatForAria.md": "b46c65e341fb6a8756e5de95c956dbb14ca84520211fddb603828a48c4482398"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getFormatForAria.md"
       ]
     },
     "source:docs/framework/svelte/reference/variables/formatForAria.md": {
-      "fingerprint": "d488fa0617ee0128efa8a070ffd86ffa32aee40aed5a98e13a0d4ed813b127f1",
+      "fingerprint": "7a766a495d1adae714d4a2a9a720a7b7c015232757afde7bbe43447394c2a5a9",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/formatForAria.md": "883bcbc206e98ebc89eaf84b27f6e9b1de539b66358ccf5f8ce81c9dcac42eaf"
+        "docs/framework/svelte/reference/variables/formatForAria.md": "958dd9fe74eebeddf6c3b5a95b1a0030c06ac33369249c9e6682f21cce0dccf4"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": ["docs/framework/svelte/reference/variables/formatForAria.md"]
     },
     "source:docs/framework/vue/guides/accessibility.md": {
@@ -24315,13 +24315,13 @@
       "evidence": ["docs/framework/ember/guides/key-lock-state.md"]
     },
     "source:docs/framework/ember/reference/functions/useKeyLockState.md": {
-      "fingerprint": "39f8aaabcac2ca9d183ee877942891e075c2299cb4b5dc9534dd99ab04243eb1",
+      "fingerprint": "22e94d5e6efed2cd2ec41585f4ba00977a77c52f27ceac9fbd56e451459d7e9c",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useKeyLockState.md": "48f6bc9cb2f30daabf59ce2978daef5cbb26367feb64a59f1a406719a8d19f92"
+        "docs/framework/ember/reference/functions/useKeyLockState.md": "94b754ea26170ecc247d85b1dad66fe016695377f326c47ecbdca95af36092b6"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages regenerated after JSDoc wording fixes",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/ember/reference/functions/useKeyLockState.md"
       ]
@@ -24447,25 +24447,25 @@
       "evidence": ["docs/framework/svelte/guides/key-lock-state.md"]
     },
     "source:docs/framework/svelte/reference/functions/getKeyLockState.md": {
-      "fingerprint": "4459db3e544240e811ee2e12ba7bcac37439f2a3e38a0c4ac9b0c0f51191e0b7",
+      "fingerprint": "c621ef1bc36548bb0a89af9023a5daea3e79acd428071e7971b7dc7072cf2a51",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getKeyLockState.md": "27b59c926c3a538a897f00d00a8c3b5a07194c21a3fa6756db32bbb02f0c47e8"
+        "docs/framework/svelte/reference/functions/getKeyLockState.md": "89869786d46029e0716e4f529ffdf4794b64918c8565d038f56a33b769d6c71e"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages regenerated after JSDoc wording fixes",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/functions/getKeyLockState.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteKeyLockState.md": {
-      "fingerprint": "c0368715e84bfb288312d20c76ac6911752cdd4f87ceeda2bd656922b4d448b2",
+      "fingerprint": "122a80023a69f123f3f6cabf3c5f9f31c63ad7d290b6dd889d4a78eb68f13671",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteKeyLockState.md": "216c9f8e2d98c41f0f0a77db7484424e722c2a7c0398e4392460f16d796e1749"
+        "docs/framework/svelte/reference/interfaces/SvelteKeyLockState.md": "2ac7d3461ffb10d70e34066a8b2d38f3e7c7883b5021cd06b493793a948b2fa2"
       },
-      "head": "f9fc17f0bbb537e70119ec81cec5d3d94294aa8e",
+      "head": "26de2dac2e72cec969405f8f76b72dc94a9fc928",
       "outcome": "out-of-scope",
-      "reason": "Generated API reference pages; the skills cite guides and source, not reference pages",
+      "reason": "Generated API reference pages; CI regenerated their source links",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteKeyLockState.md"
       ]
